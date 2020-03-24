@@ -1,0 +1,82 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Modelo;
+
+/**
+ *
+ * @author Carlos A Dominguez D
+ */
+public class ModeloFestivo 
+{
+    int id;
+    int calendarioId;
+    int anho;
+    int mes;
+    int dia;
+    String descripcion;
+
+    public ModeloFestivo() {
+    }
+
+    public ModeloFestivo(int id, int calendarioId, int anho, int mes, int dia, String descripcion) {
+        this.id = id;
+        this.calendarioId = calendarioId;
+        this.anho = anho;
+        this.mes = mes;
+        this.dia = dia;
+        this.descripcion = descripcion;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCalendarioId() {
+        return calendarioId;
+    }
+
+    public void setCalendarioId(int calendarioId) {
+        this.calendarioId = calendarioId;
+    }
+
+    public int getAnho() {
+        return anho;
+    }
+
+    public void setAnho(int anho) {
+        this.anho = anho;
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+}

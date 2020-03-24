@@ -1,0 +1,361 @@
+$(function(){
+  $("#header").load("Principal/Head.html"); 
+  $("#script").load("Principal/Script.html"); 
+});
+
+$(function()
+{
+    $(document).ready(function() {
+        LoadTabla();
+    });
+
+    $(document).on('click', '.SetFormulario', function() {
+        $('#Id').val($(this).data('id'));
+        $('#IdTipoDoc').val($(this).data('tipodoc'));
+        $('#IdCedula').val($(this).data('cedula'));
+        $('#IdNombre').val($(this).data('nombre'));
+        $('#IdApellido').val($(this).data('apellido'));
+        $('#IdEmpresa').val($(this).data('empresa'));
+        $('#IdCentroCosto').val($(this).data('centrocosto'));
+        $('#IdConsume').val($(this).data('consume'));
+        $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
+        $('#IdObservacion').val($(this).data('observacion'));
+    });
+
+    function ValidaCampo()
+    {
+        var res = false;
+        if ($('#IdCedula').val() !== "")
+        {
+            if ($('#IdNombre').val() !== "")
+            {
+                if ($('#IdApellido').val() !== "")
+                {
+                    if ($('#IdConsume').val() !== "0")
+                    {
+                        if ($('#IdGrupoConsumo').val() !== "0")
+                        {
+                            res = true;
+                        }
+                    }
+                }
+            }
+        }
+        return res;
+    }
+
+    function  LimpiarCampos()
+    {
+        $('#Id').val('');
+        $('#IdTipoDoc').val(0);
+        $('#IdCedula').val('');
+        $('#IdNombre').val('');
+        $('#IdApellido').val('');
+        $('#IdEmpresa').val(0);
+        $('#IdCentroCosto').val(0);
+        $('#IdConsume').val(0);
+        $('#IdGrupoConsumo').val(0);
+        $('#IdObservacion').val('');
+    }
+
+    $('#IdAgregar').click(function(e)
+    {
+        LimpiarCampos();
+    });
+
+    $('#IdGuardar').click(function(e)
+    {
+        if (ValidaCampo() === true)
+        {
+            var Frm = "PersonasJSP";
+            var Id = $('#Id').val();        
+            var TipoDoc = $('#IdTipoDoc').val();
+            var Cedula = $('#IdCedula').val();
+            var Nombre = $('#IdNombre').val();
+            var Apellido = $('#IdApellido').val();
+            var Empresa = $('#IdEmpresa').val();
+            var CentroCosto = $('#IdCentroCosto').val();
+            var Consumo = $('#IdConsume').val();
+            var GrupoConsumo = $('#IdGrupoConsumo').val();
+            var Observacion = $('#IdObservacion').val();
+            var Accion = "Upload";
+            var data = {
+                frm: Frm,
+                id: Id,
+                tipodoc: TipoDoc,
+                cedula: Cedula,
+                nombre: Nombre,
+                apellido: Apellido,
+                empresa: Empresa,
+                centrocosto: CentroCosto,
+                consumo: Consumo,
+                grupoconsumo: GrupoConsumo,
+                observacion: Observacion,
+                accion: Accion
+            };
+            enableGif();
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function(resul, textStatus, jqXHR)
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Guardado',
+                        text: 'Registro Guardado Satisfactoriamente.'
+                    });                 
+                    disableGif();
+                    //alert(resul);
+                    LimpiarCampos();
+                    LoadTabla();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        }
+        else
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Verifica todos los campos.'
+            });
+            //alert("Favor de completar todos los campos");
+        }
+    });
+
+
+
+    $(document).on('click', '.SetEliminar', function() {
+//        if (ValidaCampo() === true)
+//        {
+        var Frm = "PersonasJSP";
+        var Id = $(this).data('id');
+        var Accion = "Delete";
+        var data = {
+            frm: Frm,
+            id: Id,            
+            accion: Accion
+        };
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+            }).then((result) => {
+            if (result.value) {    
+                enableGif();
+                $.ajax({
+                    type: "POST",
+                    url: "ServletAlohaTiempos",
+                    data: data,
+                    success: function(resul, textStatus, jqXHR)
+                    {
+                        disableGif();
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Eliminado',
+                            text: 'Registro Eliminado Satisfactoriamente.'
+                        });
+                        //alert(resul);
+                        LimpiarCampos();
+                        LoadTabla();
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        disableGif();
+                        if (jqXHR.status === 0) {
+                            alert('Not connect: Verify Network.');
+                        } else if (jqXHR.status === 404) {
+                            alert('Requested page not found [404]');
+                        } else if (jqXHR.status === 500) {
+                            alert('Internal Server Error [500].');
+                        } else if (textStatus === 'parsererror') {
+                            alert('Requested JSON parse failed.');
+                        } else if (textStatus === 'timeout') {
+                            alert('Time out error.');
+                        } else if (textStatus === 'abort') {
+                            alert('Ajax request aborted.');
+                        } else {
+                            alert('Uncaught Error: ' + jqXHR.responseText);
+                        }
+                    }
+                });
+              } 
+          });
+      });
+      
+   
+//        else
+//        {
+//            alert("Favor de completar todos los campos");
+//        }
+
+    //});
+
+    $("#IdEliminar").click(function(e) {
+        if (ValidaCampo() === true)
+        {
+            var Frm = "PersonasJSP";
+            var Id = $('#Id').val();
+            var Accion = "Delete";
+            var data = {
+                frm: Frm,
+                id: Id,                
+                accion: Accion
+            };
+            enableGif();
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function(resul, textStatus, jqXHR)
+                {
+                    disableGif();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Eliminado',
+                        text: 'Registro Eliminado Satisfactoriamente.'
+                    });
+                    //alert(resul);
+                    LimpiarCampos();
+                    LoadTabla();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        }
+        else
+        {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Verifica todos los campos.'
+            });
+            //alert("Favor de completar todos los campos");
+        }
+    });
+
+    function LoadTabla()
+    {
+        var Frm = "PersonasJSP";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function(resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#datatable').html(resul);
+                $('#datatable').dataTable({
+                    responsive: true,
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                    , "autoWidth": false
+                    , "destroy": true
+                    , "info": true
+                    , "JQueryUI": true
+                    , "ordering": true
+                    , "paging": true
+                    , "scrollY": "500px"
+                    , "scrollCollapse": true
+
+                });
+                //$('#datatable').dataTable().fnDestroy();
+
+//                    alert(resul);                    
+//                    LimpiarCampos();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    function enableGif()
+    {
+        window.onload = document.getElementById("espera").style = "display: block";
+        window.onload = document.getElementById("Principal").style = "display: none"
+    }
+    function disableGif()
+    {
+        window.onload = document.getElementById("espera").style = "display: none";
+        window.onload = document.getElementById("Principal").style = "display: enable"
+    }
+});
+

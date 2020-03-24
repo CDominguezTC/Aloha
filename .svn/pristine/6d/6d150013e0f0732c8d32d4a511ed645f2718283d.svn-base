@@ -1,0 +1,239 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Controladores;
+
+import Conexiones.ConexionBdMysql;
+import Modelo.ModeloDependencias;
+import Modelo.ModeloPeriodos;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Carlos A Dominguez D
+ */
+public class ControladorPeriodos 
+{
+    public boolean Insert(ModeloPeriodos modelo)
+    {
+         boolean resulInser = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL;
+            SQL = con.prepareStatement("INSERT INTO periodo(codigo,nombre,fechaInicio,fechaFin,observacion)VALUE (?,?,?,?,?)");
+            SQL.setString(1, modelo.getCodigo());
+            SQL.setString(2, modelo.getNombre());            
+            SQL.setString(3, modelo.getFechaInicio());            
+            SQL.setString(4, modelo.getFechaFin());            
+            SQL.setString(5, modelo.getObservacion());            
+            SQL.executeUpdate();
+            resulInser = true;
+            SQL.close();
+            con.close();
+        } 
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al guardar el periodo " + e);
+        }
+        return resulInser;        
+    }
+    
+    public boolean Update(ModeloPeriodos modelo)
+    {
+        boolean resulInser = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL;
+            SQL = con.prepareStatement("UPDATE periodo SET codigo = ?,nombre = ?,fechaInicio = ?,fechaFin = ?, observacion = ? WHERE id = ?;");
+            SQL.setString(1, modelo.getCodigo());
+            SQL.setString(2, modelo.getNombre());      
+            SQL.setString(3, modelo.getFechaInicio());      
+            SQL.setString(4, modelo.getFechaFin());      
+            SQL.setString(5, modelo.getObservacion());      
+            SQL.setInt(6, modelo.getId());      
+            
+            SQL.executeUpdate();
+            resulInser = true;
+            SQL.close();
+            con.close();
+        } 
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al actualizar el periodo " + e);
+        }
+        return resulInser;        
+    }
+    
+    public ModeloPeriodos Search(String codigo)
+    {
+        ModeloPeriodos modelo = new ModeloPeriodos();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,codigo,nombre,fechaInicio,fechaFin,observacion FROM periodo WHERE codigo = ?");
+            SQL.setString(1, codigo);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigo"));
+                modelo.setNombre(res.getString("nombre"));                
+                modelo.setFechaInicio(res.getString("fechaInicio"));                
+                modelo.setFechaFin(res.getString("fechaFin"));                
+                modelo.setObservacion(res.getString("observacion")); 
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modelo;
+    }
+    
+    public ModeloPeriodos SearchId(String Id)
+    {
+        ModeloPeriodos modelo = new ModeloPeriodos();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,codigo,nombre,fechaInicio,fechaFin,observacion FROM periodo WHERE id = ?");
+            SQL.setString(1, Id);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigo"));
+                modelo.setNombre(res.getString("nombre"));                
+                modelo.setFechaInicio(res.getString("fechaInicio"));                
+                modelo.setFechaFin(res.getString("fechaFin"));                
+                modelo.setObservacion(res.getString("observacion"));                
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modelo;
+    }    
+    
+    public ModeloPeriodos SearchNombre(String Nombre)
+    {
+        ModeloPeriodos modelo = new ModeloPeriodos();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,codigo,nombre,fechaInicio,fechaFin,observacion FROM periodo WHERE nombre = ?");
+            SQL.setString(1, Nombre);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigo"));
+                modelo.setNombre(res.getString("nombre"));                
+                modelo.setFechaInicio(res.getString("fechaInicio"));                
+                modelo.setFechaFin(res.getString("fechaFin"));                
+                modelo.setObservacion(res.getString("observacion"));              
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modelo;
+    }
+    
+    public List <ModeloPeriodos> Read(String Clave)
+    {
+        String forSql = "%" + Clave + "%";
+        PreparedStatement SQL = null;
+        List <ModeloPeriodos> modelo = new ArrayList<ModeloPeriodos>();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            if (Clave != null)
+            {
+                SQL = con.prepareStatement("SELECT id,codigo,nombre,fechaInicio,fechaFin,observacion FROM periodo WHERE codigo LIKE ? OR nombre LIKE ? ORDER BY nombre ");
+                SQL.setString(1,forSql);
+                SQL.setString(2,forSql);
+            }
+            else
+            {
+                SQL = con.prepareStatement("SELECT id,codigo,nombre,fechaInicio,fechaFin,observacion FROM periodo ORDER BY nombre");
+            }
+            ResultSet res = SQL.executeQuery();
+            while (res.next())
+            {
+                ModeloPeriodos modeloPeriodos = new ModeloPeriodos();
+                modeloPeriodos.setId(res.getInt("id"));
+                modeloPeriodos.setCodigo(res.getString("codigo"));
+                modeloPeriodos.setNombre(res.getString("nombre"));
+                modeloPeriodos.setFechaInicio(res.getString("fechaInicio"));
+                modeloPeriodos.setFechaFin(res.getString("fechaFin"));
+                modeloPeriodos.setObservacion(res.getString("observacion"));                
+                modelo.add(modeloPeriodos);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
+        }
+        return modelo;
+    }            
+    
+    public boolean Delete(ModeloPeriodos modelo)
+    {
+        boolean resulDelete  = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("DELETE FROM periodo WHERE id = ?;");
+            SQL.setInt(1, modelo.getId());
+            SQL.executeUpdate();            
+            resulDelete = true;            
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al borrar el periodo  " + e);
+        }
+        return resulDelete;
+    }    
+}

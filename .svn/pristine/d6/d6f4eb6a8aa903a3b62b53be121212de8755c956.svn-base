@@ -1,0 +1,266 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package Controladores;
+
+import Conexiones.ConexionBdMysql;
+import Modelo.ModeloEmpresa;
+import Modelo.ModeloEmpleados;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Carlos A Dominguez D
+ */
+public class ControladorEmpresas 
+{
+    public boolean Insert(ModeloEmpresa modeloEmpresa)
+    {
+         boolean resulInser = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL;
+            SQL = con.prepareStatement("INSERT INTO empresa (nombre,nit,direccion,ciudad,contacto,email,telefono,fax) "
+                    + "VALUE (?,?,?,?,?,?,?,?)");
+            SQL.setString(1, modeloEmpresa.getNombre());
+            SQL.setString(2, modeloEmpresa.getNit());
+            SQL.setString(3, modeloEmpresa.getDireccion());
+            SQL.setString(4, modeloEmpresa.getCiudad());
+            SQL.setString(5, modeloEmpresa.getContacto());
+            SQL.setString(6, modeloEmpresa.getEmail());
+            SQL.setString(7, modeloEmpresa.getTelefono());
+            SQL.setString(8, modeloEmpresa.getFax());          
+            SQL.executeUpdate();
+            resulInser = true;
+            SQL.close();
+            con.close();
+        } 
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al guardar la empresa " + e);
+        }
+        return resulInser;        
+    }
+    
+    public boolean Update(ModeloEmpresa modeloEmpresa)
+    {
+        boolean resulInser = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL;
+            SQL = con.prepareStatement("UPDATE empresa SET nombre = ?, nit = ?, direccion = ?, "
+                    + "ciudad = ?, contacto = ?, email = ?, telefono = ?, fax = ? WHERE id  = ?;");
+            SQL.setString(1, modeloEmpresa.getNombre());
+            SQL.setString(2, modeloEmpresa.getNit());
+            SQL.setString(3, modeloEmpresa.getDireccion());
+            SQL.setString(4, modeloEmpresa.getCiudad());
+            SQL.setString(5, modeloEmpresa.getContacto());
+            SQL.setString(6, modeloEmpresa.getEmail());
+            SQL.setString(7, modeloEmpresa.getTelefono());
+            SQL.setString(8, modeloEmpresa.getFax()); 
+            SQL.setInt(9, modeloEmpresa.getId());
+            SQL.executeUpdate();
+            resulInser = true;
+            SQL.close();
+            con.close();
+        } 
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al actualizar la empresa " + e);
+        }
+        return resulInser;        
+    }
+    
+    public ModeloEmpresa Search(String Nit)
+    {
+        ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,nombre,nit,direccion,ciudad,contacto,email,telefono,fax"
+                    + " FROM empresa WHERE nit = ?");
+            SQL.setString(1, Nit);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modeloEmpresa.setId(res.getInt("id"));
+                modeloEmpresa.setNombre(res.getString("nombre"));
+                modeloEmpresa.setNit(res.getString("nit"));
+                modeloEmpresa.setDireccion(res.getString("direccion"));
+                modeloEmpresa.setCiudad(res.getString("ciudad"));
+                modeloEmpresa.setContacto(res.getString("contacto"));
+                modeloEmpresa.setEmail(res.getString("email"));
+                modeloEmpresa.setTelefono(res.getString("telefono"));
+                modeloEmpresa.setFax(res.getString("fax"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modeloEmpresa;
+    }
+
+
+    public ModeloEmpresa SearchId(String Id)
+    {
+        ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,nombre,nit,direccion,ciudad,contacto,email,telefono,fax"
+                    + " FROM empresa WHERE id = ?");
+            SQL.setString(1, Id);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modeloEmpresa.setId(res.getInt("id"));
+                modeloEmpresa.setNombre(res.getString("nombre"));
+                modeloEmpresa.setNit(res.getString("nit"));
+                modeloEmpresa.setDireccion(res.getString("direccion"));
+                modeloEmpresa.setCiudad(res.getString("ciudad"));
+                modeloEmpresa.setContacto(res.getString("contacto"));
+                modeloEmpresa.setEmail(res.getString("email"));
+                modeloEmpresa.setTelefono(res.getString("telefono"));
+                modeloEmpresa.setFax(res.getString("fax"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modeloEmpresa;
+    }
+
+    
+    public ModeloEmpresa SearchNombre(String Nombre)
+    {
+        ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("SELECT id,nombre,nit,direccion,ciudad,contacto,email,telefono,fax"
+                    + " FROM empresa WHERE nombre = ?");
+            SQL.setString(1, Nombre);
+            ResultSet res = SQL.executeQuery();
+            if (res.next())
+            {
+                modeloEmpresa.setId(res.getInt("id"));
+                modeloEmpresa.setNombre(res.getString("nombre"));
+                modeloEmpresa.setNit(res.getString("nit"));
+                modeloEmpresa.setDireccion(res.getString("direccion"));
+                modeloEmpresa.setCiudad(res.getString("ciudad"));
+                modeloEmpresa.setContacto(res.getString("contacto"));
+                modeloEmpresa.setEmail(res.getString("email"));
+                modeloEmpresa.setTelefono(res.getString("telefono"));
+                modeloEmpresa.setFax(res.getString("fax"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modeloEmpresa;
+    }
+    
+    
+    public List <ModeloEmpresa> Read(String Clave)
+    {
+        String forSql = "%" + Clave + "%";
+        PreparedStatement SQL = null;
+        List <ModeloEmpresa> modeloEmpresa = new ArrayList<ModeloEmpresa>();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            if (Clave != null)
+            {
+                SQL = con.prepareStatement("SELECT id,nombre,nit,direccion,ciudad,contacto,email,telefono,fax "
+                        + "FROM empresa WHERE nit LIKE ? OR nombre LIKE ? OR contacto LIKE ? ORDER BY nombre ");
+                SQL.setString(1,forSql);
+                SQL.setString(2,forSql);
+                SQL.setString(3,forSql);
+            }
+            else
+            {
+                SQL = con.prepareStatement("SELECT id,nombre,nit,direccion,ciudad,contacto,email,telefono,fax FROM empresa ORDER BY nombre ");
+            }
+            ResultSet res = SQL.executeQuery();
+            while (res.next())
+            {
+                ModeloEmpresa modeloEmpresas = new ModeloEmpresa();
+                modeloEmpresas.setId(res.getInt("id"));
+                modeloEmpresas.setNombre(res.getString("nombre"));
+                modeloEmpresas.setNit(res.getString("nit"));
+                modeloEmpresas.setDireccion(res.getString("direccion"));
+                modeloEmpresas.setCiudad(res.getString("ciudad"));
+                modeloEmpresas.setContacto(res.getString("contacto"));
+                modeloEmpresas.setEmail(res.getString("email"));
+                modeloEmpresas.setTelefono(res.getString("telefono"));
+                modeloEmpresas.setFax(res.getString("fax"));
+                modeloEmpresa.add(modeloEmpresas);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
+        }
+        return modeloEmpresa;
+    }            
+    
+    public boolean Delete(ModeloEmpresa modeloEmpresa)
+    {
+        boolean resulDelete  = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try 
+        {
+            PreparedStatement SQL = con.prepareStatement("DELETE FROM empresa WHERE id = ?;");
+            SQL.setInt(1, modeloEmpresa.getId());
+            SQL.executeUpdate();            
+            resulDelete = true;            
+            SQL.close();
+            con.close();
+        }
+        catch (SQLException e) 
+        {
+            JOptionPane.showMessageDialog(null, "Error al borrar la empresa " + e);
+        }
+        return resulDelete;
+    }    
+}
