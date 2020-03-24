@@ -42,7 +42,7 @@ public class ConexionBdMysql
         try 
         {
             //file = new File("C://TcTime//ConBDMySql.ini");
-            file = new File("AlohaTiempos//ConBDMySql.ini");
+            file = new File("Aloha//ConBDMySql.ini");
             BufferedReader filein = null;
             if (file != null)
             {
