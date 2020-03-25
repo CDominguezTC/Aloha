@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>    
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionCasino.js" ></script>         
+        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionCasino.js" ></script-->         
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -52,8 +52,7 @@
                             <div class="x_content">
                                 <br/>
                                 <!-- Formulario Configuración -->
-
-                                <form class="form-horizontal form-label-left input_mask" action="ServletAlohaTiempos" method="POST" name="LiquidacionCasinoJSP" enctype="multipart/form-data" id="LiquidacionCasinoJSP" >                            
+                                <form class="form-horizontal form-label-left input_mask" action="ServletAlohaTiempos" method="POST" name="LiquidacionCasinoJSP" id="IdComprasJSP" >                                                            
                                     <div align="center" id="espera" style="display: none">
                                         <img src="Principal/images/loading_dash.gif">
                                     </div>
@@ -87,8 +86,8 @@
                                         <!-- Botones -->
                                         <div class="ln_solid"></div>
                                         <div class="col-lg-12" style="text-align: center">
-                                            <button type="submit" class="btn btn-primary" id="IdGenerarPlano" name="Accion" value="GenerarLiquidacionCasino" >Generar Liquidacion</button>                                                                                
-                                        </div>                                                            
+                                            <button type="submit" class="btn btn-primary" id="IdGenerarPlano" name="frm" value="GenerarLiquidacionCasino" >Generar Liquidacion</button>                                                                                
+                                        </div>
                                         <!-- /Botones -->
                                     </div>
                                 </form>

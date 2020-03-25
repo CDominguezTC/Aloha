@@ -45,22 +45,24 @@ public class ServletAlohaTiempos extends HttpServlet
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected void processRequest (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter())
+        response.setContentType ("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter ())
         {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ServletAlohaTiempos</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ServletAlohaTiempos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            /*
+             * TODO output your page here. You may use following sample code.
+             */
+            out.println ("<!DOCTYPE html>");
+            out.println ("<html>");
+            out.println ("<head>");
+            out.println ("<title>Servlet ServletAlohaTiempos</title>");
+            out.println ("</head>");
+            out.println ("<body>");
+            out.println ("<h1>Servlet ServletAlohaTiempos at " + request.getContextPath () + "</h1>");
+            out.println ("</body>");
+            out.println ("</html>");
         }
     }
 
@@ -74,7 +76,7 @@ public class ServletAlohaTiempos extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
         //processRequest(request, response);
@@ -89,319 +91,323 @@ public class ServletAlohaTiempos extends HttpServlet
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException
     {
-        response.setContentType("text/html;charset=UTF-8");
-        String Formulario = request.getParameter("frm");
-        Herramienta herramienta = new Herramienta();
+        response.setContentType ("text/html;charset=UTF-8");
+        String Formulario = request.getParameter ("frm");
+        Herramienta herramienta = new Herramienta ();
         String Resultado = "";
-        String Accion;
+        String Accion = null;
         switch (Formulario)
         {
             case "AreasJSP":
-                ControladorAreas controladorAreas = new ControladorAreas();
-                Accion = request.getParameter("accion");
+                ControladorAreas controladorAreas = new ControladorAreas ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorAreas.Insert(request);
+                        Resultado = controladorAreas.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorAreas.Delete(request);
+                        Resultado = controladorAreas.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorAreas.ReadArea(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorAreas.ReadArea (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "EmpresaJSP":
-                ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
-                Accion = request.getParameter("accion");
+                ControladorEmpresas controladorEmpresas = new ControladorEmpresas ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorEmpresas.Insert(request);
+                        Resultado = controladorEmpresas.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorEmpresas.Delete(request);
+                        Resultado = controladorEmpresas.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorEmpresas.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorEmpresas.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "HorarioConsumoJSP":
-                ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo();
-                Accion = request.getParameter("accion");
+                ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorHorarioConsumo.Insert(request);
+                        Resultado = controladorHorarioConsumo.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorHorarioConsumo.Delete(request);
+                        Resultado = controladorHorarioConsumo.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorHorarioConsumo.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorHorarioConsumo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "CiudadJSP":
-                ControladorCiudades controladorCiudades = new ControladorCiudades();
-                Accion = request.getParameter("accion");
+                ControladorCiudades controladorCiudades = new ControladorCiudades ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorCiudades.Insert(request);
+                        Resultado = controladorCiudades.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorCiudades.Delete(request);
+                        Resultado = controladorCiudades.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorCiudades.ReadCiudad(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorCiudades.ReadCiudad (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "CentroCostoJSP":
-                ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
-                Accion = request.getParameter("accion");
+                ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorCentroCosto.Insert(request);
+                        Resultado = controladorCentroCosto.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorCentroCosto.Delete(request);
+                        Resultado = controladorCentroCosto.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorCentroCosto.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorCentroCosto.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "GrupoConsumoJSP":
-                ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
-                Accion = request.getParameter("accion");
+                ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorGrupoConsumo.Insert(request);
+                        Resultado = controladorGrupoConsumo.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorGrupoConsumo.Delete(request);
+                        Resultado = controladorGrupoConsumo.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorGrupoConsumo.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorGrupoConsumo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "AsocGrupoConsumoJSP":
-                ControladorAsocGrupoConsumo controladorAsocGrupoConsumo = new ControladorAsocGrupoConsumo();
-                Accion = request.getParameter("accion");
+                ControladorAsocGrupoConsumo controladorAsocGrupoConsumo = new ControladorAsocGrupoConsumo ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorAsocGrupoConsumo.Insert(request);
+                        Resultado = controladorAsocGrupoConsumo.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorAsocGrupoConsumo.Delete(request);
+                        Resultado = controladorAsocGrupoConsumo.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorAsocGrupoConsumo.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorAsocGrupoConsumo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "TipoConsumoJSP":
-                ControladorTipoConsumo controladorTipoConsumo = new ControladorTipoConsumo();
-                Accion = request.getParameter("accion");
+                ControladorTipoConsumo controladorTipoConsumo = new ControladorTipoConsumo ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorTipoConsumo.Insert(request);
+                        Resultado = controladorTipoConsumo.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorTipoConsumo.Delete(request);
+                        Resultado = controladorTipoConsumo.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorTipoConsumo.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorTipoConsumo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "FestivoJSP":
-                ControladorFestivo controladorFestivo = new ControladorFestivo();
-                Accion = request.getParameter("accion");
+                ControladorFestivo controladorFestivo = new ControladorFestivo ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorFestivo.Insert(request);
+                        Resultado = controladorFestivo.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorFestivo.Delete(request);
+                        Resultado = controladorFestivo.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorFestivo.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorFestivo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "PersonasJSP":
-                ControladorPersonas controladorPersonas = new ControladorPersonas();
-                Accion = request.getParameter("accion");
+                ControladorPersonas controladorPersonas = new ControladorPersonas ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorPersonas.Insert(request);
+                        Resultado = controladorPersonas.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorPersonas.Delete(request);
+                        Resultado = controladorPersonas.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorPersonas.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorPersonas.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "DispositivosJSP":
-                ControladorDispositivos controladorDispositvos = new ControladorDispositivos();
-                Accion = request.getParameter("accion");
+                ControladorDispositivos controladorDispositvos = new ControladorDispositivos ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorDispositvos.Insert(request);
+                        Resultado = controladorDispositvos.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorDispositvos.Delete(request);
+                        Resultado = controladorDispositvos.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorDispositvos.Read(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorDispositvos.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;
             case "DependenciasJSP":
-                ControladorDependencias controladorDependencias = new ControladorDependencias();
-                Accion = request.getParameter("accion");
+                ControladorDependencias controladorDependencias = new ControladorDependencias ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorDependencias.Insert(request);
+                        Resultado = controladorDependencias.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorDependencias.Delete(request);
+                        Resultado = controladorDependencias.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorDependencias.ReadDependencias(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorDependencias.ReadDependencias (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "GrupoTurnosJSP":
-                ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
-                Accion = request.getParameter("accion");
+                ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorGrupoTurnos.Insert(request);
+                        Resultado = controladorGrupoTurnos.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorGrupoTurnos.Delete(request);
+                        Resultado = controladorGrupoTurnos.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorGrupoTurnos.ReadGrupoTurnos(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorGrupoTurnos.ReadGrupoTurnos (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "FuncionesJSP":
-                ControladorFunciones controladorFunciones = new ControladorFunciones();
-                Accion = request.getParameter("accion");
+                ControladorFunciones controladorFunciones = new ControladorFunciones ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorFunciones.Insert(request);
+                        Resultado = controladorFunciones.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorFunciones.Delete(request);
+                        Resultado = controladorFunciones.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorFunciones.ReadFunciones(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorFunciones.ReadFunciones (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "PeriodosJSP":
-                ControladorPeriodos controladorPeriodos = new ControladorPeriodos();
-                Accion = request.getParameter("accion");
+                ControladorPeriodos controladorPeriodos = new ControladorPeriodos ();
+                Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Upload":
-                        Resultado = controladorPeriodos.Insert(request);
+                        Resultado = controladorPeriodos.Insert (request);
                         break;
                     case "Delete":
-                        Resultado = controladorPeriodos.Delete(request);
+                        Resultado = controladorPeriodos.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorPeriodos.ReadPeriodos(request, response);
-                        PrintWriter pw = response.getWriter();
-                        pw.write(Resultado);
-                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        Resultado = controladorPeriodos.ReadPeriodos (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
 
                 break;
             case "GenerarLiquidacionCasino":
-                ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
-                controladorLiquidacionCasino.Select("GenerarLiquidacionCasino", request, response);
+                ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino ();
+                controladorLiquidacionCasino.Select ("GenerarLiquidacionCasino", request, response);
+                Accion = "Plano";
                 break;
 
         }
-        String respuesta = herramienta.GetDescrpCode(Resultado);
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/plain");
-        response.getWriter().write(respuesta);
+        if (!"Plano".equals (Accion))
+        {
+            String respuesta = herramienta.GetDescrpCode (Resultado);
+            response.setCharacterEncoding ("UTF-8");
+            response.setContentType ("text/plain");
+            response.getWriter ().write (respuesta);
+        }
     }
 
     /**
@@ -410,7 +416,7 @@ public class ServletAlohaTiempos extends HttpServlet
      * @return a String containing servlet description
      */
     @Override
-    public String getServletInfo()
+    public String getServletInfo ()
     {
         return "Servlet para el control de procesos de AlohaTiempos";
     }// </editor-fold>
