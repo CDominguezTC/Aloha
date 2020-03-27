@@ -61,7 +61,7 @@
                                             <input type="hidden" id="Id" name="Id">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Código</label>
-                                                <input type="text" class="form-control" id="IdCodigo" name="Codigo" required="required">
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>

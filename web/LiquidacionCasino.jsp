@@ -62,7 +62,7 @@
                                             <div class='col-md-6 col-sm-6 col-xs-12'>
                                                 <label for="Fecha">Fecha Inicial</label>
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='myDatepicker1'>
+                                                    <div class='input-group date' id='myDatepicker2'>
                                                         <input type="text" class="form-control" id="IdFechaIni" name="FechaIni"/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -73,7 +73,7 @@
                                             <div class='col-md-6 col-sm-6 col-xs-12'>
                                                 <label for="Fecha">Fecha Final</label>
                                                 <div class="form-group">
-                                                    <div class='input-group date' id='myDatepicker2'>
+                                                    <div class='input-group date' id='myDatepicker3'>
                                                         <input type="text" class="form-control" id="IdFechaFin" name="FechaFin"/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -114,9 +114,12 @@
 
             $('#myDatepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
-                minDate: new Date(),
                 locale: 'es'
-
+            });
+            
+            $('#myDatepicker3').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
             });
 
         </script>

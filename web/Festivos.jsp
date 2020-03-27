@@ -175,7 +175,6 @@
 
             $('#myDatepicker2').datetimepicker({
                 format: 'YYYY-MM-DD',
-                minDate: new Date(),
                 locale: 'es'
 
             });

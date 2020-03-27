@@ -64,23 +64,50 @@
                                             <input type="hidden" id="Id" name="Id">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Código</label>
-                                                <input type="text" class="form-control" id="IdCodigo" name="Codigo" required="required">
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                            
+                                             
+                                            <!-- <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Hora Inicio</label>
                                                 <input type="text" class="form-control" id="IdHoraInicio" name="HoraInicio" required="required">
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Hora Fin</label>
                                                 <input type="text" class="form-control" id="IdHoraFin" name="HoraFin" required="required">
+                                            </div>-->
+                                            
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="HoraInicio">Hora Inicio</label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker2'>
+                                                        <input type='text' class="form-control" id="IdHoraInicio" name="HoraInicio" style="text-align:center;" required/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
                                             </div>
+
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="HoraFin">Hora Fin</label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker3'>
+                                                        <input type='text' class="form-control"  id="IdHoraFin" name="HoraFin"  style="text-align:center;" required/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-time"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Cantidad de Consumos</label>
-                                                <input type="text" class="form-control" id="IdNoConsumos" name="CantidadConsumo" required="required">
+                                                <input type="number" class="form-control" id="IdNoConsumos" name="CantidadConsumo" required="required">
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Tipo Consumo</label>
@@ -101,56 +128,56 @@
                                             </div>                                                                                        
                                         </div>
                                         <div class="row" style="text-align: center">
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Lunes</label>
                                                 <select id="IdLunes" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Martes</label>
                                                 <select id="IdMartes" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Miercoles</label>
                                                 <select id="IdMiercoles" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Jueves</label>
                                                 <select id="IdJueves" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Viernes</label>
                                                 <select id="IdViernes" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Sabado</label>
                                                 <select id="IdSabado" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Domingo</label>
                                                 <select id="IdDomingo" class="form-control" required>                                                    
                                                     <option value="N">No</option>
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <div class="col-md-1 col-sm-12 col-xs-12 form-group" style="position: relative;">                                                
+                                            <div class="col-md-3 col-sm-12 col-xs-12 form-group" style="position: relative;">                                                
                                                 <label for="tipo_id">Festivo</label>
                                                 <select id="IdFestivo" class="form-control" required>                                                    
                                                     <option value="N">No</option>
@@ -275,6 +302,21 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
+        
+         <!-- Inicializamos Datetimepicker -->
+         <script>
+             $('#myDatepicker').datetimepicker();
+        
+             $('#myDatepicker2').datetimepicker({
+                 format: 'hh:mm:ss A'
+             });
+        
+             $('#myDatepicker3').datetimepicker({
+                 format: 'hh:mm:ss A'
+             });
+             $('#myDatepicker4').datetimepicker({
+                 format: 'hh:mm A'
+             });
+         </script>
     </body>
-
 </html>
