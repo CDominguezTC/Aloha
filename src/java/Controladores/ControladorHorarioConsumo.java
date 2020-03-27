@@ -318,7 +318,7 @@ public class ControladorHorarioConsumo
                 out += "<td>" + modelo.getFestivo() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
                 out += "data-codigo=\"" + modelo.getCodigo() + "\"";
                 out += "data-nombre=\"" + modelo.getNombre() + "\"";
@@ -336,7 +336,7 @@ public class ControladorHorarioConsumo
                 out += "data-tipoconsumo=\"" + modelo.getModeloTipoConsumo().getId()+ "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
                 out += "data-codigo=\"" + modelo.getCodigo() + "\"";
                 out += "data-nombre=\"" + modelo.getNombre() + "\"";

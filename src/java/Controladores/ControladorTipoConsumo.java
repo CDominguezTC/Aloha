@@ -203,13 +203,13 @@ public class ControladorTipoConsumo
                 out += "<td>" + modeloTipoConsumo.getCantidad() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
                 out += "data-nombre=\"" + modeloTipoConsumo.getNombre() + "\"";
                 out += "data-cantidad=\"" + modeloTipoConsumo.getCantidad() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
                 out += "data-nombre=\"" + modeloTipoConsumo.getNombre() + "\"";
                 out += "data-cantidad=\"" + modeloTipoConsumo.getCantidad() + "\"";
