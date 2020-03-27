@@ -12,7 +12,7 @@
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
-        <!-- Contenido -->
+        <!-- Contenidos-->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
