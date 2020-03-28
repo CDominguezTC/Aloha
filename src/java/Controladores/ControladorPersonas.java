@@ -45,7 +45,7 @@ public class ControladorPersonas
             modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (request.getParameter ("empresa"))));
             modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (request.getParameter ("centrocosto"))));
             modelo.setConsumocasino (request.getParameter ("consumo"));
-            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("centrocosto"))));
+            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("grupoconsumo"))));
             modelo.setObservaciones (request.getParameter ("observacion"));
             try
             {
@@ -344,6 +344,17 @@ public class ControladorPersonas
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
@@ -357,6 +368,17 @@ public class ControladorPersonas
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "<button class=\"SetOpciones btn btn-info btn-xs\"title=\"Opciones\"";
                 out += "data-id=\"" + modeloPersonas.getId () + "\"";

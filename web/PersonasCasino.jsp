@@ -23,7 +23,7 @@
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
 
-        <!-- Contenido -->
+        <!-- Contenidos -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
@@ -83,19 +83,19 @@
                                                         <div id="Principal">
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id">
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Tipo de Identificación</label>
                                                                     <select id="IdTipoDoc" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>
+                                                                        <option value="0" selected disabled>Seleccione</option>
                                                                         <option value="1">Cedula de Ciudadania</option>
                                                                         <option value="2">Tarjeta de Identidad</option>
                                                                         <option value="3">Cedula de Extrangeria</option>                                                                    
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
-                                                                    <input type="text" class="form-control" id="IdCedula" name="cedula" min="0" required>
+                                                                    <input type="number" class="form-control" id="IdCedula" name="cedula" min="0" required>
                                                                 </div>
 
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
@@ -107,7 +107,7 @@
                                                                     <label for="apellido">Apellido</label>
                                                                     <input type="text" class="form-control" id="IdApellido">
                                                                 </div>
-                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="empresa">Empresa</label>
                                                                     <select id="IdEmpresa" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
@@ -124,7 +124,7 @@
                                                                         %>
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="centro_costo">Centro Costo</label>
                                                                     <select id="IdCentroCosto" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
@@ -142,15 +142,15 @@
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Consume Casino</label>
                                                                     <select id="IdConsume" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">No</option>
                                                                         <option value="2">Si</option>                                                                    
                                                                     </select>
                                                                 </div>
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Grupo Consumo</label>
                                                                     <select id="IdGrupoConsumo" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
@@ -168,7 +168,7 @@
                                                                     </select>
                                                                 </div>
 
-                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>

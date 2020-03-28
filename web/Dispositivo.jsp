@@ -22,7 +22,7 @@
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
 
-        <!-- Contenido -->
+        <!-- Contenidos -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
@@ -82,49 +82,49 @@
                                                         <div id="Principal">
                                                             <div class="row">
                                                                 <input type="hidden" id="Id" name="Id">
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="numerodispositivo">No Dispositivo</label>
-                                                                    <input type="text" class="form-control" id="IdNoDispositivo" name="NoDispo" min="0" required>
+                                                                    <input type="number" class="form-control" id="IdNoDispositivo" name="NoDispo" min="0" required>
                                                                 </div>
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control" id="IdNombre" name="Nombre" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="direcionip">IP Dispositivo</label>
-                                                                    <input type="text" class="form-control" id="IdIp" name="IP" required>
+                                                                    <input type="number" class="form-control" id="IdIp" name="IP" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puerto">Puerto</label>
-                                                                    <input type="text" class="form-control" id="IdPuertoDispositivo" name="Puerto" required>
+                                                                    <input type="number" class="form-control" id="IdPuertoDispositivo" name="Puerto" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="modo">Modo</label>
                                                                     <select id="IdModo" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">ENTRADA</option>
                                                                         <option value="2">SALIDA</option>                                                                    
                                                                     </select>                                                                   
                                                                 </div>                                                                
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipolector">Tipo Lector</label>
                                                                     <select id="IdTipoLector" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">Biometrico</option>
                                                                         <option value="2">Barras</option>                                                                    
                                                                         <option value="3">Proximidad</option>                                                                    
                                                                     </select>                                                                   
 
                                                                 </div>
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="activo">Activo</label>
                                                                     <select id="IdActivo" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">Si</option>
                                                                         <option value="2">No</option>                                                                                                                                            
                                                                     </select>                                                                          
                                                                 </div>
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="serie">Serie</label>
                                                                     <input type="text" class="form-control" id="IdSerie" name="Serie" required>
                                                                 </div>
@@ -132,7 +132,7 @@
                                                                     <label for="licencia">Licencia</label>
                                                                     <input type="text" class="form-control" id="IdLicencia" name="Licencia" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="impresora">Impresora</label>
                                                                     <input type="text" class="form-control" id="IdImpresora" name="Impresora" required>
                                                                 </div>
@@ -140,26 +140,26 @@
                                                                     <label for="encabezadoimpresion">Encabezado Impresion</label>
                                                                     <input type="text" class="form-control" id="IdEncabezadoImpresion" name="EncabezadoImpresion" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="menu">Utiliza Menu</label>
                                                                     <select id="IdUtilizaMenu" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">Si</option>
                                                                         <option value="2">No</option>                                                                                                                                            
                                                                     </select>                                                                                                                                              
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="ipcontroladora">Ip Controladora</label>
-                                                                    <input type="text" class="form-control" id="IdIpControladora" name="IpControladora" required>
+                                                                    <input type="number" class="form-control" id="IdIpControladora" name="IpControladora" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puertocontroladora">Puerto Controladora</label>
-                                                                    <input type="text" class="form-control" id="IdPuertoControladora" name="PuertoControladora" required>
+                                                                    <input type="number" class="form-control" id="IdPuertoControladora" name="PuertoControladora" required>
                                                                 </div>
-                                                                <div class="col-md-2 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="menu">Evento</label>
                                                                     <select id="IdEvento" class="form-control" required>
-                                                                        <option value="0" selected>Seleccione</option>                                                                    
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
                                                                         <option value="1">Impresora</option>
                                                                         <option value="2">Torniquete</option>                                                                                                                                            
                                                                     </select>                                                                                                                                              

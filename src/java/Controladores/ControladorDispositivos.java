@@ -287,7 +287,7 @@ public class ControladorDispositivos
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">No</td>";                                                
                 out += "<td WIDTH = \"10\" HEIGHT=\"0\" class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
                 out += "data-nodispositivo=\"" + modelo.getNumeroDispositivo()+ "\"";
                 out += "data-nombre=\"" + modelo.getNombre()+ "\"";
@@ -306,7 +306,7 @@ public class ControladorDispositivos
                 out += "data-evento=\"" + modelo.getEvento()+ "\"";                
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i></button>";
                 //Boton Eliminar                
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
                 out += "data-nodispositivo=\"" + modelo.getNumeroDispositivo()+ "\"";
                 out += "data-nombre=\"" + modelo.getNombre()+ "\"";

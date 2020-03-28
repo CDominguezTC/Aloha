@@ -1,15 +1,109 @@
-$(function(){
-  $("#header").load("Principal/Head.html"); 
-  $("#script").load("Principal/Script.html"); 
+$(function () {
+    $("#header").load("Principal/Head.html");
+    $("#script").load("Principal/Script.html");
 });
 
-$(function()
+$(function ()
 {
-    $(document).ready(function() {
+    $(document).ready(function () {
         LoadTabla();
     });
 
-    $(document).on('click', '.SetFormulario', function() {
+    $(document).ready(function ()
+    {
+        $("#IdCedula").blur(function () {            
+            var Frm = "PersonasJSP";
+            var Cedula = $('#IdCedula').val();
+            var Accion = "Get";
+            var data = {
+                frm: Frm,
+                cedula: Cedula,
+                accion: Accion
+            };
+            enableGif();
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function (resul, textStatus, jqXHR)
+                {
+                    disableGif();
+                    if (resul !== "99Empy")
+                    {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Inforacion',
+                            text: 'La persona ya esta registrada en el sistema.'
+                        });
+                        LimpiarCampos();                                           
+                        $('#datatable').html(resul);
+                        $('#datatable').dataTable({
+                            responsive: true,
+                            language: {
+                                "decimal": "",
+                                "emptyTable": "No hay información",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                                "infoPostFix": "",
+                                "thousands": ",",
+                                "lengthMenu": "Mostrar _MENU_ Entradas",
+                                "loadingRecords": "Cargando...",
+                                "processing": "Procesando...",
+                                "search": "Buscar:",
+                                "zeroRecords": "Sin resultados encontrados",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Ultimo",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                }
+                            }
+                            , "autoWidth": false
+                            , "destroy": true
+                            , "info": true
+                            , "JQueryUI": true
+                            , "ordering": true
+                            , "paging": true
+                            , "scrollY": "500px"
+                            , "scrollCollapse": true
+
+                        });
+                    }
+                    else
+                    {
+                        LoadTabla();
+                        var t = $('#IdTipoDoc').val();
+                        var C = $('#IdCedula').val();
+                        LimpiarCampos();
+                        $('#IdCedula').val(C);
+                        $('#IdTipoDoc').val(t);
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        });
+    });
+
+    $(document).on('click', '.SetFormulario', function () {
         $('#Id').val($(this).data('id'));
         $('#IdTipoDoc').val($(this).data('tipodoc'));
         $('#IdCedula').val($(this).data('cedula'));
@@ -58,17 +152,17 @@ $(function()
         $('#IdObservacion').val('');
     }
 
-    $('#IdAgregar').click(function(e)
+    $('#IdAgregar').click(function (e)
     {
         LimpiarCampos();
     });
 
-    $('#IdGuardar').click(function(e)
+    $('#IdGuardar').click(function (e)
     {
         if (ValidaCampo() === true)
         {
             var Frm = "PersonasJSP";
-            var Id = $('#Id').val();        
+            var Id = $('#Id').val();
             var TipoDoc = $('#IdTipoDoc').val();
             var Cedula = $('#IdCedula').val();
             var Nombre = $('#IdNombre').val();
@@ -98,19 +192,19 @@ $(function()
                 type: "POST",
                 url: "ServletAlohaTiempos",
                 data: data,
-                success: function(resul, textStatus, jqXHR)
+                success: function (resul, textStatus, jqXHR)
                 {
                     Swal.fire({
                         icon: 'success',
                         title: 'Guardado',
                         text: 'Registro Guardado Satisfactoriamente.'
-                    });                 
+                    });
                     disableGif();
                     //alert(resul);
                     LimpiarCampos();
                     LoadTabla();
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
                     if (jqXHR.status === 0) {
                         alert('Not connect: Verify Network.');
@@ -129,8 +223,7 @@ $(function()
                     }
                 }
             });
-        }
-        else
+        } else
         {
             Swal.fire({
                 icon: 'error',
@@ -143,7 +236,7 @@ $(function()
 
 
 
-    $(document).on('click', '.SetEliminar', function() {
+    $(document).on('click', '.SetEliminar', function () {
 //        if (ValidaCampo() === true)
 //        {
         var Frm = "PersonasJSP";
@@ -151,7 +244,7 @@ $(function()
         var Accion = "Delete";
         var data = {
             frm: Frm,
-            id: Id,            
+            id: Id,
             accion: Accion
         };
         Swal.fire({
@@ -163,26 +256,26 @@ $(function()
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'No, cancelar'
-            }).then((result) => {
-            if (result.value) {    
+        }).then((result) => {
+            if (result.value) {
                 enableGif();
                 $.ajax({
                     type: "POST",
                     url: "ServletAlohaTiempos",
                     data: data,
-                    success: function(resul, textStatus, jqXHR)
+                    success: function (resul, textStatus, jqXHR)
                     {
                         disableGif();
                         Swal.fire({
                             icon: 'success',
                             title: 'Eliminado',
-                            text: 'Registro Eliminado Satisfactoriamente.'
+                            text: resul
                         });
                         //alert(resul);
                         LimpiarCampos();
                         LoadTabla();
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
+                    error: function (jqXHR, textStatus, errorThrown) {
                         disableGif();
                         if (jqXHR.status === 0) {
                             alert('Not connect: Verify Network.');
@@ -201,11 +294,11 @@ $(function()
                         }
                     }
                 });
-              } 
-          });
-      });
-      
-   
+            }
+        });
+    });
+
+
 //        else
 //        {
 //            alert("Favor de completar todos los campos");
@@ -213,7 +306,7 @@ $(function()
 
     //});
 
-    $("#IdEliminar").click(function(e) {
+    $("#IdEliminar").click(function (e) {
         if (ValidaCampo() === true)
         {
             var Frm = "PersonasJSP";
@@ -221,7 +314,7 @@ $(function()
             var Accion = "Delete";
             var data = {
                 frm: Frm,
-                id: Id,                
+                id: Id,
                 accion: Accion
             };
             enableGif();
@@ -229,19 +322,19 @@ $(function()
                 type: "POST",
                 url: "ServletAlohaTiempos",
                 data: data,
-                success: function(resul, textStatus, jqXHR)
+                success: function (resul, textStatus, jqXHR)
                 {
                     disableGif();
                     Swal.fire({
                         icon: 'success',
                         title: 'Eliminado',
-                        text: 'Registro Eliminado Satisfactoriamente.'
+                        text: resul
                     });
                     //alert(resul);
                     LimpiarCampos();
                     LoadTabla();
                 },
-                error: function(jqXHR, textStatus, errorThrown) {
+                error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
                     if (jqXHR.status === 0) {
                         alert('Not connect: Verify Network.');
@@ -260,8 +353,7 @@ $(function()
                     }
                 }
             });
-        }
-        else
+        } else
         {
             Swal.fire({
                 icon: 'error',
@@ -286,7 +378,7 @@ $(function()
             url: "ServletAlohaTiempos",
             dataType: 'html',
             data: data,
-            success: function(resul, textStatus, jqXHR)
+            success: function (resul, textStatus, jqXHR)
             {
                 disableGif();
                 $('#datatable').html(resul);
@@ -327,7 +419,7 @@ $(function()
 //                    alert(resul);                    
 //                    LimpiarCampos();
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function (jqXHR, textStatus, errorThrown) {
                 disableGif();
                 if (jqXHR.status === 0) {
                     alert('Not connect: Verify Network.');

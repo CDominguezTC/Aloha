@@ -14,7 +14,7 @@
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
-        <!-- Contenido -->
+        <!-- Contenidos -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
@@ -61,7 +61,7 @@
                                             <input type="hidden" id="Id" name="Id">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Código</label>
-                                                <input type="text" class="form-control" id="IdCodigo" name="Codigo" required="required">
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
                                             </div>
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>
