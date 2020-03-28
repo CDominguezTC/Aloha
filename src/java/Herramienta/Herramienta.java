@@ -12,16 +12,19 @@ import java.util.Date;
  *
  * @author Carlos A Dominguez D
  */
-public class Herramienta {
+public class Herramienta
+{
 
-    public Date getDate() {
-        Date utilDate = new Date(); //fecha actual
-        long lnMilisegundos = utilDate.getTime();
-        Date sqlDate = new Date(lnMilisegundos);
+    public Date getDate ()
+    {
+        Date utilDate = new Date (); //fecha actual
+        long lnMilisegundos = utilDate.getTime ();
+        Date sqlDate = new Date (lnMilisegundos);
         return sqlDate;
     }
 
-    public String GetDescrpCode(String cod) {
+    public String GetDescrpCode (String cod)
+    {
         String resp = "Error";
         switch (cod)
         {
@@ -43,12 +46,22 @@ public class Herramienta {
             case "-3":
                 resp = "Error en el evento";
                 break;
+            case "-4":
+                resp = "Error al eliminar el registro";
+                break;
+            case "99":
+                resp = "Empy";
+                break;
+            case "true":
+                resp = "true";
+                break;
         }
         return resp;
     }
 
-    public Timestamp getDateTimestamp() {
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());        
+    public Timestamp getDateTimestamp ()
+    {
+        Timestamp timestamp = new Timestamp (System.currentTimeMillis ());
         return timestamp;
     }
 }

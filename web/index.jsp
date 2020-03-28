@@ -19,8 +19,8 @@
         <link href="Principal/vendors/nprogress/nprogress.css" rel="stylesheet">
         <link href="Principal/vendors/animate.css/animate.min.css" rel="stylesheet">
         <link href="Principal/build/css/custom.min.css" rel="stylesheet">
-        <script type="text/javascript" src="Principal/js/jsfifo/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/jsfifo/ValidaLogin.js"></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLogin.js"></script> 
     </head>
     <body class="login">
         <div>

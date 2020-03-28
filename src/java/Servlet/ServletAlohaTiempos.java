@@ -22,8 +22,10 @@ import Controladores.ControladorPeriodos;
 import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
 import Herramienta.Herramienta;
+import Modelo.ModeloPersonas;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -101,6 +103,17 @@ public class ServletAlohaTiempos extends HttpServlet
         String Accion = null;
         switch (Formulario)
         {
+            case "IndexJSP":                
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    case "Login":
+                        //En este punto se accesoa al controlador para la validacion de los datos del user 
+                        Resultado = "true";
+                        break;                    
+                }
+
+                break;
             case "AreasJSP":
                 ControladorAreas controladorAreas = new ControladorAreas ();
                 Accion = request.getParameter ("accion");
@@ -286,6 +299,12 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                     case "Delete":
                         Resultado = controladorPersonas.Delete (request);
+                        break;
+                    case "Get":
+                        Resultado = controladorPersonas.Get (request, response);
+                        PrintWriter pww = response.getWriter ();
+                        pww.write (Resultado);
+                        System.out.println (pww.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                     case "Read":
                         Resultado = controladorPersonas.Read (request, response);

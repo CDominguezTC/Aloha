@@ -4,6 +4,7 @@
     Author     : Frankie
 --%>
 
+<%@page import="Modelo.ModeloPersonas"%>
 <%@page import="Controladores.ControladorGrupoConsumo"%>
 <%@page import="Modelo.ModeloGrupoConsumo"%>
 <%@page import="Controladores.ControladorCentroCosto"%>
@@ -75,12 +76,12 @@
                                                 </div>
                                                 <!-- Configuracion Empleados -->
                                                 <div class="x_content">
-                                                    <form id="empleados_form"> 
+                                                    <form> 
                                                         <div align="center" id="espera" style="display: none">
                                                             <img src="Principal/images/loading_dash.gif">                                                            
                                                         </div>
                                                         <div id="Principal">
-                                                            <div class="row">
+                                                            <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id">
                                                                 <div class="col-md-2 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Tipo de Identificación</label>
@@ -99,25 +100,25 @@
 
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
-                                                                    <input type="text" class="form-control" id="IdNombre" required="required">
+                                                                    <input type="text" class="form-control" id="IdNombre" value="">
                                                                 </div>
 
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="apellido">Apellido</label>
-                                                                    <input type="text" class="form-control" id="IdApellido" required="required">
+                                                                    <input type="text" class="form-control" id="IdApellido">
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                     <label for="empresa">Empresa</label>
-                                                                    <select id="IdEmpresa" class="form-control" required>
+                                                                    <select id="IdEmpresa" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
                                                                             LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
-                                                                            ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
-                                                                            linkedListModeloEmpresas = controladorEmpresas.Read();
+                                                                            ControladorEmpresas controladorEmpresas = new ControladorEmpresas ();
+                                                                            linkedListModeloEmpresas = controladorEmpresas.Read ();
                                                                             for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas)
                                                                             {
                                                                         %>  
-                                                                        <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
+                                                                        <option value=<%=modeloEmpresa.getId ()%>><%=modeloEmpresa.getNombre ()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -125,16 +126,16 @@
                                                                 </div>
                                                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                     <label for="centro_costo">Centro Costo</label>
-                                                                    <select id="IdCentroCosto" class="form-control" required>
+                                                                    <select id="IdCentroCosto" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
                                                                             LinkedList<ModeloCentroCosto> linkedListModeloCentroCosto;
-                                                                            ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
-                                                                            linkedListModeloCentroCosto = controladorCentroCosto.Read();
+                                                                            ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
+                                                                            linkedListModeloCentroCosto = controladorCentroCosto.Read ();
                                                                             for (ModeloCentroCosto modeloCentroCosto : linkedListModeloCentroCosto)
                                                                             {
                                                                         %>  
-                                                                        <option value=<%=modeloCentroCosto.getId()%>><%=modeloCentroCosto.getDescripcion()%></option>
+                                                                        <option value=<%=modeloCentroCosto.getId ()%>><%=modeloCentroCosto.getDescripcion ()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -151,16 +152,16 @@
                                                                 </div>
                                                                 <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Grupo Consumo</label>
-                                                                    <select id="IdGrupoConsumo" class="form-control" required>
+                                                                    <select id="IdGrupoConsumo" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
                                                                             LinkedList<ModeloGrupoConsumo> linkedListModeloGrupoConsumo;
-                                                                            ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
-                                                                            linkedListModeloGrupoConsumo = controladorGrupoConsumo.Read();
+                                                                            ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
+                                                                            linkedListModeloGrupoConsumo = controladorGrupoConsumo.Read ();
                                                                             for (ModeloGrupoConsumo modeloGrupoConsumo : linkedListModeloGrupoConsumo)
                                                                             {
                                                                         %>  
-                                                                        <option value=<%=modeloGrupoConsumo.getId()%>><%=modeloGrupoConsumo.getDescripcion()%></option>
+                                                                        <option value=<%=modeloGrupoConsumo.getId ()%>><%=modeloGrupoConsumo.getDescripcion ()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -169,11 +170,72 @@
 
                                                                 <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
-                                                                    <textarea id="IdObservacion" required="required" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
+                                                                    <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
+                                                            <div class="modal fade" id="ModalGt4001" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Cargos Adicionales</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <form>
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                                        <!--label for="recipient-name" class="col-form-label">Id:</label-->
+                                                                                        <input type="hidden" class="form-control" id="IdHoteleria" name="Hoteleria">
+                                                                                        <input type="hidden" class="form-control" id="IdAdicional" name="Adicional">
+                                                                                    </div>     
+                                                                                    <!--div class='col-md-12 col-sm-12 col-xs-12'>
+                                                                                        <label for="Fecha">Fecha Inicio Cargos</label>
+                                                                                        <div class="form-group">
+                                                                                            <div class='input-group date' id='myDatepicker2'>
+                                                                                                <input type="text" class="form-control" id="IdFechaInicioCargos" name="FechaInicioCargos"/>
+                                                                                                <span class="input-group-addon">
+                                                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div-->
+                                                                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                        <label for="tipo_id">Hoteleria</label>
+                                                                                        <select id="IdConsume" class="form-control" required>                                                                                            
+                                                                                            <option value="1" selected>No</option>
+                                                                                            <option value="2">Si</option>                                                                    
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                        <label for="tipo_id">Valor Hoteria</label>
+                                                                                        <input type="text" id="IdValorHoteleria" class="form-control" value="25000">
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                        <label for="tipo_id">Adicional</label>
+                                                                                        <select id="IdConsume" class="form-control" required>                                                                                            
+                                                                                            <option value="1" selected>No</option>
+                                                                                            <option value="2">Si</option>                                                                    
+                                                                                        </select>
+                                                                                    </div>
+                                                                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                        <label for="tipo_id">Valor Adicional</label>
+                                                                                        <input type="text" id="IdValorAdicional" class="form-control" value="25000">
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-primary" id="IdIniServicio" name="IniciarServicio">Inciar Cargos</button>
+                                                                            <button type="button" class="btn btn-warning" id="IdFinServicio" name="TerminarServicio">Terminar Cargos</button>
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>                                                     
+                                                                        </div>                                            
+                                                                    </div>
+                                                                </div>
+                                                            </div>  
+                                                        </div>                                                       
+                                                    </form>                                 
                                                     <!-- /Configuracion Empleados-->
 
                                                     <!-- Botones -->
@@ -201,10 +263,7 @@
                                     </div>
                                     <!-- /Empleados -->
                                 </div>
-
-
                             </div>
-
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                     <div class="x_panel">
@@ -263,7 +322,19 @@
         <footer>
             <div class="clearfix"></div>
         </footer>
-        <!-- Footer -->
+        <!-- Footer -->        
         <%@include file="Principal/Script.html" %>  
+        <script>
+
+            $('#myDatepicker').datetimepicker();
+
+            $('#myDatepicker2').datetimepicker({
+                format: 'YYYY-MM-DD',
+                minDate: new Date(),
+                locale: 'es'
+
+            });
+
+        </script>
     </body>
 </html>

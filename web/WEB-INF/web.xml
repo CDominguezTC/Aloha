@@ -4,9 +4,17 @@
         <servlet-name>ServletAlohaTiempos</servlet-name>
         <servlet-class>Servlet.ServletAlohaTiempos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>prueba</servlet-name>
+        <servlet-class>Servlet.prueba</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ServletAlohaTiempos</servlet-name>
         <url-pattern>/ServletAlohaTiempos</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>prueba</servlet-name>
+        <url-pattern>/prueba</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
