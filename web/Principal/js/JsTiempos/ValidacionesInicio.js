@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,13 +15,14 @@ $(function()
                 var Frm = "IndexJSP";
                 var User = $('#Idusuario').val();
                 var Pass = $('#Idpassword').val();
-                var Accion = "Login";                
+                var Accion = "Login";
                 var data = {
                     frm: Frm,
                     user: User,
                     pass: Pass,
                     accion: Accion
                 };
+
                 $.ajax({
                     type: "POST",
                     url: "ServletAlohaTiempos",
@@ -29,10 +30,11 @@ $(function()
                     success: function(data, textStatus, jqXHR)
                     {
                         var dt = data;
+                        //alert("dt: " + dt);
                         if (dt === "true")
                         {
                             location.href = "Dashboard.jsp";
-                            evt.preventDefault();
+                            //evt.preventDefault();
                         }
                         else
                         {

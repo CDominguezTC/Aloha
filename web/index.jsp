@@ -20,7 +20,7 @@
         <link href="Principal/vendors/animate.css/animate.min.css" rel="stylesheet">
         <link href="Principal/build/css/custom.min.css" rel="stylesheet">
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLogin.js"></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesInicio.js"></script> 
     </head>
     <body class="login">
         <div>
@@ -33,12 +33,12 @@
                             <div>
                                 <input type="hidden" id="IdAccion" name="Accion" >                                    
                             </div>
-                            <h1>Login GT-40</h1>
+                            <h1>ALOHA</h1>
                             <div>
-                                <input type="text" class="form-control" placeholder="Usuario" name="Usuario" id="Idusuario" required="" />
+                                <input type="text" class="form-control" placeholder="Usuario" name="usuario" id="Idusuario" required="" />
                             </div>
                             <div>
-                                <input type="password" class="form-control" placeholder="Clave" name="Password" id="Idpassword" required="" /></div>
+                                <input type="password" class="form-control" placeholder="Clave" name="password" id="Idpassword" required="" /></div>
                             <div>
                                 <button type="button" id="IdIngresar" name="Ingresar" value="Ingresar" class="btn btn-default">Ingresar</button>                                       
                             </div>
