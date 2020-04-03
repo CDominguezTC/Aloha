@@ -6,6 +6,10 @@
 
 package Tools;
 
+import Conexiones.ConexionBdMysql;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -210,5 +214,38 @@ public class Tools
         result = calendar.getTime();                    
         return result;
         
+    }
+    
+    public String validoItem(String user){
+        
+        PreparedStatement SQL = null;
+        ResultSet rs = null;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();        
+        con = conexionBdMysql.abrirConexion();
+        int id = 0;
+        
+        
+        try {
+            String consulta = "SELECT id FROM usuarios WHERE login = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            SQL.setString(1, user);            
+            //String clave = encriptar(pw);
+            //System.out.println(clave);
+            while(rs.next()){
+                id = rs.getInt("id");
+            }
+            
+            if(id != 0){
+                consulta = "";
+            }
+            
+            rs = SQL.executeQuery();
+        } catch (Exception e) {
+        }
+        
+        
+        return "";
     }
 }
