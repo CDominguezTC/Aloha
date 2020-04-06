@@ -24,6 +24,7 @@ import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersonas;
+import Tools.Tools;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -123,7 +124,28 @@ public class ServletAlohaTiempos extends HttpServlet
                 switch (Accion)
                 {
                     case "Login":
-                        ControladorInicioSesion controladorIni = new ControladorInicioSesion();
+                    ControladorInicioSesion controladorIni = new ControladorInicioSesion();
+                    Resultado = controladorIni.autenticacion(request);
+
+                    if("true".equals(Resultado)){
+                        String usuario = request.getParameter("user");
+                        //String pw = request.getParameter("pass");
+                        HttpSession session=request.getSession();  
+                        session.setAttribute("usuario", usuario);
+                    }
+                    break;            
+                }
+
+                break;
+            case "Permisos":                
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    
+                    case "Empresa.Abrir":
+                        Tools tl = new Tools();
+                        Resultado = tl.validoItem(request.getParameter("user"), Accion);
+                        /*ControladorInicioSesion controladorIni = new ControladorInicioSesion();
                         Resultado = controladorIni.autenticacion(request);
                         
                         if("true".equals(Resultado)){
@@ -131,8 +153,8 @@ public class ServletAlohaTiempos extends HttpServlet
                             //String pw = request.getParameter("pass");
                             HttpSession session=request.getSession();  
                             session.setAttribute("usuario", usuario);
-                        }
-                        break;                    
+                        }*/
+                        break;
                 }
 
                 break;

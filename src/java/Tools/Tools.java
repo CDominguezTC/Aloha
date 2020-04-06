@@ -216,68 +216,37 @@ public class Tools
         
     }
     
-    /*public String validoItem(String user){
+    public String validoItem(String user, String modulo){
         
         PreparedStatement SQL = null;
         ResultSet rs = null;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();        
         con = conexionBdMysql.abrirConexion();
-        int id = 0;
-        
-        
+                
         try {
-            String consulta = "SELECT id FROM usuarios WHERE login = ?";            
+            String consulta = "SELECT pe.nombre " +
+            "FROM permisos pe " +
+            "INNER JOIN permisosxusuarios pu ON pe.id = pu.id_permiso " +
+            "INNER JOIN usuarios us ON us.id = pu.id_usuario " +
+            "WHERE us.login = ? AND pe.nombre = ?";            
             SQL = con.prepareStatement(consulta);
             
-            SQL.setString(1, user);            
-            //String clave = encriptar(pw);
-            //System.out.println(clave);
-            while(rs.next()){
-                id = rs.getInt("id");
-            }
+            SQL.setString(1, user);
+            SQL.setString(2, modulo);
+
+            rs = SQL.executeQuery();
             
-            if(id != 0){
-                consulta = "";
-            }
+                           
+            if(rs.absolute(1)){
+                return "true";
+            }                        
             
             rs = SQL.executeQuery();
         } catch (Exception e) {
         }
         
         
-        return "";
-    }*/
-    public String validoItem(String user){
-        
-        PreparedStatement SQL = null;
-        ResultSet rs = null;
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();        
-        con = conexionBdMysql.abrirConexion();
-        int id = 0;
-        
-        
-        try {
-            String consulta = "SELECT id FROM usuarios WHERE login = ?";            
-            SQL = con.prepareStatement(consulta);
-            
-            SQL.setString(1, user);            
-            //String clave = encriptar(pw);
-            //System.out.println(clave);
-            while(rs.next()){
-                id = rs.getInt("id");
-            }
-            
-            if(id != 0){
-                consulta = "";
-            }
-            
-            rs = SQL.executeQuery();
-        } catch (Exception e) {
-        }
-        
-        
-        return "";
+        return "false";
     }
 }
