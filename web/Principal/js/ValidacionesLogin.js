@@ -51,7 +51,7 @@ $(document).ready(function(){
 	}
 
 	function editoNomU() {
-
+		alert("Hola");
 		/**/
 		$.ajax({
 			type: "POST",
