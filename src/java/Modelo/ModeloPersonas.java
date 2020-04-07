@@ -9,6 +9,7 @@ package Modelo;
 
 import java.sql.Blob;
 import java.sql.Date;
+import java.util.LinkedList;
 
 /**
  *
@@ -82,12 +83,13 @@ public class ModeloPersonas {
     int  id_Centro_Costos;
     ModeloEmpresa modeloEmpresa;    
     ModeloCentroCosto modeloCentroCosto;    
-    ModeloGrupoConsumo modeloGrupoConsumo;    
+    ModeloGrupoConsumo modeloGrupoConsumo;  
+    LinkedList<ModeloCargos> listModeloCargoses;
 
     public ModeloPersonas() {
     }
 
-    public ModeloPersonas(int id, String tipoIdentificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String ciudad, String tipoPersona, String tipoVisitante, int usuarioId, String codigoInterno, String extensionTelefonica, String foto, String nombreEPS, String vencimientoEPS, String nombreARP, Date pasadoJudicialVencto, String huella, String recibeVisitas, Blob plantillaHuella, int longitudPlantilla, Date vencimientoARP, int enrollNumber, int definicionId, int itinerarioId, String accesoRestringido, Date vencimientoPension, Date vencimientoSeguridadIndustrial, Date vencimientoAudiovisualSeguridadIndustrial, Date vencimientoTrabajoAlturas, Date vencimientoTrabajoConfinados, Date vencimientoTrabajoCaliente, Date vencimientoTrabajoExcavaciones, Date vencimientoTrabajoEnergiaElectrica, Date vencimientoOtros, String rH, String seguridadIndustrialSiNo, String audiovisualSiNo, String alturasSiNo, String confinadosSiNo, String calienteSiNo, String excavacionesSiNo, String strienergiaElectricaSiNo, String otrosSiNo, String telefono, int zonaId, String tipoAcceso, Date fechaInicioAcceso, Date fechaFinAcceso, String observaciones, String consumocasino, int tipoTrabajoId, int empresaenqueTrabajaId, String tarjetaAcceso, String cod_nomina, int id_Dependencias, int id_Empresa, String estado, int id_Grupo_Horario, int id_Turnos, int id_Departamento, int id_Areas, int id_Ciudad, int id_Centro_Costos, ModeloEmpresa modeloEmpresa, ModeloCentroCosto modeloCentroCosto, ModeloGrupoConsumo modeloGrupoConsumo)
+    public ModeloPersonas (int id, String tipoIdentificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String ciudad, String tipoPersona, String tipoVisitante, int usuarioId, String codigoInterno, String extensionTelefonica, String foto, String nombreEPS, String vencimientoEPS, String nombreARP, Date pasadoJudicialVencto, String huella, String recibeVisitas, Blob plantillaHuella, int longitudPlantilla, Date vencimientoARP, int enrollNumber, int definicionId, int itinerarioId, String accesoRestringido, Date vencimientoPension, Date vencimientoSeguridadIndustrial, Date vencimientoAudiovisualSeguridadIndustrial, Date vencimientoTrabajoAlturas, Date vencimientoTrabajoConfinados, Date vencimientoTrabajoCaliente, Date vencimientoTrabajoExcavaciones, Date vencimientoTrabajoEnergiaElectrica, Date vencimientoOtros, String rH, String seguridadIndustrialSiNo, String audiovisualSiNo, String alturasSiNo, String confinadosSiNo, String calienteSiNo, String excavacionesSiNo, String strienergiaElectricaSiNo, String otrosSiNo, String telefono, int zonaId, String tipoAcceso, Date fechaInicioAcceso, Date fechaFinAcceso, String observaciones, String consumocasino, int tipoTrabajoId, int empresaenqueTrabajaId, String tarjetaAcceso, String cod_nomina, int id_Dependencias, int id_Empresa, String estado, int id_Grupo_Horario, int id_Turnos, int id_Departamento, int id_Areas, int id_Ciudad, int id_Centro_Costos, ModeloEmpresa modeloEmpresa, ModeloCentroCosto modeloCentroCosto, ModeloGrupoConsumo modeloGrupoConsumo, LinkedList<ModeloCargos> listModeloCargoses)
     {
         this.id = id;
         this.tipoIdentificacion = tipoIdentificacion;
@@ -157,686 +159,697 @@ public class ModeloPersonas {
         this.modeloEmpresa = modeloEmpresa;
         this.modeloCentroCosto = modeloCentroCosto;
         this.modeloGrupoConsumo = modeloGrupoConsumo;
+        this.listModeloCargoses = listModeloCargoses;
     }
 
-    public int getId()
+    public int getId ()
     {
         return id;
     }
 
-    public void setId(int id)
+    public void setId (int id)
     {
         this.id = id;
     }
 
-    public String getTipoIdentificacion()
+    public String getTipoIdentificacion ()
     {
         return tipoIdentificacion;
     }
 
-    public void setTipoIdentificacion(String tipoIdentificacion)
+    public void setTipoIdentificacion (String tipoIdentificacion)
     {
         this.tipoIdentificacion = tipoIdentificacion;
     }
 
-    public String getIdentificacion()
+    public String getIdentificacion ()
     {
         return identificacion;
     }
 
-    public void setIdentificacion(String identificacion)
+    public void setIdentificacion (String identificacion)
     {
         this.identificacion = identificacion;
     }
 
-    public String getNombres()
+    public String getNombres ()
     {
         return nombres;
     }
 
-    public void setNombres(String nombres)
+    public void setNombres (String nombres)
     {
         this.nombres = nombres;
     }
 
-    public String getApellidos()
+    public String getApellidos ()
     {
         return apellidos;
     }
 
-    public void setApellidos(String apellidos)
+    public void setApellidos (String apellidos)
     {
         this.apellidos = apellidos;
     }
 
-    public String getEmail()
+    public String getEmail ()
     {
         return email;
     }
 
-    public void setEmail(String email)
+    public void setEmail (String email)
     {
         this.email = email;
     }
 
-    public String getDireccion()
+    public String getDireccion ()
     {
         return direccion;
     }
 
-    public void setDireccion(String direccion)
+    public void setDireccion (String direccion)
     {
         this.direccion = direccion;
     }
 
-    public String getCiudad()
+    public String getCiudad ()
     {
         return ciudad;
     }
 
-    public void setCiudad(String ciudad)
+    public void setCiudad (String ciudad)
     {
         this.ciudad = ciudad;
     }
 
-    public String getTipoPersona()
+    public String getTipoPersona ()
     {
         return tipoPersona;
     }
 
-    public void setTipoPersona(String tipoPersona)
+    public void setTipoPersona (String tipoPersona)
     {
         this.tipoPersona = tipoPersona;
     }
 
-    public String getTipoVisitante()
+    public String getTipoVisitante ()
     {
         return tipoVisitante;
     }
 
-    public void setTipoVisitante(String tipoVisitante)
+    public void setTipoVisitante (String tipoVisitante)
     {
         this.tipoVisitante = tipoVisitante;
     }
 
-    public int getUsuarioId()
+    public int getUsuarioId ()
     {
         return usuarioId;
     }
 
-    public void setUsuarioId(int usuarioId)
+    public void setUsuarioId (int usuarioId)
     {
         this.usuarioId = usuarioId;
     }
 
-    public String getCodigoInterno()
+    public String getCodigoInterno ()
     {
         return codigoInterno;
     }
 
-    public void setCodigoInterno(String codigoInterno)
+    public void setCodigoInterno (String codigoInterno)
     {
         this.codigoInterno = codigoInterno;
     }
 
-    public String getExtensionTelefonica()
+    public String getExtensionTelefonica ()
     {
         return extensionTelefonica;
     }
 
-    public void setExtensionTelefonica(String extensionTelefonica)
+    public void setExtensionTelefonica (String extensionTelefonica)
     {
         this.extensionTelefonica = extensionTelefonica;
     }
 
-    public String getFoto()
+    public String getFoto ()
     {
         return foto;
     }
 
-    public void setFoto(String foto)
+    public void setFoto (String foto)
     {
         this.foto = foto;
     }
 
-    public String getNombreEPS()
+    public String getNombreEPS ()
     {
         return nombreEPS;
     }
 
-    public void setNombreEPS(String nombreEPS)
+    public void setNombreEPS (String nombreEPS)
     {
         this.nombreEPS = nombreEPS;
     }
 
-    public String getVencimientoEPS()
+    public String getVencimientoEPS ()
     {
         return vencimientoEPS;
     }
 
-    public void setVencimientoEPS(String vencimientoEPS)
+    public void setVencimientoEPS (String vencimientoEPS)
     {
         this.vencimientoEPS = vencimientoEPS;
     }
 
-    public String getNombreARP()
+    public String getNombreARP ()
     {
         return nombreARP;
     }
 
-    public void setNombreARP(String nombreARP)
+    public void setNombreARP (String nombreARP)
     {
         this.nombreARP = nombreARP;
     }
 
-    public Date getPasadoJudicialVencto()
+    public Date getPasadoJudicialVencto ()
     {
         return pasadoJudicialVencto;
     }
 
-    public void setPasadoJudicialVencto(Date pasadoJudicialVencto)
+    public void setPasadoJudicialVencto (Date pasadoJudicialVencto)
     {
         this.pasadoJudicialVencto = pasadoJudicialVencto;
     }
 
-    public String getHuella()
+    public String getHuella ()
     {
         return huella;
     }
 
-    public void setHuella(String huella)
+    public void setHuella (String huella)
     {
         this.huella = huella;
     }
 
-    public String getRecibeVisitas()
+    public String getRecibeVisitas ()
     {
         return recibeVisitas;
     }
 
-    public void setRecibeVisitas(String recibeVisitas)
+    public void setRecibeVisitas (String recibeVisitas)
     {
         this.recibeVisitas = recibeVisitas;
     }
 
-    public Blob getPlantillaHuella()
+    public Blob getPlantillaHuella ()
     {
         return plantillaHuella;
     }
 
-    public void setPlantillaHuella(Blob plantillaHuella)
+    public void setPlantillaHuella (Blob plantillaHuella)
     {
         this.plantillaHuella = plantillaHuella;
     }
 
-    public int getLongitudPlantilla()
+    public int getLongitudPlantilla ()
     {
         return longitudPlantilla;
     }
 
-    public void setLongitudPlantilla(int longitudPlantilla)
+    public void setLongitudPlantilla (int longitudPlantilla)
     {
         this.longitudPlantilla = longitudPlantilla;
     }
 
-    public Date getVencimientoARP()
+    public Date getVencimientoARP ()
     {
         return vencimientoARP;
     }
 
-    public void setVencimientoARP(Date vencimientoARP)
+    public void setVencimientoARP (Date vencimientoARP)
     {
         this.vencimientoARP = vencimientoARP;
     }
 
-    public int getEnrollNumber()
+    public int getEnrollNumber ()
     {
         return enrollNumber;
     }
 
-    public void setEnrollNumber(int enrollNumber)
+    public void setEnrollNumber (int enrollNumber)
     {
         this.enrollNumber = enrollNumber;
     }
 
-    public int getDefinicionId()
+    public int getDefinicionId ()
     {
         return definicionId;
     }
 
-    public void setDefinicionId(int definicionId)
+    public void setDefinicionId (int definicionId)
     {
         this.definicionId = definicionId;
     }
 
-    public int getItinerarioId()
+    public int getItinerarioId ()
     {
         return itinerarioId;
     }
 
-    public void setItinerarioId(int itinerarioId)
+    public void setItinerarioId (int itinerarioId)
     {
         this.itinerarioId = itinerarioId;
     }
 
-    public String getAccesoRestringido()
+    public String getAccesoRestringido ()
     {
         return accesoRestringido;
     }
 
-    public void setAccesoRestringido(String accesoRestringido)
+    public void setAccesoRestringido (String accesoRestringido)
     {
         this.accesoRestringido = accesoRestringido;
     }
 
-    public Date getVencimientoPension()
+    public Date getVencimientoPension ()
     {
         return vencimientoPension;
     }
 
-    public void setVencimientoPension(Date vencimientoPension)
+    public void setVencimientoPension (Date vencimientoPension)
     {
         this.vencimientoPension = vencimientoPension;
     }
 
-    public Date getVencimientoSeguridadIndustrial()
+    public Date getVencimientoSeguridadIndustrial ()
     {
         return vencimientoSeguridadIndustrial;
     }
 
-    public void setVencimientoSeguridadIndustrial(Date vencimientoSeguridadIndustrial)
+    public void setVencimientoSeguridadIndustrial (Date vencimientoSeguridadIndustrial)
     {
         this.vencimientoSeguridadIndustrial = vencimientoSeguridadIndustrial;
     }
 
-    public Date getVencimientoAudiovisualSeguridadIndustrial()
+    public Date getVencimientoAudiovisualSeguridadIndustrial ()
     {
         return vencimientoAudiovisualSeguridadIndustrial;
     }
 
-    public void setVencimientoAudiovisualSeguridadIndustrial(Date vencimientoAudiovisualSeguridadIndustrial)
+    public void setVencimientoAudiovisualSeguridadIndustrial (Date vencimientoAudiovisualSeguridadIndustrial)
     {
         this.vencimientoAudiovisualSeguridadIndustrial = vencimientoAudiovisualSeguridadIndustrial;
     }
 
-    public Date getVencimientoTrabajoAlturas()
+    public Date getVencimientoTrabajoAlturas ()
     {
         return vencimientoTrabajoAlturas;
     }
 
-    public void setVencimientoTrabajoAlturas(Date vencimientoTrabajoAlturas)
+    public void setVencimientoTrabajoAlturas (Date vencimientoTrabajoAlturas)
     {
         this.vencimientoTrabajoAlturas = vencimientoTrabajoAlturas;
     }
 
-    public Date getVencimientoTrabajoConfinados()
+    public Date getVencimientoTrabajoConfinados ()
     {
         return vencimientoTrabajoConfinados;
     }
 
-    public void setVencimientoTrabajoConfinados(Date vencimientoTrabajoConfinados)
+    public void setVencimientoTrabajoConfinados (Date vencimientoTrabajoConfinados)
     {
         this.vencimientoTrabajoConfinados = vencimientoTrabajoConfinados;
     }
 
-    public Date getVencimientoTrabajoCaliente()
+    public Date getVencimientoTrabajoCaliente ()
     {
         return vencimientoTrabajoCaliente;
     }
 
-    public void setVencimientoTrabajoCaliente(Date vencimientoTrabajoCaliente)
+    public void setVencimientoTrabajoCaliente (Date vencimientoTrabajoCaliente)
     {
         this.vencimientoTrabajoCaliente = vencimientoTrabajoCaliente;
     }
 
-    public Date getVencimientoTrabajoExcavaciones()
+    public Date getVencimientoTrabajoExcavaciones ()
     {
         return vencimientoTrabajoExcavaciones;
     }
 
-    public void setVencimientoTrabajoExcavaciones(Date vencimientoTrabajoExcavaciones)
+    public void setVencimientoTrabajoExcavaciones (Date vencimientoTrabajoExcavaciones)
     {
         this.vencimientoTrabajoExcavaciones = vencimientoTrabajoExcavaciones;
     }
 
-    public Date getVencimientoTrabajoEnergiaElectrica()
+    public Date getVencimientoTrabajoEnergiaElectrica ()
     {
         return vencimientoTrabajoEnergiaElectrica;
     }
 
-    public void setVencimientoTrabajoEnergiaElectrica(Date vencimientoTrabajoEnergiaElectrica)
+    public void setVencimientoTrabajoEnergiaElectrica (Date vencimientoTrabajoEnergiaElectrica)
     {
         this.vencimientoTrabajoEnergiaElectrica = vencimientoTrabajoEnergiaElectrica;
     }
 
-    public Date getVencimientoOtros()
+    public Date getVencimientoOtros ()
     {
         return vencimientoOtros;
     }
 
-    public void setVencimientoOtros(Date vencimientoOtros)
+    public void setVencimientoOtros (Date vencimientoOtros)
     {
         this.vencimientoOtros = vencimientoOtros;
     }
 
-    public String getrH()
+    public String getrH ()
     {
         return rH;
     }
 
-    public void setrH(String rH)
+    public void setrH (String rH)
     {
         this.rH = rH;
     }
 
-    public String getSeguridadIndustrialSiNo()
+    public String getSeguridadIndustrialSiNo ()
     {
         return seguridadIndustrialSiNo;
     }
 
-    public void setSeguridadIndustrialSiNo(String seguridadIndustrialSiNo)
+    public void setSeguridadIndustrialSiNo (String seguridadIndustrialSiNo)
     {
         this.seguridadIndustrialSiNo = seguridadIndustrialSiNo;
     }
 
-    public String getAudiovisualSiNo()
+    public String getAudiovisualSiNo ()
     {
         return audiovisualSiNo;
     }
 
-    public void setAudiovisualSiNo(String audiovisualSiNo)
+    public void setAudiovisualSiNo (String audiovisualSiNo)
     {
         this.audiovisualSiNo = audiovisualSiNo;
     }
 
-    public String getAlturasSiNo()
+    public String getAlturasSiNo ()
     {
         return alturasSiNo;
     }
 
-    public void setAlturasSiNo(String alturasSiNo)
+    public void setAlturasSiNo (String alturasSiNo)
     {
         this.alturasSiNo = alturasSiNo;
     }
 
-    public String getConfinadosSiNo()
+    public String getConfinadosSiNo ()
     {
         return confinadosSiNo;
     }
 
-    public void setConfinadosSiNo(String confinadosSiNo)
+    public void setConfinadosSiNo (String confinadosSiNo)
     {
         this.confinadosSiNo = confinadosSiNo;
     }
 
-    public String getCalienteSiNo()
+    public String getCalienteSiNo ()
     {
         return calienteSiNo;
     }
 
-    public void setCalienteSiNo(String calienteSiNo)
+    public void setCalienteSiNo (String calienteSiNo)
     {
         this.calienteSiNo = calienteSiNo;
     }
 
-    public String getExcavacionesSiNo()
+    public String getExcavacionesSiNo ()
     {
         return excavacionesSiNo;
     }
 
-    public void setExcavacionesSiNo(String excavacionesSiNo)
+    public void setExcavacionesSiNo (String excavacionesSiNo)
     {
         this.excavacionesSiNo = excavacionesSiNo;
     }
 
-    public String getStrienergiaElectricaSiNo()
+    public String getStrienergiaElectricaSiNo ()
     {
         return strienergiaElectricaSiNo;
     }
 
-    public void setStrienergiaElectricaSiNo(String strienergiaElectricaSiNo)
+    public void setStrienergiaElectricaSiNo (String strienergiaElectricaSiNo)
     {
         this.strienergiaElectricaSiNo = strienergiaElectricaSiNo;
     }
 
-    public String getOtrosSiNo()
+    public String getOtrosSiNo ()
     {
         return otrosSiNo;
     }
 
-    public void setOtrosSiNo(String otrosSiNo)
+    public void setOtrosSiNo (String otrosSiNo)
     {
         this.otrosSiNo = otrosSiNo;
     }
 
-    public String getTelefono()
+    public String getTelefono ()
     {
         return telefono;
     }
 
-    public void setTelefono(String telefono)
+    public void setTelefono (String telefono)
     {
         this.telefono = telefono;
     }
 
-    public int getZonaId()
+    public int getZonaId ()
     {
         return zonaId;
     }
 
-    public void setZonaId(int zonaId)
+    public void setZonaId (int zonaId)
     {
         this.zonaId = zonaId;
     }
 
-    public String getTipoAcceso()
+    public String getTipoAcceso ()
     {
         return tipoAcceso;
     }
 
-    public void setTipoAcceso(String tipoAcceso)
+    public void setTipoAcceso (String tipoAcceso)
     {
         this.tipoAcceso = tipoAcceso;
     }
 
-    public Date getFechaInicioAcceso()
+    public Date getFechaInicioAcceso ()
     {
         return fechaInicioAcceso;
     }
 
-    public void setFechaInicioAcceso(Date fechaInicioAcceso)
+    public void setFechaInicioAcceso (Date fechaInicioAcceso)
     {
         this.fechaInicioAcceso = fechaInicioAcceso;
     }
 
-    public Date getFechaFinAcceso()
+    public Date getFechaFinAcceso ()
     {
         return fechaFinAcceso;
     }
 
-    public void setFechaFinAcceso(Date fechaFinAcceso)
+    public void setFechaFinAcceso (Date fechaFinAcceso)
     {
         this.fechaFinAcceso = fechaFinAcceso;
     }
 
-    public String getObservaciones()
+    public String getObservaciones ()
     {
         return observaciones;
     }
 
-    public void setObservaciones(String observaciones)
+    public void setObservaciones (String observaciones)
     {
         this.observaciones = observaciones;
     }
 
-    public String getConsumocasino()
+    public String getConsumocasino ()
     {
         return consumocasino;
     }
 
-    public void setConsumocasino(String consumocasino)
+    public void setConsumocasino (String consumocasino)
     {
         this.consumocasino = consumocasino;
     }
 
-    public int getTipoTrabajoId()
+    public int getTipoTrabajoId ()
     {
         return tipoTrabajoId;
     }
 
-    public void setTipoTrabajoId(int tipoTrabajoId)
+    public void setTipoTrabajoId (int tipoTrabajoId)
     {
         this.tipoTrabajoId = tipoTrabajoId;
     }
 
-    public int getEmpresaenqueTrabajaId()
+    public int getEmpresaenqueTrabajaId ()
     {
         return empresaenqueTrabajaId;
     }
 
-    public void setEmpresaenqueTrabajaId(int empresaenqueTrabajaId)
+    public void setEmpresaenqueTrabajaId (int empresaenqueTrabajaId)
     {
         this.empresaenqueTrabajaId = empresaenqueTrabajaId;
     }
 
-    public String getTarjetaAcceso()
+    public String getTarjetaAcceso ()
     {
         return tarjetaAcceso;
     }
 
-    public void setTarjetaAcceso(String tarjetaAcceso)
+    public void setTarjetaAcceso (String tarjetaAcceso)
     {
         this.tarjetaAcceso = tarjetaAcceso;
     }
 
-    public String getCod_nomina()
+    public String getCod_nomina ()
     {
         return cod_nomina;
     }
 
-    public void setCod_nomina(String cod_nomina)
+    public void setCod_nomina (String cod_nomina)
     {
         this.cod_nomina = cod_nomina;
     }
 
-    public int getId_Dependencias()
+    public int getId_Dependencias ()
     {
         return id_Dependencias;
     }
 
-    public void setId_Dependencias(int id_Dependencias)
+    public void setId_Dependencias (int id_Dependencias)
     {
         this.id_Dependencias = id_Dependencias;
     }
 
-    public int getId_Empresa()
+    public int getId_Empresa ()
     {
         return id_Empresa;
     }
 
-    public void setId_Empresa(int id_Empresa)
+    public void setId_Empresa (int id_Empresa)
     {
         this.id_Empresa = id_Empresa;
     }
 
-    public String getEstado()
+    public String getEstado ()
     {
         return estado;
     }
 
-    public void setEstado(String estado)
+    public void setEstado (String estado)
     {
         this.estado = estado;
     }
 
-    public int getId_Grupo_Horario()
+    public int getId_Grupo_Horario ()
     {
         return id_Grupo_Horario;
     }
 
-    public void setId_Grupo_Horario(int id_Grupo_Horario)
+    public void setId_Grupo_Horario (int id_Grupo_Horario)
     {
         this.id_Grupo_Horario = id_Grupo_Horario;
     }
 
-    public int getId_Turnos()
+    public int getId_Turnos ()
     {
         return id_Turnos;
     }
 
-    public void setId_Turnos(int id_Turnos)
+    public void setId_Turnos (int id_Turnos)
     {
         this.id_Turnos = id_Turnos;
     }
 
-    public int getId_Departamento()
+    public int getId_Departamento ()
     {
         return id_Departamento;
     }
 
-    public void setId_Departamento(int id_Departamento)
+    public void setId_Departamento (int id_Departamento)
     {
         this.id_Departamento = id_Departamento;
     }
 
-    public int getId_Areas()
+    public int getId_Areas ()
     {
         return id_Areas;
     }
 
-    public void setId_Areas(int id_Areas)
+    public void setId_Areas (int id_Areas)
     {
         this.id_Areas = id_Areas;
     }
 
-    public int getId_Ciudad()
+    public int getId_Ciudad ()
     {
         return id_Ciudad;
     }
 
-    public void setId_Ciudad(int id_Ciudad)
+    public void setId_Ciudad (int id_Ciudad)
     {
         this.id_Ciudad = id_Ciudad;
     }
 
-    public int getId_Centro_Costos()
+    public int getId_Centro_Costos ()
     {
         return id_Centro_Costos;
     }
 
-    public void setId_Centro_Costos(int id_Centro_Costos)
+    public void setId_Centro_Costos (int id_Centro_Costos)
     {
         this.id_Centro_Costos = id_Centro_Costos;
     }
 
-    public ModeloEmpresa getModeloEmpresa()
+    public ModeloEmpresa getModeloEmpresa ()
     {
         return modeloEmpresa;
     }
 
-    public void setModeloEmpresa(ModeloEmpresa modeloEmpresa)
+    public void setModeloEmpresa (ModeloEmpresa modeloEmpresa)
     {
         this.modeloEmpresa = modeloEmpresa;
     }
 
-    public ModeloCentroCosto getModeloCentroCosto()
+    public ModeloCentroCosto getModeloCentroCosto ()
     {
         return modeloCentroCosto;
     }
 
-    public void setModeloCentroCosto(ModeloCentroCosto modeloCentroCosto)
+    public void setModeloCentroCosto (ModeloCentroCosto modeloCentroCosto)
     {
         this.modeloCentroCosto = modeloCentroCosto;
     }
 
-    public ModeloGrupoConsumo getModeloGrupoConsumo()
+    public ModeloGrupoConsumo getModeloGrupoConsumo ()
     {
         return modeloGrupoConsumo;
     }
 
-    public void setModeloGrupoConsumo(ModeloGrupoConsumo modeloGrupoConsumo)
+    public void setModeloGrupoConsumo (ModeloGrupoConsumo modeloGrupoConsumo)
     {
         this.modeloGrupoConsumo = modeloGrupoConsumo;
+    }
+
+    public LinkedList<ModeloCargos> getListModeloCargoses ()
+    {
+        return listModeloCargoses;
+    }
+
+    public void setListModeloCargoses (LinkedList<ModeloCargos> listModeloCargoses)
+    {
+        this.listModeloCargoses = listModeloCargoses;
     }
     
     

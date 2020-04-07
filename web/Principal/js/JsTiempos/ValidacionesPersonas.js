@@ -11,7 +11,7 @@ $(function ()
 
     $(document).ready(function ()
     {
-        $("#IdCedula").blur(function () {            
+        $("#IdCedula").blur(function () {
             var Frm = "PersonasJSP";
             var Cedula = $('#IdCedula').val();
             var Accion = "Get";
@@ -35,7 +35,7 @@ $(function ()
                             title: 'Inforacion',
                             text: 'La persona ya esta registrada en el sistema.'
                         });
-                        LimpiarCampos();                                           
+                        LimpiarCampos();
                         $('#datatable').html(resul);
                         $('#datatable').dataTable({
                             responsive: true,
@@ -69,8 +69,7 @@ $(function ()
                             , "scrollCollapse": true
 
                         });
-                    }
-                    else
+                    } else
                     {
                         LoadTabla();
                         var t = $('#IdTipoDoc').val();
@@ -114,6 +113,28 @@ $(function ()
         $('#IdConsume').val($(this).data('consume'));
         $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
         $('#IdObservacion').val($(this).data('observacion'));
+    });
+
+    $(document).on('click', '.SetFormularioId', function () {
+        $('#Id').val($(this).data('id'));
+        if ($(this).data('idhoteleria') !== 0)
+        {
+            $('#IdHoteleria').val($(this).data('idhoteleria'));
+            $('#IdAdicional').val($(this).data('idadicional'));
+            $('#IdConsumeHoteleria').val($(this).data('idconsumehoteleria'));
+            $('#IdValorHoteleria').val($(this).data('idvalorhoteleria'));
+            $('#IdConsumeAdicional').val($(this).data('idconsumeadicional'));
+            $('#IdValorAdicional').val($(this).data('idvaloradicional'));
+        }
+        else
+        {
+            $('#IdHoteleria').val('');
+            $('#IdAdicional').val('');
+            $('#IdConsumeHoteleria').val('1HN');
+            $('#IdValorHoteleria').val('25000');
+            $('#IdConsumeAdicional').val('1AN');
+            $('#IdValorAdicional').val('25000');
+        }
     });
 
     function ValidaCampo()
@@ -232,6 +253,118 @@ $(function ()
             });
             //alert("Favor de completar todos los campos");
         }
+    });
+
+    $('#IdIniServicio').click(function (e)
+    {
+        var Frm = "CargosJSP";
+        var Id = $('#Id').val();
+        var IdHoteleria = $('#IdHoteleria').val();
+        var IdAdicional = $('#IdAdicional').val();
+        var ConsumoHoteleria = $('#IdConsumeHoteleria').val();
+        var ValorHoteleria = $('#IdValorHoteleria').val();
+        var ConsumoAdicional = $('#IdConsumeAdicional').val();
+        var ValorAdicional = $('#IdValorAdicional').val();
+        var Accion = "IniServicio";
+        var data = {
+            frm: Frm,
+            id: Id,
+            idhoteleria: IdHoteleria,
+            idadicional: IdAdicional,
+            consumohoteleria: ConsumoHoteleria,
+            valorhoteleria: ValorHoteleria,
+            consumoadicional: ConsumoAdicional,
+            valoradicional: ValorAdicional,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: resul
+                });
+                disableGif();
+                //alert(resul);
+                LimpiarCampos();
+                LoadTabla();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    });
+    
+    $('#IdFinServicio').click(function (e)
+    {
+        var Frm = "CargosJSP";
+        var Id = $('#Id').val();
+        var IdHoteleria = $('#IdHoteleria').val();
+        var IdAdicional = $('#IdAdicional').val();
+        var Accion = "FinServicio";
+        var data = {
+            frm: Frm,
+            id: Id,
+            idhoteleria: IdHoteleria,
+            idadicional: IdAdicional,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: resul
+                });
+                disableGif();
+                //alert(resul);
+                LimpiarCampos();
+                LoadTabla();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
     });
 
 

@@ -92,7 +92,7 @@
                                                                 </div>
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="direcionip">IP Dispositivo</label>
-                                                                    <input type="number" class="form-control" id="IdIp" name="IP" required>
+                                                                    <input type="text" class="form-control" id="IdIp" name="IP" required>
                                                                 </div>
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puerto">Puerto</label>
@@ -150,7 +150,7 @@
                                                                 </div>
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="ipcontroladora">Ip Controladora</label>
-                                                                    <input type="number" class="form-control" id="IdIpControladora" name="IpControladora" required>
+                                                                    <input type="text" class="form-control" id="IdIpControladora" name="IpControladora" required>
                                                                 </div>
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puertocontroladora">Puerto Controladora</label>

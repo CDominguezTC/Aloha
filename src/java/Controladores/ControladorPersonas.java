@@ -6,6 +6,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Modelo.ModeloCargos;
 import Modelo.ModeloPersonas;
 import java.io.IOException;
 import java.sql.Connection;
@@ -31,6 +32,7 @@ public class ControladorPersonas
     ControladorEmpresas controladorEmpresas = new ControladorEmpresas ();
     ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
     ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
+    ControladorCargos controladorCargos = new ControladorCargos ();
 
     public String Insert (HttpServletRequest request)
     {
@@ -222,6 +224,7 @@ public class ControladorPersonas
                 modelo.setObservaciones (res.getString ("observaciones"));
                 modelo.setConsumocasino (res.getString ("consumocasino"));
                 modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+                //modelo.setListModeloCargoses (controladorCargos.getListModelo (modelo.getId ()));
 
                 listModeloPersonases.add (modelo);
             }
@@ -272,20 +275,21 @@ public class ControladorPersonas
                 modelo.setObservaciones (res.getString ("observaciones"));
                 modelo.setConsumocasino (res.getString ("consumocasino"));
                 modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
-                listModelos.add (modelo);                
+//                modelo.setListModeloCargoses (controladorCargos.getListModelo (modelo.getId ()));
+                listModelos.add (modelo);
             }
             res.close ();
             SQL.close ();
             con.close ();
             if (listModelos.isEmpty ())
             {
-                resulatado = "99";                
+                resulatado = "99";
             }
             else
             {
                 resulatado = GetTabla (listModelos);
             }
-            
+
         } catch (SQLException e)
         {
             System.out.println (e);
@@ -293,7 +297,7 @@ public class ControladorPersonas
         return resulatado;
     }
 
-        private String GetTabla (LinkedList<ModeloPersonas> modelo)
+    private String GetTabla (LinkedList<ModeloPersonas> modelo)
     {
         String out = null;
         try
@@ -345,16 +349,16 @@ public class ControladorPersonas
                 out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
+                out += "data-id=\"" + modeloPersonas.getId () + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres () + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos () + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa ().getId () + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto ().getId () + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
@@ -369,18 +373,6 @@ public class ControladorPersonas
                 out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "<button class=\"SetOpciones btn btn-info btn-xs\"title=\"Opciones\"";
                 out += "data-id=\"" + modeloPersonas.getId () + "\"";
                 out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
                 out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
@@ -391,7 +383,38 @@ public class ControladorPersonas
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
-                out += "type=\"button\"><i id=\"IdOpciones\" name=\"Opciones\" class=\"fa fa-shopping-cart\" data-toggle=\"modal\" data-target=\"#ModalGt4001\" data-whatever=\"@getbootstrap\"></i> </button>";
+                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+//                out += "<button class=\"SetFormularioId btn btn-info btn-xs\"title=\"Opciones\"";
+//                out += "data-id=\"" + modeloPersonas.getId () + "\"";
+//                if (modeloPersonas.getListModeloCargoses ().isEmpty ())
+//                {
+//                    out += "data-idhoteleria=\"0\"";                    
+//                }
+//                else
+//                {
+//                    for (ModeloCargos modeloCargos : modeloPersonas.getListModeloCargoses ())
+//                    {
+//                        if ("1HN".equals (modeloCargos.getTipoCargo ()) || "2HS".equals (modeloCargos.getTipoCargo ()))
+//                        {
+//                            out += "data-idhoteleria=\"" + modeloCargos.getId () + "\"";
+//                            out += "data-idconsumehoteleria=\"" + modeloCargos.getTipoCargo () + "\"";
+//                            out += "data-idvalorhoteleria=\"" + modeloCargos.getValorCargo () + "\"";
+//                            out += "data-fechainiciohoteleria=\"" + modeloCargos.getFechaInicioCargo () + "\"";
+//                            out += "data-fechafinhoteleria=\"" + modeloCargos.getFechaFinCargo () + "\"";
+//                            out += "data-estadohoteleria=\"" + modeloCargos.getEstadoCargo () + "\"";
+//                        }
+//                        if ("1AN".equals (modeloCargos.getTipoCargo ()) || "2AS".equals (modeloCargos.getTipoCargo ()))
+//                        {
+//                            out += "data-idadicional=\"" + modeloCargos.getId () + "\"";
+//                            out += "data-idconsumeadicional=\"" + modeloCargos.getTipoCargo () + "\"";
+//                            out += "data-idvaloradicional=\"" + modeloCargos.getValorCargo () + "\"";
+//                            out += "data-fechainicioadicional=\"" + modeloCargos.getFechaInicioCargo () + "\"";
+//                            out += "data-fechafinadicional=\"" + modeloCargos.getFechaFinCargo () + "\"";
+//                            out += "data-estadoadicional=\"" + modeloCargos.getEstadoCargo () + "\"";
+//                        }
+//                    }
+//                }
+//                out += "type=\"button\"><i id=\"IdOpciones\" name=\"Opciones\" class=\"fa fa-shopping-cart\" data-toggle=\"modal\" data-target=\"#ModalGt4001\" data-whatever=\"@getbootstrap\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
@@ -404,5 +427,95 @@ public class ControladorPersonas
             System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
         }
         return out;
+    }
+
+    ModeloPersonas getModelo (int id)
+    {
+        String resultado = null;
+        ModeloPersonas modelo = new ModeloPersonas ();
+        con = conexion.abrirConexion ();
+        try
+        {
+            SQL = con.prepareStatement ("SELECT "
+                    + "`id`,"
+                    + "`tipoIdentificacion`,"
+                    + "`identificacion`,"
+                    + "`nombres`,"
+                    + "`apellidos`,"
+                    + "`Id_EmpresaTrabaja`,"
+                    + "`centroCostoId`,"
+                    + "`observaciones`,"
+                    + "`consumocasino`,"
+                    + "`grupoConsumo`"
+                    + "FROM `persona`"
+                    + "WHERE id = ?;");
+            SQL.setInt (1, id);
+            ResultSet res = SQL.executeQuery ();
+            while (res.next ())
+            {
+                modelo.setId (res.getInt ("id"));
+                modelo.setTipoIdentificacion (res.getString ("tipoIdentificacion"));
+                modelo.setIdentificacion (res.getString ("identificacion"));
+                modelo.setNombres (res.getString ("nombres"));
+                modelo.setApellidos (res.getString ("apellidos"));
+                modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (res.getString ("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (res.getString ("centroCostoId"))));
+                modelo.setObservaciones (res.getString ("observaciones"));
+                modelo.setConsumocasino (res.getString ("consumocasino"));
+                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+            }
+            res.close ();
+            SQL.close ();
+            con.close ();
+        } catch (SQLException e)
+        {
+            System.out.println (e);
+        }
+        return modelo;
+    }
+
+    public ModeloPersonas GetPersonaCedula (HttpServletRequest request, HttpServletResponse response)
+    {        
+        String resultado = null;
+        ModeloPersonas modelo = new ModeloPersonas ();
+        con = conexion.abrirConexion ();
+        try
+        {
+            SQL = con.prepareStatement ("SELECT "
+                    + "`id`,"
+                    + "`tipoIdentificacion`,"
+                    + "`identificacion`,"
+                    + "`nombres`,"
+                    + "`apellidos`,"
+                    + "`Id_EmpresaTrabaja`,"
+                    + "`centroCostoId`,"
+                    + "`observaciones`,"
+                    + "`consumocasino`,"
+                    + "`grupoConsumo`"
+                    + "FROM `persona`"
+                    + " WHERE identificacion = ?;");
+            SQL.setString (1, request.getParameter ("cedula"));
+            ResultSet res = SQL.executeQuery ();
+            while (res.next ())
+            {
+                modelo.setId (res.getInt ("id"));
+                modelo.setTipoIdentificacion (res.getString ("tipoIdentificacion"));
+                modelo.setIdentificacion (res.getString ("identificacion"));
+                modelo.setNombres (res.getString ("nombres"));
+                modelo.setApellidos (res.getString ("apellidos"));
+                modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (res.getString ("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (res.getString ("centroCostoId"))));
+                modelo.setObservaciones (res.getString ("observaciones"));
+                modelo.setConsumocasino (res.getString ("consumocasino"));
+                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+            }
+            res.close ();
+            SQL.close ();
+            con.close ();
+        } catch (SQLException e)
+        {
+            System.out.println (e);
+        }
+        return modelo;
     }
 }
