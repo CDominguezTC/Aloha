@@ -1,15 +1,15 @@
 //$(function(){
-//  $("#header").load("Principal/Head.html"); 
-//  $("#script").load("Principal/Script.html"); 
+//  $("#header").load("Principal/Head.html");
+//  $("#script").load("Principal/Script.html");
 //});
 
 $(function()
 {
     $("#header").load("Principal/Head.html");
     $("#script").load("Principal/Script.html");
-    $(document).ready(function()
-    {
-        LoadTabla();
+    $(document).ready(function(){
+      
+      LoadTabla();
     });
     $(document).on('click', '.SetFormulario', function()
     {
@@ -142,7 +142,7 @@ $(function()
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'No, cancelar'
             }).then((result) => {
-            if (result.value) { 
+            if (result.value) {
                 enableGif();
                 $.ajax({
                 type: "POST",
@@ -283,7 +283,7 @@ $(function()
                 });
                 //$('#datatable').dataTable().fnDestroy();
 
-                //                    alert(resul);                    
+                //                    alert(resul);
                 //                    LimpiarCampos();
             },
             error: function(jqXHR, textStatus, errorThrown) {
