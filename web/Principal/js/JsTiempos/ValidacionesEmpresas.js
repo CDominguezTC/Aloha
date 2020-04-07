@@ -10,17 +10,115 @@ $(function()
     $(document).ready(function(){
 
       //alert("Hola");
+      var usract = "Tecno1";
+      traigoUserAc();
       LoadTabla();
-      editoBotones();
 
-      function editoBotones() {
 
-          //alert("Empresas");
-          var usrac = $("#idusera").text();
+      function traigoUserAc(){
+        var usuariof = "";
+        $.ajax({
+          type: "POST",
+  				url: "LoginServlet",
+  				data: "nombreU",
+          success: function(data, textStatus, jqXHR){
+
+            var dt = data;
+            //alert("dt: " + dt);
+
+            if (dt != "false"){
+
+                usuariof = dt;
+                editoBotonG(usuariof);
+                editoBotonE(usuariof);
+                editoBotonB(usuariof);
+                //return dt;
+                //alert("uf metodo: " + usuariof);
+            }
+            else{
+
+                alert("Ocurrio un error al traer el nombre del usuario activo.");
+                location.href = "Dashboard.jsp";
+            }
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            //disableGif();
+            if (jqXHR.status === 0) {
+              alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+              alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+              alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+              alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+              alert('Time out error.');
+            } else if (textStatus === 'abort') {
+              alert('Ajax request aborted.');
+            } else {
+              alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+          }
+        });
+
+      }
+
+      function editoBotonG(usuariof) {
 
           var Frm = "Permisos";
-      		var User = usrac;
-      		var Accion = "Empresa.Guardar";
+          var User = usuariof;
+          //alert("User guardar: " + traigoUserAc());
+          var Accion = "Empresa.Guardar";
+          var data = {
+              frm: Frm,
+              user: User,
+              accion: Accion
+          };
+          $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function(data, textStatus, jqXHR){
+
+              var dt = data;
+              //alert("dt: " + dt);
+
+              if (dt != "true"){
+
+                  $("#IdGuardar").attr("disabled", "disabled");
+                  //evt.preventDefault();
+              }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              //disableGif();
+              if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+              } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+              } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+              } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+              } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+              } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+              } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+              }
+            }
+          });
+          /*var botonEnviar = document.getElementById("");
+          botonEnviar.disabled === true;*/
+      }
+
+      function editoBotonE(usuariof) {
+
+          var Frm = "Permisos";
+      		var User = usuariof;
+      		var Accion = "Empresa.Editar";
       		var data = {
       				frm: Frm,
       				user: User,
@@ -33,11 +131,66 @@ $(function()
       			success: function(data, textStatus, jqXHR){
 
       				var dt = data;
-      				//alert("dt: " + dt);
+      				//alert("dt ed: " + dt);
 
       				if (dt != "true"){
 
-      						$("#IdGuardar").attr("disabled", "disabled");
+                //alert("Entro if editar");
+      					//$("#IdModificar").attr("disabled", "disabled");
+                $(".SetFormulario").addClass("disabled").prop("disabled", true);
+      					//evt.preventDefault();
+      				}
+
+      			},
+      			error: function(jqXHR, textStatus, errorThrown) {
+      				//disableGif();
+      				if (jqXHR.status === 0) {
+      					alert('Not connect: Verify Network.');
+      				} else if (jqXHR.status === 404) {
+      					alert('Requested page not found [404]');
+      				} else if (jqXHR.status === 500) {
+      					alert('Internal Server Error [500].');
+      				} else if (textStatus === 'parsererror') {
+      					alert('Requested JSON parse failed.');
+      				} else if (textStatus === 'timeout') {
+      					alert('Time out error.');
+      				} else if (textStatus === 'abort') {
+      					alert('Ajax request aborted.');
+      				} else {
+      					alert('Uncaught Error: ' + jqXHR.responseText);
+      				}
+      			}
+      		});
+  				/*var botonEnviar = document.getElementById("");
+  				botonEnviar.disabled === true;*/
+  		}
+
+      function editoBotonB(usuariof) {
+
+          //alert("Borrar");
+          var usrac = $("#idusera").text();
+
+          var Frm = "Permisos";
+      		var User = usuariof;
+      		var Accion = "Empresa.Borrar";
+      		var data = {
+      				frm: Frm,
+      				user: User,
+      				accion: Accion
+      		};
+      		$.ajax({
+      			type: "POST",
+      			url: "ServletAlohaTiempos",
+      			data: data,
+      			success: function(data, textStatus, jqXHR){
+
+      				var dt = data;
+      				//alert("dt bo: " + dt);
+
+      				if (dt != "true"){
+
+                $(".SetEliminar").addClass("disabled").prop("disabled", true);
+      						//$("#IdEliminar").attr("disabled", "disabled");
       						//evt.preventDefault();
       				}
 
