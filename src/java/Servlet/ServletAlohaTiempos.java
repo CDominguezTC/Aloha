@@ -139,12 +139,13 @@ public class ServletAlohaTiempos extends HttpServlet
                 break;
             case "Permisos":                
                 Accion = request.getParameter ("accion");
-                switch (Accion)
-                {
+                Tools tl = new Tools();
+                Resultado = tl.validoItem(request.getParameter("user"), Accion);
+                //switch (Accion)
+                //{
                     
-                    case "Empresa.Abrir":
-                        Tools tl = new Tools();
-                        Resultado = tl.validoItem(request.getParameter("user"), Accion);
+                    
+                        
                         /*ControladorInicioSesion controladorIni = new ControladorInicioSesion();
                         Resultado = controladorIni.autenticacion(request);
                         
@@ -154,8 +155,9 @@ public class ServletAlohaTiempos extends HttpServlet
                             HttpSession session=request.getSession();  
                             session.setAttribute("usuario", usuario);
                         }*/
-                        break;
-                }
+                        
+                    
+                //}
 
                 break;
             case "AreasJSP":
