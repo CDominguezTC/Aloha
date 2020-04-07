@@ -5,6 +5,10 @@
  */
 package Tools;
 
+import Conexiones.ConexionBdMysql;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -234,5 +238,39 @@ public class Tools
             System.out.println (ex);
         }
         return fechaDate;
+    }
+    
+    public String validoItem(String user, String modulo){
+        
+        PreparedStatement SQL = null;
+        ResultSet rs = null;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();        
+        con = conexionBdMysql.abrirConexion();
+                
+        try {
+            String consulta = "SELECT pe.nombre " +
+            "FROM permisos pe " +
+            "INNER JOIN permisosxusuarios pu ON pe.id = pu.id_permiso " +
+            "INNER JOIN usuarios us ON us.id = pu.id_usuario " +
+            "WHERE us.login = ? AND pe.nombre = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            SQL.setString(1, user);
+            SQL.setString(2, modulo);
+
+            rs = SQL.executeQuery();
+            
+                           
+            if(rs.absolute(1)){
+                return "true";
+            }                        
+            
+            rs = SQL.executeQuery();
+        } catch (Exception e) {
+        }
+        
+        
+        return "false";
     }
 }

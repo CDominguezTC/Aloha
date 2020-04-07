@@ -18,12 +18,14 @@ import Controladores.ControladorFunciones;
 import Controladores.ControladorGrupoConsumo;
 import Controladores.ControladorGrupoTurnos;
 import Controladores.ControladorHorarioConsumo;
+import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersonas;
+import Tools.Tools;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -31,6 +33,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -52,21 +55,21 @@ public class ServletAlohaTiempos extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType ("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter ())
-        {
-            /*
-             * TODO output your page here. You may use following sample code.
-             */
-            out.println ("<!DOCTYPE html>");
-            out.println ("<html>");
-            out.println ("<head>");
-            out.println ("<title>Servlet ServletAlohaTiempos</title>");
-            out.println ("</head>");
-            out.println ("<body>");
-            out.println ("<h1>Servlet ServletAlohaTiempos at " + request.getContextPath () + "</h1>");
-            out.println ("</body>");
-            out.println ("</html>");
-        }
+        /*
+         * try (PrintWriter out = response.getWriter ())
+         * {
+         * out.println ("<!DOCTYPE html>");
+         * out.println ("<html>");
+         * out.println ("<head>");
+         * out.println ("<title>Servlet ServletAlohaTiempos</title>");
+         * out.println ("</head>");
+         * out.println ("<body>");
+         * out.println ("<h1>Servlet ServletAlohaTiempos at " +
+         * request.getContextPath () + "</h1>");
+         * out.println ("</body>");
+         * out.println ("</html>");
+         * }
+         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -104,6 +107,25 @@ public class ServletAlohaTiempos extends HttpServlet
                 Accion = "Plano";
                 break;
         }
+//        processRequest(request, response);
+        String respuesta = "";
+        HttpSession session = request.getSession (false);
+        if (session != null)
+        {
+            //String name = (String)session.getAttribute("name");  
+            respuesta = "true";
+            //out.print("Hello, "+name+" Welcome to Profile");  
+        }
+        else
+        {
+
+            respuesta = "false";
+            //out.print("Please login first");  
+            //request.getRequestDispatcher("login.html").include(request, response);  
+        }
+        response.setCharacterEncoding ("UTF-8");
+        response.setContentType ("text/plain");
+        response.getWriter ().write (respuesta);
     }
 
     /**
@@ -132,9 +154,40 @@ public class ServletAlohaTiempos extends HttpServlet
                     case "Login":
                         //En este punto se accesoa al controlador para la validacion de los datos del user 
                         Resultado = "true";
+                        ControladorInicioSesion controladorIni = new ControladorInicioSesion ();
+                        Resultado = controladorIni.autenticacion (request);
+
+                        if ("true".equals (Resultado))
+                        {
+                            String usuario = request.getParameter ("user");
+                            //String pw = request.getParameter("pass");
+                            HttpSession session = request.getSession ();
+                            session.setAttribute ("usuario", usuario);
+                        }
                         break;
                 }
 
+                break;
+            case "Permisos":
+                Accion = request.getParameter ("accion");
+                Tools tl = new Tools ();
+                Resultado = tl.validoItem (request.getParameter ("user"), Accion);
+                //switch (Accion)
+                //{
+
+                /*
+                 * ControladorInicioSesion controladorIni = new
+                 * ControladorInicioSesion();
+                 * Resultado = controladorIni.autenticacion(request);
+                 *
+                 * if("true".equals(Resultado)){
+                 * String usuario = request.getParameter("user");
+                 * //String pw = request.getParameter("pass");
+                 * HttpSession session=request.getSession();
+                 * session.setAttribute("usuario", usuario);
+                 * }
+                 */
+                //}
                 break;
             case "AreasJSP":
                 ControladorAreas controladorAreas = new ControladorAreas ();

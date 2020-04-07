@@ -1,16 +1,72 @@
 //$(function(){
-//  $("#header").load("Principal/Head.html"); 
-//  $("#script").load("Principal/Script.html"); 
+//  $("#header").load("Principal/Head.html");
+//  $("#script").load("Principal/Script.html");
 //});
 
 $(function()
 {
     $("#header").load("Principal/Head.html");
     $("#script").load("Principal/Script.html");
-    $(document).ready(function()
-    {
-        LoadTabla();
+    $(document).ready(function(){
+
+      //alert("Hola");
+      LoadTabla();
+      editoBotones();
+
+      function editoBotones() {
+
+          //alert("Empresas");
+          var usrac = $("#idusera").text();
+
+          var Frm = "Permisos";
+      		var User = usrac;
+      		var Accion = "Empresa.Guardar";
+      		var data = {
+      				frm: Frm,
+      				user: User,
+      				accion: Accion
+      		};
+      		$.ajax({
+      			type: "POST",
+      			url: "ServletAlohaTiempos",
+      			data: data,
+      			success: function(data, textStatus, jqXHR){
+
+      				var dt = data;
+      				//alert("dt: " + dt);
+
+      				if (dt != "true"){
+
+      						$("#IdGuardar").attr("disabled", "disabled");
+      						//evt.preventDefault();
+      				}
+
+      			},
+      			error: function(jqXHR, textStatus, errorThrown) {
+      				//disableGif();
+      				if (jqXHR.status === 0) {
+      					alert('Not connect: Verify Network.');
+      				} else if (jqXHR.status === 404) {
+      					alert('Requested page not found [404]');
+      				} else if (jqXHR.status === 500) {
+      					alert('Internal Server Error [500].');
+      				} else if (textStatus === 'parsererror') {
+      					alert('Requested JSON parse failed.');
+      				} else if (textStatus === 'timeout') {
+      					alert('Time out error.');
+      				} else if (textStatus === 'abort') {
+      					alert('Ajax request aborted.');
+      				} else {
+      					alert('Uncaught Error: ' + jqXHR.responseText);
+      				}
+      			}
+      		});
+  				/*var botonEnviar = document.getElementById("");
+  				botonEnviar.disabled === true;*/
+  		}
+
     });
+
     $(document).on('click', '.SetFormulario', function()
     {
         $('#Id').val($(this).data('id'));
@@ -23,6 +79,9 @@ $(function()
         $('#IdEmail').val($(this).data('email'));
         $('#IdObservacion').val($(this).data('observacion'));
     });
+
+
+
     function ValidaCampo()
     {
         var res = false;
@@ -142,7 +201,7 @@ $(function()
             confirmButtonText: 'Sí, eliminar',
             cancelButtonText: 'No, cancelar'
             }).then((result) => {
-            if (result.value) { 
+            if (result.value) {
                 enableGif();
                 $.ajax({
                 type: "POST",
@@ -283,7 +342,7 @@ $(function()
                 });
                 //$('#datatable').dataTable().fnDestroy();
 
-                //                    alert(resul);                    
+                //                    alert(resul);
                 //                    LimpiarCampos();
             },
             error: function(jqXHR, textStatus, errorThrown) {
