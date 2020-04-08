@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-$(function()
+$(function ()
 {
-    $('#IdIngresar').click(function(e)
+    $('#IdIngresar').click(function (e)
     {
         if ($('#Idusuario').val() !== "")
         {
@@ -22,12 +22,11 @@ $(function()
                     pass: Pass,
                     accion: Accion
                 };
-
                 $.ajax({
                     type: "POST",
                     url: "ServletAlohaTiempos",
                     data: data,
-                    success: function(data, textStatus, jqXHR)
+                    success: function (data, textStatus, jqXHR)
                     {
                         var dt = data;
                         //alert("dt: " + dt);
@@ -35,13 +34,12 @@ $(function()
                         {
                             location.href = "Dashboard.jsp";
                             //evt.preventDefault();
-                        }
-                        else
+                        } else
                         {
                             alert("Por favor verifique el usuario y la contraseña");
                         }
                     },
-                    error: function(jqXHR, textStatus, errorThrown) {
+                    error: function (jqXHR, textStatus, errorThrown) {
                         //disableGif();
                         if (jqXHR.status === 0) {
                             alert('Not connect: Verify Network.');
@@ -60,13 +58,11 @@ $(function()
                         }
                     }
                 });
-            }
-            else
+            } else
             {
                 alert("Ingrese el Password");
             }
-        }
-        else
+        } else
         {
             alert("Ingrese el Usuario");
         }

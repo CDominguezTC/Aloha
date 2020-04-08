@@ -203,9 +203,9 @@
                                                                                     </div-->
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                                         <label for="tipo_id">Hoteleria</label>
-                                                                                        <select id="IdConsume" class="form-control" required>                                                                                            
-                                                                                            <option value="1" selected>No</option>
-                                                                                            <option value="2">Si</option>                                                                    
+                                                                                        <select id="IdConsumeHoteleria" class="form-control" required>                                                                                            
+                                                                                            <option value="1HN" selected>No</option>
+                                                                                            <option value="2HS">Si</option>                                                                    
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
@@ -214,9 +214,9 @@
                                                                                     </div>
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                                         <label for="tipo_id">Adicional</label>
-                                                                                        <select id="IdConsume" class="form-control" required>                                                                                            
-                                                                                            <option value="1" selected>No</option>
-                                                                                            <option value="2">Si</option>                                                                    
+                                                                                        <select id="IdConsumeAdicional" class="form-control" required>                                                                                            
+                                                                                            <option value="1AN" selected>No</option>
+                                                                                            <option value="2AS">Si</option>                                                                    
                                                                                         </select>
                                                                                     </div>
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">

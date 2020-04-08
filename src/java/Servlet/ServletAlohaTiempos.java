@@ -7,6 +7,7 @@ package Servlet;
 
 import Controladores.ControladorAreas;
 import Controladores.ControladorAsocGrupoConsumo;
+import Controladores.ControladorCargos;
 import Controladores.ControladorCiudades;
 import Controladores.ControladorCentroCosto;
 import Controladores.ControladorDependencias;
@@ -54,18 +55,21 @@ public class ServletAlohaTiempos extends HttpServlet
             throws ServletException, IOException
     {
         response.setContentType ("text/html;charset=UTF-8");
-        /*try (PrintWriter out = response.getWriter ())
-        {
-            out.println ("<!DOCTYPE html>");
-            out.println ("<html>");
-            out.println ("<head>");
-            out.println ("<title>Servlet ServletAlohaTiempos</title>");
-            out.println ("</head>");
-            out.println ("<body>");
-            out.println ("<h1>Servlet ServletAlohaTiempos at " + request.getContextPath () + "</h1>");
-            out.println ("</body>");
-            out.println ("</html>");
-        }*/
+        /*
+         * try (PrintWriter out = response.getWriter ())
+         * {
+         * out.println ("<!DOCTYPE html>");
+         * out.println ("<html>");
+         * out.println ("<head>");
+         * out.println ("<title>Servlet ServletAlohaTiempos</title>");
+         * out.println ("</head>");
+         * out.println ("<body>");
+         * out.println ("<h1>Servlet ServletAlohaTiempos at " +
+         * request.getContextPath () + "</h1>");
+         * out.println ("</body>");
+         * out.println ("</html>");
+         * }
+         */
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -79,19 +83,43 @@ public class ServletAlohaTiempos extends HttpServlet
      */
     @Override
     protected void doGet (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-    
-        processRequest(request, response);
+            throws ServletException, IOException
+    {
+        //processRequest(request, response);
+        response.setContentType ("text/html;charset=UTF-8");
+        String Formulario = request.getParameter ("frmm");
+        Herramienta herramienta = new Herramienta ();
+        String Resultado = "";
+        String Accion = null;
+        switch (Formulario)
+        {
+            case "BuscarPersona":
+                ModeloPersonas modeloPersonas = new ModeloPersonas ();
+                ControladorPersonas controladorPersonas1 = new ControladorPersonas ();
+                modeloPersonas = controladorPersonas1.GetPersonaCedula (request, response);
+                request.setAttribute ("id", modeloPersonas.getId ());
+                request.setAttribute ("nombre", modeloPersonas.getNombres () + " " + modeloPersonas.getApellidos ());
+                request.setAttribute ("cedula", modeloPersonas.getIdentificacion ());
+                request.setAttribute ("observacion", modeloPersonas.getObservaciones ());
+                RequestDispatcher rd;
+                rd = request.getRequestDispatcher ("RegistroCargos.jsp");
+                rd.forward (request, response);
+                Accion = "Plano";
+                break;
+        }
+//        processRequest(request, response);
         String respuesta = "";
-        HttpSession session=request.getSession(false);  
-        if(session != null){  
+        HttpSession session = request.getSession (false);
+        if (session != null)
+        {
             //String name = (String)session.getAttribute("name");  
             respuesta = "true";
-        //out.print("Hello, "+name+" Welcome to Profile");  
-        }  
-        else{  
-            
-            respuesta = "false";           
+            //out.print("Hello, "+name+" Welcome to Profile");  
+        }
+        else
+        {
+
+            respuesta = "false";
             //out.print("Please login first");  
             //request.getRequestDispatcher("login.html").include(request, response);  
         }
@@ -119,46 +147,47 @@ public class ServletAlohaTiempos extends HttpServlet
         String Accion = null;
         switch (Formulario)
         {
-            case "IndexJSP":                
+            case "IndexJSP":
                 Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
                     case "Login":
-                    ControladorInicioSesion controladorIni = new ControladorInicioSesion();
-                    Resultado = controladorIni.autenticacion(request);
+                        //En este punto se accesoa al controlador para la validacion de los datos del user 
+                        Resultado = "true";
+                        ControladorInicioSesion controladorIni = new ControladorInicioSesion ();
+                        Resultado = controladorIni.autenticacion (request);
 
-                    if("true".equals(Resultado)){
-                        String usuario = request.getParameter("user");
-                        //String pw = request.getParameter("pass");
-                        HttpSession session=request.getSession();  
-                        session.setAttribute("usuario", usuario);
-                    }
-                    break;            
+                        if ("true".equals (Resultado))
+                        {
+                            String usuario = request.getParameter ("user");
+                            //String pw = request.getParameter("pass");
+                            HttpSession session = request.getSession ();
+                            session.setAttribute ("usuario", usuario);
+                        }
+                        break;
                 }
 
                 break;
-            case "Permisos":                
+            case "Permisos":
                 Accion = request.getParameter ("accion");
-                Tools tl = new Tools();
-                Resultado = tl.validoItem(request.getParameter("user"), Accion);
+                Tools tl = new Tools ();
+                Resultado = tl.validoItem (request.getParameter ("user"), Accion);
                 //switch (Accion)
                 //{
-                    
-                    
-                        
-                        /*ControladorInicioSesion controladorIni = new ControladorInicioSesion();
-                        Resultado = controladorIni.autenticacion(request);
-                        
-                        if("true".equals(Resultado)){
-                            String usuario = request.getParameter("user");
-                            //String pw = request.getParameter("pass");
-                            HttpSession session=request.getSession();  
-                            session.setAttribute("usuario", usuario);
-                        }*/
-                        
-                    
-                //}
 
+                /*
+                 * ControladorInicioSesion controladorIni = new
+                 * ControladorInicioSesion();
+                 * Resultado = controladorIni.autenticacion(request);
+                 *
+                 * if("true".equals(Resultado)){
+                 * String usuario = request.getParameter("user");
+                 * //String pw = request.getParameter("pass");
+                 * HttpSession session=request.getSession();
+                 * session.setAttribute("usuario", usuario);
+                 * }
+                 */
+                //}
                 break;
             case "AreasJSP":
                 ControladorAreas controladorAreas = new ControladorAreas ();
@@ -459,9 +488,57 @@ public class ServletAlohaTiempos extends HttpServlet
                 }
 
                 break;
+            case "CargosJSP":
+                ControladorCargos controladorCargos = new ControladorCargos ();
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    case "Upload":
+                        Resultado = controladorCargos.Insert (request);
+                        break;
+                    case "Insert":
+                        Resultado = controladorCargos.Update (request);
+                        break;
+                    case "Delete":
+                        Resultado = controladorCargos.Delete (request);
+                        break;
+                    case "Read":
+                        Resultado = controladorCargos.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+
+//                    case "IniServicio":
+//                        Resultado = controladorCargos.IniServicio (request);
+//                        break;
+//                    case "FinServicio":
+//                        Resultado = controladorCargos.FinServicio (request);
+//                        break;
+                }
+
+                break;
             case "GenerarLiquidacionCasino":
                 ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino ();
                 controladorLiquidacionCasino.Select ("GenerarLiquidacionCasino", request, response);
+                Accion = "Plano";
+                break;
+            case "GenerarLiquidacionHoteleria":
+                ControladorCargos controladorCargo = new ControladorCargos ();
+                controladorCargo.Select ("GenerarLiquidacionHoteleria", request, response);
+                Accion = "Plano";
+                break;
+            case "BuscarPersona":
+                ModeloPersonas modeloPersonas = new ModeloPersonas ();
+                ControladorPersonas controladorPersonas1 = new ControladorPersonas ();
+                modeloPersonas = controladorPersonas1.GetPersonaCedula (request, response);
+                request.setAttribute ("id", modeloPersonas.getId ());
+                request.setAttribute ("nombre", modeloPersonas.getNombres () + " " + modeloPersonas.getApellidos ());
+                request.setAttribute ("cedula", modeloPersonas.getIdentificacion ());
+                request.setAttribute ("observacion", modeloPersonas.getObservaciones ());
+                RequestDispatcher rd;
+                rd = request.getRequestDispatcher ("RegistroCargos.jsp");
+                rd.forward (request, response);
                 Accion = "Plano";
                 break;
 

@@ -1,5 +1,4 @@
 $(function(){
-
 	function validoPermiso(perm, modu){
 		var usrac = $("#idusera").text();
 
