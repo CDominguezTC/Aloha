@@ -145,8 +145,8 @@ public class ServletAlohaTiempos extends HttpServlet
         Herramienta herramienta = new Herramienta ();
         String Resultado = "";
         String Accion = null;
-        switch (Formulario){
-        
+        switch (Formulario)
+        {
             case "IndexJSP":
                 Accion = request.getParameter ("accion");
                 switch (Accion)
@@ -156,9 +156,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = "true";
                         ControladorInicioSesion controladorIni = new ControladorInicioSesion ();
                         Resultado = controladorIni.autenticacion (request);
-
                         if ("true".equals (Resultado)){
-                        
                             String usuario = request.getParameter ("user");
                             //String pw = request.getParameter("pass");
                             HttpSession session = request.getSession ();
@@ -169,7 +167,7 @@ public class ServletAlohaTiempos extends HttpServlet
 
                 break;
             case "Permisos":
-                Accion = request.getParameter ("accion");                
+                Accion = request.getParameter ("accion");
                 Tools tl = new Tools ();
                 Resultado = tl.validoItem (request.getParameter ("user"), Accion);
                 //switch (Accion)
