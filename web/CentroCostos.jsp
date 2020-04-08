@@ -9,8 +9,9 @@
 <html>
     <head>        
         <%@include file="Principal/Head.html" %>        
-         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesBotones.js" ></script>  
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>

@@ -12,7 +12,7 @@ $(function(){
   $(document).ready(function(){
 
       //alert("Hola");
-    traigoUserAc();
+    //traigoUserAc();
     LoadTabla();
   });
 

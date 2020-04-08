@@ -62,7 +62,7 @@ $(function(){
 	$('#idccosto').click(function(e){
 
 		//alert("HolaEmpresa");
-		validoPermiso("CentroCosto.Abrir","CentroCostos.jsp");
+		validoPermiso("CentroCostos.Abrir","CentroCostos.jsp");
 
 	});
 
@@ -131,7 +131,7 @@ $(function(){
 				success: function(data, textStatus, jqXHR){
 
 					var dt = data;
-					alert("dt: " + dt);
+					//alert("dt: " + dt);
 
 					if (dt === "true"){
 
@@ -188,12 +188,13 @@ $(function(){
 					}else{
 						var path = window.location.pathname;
 						var page = path.split("/").pop();
-						//alert(page);
+						//alert("page " + page);
 						//alert(page.replace('.jsp',''));
 
 						var Frm = "Permisos";
 						var User = dt;
 						var Accion = page.replace('.jsp','') + ".Abrir";
+						//alert("Accion " + Accion);
 						var data = {
 								frm: Frm,
 								user: User,
