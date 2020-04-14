@@ -23,13 +23,13 @@ import javax.swing.JOptionPane;
  *
  * @author Carlos A Dominguez D
  */
-public class ControladorEmpresas
-{
+public class ControladorEmpresas{
+
 
     String resultado = "";
 
-    public String Insert(HttpServletRequest request)
-    {
+    public String Insert(HttpServletRequest request){
+    
 
         ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
         try
@@ -123,8 +123,8 @@ public class ControladorEmpresas
         return resultado;
     }
 
-    public LinkedList<ModeloEmpresa> Read()
-    {
+    public LinkedList<ModeloEmpresa> Read(){
+    
         PreparedStatement SQL = null;
         LinkedList<ModeloEmpresa> modeloEmpresa = new LinkedList<ModeloEmpresa>();
         Connection con;
@@ -168,8 +168,8 @@ public class ControladorEmpresas
         return modeloEmpresa;
     }
 
-    public String Delete(HttpServletRequest request)
-    {
+    public String Delete(HttpServletRequest request){
+    
         ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
         modeloEmpresa.setId(Integer.parseInt(request.getParameter("id")));
         Connection con;
@@ -191,8 +191,8 @@ public class ControladorEmpresas
         return resultado;
     }
 
-    public String Read(HttpServletRequest request, HttpServletResponse response)
-    {
+    public String Read(HttpServletRequest request, HttpServletResponse response){
+    
         String out = null;
         try
         {
@@ -266,8 +266,8 @@ public class ControladorEmpresas
         return out;
     }
 
-    ModeloEmpresa getModelo(Integer Id)
-    {
+    ModeloEmpresa getModelo(Integer Id){
+    
         ModeloEmpresa modeloEmpresas = new ModeloEmpresa();
         PreparedStatement SQL = null;        
         Connection con;

@@ -24,16 +24,16 @@ import javax.swing.JOptionPane;
  *
  * @author Carlos A Dominguez D
  */
-public class ControladorCentroCosto
-{
+public class ControladorCentroCosto{
+
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
 
-    public String Insert(HttpServletRequest request)
-    {
+    public String Insert(HttpServletRequest request){
+    
         if ("".equals(request.getParameter("id")))
         {
             ModeloCentroCosto modelo = new ModeloCentroCosto(
@@ -111,8 +111,8 @@ public class ControladorCentroCosto
         return resultado;
     }
 
-    public String Delete(HttpServletRequest request)
-    {
+    public String Delete(HttpServletRequest request){
+    
         if (!"".equals(request.getParameter("id")))
         {
             String idtmp = request.getParameter("id");
@@ -147,8 +147,8 @@ public class ControladorCentroCosto
         return resultado;
     }
 
-    public LinkedList<ModeloCentroCosto> Read()
-    {
+    public LinkedList<ModeloCentroCosto> Read(){
+    
         LinkedList<ModeloCentroCosto> listModeloCentroCostos = new LinkedList<ModeloCentroCosto>();
         con = conexion.abrirConexion();
         try
@@ -178,12 +178,11 @@ public class ControladorCentroCosto
         return listModeloCentroCostos;
     }
 
-    public String Read(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+                
         String out = null;
-        try
-        {
+        try {
+        
             LinkedList<ModeloCentroCosto> listmoCentroCosto;
             ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
             listmoCentroCosto = controladorCentroCosto.Read();
@@ -233,8 +232,8 @@ public class ControladorCentroCosto
         return out;
     }
 
-    ModeloCentroCosto getModelo(int Id)
-    {        
+    ModeloCentroCosto getModelo(int Id) {
+    
         ModeloCentroCosto modelo = new ModeloCentroCosto();
         con = conexion.abrirConexion();
         try
@@ -266,27 +265,3 @@ public class ControladorCentroCosto
 
 }
 
-//  public boolean Update(ModeloCentroCosto modelo)
-//    {
-//        boolean resulInser = false;
-//        Connection con;
-//        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-//        con = conexionBdMysql.abrirConexion();
-//        try 
-//        {
-//            PreparedStatement SQL;
-//            SQL = con.prepareStatement("UPDATE centrocosto SET codigoInterno = ?, nombre = ? WHERE id = ?;");
-//            SQL.setString(1, modelo.getCodigo());
-//            SQL.setString(2, modelo.getDescripcion());            
-//            SQL.setInt(3, modelo.getId());
-//            SQL.executeUpdate();
-//            resulInser = true;
-//            SQL.close();
-//            con.close();
-//        } 
-//        catch (SQLException e) 
-//        {
-//            JOptionPane.showMessageDialog(null, "Error al actualizar el centro de costo " + e);
-//        }
-//        return resulInser;        
-//    }
