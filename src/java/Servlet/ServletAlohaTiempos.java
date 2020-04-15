@@ -188,6 +188,23 @@ public class ServletAlohaTiempos extends HttpServlet
                  */
                 //}
                 break;
+            case "Password":
+                Accion = request.getParameter ("accion");
+                try {
+                    tl = new Tools();
+                    String con = tl.desencriptar(Accion);
+                    
+                    if(!"".equals(con)){
+                        Resultado = con;
+                    }else{
+                        Resultado = "false";
+                    }
+                    
+                } catch (Exception e) {
+                }
+                
+                
+                break;
             case "AreasJSP":
                 ControladorAreas controladorAreas = new ControladorAreas ();
                 Accion = request.getParameter ("accion");
@@ -566,7 +583,12 @@ public class ServletAlohaTiempos extends HttpServlet
             String respuesta = herramienta.GetDescrpCode (Resultado);
             response.setCharacterEncoding ("UTF-8");
             response.setContentType ("text/plain");
-            response.getWriter ().write (respuesta);
+            if("Password".equals(Formulario)){
+                response.getWriter ().write (Resultado);
+            }else{
+                response.getWriter ().write (respuesta);
+            }
+            
         }
     }
 
