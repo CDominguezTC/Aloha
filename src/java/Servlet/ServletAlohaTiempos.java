@@ -23,6 +23,7 @@ import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
+import Controladores.ControladorUsuarios;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersonas;
 import Tools.Tools;
@@ -356,6 +357,25 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                     case "Read":
                         Resultado = controladorFestivo.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                }
+                break;
+            case "UsuariosJSP":
+                ControladorUsuarios controladorU = new ControladorUsuarios();
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    case "Upload":
+                        Resultado = controladorU.Insert (request);
+                        break;
+                    case "Delete":
+                        Resultado = controladorU.Delete (request);
+                        break;
+                    case "Read":
+                        Resultado = controladorU.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");

@@ -11,6 +11,7 @@
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesUsuarios.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesBotones.js" ></script>
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -122,7 +123,7 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Id</th>
+                                                    <!--th>Id</th-->
                                                     <th>Nombre</th>
                                                     <th>Login</th>
                                                     <th>Contraseña</th>
@@ -131,7 +132,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td></td>                                     
+                                                    <!--td></td-->                                     
                                                     <td></td>                                     
                                                     <td></td> 
                                                     <td></td> 
