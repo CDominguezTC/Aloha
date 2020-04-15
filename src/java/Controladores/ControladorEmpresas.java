@@ -256,9 +256,9 @@ public class ControladorEmpresas{
 //            PrintWriter pw = response.getWriter();
 //            pw.write(out);
 //            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-        } catch (Exception e)
-        {
-            System.out.println("Error en el kproceso de la tabla " + e.getMessage());
+        } catch (Exception e){
+        
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
 //        String frm = request.getParameter("frm");
 //        System.out.println(frm);
