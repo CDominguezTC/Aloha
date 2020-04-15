@@ -58,6 +58,13 @@ $(function(){
 		validoPermiso("Empresa.Abrir","Empresa.jsp");
 
 	});
+        
+        $('#idusers').click(function(e){
+
+		//alert("HolaEmpresa");
+		validoPermiso("Usuarios.Abrir","Usuarios.jsp");
+
+	});
 
 	$('#idccosto').click(function(e){
 
