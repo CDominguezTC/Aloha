@@ -306,18 +306,18 @@
         
          <!-- Inicializamos Datetimepicker -->
          <script>
+             
              $('#myDatepicker').datetimepicker();
         
              $('#myDatepicker2').datetimepicker({
-                 format: 'hh:mm:ss A'
+                format: 'hh:mm:ss A'
+                
              });
         
              $('#myDatepicker3').datetimepicker({
-                 format: 'hh:mm:ss A'
+                format: 'hh:mm:ss A'
              });
-             $('#myDatepicker4').datetimepicker({
-                 format: 'hh:mm A'
-             });
+           
          </script>
     </body>
 </html>
