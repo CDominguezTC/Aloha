@@ -29,7 +29,7 @@ public class Herramienta
         switch (cod)
         {
             case "0":
-                resp = "Falla general del sistema contacte su proveedro";
+                resp = "Falla general del sistema contacte su proveedor";
                 break;
             case "1":
                 resp = "Registro Guardado";

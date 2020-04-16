@@ -11,7 +11,7 @@ $(function(){
 
   $(document).ready(function(){
 
-    //alert("Hola!");
+    alert("Hola!");
     traigoUserAc();
   });
 
@@ -221,6 +221,5 @@ $(function(){
 		/*var botonEnviar = document.getElementById("");
 		  botonEnviar.disabled === true;*/
   }
-
 
 });

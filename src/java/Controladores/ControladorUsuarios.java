@@ -16,7 +16,6 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,13 +33,14 @@ public class ControladorUsuarios {
         LinkedList<ModeloUsuarios> modeloUsr = new LinkedList<ModeloUsuarios>();
         con = conexion.abrirConexion();
         try {
-        
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`nombre`,"
-                    + "`login`,"
-                    + "`password`,"
-                    + "FROM `usuarios`;");
+                        
+            SQL = con.prepareStatement("SELECT id, nombre, login, password FROM usuarios");
+            /*SQL = con.prepareStatement("SELECT "
+                    + "`id`, "
+                    + "`nombre`, "
+                    + "`login`, "
+                    + "`password`, "
+                    + "FROM `usuarios`;");*/
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
             
@@ -55,8 +55,9 @@ public class ControladorUsuarios {
             SQL.close();
             con.close();
         } catch (SQLException e){
-        
-            JOptionPane.showMessageDialog(null, "Error buscando el dato solicitado: " + e.getSQLState());
+            
+            System.err.println("Error buscando el dato solicitado: " + e.getSQLState());
+            //JOptionPane.showMessageDialog(null, "Error buscando el dato solicitado: " + e.getSQLState());
         }
         return modeloUsr;
     }
@@ -89,17 +90,17 @@ public class ControladorUsuarios {
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloUsua.getId() + "\"";
-                out += "data-codigo=\"" + modeloUsua.getNombre()+ "\"";
+                out += "data-id=\"" + modeloUsua.getId() + "\"";                
                 out += "data-nombre=\"" + modeloUsua.getLogin() + "\"";
-                out += "data-nombre=\"" + modeloUsua.getPassword() + "\"";
+                out += "data-login=\"" + modeloUsua.getNombre()+ "\"";
+                out += "data-password=\"" + modeloUsua.getPassword() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloUsua.getId() + "\"";
-                out += "data-codigo=\"" + modeloUsua.getNombre()+ "\"";
                 out += "data-nombre=\"" + modeloUsua.getLogin() + "\"";
-                out += "data-nombre=\"" + modeloUsua.getPassword() + "\"";
+                out += "data-login=\"" + modeloUsua.getNombre()+ "\"";
+                out += "data-password=\"" + modeloUsua.getPassword() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
