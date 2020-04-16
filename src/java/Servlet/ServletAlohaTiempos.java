@@ -190,19 +190,76 @@ public class ServletAlohaTiempos extends HttpServlet
                 break;
             case "Password":
                 Accion = request.getParameter ("accion");
-                try {
-                    tl = new Tools();
-                    String con = tl.desencriptar(Accion);
+                switch (Accion){
                     
-                    if(!"".equals(con)){
-                        Resultado = con;
-                    }else{
-                        Resultado = "false";
-                    }
+                    case "Descifrar":     
+                        String passw = request.getParameter ("pass");
+                        try {
+                            tl = new Tools();
+                            String con = tl.desencriptar(passw);
+
+                            if(!"".equals(con)){
+                                Resultado = con;
+                            }else{
+                                Resultado = "false";
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    break;
                     
-                } catch (Exception e) {
+                    case "ValidarUsr":
+                        String usr = request.getParameter ("login");
+                        try {
+                            ControladorUsuarios controladorU = new ControladorUsuarios();
+                            String resul = controladorU.validoLogin(usr);
+
+                            if(!"false".equals(resul)){
+                                Resultado = resul;
+                            }else{
+                                Resultado = "false";
+                            }
+
+                        } catch (Exception e) {
+                        }
+                                                
+                    break;
+                    
+                    case "ValidarPw":
+                        String psw = request.getParameter ("passw");
+                        String idusr = request.getParameter ("idus");
+                        try {
+                            ControladorUsuarios controladorU = new ControladorUsuarios();
+                            String resul = controladorU.validoPassword(idusr, psw);
+
+                            if(!"false".equals(resul)){
+                                Resultado = resul;
+                            }else{
+                                Resultado = "false";
+                            }
+
+                        } catch (Exception e) {
+                        }
+                        
+                    break;
+                    
+                    case "CambiarPw":
+                        String pasw = request.getParameter ("passwo");
+                        String idusur = request.getParameter ("idusu");
+                        try {
+                            ControladorUsuarios controladorU = new ControladorUsuarios();
+                            String resul = controladorU.actualizoPassword(idusur, pasw);
+
+                            if(!"false".equals(resul)){
+                                Resultado = resul;
+                            }else{
+                                Resultado = "false";
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    break;
                 }
-                
                 
                 break;
             case "AreasJSP":

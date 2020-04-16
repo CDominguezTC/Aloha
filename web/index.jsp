@@ -19,6 +19,7 @@
         <link href="Principal/vendors/nprogress/nprogress.css" rel="stylesheet">
         <link href="Principal/vendors/animate.css/animate.min.css" rel="stylesheet">
         <link href="Principal/build/css/custom.min.css" rel="stylesheet">
+        <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesInicio.js"></script> 
     </head>
@@ -48,5 +49,6 @@
                 </div>
             </div>
         </div>
+        <%@include file="Principal/Script.html" %>  
     </body>
 </html>

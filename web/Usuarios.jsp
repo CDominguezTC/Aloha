@@ -81,6 +81,7 @@
                                                 <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
                                                 <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
                                                 <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
+                                                <button class="btn btn-warning btn-sm" type="button" id="IdCambiarPw" name="CambiarClave"><i class="fa fa-lock"></i> Cambiar Clave</button>                                                
                                                 <br/><br/>
                                                 <div class="row">
                                                     <div class="form-group">

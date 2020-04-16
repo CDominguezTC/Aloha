@@ -11,7 +11,7 @@ $(function(){
 
   $(document).ready(function(){
 
-    alert("Hola!");
+    //alert("Hola!");
     traigoUserAc();
   });
 

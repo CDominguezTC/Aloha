@@ -7,6 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloUsuarios;
+import Tools.Tools;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -91,15 +92,15 @@ public class ControladorUsuarios {
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloUsua.getId() + "\"";                
-                out += "data-nombre=\"" + modeloUsua.getLogin() + "\"";
-                out += "data-login=\"" + modeloUsua.getNombre()+ "\"";
+                out += "data-nombre=\"" + modeloUsua.getNombre() + "\"";
+                out += "data-login=\"" + modeloUsua.getLogin()+ "\"";
                 out += "data-password=\"" + modeloUsua.getPassword() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloUsua.getId() + "\"";
-                out += "data-nombre=\"" + modeloUsua.getLogin() + "\"";
-                out += "data-login=\"" + modeloUsua.getNombre()+ "\"";
+                out += "data-nombre=\"" + modeloUsua.getNombre() + "\"";
+                out += "data-login=\"" + modeloUsua.getLogin()+ "\"";
                 out += "data-password=\"" + modeloUsua.getPassword() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
@@ -148,9 +149,11 @@ public class ControladorUsuarios {
     }
     
     public String Insert(HttpServletRequest request){
-    
+                                
         if ("".equals(request.getParameter("id"))){
-        
+
+             Tools tl = new Tools ();
+
             ModeloUsuarios modelo = new ModeloUsuarios(
                     0,
                     request.getParameter("nombre"),
@@ -158,10 +161,10 @@ public class ControladorUsuarios {
                     request.getParameter("password")
             );
             try{
-            
+
                 con = conexion.abrirConexion();
                 try{
-                
+
                     SQL = con.prepareStatement("INSERT INTO `usuarios`("
                             + "`nombre`,"
                             + "`login`,"
@@ -169,9 +172,10 @@ public class ControladorUsuarios {
                             + "VALUE (?,?,?);");
                     SQL.setString(1, modelo.getNombre());
                     SQL.setString(2, modelo.getLogin());
-                    SQL.setString(3, modelo.getPassword());
+                    String pw = tl.encriptar(modelo.getPassword());
+                    SQL.setString(3, pw);
                     if (SQL.executeUpdate() > 0){
-                    
+
                         resultado = "1";
                         SQL.close();
                         con.close();
@@ -189,7 +193,7 @@ public class ControladorUsuarios {
                 resultado = "-3";
             }
         } else{
-        
+
             ModeloUsuarios modelo = new ModeloUsuarios(
                     Integer.parseInt(request.getParameter("id")),
                     request.getParameter("nombre"),
@@ -197,10 +201,10 @@ public class ControladorUsuarios {
                     request.getParameter("password")
             );
             try{
-            
+
                 con = conexion.abrirConexion();
                 try{
-                
+
                     SQL = con.prepareStatement("UPDATE `usuarios` SET "
                             + "`nombre` = ?, "
                             + "`login` = ?, "
@@ -211,24 +215,25 @@ public class ControladorUsuarios {
                     SQL.setString(3, modelo.getPassword());
                     SQL.setInt(4, modelo.getId());
                     if (SQL.executeUpdate() > 0){
-                    
+
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
                 } catch (SQLException e){
-                
+
                     System.err.println("Error en el proceso: " + e.getMessage());
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
             } catch (SQLException e){
-            
+
                 System.err.println("Error en el proceso: " + e.getMessage());
                 resultado = "-3";
             }
         }
+        
         return resultado;
     }
     
@@ -266,5 +271,104 @@ public class ControladorUsuarios {
             }
         }
         return resultado;
+    }
+    
+    public String validoLogin(String log){
+        
+        String resp = "false";
+        ResultSet rs = null;      
+        con = conexion.abrirConexion();
+
+        try {
+            String consulta = "SELECT id FROM usuarios WHERE login = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            SQL.setString(1, log);            
+            
+            rs = SQL.executeQuery();
+             
+            if(rs.absolute(1)){
+                resp = "true";
+                return resp;
+            }
+            
+            rs.close();
+            SQL.close();
+            con.close();
+            
+        } catch (Exception e) {
+            
+            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+        }
+        
+        return resp;
+    }
+    
+    public String validoPassword(String id, String pw){
+        
+        String resp = "false";
+        ResultSet rs = null;      
+        con = conexion.abrirConexion();
+        Tools tl = new Tools();
+        
+        try {
+            String consulta = "SELECT password FROM usuarios WHERE id = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            String clave = tl.encriptar(pw);
+            SQL.setString(1, id);            
+            
+            rs = SQL.executeQuery();
+             
+            if(rs.absolute(1)){
+                if(clave.equals(rs.getString("password"))){
+                    resp = "true";
+                    return resp;
+                }
+                
+            }
+            
+            rs.close();
+            SQL.close();
+            con.close();
+            
+        } catch (Exception e) {
+            
+            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+        }
+        
+        return resp;
+    }
+    
+    public String actualizoPassword(String id, String pw){
+        
+        String resp = "false";
+        ResultSet rs = null;      
+        con = conexion.abrirConexion();
+        Tools tl = new Tools();
+        
+        try {
+            String consulta = "UPDATE usuarios SET password = ? WHERE id = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            String clave = tl.encriptar(pw);
+            SQL.setString(1, clave); 
+            SQL.setString(2, id);            
+            
+            if (SQL.executeUpdate() > 0){
+                resp = "true";
+                return resp;
+            }
+            
+            rs.close();
+            SQL.close();
+            con.close();
+            
+        } catch (Exception e) {
+            
+            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+        }
+        
+        return resp;
     }
 }

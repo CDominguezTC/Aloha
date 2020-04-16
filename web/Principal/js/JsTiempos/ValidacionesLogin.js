@@ -186,7 +186,12 @@ $(function(){
 					var dt = data;
 					//alert("name: " + dt);
 					if (dt === "false"){
-						alert("Por favor inicie sesion primero.");
+						//alert("Por favor inicie sesion primero.");
+						Swal.fire({
+								icon: 'warning',
+								title: 'Alerta',
+								text: 'Por favor verifique el usuario y la contraseña.'
+						});
 						/*var path = window.location.pathname;
 						var page = path.split("/").pop();
 						//alert(page);

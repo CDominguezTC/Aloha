@@ -3,6 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+ $(function(){
+   $("#header").load("Principal/Head.html");
+   $("#script").load("Principal/Script.html");
+ });
 
 $(function ()
 {
@@ -36,7 +40,12 @@ $(function ()
                             //evt.preventDefault();
                         } else
                         {
-                            alert("Por favor verifique el usuario y la contraseña");
+                            //alert("Por favor verifique el usuario y la contraseña");
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Alerta',
+                                text: 'Por favor verifique el usuario y la contraseña.'
+                            });
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -58,13 +67,26 @@ $(function ()
                         }
                     }
                 });
-            } else
-            {
-                alert("Ingrese el Password");
+            } else{
+
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Alerta',
+                  text: 'Ingrese el password.',
+                  showConfirmButton: false,
+                  timer: 3000
+              });
             }
-        } else
-        {
-            alert("Ingrese el Usuario");
+        } else{
+
+          Swal.fire({
+              icon: 'warning',
+              title: 'Alerta',
+              text: 'Ingrese el usuario.',
+              showConfirmButton: false,
+              timer: 3000
+          });
+
         }
     });
 });
