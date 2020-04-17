@@ -92,6 +92,8 @@ $(function(){
       $('#Id').val($(this).data('id'));
       $('#IdNombre').val($(this).data('nombre'));
       $('#IdLogin').val($(this).data('login'));
+      $('#IdLogOld').val($(this).data('login'));
+
       var Frm = "Password";
       var Pw = $(this).data('password');
       var data = {
@@ -109,7 +111,10 @@ $(function(){
           //alert("dt contra: " + dt);
           if (dt != "false"){
 
-              $('#IdPassword').val(dt);
+              $('#IdPassword').val(dt);              
+              document.getElementById('IdPassword').disabled = true;
+              document.getElementById("IdNombre").focus();
+
           }
           else{
 
@@ -279,56 +284,116 @@ $(function(){
     if (ValidaCampo() === true){
       var Frm = "Password";
       var Log = document.getElementById("IdLogin").value;
-      alert(Log);
+      var idUsua = document.getElementById("Id").value;
+      //alert(Log);
       //var Log = $(this).data('login');
-      var data = {
-          frm: Frm,
-          login: Log,
-          accion: "ValidarUsr"
-      };
-      $.ajax({
-        type: "POST",
-        url: "ServletAlohaTiempos",
-        data: data,
-        success: function(data, textStatus, jqXHR){
 
-          var dt = data;
-          //alert("dt contra: " + dt);
-          if (dt != "true"){
+      if(idUsua != ''){
 
-              guardarRegistro();
-          }
-          else{
+        if(document.getElementById("IdLogin").value === document.getElementById("IdLogOld").value){
+          guardarRegistro();
+        }else{
+          var data = {
+              frm: Frm,
+              login: Log,
+              accion: "ValidarUsr"
+          };
+          $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function(data, textStatus, jqXHR){
 
-            Swal.fire({
-                icon: 'warning',
-                title: 'Alerta',
-                text: 'El login ya existe en el sistema.',
-                showConfirmButton: false,
-                timer: 3000
-            });
-          }
+              var dt = data;
+              //alert("Id: " + idUsua);
+              if (dt != "true"){
 
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          //disableGif();
-          if (jqXHR.status === 0) {
-            alert('Not connect: Verify Network.');
-          } else if (jqXHR.status === 404) {
-            alert('Requested page not found [404]');
-          } else if (jqXHR.status === 500) {
-            alert('Internal Server Error [500].');
-          } else if (textStatus === 'parsererror') {
-            alert('Requested JSON parse failed.');
-          } else if (textStatus === 'timeout') {
-            alert('Time out error.');
-          } else if (textStatus === 'abort') {
-            alert('Ajax request aborted.');
-          } else {
-            alert('Uncaught Error: ' + jqXHR.responseText);
-          }
+                  guardarRegistro();
+              }
+              else{
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El login ya existe en el sistema.',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+              }
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              //disableGif();
+              if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+              } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+              } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+              } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+              } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+              } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+              } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+              }
+            }
+          });
         }
-      });
+
+      }else{
+
+        var data = {
+            frm: Frm,
+            login: Log,
+            accion: "ValidarUsr"
+        };
+        $.ajax({
+          type: "POST",
+          url: "ServletAlohaTiempos",
+          data: data,
+          success: function(data, textStatus, jqXHR){
+
+            var dt = data;
+            //alert("Id: " + idUsua);
+            if (dt != "true"){
+
+                guardarRegistro();
+            }
+            else{
+
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Alerta',
+                  text: 'El login ya existe en el sistema.',
+                  showConfirmButton: false,
+                  timer: 3000
+              });
+            }
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+            //disableGif();
+            if (jqXHR.status === 0) {
+              alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+              alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+              alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+              alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+              alert('Time out error.');
+            } else if (textStatus === 'abort') {
+              alert('Ajax request aborted.');
+            } else {
+              alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+          }
+        });
+      }
     }else{
       //alert("Hola Alerta");
       Swal.fire({
@@ -340,6 +405,14 @@ $(function(){
 
   });
 
+  $("#IdCancelar").click(function(e) {
+    $('#Id').val('');
+    $('#IdNombre').val('');
+    $('#IdLogin').val('');
+    $('#IdLogOld').val('');
+    $('#IdPassword').val('');
+    document.getElementById('IdPassword').disabled = false;
+  });
   /*$("#IdEliminar").click(function(e) {
         if (ValidaCampo() === true){
 
@@ -514,13 +587,11 @@ $(function(){
 
                   Swal.fire({
                       icon: 'success',
-                      title: 'Info',
+                      title: 'Informacion',
                       text: 'La contraseña se cambio existosamente.',
-                      showConfirmButton: false,
-                      timer: 3000
                   });
                   LimpiarCampos();
-                  LoadTabla()                  
+                  LoadTabla()
                 }
                 else{
 
@@ -588,8 +659,6 @@ $(function(){
                   icon: 'success',
                   title: 'Guardado',
                   text: 'Registro Guardado Satisfactoriamente.',
-                  showConfirmButton: false,
-                  timer: 3000
               });
               disableGif();
               //alert(resul);
@@ -648,7 +717,10 @@ $(function(){
       $('#Id').val('');
       $('#IdNombre').val('');
       $('#IdLogin').val('');
+      $('#IdLogOld').val('');
       $('#IdPassword').val('');
+      document.getElementById('IdPassword').disabled = false;
+      document.getElementById("IdNombre").focus();
   }
 
   function enableGif(){

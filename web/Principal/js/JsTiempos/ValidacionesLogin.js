@@ -1,4 +1,5 @@
 $(function(){
+
 	function validoPermiso(perm, modu){
 		var usrac = $("#idusera").text();
 
@@ -65,14 +66,13 @@ $(function(){
 		validoPermiso("Usuarios.Abrir","Usuarios.jsp");
 
 	});
-        
-        $('#idpermi').click(function(e){
+
+  $('#idpermi').click(function(e){
 
 		//alert("HolaEmpresa");
 		validoPermiso("Permisos.Abrir","Permisos.jsp");
 
 	});
-        
 
 	$('#idccosto').click(function(e){
 

@@ -149,11 +149,10 @@ public class ControladorUsuarios {
     }
     
     public String Insert(HttpServletRequest request){
-                                
+        
+        Tools tl = new Tools ();
         if ("".equals(request.getParameter("id"))){
-
-             Tools tl = new Tools ();
-
+             
             ModeloUsuarios modelo = new ModeloUsuarios(
                     0,
                     request.getParameter("nombre"),
@@ -212,7 +211,8 @@ public class ControladorUsuarios {
                             + "WHERE `id` = ?;");
                     SQL.setString(1, modelo.getNombre());
                     SQL.setString(2, modelo.getLogin());
-                    SQL.setString(3, modelo.getPassword());
+                    String pw = tl.encriptar(modelo.getPassword());
+                    SQL.setString(3, pw);
                     SQL.setInt(4, modelo.getId());
                     if (SQL.executeUpdate() > 0){
 

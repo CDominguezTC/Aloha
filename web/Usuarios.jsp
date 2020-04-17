@@ -64,6 +64,7 @@
                                                 <label for="Nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
+                                            <input type="hidden" id="IdLogOld" name="LogOld">
                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="Login">Login</label>
                                                 <input type="text" class="form-control" id="IdLogin" name="Login" required="required">
@@ -80,7 +81,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                 <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
                                                 <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
-                                                <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
+                                                <button class="btn btn-danger btn-sm" type="button" id="IdCancelar"><i class="fa fa-close"></i> Cancelar</button>
                                                 <button class="btn btn-warning btn-sm" type="button" id="IdCambiarPw" name="CambiarClave"><i class="fa fa-lock"></i> Cambiar Clave</button>                                                
                                                 <br/><br/>
                                                 <div class="row">
