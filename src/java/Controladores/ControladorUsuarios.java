@@ -371,4 +371,36 @@ public class ControladorUsuarios {
         
         return resp;
     }
+    
+    public String actualizoPasswordUser(String log, String pw){
+        
+        String resp = "false";
+        ResultSet rs = null;      
+        con = conexion.abrirConexion();
+        Tools tl = new Tools();
+        
+        try {
+            String consulta = "UPDATE usuarios SET password = ? WHERE login = ?";            
+            SQL = con.prepareStatement(consulta);
+            
+            String clave = tl.encriptar(pw);
+            SQL.setString(1, clave); 
+            SQL.setString(2, log);            
+            
+            if (SQL.executeUpdate() > 0){
+                resp = "true";
+                return resp;
+            }
+            
+            rs.close();
+            SQL.close();
+            con.close();
+            
+        } catch (Exception e) {
+            
+            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+        }
+        
+        return resp;
+    }
 }

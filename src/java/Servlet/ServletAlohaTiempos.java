@@ -171,22 +171,6 @@ public class ServletAlohaTiempos extends HttpServlet
                 Accion = request.getParameter ("accion");
                 Tools tl = new Tools ();
                 Resultado = tl.validoItem (request.getParameter ("user"), Accion);
-                //switch (Accion)
-                //{
-
-                /*
-                 * ControladorInicioSesion controladorIni = new
-                 * ControladorInicioSesion();
-                 * Resultado = controladorIni.autenticacion(request);
-                 *
-                 * if("true".equals(Resultado)){
-                 * String usuario = request.getParameter("user");
-                 * //String pw = request.getParameter("pass");
-                 * HttpSession session=request.getSession();
-                 * session.setAttribute("usuario", usuario);
-                 * }
-                 */
-                //}
                 break;
             case "Password":
                 Accion = request.getParameter ("accion");
@@ -249,6 +233,23 @@ public class ServletAlohaTiempos extends HttpServlet
                         try {
                             ControladorUsuarios controladorU = new ControladorUsuarios();
                             String resul = controladorU.actualizoPassword(idusur, pasw);
+
+                            if(!"false".equals(resul)){
+                                Resultado = resul;
+                            }else{
+                                Resultado = "false";
+                            }
+
+                        } catch (Exception e) {
+                        }
+                    break;
+                    
+                    case "CambiarPwUs":
+                        String usu = request.getParameter ("usuario");
+                        String npass = request.getParameter ("npass");
+                        try {
+                            ControladorUsuarios controladorU = new ControladorUsuarios();
+                            String resul = controladorU.actualizoPasswordUser(usu, npass);
 
                             if(!"false".equals(resul)){
                                 Resultado = resul;

@@ -8,8 +8,8 @@
    $("#script").load("Principal/Script.html");
  });
 
-$(function ()
-{
+$(function (){
+
     $('#IdIngresar').click(function (e)
     {
         if ($('#Idusuario').val() !== "")

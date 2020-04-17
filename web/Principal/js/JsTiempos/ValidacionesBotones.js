@@ -1,7 +1,7 @@
-//$(function(){
-//  $("#header").load("Principal/Head.html");
-//  $("#script").load("Principal/Script.html");
-//});
+$(function(){
+  $("#header").load("Principal/Head.html");
+  $("#script").load("Principal/Script.html");
+});
 
 $(function(){
 
@@ -41,8 +41,17 @@ $(function(){
           }
           else{
 
-              alert("Ocurrio un error al traer el nombre del usuario activo.");
-              location.href = "Dashboard.jsp";
+              //alert("Ocurrio un error al traer el nombre del usuario activo.");
+              Swal.fire({
+                  icon: 'warning',
+                  title: 'Alerta',
+                  text: 'Ocurrio un error al traer el nombre del usuario activo.'
+              }).then((result) => {
+                if (result.value) {
+                  location.href = "Dashboard.jsp";
+                }
+              });
+
           }
 
         },

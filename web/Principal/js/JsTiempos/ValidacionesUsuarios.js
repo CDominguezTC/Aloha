@@ -111,7 +111,7 @@ $(function(){
           //alert("dt contra: " + dt);
           if (dt != "false"){
 
-              $('#IdPassword').val(dt);              
+              $('#IdPassword').val(dt);
               document.getElementById('IdPassword').disabled = true;
               document.getElementById("IdNombre").focus();
 
@@ -588,7 +588,7 @@ $(function(){
                   Swal.fire({
                       icon: 'success',
                       title: 'Informacion',
-                      text: 'La contraseña se cambio existosamente.',
+                      text: 'La contraseña se cambio exitosamente.'
                   });
                   LimpiarCampos();
                   LoadTabla()
