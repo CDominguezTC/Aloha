@@ -35,7 +35,7 @@ public class ControladorUsuarios {
         con = conexion.abrirConexion();
         try {
                         
-            SQL = con.prepareStatement("SELECT id, nombre, login, password FROM usuarios");
+            SQL = con.prepareStatement("SELECT id, nombre, login, password FROM usuarios ORDER BY nombre");
             /*SQL = con.prepareStatement("SELECT "
                     + "`id`, "
                     + "`nombre`, "

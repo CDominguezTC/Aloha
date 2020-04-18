@@ -69,7 +69,7 @@
 
                                             <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                                 <label for="Usuario">Usuario</label>
-                                                <select id="Usuario" class="form-control" required>
+                                                <select id="IdUsuarios" class="form-control" required>
                                                     <option value="" disabled selected>Seleccione</option>
                                                     <option value="1">JULIAN A. ARISTIZABAL</option>
                                                 </select>

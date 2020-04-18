@@ -21,6 +21,7 @@ import Controladores.ControladorHorarioConsumo;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
+import Controladores.ControladorPermisos;
 import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
 import Controladores.ControladorUsuarios;
@@ -438,6 +439,32 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                 }
                 break;
+            case "PermisosJSP":
+                ControladorPermisos controladorPer = new ControladorPermisos();
+                Accion = request.getParameter ("accion");
+                switch (Accion){
+                    case "Read":
+                        Resultado = controladorPer.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                    case "ReadPU":
+                        String usr = request.getParameter ("user");
+                        Resultado = controladorPer.Read (request, response);
+                        PrintWriter pw2 = response.getWriter ();
+                        pw2.write (Resultado);
+                        System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                    case "ReadP":
+                        String user = request.getParameter ("user");
+                        Resultado = controladorPer.Read (request, response);
+                        PrintWriter pw3 = response.getWriter ();
+                        pw3.write (Resultado);
+                        System.out.println (pw3.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                }            
+            break;
             case "UsuariosJSP":
                 ControladorUsuarios controladorU = new ControladorUsuarios();
                 Accion = request.getParameter ("accion");
