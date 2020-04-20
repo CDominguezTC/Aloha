@@ -83,14 +83,14 @@
 
                                             <div class="col-md-6 col-sm-12 col-xs-12" form-group>
                                                 <label for="Permisos_Usuario">Permisos del Usuario</label>
-                                                <select class="select2_multiple form-control" multiple="multiple" required>
+                                                <select id="IdPermisosAsig" class="select2_multiple form-control" multiple="multiple" required style="height:300px;">
                                                     <option disabled>Seleccione</option>
                                                 </select>
                                             </div>                                            
 
                                             <div class="col-md-6 col-sm-12 col-xs-12" form-group>
                                                 <label for="Permisos">Permisos</label>
-                                                <select class="select2_multiple form-control" multiple="multiple" required>
+                                                <select id="IdPermisosNoAsig" class="select2_multiple form-control" multiple="multiple" required style="height:300px;">
                                                     <option disabled>Seleccione</option>
                                                 </select>
                                             </div>
@@ -101,11 +101,11 @@
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                                <button class="btn btn-primary btn-md" type="button" id="" name=""><i class="fa fa-angle-double-right"></i> </button>
-                                                <button class="btn btn-primary btn-md" type="button" id="" name=""><i class="fa fa-angle-right"></i> </button>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdQuitoTodos" name=""><i class="fa fa-angle-double-right"></i> </button>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdQuitoUno" name=""><i class="fa fa-angle-right"></i> </button>
                                                 <button class="btn btn-success btn-md" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> </button>
-                                                <button class="btn btn-primary btn-md" type="button" id="" name=""><i class="fa fa-angle-left"></i> </button>
-                                                <button class="btn btn-primary btn-md" type="button" id="" name=""><i class="fa fa-angle-double-left"></i> </button>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdPasoUno" name=""><i class="fa fa-angle-left"></i> </button>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdPasoTodos" name=""><i class="fa fa-angle-double-left"></i> </button>
                                                 <br/><br/>
                                                 <div class="row">
                                                     <div class="form-group">

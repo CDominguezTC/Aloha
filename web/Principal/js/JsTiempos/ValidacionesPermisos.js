@@ -7,10 +7,11 @@ $(function(){
 
 
   $(document).ready(function() {
-      cargarCombo();
+      cargarComboUsr();
+
   });
 
-  function cargarCombo(){
+  function cargarComboUsr(){
 
       var Frm = "PermisosJSP";
       var Accion = "Read";
@@ -51,589 +52,354 @@ $(function(){
       });
   }
 
-  $(document).on('click', '.SetFormulario', function() {
+  function cargarPermisosU(strUser){
 
-    var idu = $(this).data('id');
-    //alert("Id: " + idu);
-    if(idu != "1"){
 
-      $('#Id').val($(this).data('id'));
-      $('#IdNombre').val($(this).data('nombre'));
-      $('#IdLogin').val($(this).data('login'));
-      $('#IdLogOld').val($(this).data('login'));
-
-      var Frm = "Password";
-      var Pw = $(this).data('password');
-      var data = {
-          frm: Frm,
-          pass: Pw,
-          accion: "Descifrar"
-      };
-      $.ajax({
+    //var namUs = document.getElementById('usering').innerHTML;
+    //alert(namUs);
+    var Frm = "PermisosJSP";
+    var Accion = "ReadPU";
+    var data = {
+        frm: Frm,
+        user: strUser,
+        accion: Accion
+    };
+    enableGif();
+    $.ajax({
         type: "POST",
         url: "ServletAlohaTiempos",
+        dataType: 'html',
         data: data,
-        success: function(data, textStatus, jqXHR){
-
-          var dt = data;
-          //alert("dt contra: " + dt);
-          if (dt != "false"){
-
-              $('#IdPassword').val(dt);
-              document.getElementById('IdPassword').disabled = true;
-              document.getElementById("IdNombre").focus();
-
-          }
-          else{
-
-              alert("Ocurrio un error al descifrar pw: " + dt);
-          }
+        success: function(resul, textStatus, jqXHR)
+        {
+            disableGif();
+            $('#IdPermisosAsig').html(resul);
 
         },
         error: function(jqXHR, textStatus, errorThrown) {
-          //disableGif();
-          if (jqXHR.status === 0) {
-            alert('Not connect: Verify Network.');
-          } else if (jqXHR.status === 404) {
-            alert('Requested page not found [404]');
-          } else if (jqXHR.status === 500) {
-            alert('Internal Server Error [500].');
-          } else if (textStatus === 'parsererror') {
-            alert('Requested JSON parse failed.');
-          } else if (textStatus === 'timeout') {
-            alert('Time out error.');
-          } else if (textStatus === 'abort') {
-            alert('Ajax request aborted.');
-          } else {
-            alert('Uncaught Error: ' + jqXHR.responseText);
-          }
+            disableGif();
+            if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+            }
         }
-      });
+    });
+  }
+
+  function cargarPermisosNoAsig(strUser){
+
+    //var namUs = document.getElementById('usering').innerHTML;
+    //alert(namUs);
+    var Frm = "PermisosJSP";
+    var Accion = "ReadPNoU";
+    var data = {
+        frm: Frm,
+        user: strUser,
+        accion: Accion
+    };
+    enableGif();
+    $.ajax({
+        type: "POST",
+        url: "ServletAlohaTiempos",
+        dataType: 'html',
+        data: data,
+        success: function(resul, textStatus, jqXHR)
+        {
+            disableGif();
+            $('#IdPermisosNoAsig').html(resul);
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            disableGif();
+            if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+        }
+    });
+  }
+
+  function listarTodosPermisos(selec){
+
+    //var namUs = document.getElementById('usering').innerHTML;
+    //alert(namUs);
+    var Frm = "PermisosJSP";
+    var Accion = "ReadTodosP";
+    var data = {
+        frm: Frm,
+        accion: Accion
+    };
+    enableGif();
+    $.ajax({
+        type: "POST",
+        url: "ServletAlohaTiempos",
+        dataType: 'html',
+        data: data,
+        success: function(resul, textStatus, jqXHR)
+        {
+            disableGif();
+            $('#'+selec).html(resul);
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            disableGif();
+            if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+        }
+    });
+  }
+
+  $('#IdPermisos').click(function(e){
+
+    var e = document.getElementById('IdUsuarios');
+    var strUser = e.options[e.selectedIndex].value;
+    //alert(strUser);
+    if(strUser != ""){
+
+      cargarPermisosU(strUser);
+      cargarPermisosNoAsig(strUser);
     }else{
       Swal.fire({
           icon: 'warning',
           title: 'Alerta',
-          text: 'No puede editarse el usuario de TECNO CONTROL.'
+          text: 'Por favor seleccione un usuario.',
+          showConfirmButton: false,
+          timer: 3000
       });
     }
+
+
   });
 
-  $(document).on('click', '.SetEliminar', function() {
+  $('#IdQuitoTodos').click(function(e){
 
-      var Frm = "UsuariosJSP";
-      var Id = $(this).data('id');
-      var Nombre = $(this).data('nombre');
-      var Login = $(this).data('login');
-      var Password = $(this).data('password');
-      var Accion = "Delete";
+    var select = document.getElementById('IdPermisosAsig');
+    var length = select.options.length;
+    for (i = length-1; i >= 0; i--) {
+      select.options[i] = null;
+    }
+    listarTodosPermisos("IdPermisosNoAsig");
 
-      if(Id != "1"){
+    /*var sele = document.getElementById('IdPermisosAsig');
 
-        var data = {
-            frm: Frm,
-            id: Id,
-            nombre: Nombre,
-            login: Login,
-            password: Password,
-            accion: Accion
-        };
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'No, cancelar'
-            }).then((result) => {
-            if (result.value) {
-                enableGif();
-                $.ajax({
-                    type: "POST",
-                    url: "ServletAlohaTiempos",
-                    data: data,
-                    success: function(resul, textStatus, jqXHR){
+    for (var i = 1; i<=5; i++){
 
-                      disableGif();
-                      Swal.fire({
-                      icon: 'success',
-                      title: 'Eliminado',
-                      text: 'Registro Eliminado Satisfactoriamente.',
-                      showConfirmButton: false,
-                      timer: 3000
-                      });
-                        //alert(resul);
-                      LimpiarCampos();
-                      LoadTabla();
-                    },
-                    error: function(jqXHR, textStatus, errorThrown) {
-                        disableGif();
-                        if (jqXHR.status === 0) {
-                            alert('Not connect: Verify Network.');
-                        } else if (jqXHR.status === 404) {
-                            alert('Requested page not found [404]');
-                        } else if (jqXHR.status === 500) {
-                            alert('Internal Server Error [500].');
-                        } else if (textStatus === 'parsererror') {
-                            alert('Requested JSON parse failed.');
-                        } else if (textStatus === 'timeout') {
-                            alert('Time out error.');
-                        } else if (textStatus === 'abort') {
-                            alert('Ajax request aborted.');
-                        } else {
-                            alert('Uncaught Error: ' + jqXHR.responseText);
-                        }
-                    }
-                });
-              }
-          });
-        }else{
-          Swal.fire({
-              icon: 'warning',
-              title: 'Alerta',
-              text: 'No puede borrarse el usuario de TECNO CONTROL.'
-          });
-        }
+      var opt = document.createElement('option');
+      opt.value = "H " + i;
+      opt.innerHTML = "H " + i;
+      sele.appendChild(opt);
+    }*/
 
+
+  });
+
+  $('#IdQuitoUno').click(function(e){
+
+    $("#IdPermisosAsig option:selected").each(function () {
+
+      var sele = document.getElementById('IdPermisosNoAsig');
+      var $this = $(this);
+      if ($this.length) {
+        var selText = $this.text();
+        var opt = document.createElement('option');
+        //opt.value = val;
+        opt.innerHTML = selText;
+        sele.appendChild(opt);
+        //console.log(selText);
+        $this.remove();
+      }
     });
 
-  $('#IdCambiarPw').click(function(e){
+  /*  var combo = document.getElementById('IdPermisosAsig');
+    //alert(combo.length);
+    //
+    //alert(strUs);
+    var cnt = 0;
+    for (var i=0;i<combo.options.length;i++){
+      if(combo[i].selected){
+        var strUs = combo.options[combo.selectedIndex].text;
 
-    if (ValidaCampo() === true){
-      Swal.fire({
-          title: "Por favor introduzca la contraseña anterior:",
-          input: "password",
-          showCancelButton: true,
-          confirmButtonText: "Validar",
-          cancelButtonText: "Cancelar",
-          inputValidator: nombre => {
-              // Si el valor es válido, debes regresar undefined. Si no, una cadena
-              if (!nombre) {
-                  return "Por favor escribe una contraseña.";
-              } else {
-                  return undefined;
-              }
-          }
-      })
-      .then(resultado => {
-          if (resultado.value) {
-              let nombre = resultado.value;
-              //console.log("Hola, " + nombre);
-              validarPw(nombre);
-              /*Swal.fire({
-                  icon: 'success',
-                  title: 'informacion',
-                  text: 'Cambio correcto.',
-                  showConfirmButton: false,
-                  timer: 2000
-              });*/
-          }
-      });
-    }else{
-      //alert("Hola Alerta");
-      Swal.fire({
-          icon: 'warning',
-          title: 'Alerta',
-          text: 'Debes seleccionar primero un usuario.'
-      });
+        cnt++;
+      }
     }
-    /**/
+    alert(cnt);
+    alert(strUs);*/
+
+    /*select = document.getElementById('IdPermisosAsig');
+    var opt = document.createElement('option');
+    opt.value = "Hola";
+    opt.innerHTML = "Hola";
+    select.appendChild(opt);*/
 
   });
 
-  $('#IdAgregar').click(function(e){
+  $('#IdPasoTodos').click(function(e){
 
-      LimpiarCampos();
+    var select = document.getElementById('IdPermisosNoAsig');
+    var length = select.options.length;
+    for (i = length-1; i >= 0; i--) {
+      select.options[i] = null;
+    }
+    listarTodosPermisos("IdPermisosAsig");
+    /*var sele = document.getElementById('IdPermisosAsig');
+    //select = document.getElementById('IdPermisosAsig');
+    alert(sele.length);
+    for (var i = 1; i<=sele.length; i++){
+      if (selectobject.options[i].value == 'A')
+      sele.remove(i);
+    }*/
+
+
+  });
+
+  $('#IdPasoUno').click(function(e){
+
+    $("#IdPermisosNoAsig option:selected").each(function () {
+
+      var sele = document.getElementById('IdPermisosAsig');
+      var $this = $(this);
+      if ($this.length) {
+        var selText = $this.text();
+        var opt = document.createElement('option');
+        //opt.value = val;
+        opt.innerHTML = selText;
+        sele.appendChild(opt);
+        //console.log(selText);
+        $this.remove();
+      }
+    });
+    /*var e = document.getElementById('IdPermisosNoAsig');
+    //var strUser = e.options[e.selectedIndex].value;
+    var strU = e.options[e.selectedIndex].text;
+
+    alert(strU);*/
+
+
   });
 
   $('#IdGuardar').click(function(e){
 
-    if (ValidaCampo() === true){
-      var Frm = "Password";
-      var Log = document.getElementById("IdLogin").value;
-      var idUsua = document.getElementById("Id").value;
-      //alert(Log);
-      //var Log = $(this).data('login');
+    var e = document.getElementById('IdUsuarios');
+    var strUser = e.options[e.selectedIndex].value;
+    //alert(can);
+    var i = 0;
+    var elemen = [];
+    $("#IdPermisosAsig option").each(function () {
+      //var $this = $(this);
+      //alert($(this).text());
+      elemen[i] = $(this).text();
+      i++;
 
-      if(idUsua != ''){
+    });
+    /*for (i = 0; i < can; i++) {
+      console.log(elemen[i]);
+    }*/
 
-        if(document.getElementById("IdLogin").value === document.getElementById("IdLogOld").value){
-          guardarRegistro();
-        }else{
-          var data = {
-              frm: Frm,
-              login: Log,
-              accion: "ValidarUsr"
-          };
-          $.ajax({
-            type: "POST",
-            url: "ServletAlohaTiempos",
-            data: data,
-            success: function(data, textStatus, jqXHR){
+    var Frm = "PermisosJSP";
+    var Accion = "LeoItems";
+    var data = {
+        frm: Frm,
+        //elements: JSON.stringify(elemen),
+        elements: elemen,
+        usr: strUser,
+        accion: Accion
+    };
+    $.ajax({
+      type: "POST",
+      url: "ServletAlohaTiempos",
+      data: data,
+      success: function(data, textStatus, jqXHR){
 
-              var dt = data;
-              //alert("Id: " + idUsua);
-              if (dt != "true"){
+        var dt = data;
+        //alert("dt: " + dt);
+        if (dt != "false"){
 
-                  guardarRegistro();
-              }
-              else{
+          Swal.fire({
+              icon: 'success',
+              title: 'Se actualizaron los permisos.',
+              text: 'Por favor cierre sesion e ingrese de nuevo.'
+          });
+        }
+        else{
 
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Alerta',
-                    text: 'El login ya existe en el sistema.',
-                    showConfirmButton: false,
-                    timer: 3000
-                });
-              }
-
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-              //disableGif();
-              if (jqXHR.status === 0) {
-                alert('Not connect: Verify Network.');
-              } else if (jqXHR.status === 404) {
-                alert('Requested page not found [404]');
-              } else if (jqXHR.status === 500) {
-                alert('Internal Server Error [500].');
-              } else if (textStatus === 'parsererror') {
-                alert('Requested JSON parse failed.');
-              } else if (textStatus === 'timeout') {
-                alert('Time out error.');
-              } else if (textStatus === 'abort') {
-                alert('Ajax request aborted.');
-              } else {
-                alert('Uncaught Error: ' + jqXHR.responseText);
-              }
-            }
+          Swal.fire({
+              icon: 'error',
+              title: 'Ocurrio un error.',
+              text: 'Por favor intente de nuevo.',
+              showConfirmButton: false,
+              timer: 3000
           });
         }
 
-      }else{
-
-        var data = {
-            frm: Frm,
-            login: Log,
-            accion: "ValidarUsr"
-        };
-        $.ajax({
-          type: "POST",
-          url: "ServletAlohaTiempos",
-          data: data,
-          success: function(data, textStatus, jqXHR){
-
-            var dt = data;
-            //alert("Id: " + idUsua);
-            if (dt != "true"){
-
-                guardarRegistro();
-            }
-            else{
-
-              Swal.fire({
-                  icon: 'warning',
-                  title: 'Alerta',
-                  text: 'El login ya existe en el sistema.',
-                  showConfirmButton: false,
-                  timer: 3000
-              });
-            }
-
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            //disableGif();
-            if (jqXHR.status === 0) {
-              alert('Not connect: Verify Network.');
-            } else if (jqXHR.status === 404) {
-              alert('Requested page not found [404]');
-            } else if (jqXHR.status === 500) {
-              alert('Internal Server Error [500].');
-            } else if (textStatus === 'parsererror') {
-              alert('Requested JSON parse failed.');
-            } else if (textStatus === 'timeout') {
-              alert('Time out error.');
-            } else if (textStatus === 'abort') {
-              alert('Ajax request aborted.');
-            } else {
-              alert('Uncaught Error: ' + jqXHR.responseText);
-            }
-          }
-        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        //disableGif();
+        if (jqXHR.status === 0) {
+          alert('Not connect: Verify Network.');
+        } else if (jqXHR.status === 404) {
+          alert('Requested page not found [404]');
+        } else if (jqXHR.status === 500) {
+          alert('Internal Server Error [500].');
+        } else if (textStatus === 'parsererror') {
+          alert('Requested JSON parse failed.');
+        } else if (textStatus === 'timeout') {
+          alert('Time out error.');
+        } else if (textStatus === 'abort') {
+          alert('Ajax request aborted.');
+        } else {
+          alert('Uncaught Error: ' + jqXHR.responseText);
+        }
       }
-    }else{
-      //alert("Hola Alerta");
-      Swal.fire({
-          icon: 'warning',
-          title: 'Alerta',
-          text: 'Verifica todos los campos.'
-      });
-    }
-
-  });
-
-  $("#IdCancelar").click(function(e) {
-    $('#Id').val('');
-    $('#IdNombre').val('');
-    $('#IdLogin').val('');
-    $('#IdLogOld').val('');
-    $('#IdPassword').val('');
-    document.getElementById('IdPassword').disabled = false;
-  });
-
-  function validarPw(contra){
-
-    if (ValidaCampo() === true){
-
-      var Frm = "Password";
-      var IdUs = document.getElementById("Id").value;
-      //var IdUs = $(this).data('id');
-      //alert("IdUs: " + IdUs);
-      var data = {
-          frm: Frm,
-          idus: IdUs,
-          passw: contra,
-          accion: "ValidarPw"
-      };
-      $.ajax({
-        type: "POST",
-        url: "ServletAlohaTiempos",
-        data: data,
-        success: function(data, textStatus, jqXHR){
-
-          var dt = data;
-          //alert("dt contra: " + dt);
-          if (dt != "false"){
-
-              actualizarPw();
-          }
-          else{
-
-            Swal.fire({
-                icon: 'warning',
-                title: 'Alerta',
-                text: 'Las contraseñas no coinciden.',
-                showConfirmButton: false,
-                timer: 3000
-            });
-          }
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          //disableGif();
-          if (jqXHR.status === 0) {
-            alert('Not connect: Verify Network.');
-          } else if (jqXHR.status === 404) {
-            alert('Requested page not found [404]');
-          } else if (jqXHR.status === 500) {
-            alert('Internal Server Error [500].');
-          } else if (textStatus === 'parsererror') {
-            alert('Requested JSON parse failed.');
-          } else if (textStatus === 'timeout') {
-            alert('Time out error.');
-          } else if (textStatus === 'abort') {
-            alert('Ajax request aborted.');
-          } else {
-            alert('Uncaught Error: ' + jqXHR.responseText);
-          }
-        }
-      });
-    }else{
-      //alert("Hola Alerta");
-      Swal.fire({
-          icon: 'warning',
-          title: 'Alerta',
-          text: 'Verifica todos los campos.'
-      });
-    }
-  }
-
-  function actualizarPw(){
-
-    Swal.fire({
-        title: "Por favor introduzca la nueva contraseña:",
-        input: "password",
-        showCancelButton: true,
-        confirmButtonText: "Cambiar",
-        cancelButtonText: "Cancelar",
-        inputValidator: nombre => {
-            // Si el valor es válido, debes regresar undefined. Si no, una cadena
-            if (!nombre) {
-                return "Por favor escribe una contraseña.";
-            } else {
-                return undefined;
-            }
-        }
-    })
-    .then(resultado => {
-        if (resultado.value) {
-            let nombre = resultado.value;
-            var Frm = "Password";
-            var IdUs = document.getElementById("Id").value;
-            var data = {
-                frm: Frm,
-                passwo: nombre,
-                idusu: IdUs,
-                accion: "CambiarPw"
-            };
-            $.ajax({
-              type: "POST",
-              url: "ServletAlohaTiempos",
-              data: data,
-              success: function(data, textStatus, jqXHR){
-
-                var dt = data;
-                //alert("dt contra: " + dt);
-                if (dt != "false"){
-
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'Informacion',
-                      text: 'La contraseña se cambio exitosamente.'
-                  });
-                  LimpiarCampos();
-                  LoadTabla()
-                }
-                else{
-
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Alerta',
-                      text: 'No se pudo actualizar la contraseña.',
-                      showConfirmButton: false,
-                      timer: 3000
-                  });
-                }
-
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                //disableGif();
-                if (jqXHR.status === 0) {
-                  alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                  alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                  alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                  alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                  alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                  alert('Ajax request aborted.');
-                } else {
-                  alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-              }
-            });
-        }
     });
 
 
-  }
-
-  function guardarRegistro(){
-
-    if (ValidaCampo() === true){
-
-      var Frm = "UsuariosJSP";
-      var Id = $('#Id').val();
-      var Nombre = $('#IdNombre').val();
-      var Login = $('#IdLogin').val();
-      var Password = $('#IdPassword').val();
-      var Accion = "Upload";
-      var data = {
-          frm: Frm,
-          id: Id,
-          nombre: Nombre,
-          login: Login,
-          password: Password,
-          accion: Accion
-      };
-      enableGif();
-      $.ajax({
-          type: "POST",
-          url: "ServletAlohaTiempos",
-          data: data,
-          success: function(resul, textStatus, jqXHR){
-
-              Swal.fire({
-                  icon: 'success',
-                  title: 'Guardado',
-                  text: 'Registro Guardado Satisfactoriamente.',
-              });
-              disableGif();
-              //alert(resul);
-              LimpiarCampos();
-              LoadTabla();
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-              disableGif();
-              if (jqXHR.status === 0) {
-                  alert('Not connect: Verify Network.');
-              } else if (jqXHR.status === 404) {
-                  alert('Requested page not found [404]');
-              } else if (jqXHR.status === 500) {
-                  alert('Internal Server Error [500].');
-              } else if (textStatus === 'parsererror') {
-                  alert('Requested JSON parse failed.');
-              } else if (textStatus === 'timeout') {
-                  alert('Time out error.');
-              } else if (textStatus === 'abort') {
-                  alert('Ajax request aborted.');
-              } else {
-                  alert('Uncaught Error: ' + jqXHR.responseText);
-              }
-          }
-      });
-    }
-    else{
-      //alert("Hola Alerta");
-      Swal.fire({
-          icon: 'warning',
-          title: 'Alerta',
-          text: 'Verifica todos los campos.'
-      });
-    }
-  }
-
-  function ValidaCampo(){
-
-      var res = false;
-      if ($('#IdNombre').val() !== ""){
-
-          if ($('#IdLogin').val() !== ""){
-
-            if ($('#IdPassword').val() !== ""){
-
-                res = true;
-            }
-
-          }
-      }
-      return res;
-  }
-
-  function LimpiarCampos(){
-
-      $('#Id').val('');
-      $('#IdNombre').val('');
-      $('#IdLogin').val('');
-      $('#IdLogOld').val('');
-      $('#IdPassword').val('');
-      document.getElementById('IdPassword').disabled = false;
-      document.getElementById("IdNombre").focus();
-  }
+  });
 
   function enableGif(){
 
       window.onload = document.getElementById("espera").style = "display: block";
-      window.onload = document.getElementById("Principal").style = "display: none"
+      window.onload = document.getElementById("Principal").style = "display: none";
   }
 
   function disableGif(){
 
       window.onload = document.getElementById("espera").style = "display: none";
-      window.onload = document.getElementById("Principal").style = "display: enable"
+      window.onload = document.getElementById("Principal").style = "display: enable";
   }
+
 });

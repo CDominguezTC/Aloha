@@ -447,22 +447,36 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorPer.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
-                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Combo Cargado");
                         break;
                     case "ReadPU":
                         String usr = request.getParameter ("user");
-                        Resultado = controladorPer.Read (request, response);
+                        Resultado = controladorPer.ReadPU(request, response, usr);
                         PrintWriter pw2 = response.getWriter ();
                         pw2.write (Resultado);
-                        System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Lista Cargada");
                         break;
-                    case "ReadP":
+                    case "ReadPNoU":
                         String user = request.getParameter ("user");
-                        Resultado = controladorPer.Read (request, response);
+                        Resultado = controladorPer.ReadPNoU(request, response, user);
                         PrintWriter pw3 = response.getWriter ();
                         pw3.write (Resultado);
-                        System.out.println (pw3.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        System.out.println (pw3.checkError () ? "Error al cargar la lista" : "Lista Cargada");
                         break;
+                    case "ReadTodosP":
+                        //String user = request.getParameter ("user");
+                        Resultado = controladorPer.ReadTodosP(request, response);
+                        PrintWriter pw4 = response.getWriter ();
+                        pw4.write (Resultado);
+                        System.out.println (pw4.checkError () ? "Error al cargar la lista" : "Lista Cargada");
+                        break;
+                    case "LeoItems":
+                        String[] myJsonData = request.getParameterValues("elements[]");
+                        String idUsr = request.getParameter ("usr");
+                        //String players = request.getParameter("elements");
+                        //String[] s = players.split(",");                        
+                        Resultado = controladorPer.insertarPermisos(myJsonData, idUsr);
+                        break;                                                
                 }            
             break;
             case "UsuariosJSP":
