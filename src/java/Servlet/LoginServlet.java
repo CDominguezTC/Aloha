@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
         //PrintWriter out=response.getWriter();  
 
         //request.getRequestDispatcher("link.html").include(request, response);  
-        String name = "";
+        //String name = "";
         HttpSession session=request.getSession();  
         /*if(session!=null){  
             name=(String)session.getAttribute("usuario");  

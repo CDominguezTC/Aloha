@@ -10,7 +10,6 @@
 
 $(function (){
 
-
   $('#IdIngresar').click(function (e) {
 
         if ($('#Idusuario').val() !== "")

@@ -231,16 +231,14 @@ $(function(){
 	});
 
 	$(document).ready(function(){
-	//var slideIndex = 1;
+
 		editoNomU();
-		//editoUrl();
-		//validoLog();
+
 		/*function editoBot() {
 
 				var botonEnviar = document.getElementById("idsave");
 				botonEnviar.disabled === true;
 		}*/
-
 	});
 
 	function editoNomU() {

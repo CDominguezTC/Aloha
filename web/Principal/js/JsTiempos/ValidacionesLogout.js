@@ -1,31 +1,26 @@
-$(function()
-{
+$(function(){
 	$('#idsalir').click(function(e){
 
 		//alert("Salio");
-		var User = "1";
-		var Pass = "1";
 		var Accion = "Salir";
 		var data = {
-			user: User,
-			pass: Pass,
 			accion: Accion
 		};
 		$.ajax({
 			type: "GET",
 			url: "LoginServlet",
 			data: data,
-			success: function(data, textStatus, jqXHR)
-			{
+			success: function(data, textStatus, jqXHR){
+
 				var dt = data;
 				//alert("dt: " + dt);
-				if (dt === "true")
-				{
+				if (dt === "true"){
+
 					location.href = "index.jsp";
 					//evt.preventDefault();
 				}
-				else
-				{
+				else{
+
 					alert("No se pudo cerrar la session.");
 				}
 			},
