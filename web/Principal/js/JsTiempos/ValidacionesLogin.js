@@ -314,8 +314,10 @@ $(function(){
 									//evt.preventDefault();
 							}else{
 
+								//var res = "<img id="idimg" src="Principal/images/user.png" alt="">";
 								document.getElementById("usering").innerHTML = dt;
-								document.getElementById("idusera").innerHTML = dt;
+								cargarUserAct(dt);
+								//document.getElementById("idusera").innerHTML = dt;
 							}
 
 						},
@@ -361,6 +363,49 @@ $(function(){
 			}
 		});
 
+	}
+
+	function cargarUserAct(user){
+
+		//alert("Entro metodo: " + user);
+		var Frm = "UtilidadesJSP";
+		var Accion = "UserActivo";
+		var data = {
+				frm: Frm,
+				usr: user,
+				accion: Accion
+		};
+		//enableGif();
+		$.ajax({
+				type: "POST",
+				url: "ServletAlohaTiempos",
+				dataType: 'html',
+				data: data,
+				success: function(resul, textStatus, jqXHR)
+				{
+						//disableGif();
+						$('#idusera').html(resul);
+
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+						disableGif();
+						if (jqXHR.status === 0) {
+								alert('Not connect: Verify Network.');
+						} else if (jqXHR.status === 404) {
+								alert('Requested page not found [404]');
+						} else if (jqXHR.status === 500) {
+								alert('Internal Server Error [500].');
+						} else if (textStatus === 'parsererror') {
+								alert('Requested JSON parse failed.');
+						} else if (textStatus === 'timeout') {
+								alert('Time out error.');
+						} else if (textStatus === 'abort') {
+								alert('Ajax request aborted.');
+						} else {
+								alert('Uncaught Error: ' + jqXHR.responseText);
+						}
+				}
+		});
 	}
 
 	function validoLog() {

@@ -6,6 +6,9 @@
 package Tools;
 
 import Conexiones.ConexionBdMysql;
+import Controladores.ControladorUsuarios;
+import Modelo.ModeloUsuarios;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +27,10 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 import java.security.MessageDigest;
+import java.util.LinkedList;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.codec.binary.Base64;
 
 /**
@@ -330,5 +337,23 @@ public class Tools {
         {
         }
         return base64EncryptedString;
+    }
+    
+    public String editarUserAct(HttpServletRequest request, HttpServletResponse response, String user) throws ServletException, IOException {
+                
+        String out = null;
+        try {
+                        
+            response.setContentType("text/html;charset=UTF-8");
+            out = "";
+            out += "<img id=\"idimg\" src=\"Principal/images/user.png\" alt=\"\">" + user + " ";                        
+            out += "<span class=\"fa fa-angle-double-down\"></span>";
+
+        } catch (Exception e){
+        
+            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+        }
+
+        return out;
     }
 }

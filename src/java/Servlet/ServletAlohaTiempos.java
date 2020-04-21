@@ -675,6 +675,22 @@ public class ServletAlohaTiempos extends HttpServlet
                 rd.forward (request, response);
                 Accion = "Plano";
                 break;
+            case "UtilidadesJSP":
+                //ControladorCargos controladorCargos = new ControladorCargos ();
+                Accion = request.getParameter ("accion");
+                String usua = request.getParameter ("usr");
+                switch (Accion){
+                
+                    case "UserActivo":
+                        Tools tool = new Tools ();
+                        Resultado = tool.editarUserAct(request, response, usua);
+                        /*PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/
+                        //Resultado = controladorCargos.Insert (request);
+                        break;
+                }
+                break;
 
         }
         if (!"Plano".equals (Accion))
@@ -682,7 +698,7 @@ public class ServletAlohaTiempos extends HttpServlet
             String respuesta = herramienta.GetDescrpCode (Resultado);
             response.setCharacterEncoding ("UTF-8");
             response.setContentType ("text/plain");
-            if("Password".equals(Formulario)){
+            if("Password".equals(Formulario) || "UserActivo".equals(Accion)){
                 response.getWriter ().write (Resultado);
             }else{
                 response.getWriter ().write (respuesta);
