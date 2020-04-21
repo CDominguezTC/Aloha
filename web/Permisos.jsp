@@ -84,14 +84,14 @@
                                             <div class="col-md-6 col-sm-12 col-xs-12" form-group>
                                                 <label for="Permisos_Usuario">Permisos del Usuario</label>
                                                 <select id="IdPermisosAsig" class="select2_multiple form-control" multiple="multiple" required style="height:300px;">
-                                                    <option disabled>Seleccione</option>
+                                                    <!--option disabled>Seleccione</option-->
                                                 </select>
                                             </div>                                            
 
                                             <div class="col-md-6 col-sm-12 col-xs-12" form-group>
                                                 <label for="Permisos">Permisos</label>
                                                 <select id="IdPermisosNoAsig" class="select2_multiple form-control" multiple="multiple" required style="height:300px;">
-                                                    <option disabled>Seleccione</option>
+                                                    <!--option disabled>Seleccione</option-->
                                                 </select>
                                             </div>
 

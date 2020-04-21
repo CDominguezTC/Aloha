@@ -68,7 +68,7 @@ public class ControladorPermisos {
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
-            out += "<option value=\"\" disabled selected>Seleccione</option>";
+            //out += "<option value=\"\" disabled selected>Seleccione</option>";
             for (ModeloPermisos modeloPer : listmoPer){
             
                 //out += "<tr>";
@@ -97,7 +97,7 @@ public class ControladorPermisos {
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
-            out += "<option value=\"\" disabled selected>Seleccione</option>";
+            //out += "<option value=\"\" disabled selected>Seleccione</option>";
             for (ModeloPermisos modeloPer : listmoPer){
             
                 //out += "<tr>";
@@ -126,7 +126,7 @@ public class ControladorPermisos {
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
-            out += "<option value=\"\" disabled selected>Seleccione</option>";
+            //out += "<option value=\"\" disabled selected>Seleccione</option>";
             for (ModeloPermisos modeloPer : listmoPer){
             
                 //out += "<tr>";
@@ -236,34 +236,88 @@ public class ControladorPermisos {
         
         con = conexion.abrirConexion();
         try{
+            
+            int can = items.length;
+            int ins = 0;
+            //System.err.println("can: "+can);
+            if(eliminoPermisos(usr)){
+                            
+                for (int i = 0; i < can; i++) {
+                    
+                    //if(!"Seleccione".equals(items[i])){
+                    //System.out.println(items[i]);
+                    int idp = idPermiso(items[i].replaceAll("\\s",""));
 
-            SQL = con.prepareStatement("INSERT INTO `usuarios`("
-                    + "`nombre`,"
-                    + "`login`,"
-                    + "`password`)"
-                    + "VALUE (?,?,?);");
-            /*SQL.setString(1, modelo.getNombre());
-            SQL.setString(2, modelo.getLogin());
-            String pw = tl.encriptar(modelo.getPassword());*/
-            SQL.setString(3, usr);
-            if (SQL.executeUpdate() > 0){
+                    SQL = con.prepareStatement("INSERT INTO permisosxusuarios (id_permiso, id_usuario) VALUES (?,?)");                                        
+                    SQL.setInt(1, idp);
+                    SQL.setInt(2, Integer.parseInt(usr));
 
-                resultado = "true";
-                SQL.close();
-                con.close();
+                    if (SQL.executeUpdate() > 0){
+
+                        ins++;
+                    }
+
+                    //}                    
+                }
+            }else{
+                return "false";
             }
+            
+            if(can == ins){
+                resultado = "true";
+            }else{
+                resultado = "false";
+            }
+
         } catch (SQLException e){
         
             System.err.println("Error en el proceso: " + e.getMessage());
             //resultado = "-2";
-
         }
-        int can = items.length;
-        //System.err.println("can: "+can);
-        for (int i = 0; i < can; i++) {
-            //System.out.println(items[i]);
+                
+        return resultado;
+    }
+    
+    private boolean eliminoPermisos(String user){
+        
+        con = conexion.abrirConexion();
+        try{
+
+            SQL = con.prepareStatement("DELETE FROM permisosxusuarios WHERE id_usuario = ?");
+            SQL.setString(1, user);
+            if (SQL.executeUpdate() > 0){
+
+                return true;
+            }
+        } catch (SQLException e){
+
+            System.err.println("Error en el proceso: " + e.getMessage());
+            //resultado = "-2";
+        }finally{
+            try {
+                SQL.close();
+                con.close();
+            } catch (Exception e) {
+            }            
+        }        
+        
+        return false;
+    }
+    
+    private int idPermiso(String permiso){
+        
+        con = conexion.abrirConexion();
+        int resul = 0;
+        try {
+            SQL = con.prepareStatement("SELECT id FROM permisos WHERE nombre = ?");
+            SQL.setString(1, permiso);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                resul = res.getInt("id");
+            }
+        } catch (Exception e) {
         }
         
-        return resultado;
+        return resul;
     }
 }
