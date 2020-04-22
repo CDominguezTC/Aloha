@@ -62,6 +62,15 @@ $(function(){
 			}
 		});
 	}
+        
+    //Registrar Visita
+    $('#idregisvisita').click(function (e) {
+
+        //alert("HolaEmpresa");
+        validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
+
+    });
+         
 
     $('#idempre').click(function (e) {
 
