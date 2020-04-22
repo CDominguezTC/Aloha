@@ -11,12 +11,12 @@ $(function(){
 
   $(document).ready(function(){
 
-    //alert("Hola!");
-    traigoUserAc();
+    validacionBot();
   });
 
-  function traigoUserAc(){
+  function validacionBot(){
 
+    alert("Hola! BTN");
     var usuariof = "";
     $.ajax({
         type: "POST",

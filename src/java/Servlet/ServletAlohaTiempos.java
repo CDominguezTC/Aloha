@@ -691,6 +691,26 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                 }
                 break;
+            case "Auditoria":
+                //ControladorCargos controladorCargos = new ControladorCargos ();
+                Accion = request.getParameter ("accion");
+                //String usua = request.getParameter ("usr");
+                switch (Accion){
+                
+                    case "Insert":
+                        Tools tool = new Tools ();
+                        //Resultado = tool.editarUserAct(request, response, usua);
+                        /*PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/
+                        //Resultado = controladorCargos.Insert (request);
+                        break;
+                    case "Update":
+                        break;
+                    case "Delete":
+                        break;
+                }
+                break;
 
         }
         if (!"Plano".equals (Accion))
