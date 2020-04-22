@@ -62,83 +62,99 @@ $(function(){
 			}
 		});
 	}
+        
+    //Registrar Visita
+    $('#idregisvisita').click(function (e) {
 
-	$('#idempre').click(function(e){
+        //alert("HolaEmpresa");
+        validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
 
-		//alert("HolaEmpresa");
-		validoPermiso("Empresa.Abrir","Empresa.jsp");
+    });
+         
 
-	});
+    $('#idempre').click(function (e) {
 
-  $('#idusers').click(function(e){
+        //alert("HolaEmpresa");
+        validoPermiso("Empresa.Abrir", "Empresa.jsp");
 
-		//alert("HolaEmpresa");
-		validoPermiso("Usuarios.Abrir","Usuarios.jsp");
+    });
+    
+    $('#idaudito').click(function (e) {
 
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("Auditoria.Abrir", "Auditoria.jsp");
 
-  $('#idpermi').click(function(e){
+    });
 
-		//alert("HolaEmpresa");
-		validoPermiso("Permisos.Abrir","Permisos.jsp");
+    $('#idusers').click(function (e) {
 
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("Usuarios.Abrir", "Usuarios.jsp");
 
-	$('#idccosto').click(function(e){
+    });
 
-		//alert("HolaEmpresa");
-		validoPermiso("CentroCostos.Abrir","CentroCostos.jsp");
+    $('#idpermi').click(function (e) {
 
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("Permisos.Abrir", "Permisos.jsp");
 
-	$('#iddispo').click(function(e){
+    });
 
-		//alert("HolaEmpresa");
-		validoPermiso("Dispositivo.Abrir","Dispositivo.jsp");
+    $('#idccosto').click(function (e) {
 
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("CentroCostos.Abrir", "CentroCostos.jsp");
 
-	$('#idfest').click(function(e){
+    });
 
-		//alert("HolaEmpresa");
-		validoPermiso("Festivos.Abrir","Festivos.jsp");
-	});
+    $('#iddispo').click(function (e) {
 
-	$('#idtipoc').click(function(e){
+        //alert("HolaEmpresa");
+        validoPermiso("Dispositivo.Abrir", "Dispositivo.jsp");
 
-		//alert("HolaEmpresa");
-		validoPermiso("TipoConsumo.Abrir","TipoConsumo.jsp");
-	});
+    });
 
-	$('#idhconsu').click(function(e){
+    $('#idfest').click(function (e) {
 
-		//alert("HolaEmpresa");
-		validoPermiso("HorarioConsumo.Abrir","HorarioConsumo.jsp");
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("Festivos.Abrir", "Festivos.jsp");
+    });
 
-	$('#idgconsu').click(function(e){
+    $('#idtipoc').click(function (e) {
 
-		//alert("HolaEmpresa");
-		validoPermiso("GrupoConsumo.Abrir","GrupoConsumo.jsp");
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("TipoConsumo.Abrir", "TipoConsumo.jsp");
+    });
 
-	$('#idagconsu').click(function(e){
+    $('#idhconsu').click(function (e) {
 
-		//alert("HolaEmpresa");
-		validoPermiso("AsocGrupoConsumo.Abrir","AsocGrupoConsumo.jsp");
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("HorarioConsumo.Abrir", "HorarioConsumo.jsp");
+    });
 
-	$('#idperso').click(function(e){
+    $('#idgconsu').click(function (e) {
 
-		//alert("HolaEmpresa");
-		validoPermiso("PersonasCasino.Abrir","PersonasCasino.jsp");
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("GrupoConsumo.Abrir", "GrupoConsumo.jsp");
+    });
 
-	$('#idlcasin').click(function(e){
+    $('#idagconsu').click(function (e) {
 
-		//alert("HolaEmpresa");
-		validoPermiso("LiquidacionCasino.Abrir","LiquidacionCasino.jsp");
-	});
+        //alert("HolaEmpresa");
+        validoPermiso("AsocGrupoConsumo.Abrir", "AsocGrupoConsumo.jsp");
+    });
+
+    $('#idperso').click(function (e) {
+
+        //alert("HolaEmpresa");
+        validoPermiso("PersonasCasino.Abrir", "PersonasCasino.jsp");
+    });
+
+    $('#idlcasin').click(function (e) {
+
+        //alert("HolaEmpresa");
+        validoPermiso("LiquidacionCasino.Abrir", "LiquidacionCasino.jsp");
+    });
 
 	$('#idcambiarpw').click(function(e){
 
