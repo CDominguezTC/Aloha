@@ -17,8 +17,18 @@
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 60%;
                 border-radius: 50%;
+                pointer-events:none;
+            }
+
+            #Invisible {
+                cursor: default;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
             }
 
         </style>
@@ -175,9 +185,13 @@
                             <div class="profile_img">
                                 <div id="crop-avatar">
                                     <!-- Img Captura Foto-Huella -->
-                                    <img class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella">
+                                    <img class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella" height="250" width="250">
                                 </div>
                             </div>
+                            
+                            <!-- Ignorar -->
+                            <label for="Invisible" id="Invisible" style="visibility:hidden">-</label>
+                            <!-- /Ignorar -->
 
                             <!-- Botones -->
                             <div class="ln_solid"></div>
