@@ -356,4 +356,23 @@ public class Tools {
 
         return out;
     }
+    
+    public String formatHoraIntString(){
+        
+        String fechahora = "";
+        
+        String fec;
+        
+        SimpleDateFormat forfecha = new SimpleDateFormat("yyyy-MM-dd");
+        fec = forfecha.format(new Date());
+        
+        String hor;
+        
+        SimpleDateFormat forhora = new SimpleDateFormat("HH:mm:ss");
+        hor = forhora.format(new Date());
+        
+        fechahora = fec + " " +hor;
+        
+        return fechahora;
+    }
 }

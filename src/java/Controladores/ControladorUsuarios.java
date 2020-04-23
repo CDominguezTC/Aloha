@@ -116,7 +116,7 @@ public class ControladorUsuarios {
         return out;
     }
     
-    ModeloUsuarios getModelo(int Id) {
+    ModeloUsuarios getModelos(int Id) {
     
         ModeloUsuarios modelo = new ModeloUsuarios();
         con = conexion.abrirConexion();
