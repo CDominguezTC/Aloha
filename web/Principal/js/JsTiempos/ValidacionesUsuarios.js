@@ -92,6 +92,7 @@ $(function(){
 
       $('#Id').val($(this).data('id'));
       $('#IdNombre').val($(this).data('nombre'));
+      $('#IdNombreOld').val($(this).data('nombre'));
       $('#IdLogin').val($(this).data('login'));
       $('#IdLogOld').val($(this).data('login'));
 
@@ -113,13 +114,17 @@ $(function(){
           if (dt != "false"){
 
               $('#IdPassword').val(dt);
+              $('#IdPasswordOld').val(dt);
               document.getElementById('IdPassword').disabled = true;
               document.getElementById("IdNombre").focus();
 
           }
           else{
-
-              alert("Ocurrio un error al descifrar pw: " + dt);
+            Swal.fire({
+                icon: 'warning',
+                title: 'Alerta',
+                text: 'Ocurrio un error al descifrar pw: ' + dt
+            });
           }
 
         },
@@ -146,7 +151,9 @@ $(function(){
       Swal.fire({
           icon: 'warning',
           title: 'Alerta',
-          text: 'No puede editarse el usuario de TECNO CONTROL.'
+          text: 'No puede editarse el usuario de TECNO CONTROL.',
+          showConfirmButton: false,
+          timer: 3000
       });
     }
   });
@@ -155,6 +162,7 @@ $(function(){
 
       var Frm = "UsuariosJSP";
       var Id = $(this).data('id');
+      $('#Id').val($(this).data('id'));
       var Nombre = $(this).data('nombre');
       var Login = $(this).data('login');
       var Password = $(this).data('password');
@@ -192,10 +200,9 @@ $(function(){
                       Swal.fire({
                       icon: 'success',
                       title: 'Eliminado',
-                      text: 'Registro Eliminado Satisfactoriamente.',
-                      showConfirmButton: false,
-                      timer: 3000
+                      text: 'Registro Eliminado Satisfactoriamente.'
                       });
+                      auditoriaReg("eliminar");
                         //alert(resul);
                       LimpiarCampos();
                       LoadTabla();
@@ -569,6 +576,7 @@ $(function(){
 
     if (ValidaCampo() === true){
 
+      var NamUs = document.getElementById('usering').innerHTML
       var Frm = "UsuariosJSP";
       var Id = $('#Id').val();
       var Nombre = $('#IdNombre').val();
@@ -581,6 +589,7 @@ $(function(){
           nombre: Nombre,
           login: Login,
           password: Password,
+          nombreU: NamUs,
           accion: Accion
       };
       enableGif();
@@ -595,6 +604,9 @@ $(function(){
                   title: 'Guardado',
                   text: 'Registro Guardado Satisfactoriamente.',
               });
+              if(Id != null){
+                auditoriaReg("actualizar");
+              }
               disableGif();
               //alert(resul);
               LimpiarCampos();
@@ -629,6 +641,81 @@ $(function(){
           text: 'Verifica todos los campos.'
       });
     }
+  }
+
+  function auditoriaReg(modo){
+
+    var Observacion = "";
+    var NamUs = document.getElementById('usering').innerHTML
+    var Id = $('#Id').val();
+
+    var Frm = "Auditoria";
+    var Nombre = $('#IdNombre').val();
+    var NombreOld = $('#IdNombreOld').val();
+    var Login = $('#IdLogin').val();
+    var LoginOld = $('#IdLogOld').val();
+    var Accion = "Insert";
+    var Operacion;
+
+    if (modo === "actualizar") {
+      if(Nombre != NombreOld){
+        Observacion = "Nombre: "+ NombreOld + " > " + Nombre + " ";
+      }
+
+      if(Login != LoginOld){
+        Observacion += "Login: "+ LoginOld + " > " + Login;
+      }
+      Operacion = "actualizar";
+    }else if (modo === "eliminar") {
+      Observacion = "Se elimino el registro."
+      Operacion = "eliminar";
+      //console.log("Id: " + Id);
+    }
+
+    var data = {
+        frm: Frm,
+        operacion: Operacion,
+        tabla: "usuarios",
+        usua: NamUs,
+        observacion: Observacion,
+        id: Id,
+        accion: Accion
+    };
+    enableGif();
+    $.ajax({
+        type: "POST",
+        url: "ServletAlohaTiempos",
+        data: data,
+        success: function(resul, textStatus, jqXHR){
+
+          console.log("Auditoria realizada");
+            /*Swal.fire({
+                icon: 'success',
+                title: 'Guardado',
+                text: 'Auditoria realizada.'
+            });*/
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            disableGif();
+            if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+        }
+    });
+
   }
 
   function ValidaCampo(){

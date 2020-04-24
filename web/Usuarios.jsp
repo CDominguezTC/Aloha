@@ -61,6 +61,7 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
+                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="Nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
@@ -70,6 +71,7 @@
                                                 <label for="Login">Login</label>
                                                 <input type="text" class="form-control" id="IdLogin" name="Login" required="required">
                                             </div>
+                                            <input type="hidden" id="IdPasswordOld" name="PasswordOld">
                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="Password">Contraseña</label>
                                                 <input type="password" class="form-control" id="IdPassword" name="Password" required="required">

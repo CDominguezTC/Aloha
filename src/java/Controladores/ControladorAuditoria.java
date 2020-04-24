@@ -24,21 +24,24 @@ public class ControladorAuditoria {
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     
-    public String Insert(HttpServletRequest request){
+    public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion ){
         
         Tools tl = new Tools ();
+        String fecha = tl.formatoFechaHora();
+        ControladorUsuarios controladorU = new ControladorUsuarios();
+        int idusua = controladorU.idUsuario(usua);
+        //int idmodi = ;
+        /*if ("".equals(request.getParameter("id"))){
         
-        if ("".equals(request.getParameter("id"))){
-        
-        }
+        }*/
         ModeloAuditoria modelo = new ModeloAuditoria(
                 0,
-                request.getParameter("operacion"),
-                request.getParameter("tabla"),
-                request.getParameter("fecha"),
-                Integer.parseInt(request.getParameter("idUsr")),
-                Integer.parseInt(request.getParameter("regmodi")),
-                request.getParameter("observacion")
+                operacion,
+                tabla,
+                fecha,
+                idusua,
+                idmodi,
+                observacion
         );
         try{
 
@@ -50,14 +53,19 @@ public class ControladorAuditoria {
                         + "`tabla`,"
                         + "`fecha`,"
                         + "`id_usuario`,"
-                        + "`id_modificado`)"
-                        + "VALUES (?,?,?,?,?);");
+                        + "`registro_modificado`,"
+                        + "`observacion`) "
+                        + "VALUES (?,?,?,?,?,?);");
                 SQL.setString(1, modelo.getOperacion());
                 SQL.setString(2, modelo.getTabla());
+                SQL.setString(3, modelo.getFecha());
+                SQL.setInt(4, modelo.getId_usuario());
+                SQL.setInt(5, modelo.getRegistro_modificado());
+                SQL.setString(6, modelo.getObservacion());
                 //String pw = tl.encriptar(modelo.getPassword());
                 //SQL.setString(3, pw);
                 if (SQL.executeUpdate() > 0){
-
+                    
                     resultado = "1";
                     SQL.close();
                     con.close();

@@ -357,7 +357,7 @@ public class Tools {
         return out;
     }
     
-    public String formatHoraIntString(){
+    public String formatoFechaHora(){
         
         String fechahora = "";
         

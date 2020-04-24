@@ -7,6 +7,7 @@ package Servlet;
 
 import Controladores.ControladorAreas;
 import Controladores.ControladorAsocGrupoConsumo;
+import Controladores.ControladorAuditoria;
 import Controladores.ControladorCargos;
 import Controladores.ControladorCiudades;
 import Controladores.ControladorCentroCosto;
@@ -692,14 +693,19 @@ public class ServletAlohaTiempos extends HttpServlet
                 }
                 break;
             case "Auditoria":
-                //ControladorCargos controladorCargos = new ControladorCargos ();
+                ControladorAuditoria controladorAud = new ControladorAuditoria();
                 Accion = request.getParameter ("accion");
                 //String usua = request.getParameter ("usr");
                 switch (Accion){
                 
                     case "Insert":
-                        Tools tool = new Tools ();
-                        //Resultado = tool.editarUserAct(request, response, usua);
+                        //Tools tool = new Tools ();
+                        String operacion = request.getParameter("operacion");
+                        String tabla = request.getParameter("tabla");
+                        String usu = request.getParameter("usua");
+                        int regmo = Integer.parseInt(request.getParameter("id"));
+                        String observa = request.getParameter("observacion");
+                        Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
                         /*PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/

@@ -168,13 +168,20 @@ public class ControladorUsuarios {
                             + "`nombre`,"
                             + "`login`,"
                             + "`password`)"
-                            + "VALUE (?,?,?);");
+                            + "VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modelo.getNombre());
                     SQL.setString(2, modelo.getLogin());
                     String pw = tl.encriptar(modelo.getPassword());
                     SQL.setString(3, pw);
                     if (SQL.executeUpdate() > 0){
-
+                        ControladorAuditoria auditoria = new ControladorAuditoria();
+                        
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int)generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "usuarios", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();
@@ -402,5 +409,29 @@ public class ControladorUsuarios {
         }
         
         return resp;
+    }
+    
+    public int idUsuario(String name){
+        
+        int idU = 0;
+        con = conexion.abrirConexion();
+        try{
+        
+            SQL = con.prepareStatement("SELECT id FROM usuarios WHERE login = ?");
+            SQL.setString(1, name);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()){
+            
+                idU = res.getInt("id");
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e){
+        
+            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+        }
+        
+        return idU;
     }
 }
