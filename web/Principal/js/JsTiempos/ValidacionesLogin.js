@@ -62,7 +62,7 @@ $(function(){
 			}
 		});
 	}
-        
+
     //Registrar Visita
     $('#idregisvisita').click(function (e) {
 
@@ -70,7 +70,7 @@ $(function(){
         validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
 
     });
-         
+
 
     $('#idempre').click(function (e) {
 
@@ -78,7 +78,7 @@ $(function(){
         validoPermiso("Empresa.Abrir", "Empresa.jsp");
 
     });
-    
+
     $('#idaudito').click(function (e) {
 
         //alert("HolaEmpresa");
@@ -202,6 +202,7 @@ $(function(){
 											title: 'Se cambio la contraseña exitosamente.',
 											text: 'Por favor cierre sesion e ingrese de nuevo.'
 									});
+									auditoriaReg(namUs);
 								}else{
 									Swal.fire({
 											icon: 'warning',
@@ -256,6 +257,62 @@ $(function(){
 				botonEnviar.disabled === true;
 		}*/
 	});
+
+	function auditoriaReg(useract){
+
+
+    var Id = "3001";
+    var Frm = "Auditoria";
+    var Accion = "Insert";
+    var Operacion = "actualizar";
+		var Observacion = "Cambio de password.";
+
+
+    var data = {
+        frm: Frm,
+        operacion: Operacion,
+        tabla: "usuarios",
+        usua: useract,
+        observacion: Observacion,
+        id: Id,
+        accion: Accion
+    };
+
+    $.ajax({
+        type: "POST",
+        url: "ServletAlohaTiempos",
+        data: data,
+        success: function(resul, textStatus, jqXHR){
+
+          console.log("Auditoria realizada");
+            /*Swal.fire({
+                icon: 'success',
+                title: 'Guardado',
+                text: 'Auditoria realizada.'
+            });*/
+
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+
+            if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+            } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+            } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+            } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+            } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+            }
+        }
+    });
+
+  }
 
 	function editoNomU() {
 		//alert("HolaIn");

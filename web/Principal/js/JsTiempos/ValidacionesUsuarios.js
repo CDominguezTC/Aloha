@@ -532,6 +532,7 @@ $(function(){
                       title: 'Informacion',
                       text: 'La contraseña se cambio exitosamente.'
                   });
+                  auditoriaReg("actualizar");
                   LimpiarCampos();
                   LoadTabla();
                 }
@@ -604,7 +605,8 @@ $(function(){
                   title: 'Guardado',
                   text: 'Registro Guardado Satisfactoriamente.',
               });
-              if(Id != null){
+              if(Id != ""){
+                //console.log("Ingreso a id no null " + Id + "!");
                 auditoriaReg("actualizar");
               }
               disableGif();

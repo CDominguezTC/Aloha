@@ -174,8 +174,7 @@ public class ControladorUsuarios {
                     String pw = tl.encriptar(modelo.getPassword());
                     SQL.setString(3, pw);
                     if (SQL.executeUpdate() > 0){
-                        ControladorAuditoria auditoria = new ControladorAuditoria();
-                        
+                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
                         try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                             if (generatedKeys.next()) {
                                 int i = (int)generatedKeys.getLong(1);

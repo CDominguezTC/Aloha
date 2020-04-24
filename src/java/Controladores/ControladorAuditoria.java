@@ -30,6 +30,9 @@ public class ControladorAuditoria {
         String fecha = tl.formatoFechaHora();
         ControladorUsuarios controladorU = new ControladorUsuarios();
         int idusua = controladorU.idUsuario(usua);
+        if(idmodi == 3001){
+            idmodi = idusua;
+        }
         //int idmodi = ;
         /*if ("".equals(request.getParameter("id"))){
         
