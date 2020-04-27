@@ -14,6 +14,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -136,6 +139,9 @@ public class ControladorAuditoria {
         ModeloUsuarios modU = new ModeloUsuarios();
         ControladorUsuarios controladorU = new ControladorUsuarios();
         con = conexion.abrirConexion();
+        Date date = null;
+        Timestamp timestamp = null;
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
                         
             SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria");
@@ -147,7 +153,13 @@ public class ControladorAuditoria {
                 modeloA.setId(res.getInt("id"));
                 modeloA.setOperacion(res.getString("operacion"));
                 modeloA.setTabla(res.getString("tabla"));
-                modeloA.setFecha(res.getString("fecha"));
+                timestamp = res.getTimestamp(4);
+                if (timestamp != null){
+                    date = new java.util.Date(timestamp.getTime());                                        
+                    //System.out.println("Fecha: " + dt1.format(date));
+                    modeloA.setFecha(dt1.format(date));
+                }                                    
+                //modeloA.setFecha(res.getString("fecha"));
                 modU = controladorU.getModelos(res.getInt("id_usuario"));
                 modeloA.setUsuario(modU);
                 modeloA.setRegistro_modificado(res.getInt("registro_modificado"));
