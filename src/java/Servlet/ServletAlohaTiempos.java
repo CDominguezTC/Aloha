@@ -711,9 +711,17 @@ public class ServletAlohaTiempos extends HttpServlet
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/
                         //Resultado = controladorCargos.Insert (request);
                         break;
-                    case "Update":
+                    case "Read":                        
+                        Resultado = controladorAud.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Combo Cargado");
                         break;
-                    case "Delete":
+                    case "ReadReg":
+                        Resultado = controladorAud.readTabla(request, response);
+                        PrintWriter pw2 = response.getWriter ();
+                        pw2.write (Resultado);
+                        System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                 }
                 break;

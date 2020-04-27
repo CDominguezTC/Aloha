@@ -12,7 +12,7 @@
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesAuditoria.js" ></script> 
         <style>
-          #IdPermisos{
+          #IdVer{
             display: block;
             width: 100%;
           }
@@ -68,15 +68,15 @@
 
                                             <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                                 <label for="Usuario">Usuario</label>
-                                                <select id="IdUsuarios" class="form-control" required>
+                                                <select id="IdUsuariosA" class="form-control" required>
                                                     <option value="" disabled selected>Seleccione</option>
                                                     <option value="1">JULIAN A. ARISTIZABAL</option>
                                                 </select>
                                             </div>
 
                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                <label for="Permisos" style="visibility:hidden">Permisos</label>
-                                                <button class="btn btn-primary btn-md" type="button" id="IdPermisos" name="Permisos">Ver Permisos</button>
+                                                <label for="Auditoria" style="visibility:hidden">Auditoria</label>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdVer" name="Ver">Ver</button>
                                             </div>  
 
                                             <br/>
@@ -85,7 +85,7 @@
                                         <!-- Formulario Configuración -->      
                                         <!-- Botones -->
                                         <div class="ln_solid"></div>
-                                        <div class="form-group">
+                                        <!--div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                                 <button class="btn btn-primary btn-md" type="button" id="IdQuitoTodos" name=""><i class="fa fa-angle-double-right"></i> </button>
                                                 <button class="btn btn-primary btn-md" type="button" id="IdQuitoUno" name=""><i class="fa fa-angle-right"></i> </button>
@@ -97,12 +97,12 @@
                                                     <div class="form-group">
                                                         <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-1">
                                                             <!--button class="btn btn-warning btn-sm" type="button"><i class="fa fa-edit"></i> Editar</button-->
-                                                            <!--button class="btn btn-dark btn-sm" type="button" disabled><i class="fa fa-trash"></i> Eliminar</button-->
+                                                            <!--button class="btn btn-dark btn-sm" type="button" disabled><i class="fa fa-trash"></i> Eliminar</button>
                                                         </div>
                                                     </div>
                                                 </div>         
                                             </div>
-                                        </div>
+                                        </div-->
                                         <!-- /Botones -->
                                     </div>
                                 </form>
@@ -131,14 +131,16 @@
                                     </div>
                                     <div class="x_content">
                                         <!-- Tabla -->
-                                        <table id="datatable" class="table table-striped table-bordered">
+                                        <table id="datatableAu" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <!--th>Id</th-->
-                                                    <th>Nombre</th>
-                                                    <th>Login</th>
-                                                    <th>Contraseña</th>
-                                                    <th>Opciones</th>   
+                                                    <th>Operacion</th>
+                                                    <th>Tabla</th>
+                                                    <th>Fecha</th>
+                                                    <th>Usuario</th>
+                                                    <th>Registro Modificado</th>
+                                                    <th>Observacion</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -146,8 +148,11 @@
                                                     <!--td></td-->                                     
                                                     <td></td>                                     
                                                     <td></td> 
+                                                    <td></td>
+                                                    <td></td>                                     
                                                     <td></td> 
-                                                    <td class="text-center">
+                                                    <td></td> 
+                                                    <!--td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
                                                                 data-nombre=""
@@ -160,7 +165,7 @@
                                                                 data-login="" 
                                                                 data-password=""                                                                
                                                                 type="button" id="IdEliminar" name="Eliminar"></button>
-                                                    </td>                                                    
+                                                    </td-->                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
