@@ -80,6 +80,30 @@
                                             </div>  
 
                                             <br/>
+                                            
+                                             <div class='col-md-6 col-sm-6 col-xs-12'>
+                                                <label for="FechaInicio">Fecha Inicio</label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker2'>
+                                                        <input type="text" class="form-control" id="IdFechaInicio" name="FechaInicio"/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class='col-md-6 col-sm-6 col-xs-12'>
+                                                <label for="FechaFin">Fecha Fin</label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker3'>
+                                                        <input type='text' class="form-control" id="IdFechaFin" name="FechaFin"/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
 
                                         </div>
                                         <!-- Formulario Configuración -->      
@@ -189,6 +213,22 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
+        <script>
+            
+        $('#myDatepicker').datetimepicker();
+
+        $('#myDatepicker2').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: 'es'
+        });
+
+        $('#myDatepicker3').datetimepicker({
+            format: 'YYYY-MM-DD',
+            locale: 'es'
+        });
+        
+        </script>
+         
     </body>
 </html>
 
