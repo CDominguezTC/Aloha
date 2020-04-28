@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>        
-        <%@include file="Principal/Head.html" %>        
+        <%@include file="Principal/Head.html" %>          
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesAuditoria.js" ></script> 
         <style>
@@ -226,9 +226,8 @@
             format: 'YYYY-MM-DD',
             locale: 'es'
         });
-        
-        </script>
          
+        </script>        
     </body>
 </html>
 

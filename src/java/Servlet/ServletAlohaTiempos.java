@@ -718,7 +718,10 @@ public class ServletAlohaTiempos extends HttpServlet
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Combo Cargado");
                         break;
                     case "ReadReg":
-                        Resultado = controladorAud.readTabla(request, response);
+                        String usr = request.getParameter("usuario");
+                        String fini = request.getParameter("fechai");
+                        String ffin = request.getParameter("fechaf");
+                        Resultado = controladorAud.readTabla(request, response, usr, fini, ffin);
                         PrintWriter pw2 = response.getWriter ();
                         pw2.write (Resultado);
                         System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Tabla Cargada");

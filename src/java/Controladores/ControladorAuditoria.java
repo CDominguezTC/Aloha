@@ -133,7 +133,7 @@ public class ControladorAuditoria {
         return out;
     }
     
-    public LinkedList<ModeloAuditoria> Read(){
+    public LinkedList<ModeloAuditoria> Read(String usr, String fini, String ffin){
             
         LinkedList<ModeloAuditoria> modeloAud = new LinkedList<ModeloAuditoria>();
         ModeloUsuarios modU = new ModeloUsuarios();
@@ -143,9 +143,16 @@ public class ControladorAuditoria {
         Timestamp timestamp = null;
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
-                        
-            SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria");
-
+            if("".equals(usr)){
+                SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria");
+                
+            }else if("todos".equals(usr)){
+                SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria WHERE fecha BETWEEN '"+ fini +" 00:00:00' AND '"+ ffin +" 23:59:59'");
+            }
+            else{
+                SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria WHERE id_usuario = " + usr + " AND fecha BETWEEN '"+ fini +" 00:00:00' AND '"+ ffin +" 23:59:59'");
+            }
+                            
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
             
@@ -177,13 +184,13 @@ public class ControladorAuditoria {
         return modeloAud;
     }
     
-    public String readTabla(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String readTabla(HttpServletRequest request, HttpServletResponse response, String usr, String fini, String ffin) throws ServletException, IOException {
                 
         String out = null;
         try {
             
             LinkedList<ModeloAuditoria> listmoAu;            
-            listmoAu = Read();
+            listmoAu = Read(usr, fini, ffin);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
