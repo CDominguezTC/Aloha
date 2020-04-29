@@ -7,13 +7,10 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloEmpresa;
-import Modelo.ModeloPersonas;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -49,7 +46,7 @@ public class ControladorEmpresas{
                 Connection con;
                 ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
                 con = conexionBdMysql.abrirConexion();
-                PreparedStatement SQL;
+                PreparedStatement SQL = null;
                 SQL = con.prepareStatement("INSERT INTO `empresa`("
                         + "`nombre`,"
                         + "`nit`,"
@@ -59,7 +56,7 @@ public class ControladorEmpresas{
                         + "`telefono`,"
                         + "`ext`,"                        
                         + "`observacion`)"
-                        + " VALUE (?,?,?,?,?,?,?,?);");
+                        + " VALUE (?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloEmpresa.getNombre());
                 SQL.setString(2, modeloEmpresa.getNit());
                 SQL.setString(3, modeloEmpresa.getDireccion());                
@@ -68,10 +65,21 @@ public class ControladorEmpresas{
                 SQL.setString(6, modeloEmpresa.getTelefono());
                 SQL.setString(7, modeloEmpresa.getExt());
                 SQL.setString(8, modeloEmpresa.getObservacion());
-                SQL.executeUpdate();
-                resultado = "1";
-                SQL.close();
-                con.close();
+                
+                if (SQL.executeUpdate() > 0){
+                    
+                    ControladorAuditoria auditoria = new ControladorAuditoria();                        
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int)generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "empresa", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                        }
+                    }
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+                
 
             } else
             {

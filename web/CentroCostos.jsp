@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js" ></script>         
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js"></script> 
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -162,6 +162,7 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
+        
     </body>
 </html>
 
