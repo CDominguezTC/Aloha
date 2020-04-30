@@ -730,7 +730,7 @@ $(function(){
         data: data,
         success: function(resul, textStatus, jqXHR){
 
-          console.log("Auditoria realizada");
+          //console.log("Auditoria realizada");
             /*Swal.fire({
                 icon: 'success',
                 title: 'Guardado',

@@ -56,7 +56,7 @@ public class ControladorDispositivos
                 Connection con;
                 ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
                 con = conexionBdMysql.abrirConexion();
-                PreparedStatement SQL;
+                PreparedStatement SQL = null;
                 SQL = con.prepareStatement("INSERT INTO `dispositivo`("
                         + "`numeroDispositivo`,"
                         + "`nombre`,"
@@ -73,7 +73,7 @@ public class ControladorDispositivos
                         + "`EncabezadoImpresion`,"
                         + "`UtilizaMenu`,"
                         + "`Evento`) "
-                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setInt(1, modeloDispositivos.getNumeroDispositivo());
                 SQL.setString(2, modeloDispositivos.getNombre());
                 SQL.setString(3, modeloDispositivos.getDireccionIP());
@@ -89,10 +89,19 @@ public class ControladorDispositivos
                 SQL.setString(13, modeloDispositivos.getEncabezadoImpresion());
                 SQL.setString(14, modeloDispositivos.getUtilizaMenu());
                 SQL.setString(15, modeloDispositivos.getEvento());
-                SQL.executeUpdate();
-                resultado = "1";
-                SQL.close();
-                con.close();
+                if (SQL.executeUpdate() > 0){
+                    ControladorAuditoria auditoria = new ControladorAuditoria();                        
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int)generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "dispositivo", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                        }
+                    }
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+                
 
             } else
             {
@@ -171,8 +180,9 @@ public class ControladorDispositivos
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try
-        {
+        try{
+        
+            //SQL = con.prepareStatement("SELECT id, numeroDispositivo, nombre, direccionIP, puerto, modo, ipControladora, puertoControladora, tipoLector, Activo, Serie, Licencia, Impresora, EncabezadoImpresion, UtilizaMenu FROM dispositivo");
             SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`numeroDispositivo`,"
@@ -218,7 +228,7 @@ public class ControladorDispositivos
             con.close();
         } catch (SQLException e)
         {
-            JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
+            JOptionPane.showMessageDialog(null, "Error buscando el dato solicitado " + e);
         }
         return modeloDispositivos;
     }
@@ -333,7 +343,7 @@ public class ControladorDispositivos
 //            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
         } catch (Exception e)
         {
-            System.out.println("Error en el kproceso de la tabla " + e.getMessage());
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
 //        String frm = request.getParameter("frm");
 //        System.out.println(frm);

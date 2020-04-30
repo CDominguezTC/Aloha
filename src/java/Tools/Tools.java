@@ -256,6 +256,10 @@ public class Tools {
     
     public String validoItem(String user, String modulo){
         
+        if("ServletAlohaTiempos.Abrir".equals(modulo)){
+            return "true";
+        }
+        
         PreparedStatement SQL = null;
         ResultSet rs = null;
         Connection con;

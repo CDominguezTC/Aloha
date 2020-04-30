@@ -2,13 +2,15 @@ $(function() {
     $("#header").load("Principal/Head.html");
     $("#script").load("Principal/Script.html");
 });
-$(function()
-{
-    $(document).ready(function() {
-        LoadTabla();
-        validacionBtn();
-    });
-    $(document).on('click', '.SetFormulario', function() {
+$(function(){
+
+  $(document).ready(function() {
+    
+    LoadTabla();
+    validacionBtn();
+  });
+
+  $(document).on('click', '.SetFormulario', function() {
         $('#Id').val($(this).data('id'));
         $('#IdNoDispositivo').val($(this).data('nodispositivo'));
         $('#IdNombre').val($(this).data('nombre'));
@@ -244,203 +246,205 @@ $(function()
         botonEnviar.disabled === true;*/
     }
 
-    function ValidaCampo()
-    {
-        var res = false;
-        if ($('#IdNoDispositivo').val() !== "")
-        {
-            if ($('#IdNombre').val() !== "")
-            {
-                if ($('#IdIp').val() !== "")
-                {
-                    if ($('#IdPuertoDispositivo').val() !== "")
-                    {
-                        res = true;
-                    }
-                }
-            }
-        }
-        return res;
-    }
+  function ValidaCampo()
+  {
+      var res = false;
+      if ($('#IdNoDispositivo').val() !== "")
+      {
+          if ($('#IdNombre').val() !== "")
+          {
+              if ($('#IdIp').val() !== "")
+              {
+                  if ($('#IdPuertoDispositivo').val() !== "")
+                  {
+                      res = true;
+                  }
+              }
+          }
+      }
+      return res;
+  }
 
-    function  LimpiarCampos()
-    {
-        $('#Id').val('');
-        $('#IdNoDispositivo').val('');
-        $('#IdNombre').val('');
-        $('#IdIp').val('');
-        $('#IdPuertoDispositivo').val('');
-        $('#IdModo').val(0);
-        $('#IdTipoLector').val(0);
-        $('#IdActivo').val(0);
-        $('#IdSerie').val('');
-        $('#IdLicencia').val('');
-        $('#IdImpresora').val('');
-        $('#IdEncabezadoImpresion').val('');
-        $('#IdUtilizaMenu').val(0);
-        $('#IdIpControladora').val('');
-        $('#IdPuertoControladora').val('');
-        $('#UtilizaMenu').val(0);
-        $('#IdEvento').val(0);
-    }
+  function  LimpiarCampos()
+  {
+      $('#Id').val('');
+      $('#IdNoDispositivo').val('');
+      $('#IdNombre').val('');
+      $('#IdIp').val('');
+      $('#IdPuertoDispositivo').val('');
+      $('#IdModo').val(0);
+      $('#IdTipoLector').val(0);
+      $('#IdActivo').val(0);
+      $('#IdSerie').val('');
+      $('#IdLicencia').val('');
+      $('#IdImpresora').val('');
+      $('#IdEncabezadoImpresion').val('');
+      $('#IdUtilizaMenu').val(0);
+      $('#IdIpControladora').val('');
+      $('#IdPuertoControladora').val('');
+      $('#UtilizaMenu').val(0);
+      $('#IdEvento').val(0);
+  }
 
-    $('#IdAgregar').click(function(e)
-    {
-        LimpiarCampos();
-    });
-    $('#IdGuardar').click(function(e)
-    {
-        if (ValidaCampo() === true)
-        {
-            var Frm = "DispositivosJSP";
-            var Id = $('#Id').val();
-            var NoDispositivo = $('#IdNoDispositivo').val();
-            var Nombre = $('#IdNombre').val();
-            var Ip = $('#IdIp').val();
-            var PuertoDispositivo = $('#IdPuertoDispositivo').val();
-            var Modo = $('#IdModo').val();
-            var TipoLector = $('#IdTipoLector').val();
-            var Activo = $('#IdActivo').val();
-            var Serie = $('#IdSerie').val();
-            var Licencia = $('#IdLicencia').val();
-            var Impresora = $('#IdImpresora').val();
-            var EncabezadoImpresion = $('#IdEncabezadoImpresion').val();
-            var UtilizaMenu = $('#IdUtilizaMenu').val();
-            var IpControladora = $('#IdIpControladora').val();
-            var PuertoControladora = $('#IdPuertoControladora').val();
-            var UtilizaMenu = $('#IdUtilizaMenu').val();
-            var Evento = $('#IdEvento').val();
-            var Accion = "Upload";
-            var data = {
-                frm: Frm,
-                id: Id,
-                nodispositivo: NoDispositivo,
-                nombre: Nombre,
-                ip: Ip,
-                puertoDispositivo: PuertoDispositivo,
-                modo: Modo,
-                tipolector: TipoLector,
-                activo: Activo,
-                serie: Serie,
-                licencia: Licencia,
-                impresora: Impresora,
-                encabezadoimpresion: EncabezadoImpresion,
-                utilizamenu: UtilizaMenu,
-                ipcontroladora: IpControladora,
-                puertocontroladora: PuertoControladora,
-                utilizamenu: UtilizaMenu,
-                evento: Evento,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function(resul, textStatus, jqXHR)
-                {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Guardado',
-                        text: 'Registro Guardado Satisfactoriamente.'
-                    });
-                    disableGif();
-                    //alert(resul);
-                    LimpiarCampos();
-                    LoadTabla();
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
-                }
-            });
-        }
-        else
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Verifica todos los campos.'
-            });
-            //alert("Favor de completar todos los campos");
-        }
-    });
+  $('#IdAgregar').click(function(e)
+  {
+      LimpiarCampos();
+  });
 
-    $(document).on('click', '.SetEliminar', function() {
-        var Frm = "DispositivosJSP";
-        var Id = $(this).data('id');
-        var Accion = "Delete";
-        var data = {
-            frm: Frm,
-            id: Id,
-            accion: Accion
-        };
-        Swal.fire({
-            title: '¿Estás seguro?',
-            text: "¡No podrás revertir esto!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'No, cancelar'
-            }).then((result) => {
-            if (result.value) {
-                enableGif();
-                $.ajax({
-                type: "POST",
-                        url: "ServletAlohaTiempos",
-                        data: data,
-                        success: function(resul, textStatus, jqXHR)
-                        {
-                            disableGif();
-                            Swal.fire({
-                                icon: 'success',
-                                title: 'Eliminado',
-                                text: resul
-                            });
-                            //alert(resul);
-                            LimpiarCampos();
-                            LoadTabla();
-                        },
-                        error: function(jqXHR, textStatus, errorThrown) {
-                            disableGif();
-                            if (jqXHR.status === 0) {
-                                alert('Not connect: Verify Network.');
-                            } else if (jqXHR.status === 404) {
-                                alert('Requested page not found [404]');
-                            } else if (jqXHR.status === 500) {
-                                alert('Internal Server Error [500].');
-                            } else if (textStatus === 'parsererror') {
-                                alert('Requested JSON parse failed.');
-                            } else if (textStatus === 'timeout') {
-                                alert('Time out error.');
-                            } else if (textStatus === 'abort') {
-                                alert('Ajax request aborted.');
-                            } else {
-                                alert('Uncaught Error: ' + jqXHR.responseText);
-                            }
-                        }
+  $('#IdGuardar').click(function(e)
+  {
+      if (ValidaCampo() === true)
+      {
+          var Frm = "DispositivosJSP";
+          var Id = $('#Id').val();
+          var NoDispositivo = $('#IdNoDispositivo').val();
+          var Nombre = $('#IdNombre').val();
+          var Ip = $('#IdIp').val();
+          var PuertoDispositivo = $('#IdPuertoDispositivo').val();
+          var Modo = $('#IdModo').val();
+          var TipoLector = $('#IdTipoLector').val();
+          var Activo = $('#IdActivo').val();
+          var Serie = $('#IdSerie').val();
+          var Licencia = $('#IdLicencia').val();
+          var Impresora = $('#IdImpresora').val();
+          var EncabezadoImpresion = $('#IdEncabezadoImpresion').val();
+          var UtilizaMenu = $('#IdUtilizaMenu').val();
+          var IpControladora = $('#IdIpControladora').val();
+          var PuertoControladora = $('#IdPuertoControladora').val();
+          var UtilizaMenu = $('#IdUtilizaMenu').val();
+          var Evento = $('#IdEvento').val();
+          var Accion = "Upload";
+          var data = {
+              frm: Frm,
+              id: Id,
+              nodispositivo: NoDispositivo,
+              nombre: Nombre,
+              ip: Ip,
+              puertoDispositivo: PuertoDispositivo,
+              modo: Modo,
+              tipolector: TipoLector,
+              activo: Activo,
+              serie: Serie,
+              licencia: Licencia,
+              impresora: Impresora,
+              encabezadoimpresion: EncabezadoImpresion,
+              utilizamenu: UtilizaMenu,
+              ipcontroladora: IpControladora,
+              puertocontroladora: PuertoControladora,
+              utilizamenu: UtilizaMenu,
+              evento: Evento,
+              accion: Accion
+          };
+          enableGif();
+          $.ajax({
+              type: "POST",
+              url: "ServletAlohaTiempos",
+              data: data,
+              success: function(resul, textStatus, jqXHR)
+              {
+                  Swal.fire({
+                      icon: 'success',
+                      title: 'Guardado',
+                      text: 'Registro Guardado Satisfactoriamente.'
+                  });
+                  disableGif();
+                  //alert(resul);
+                  LimpiarCampos();
+                  LoadTabla();
+              },
+              error: function(jqXHR, textStatus, errorThrown) {
+                  disableGif();
+                  if (jqXHR.status === 0) {
+                      alert('Not connect: Verify Network.');
+                  } else if (jqXHR.status === 404) {
+                      alert('Requested page not found [404]');
+                  } else if (jqXHR.status === 500) {
+                      alert('Internal Server Error [500].');
+                  } else if (textStatus === 'parsererror') {
+                      alert('Requested JSON parse failed.');
+                  } else if (textStatus === 'timeout') {
+                      alert('Time out error.');
+                  } else if (textStatus === 'abort') {
+                      alert('Ajax request aborted.');
+                  } else {
+                      alert('Uncaught Error: ' + jqXHR.responseText);
+                  }
+              }
+          });
+      }
+      else
+      {
+          Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Verifica todos los campos.'
+          });
+          //alert("Favor de completar todos los campos");
+      }
+  });
 
-                });
-            }
-        });
-    });
-    $("#IdEliminar").click(function(e) {
+  $(document).on('click', '.SetEliminar', function() {
+      var Frm = "DispositivosJSP";
+      var Id = $(this).data('id');
+      var Accion = "Delete";
+      var data = {
+          frm: Frm,
+          id: Id,
+          accion: Accion
+      };
+      Swal.fire({
+          title: '¿Estás seguro?',
+          text: "¡No podrás revertir esto!",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Sí, eliminar',
+          cancelButtonText: 'No, cancelar'
+          }).then((result) => {
+          if (result.value) {
+              enableGif();
+              $.ajax({
+              type: "POST",
+                      url: "ServletAlohaTiempos",
+                      data: data,
+                      success: function(resul, textStatus, jqXHR)
+                      {
+                          disableGif();
+                          Swal.fire({
+                              icon: 'success',
+                              title: 'Eliminado',
+                              text: resul
+                          });
+                          //alert(resul);
+                          LimpiarCampos();
+                          LoadTabla();
+                      },
+                      error: function(jqXHR, textStatus, errorThrown) {
+                          disableGif();
+                          if (jqXHR.status === 0) {
+                              alert('Not connect: Verify Network.');
+                          } else if (jqXHR.status === 404) {
+                              alert('Requested page not found [404]');
+                          } else if (jqXHR.status === 500) {
+                              alert('Internal Server Error [500].');
+                          } else if (textStatus === 'parsererror') {
+                              alert('Requested JSON parse failed.');
+                          } else if (textStatus === 'timeout') {
+                              alert('Time out error.');
+                          } else if (textStatus === 'abort') {
+                              alert('Ajax request aborted.');
+                          } else {
+                              alert('Uncaught Error: ' + jqXHR.responseText);
+                          }
+                      }
+
+              });
+          }
+      });
+  });
+
+  $("#IdEliminar").click(function(e) {
         if (ValidaCampo() === true)
         {
             var Frm = "DispositivosJSP";
@@ -488,8 +492,9 @@ $(function()
         }
 
     });
-function LoadTabla()
-{
+
+  function LoadTabla(){
+
     var Frm = "DispositivosJSP";
     var Accion = "Read";
     var data = {
@@ -540,8 +545,8 @@ function LoadTabla()
             });
             //$('#datatable').dataTable().fnDestroy();
 
-//                    alert(resul);
-//                    LimpiarCampos();
+  //                    alert(resul);
+  //                    LimpiarCampos();
         },
         error: function(jqXHR, textStatus, errorThrown) {
             disableGif();
@@ -563,16 +568,15 @@ function LoadTabla()
         }
     });
     validacionBtn();
-}
-function enableGif()
-{
+  }
+  function enableGif()
+  {
     window.onload = document.getElementById("espera").style = "display: block";
     window.onload = document.getElementById("Principal").style = "display: none"
-}
-function disableGif()
-{
+  }
+  function disableGif()
+  {
     window.onload = document.getElementById("espera").style = "display: none";
     window.onload = document.getElementById("Principal").style = "display: enable"
     }
-}
-);
+});
