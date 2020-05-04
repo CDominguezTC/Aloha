@@ -55,6 +55,9 @@ public class Herramienta
             case "true":
                 resp = "true";
                 break;
+            case "false":
+                resp = "false";
+                break;
         }
         return resp;
     }

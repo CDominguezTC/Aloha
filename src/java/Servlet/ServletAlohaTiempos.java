@@ -474,10 +474,24 @@ public class ServletAlohaTiempos extends HttpServlet
                     case "LeoItems":
                         String[] myJsonData = request.getParameterValues("elements[]");
                         String idUsr = request.getParameter ("usr");
+                        String canReg = request.getParameter ("creg");
+                        if("0".equals(canReg)){
+                            boolean res = controladorPer.eliminoPermisos(idUsr);
+                            if(res){
+                                Resultado = "true";
+                                break;
+                            }else{
+                                Resultado = "false";
+                                break;
+                            }
+                        }else{
+                            Resultado = controladorPer.insertarPermisos(myJsonData, idUsr);
+                            break;
+                        }
                         //String players = request.getParameter("elements");
                         //String[] s = players.split(",");                        
-                        Resultado = controladorPer.insertarPermisos(myJsonData, idUsr);
-                        break;                                                
+                        
+                                                                        
                 }            
             break;
             case "UsuariosJSP":

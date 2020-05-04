@@ -278,14 +278,15 @@ public class ControladorPermisos {
         return resultado;
     }
     
-    private boolean eliminoPermisos(String user){
+    public boolean eliminoPermisos(String user){
         
         con = conexion.abrirConexion();
         try{
 
             SQL = con.prepareStatement("DELETE FROM permisosxusuarios WHERE id_usuario = ?");
             SQL.setString(1, user);
-            if (SQL.executeUpdate() > 0){
+            //System.err.println(SQL.executeUpdate());
+            if (SQL.executeUpdate() >= 0){
 
                 return true;
             }
