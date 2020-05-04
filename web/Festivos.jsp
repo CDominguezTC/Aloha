@@ -59,6 +59,7 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
+                                            <input type="hidden" id="IdFechaOld" name="FechaOld">
                                             <div class='col-md-6 col-sm-6 col-xs-12'>
                                                 <label for="Fecha">Fecha</label>
                                                 <div class="form-group">
@@ -70,6 +71,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">

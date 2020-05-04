@@ -300,21 +300,37 @@ $(function(){
 
     $('#Id').val('');
     $('#IdNoDispositivo').val('');
+    $('#IdNoDispoOld').val('');
     $('#IdNombre').val('');
+    $('#IdNombreOld').val('');
     $('#IdIp').val('');
+    $('#IdIpOld').val('');
     $('#IdPuertoDispositivo').val('');
+    $('#IdPuertoDispoOld').val('');
     $('#IdModo').val(0);
+    $('#IdModoOld').val('');
     $('#IdTipoLector').val(0);
+    $('#IdTipoLectorOld').val('');
     $('#IdActivo').val(0);
+    $('#IdActivoOld').val('');
     $('#IdSerie').val('');
+    $('#IdSerieOld').val('');
     $('#IdLicencia').val('');
+    $('#IdLicenciaOld').val('');
     $('#IdImpresora').val('');
+    $('#IdImpresoraOld').val('');
     $('#IdEncabezadoImpresion').val('');
+    $('#IdEncabezadoImpresionOld').val('');
     $('#IdUtilizaMenu').val(0);
+    $('#IdUtilizaMenuOld').val('');
     $('#IdIpControladora').val('');
+    $('#IdIpControladoraOld').val('');
     $('#IdPuertoControladora').val('');
+    $('#IdPuertoControladoraOld').val('');
     $('#UtilizaMenu').val(0);
+    $('#UtilizaMenuOld').val('');
     $('#IdEvento').val(0);
+    $('#IdEventoOld').val('');
 
     document.getElementById("IdNoDispositivo").focus();
   }
@@ -504,13 +520,13 @@ $(function(){
     var PuertoDispo = $('#IdPuertoDispositivo').val();
     var PuertoDispoOld = $('#IdPuertoDispoOld').val();
 
-    var Modo = $('#IdModo').val();
+    var Modo = $("#IdModo option:selected").text();
     var ModoOld = $('#IdModoOld').val();
 
     var TipoLector = $("#IdTipoLector option:selected").text();
     var TipoLectorOld = $('#IdTipoLectorOld').val()
 
-    var Activo = $('#IdActivo').val();
+    var Activo = $("#IdActivo option:selected").text();
     var ActivoOld = $('#IdActivoOld').val();
 
     var Serie = $('#IdSerie').val();
@@ -525,7 +541,7 @@ $(function(){
     var EncabezadoImpresion = $('#IdEncabezadoImpresion').val();
     var EncabezadoImpresionOld = $('#IdEncabezadoImpresionOld').val();
 
-    var UtilizaMenu = $('#IdUtilizaMenu').val();
+    var UtilizaMenu = $("#IdUtilizaMenu option:selected").text();
     var UtilizaMenuOld = $('#IdUtilizaMenuOld').val();
 
     var Controladora = $('#IdIpControladora').val();
@@ -534,11 +550,17 @@ $(function(){
     var PuertoControladora = $('#IdPuertoControladora').val();
     var PuertoControladoraOld = $('#IdPuertoControladoraOld').val();
 
-    var Evento = $('#IdEvento').val();
+    var Evento = $("#IdEvento option:selected").text();
     var EventoOld = $('#IdEventoOld').val();
 
     var Accion = "Insert";
     var Operacion;
+
+    if(ModoOld === "1"){
+      ModoOld = "ENTRADA";
+    }else if (ModoOld === "2") {
+      ModoOld = "SALIDA";
+    }
 
     if(TipoLectorOld === "1"){
       TipoLectorOld = "Biometrico";
@@ -546,6 +568,24 @@ $(function(){
       TipoLectorOld = "Barras";
     }else if (TipoLectorOld === "3"){
       TipoLectorOld = "Proximidad";
+    }
+
+    if(ActivoOld === "1"){
+      ActivoOld = "Si";
+    }else if (ActivoOld === "2") {
+      ActivoOld = "No";
+    }
+
+    if(UtilizaMenuOld === "1"){
+      UtilizaMenuOld = "Si";
+    }else if (ActivoOld === "2") {
+      UtilizaMenuOld = "No";
+    }
+
+    if(EventoOld === "1"){
+      EventoOld = "Impresora";
+    }else if (EventoOld === "2") {
+      EventoOld = "Torniquete";
     }
 
     if (modo === "actualizar") {
