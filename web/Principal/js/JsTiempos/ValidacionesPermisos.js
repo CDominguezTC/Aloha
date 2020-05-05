@@ -289,7 +289,7 @@ $(function(){
 
   $('#IdPasoUno').click(function(e){
 
-    $("#IdPermisosNoAsig option:selected").each(function () {
+  $("#IdPermisosNoAsig option:selected").each(function () {
 
       var sele = document.getElementById('IdPermisosAsig');
       var $this = $(this);
@@ -302,7 +302,7 @@ $(function(){
         //console.log(selText);
         $this.remove();
       }
-    });
+  });
     /*var e = document.getElementById('IdPermisosNoAsig');
     //var strUser = e.options[e.selectedIndex].value;
     var strU = e.options[e.selectedIndex].text;
@@ -414,7 +414,7 @@ $(function(){
             var Accion = "LeoItems";
             var data = {
                 frm: Frm,
-                //elements: JSON.stringify(elemen),                
+                //elements: JSON.stringify(elemen),
                 usr: strUser,
                 creg: i,
                 accion: Accion
@@ -513,7 +513,7 @@ $(function(){
         data: data,
         success: function(resul, textStatus, jqXHR){
 
-          console.log("Auditoria realizada");
+          //console.log("Auditoria realizada");
           disableGif();
             /*Swal.fire({
                 icon: 'success',

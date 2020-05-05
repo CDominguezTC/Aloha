@@ -155,6 +155,13 @@ $(function(){
         validoPermiso("LiquidacionCasino.Abrir", "LiquidacionCasino.jsp");
     });
 
+	$('#idcarhot').click(function (e) {
+
+      //alert("HolaEmpresa");
+      validoPermiso("CargosHoteleria.Abrir", "CargosHoteleria.jsp");
+
+  });
+
 	$('#idcambiarpw').click(function(e){
 
 		var namUs = document.getElementById('usering').innerHTML;

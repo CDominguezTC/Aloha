@@ -19,7 +19,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Tipo Consumo</h3>
+                        <h3>Cargos Hoteleria</h3>
                     </div>
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
@@ -59,10 +59,12 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
+                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
+                                            <input type="hidden" id="IdCantidadOld" name="CantidadOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Valor</label>
                                                 <input type="number" class="form-control" id="IdCantidad" name="Cantidad" required="required">
@@ -137,7 +139,7 @@
                                                                 data-id=""
                                                                 data-codigo=""
                                                                 data-nombre=""                                                                
-                                                                type="button" id="IdEliminar" name="Eliminar"></button>
+                                                                type="button" id="IdEliminar" name="Eliminar">Eliminar</button>
                                                     </td>                                                    
                                                 </tr>
                                             </tbody>
