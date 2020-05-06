@@ -49,11 +49,17 @@ public class ControladorGrupoConsumo
                     SQL = con.prepareStatement("INSERT INTO `grupoconsumo`("
                             + "`codigo`,"
                             + "`nombre`) "
-                            + "VALUE (?,?);");
+                            + "VALUE (?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modelo.getCodigo());
                     SQL.setString(2, modelo.getDescripcion());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0){
+                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int)generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "grupo_consumo", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();

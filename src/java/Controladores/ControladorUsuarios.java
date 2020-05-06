@@ -19,9 +19,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Julian A Aristizabal
- */
+* Esta metodo permintem eliminar un dato de la base de datos de la tabla Grupo Turnos           *
+* @author: Julian A Aristizabal
+* @param request 
+* @return string
+* @version: 06-08-2020     
+*/
 public class ControladorUsuarios {
     
     String resultado = "";
