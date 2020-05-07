@@ -5,7 +5,7 @@ $(function () {
 
 $(function (){
 
-  $(document).ready(function () {
+  $(document).ready(function (){
       LoadTabla();
       validacionBtn();
   });

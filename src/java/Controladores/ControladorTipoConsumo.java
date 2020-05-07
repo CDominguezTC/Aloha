@@ -8,17 +8,14 @@ package Controladores;
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloTipoConsumo;
 import java.io.IOException;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,8 +29,8 @@ public class ControladorTipoConsumo
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
 
-    public String Insert(HttpServletRequest request)
-    {
+    public String Insert(HttpServletRequest request){
+    
         if ("".equals(request.getParameter("id")))
         {
             ModeloTipoConsumo modelo = new ModeloTipoConsumo(
@@ -49,11 +46,18 @@ public class ControladorTipoConsumo
                     SQL = con.prepareStatement("INSERT INTO `tipoconsumo`"
                             + "(`Nombre`,"
                             + "`Cantidad`) "
-                            + "VALUE (?,?);");
+                            + "VALUE (?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modelo.getNombre());
                     SQL.setInt(2, modelo.getCantidad());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0){
+                        
+                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int)generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "tipo_consumo", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();
@@ -111,8 +115,8 @@ public class ControladorTipoConsumo
         return resultado;
     }
 
-    public String Delete(HttpServletRequest request)
-    {
+    public String Delete(HttpServletRequest request){
+    
         if (!"".equals(request.getParameter("id")))
         {
             String idtmp = request.getParameter("id");
@@ -147,8 +151,8 @@ public class ControladorTipoConsumo
         return resultado;
     }
 
-    public LinkedList<ModeloTipoConsumo> Read()
-    {
+    public LinkedList<ModeloTipoConsumo> Read(){
+    
         LinkedList<ModeloTipoConsumo> listModeloTipoConsumo = new LinkedList<ModeloTipoConsumo>();
         con = conexion.abrirConexion();
         try
@@ -178,8 +182,8 @@ public class ControladorTipoConsumo
     }
 
     public String Read(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+            throws ServletException, IOException{
+    
         String out = null;
         try
         {
@@ -231,8 +235,8 @@ public class ControladorTipoConsumo
         return out;
     }
 
-    ModeloTipoConsumo getModelo(int id)
-    {
+    ModeloTipoConsumo getModelo(int id){
+    
         ModeloTipoConsumo modelo = new ModeloTipoConsumo();
         con = conexion.abrirConexion();
         try
