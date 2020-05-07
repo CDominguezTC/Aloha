@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Usuarios
-    Created on : 15/04/2020, 08:28:42 AM
+    Document   : Dependencias
+    Created on : 13/12/2019, 10:47:52 AM
     Author     : Frankie
 --%>
 
@@ -10,9 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesBotones.js"></script-->
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesUsuarios.js" ></script> 
-        
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCargos.js" ></script> 
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -21,7 +19,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Usuarios</h3>
+                        <h3>Cargos</h3>
                     </div>
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
@@ -61,20 +59,13 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
-                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                <label for="Nombre">Nombre</label>
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="codigo">Código</label>
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" min="0" required="required">
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
-                                            </div>
-                                            <input type="hidden" id="IdLogOld" name="LogOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                <label for="Login">Login</label>
-                                                <input type="text" class="form-control" id="IdLogin" name="Login" required="required">
-                                            </div>
-                                            <input type="hidden" id="IdPasswordOld" name="PasswordOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                <label for="Password">Contraseña</label>
-                                                <input type="password" class="form-control" id="IdPassword" name="Password" required="required">
                                             </div>
                                         </div>
                                         <!-- Formulario Configuración -->      
@@ -84,8 +75,7 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                 <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
                                                 <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
-                                                <button class="btn btn-danger btn-sm" type="button" id="IdCancelar"><i class="fa fa-close"></i> Cancelar</button>
-                                                <button class="btn btn-warning btn-sm" type="button" id="IdCambiarPw" name="CambiarClave"><i class="fa fa-lock"></i> Cambiar Clave</button>                                                
+                                                <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
                                                 <br/><br/>
                                                 <div class="row">
                                                     <div class="form-group">
@@ -128,31 +118,25 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <!--th>Id</th-->
-                                                    <th>Nombre</th>
-                                                    <th>Login</th>
-                                                    <th>Contraseña</th>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
                                                     <th>Opciones</th>   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <!--td></td-->                                     
+                                                <tr>                                                                                      
                                                     <td></td>                                     
-                                                    <td></td> 
-                                                    <td></td> 
+                                                    <td></td>                                     
                                                     <td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
-                                                                data-nombre=""
-                                                                data-login="" 
-                                                                data-password="" 
+                                                                data-codigo=""
+                                                                data-nombre=""                                                                
                                                                 type="button" id="IdModificar" name="Modificar">Editar</button>
                                                         <button class="SetEliminar btn btn-dark btn-md" 
                                                                 data-id=""
-                                                                data-nombre=""
-                                                                data-login="" 
-                                                                data-password=""                                                                
+                                                                data-codigo=""
+                                                                data-nombre=""                                                                
                                                                 type="button" id="IdEliminar" name="Eliminar"></button>
                                                     </td>                                                    
                                                 </tr>
@@ -164,7 +148,7 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /Segunda Sección--> 
+                        <!-- /Segunda Sección-->
                         <br/><br/><br/><br/><br/>
                     </div>
                 </div>

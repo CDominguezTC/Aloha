@@ -18,7 +18,7 @@
     <head>        
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPersonas.js" ></script>         
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPersonasCasino.js" ></script>         
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -200,7 +200,7 @@
                                                                                                 </span>
                                                                                             </div>
                                                                                         </div>
-                                                                                    </div-->
+                                                                                    </div>
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                                         <label for="tipo_id">Hoteleria</label>
                                                                                         <select id="IdConsumeHoteleria" class="form-control" required>                                                                                            
@@ -222,7 +222,7 @@
                                                                                     <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                                         <label for="tipo_id">Valor Adicional</label>
                                                                                         <input type="text" id="IdValorAdicional" class="form-control" value="25000">
-                                                                                    </div>
+                                                                                    </div-->
                                                                                 </div>
                                                                             </form>
                                                                         </div>
@@ -285,13 +285,13 @@
                                             <table id="datatable" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th>Cedula</th>
-                                                        <th>Nombre</th>
-                                                        <th>Empresa</th>
-                                                        <th>Centro Costo</th>                                                        
-                                                        <th>Grupo Consumo</th>
-                                                        <th>Consume Casino</th>
-                                                        <th>Opciones</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>                                                        
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

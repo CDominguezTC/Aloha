@@ -172,16 +172,16 @@
                                                             data-id=""
                                                             data-codigo=""
                                                             data-nombre=""
-                                                            data-fechaInicio=""
-                                                            data-fechaFin=""
+                                                            data-fechainicio=""
+                                                            data-fechafin=""
                                                             data-observacion=""
                                                             type="button" id="IdModificar" name="Modificar"></button>
                                                     <button class="SetEliminar btn btn-dark btn-md" 
                                                             data-id=""
                                                             data-codigo=""
                                                             data-nombre=""
-                                                            data-fechaFnicio=""
-                                                            data-fechaFin=""
+                                                            data-fechainicio=""
+                                                            data-fechafin=""
                                                             data-observacion=""                                                              
                                                             type="button" id="IdEliminar" name="Eliminar"></button>
                                                 </td>                                                    
@@ -211,24 +211,13 @@
         $('#myDatepicker').datetimepicker();
 
         $('#myDatepicker2').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(),
-            locale: 'es'
-            
+            format: 'YYYY-MM-DD',            
+            locale: 'es'            
         });
 
         $('#myDatepicker3').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(),
-            locale: 'es',
-            useCurrent: false 
-        });
-        
-        $("#myDatepicker2").on("dp.change", function (e) {
-            $('#myDatepicker3').data("DateTimePicker").minDate(e.date);
-        });
-        $("#myDatepicker3").on("dp.change", function (e) {
-            $('#myDatepicker2').data("DateTimePicker").maxDate(e.date);
+            format: 'YYYY-MM-DD',            
+            locale: 'es',            
         });
                         
         </script>

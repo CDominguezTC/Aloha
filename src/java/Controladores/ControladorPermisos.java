@@ -151,7 +151,7 @@ public class ControladorPermisos {
         try {
                         
             SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permisos p INNER JOIN permisosxusuarios pu ON p.id = pu.id_permiso INNER JOIN usuarios us ON us.id = pu.id_usuario "
-                    + "WHERE us.id = ? ORDER BY p.nombre");
+                    + "WHERE us.id = ?");
             
             SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();
@@ -180,7 +180,7 @@ public class ControladorPermisos {
         try {
                         
             SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permisos p WHERE p.id NOT IN (SELECT pu.id_permiso FROM permisosxusuarios pu INNER JOIN usuarios us ON us.Id = pu.id_usuario "
-                    + "INNER JOIN permisos p ON p.id = pu.id_permiso WHERE us.id = ?) ORDER BY p.nombre");
+                    + "INNER JOIN permisos p ON p.id = pu.id_permiso WHERE us.id = ?)");
             
             SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();
@@ -208,7 +208,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
                         
-            SQL = con.prepareStatement("SELECT id, nombre from permisos ORDER BY nombre");
+            SQL = con.prepareStatement("SELECT id, nombre from permisos ORDER BY id");
             
             //SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();
@@ -278,15 +278,14 @@ public class ControladorPermisos {
         return resultado;
     }
     
-    public boolean eliminoPermisos(String user){
+    private boolean eliminoPermisos(String user){
         
         con = conexion.abrirConexion();
         try{
 
             SQL = con.prepareStatement("DELETE FROM permisosxusuarios WHERE id_usuario = ?");
             SQL.setString(1, user);
-            //System.err.println(SQL.executeUpdate());
-            if (SQL.executeUpdate() >= 0){
+            if (SQL.executeUpdate() > 0){
 
                 return true;
             }

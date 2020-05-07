@@ -15,7 +15,7 @@
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesHorarioConsumo.js" ></script>         
     </head>
-    <body class="nav-md">
+    <body class="nav-md" >
         <%@include file="Principal/Body.html" %>
         <!-- Contenidos -->
         <div class="right_col" role="main">
@@ -61,16 +61,14 @@
                                     </div>
                                     <div id="Principal">
                                         <div class="row">
-                                            <input type="hidden" id="Id" name="Id">
-                                            <input type="hidden" id="IdCodigoOld" name="CodigoOld">
+                                            <input type="hidden" id="Id" name="Id">                                            
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Código</label>
-                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">                                                
                                             </div>
-                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>
-                                                <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
+                                                <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">                                                
                                             </div>
                                             
                                              
@@ -82,7 +80,7 @@
                                                 <label for="nombre">Hora Fin</label>
                                                 <input type="text" class="form-control" id="IdHoraFin" name="HoraFin" required="required">
                                             </div>-->
-                                            <input type="hidden" id="IdHoraInicioOld" name="HoraInicioOld">
+                                            
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="HoraInicio">Hora Inicio</label>
                                                 <div class="form-group">
@@ -94,7 +92,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="IdHoraFinOld" name="HoraFinOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="HoraFin">Hora Fin</label>
                                                 <div class="form-group">
@@ -106,12 +104,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="hidden" id="IdNoConsumosOld" name="CantidadConsumoOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Cantidad de Consumos</label>
                                                 <input type="number" class="form-control" id="IdNoConsumos" name="CantidadConsumo" required="required">
                                             </div>
-                                            <input type="hidden" id="IdTipoConsumoOld" name="TipoConsumoOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Tipo Consumo</label>
                                                 <select id="IdTipoConsumo" class="form-control" required>
@@ -131,7 +128,6 @@
                                             </div>                                                                                        
                                         </div>
                                         <div class="row" style="text-align: center">
-                                            <input type="hidden" id="IdLunesOld" name="LunesOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Lunes</label>
                                                 <select id="IdLunes" class="form-control" required>                                                    
@@ -139,7 +135,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdMartesOld" name="MartesOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Martes</label>
                                                 <select id="IdMartes" class="form-control" required>                                                    
@@ -147,7 +142,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdMiercolesOld" name="MiercolesOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Miercoles</label>
                                                 <select id="IdMiercoles" class="form-control" required>                                                    
@@ -155,7 +149,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdJuevesOld" name="JuevesOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Jueves</label>
                                                 <select id="IdJueves" class="form-control" required>                                                    
@@ -163,7 +156,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdViernesOld" name="ViernesOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Viernes</label>
                                                 <select id="IdViernes" class="form-control" required>                                                    
@@ -171,7 +163,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdSabadoOld" name="SabadoOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Sabado</label>
                                                 <select id="IdSabado" class="form-control" required>                                                    
@@ -179,7 +170,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdDomingoOld" name="DomingoOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipo_id">Domingo</label>
                                                 <select id="IdDomingo" class="form-control" required>                                                    
@@ -187,7 +177,6 @@
                                                     <option value="S">Si</option>                                                                    
                                                 </select>
                                             </div>
-                                            <input type="hidden" id="IdFestivoOld" name="FestivoOld">
                                             <div class="col-md-3 col-sm-12 col-xs-12 form-group" style="position: relative;">                                                
                                                 <label for="tipo_id">Festivo</label>
                                                 <select id="IdFestivo" class="form-control" required>                                                    
@@ -320,12 +309,12 @@
              $('#myDatepicker').datetimepicker();
         
              $('#myDatepicker2').datetimepicker({
-                format: 'hh:mm:ss A'
+                format: 'hh:mm'
                 
              });
         
              $('#myDatepicker3').datetimepicker({
-                format: 'hh:mm:ss A'
+                format: 'hh:mm'
              });
            
          </script>

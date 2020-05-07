@@ -289,7 +289,7 @@ $(function(){
 
   $('#IdPasoUno').click(function(e){
 
-  $("#IdPermisosNoAsig option:selected").each(function () {
+    $("#IdPermisosNoAsig option:selected").each(function () {
 
       var sele = document.getElementById('IdPermisosAsig');
       var $this = $(this);
@@ -302,7 +302,7 @@ $(function(){
         //console.log(selText);
         $this.remove();
       }
-  });
+    });
     /*var e = document.getElementById('IdPermisosNoAsig');
     //var strUser = e.options[e.selectedIndex].value;
     var strU = e.options[e.selectedIndex].text;
@@ -314,235 +314,81 @@ $(function(){
 
   $('#IdGuardar').click(function(e){
 
-
     var e = document.getElementById('IdUsuarios');
     var strUser = e.options[e.selectedIndex].value;
     //alert(can);
-    if(strUser != ""){
+    var i = 0;
+    var elemen = [];
+    $("#IdPermisosAsig option").each(function () {
+      //var $this = $(this);
+      //alert($(this).text());
+      elemen[i] = $(this).text();
+      i++;
 
-      var i = 0;
-      var elemen = [];
-      $("#IdPermisosAsig option").each(function () {
-        //var $this = $(this);
-        //alert($(this).text());
-        elemen[i] = $(this).text();
-        i++;
+    });
+    /*for (i = 0; i < can; i++) {
+      console.log(elemen[i]);
+    }*/
 
-      });
-      /*for (i = 0; i < can; i++) {
-        console.log(elemen[i]);
-      }*/
-      if(i != 0){
+    var Frm = "PermisosJSP";
+    var Accion = "LeoItems";
+    var data = {
+        frm: Frm,
+        //elements: JSON.stringify(elemen),
+        elements: elemen,
+        usr: strUser,
+        accion: Accion
+    };
+    $.ajax({
+      type: "POST",
+      url: "ServletAlohaTiempos",
+      data: data,
+      success: function(data, textStatus, jqXHR){
 
-        var Frm = "PermisosJSP";
-        var Accion = "LeoItems";
-        var data = {
-            frm: Frm,
-            //elements: JSON.stringify(elemen),
-            elements: elemen,
-            usr: strUser,
-            creg: i,
-            accion: Accion
-        };
-        $.ajax({
-          type: "POST",
-          url: "ServletAlohaTiempos",
-          data: data,
-          success: function(data, textStatus, jqXHR){
+        var dt = data;
+        //alert("dt: " + dt);
+        if (dt != "false"){
 
-            var dt = data;
-            //console.log("Dt msj: " + dt);
-            //alert("dt: " + dt);
-            if (dt != "false"){
+          Swal.fire({
+              icon: 'success',
+              title: 'Se actualizaron los permisos.',
+              text: 'Por favor cierre sesion e ingrese de nuevo.'
+          });
+        }
+        else{
 
-              Swal.fire({
-                  icon: 'success',
-                  title: 'Se actualizaron los permisos.',
-                  text: 'Por favor cierre sesion e ingrese de nuevo.'
-              });
-              auditoriaReg("Se actualizaron los permisos.");
-              disableGif();
-            }
-            else{
+          Swal.fire({
+              icon: 'error',
+              title: 'Ocurrio un error.',
+              text: 'Por favor intente de nuevo.',
+              showConfirmButton: false,
+              timer: 3000
+          });
+        }
 
-              Swal.fire({
-                  icon: 'error',
-                  title: 'Ocurrio un error.',
-                  text: 'Por favor intente de nuevo.',
-                  showConfirmButton: false,
-                  timer: 3000
-              });
-            }
-
-          },
-          error: function(jqXHR, textStatus, errorThrown) {
-            disableGif();
-            if (jqXHR.status === 0) {
-              alert('Not connect: Verify Network.');
-            } else if (jqXHR.status === 404) {
-              alert('Requested page not found [404]');
-            } else if (jqXHR.status === 500) {
-              alert('Internal Server Error [500].');
-            } else if (textStatus === 'parsererror') {
-              alert('Requested JSON parse failed.');
-            } else if (textStatus === 'timeout') {
-              alert('Time out error.');
-            } else if (textStatus === 'abort') {
-              alert('Ajax request aborted.');
-            } else {
-              alert('Uncaught Error: ' + jqXHR.responseText);
-            }
-          }
-        });
-      }else{
-        var usuario = $("#IdUsuarios option:selected").text();
-        Swal.fire({
-
-          title: '¿Desea borrar todos los permisos de: ' + usuario +'?',
-          text: "¡No podrás revertir esto!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sí, eliminar',
-          cancelButtonText: 'No, cancelar'
-          }).then((result) => {
-          if (result.value) {
-
-            enableGif();
-            var Frm = "PermisosJSP";
-            var Accion = "LeoItems";
-            var data = {
-                frm: Frm,
-                //elements: JSON.stringify(elemen),
-                usr: strUser,
-                creg: i,
-                accion: Accion
-            };
-            $.ajax({
-              type: "POST",
-              url: "ServletAlohaTiempos",
-              data: data,
-              success: function(data, textStatus, jqXHR){
-
-                var dt = data;
-                //console.log("Dt msj: " + dt);
-                //alert("dt: " + dt);
-                if (dt != "false"){
-
-                  Swal.fire({
-                      icon: 'success',
-                      title: 'Se eliminaron los permisos.',
-                      text: 'Por favor cierre sesion e ingrese de nuevo.'
-                  });
-                  auditoriaReg("Se eliminaron los permisos.");
-                  disableGif();
-                }
-                else{
-
-                  Swal.fire({
-                      icon: 'error',
-                      title: 'Ocurrio un error.',
-                      text: 'Por favor intente de nuevo.',
-                      showConfirmButton: false,
-                      timer: 3000
-                  });
-                }
-
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                disableGif();
-                if (jqXHR.status === 0) {
-                  alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                  alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                  alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                  alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                  alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                  alert('Ajax request aborted.');
-                } else {
-                  alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-              }
-            });
-          }
-        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        //disableGif();
+        if (jqXHR.status === 0) {
+          alert('Not connect: Verify Network.');
+        } else if (jqXHR.status === 404) {
+          alert('Requested page not found [404]');
+        } else if (jqXHR.status === 500) {
+          alert('Internal Server Error [500].');
+        } else if (textStatus === 'parsererror') {
+          alert('Requested JSON parse failed.');
+        } else if (textStatus === 'timeout') {
+          alert('Time out error.');
+        } else if (textStatus === 'abort') {
+          alert('Ajax request aborted.');
+        } else {
+          alert('Uncaught Error: ' + jqXHR.responseText);
+        }
       }
-    }else{
-      Swal.fire({
-          icon: 'warning',
-          title: 'Por favor',
-          text: 'Seleccione un usuario.',
-          showConfirmButton: false,
-          timer: 3000
-      });
-    }
+    });
 
 
   });
-
-  function auditoriaReg(estado){
-
-    var Observacion = estado;
-    var NamUs = document.getElementById('usering').innerHTML
-    var e = document.getElementById('IdUsuarios');
-    var strUser = e.options[e.selectedIndex].value;
-    var Id = strUser;
-
-    var Frm = "Auditoria";
-    var Accion = "Insert";
-    var Operacion = "actualizar";
-
-    var data = {
-        frm: Frm,
-        operacion: Operacion,
-        tabla: "permisosxusuarios",
-        usua: NamUs,
-        observacion: Observacion,
-        id: Id,
-        accion: Accion
-    };
-    enableGif();
-    $.ajax({
-        type: "POST",
-        url: "ServletAlohaTiempos",
-        data: data,
-        success: function(resul, textStatus, jqXHR){
-
-          //console.log("Auditoria realizada");
-          disableGif();
-            /*Swal.fire({
-                icon: 'success',
-                title: 'Guardado',
-                text: 'Auditoria realizada.'
-            });*/
-
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-            disableGif();
-            if (jqXHR.status === 0) {
-                alert('Not connect: Verify Network.');
-            } else if (jqXHR.status === 404) {
-                alert('Requested page not found [404]');
-            } else if (jqXHR.status === 500) {
-                alert('Internal Server Error [500].');
-            } else if (textStatus === 'parsererror') {
-                alert('Requested JSON parse failed.');
-            } else if (textStatus === 'timeout') {
-                alert('Time out error.');
-            } else if (textStatus === 'abort') {
-                alert('Ajax request aborted.');
-            } else {
-                alert('Uncaught Error: ' + jqXHR.responseText);
-            }
-        }
-    });
-
-  }
 
   function enableGif(){
 

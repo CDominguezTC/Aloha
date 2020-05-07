@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>   
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesEmpresas.js"></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesEmpresas.js" ></script>        
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -60,42 +60,41 @@
                                     <div class="Principal" id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
-                                            <input type="hidden" id="IdNitOld" name="NitOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Nit">Nit</label>
                                                 <input type="number" class="form-control" id="IdNit" name="Nit" min="0" required>
                                             </div>
-                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre"  name="Nombre" required="required">
                                             </div>
-                                            <input type="hidden" id="IdDirOld" name="DirOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Direccion">Dirección</label>
                                                 <input type="text" class="form-control" id="IdDireccion" name="Direccion" required="required">
                                             </div>
-                                            <input type="hidden" id="IdContactoOld" name="ContactoOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Contacto">Contacto</label>
                                                 <input type="text" class="form-control" id="IdContacto" name="Contacto" required>
                                             </div>
-                                            <input type="hidden" id="IdTelefonoOld" name="TelefonoOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Telefono">Telefono</label>
                                                 <input type="tel" class="form-control" id="IdTelefono" name="Telefono" placeholder="Ej: 4458714" required>
                                             </div>
-                                            <input type="hidden" id="IdExtensionOld" name="ExtensionOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Extension">Extensión</label>
                                                 <input type="number" class="form-control" id="IdExtension" name="Extension" min="0" required>
                                             </div>
-                                            <input type="hidden" id="IdEmailOld" name="EmailOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Email">Email</label>
                                                 <input type="email" class="form-control" id="IdEmail" name="Email" required>
                                             </div>  
-                                            <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Observacion">Observación</label>
                                                 <textarea class="form-control col-md-7 col-xs-12" id="IdObservacion" name="Observacion" required="required" style="height:90px;"></textarea>
@@ -213,6 +212,5 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
-        
     </body>
 </html>

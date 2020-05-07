@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controladores;
 
 import Tools.GenerarExcel;
@@ -16,12 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Esta clase permite realizar la liquidacion de los consumos realizados por el
+ * casino, esta clase contiene los sigientes metodos Select, DowloadFile
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
 public class ControladorLiquidacionCasino
 {
 
+    /**
+     * Permite selecionar los valores de la tabal deacuerdo a unos parametros
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response
+     * @param GenerarLiquidacionCasino
+     * @version: 07/05/2020
+     */
     public void Select (String GenerarLiquidacionCasino, HttpServletRequest request, HttpServletResponse response)
     {
         switch (GenerarLiquidacionCasino)
@@ -55,6 +62,14 @@ public class ControladorLiquidacionCasino
         }
     }
 
+    /**
+     * Permite descargar los archivos seleccionados a Excel
+     *
+     * @author: Carlos A Dominguez D
+     * @param filePath
+     * @param response
+     * @version: 07/05/2020
+     */
     protected void downloadFile (HttpServletResponse response, String filePath)
             throws ServletException, IOException
     {

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
@@ -30,8 +25,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Esta clase permite controlar los eventos de Cargos
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
 public class ControladorCargos
 {
@@ -41,266 +38,15 @@ public class ControladorCargos
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql ();
 
-//    public String IniServicio (HttpServletRequest request)
-//    {
-//        LinkedList<ModeloCargos> modeloCargoses = new LinkedList<ModeloCargos> ();
-//        ControladorPersonas controladorPersonas = new ControladorPersonas ();
-//        Tools tools = new Tools ();
-//        if ("".equals (request.getParameter ("idhoteleria")))
-//        {
-//
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (0);
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setTipoCargo (request.getParameter ("consumohoteleria"));
-//            modelo.setValorCargo (Integer.parseInt (request.getParameter ("valorhoteleria")));
-//            modelo.setFechaInicioCargo (tools.getDate ());
-////            if ("1HN".equals (modelo.getTipoCargo ()))
-////            {
-////                modelo.setEstadoCargo ("I");
-////            }
-////            else
-////            {
-////                modelo.setEstadoCargo ("A");
-////            }
-//            modelo.setEstadoCargo ("A");
-//            modeloCargoses.add (modelo);
-//
-//        }
-//        else
-//        {
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (Integer.parseInt (request.getParameter ("idhoteleria")));
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setTipoCargo (request.getParameter ("consumohoteleria"));
-//            modelo.setValorCargo (Integer.parseInt (request.getParameter ("valorhoteleria")));
-//            modelo.setFechaInicioCargo (tools.getDate ());
-////            if ("1HN".equals (modelo.getTipoCargo ()))
-////            {
-////                modelo.setEstadoCargo ("I");
-////            }
-////            else
-////            {
-////                modelo.setEstadoCargo ("A");
-////            }
-//            modelo.setEstadoCargo ("A");
-//            modeloCargoses.add (modelo);
-//        }
-//        if ("".equals (request.getParameter ("idadicional")))
-//        {
-//
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (0);
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setTipoCargo (request.getParameter ("consumoadicional"));
-//            modelo.setValorCargo (Integer.parseInt (request.getParameter ("valoradicional")));
-//            modelo.setFechaInicioCargo (tools.getDate ());
-////            if ("1AN".equals (modelo.getTipoCargo ()))
-////            {
-////                modelo.setEstadoCargo ("I");
-////            }
-////            else
-////            {
-////                modelo.setEstadoCargo ("A");
-////            }
-//            modelo.setEstadoCargo ("A");
-//            modeloCargoses.add (modelo);
-//
-//        }
-//        else
-//        {
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (Integer.parseInt (request.getParameter ("idadicional")));
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setTipoCargo (request.getParameter ("consumoadicional"));
-//            modelo.setValorCargo (Integer.parseInt (request.getParameter ("valoradicional")));
-//            modelo.setFechaInicioCargo (tools.getDate ());
-////            if ("1AN".equals (modelo.getTipoCargo ()))
-////            {
-////                modelo.setEstadoCargo ("I");
-////            }
-////            else
-////            {
-////                modelo.setEstadoCargo ("A");
-////            }
-//            modelo.setEstadoCargo ("A");
-//            modeloCargoses.add (modelo);
-//        }
-//
-//        try
-//        {
-//            for (ModeloCargos modelo : modeloCargoses)
-//            {
-//                con = conexion.abrirConexion ();
-//                if (modelo.getId () == 0)
-//                {
-//                    try
-//                    {
-//                        SQL = con.prepareStatement ("INSERT INTO `cargoshoteleria`("
-//                                + "`IdPersona`,"
-//                                + "`TipoCargo`,"
-//                                + "`ValorCargo`,"
-//                                + "`FechaInicioCargo`,"
-//                                + "`EstadoCargo`) "
-//                                + "VALUE (?,?,?,?,?);");
-//                        SQL.setInt (1, modelo.getModeloPersonas ().getId ());
-//                        SQL.setString (2, modelo.getTipoCargo ());
-//                        SQL.setInt (3, modelo.getValorCargo ());
-//                        SQL.setString (4, modelo.getFechaInicioCargo ());
-//                        SQL.setString (5, modelo.getEstadoCargo ());
-//                        if (SQL.executeUpdate () > 0)
-//                        {
-//                            resultado = "1";
-//
-//                        }
-//                    } catch (SQLException e)
-//                    {
-//                        System.out.println (e);
-//                        SQL.close ();
-//                        con.close ();
-//                    }
-//                }
-//                else
-//                {
-//                    try
-//                    {
-//                        SQL = con.prepareStatement ("UPDATE `cargoshoteleria` SET "
-//                                + "`IdPersona` = ?, "
-//                                + "`TipoCargo` = ?, "
-//                                + "`ValorCargo` = ?, "
-//                                + "`EstadoCargo` = ? "
-//                                + "WHERE `Id` = ?;");
-//                        SQL.setInt (1, modelo.getModeloPersonas ().getId ());
-//                        SQL.setString (2, modelo.getTipoCargo ());
-//                        SQL.setInt (3, modelo.getValorCargo ());
-//                        SQL.setString (4, modelo.getEstadoCargo ());
-//                        SQL.setInt (5, modelo.getId ());
-//                        if (SQL.executeUpdate () > 0)
-//                        {
-//                            resultado = "1";
-//                        }
-//                    } catch (SQLException e)
-//                    {
-//                        System.out.println (e);
-//                    }
-//                }
-//
-//                SQL.close ();
-//                con.close ();
-//            }
-//        } catch (SQLException e)
-//        {
-//            try
-//            {
-//                System.out.println (e);
-//                SQL.close ();
-//                con.close ();
-//            } catch (SQLException ex)
-//            {
-//                Logger.getLogger (ControladorCargos.class.getName ()).log (Level.SEVERE, null, ex);
-//            }
-//        }
-//        return resultado;
-//    }
-//    LinkedList<ModeloCargos> getListModelo (int id)
-//    {
-//        LinkedList<ModeloCargos> listModeloCargoses = new LinkedList<> ();
-//        ControladorPersonas controladorPersonas = new ControladorPersonas ();
-//        try
-//        {
-//            con = conexion.abrirConexion ();
-//            SQL = con.prepareStatement ("SELECT "
-//                    + "`Id`,"
-//                    + "`IdPersona`,"
-//                    + "`TipoCargo`,"
-//                    + "`ValorCargo`,"
-//                    + "`FechaInicioCargo`,"
-//                    + "`FechaFinCargo`,"
-//                    + "`EstadoCargo` "
-//                    + "FROM `cargoshoteleria` "
-//                    + "WHERE IdPersona = ? AND EstadoCargo = ?;");
-//            SQL.setInt (1, id);
-//            SQL.setString (2, "A");
-//            ResultSet res = SQL.executeQuery ();
-//            while (res.next ())
-//            {
-//                ModeloCargos modeloCargos = new ModeloCargos ();
-//                modeloCargos.setId (res.getInt ("Id"));
-//                modeloCargos.setModeloPersonas (controladorPersonas.getModelo (res.getInt ("IdPersona")));
-//                modeloCargos.setTipoCargo (res.getString ("TipoCargo"));
-//                modeloCargos.setValorCargo (res.getInt ("ValorCargo"));
-//                modeloCargos.setFechaInicioCargo (res.getString ("FechaInicioCargo"));
-//                modeloCargos.setFechaFinCargo (res.getString ("FechaFinCargo"));
-//                modeloCargos.setEstadoCargo (res.getString ("EstadoCargo"));
-//                listModeloCargoses.add (modeloCargos);
-//            }
-//            res.close ();
-//            SQL.close ();
-//            con.close ();
-//        } catch (SQLException e)
-//        {
-//            System.out.println ("Error en la seleccion del cargo " + e);
-//        }
-//        return listModeloCargoses;
-//    }
-//
-//    public String FinServicio (HttpServletRequest request)
-//    {
-//        LinkedList<ModeloCargos> modeloCargoses = new LinkedList<ModeloCargos> ();
-//        ControladorPersonas controladorPersonas = new ControladorPersonas ();
-//        Tools tools = new Tools ();
-//        if (!"".equals (request.getParameter ("idhoteleria")))
-//        {
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (Integer.parseInt (request.getParameter ("idhoteleria")));
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setFechaFinCargo (tools.getDate ());
-//            modelo.setEstadoCargo ("I");
-//            modeloCargoses.add (modelo);
-//        }
-//        if (!"".equals (request.getParameter ("idadicional")))
-//        {
-//
-//            ModeloCargos modelo = new ModeloCargos ();
-//            modelo.setId (Integer.parseInt (request.getParameter ("idadicional")));
-//            modelo.setModeloPersonas (controladorPersonas.getModelo (Integer.parseInt (request.getParameter ("id"))));
-//            modelo.setFechaFinCargo (tools.getDate ());
-//            modelo.setEstadoCargo ("I");
-//            modeloCargoses.add (modelo);
-//        }
-//
-//        try
-//        {
-//            for (ModeloCargos modelo : modeloCargoses)
-//            {
-//                con = conexion.abrirConexion ();
-//
-//                try
-//                {
-//                    SQL = con.prepareStatement ("UPDATE `cargoshoteleria`  SET "
-//                            + "`FechaFinCargo` = ?, "
-//                            + "`EstadoCargo` = ? "
-//                            + "WHERE `Id` = ?;");
-//                    SQL.setString (1, modelo.getFechaFinCargo ());
-//                    SQL.setString (2, modelo.getEstadoCargo ());
-//                    SQL.setInt (3, modelo.getId ());
-//                    if (SQL.executeUpdate () > 0)
-//                    {
-//                        resultado = "1";
-//                    }
-//                } catch (SQLException e)
-//                {
-//                    System.out.println (e);
-//                }
-//                SQL.close ();
-//                con.close ();
-//            }
-//        } catch (SQLException e)
-//        {
-//            Logger.getLogger (ControladorCargos.class.getName ()).log (Level.SEVERE, null, e);
-//        }
-//        return resultado;
-//    }
+    /**
+     * Permite la selecion de los datos a exportar a excel
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response
+     * @param generarLiquidacionHoteleria
+     * @version: 07/05/2020
+     */
     public void Select (String generarLiquidacionHoteleria, HttpServletRequest request, HttpServletResponse response)
     {
         switch (generarLiquidacionHoteleria)
@@ -308,10 +54,10 @@ public class ControladorCargos
             case "GenerarLiquidacionHoteleria":
                 String SQLReporte = "SELECT "
                         + "`personaCedula` AS \"IDENTIFICACION\","
-                        + "`personaNombre` AS \"PERSONA\","                        
+                        + "`personaNombre` AS \"PERSONA\","
                         + "`personaCargo` AS \"CARGO\","
-                        + "`centrodecostoNombre` AS \"CENTRO_COSTO_NOMBRE\","                        
-                        + "`grupoconsumoNombre` AS \"GRUPO_CONSUMO_NOMBRE\","                        
+                        + "`centrodecostoNombre` AS \"CENTRO_COSTO_NOMBRE\","
+                        + "`grupoconsumoNombre` AS \"GRUPO_CONSUMO_NOMBRE\","
                         + "`cargoshoteleriaNombre` AS \"CARGO_HOTELERIA\","
                         + "`cargoshoteleriaValor` AS \"VALOR\","
                         + "`Fechaconsumo` AS \" FECHA_CONSUMO\","
@@ -322,23 +68,27 @@ public class ControladorCargos
                 {
                     String UrlArchivo = "C:\\Zred\\AlohaFiles\\LIQUIDACION_HOTELERIA.xls";//request.getParameter("PlantillaUrl");                
                     String newQuery = SQLReporte;
-                    //ControladorExcel controladorExcel = new ControladorExcel();
                     GenerarExcel generarExcel = new GenerarExcel ();
                     String archivo = generarExcel.GenerarExcel (UrlArchivo, newQuery);
                     downloadFile (response, archivo);
-
-                } //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
-                catch (Exception ex)
+                } catch (Exception ex)
                 {
-                    //Logger.getLogger(ServletSunchemical.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println ("Controladores.ControladorCargos.Select()" + ex);
                 }
                 break;
-
         }
-
     }
-    
-      protected void downloadFile (HttpServletResponse response, String filePath)
+
+    /**
+     * Permite la descarga de la informacion solicitada
+     *
+     * @author: Carlos A Dominguez D
+     * @param response
+     * @param filePath
+     *
+     * @version: 07/05/2020
+     */
+    protected void downloadFile (HttpServletResponse response, String filePath)
             throws ServletException, IOException
     {
 
@@ -363,6 +113,15 @@ public class ControladorCargos
         fileInputStream.close ();
     }
 
+    /**
+     * Permite la descarga de la informacion solicitada
+     *
+     * @author: Carlos A Dominguez D
+     * @param response
+     * @param filePath
+     *
+     * @version: 07/05/2020
+     */
     private LinkedList<ModeloCargos> getItems (HttpServletRequest request)
     {
         Tools tools = new Tools ();
@@ -604,17 +363,11 @@ public class ControladorCargos
                     SQL = con.prepareStatement ("INSERT INTO `cargoshoteleria`("
                             + "`TipoCargo`,"
                             + "`ValorCargo`) "
-                            + "VALUE (?,?);", SQL.RETURN_GENERATED_KEYS);
+                            + "VALUE (?,?);");
                     SQL.setString (1, modelo.getTipoCargo ());
                     SQL.setInt (2, modelo.getValorCargo ());
-                    if (SQL.executeUpdate () > 0){
-                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int)generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "cargoshoteleria", request.getParameter("nombreU"), i, "Se inserto el registro.");
-                            }
-                        }
+                    if (SQL.executeUpdate () > 0)
+                    {
                         resultado = "1";
                         SQL.close ();
                         con.close ();
@@ -671,7 +424,15 @@ public class ControladorCargos
         }
         return resultado;
     }
-
+    /**
+     * Permite eliminar el dato selecionado de cargos hoteleria
+     * Hoteleria
+     *
+     * @author: Carlos A Dominguez D
+     * @param request     
+     * @return String
+     * @version: 07/05/2020
+     */
     public String Delete (HttpServletRequest request)
     {
         if (!"".equals (request.getParameter ("id")))
@@ -706,6 +467,16 @@ public class ControladorCargos
         return resultado;
     }
 
+    /**
+     * Permite listar la información de la tabla de Cargos para la funcion de
+     * Hoteleria
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response 
+     * @return String
+     * @version: 07/05/2020
+     */
     public String Read (HttpServletRequest request, HttpServletResponse response)
     {
         String resultado = null;
@@ -740,15 +511,19 @@ public class ControladorCargos
         return resultado;
     }
 
+    /**
+     * Permite listar la información de la tabla de Cargos
+     *
+     * @author: Carlos A Dominguez D
+     * @param modelo
+     * @return String
+     * @version: 07/05/2020
+     */
     private String GetTabla (LinkedList<ModeloCargos> modelo)
     {
         String out = null;
         try
         {
-            //LinkedList<ModeloPersonas> listmoPersonas;
-            //listmoPersonas = Read ();
-            //response.setContentType ("text/html;charset=UTF-8");
-
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -761,8 +536,8 @@ public class ControladorCargos
             for (ModeloCargos modeloCargos : modelo)
             {
                 out += "<tr>";
-                out += "<td>" + modeloCargos.getTipoCargo () + "</td>";
                 out += "<td>" + modeloCargos.getValorCargo () + "</td>";
+                out += "<td>" + modeloCargos.getTipoCargo () + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
@@ -788,5 +563,178 @@ public class ControladorCargos
             System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
         }
         return out;
+    }
+
+    /**
+     * Este metodo inserta y actualiza la informacion del formularios de cargos
+     * Tiempos
+     *
+     * @author: Carlos A Dominguez
+     * @param HttpServletRequest
+     * @return Strin resutlado de la insercion
+     */
+    public String InsertTiempos (HttpServletRequest request)
+    {
+        if ("".equals (request.getParameter ("id")))
+        {
+            ModeloCargos modelo = new ModeloCargos ();
+            modelo.setId (0);
+            modelo.setTipoCargo (request.getParameter ("nombre"));
+            modelo.setValorCargo (Integer.parseInt (request.getParameter ("codigo")));
+            try
+            {
+                con = conexion.abrirConexion ();
+                try
+                {
+                    SQL = con.prepareStatement ("INSERT INTO `cargos`("
+                            + "`codigo`,"
+                            + "`descripcion`) "
+                            + "VALUE (?,?);");
+                    SQL.setInt (1, modelo.getValorCargo ());
+                    SQL.setString (2, modelo.getTipoCargo ());
+                    if (SQL.executeUpdate () > 0)
+                    {
+                        resultado = "1";
+                        SQL.close ();
+                        con.close ();
+                    }
+                } catch (SQLException e)
+                {
+                    System.out.println (e);
+                    resultado = "-2";
+                    SQL.close ();
+                    con.close ();
+                }
+            } catch (SQLException e)
+            {
+                System.out.println (e);
+                resultado = "-3";
+            }
+        }
+        else
+        {
+            ModeloCargos modelo = new ModeloCargos ();
+            modelo.setId (Integer.parseInt (request.getParameter ("id")));
+            modelo.setTipoCargo (request.getParameter ("nombre"));
+            modelo.setValorCargo (Integer.parseInt (request.getParameter ("codigo")));
+
+            try
+            {
+                con = conexion.abrirConexion ();
+                try
+                {
+                    SQL = con.prepareStatement ("UPDATE `cargos`  SET "
+                            + "`codigo` = ?, "
+                            + "`descripcion` = ? "
+                            + "WHERE `ID` = ?;");
+                    SQL.setInt (1, modelo.getValorCargo ());
+                    SQL.setString (2, modelo.getTipoCargo ());
+                    SQL.setInt (3, modelo.getId ());
+                    if (SQL.executeUpdate () > 0)
+                    {
+                        resultado = "1";
+                        SQL.close ();
+                        con.close ();
+                    }
+                } catch (SQLException e)
+                {
+                    System.out.println (e);
+                    resultado = "-2";
+                    SQL.close ();
+                    con.close ();
+                }
+            } catch (SQLException e)
+            {
+                System.out.println (e);
+                resultado = "-3";
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Este metodo lee el contenido de la tabal y retorna la tabal llena con la
+     * informacion de la base de datos
+     *
+     * @author: Carlos A Dominguez
+     * @param request
+     * @param response
+     * @return Strin
+     *
+     */
+    public String ReadTiempos (HttpServletRequest request, HttpServletResponse response)
+    {
+        String resultado = null;
+        LinkedList<ModeloCargos> listModeloCargoses = new LinkedList<ModeloCargos> ();
+        con = conexion.abrirConexion ();
+        try
+        {
+            SQL = con.prepareStatement ("SELECT "
+                    + "`ID`,"
+                    + "`codigo`,"
+                    + "`descripcion` "
+                    + "FROM `cargos`;");
+            ResultSet res = SQL.executeQuery ();
+            while (res.next ())
+            {
+                ModeloCargos modelo = new ModeloCargos ();
+                modelo.setId (res.getInt ("ID"));
+                modelo.setTipoCargo (res.getString ("descripcion"));
+                modelo.setValorCargo (res.getInt ("codigo"));
+                listModeloCargoses.add (modelo);
+            }
+            res.close ();
+            SQL.close ();
+            con.close ();
+            resultado = GetTabla (listModeloCargoses);
+        } catch (SQLException e)
+        {
+            System.out.println (e);
+        }
+        return resultado;
+    }
+
+    /**
+     * Este metodo elimina el elemento selecionado en la tabla
+     *
+     * @author: Carlos A Dominguez
+     * @param HttpServletRequest,HttpServletResponse
+     * @return Strin resutlado
+     *
+     */
+    public String DeleteTiempos (HttpServletRequest request)
+    {
+        if (!"".equals (request.getParameter ("id")))
+        {
+            String idtmp = request.getParameter ("id");
+            ModeloCargos modelo = new ModeloCargos ();
+            modelo.setId (Integer.parseInt (request.getParameter ("id")));
+
+            try
+            {
+                con = conexion.abrirConexion ();
+                try
+                {
+                    SQL = con.prepareStatement ("DELETE FROM `cargos` "
+                            + "WHERE `ID` = ?;");
+                    SQL.setInt (1, modelo.getId ());
+                    if (SQL.executeUpdate () > 0)
+                    {
+                        resultado = "2";
+                    }
+                } catch (SQLException e)
+                {
+                    System.out.println (e);
+                    resultado = "-2";
+                }
+                SQL.close ();
+                con.close ();
+            } catch (SQLException e)
+            {
+                System.out.println (e);
+                resultado = "-3";
+            }
+        }
+        return resultado;
     }
 }

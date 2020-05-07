@@ -64,7 +64,6 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
-                                            <input type="hidden" id="IdGrupo_HorarioOld" name="Grupo_HorarioOld">
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                     <label for="grupo_horario">Grupo Consumo</label>
@@ -83,7 +82,6 @@
                                                         %>
                                                     </select>
                                                 </div>
-                                                <input type="hidden" id="IdHorarioOld" name="HorarioOld">
                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                     <label for="horario">Horario Consumo</label>
                                                     <select id="IdHorario" class="form-control" required>
@@ -101,7 +99,6 @@
                                                         %>
                                                     </select>
                                                 </div>
-                                                <input type="hidden" id="IdValorOld" name="ValorOld">
                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                     <label for="horario">Costo</label>
                                                     <input type="number" class="form-control" id="IdValor" name="Valor" required="required">

@@ -25,6 +25,7 @@ import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
 import Controladores.ControladorPersonas;
 import Controladores.ControladorTipoConsumo;
+import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuarios;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersonas;
@@ -159,7 +160,8 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = "true";
                         ControladorInicioSesion controladorIni = new ControladorInicioSesion ();
                         Resultado = controladorIni.autenticacion (request);
-                        if ("true".equals (Resultado)){
+                        if ("true".equals (Resultado))
+                        {
                             String usuario = request.getParameter ("user");
                             //String pw = request.getParameter("pass");
                             HttpSession session = request.getSession ();
@@ -176,94 +178,119 @@ public class ServletAlohaTiempos extends HttpServlet
                 break;
             case "Password":
                 Accion = request.getParameter ("accion");
-                switch (Accion){
-                    
-                    case "Descifrar":     
-                        String passw = request.getParameter ("pass");
-                        try {
-                            tl = new Tools();
-                            String con = tl.desencriptar(passw);
+                switch (Accion)
+                {
 
-                            if(!"".equals(con)){
+                    case "Descifrar":
+                        String passw = request.getParameter ("pass");
+                        try
+                        {
+                            tl = new Tools ();
+                            String con = tl.desencriptar (passw);
+
+                            if (!"".equals (con))
+                            {
                                 Resultado = con;
-                            }else{
+                            }
+                            else
+                            {
                                 Resultado = "false";
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception e)
+                        {
                         }
-                    break;
-                    
+                        break;
+
                     case "ValidarUsr":
                         String usr = request.getParameter ("login");
-                        try {
-                            ControladorUsuarios controladorU = new ControladorUsuarios();
-                            String resul = controladorU.validoLogin(usr);
+                        try
+                        {
+                            ControladorUsuarios controladorU = new ControladorUsuarios ();
+                            String resul = controladorU.validoLogin (usr);
 
-                            if(!"false".equals(resul)){
+                            if (!"false".equals (resul))
+                            {
                                 Resultado = resul;
-                            }else{
+                            }
+                            else
+                            {
                                 Resultado = "false";
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception e)
+                        {
                         }
-                                                
-                    break;
-                    
+
+                        break;
+
                     case "ValidarPw":
                         String psw = request.getParameter ("passw");
                         String idusr = request.getParameter ("idus");
-                        try {
-                            ControladorUsuarios controladorU = new ControladorUsuarios();
-                            String resul = controladorU.validoPassword(idusr, psw);
+                        try
+                        {
+                            ControladorUsuarios controladorU = new ControladorUsuarios ();
+                            String resul = controladorU.validoPassword (idusr, psw);
 
-                            if(!"false".equals(resul)){
+                            if (!"false".equals (resul))
+                            {
                                 Resultado = resul;
-                            }else{
+                            }
+                            else
+                            {
                                 Resultado = "false";
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception e)
+                        {
                         }
-                        
-                    break;
-                    
+
+                        break;
+
                     case "CambiarPw":
                         String pasw = request.getParameter ("passwo");
                         String idusur = request.getParameter ("idusu");
-                        try {
-                            ControladorUsuarios controladorU = new ControladorUsuarios();
-                            String resul = controladorU.actualizoPassword(idusur, pasw);
+                        try
+                        {
+                            ControladorUsuarios controladorU = new ControladorUsuarios ();
+                            String resul = controladorU.actualizoPassword (idusur, pasw);
 
-                            if(!"false".equals(resul)){
+                            if (!"false".equals (resul))
+                            {
                                 Resultado = resul;
-                            }else{
+                            }
+                            else
+                            {
                                 Resultado = "false";
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception e)
+                        {
                         }
-                    break;
-                    
+                        break;
+
                     case "CambiarPwUs":
                         String usu = request.getParameter ("usuario");
                         String npass = request.getParameter ("npass");
-                        try {
-                            ControladorUsuarios controladorU = new ControladorUsuarios();
-                            String resul = controladorU.actualizoPasswordUser(usu, npass);
+                        try
+                        {
+                            ControladorUsuarios controladorU = new ControladorUsuarios ();
+                            String resul = controladorU.actualizoPasswordUser (usu, npass);
 
-                            if(!"false".equals(resul)){
+                            if (!"false".equals (resul))
+                            {
                                 Resultado = resul;
-                            }else{
+                            }
+                            else
+                            {
                                 Resultado = "false";
                             }
 
-                        } catch (Exception e) {
+                        } catch (Exception e)
+                        {
                         }
-                    break;
+                        break;
                 }
-                
                 break;
             case "AreasJSP":
                 ControladorAreas controladorAreas = new ControladorAreas ();
@@ -277,7 +304,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorAreas.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorAreas.ReadArea (request, response);
+                        Resultado = controladorAreas.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -337,7 +364,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorCiudades.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorCiudades.ReadCiudad (request, response);
+                        Resultado = controladorCiudades.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -345,6 +372,49 @@ public class ServletAlohaTiempos extends HttpServlet
                 }
 
                 break;
+
+            case "TurnosJSP":
+                ControladorTurnos controladorTurnos = new ControladorTurnos ();
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    case "Upload":
+                        Resultado = controladorTurnos.Insert (request);
+                        break;
+                    case "Delete":
+                        Resultado = controladorTurnos.Delete (request);
+                        break;
+                    case "Read":
+                        Resultado = controladorTurnos.Read (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                }
+
+                break;
+
+            case "CargosTiemposJSP":
+                ControladorCargos controladorCargost = new ControladorCargos ();
+                Accion = request.getParameter ("accion");
+                switch (Accion)
+                {
+                    case "Upload":
+                        Resultado = controladorCargost.InsertTiempos (request);
+                        break;
+                    case "Delete":
+                        Resultado = controladorCargost.DeleteTiempos (request);
+                        break;
+                    case "ReadTiempos":
+                        Resultado = controladorCargost.ReadTiempos (request, response);
+                        PrintWriter pw = response.getWriter ();
+                        pw.write (Resultado);
+                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                }
+
+                break;
+
             case "CentroCostoJSP":
                 ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
                 Accion = request.getParameter ("accion");
@@ -441,9 +511,10 @@ public class ServletAlohaTiempos extends HttpServlet
                 }
                 break;
             case "PermisosJSP":
-                ControladorPermisos controladorPer = new ControladorPermisos();
+                ControladorPermisos controladorPer = new ControladorPermisos ();
                 Accion = request.getParameter ("accion");
-                switch (Accion){
+                switch (Accion)
+                {
                     case "Read":
                         Resultado = controladorPer.Read (request, response);
                         PrintWriter pw = response.getWriter ();
@@ -452,50 +523,36 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                     case "ReadPU":
                         String usr = request.getParameter ("user");
-                        Resultado = controladorPer.ReadPU(request, response, usr);
+                        Resultado = controladorPer.ReadPU (request, response, usr);
                         PrintWriter pw2 = response.getWriter ();
                         pw2.write (Resultado);
                         System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Lista Cargada");
                         break;
                     case "ReadPNoU":
                         String user = request.getParameter ("user");
-                        Resultado = controladorPer.ReadPNoU(request, response, user);
+                        Resultado = controladorPer.ReadPNoU (request, response, user);
                         PrintWriter pw3 = response.getWriter ();
                         pw3.write (Resultado);
                         System.out.println (pw3.checkError () ? "Error al cargar la lista" : "Lista Cargada");
                         break;
                     case "ReadTodosP":
                         //String user = request.getParameter ("user");
-                        Resultado = controladorPer.ReadTodosP(request, response);
+                        Resultado = controladorPer.ReadTodosP (request, response);
                         PrintWriter pw4 = response.getWriter ();
                         pw4.write (Resultado);
                         System.out.println (pw4.checkError () ? "Error al cargar la lista" : "Lista Cargada");
                         break;
                     case "LeoItems":
-                        String[] myJsonData = request.getParameterValues("elements[]");
+                        String[] myJsonData = request.getParameterValues ("elements[]");
                         String idUsr = request.getParameter ("usr");
-                        String canReg = request.getParameter ("creg");
-                        if("0".equals(canReg)){
-                            boolean res = controladorPer.eliminoPermisos(idUsr);
-                            if(res){
-                                Resultado = "true";
-                                break;
-                            }else{
-                                Resultado = "false";
-                                break;
-                            }
-                        }else{
-                            Resultado = controladorPer.insertarPermisos(myJsonData, idUsr);
-                            break;
-                        }
                         //String players = request.getParameter("elements");
                         //String[] s = players.split(",");                        
-                        
-                                                                        
-                }            
-            break;
+                        Resultado = controladorPer.insertarPermisos (myJsonData, idUsr);
+                        break;
+                }
+                break;
             case "UsuariosJSP":
-                ControladorUsuarios controladorU = new ControladorUsuarios();
+                ControladorUsuarios controladorU = new ControladorUsuarios ();
                 Accion = request.getParameter ("accion");
                 switch (Accion)
                 {
@@ -523,12 +580,6 @@ public class ServletAlohaTiempos extends HttpServlet
                         break;
                     case "Delete":
                         Resultado = controladorPersonas.Delete (request);
-                        break;
-                    case "Get":
-                        Resultado = controladorPersonas.Get (request, response);
-                        PrintWriter pww = response.getWriter ();
-                        pww.write (Resultado);
-                        System.out.println (pww.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
                     case "Read":
                         Resultado = controladorPersonas.Read (request, response);
@@ -569,7 +620,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorDependencias.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorDependencias.ReadDependencias (request, response);
+                        Resultado = controladorDependencias.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -589,7 +640,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorGrupoTurnos.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorGrupoTurnos.ReadGrupoTurnos (request, response);
+                        Resultado = controladorGrupoTurnos.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -609,7 +660,7 @@ public class ServletAlohaTiempos extends HttpServlet
                         Resultado = controladorFunciones.Delete (request);
                         break;
                     case "Read":
-                        Resultado = controladorFunciones.ReadFunciones (request, response);
+                        Resultado = controladorFunciones.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -657,13 +708,6 @@ public class ServletAlohaTiempos extends HttpServlet
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
                         break;
-
-//                    case "IniServicio":
-//                        Resultado = controladorCargos.IniServicio (request);
-//                        break;
-//                    case "FinServicio":
-//                        Resultado = controladorCargos.FinServicio (request);
-//                        break;
                 }
 
                 break;
@@ -694,48 +738,56 @@ public class ServletAlohaTiempos extends HttpServlet
                 //ControladorCargos controladorCargos = new ControladorCargos ();
                 Accion = request.getParameter ("accion");
                 String usua = request.getParameter ("usr");
-                switch (Accion){
-                
+                switch (Accion)
+                {
+
                     case "UserActivo":
                         Tools tool = new Tools ();
-                        Resultado = tool.editarUserAct(request, response, usua);
-                        /*PrintWriter pw = response.getWriter ();
-                        pw.write (Resultado);
-                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/
+                        Resultado = tool.editarUserAct (request, response, usua);
+                        /*
+                         * PrintWriter pw = response.getWriter ();
+                         * pw.write (Resultado);
+                         * System.out.println (pw.checkError () ? "Error al
+                         * cargar la lista" : "UserActivo Cargado");
+                         */
                         //Resultado = controladorCargos.Insert (request);
                         break;
                 }
                 break;
             case "Auditoria":
-                ControladorAuditoria controladorAud = new ControladorAuditoria();
+                ControladorAuditoria controladorAud = new ControladorAuditoria ();
                 Accion = request.getParameter ("accion");
                 //String usua = request.getParameter ("usr");
-                switch (Accion){
-                
+                switch (Accion)
+                {
+
                     case "Insert":
                         //Tools tool = new Tools ();
-                        String operacion = request.getParameter("operacion");
-                        String tabla = request.getParameter("tabla");
-                        String usu = request.getParameter("usua");
-                        int regmo = Integer.parseInt(request.getParameter("id"));
-                        String observa = request.getParameter("observacion");
-                        Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
-                        /*PrintWriter pw = response.getWriter ();
-                        pw.write (Resultado);
-                        System.out.println (pw.checkError () ? "Error al cargar la lista" : "UserActivo Cargado");*/
+                        String operacion = request.getParameter ("operacion");
+                        String tabla = request.getParameter ("tabla");
+                        String usu = request.getParameter ("usua");
+                        int regmo = Integer.parseInt (request.getParameter ("id"));
+                        String observa = request.getParameter ("observacion");
+                        Resultado = controladorAud.Insert (operacion, tabla, usu, regmo, observa);
+                        /*
+                         * PrintWriter pw = response.getWriter ();
+                         * pw.write (Resultado);
+                         * System.out.println (pw.checkError () ? "Error al
+                         * cargar la lista" : "UserActivo Cargado");
+                         */
                         //Resultado = controladorCargos.Insert (request);
                         break;
-                    case "Read":                        
+                    case "Read":
                         Resultado = controladorAud.Read (request, response);
                         PrintWriter pw = response.getWriter ();
                         pw.write (Resultado);
                         System.out.println (pw.checkError () ? "Error al cargar la lista" : "Combo Cargado");
                         break;
                     case "ReadReg":
-                        String usr = request.getParameter("usuario");
-                        String fini = request.getParameter("fechai");
-                        String ffin = request.getParameter("fechaf");
-                        Resultado = controladorAud.readTabla(request, response, usr, fini, ffin);
+                        String usr = request.getParameter ("usuario");
+                        String fini = request.getParameter ("fechai");
+                        String ffin = request.getParameter ("fechaf");
+                        Resultado = controladorAud.readTabla (request, response, usr, fini, ffin);
                         PrintWriter pw2 = response.getWriter ();
                         pw2.write (Resultado);
                         System.out.println (pw2.checkError () ? "Error al cargar la lista" : "Tabla Cargada");
@@ -749,12 +801,15 @@ public class ServletAlohaTiempos extends HttpServlet
             String respuesta = herramienta.GetDescrpCode (Resultado);
             response.setCharacterEncoding ("UTF-8");
             response.setContentType ("text/plain");
-            if("Password".equals(Formulario) || "UserActivo".equals(Accion)){
+            if ("Password".equals (Formulario) || "UserActivo".equals (Accion))
+            {
                 response.getWriter ().write (Resultado);
-            }else{
+            }
+            else
+            {
                 response.getWriter ().write (respuesta);
             }
-            
+
         }
     }
 
