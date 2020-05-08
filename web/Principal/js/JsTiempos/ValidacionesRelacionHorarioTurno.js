@@ -5,8 +5,53 @@ $(function ()
     var turnodescuento = "N";
     $(document).ready(function () {
         LoadTabla();
+        LoadGrupoTurnos();
+        LoadTurnos();
 //        validacionBtn();
     });
+
+    function LoadGrupoTurnos() {
+        var Frm = "Auditoria";
+        var Accion = "Select";
+        var data = {
+            frm: Frm,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdUsuariosA').html(resul);
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+
+
+
 
     $('#IdTurnoNocturno').click(function () {
         if ($(this).prop('checked') === true)
