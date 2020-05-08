@@ -14,8 +14,8 @@ $(function ()
         $("#IdCedula").blur(function () {
             var Frm = "PersonasJSP";
             var Cedula = $('#IdCedula').val();
-            var Accion = "Read";
-            var Modulo = "Casino";    
+            var Accion = "Search";
+            var Modulo = "Casino";
             var data = {
                 frm: Frm,
                 cedula: Cedula,
@@ -30,57 +30,28 @@ $(function ()
                 success: function (resul, textStatus, jqXHR)
                 {
                     disableGif();
-                    if (resul !== "99Empy")
+                    if (resul.id !== 0) {
+                        $('#Id').val(resul.id);
+                        $('#IdTipoDoc').val(resul.tipoIdentificacion);
+                        $('#IdCedula').val(resul.identificacion);
+                        $('#IdNombre').val(resul.nombres);
+                        $('#IdApellido').val(resul.apellidos);
+                        $('#IdEmpresa').val(resul.modeloEmpresa.id);
+                        $('#IdCentroCosto').val(resul.modeloCentroCosto.id);
+                        $('#IdConsume').val(resul.consumocasino);
+                        $('#IdGrupoConsumo').val(resul.modeloGrupoConsumo.id);
+                        $('#IdObservacion').val(resul.observaciones);
+                    }else
                     {
-                        Swal.fire({
-                            icon: 'info',
-                            title: 'Inforacion',
-                            text: 'La persona ya esta registrada en el sistema.'
-                        });
-                        LimpiarCampos();
-                        $('#datatable').html(resul);
-                        $('#datatable').dataTable({
-                            responsive: true,
-                            language: {
-                                "decimal": "",
-                                "emptyTable": "No hay información",
-                                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                                "infoPostFix": "",
-                                "thousands": ",",
-                                "lengthMenu": "Mostrar _MENU_ Entradas",
-                                "loadingRecords": "Cargando...",
-                                "processing": "Procesando...",
-                                "search": "Buscar:",
-                                "zeroRecords": "Sin resultados encontrados",
-                                "paginate": {
-                                    "first": "Primero",
-                                    "last": "Ultimo",
-                                    "next": "Siguiente",
-                                    "previous": "Anterior"
-                                }
-                            }
-                            , "autoWidth": false
-                            , "destroy": true
-                            , "info": true
-                            , "JQueryUI": true
-                            , "ordering": true
-                            , "paging": true
-                            , "scrollY": "500px"
-                            , "scrollCollapse": true
-
-                        });
-                    } else
-                    {
-                        LoadTabla();
-                        var t = $('#IdTipoDoc').val();
-                        var C = $('#IdCedula').val();
-                        LimpiarCampos();
-                        $('#IdCedula').val(C);
-                        $('#IdTipoDoc').val(t);
+                        $('#Id').val('');
+                        $('#IdNombre').val('');
+                        $('#IdApellido').val('');
+                        $('#IdEmpresa').val('0');
+                        $('#IdCentroCosto').val('0');
+                        $('#IdConsume').val('0');
+                        $('#IdGrupoConsumo').val('0');
+                        $('#IdObservacion').val('');                        
                     }
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
@@ -405,8 +376,8 @@ $(function ()
             var Consumo = $('#IdConsume').val();
             var GrupoConsumo = $('#IdGrupoConsumo').val();
             var Observacion = $('#IdObservacion').val();
-            var Accion = "Upload";            
-            var Modulo = "Casino";            
+            var Accion = "Upload";
+            var Modulo = "Casino";
             var data = {
                 frm: Frm,
                 id: Id,
@@ -707,13 +678,13 @@ $(function ()
     {
         var Frm = "PersonasJSP";
         var Accion = "Read";
-        var Modulo = "Casino";     
+        var Modulo = "Casino";
         var data = {
             frm: Frm,
             modulo: Modulo,
             accion: Accion
         };
-        enableGif();       
+        enableGif();
         $.ajax({
             type: "POST",
             url: "ServletAlohaTiempos",

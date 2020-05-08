@@ -8,6 +8,7 @@ package Controladores;
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloCargos;
 import Modelo.ModeloPersonas;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import sun.nio.cs.ext.GB18030;
 
 /**
  * Esta clase permite controlar los eventos de Personas contrine Insert -
@@ -494,5 +496,67 @@ public class ControladorPersonas {
             System.out.println(e);
         }
         return listaModeloPersonas;
+    }
+
+        /**
+     * Permite consultar los datos de la Personas mediante elnumero de cedula, retonna un json
+     *
+     * @author: Carlos A Dominguez D
+     * @param request 
+     * @return String
+     * @version: 08/05/2020
+     */
+    public String Search(HttpServletRequest request) {
+        String Modulo = request.getParameter("modulo");
+        switch (Modulo) {
+            case "Casino":
+                resultado = SearchCasino(request);
+                break;
+        }
+        return resultado;
+    }
+
+    public String SearchCasino(HttpServletRequest request) {
+        String cedula = request.getParameter("cedula");
+        ModeloPersonas modelo = new ModeloPersonas();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
+                    + "`id`,"
+                    + "`tipoIdentificacion`,"
+                    + "`identificacion`,"
+                    + "`nombres`,"
+                    + "`apellidos`,"
+                    + "`Id_EmpresaTrabaja`,"
+                    + "`centroCostoId`,"
+                    + "`observaciones`,"
+                    + "`consumocasino`,"
+                    + "`grupoConsumo`"
+                    + "FROM `persona`"
+                    + "WHERE `identificacion` = ? ;");
+            SQL.setString(1, cedula);
+
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+
+                modelo.setId(res.getInt("id"));
+                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
+                modelo.setObservaciones(res.getString("observaciones"));
+                modelo.setConsumocasino(res.getString("consumocasino"));
+                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        resultado = new Gson().toJson(modelo);
+        return resultado;
     }
 }

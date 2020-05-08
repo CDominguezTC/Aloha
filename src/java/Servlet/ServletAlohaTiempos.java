@@ -92,21 +92,21 @@ public class ServletAlohaTiempos extends HttpServlet {
         Herramienta herramienta = new Herramienta();
         String Resultado = "";
         String Accion = null;
-        switch (Formulario) {
-            case "BuscarPersona":
-                ModeloPersonas modeloPersonas = new ModeloPersonas();
-                ControladorPersonas controladorPersonas1 = new ControladorPersonas();
-                modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
-                request.setAttribute("id", modeloPersonas.getId());
-                request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
-                request.setAttribute("cedula", modeloPersonas.getIdentificacion());
-                request.setAttribute("observacion", modeloPersonas.getObservaciones());
-                RequestDispatcher rd;
-                rd = request.getRequestDispatcher("RegistroCargos.jsp");
-                rd.forward(request, response);
-                Accion = "Plano";
-                break;
-        }
+//        switch (Formulario) {
+//            case "BuscarPersona":
+//                ModeloPersonas modeloPersonas = new ModeloPersonas();
+//                ControladorPersonas controladorPersonas1 = new ControladorPersonas();
+//                modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
+//                request.setAttribute("id", modeloPersonas.getId());
+//                request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
+//                request.setAttribute("cedula", modeloPersonas.getIdentificacion());
+//                request.setAttribute("observacion", modeloPersonas.getObservaciones());
+//                RequestDispatcher rd;
+//                rd = request.getRequestDispatcher("RegistroCargos.jsp");
+//                rd.forward(request, response);
+//                Accion = "Plano";
+//                break;
+//        }
 //        processRequest(request, response);
         String respuesta = "";
         HttpSession session = request.getSession(false);
@@ -339,6 +339,13 @@ public class ServletAlohaTiempos extends HttpServlet {
                     case "Upload":
                         Resultado = controladorTurnos.Insert(request);
                         break;
+                    case "Search":
+                        Resultado = controladorTurnos.tmp(request);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        response.getWriter().write(Resultado);
+                        Accion = "Plano";
+                        break;
                     case "Delete":
                         Resultado = controladorTurnos.Delete(request);
                         break;
@@ -526,6 +533,13 @@ public class ServletAlohaTiempos extends HttpServlet {
                 switch (Accion) {
                     case "Upload":
                         Resultado = controladorPersonas.Insert(request);
+                        break;
+                    case "Search":
+                        Resultado = controladorPersonas.Search(request);
+                        response.setContentType("application/json");
+                        response.setCharacterEncoding("UTF-8");
+                        response.getWriter().write(Resultado);
+                        Accion = "Plano";
                         break;
                     case "Delete":
                         Resultado = controladorPersonas.Delete(request);

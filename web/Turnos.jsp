@@ -305,7 +305,6 @@
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                 <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
                                                 <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
-                                                <button class="btn btn-dark btn-sm" type="button" id="IdTmp" name="Tmp"><i class="fa fa-save"></i> Tmp</button>                                                
                                                 <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
                                                 <br/><br/>
                                                 <div class="row">

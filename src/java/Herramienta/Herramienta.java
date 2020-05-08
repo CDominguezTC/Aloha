@@ -22,7 +22,7 @@ public class Herramienta {
     }
 
     public String GetDescrpCode(String cod) {
-        String resp = "Error";
+        String resp = "";//"Error";
         switch (cod) {
             case "0":
                 resp = "Falla general del sistema contacte su proveedor";

@@ -2,6 +2,8 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloTurnos;
+import com.google.gson.Gson;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -442,5 +444,92 @@ public class ControladorTurnos {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
+    }
+
+    public String tmp(HttpServletRequest request) {
+        ModeloTurnos modeloTurnos = new ModeloTurnos();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
+                    + "id, "
+                    + "codigo, "
+                    + "descripcion,"
+                    + "tipo_turno,"
+                    + "hora_inicio,"
+                    + "hora_fin,"
+                    + "teorico,"
+                    + "tolerancia_despues_entrada,"
+                    + "tolerancia_antes_salir,"
+                    + "tiempo_breack,"
+                    + "limite_turno,"
+                    + "gener_extras_entrada,"
+                    + "tiempo_minimo_entrada,"
+                    + "tiempo_maximo_entrada,"
+                    + "genera_extras_salida,"
+                    + "tiempo_minimo_salida,"
+                    + "tiempo_maximo_salida,"
+                    + "redondeo_entrada,"
+                    + "sentido_entrada,"
+                    + "redondeo_salida,"
+                    + "sentido_salida,"
+                    + "descanso,"
+                    + "sentido_descanso,"
+                    + "conceptos,"
+                    + "sentido_concepto, "
+                    + "hora_inicio_diurno, "
+                    + "hora_inicio_nocturno, "
+                    + "hora_inicio_break, "
+                    + "hora_fin_break, "
+                    + "descuenta_break, "
+                    + "turno_extra, "
+                    + "turno_noche "
+                    + "FROM turnotiempos "
+                    + "WHERE codigo = ? ORDER BY descripcion");
+            SQL.setString(1, request.getParameter("codigo"));
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {                
+                modeloTurnos.setId(res.getInt("id"));
+                modeloTurnos.setCodigo(res.getString("codigo"));
+                modeloTurnos.setDescripcion(res.getString("descripcion"));
+                modeloTurnos.setTipo_turno(res.getString("tipo_turno"));
+                modeloTurnos.setHora_inicio(res.getString("hora_inicio"));
+                modeloTurnos.setHora_fin(res.getString("hora_fin"));
+                modeloTurnos.setTeorico(res.getString("teorico"));
+                modeloTurnos.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
+                modeloTurnos.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
+                modeloTurnos.setTiempo_breack(res.getString("tiempo_breack"));
+                modeloTurnos.setLimite_turno(res.getString("limite_turno"));
+                modeloTurnos.setGener_extras_entrada(res.getString("gener_extras_entrada"));
+                modeloTurnos.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
+                modeloTurnos.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
+                modeloTurnos.setGenera_extras_salida(res.getString("genera_extras_salida"));
+                modeloTurnos.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
+                modeloTurnos.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
+                modeloTurnos.setRedondeo_entrada(res.getString("redondeo_entrada"));
+                modeloTurnos.setSentido_entrada(res.getString("sentido_entrada"));
+                modeloTurnos.setRedondeo_salida(res.getString("redondeo_salida"));
+                modeloTurnos.setSentido_salida(res.getString("sentido_salida"));
+                modeloTurnos.setDescanso(res.getString("descanso"));
+                modeloTurnos.setSentido_descanso(res.getString("sentido_descanso"));
+                modeloTurnos.setConceptos(res.getString("conceptos"));
+                modeloTurnos.setSentido_concepto(res.getString("sentido_concepto"));
+                modeloTurnos.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
+                modeloTurnos.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
+                modeloTurnos.setHora_inicioBreak(res.getString("hora_inicio_break"));
+                modeloTurnos.setHora_finBreak(res.getString("hora_fin_break"));
+                modeloTurnos.setTurno_noche(res.getString("turno_noche"));
+                modeloTurnos.setTurno_extra(res.getString("turno_extra"));
+                modeloTurnos.setDescuentaBreak(res.getString("descuenta_break"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        resultado = new Gson().toJson(modeloTurnos);
+
+        return resultado;
     }
 }

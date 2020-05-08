@@ -341,100 +341,157 @@ $(function ()
 
     $('#IdGuardar').click(function (e)
     {
-        if (ValidaCampo() === true)
-        {
-            var Frm = "TurnosJSP";
-            var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var HoraInicio = $('#IdHoraInicio').val();
-            var HoraFin = $('#IdHoraFin').val();
-            var Teorico = $('#IdTeorico').val();
-            var HoraInicioBreak = $('#IdHoraInicioBreack').val();
-            var HoraFinBreak = $('#IdHoraFinBreack').val();
-            var TiempoBreak = $('#IdTiempoBreack').val();
-            var TiempoGraciaAE = $('#IdTiempoGraciaAE').val();
-            var TiempoGraciaAS = $('#IdTiempoGraciaAS').val();
-            var TiempoGraciaDE = $('#IdTiempoGraciaDE').val();
-            var TiempoGraciaDS = $('#IdTiempoGraciaDS').val();
-            var AproximacionAE = $('#IdAproximacionAE').val();
-            var AproximacionDS = $('#IdAproximacionDS').val();
-            var HoraInicioDiurno = $('#IdHoraInicioDiurno').val();
-            var HoraInicioNocturno = $('#IdHoraInicioNocturno').val();
-            var Accion = "Upload";
-            var data = {
-                frm: Frm,
-                id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                horainicio: HoraInicio,
-                horafin: HoraFin,
-                teorico: Teorico,
-                horainiciobreak: HoraInicioBreak,
-                horafinbreak: HoraFinBreak,
-                tiempobreak: TiempoBreak,
-                tiempograciaae: TiempoGraciaAE,
-                tiempograciaas: TiempoGraciaAS,
-                tiempograciade: TiempoGraciaDE,
-                tiempograciads: TiempoGraciaDS,
-                aproximacionae: AproximacionAE,
-                aproximacionds: AproximacionDS,
-                horainiciodiurno: HoraInicioDiurno,
-                horainicionocturno: HoraInicioNocturno,
-                turnonocturnos: turnonocturnos,
-                turnoextra: turnoextra,
-                turnodescuento: turnodescuento,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function (resul, textStatus, jqXHR)
-                {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Guardado',
-                        text: 'Registro Guardado Satisfactoriamente.'
-                    });
-                    disableGif();
-                    //alert(resul);
-                    LimpiarCampos();
-                    LoadTabla();
 
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
+        alert("Hello");
+
+        var Frm = "TurnosJSP";        
+        var Codigo = $('#IdCodigo').val();
+        var Accion = "tmp";
+        var data = {
+            frm: Frm,
+            codigo: Codigo,            
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                alert(resul);
+                alert(resul.id);
+                alert(resul.codigo);
+                alert(resul.descripcion);
+                
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: 'Registro Guardado Satisfactoriamente.'
+                });
+                disableGif();
+                //alert(resul);
+                LimpiarCampos();
+                LoadTabla();
+
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
                 }
-            });
-        } else
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Verifica todos los campos.'
-            });
-            //alert("Favor de completar todos los campos");
-        }
+            }
+        });
+
+
+
+
+
+//        if (ValidaCampo() === true)
+//        {
+//            var Frm = "TurnosJSP";
+//            var Id = $('#Id').val();
+//            var Codigo = $('#IdCodigo').val();
+//            var Nombre = $('#IdNombre').val();
+//            var HoraInicio = $('#IdHoraInicio').val();
+//            var HoraFin = $('#IdHoraFin').val();
+//            var Teorico = $('#IdTeorico').val();
+//            var HoraInicioBreak = $('#IdHoraInicioBreack').val();
+//            var HoraFinBreak = $('#IdHoraFinBreack').val();
+//            var TiempoBreak = $('#IdTiempoBreack').val();
+//            var TiempoGraciaAE = $('#IdTiempoGraciaAE').val();
+//            var TiempoGraciaAS = $('#IdTiempoGraciaAS').val();
+//            var TiempoGraciaDE = $('#IdTiempoGraciaDE').val();
+//            var TiempoGraciaDS = $('#IdTiempoGraciaDS').val();
+//            var AproximacionAE = $('#IdAproximacionAE').val();
+//            var AproximacionDS = $('#IdAproximacionDS').val();
+//            var HoraInicioDiurno = $('#IdHoraInicioDiurno').val();
+//            var HoraInicioNocturno = $('#IdHoraInicioNocturno').val();
+//            var Accion = "Upload";
+//            var data = {
+//                frm: Frm,
+//                id: Id,
+//                codigo: Codigo,
+//                nombre: Nombre,
+//                horainicio: HoraInicio,
+//                horafin: HoraFin,
+//                teorico: Teorico,
+//                horainiciobreak: HoraInicioBreak,
+//                horafinbreak: HoraFinBreak,
+//                tiempobreak: TiempoBreak,
+//                tiempograciaae: TiempoGraciaAE,
+//                tiempograciaas: TiempoGraciaAS,
+//                tiempograciade: TiempoGraciaDE,
+//                tiempograciads: TiempoGraciaDS,
+//                aproximacionae: AproximacionAE,
+//                aproximacionds: AproximacionDS,
+//                horainiciodiurno: HoraInicioDiurno,
+//                horainicionocturno: HoraInicioNocturno,
+//                turnonocturnos: turnonocturnos,
+//                turnoextra: turnoextra,
+//                turnodescuento: turnodescuento,
+//                accion: Accion
+//            };
+//            enableGif();
+//            $.ajax({
+//                type: "POST",
+//                url: "ServletAlohaTiempos",
+//                data: data,
+//                success: function (resul, textStatus, jqXHR)
+//                {
+//                    Swal.fire({
+//                        icon: 'success',
+//                        title: 'Guardado',
+//                        text: 'Registro Guardado Satisfactoriamente.'
+//                    });
+//                    disableGif();
+//                    //alert(resul);
+//                    LimpiarCampos();
+//                    LoadTabla();
+//
+//                },
+//                error: function (jqXHR, textStatus, errorThrown) {
+//                    disableGif();
+//                    if (jqXHR.status === 0) {
+//                        alert('Not connect: Verify Network.');
+//                    } else if (jqXHR.status === 404) {
+//                        alert('Requested page not found [404]');
+//                    } else if (jqXHR.status === 500) {
+//                        alert('Internal Server Error [500].');
+//                    } else if (textStatus === 'parsererror') {
+//                        alert('Requested JSON parse failed.');
+//                    } else if (textStatus === 'timeout') {
+//                        alert('Time out error.');
+//                    } else if (textStatus === 'abort') {
+//                        alert('Ajax request aborted.');
+//                    } else {
+//                        alert('Uncaught Error: ' + jqXHR.responseText);
+//                    }
+//                }
+//            });
+//        } else
+//        {
+//            Swal.fire({
+//                icon: 'error',
+//                title: 'Error',
+//                text: 'Verifica todos los campos.'
+//            });
+//            //alert("Favor de completar todos los campos");
+//        }
     });
-
-
 
     $(document).on('click', '.SetEliminar', function () {
 //        if (ValidaCampo() === true)
