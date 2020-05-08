@@ -9,13 +9,132 @@ $(function ()
         LoadTabla();
         validacionBtn();
     });
+    $(document).ready(function ()
+    {
+        $("#IdCedula").blur(function () {
+            var Frm = "PersonasJSP";
+            var Cedula = $('#IdCedula').val();
+            var Accion = "Read";
+            var Modulo = "Casino";    
+            var data = {
+                frm: Frm,
+                cedula: Cedula,
+                modulo: Modulo,
+                accion: Accion
+            };
+            enableGif();
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function (resul, textStatus, jqXHR)
+                {
+                    disableGif();
+                    if (resul !== "99Empy")
+                    {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'Inforacion',
+                            text: 'La persona ya esta registrada en el sistema.'
+                        });
+                        LimpiarCampos();
+                        $('#datatable').html(resul);
+                        $('#datatable').dataTable({
+                            responsive: true,
+                            language: {
+                                "decimal": "",
+                                "emptyTable": "No hay información",
+                                "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                                "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                                "infoPostFix": "",
+                                "thousands": ",",
+                                "lengthMenu": "Mostrar _MENU_ Entradas",
+                                "loadingRecords": "Cargando...",
+                                "processing": "Procesando...",
+                                "search": "Buscar:",
+                                "zeroRecords": "Sin resultados encontrados",
+                                "paginate": {
+                                    "first": "Primero",
+                                    "last": "Ultimo",
+                                    "next": "Siguiente",
+                                    "previous": "Anterior"
+                                }
+                            }
+                            , "autoWidth": false
+                            , "destroy": true
+                            , "info": true
+                            , "JQueryUI": true
+                            , "ordering": true
+                            , "paging": true
+                            , "scrollY": "500px"
+                            , "scrollCollapse": true
 
+                        });
+                    } else
+                    {
+                        LoadTabla();
+                        var t = $('#IdTipoDoc').val();
+                        var C = $('#IdCedula').val();
+                        LimpiarCampos();
+                        $('#IdCedula').val(C);
+                        $('#IdTipoDoc').val(t);
+                    }
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        });
+    });
     $(document).on('click', '.SetFormulario', function () {
         $('#Id').val($(this).data('id'));
+        $('#IdTipoDoc').val($(this).data('tipodoc'));
+        $('#IdCedula').val($(this).data('cedula'));
         $('#IdNombre').val($(this).data('nombre'));
-        $('#IdCodigo').val($(this).data('codigo'));
+        $('#IdApellido').val($(this).data('apellido'));
+        $('#IdEmpresa').val($(this).data('empresa'));
+        $('#IdCentroCosto').val($(this).data('centrocosto'));
+        $('#IdConsume').val($(this).data('consume'));
+        $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
+        $('#IdObservacion').val($(this).data('observacion'));
     });
-
+    $(document).on('click', '.SetFormularioId', function () {
+        $('#Id').val($(this).data('id'));
+        if ($(this).data('idhoteleria') !== 0)
+        {
+            $('#IdHoteleria').val($(this).data('idhoteleria'));
+            $('#IdAdicional').val($(this).data('idadicional'));
+            $('#IdConsumeHoteleria').val($(this).data('idconsumehoteleria'));
+            $('#IdValorHoteleria').val($(this).data('idvalorhoteleria'));
+            $('#IdConsumeAdicional').val($(this).data('idconsumeadicional'));
+            $('#IdValorAdicional').val($(this).data('idvaloradicional'));
+        } else
+        {
+            $('#IdHoteleria').val('');
+            $('#IdAdicional').val('');
+            $('#IdConsumeHoteleria').val('1HN');
+            $('#IdValorHoteleria').val('25000');
+            $('#IdConsumeAdicional').val('1AN');
+            $('#IdValorAdicional').val('25000');
+        }
+    });
     function validacionBtn() {
 
         //alert("validacionBtn");
@@ -52,7 +171,6 @@ $(function ()
                             location.href = "Dashboard.jsp";
                         }
                     });
-
                 }
 
             },
@@ -235,11 +353,20 @@ $(function ()
     function ValidaCampo()
     {
         var res = false;
-        if ($('#IdCodigo').val() !== "")
+        if ($('#IdCedula').val() !== "")
         {
             if ($('#IdNombre').val() !== "")
             {
-                res = true;
+                if ($('#IdApellido').val() !== "")
+                {
+                    if ($('#IdConsume').val() !== "0")
+                    {
+                        if ($('#IdGrupoConsumo').val() !== "0")
+                        {
+                            res = true;
+                        }
+                    }
+                }
             }
         }
         return res;
@@ -248,30 +375,52 @@ $(function ()
     function  LimpiarCampos()
     {
         $('#Id').val('');
-        $('#IdCodigo').val('');
+        $('#IdTipoDoc').val(0);
+        $('#IdCedula').val('');
         $('#IdNombre').val('');
+        $('#IdApellido').val('');
+        $('#IdEmpresa').val(0);
+        $('#IdCentroCosto').val(0);
+        $('#IdConsume').val(0);
+        $('#IdGrupoConsumo').val(0);
+        $('#IdObservacion').val('');
     }
 
     $('#IdAgregar').click(function (e)
     {
         LimpiarCampos();
     });
-
     $('#IdGuardar').click(function (e)
     {
         if (ValidaCampo() === true)
         {
-            var Frm = "CiudadJSP";
+            var Frm = "PersonasJSP";
             var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
+            var TipoDoc = $('#IdTipoDoc').val();
+            var Cedula = $('#IdCedula').val();
             var Nombre = $('#IdNombre').val();
-            var Accion = "Upload";
+            var Apellido = $('#IdApellido').val();
+            var Empresa = $('#IdEmpresa').val();
+            var CentroCosto = $('#IdCentroCosto').val();
+            var Consumo = $('#IdConsume').val();
+            var GrupoConsumo = $('#IdGrupoConsumo').val();
+            var Observacion = $('#IdObservacion').val();
+            var Accion = "Upload";            
+            var Modulo = "Casino";            
             var data = {
                 frm: Frm,
                 id: Id,
-                codigo: Codigo,
+                tipodoc: TipoDoc,
+                cedula: Cedula,
                 nombre: Nombre,
-                accion: Accion
+                apellido: Apellido,
+                empresa: Empresa,
+                centrocosto: CentroCosto,
+                consumo: Consumo,
+                grupoconsumo: GrupoConsumo,
+                observacion: Observacion,
+                accion: Accion,
+                modulo: Modulo
             };
             enableGif();
             $.ajax({
@@ -289,7 +438,6 @@ $(function ()
                     //alert(resul);
                     LimpiarCampos();
                     LoadTabla();
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
@@ -320,22 +468,125 @@ $(function ()
             //alert("Favor de completar todos los campos");
         }
     });
-
-
-
+    $('#IdIniServicio').click(function (e)
+    {
+        var Frm = "CargosJSP";
+        var Id = $('#Id').val();
+        var IdHoteleria = $('#IdHoteleria').val();
+        var IdAdicional = $('#IdAdicional').val();
+        var ConsumoHoteleria = $('#IdConsumeHoteleria').val();
+        var ValorHoteleria = $('#IdValorHoteleria').val();
+        var ConsumoAdicional = $('#IdConsumeAdicional').val();
+        var ValorAdicional = $('#IdValorAdicional').val();
+        var Accion = "IniServicio";
+        var data = {
+            frm: Frm,
+            id: Id,
+            idhoteleria: IdHoteleria,
+            idadicional: IdAdicional,
+            consumohoteleria: ConsumoHoteleria,
+            valorhoteleria: ValorHoteleria,
+            consumoadicional: ConsumoAdicional,
+            valoradicional: ValorAdicional,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: resul
+                });
+                disableGif();
+                //alert(resul);
+                LimpiarCampos();
+                LoadTabla();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    });
+    $('#IdFinServicio').click(function (e)
+    {
+        var Frm = "CargosJSP";
+        var Id = $('#Id').val();
+        var IdHoteleria = $('#IdHoteleria').val();
+        var IdAdicional = $('#IdAdicional').val();
+        var Accion = "FinServicio";
+        var data = {
+            frm: Frm,
+            id: Id,
+            idhoteleria: IdHoteleria,
+            idadicional: IdAdicional,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: resul
+                });
+                disableGif();
+                //alert(resul);
+                LimpiarCampos();
+                LoadTabla();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    });
     $(document).on('click', '.SetEliminar', function () {
 //        if (ValidaCampo() === true)
 //        {
-        var Frm = "CiudadJSP";
+        var Frm = "PersonasJSP";
         var Id = $(this).data('id');
-        var Codigo = $(this).data('codigo');
-        var Nombre = $(this).data('nombre');
         var Accion = "Delete";
         var data = {
             frm: Frm,
             id: Id,
-            codigo: Codigo,
-            nombre: Nombre,
             accion: Accion
         };
         Swal.fire({
@@ -360,7 +611,7 @@ $(function ()
                         Swal.fire({
                             icon: 'success',
                             title: 'Eliminado',
-                            text: 'Registro Eliminado Satisfactoriamente.'
+                            text: resul
                         });
                         //alert(resul);
                         LimpiarCampos();
@@ -388,8 +639,6 @@ $(function ()
             }
         });
     });
-
-
 //        else
 //        {
 //            alert("Favor de completar todos los campos");
@@ -400,18 +649,12 @@ $(function ()
     $("#IdEliminar").click(function (e) {
         if (ValidaCampo() === true)
         {
-            var Frm = "ComercialJSP";
+            var Frm = "PersonasJSP";
             var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var Notas = $('#IdNotas').val();
             var Accion = "Delete";
             var data = {
                 frm: Frm,
                 id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                notas: Notas,
                 accion: Accion
             };
             enableGif();
@@ -425,7 +668,7 @@ $(function ()
                     Swal.fire({
                         icon: 'success',
                         title: 'Eliminado',
-                        text: 'Registro Eliminado Satisfactoriamente.'
+                        text: resul
                     });
                     //alert(resul);
                     LimpiarCampos();
@@ -460,16 +703,17 @@ $(function ()
             //alert("Favor de completar todos los campos");
         }
     });
-
     function LoadTabla()
     {
-        var Frm = "CiudadJSP";
+        var Frm = "PersonasJSP";
         var Accion = "Read";
+        var Modulo = "Casino";     
         var data = {
             frm: Frm,
+            modulo: Modulo,
             accion: Accion
         };
-        enableGif();
+        enableGif();       
         $.ajax({
             type: "POST",
             url: "ServletAlohaTiempos",
@@ -479,42 +723,38 @@ $(function ()
             {
                 disableGif();
                 $('#datatable').html(resul);
-                $('#datatable').dataTable({
-                    responsive: true,
-                    language: {
-                        "decimal": "",
-                        "emptyTable": "No hay información",
-                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                        "infoPostFix": "",
-                        "thousands": ",",
-                        "lengthMenu": "Mostrar _MENU_ Entradas",
-                        "loadingRecords": "Cargando...",
-                        "processing": "Procesando...",
-                        "search": "Buscar:",
-                        "zeroRecords": "Sin resultados encontrados",
-                        "paginate": {
-                            "first": "Primero",
-                            "last": "Ultimo",
-                            "next": "Siguiente",
-                            "previous": "Anterior"
-                        }
-                    }
-                    , "autoWidth": false
-                    , "destroy": true
-                    , "info": true
-                    , "JQueryUI": true
-                    , "ordering": true
-                    , "paging": true
-                    , "scrollY": "500px"
-                    , "scrollCollapse": true
-
-                });
-                //$('#datatable').dataTable().fnDestroy();
-
-//                    alert(resul);
-//                    LimpiarCampos();
+//                $('#datatable').dataTable({
+//                    responsive: true,
+//                    language: {
+//                        "decimal": "",
+//                        "emptyTable": "No hay información",
+//                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+//                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+//                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+//                        "infoPostFix": "",
+//                        "thousands": ",",
+//                        "lengthMenu": "Mostrar _MENU_ Entradas",
+//                        "loadingRecords": "Cargando...",
+//                        "processing": "Procesando...",
+//                        "search": "Buscar:",
+//                        "zeroRecords": "Sin resultados encontrados",
+//                        "paginate": {
+//                            "first": "Primero",
+//                            "last": "Ultimo",
+//                            "next": "Siguiente",
+//                            "previous": "Anterior"
+//                        }
+//                    }
+//                    , "autoWidth": false
+//                    , "destroy": true
+//                    , "info": true
+//                    , "JQueryUI": true
+//                    , "ordering": true
+//                    , "paging": true
+//                    , "scrollY": "500px"
+//                    , "scrollCollapse": true
+//
+//                });
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 disableGif();
