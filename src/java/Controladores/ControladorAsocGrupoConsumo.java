@@ -18,15 +18,14 @@ import javax.servlet.http.HttpServletResponse;
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorAsocGrupoConsumo
-{
+public class ControladorAsocGrupoConsumo {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
-    ConexionBdMysql conexion = new ConexionBdMysql ();
-    ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
-    ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo ();
+    ConexionBdMysql conexion = new ConexionBdMysql();
+    ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
+    ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo();
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd
@@ -37,86 +36,72 @@ public class ControladorAsocGrupoConsumo
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert (HttpServletRequest request)
-    {
+    public String Insert(HttpServletRequest request) {
 
-        if ("".equals (request.getParameter ("id")))
-        {
+        if ("".equals(request.getParameter("id"))) {
 
-            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo ();
-            modelo.setId (0);
-            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("grupoconsumo"))));
-            modelo.setModeloHorarioConsumo (controladorHorarioConsumo.getModelo (Integer.parseInt (request.getParameter ("horario"))));
-            modelo.setCosto (Integer.parseInt (request.getParameter ("valor")));
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("INSERT INTO `asocgrupohorario`("
+            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo();
+            modelo.setId(0);
+            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
+            modelo.setModeloHorarioConsumo(controladorHorarioConsumo.getModelo(Integer.parseInt(request.getParameter("horario"))));
+            modelo.setCosto(Integer.parseInt(request.getParameter("valor")));
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("INSERT INTO `asocgrupohorario`("
                             + "`grupoconsumoid`,"
                             + "`horarioconsumoid`,"
                             + "`costo`) "
                             + "VALUE (?,?,?);");
-                    SQL.setInt (1, modelo.getModeloGrupoConsumo ().getId ());
-                    SQL.setInt (2, modelo.getModeloHorarioConsumo ().getId ());
-                    SQL.setInt (3, modelo.getCosto ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getModeloGrupoConsumo().getId());
+                    SQL.setInt(2, modelo.getModeloHorarioConsumo().getId());
+                    SQL.setInt(3, modelo.getCosto());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
-        }
-        else
-        {
-            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
-            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("grupoconsumo"))));
-            modelo.setModeloHorarioConsumo (controladorHorarioConsumo.getModelo (Integer.parseInt (request.getParameter ("horario"))));
-            modelo.setCosto (Integer.parseInt (request.getParameter ("valor")));
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("UPDATE `asocgrupohorario`  SET "
+        } else {
+            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
+            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
+            modelo.setModeloHorarioConsumo(controladorHorarioConsumo.getModelo(Integer.parseInt(request.getParameter("horario"))));
+            modelo.setCosto(Integer.parseInt(request.getParameter("valor")));
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("UPDATE `asocgrupohorario`  SET "
                             + "`grupoconsumoid` = ?, "
                             + "`horarioconsumoid` = ?, "
                             + "`costo` = ? "
                             + "WHERE `id` = ?;");
-                    SQL.setInt (1, modelo.getModeloGrupoConsumo ().getId ());
-                    SQL.setInt (2, modelo.getModeloHorarioConsumo ().getId ());
-                    SQL.setInt (3, modelo.getCosto ());
-                    SQL.setInt (4, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getModeloGrupoConsumo().getId());
+                    SQL.setInt(2, modelo.getModeloHorarioConsumo().getId());
+                    SQL.setInt(3, modelo.getCosto());
+                    SQL.setInt(4, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -131,36 +116,29 @@ public class ControladorAsocGrupoConsumo
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete (HttpServletRequest request)
-    {
-        if (!"".equals (request.getParameter ("id")))
-        {
-            String idtmp = request.getParameter ("id");
-            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
+            String idtmp = request.getParameter("id");
+            ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
 
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("DELETE FROM `asocgrupohorario` "
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `asocgrupohorario` "
                             + "WHERE `Id` = ?;");
-                    SQL.setInt (1, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
                 }
-                SQL.close ();
-                con.close ();
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+                SQL.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -175,34 +153,30 @@ public class ControladorAsocGrupoConsumo
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloAsocGrupoConsumo> Read ()
-    {
-        LinkedList<ModeloAsocGrupoConsumo> listModeloAsocGrupoConsumos = new LinkedList<ModeloAsocGrupoConsumo> ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+    private LinkedList<ModeloAsocGrupoConsumo> Read() {
+        LinkedList<ModeloAsocGrupoConsumo> listModeloAsocGrupoConsumos = new LinkedList<ModeloAsocGrupoConsumo>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`grupoconsumoid`,"
                     + "`horarioconsumoid`,"
                     + "`costo` "
                     + "FROM `asocgrupohorario`;");
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo ();
-                modelo.setId (res.getInt ("id"));
-                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (res.getInt ("grupoconsumoid")));
-                modelo.setModeloHorarioConsumo (controladorHorarioConsumo.getModelo (res.getInt ("horarioconsumoid")));
-                modelo.setCosto (res.getInt ("costo"));
-                listModeloAsocGrupoConsumos.add (modelo);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloAsocGrupoConsumo modelo = new ModeloAsocGrupoConsumo();
+                modelo.setId(res.getInt("id"));
+                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(res.getInt("grupoconsumoid")));
+                modelo.setModeloHorarioConsumo(controladorHorarioConsumo.getModelo(res.getInt("horarioconsumoid")));
+                modelo.setCosto(res.getInt("costo"));
+                listModeloAsocGrupoConsumos.add(modelo);
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return listModeloAsocGrupoConsumos;
     }
@@ -215,15 +189,13 @@ public class ControladorAsocGrupoConsumo
      * @return String
      * @version: 07/05/2020
      */
-    public String Read (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+    public String Read(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String out = null;
-        try
-        {
+        try {
             LinkedList<ModeloAsocGrupoConsumo> listModeloAsocGrupoConsumos;
-            listModeloAsocGrupoConsumos = Read ();
-            response.setContentType ("text/html;charset=UTF-8");
+            listModeloAsocGrupoConsumos = Read();
+            response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
@@ -235,34 +207,32 @@ public class ControladorAsocGrupoConsumo
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloAsocGrupoConsumo modeloAsocGrupoConsumo : listModeloAsocGrupoConsumos)
-            {
+            for (ModeloAsocGrupoConsumo modeloAsocGrupoConsumo : listModeloAsocGrupoConsumos) {
                 out += "<tr>";
-                out += "<td>" + modeloAsocGrupoConsumo.getModeloGrupoConsumo ().getDescripcion () + "</td>";
-                out += "<td>" + modeloAsocGrupoConsumo.getModeloHorarioConsumo ().getNombre () + "</td>";
-                out += "<td>" + modeloAsocGrupoConsumo.getCosto () + "</td>";
+                out += "<td>" + modeloAsocGrupoConsumo.getModeloGrupoConsumo().getDescripcion() + "</td>";
+                out += "<td>" + modeloAsocGrupoConsumo.getModeloHorarioConsumo().getNombre() + "</td>";
+                out += "<td>" + modeloAsocGrupoConsumo.getCosto() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloAsocGrupoConsumo.getId () + "\"";
-                out += "data-idgrupoconsumo=\"" + modeloAsocGrupoConsumo.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-idhorarioconsumo=\"" + modeloAsocGrupoConsumo.getModeloHorarioConsumo ().getId () + "\"";
-                out += "data-valor=\"" + modeloAsocGrupoConsumo.getCosto () + "\"";
+                out += "data-id=\"" + modeloAsocGrupoConsumo.getId() + "\"";
+                out += "data-idgrupoconsumo=\"" + modeloAsocGrupoConsumo.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-idhorarioconsumo=\"" + modeloAsocGrupoConsumo.getModeloHorarioConsumo().getId() + "\"";
+                out += "data-valor=\"" + modeloAsocGrupoConsumo.getCosto() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloAsocGrupoConsumo.getId () + "\"";
-                out += "data-idgrupoconsumo=\"" + modeloAsocGrupoConsumo.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-idhorarioconsumo=\"" + modeloAsocGrupoConsumo.getModeloHorarioConsumo ().getId () + "\"";
-                out += "data-valor=\"" + modeloAsocGrupoConsumo.getCosto () + "\"";
+                out += "data-id=\"" + modeloAsocGrupoConsumo.getId() + "\"";
+                out += "data-idgrupoconsumo=\"" + modeloAsocGrupoConsumo.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-idhorarioconsumo=\"" + modeloAsocGrupoConsumo.getModeloHorarioConsumo().getId() + "\"";
+                out += "data-valor=\"" + modeloAsocGrupoConsumo.getCosto() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-        } catch (Exception e)
-        {
-            System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }

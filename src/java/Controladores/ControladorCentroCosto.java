@@ -23,13 +23,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorCentroCosto
-{
+public class ControladorCentroCosto {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
-    ConexionBdMysql conexion = new ConexionBdMysql ();
+    ConexionBdMysql conexion = new ConexionBdMysql();
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd Centro
@@ -40,80 +39,66 @@ public class ControladorCentroCosto
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert (HttpServletRequest request)
-    {
-        if ("".equals (request.getParameter ("id")))
-        {
-            ModeloCentroCosto modelo = new ModeloCentroCosto (
+    public String Insert(HttpServletRequest request) {
+        if ("".equals(request.getParameter("id"))) {
+            ModeloCentroCosto modelo = new ModeloCentroCosto(
                     0,
-                    request.getParameter ("codigo"),
-                    request.getParameter ("descripcion")
+                    request.getParameter("codigo"),
+                    request.getParameter("descripcion")
             );
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("INSERT INTO `centrocosto`("
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("INSERT INTO `centrocosto`("
                             + "`nombre`,"
                             + "`codigoInterno`)"
                             + "VALUE (?,?);");
-                    SQL.setString (1, modelo.getDescripcion ());
-                    SQL.setString (2, modelo.getCodigo ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setString(1, modelo.getDescripcion());
+                    SQL.setString(2, modelo.getCodigo());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
-        }
-        else
-        {
-            ModeloCentroCosto modelo = new ModeloCentroCosto (
-                    Integer.parseInt (request.getParameter ("id")),
-                    request.getParameter ("codigo"),
-                    request.getParameter ("descripcion")
+        } else {
+            ModeloCentroCosto modelo = new ModeloCentroCosto(
+                    Integer.parseInt(request.getParameter("id")),
+                    request.getParameter("codigo"),
+                    request.getParameter("descripcion")
             );
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("UPDATE `centrocosto` SET "
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("UPDATE `centrocosto` SET "
                             + "`nombre` = ?, "
                             + "`codigoInterno` = ? "
                             + "WHERE `id` = ?;");
-                    SQL.setString (1, modelo.getDescripcion ());
-                    SQL.setString (2, modelo.getCodigo ());
-                    SQL.setInt (3, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setString(1, modelo.getDescripcion());
+                    SQL.setString(2, modelo.getCodigo());
+                    SQL.setInt(3, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -128,36 +113,29 @@ public class ControladorCentroCosto
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete (HttpServletRequest request)
-    {
-        if (!"".equals (request.getParameter ("id")))
-        {
-            String idtmp = request.getParameter ("id");
-            ModeloCentroCosto modelo = new ModeloCentroCosto ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
+            String idtmp = request.getParameter("id");
+            ModeloCentroCosto modelo = new ModeloCentroCosto();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
 
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("DELETE FROM `centrocosto` "
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `centrocosto` "
                             + "WHERE `Id` = ?;");
-                    SQL.setInt (1, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
                 }
-                SQL.close ();
-                con.close ();
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+                SQL.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -172,33 +150,29 @@ public class ControladorCentroCosto
      * @return LinkedList
      * @version: 07/05/2020
      */
-    public LinkedList<ModeloCentroCosto> Read ()
-    {
-        LinkedList<ModeloCentroCosto> listModeloCentroCostos = new LinkedList<ModeloCentroCosto> ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+    public LinkedList<ModeloCentroCosto> Read() {
+        LinkedList<ModeloCentroCosto> listModeloCentroCostos = new LinkedList<ModeloCentroCosto>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`nombre`,"
                     + "`codigoInterno`,"
                     + "`definicionId` "
                     + "FROM `centrocosto`;");
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                ModeloCentroCosto modelo = new ModeloCentroCosto ();
-                modelo.setId (res.getInt ("id"));
-                modelo.setCodigo (res.getString ("codigoInterno"));
-                modelo.setDescripcion (res.getString ("nombre"));
-                listModeloCentroCostos.add (modelo);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloCentroCosto modelo = new ModeloCentroCosto();
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigoInterno"));
+                modelo.setDescripcion(res.getString("nombre"));
+                listModeloCentroCostos.add(modelo);
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return listModeloCentroCostos;
     }
@@ -208,18 +182,16 @@ public class ControladorCentroCosto
      *
      * @author: Carlos A Dominguez D
      * @param request
-     * @param response 
+     * @param response
      * @return String
      * @version: 07/05/2020
      */
-    public String Read (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
-        try
-        {
+        try {
             LinkedList<ModeloCentroCosto> listmoCentroCosto;
-            listmoCentroCosto = Read ();
-            response.setContentType ("text/html;charset=UTF-8");
+            listmoCentroCosto = Read();
+            response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
@@ -230,31 +202,29 @@ public class ControladorCentroCosto
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloCentroCosto modeloCentroCosto : listmoCentroCosto)
-            {
+            for (ModeloCentroCosto modeloCentroCosto : listmoCentroCosto) {
                 out += "<tr>";
-                out += "<td>" + modeloCentroCosto.getCodigo () + "</td>";
-                out += "<td>" + modeloCentroCosto.getDescripcion () + "</td>";
+                out += "<td>" + modeloCentroCosto.getCodigo() + "</td>";
+                out += "<td>" + modeloCentroCosto.getDescripcion() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloCentroCosto.getId () + "\"";
-                out += "data-codigo=\"" + modeloCentroCosto.getCodigo () + "\"";
-                out += "data-nombre=\"" + modeloCentroCosto.getDescripcion () + "\"";
+                out += "data-id=\"" + modeloCentroCosto.getId() + "\"";
+                out += "data-codigo=\"" + modeloCentroCosto.getCodigo() + "\"";
+                out += "data-nombre=\"" + modeloCentroCosto.getDescripcion() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloCentroCosto.getId () + "\"";
-                out += "data-codigo=\"" + modeloCentroCosto.getCodigo () + "\"";
-                out += "data-nombre=\"" + modeloCentroCosto.getDescripcion () + "\"";
+                out += "data-id=\"" + modeloCentroCosto.getId() + "\"";
+                out += "data-codigo=\"" + modeloCentroCosto.getCodigo() + "\"";
+                out += "data-nombre=\"" + modeloCentroCosto.getDescripcion() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-        } catch (Exception e)
-        {
-            System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }
@@ -267,34 +237,30 @@ public class ControladorCentroCosto
      * @return String
      * @version: 07/05/2020
      */
-    ModeloCentroCosto getModelo (int Id)
-    {
+    ModeloCentroCosto getModelo(int Id) {
 
-        ModeloCentroCosto modelo = new ModeloCentroCosto ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+        ModeloCentroCosto modelo = new ModeloCentroCosto();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`nombre`,"
                     + "`codigoInterno`,"
                     + "`definicionId` "
                     + "FROM `centrocosto`"
                     + "WHERE id = ?;");
-            SQL.setInt (1, Id);
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                modelo.setId (res.getInt ("id"));
-                modelo.setCodigo (res.getString ("codigoInterno"));
-                modelo.setDescripcion (res.getString ("nombre"));
+            SQL.setInt(1, Id);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigoInterno"));
+                modelo.setDescripcion(res.getString("nombre"));
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return modelo;
     }

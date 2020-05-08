@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.sql.Time;
@@ -13,11 +12,11 @@ import java.util.Date;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloMarcaciones 
-{
+public class ModeloMarcaciones {
+
     int id;
     int id_empleado;
-    Date  fecha_marcacion;
+    Date fecha_marcacion;
     String hora_marcacion;
     String estado_marcacion;
     String nombre_dispositivo;
@@ -102,5 +101,4 @@ public class ModeloMarcaciones
         this.observacionPersonal = observacionPersonal;
     }
 
-    
 }

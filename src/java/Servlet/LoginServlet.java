@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;  
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,25 +58,22 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-        
+
         //response.setContentType("text/html");  
         //PrintWriter out=response.getWriter();  
-
         //request.getRequestDispatcher("link.html").include(request, response);  
         //String name = "";
-        HttpSession session=request.getSession();  
+        HttpSession session = request.getSession();
         /*if(session!=null){  
             name=(String)session.getAttribute("usuario");  
         }*/
-        
 
-        session.invalidate();  
-        
+        session.invalidate();
+
         String Resultado = "true";
-        response.setCharacterEncoding ("UTF-8");
-        response.setContentType ("text/plain");
-        response.getWriter ().write (Resultado);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain");
+        response.getWriter().write(Resultado);
         //out.print("You are successfully logged out!");  
 
         //out.close(); 
@@ -94,21 +91,21 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         String name = "", resp = "";
-        HttpSession session=request.getSession();  
-        if(session!=null){  
-            name=(String)session.getAttribute("usuario");  
+        HttpSession session = request.getSession();
+        if (session != null) {
+            name = (String) session.getAttribute("usuario");
         }
-        
-        if(name == null){
+
+        if (name == null) {
             resp = "false";
-        }else{
+        } else {
             resp = name;
         }
-        response.setCharacterEncoding ("UTF-8");
-        response.setContentType ("text/plain");
-        response.getWriter ().write (resp);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/plain");
+        response.getWriter().write(resp);
     }
 
     /**

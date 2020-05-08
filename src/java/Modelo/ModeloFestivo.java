@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloFestivo 
-{
+public class ModeloFestivo {
+
     int id;
     String fecha;
     String descripcion;
@@ -19,42 +18,34 @@ public class ModeloFestivo
     public ModeloFestivo() {
     }
 
-    public ModeloFestivo(int id, String fecha, String descripcion)
-    {
+    public ModeloFestivo(int id, String fecha, String descripcion) {
         this.id = id;
         this.fecha = fecha;
         this.descripcion = descripcion;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getFecha()
-    {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(String fecha)
-    {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
-    public String getDescripcion()
-    {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(String descripcion)
-    {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
+
 }

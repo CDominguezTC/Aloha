@@ -10,7 +10,7 @@ package Modelo;
  * @author Julian A Aristizabal
  */
 public class ModeloAuditoria {
-    
+
     private int id;
     private String operacion;
     private String tabla;
@@ -129,7 +129,5 @@ public class ModeloAuditoria {
     public void setObservacion(String observacion) {
         this.observacion = observacion;
     }
-    
-    
-    
+
 }

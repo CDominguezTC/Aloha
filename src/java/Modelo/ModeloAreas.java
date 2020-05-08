@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloAreas 
-{
-  int id;
-  String codigo;
-  String descripcion;
+public class ModeloAreas {
+
+    int id;
+    String codigo;
+    String descripcion;
 
     public ModeloAreas() {
     }

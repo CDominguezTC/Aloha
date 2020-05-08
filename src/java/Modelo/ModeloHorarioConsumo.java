@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloHorarioConsumo
-{
+public class ModeloHorarioConsumo {
+
     int id;
     String codigo;
     String nombre;
@@ -28,12 +27,10 @@ public class ModeloHorarioConsumo
     String festivo;
     ModeloTipoConsumo modeloTipoConsumo;
 
-    public ModeloHorarioConsumo()
-    {
+    public ModeloHorarioConsumo() {
     }
 
-    public ModeloHorarioConsumo(int id, String codigo, String nombre, String horainicio, String horafin, String cantidadconsumos, String lunes, String martes, String miercoles, String jueves, String viernes, String sabado, String domingo, String festivo, ModeloTipoConsumo modeloTipoConsumo)
-    {
+    public ModeloHorarioConsumo(int id, String codigo, String nombre, String horainicio, String horafin, String cantidadconsumos, String lunes, String martes, String miercoles, String jueves, String viernes, String sabado, String domingo, String festivo, ModeloTipoConsumo modeloTipoConsumo) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -51,155 +48,124 @@ public class ModeloHorarioConsumo
         this.modeloTipoConsumo = modeloTipoConsumo;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getCodigo()
-    {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(String codigo)
-    {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public String getNombre()
-    {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre)
-    {
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public String getHorainicio()
-    {
+    public String getHorainicio() {
         return horainicio;
     }
 
-    public void setHorainicio(String horainicio)
-    {
+    public void setHorainicio(String horainicio) {
         this.horainicio = horainicio;
     }
 
-    public String getHorafin()
-    {
+    public String getHorafin() {
         return horafin;
     }
 
-    public void setHorafin(String horafin)
-    {
+    public void setHorafin(String horafin) {
         this.horafin = horafin;
     }
 
-    public String getCantidadconsumos()
-    {
+    public String getCantidadconsumos() {
         return cantidadconsumos;
     }
 
-    public void setCantidadconsumos(String cantidadconsumos)
-    {
+    public void setCantidadconsumos(String cantidadconsumos) {
         this.cantidadconsumos = cantidadconsumos;
     }
 
-    public String getLunes()
-    {
+    public String getLunes() {
         return lunes;
     }
 
-    public void setLunes(String lunes)
-    {
+    public void setLunes(String lunes) {
         this.lunes = lunes;
     }
 
-    public String getMartes()
-    {
+    public String getMartes() {
         return martes;
     }
 
-    public void setMartes(String martes)
-    {
+    public void setMartes(String martes) {
         this.martes = martes;
     }
 
-    public String getMiercoles()
-    {
+    public String getMiercoles() {
         return miercoles;
     }
 
-    public void setMiercoles(String miercoles)
-    {
+    public void setMiercoles(String miercoles) {
         this.miercoles = miercoles;
     }
 
-    public String getJueves()
-    {
+    public String getJueves() {
         return jueves;
     }
 
-    public void setJueves(String jueves)
-    {
+    public void setJueves(String jueves) {
         this.jueves = jueves;
     }
 
-    public String getViernes()
-    {
+    public String getViernes() {
         return viernes;
     }
 
-    public void setViernes(String viernes)
-    {
+    public void setViernes(String viernes) {
         this.viernes = viernes;
     }
 
-    public String getSabado()
-    {
+    public String getSabado() {
         return sabado;
     }
 
-    public void setSabado(String sabado)
-    {
+    public void setSabado(String sabado) {
         this.sabado = sabado;
     }
 
-    public String getDomingo()
-    {
+    public String getDomingo() {
         return domingo;
     }
 
-    public void setDomingo(String domingo)
-    {
+    public void setDomingo(String domingo) {
         this.domingo = domingo;
     }
 
-    public String getFestivo()
-    {
+    public String getFestivo() {
         return festivo;
     }
 
-    public void setFestivo(String festivo)
-    {
+    public void setFestivo(String festivo) {
         this.festivo = festivo;
     }
 
-    public ModeloTipoConsumo getModeloTipoConsumo()
-    {
+    public ModeloTipoConsumo getModeloTipoConsumo() {
         return modeloTipoConsumo;
     }
 
-    public void setModeloTipoConsumo(ModeloTipoConsumo modeloTipoConsumo)
-    {
+    public void setModeloTipoConsumo(ModeloTipoConsumo modeloTipoConsumo) {
         this.modeloTipoConsumo = modeloTipoConsumo;
     }
-    
-    
+
 }

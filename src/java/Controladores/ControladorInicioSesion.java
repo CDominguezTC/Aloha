@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author Julian A Aristizabal
  * @version: 07/05/2020
  */
-public class ControladorInicioSesion
-{
+public class ControladorInicioSesion {
 
     /**
      * Permite Permite la autenticacion del usuario
@@ -25,41 +24,35 @@ public class ControladorInicioSesion
      * @return String
      * @version: 07/05/2020
      */
-    public String autenticacion (HttpServletRequest request)
-    {
+    public String autenticacion(HttpServletRequest request) {
 
         String resultado = "";
         PreparedStatement SQL = null;
         ResultSet rs = null;
         Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql ();
-        con = conexionBdMysql.abrirConexion ();
-        Tools tl = new Tools ();
-        String usuario = request.getParameter ("user");
-        String pw = request.getParameter ("pass");
-        try
-        {
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        Tools tl = new Tools();
+        String usuario = request.getParameter("user");
+        String pw = request.getParameter("pass");
+        try {
             String consulta = "SELECT * FROM usuarios WHERE login = ? AND password = ?";
-            SQL = con.prepareStatement (consulta);
-            SQL.setString (1, usuario);
-            String clave = tl.encriptar (pw);
-            SQL.setString (2, clave);
-            rs = SQL.executeQuery ();     
-            if (rs.absolute (1))
-            {
+            SQL = con.prepareStatement(consulta);
+            SQL.setString(1, usuario);
+            String clave = tl.encriptar(pw);
+            SQL.setString(2, clave);
+            rs = SQL.executeQuery();
+            if (rs.absolute(1)) {
                 resultado = "true";
-            }
-            else
-            {
+            } else {
                 resultado = "-2";
             }
-            rs.close ();
-            SQL.close ();
-            con.close ();
+            rs.close();
+            SQL.close();
+            con.close();
 
-        } catch (Exception e)
-        {
-            System.err.println ("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage ());
+        } catch (Exception e) {
+            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
         }
         return resultado;
     }

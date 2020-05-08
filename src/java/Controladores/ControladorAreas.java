@@ -18,13 +18,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorAreas
-{
+public class ControladorAreas {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
-    ConexionBdMysql conexion = new ConexionBdMysql ();
+    ConexionBdMysql conexion = new ConexionBdMysql();
 
     /**
      * Permite la isercion o actualizacion de los datos en la tabla Bd Areas
@@ -34,74 +33,60 @@ public class ControladorAreas
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert (HttpServletRequest request)
-    {
-        if ("".equals (request.getParameter ("id")))
-        {
-            ModeloAreas modelo = new ModeloAreas (
+    public String Insert(HttpServletRequest request) {
+        if ("".equals(request.getParameter("id"))) {
+            ModeloAreas modelo = new ModeloAreas(
                     0,
-                    request.getParameter ("codigo"),
-                    request.getParameter ("nombre")
+                    request.getParameter("codigo"),
+                    request.getParameter("nombre")
             );
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("INSERT INTO areas (codigo,descripcion)VALUE (?,?)");
-                    SQL.setString (1, modelo.getCodigo ());
-                    SQL.setString (2, modelo.getDescripcion ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("INSERT INTO areas (codigo,descripcion)VALUE (?,?)");
+                    SQL.setString(1, modelo.getCodigo());
+                    SQL.setString(2, modelo.getDescripcion());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
-        }
-        else
-        {
-            ModeloAreas modelo = new ModeloAreas (
-                    Integer.parseInt (request.getParameter ("id")),
-                    request.getParameter ("codigo"),
-                    request.getParameter ("nombre")
+        } else {
+            ModeloAreas modelo = new ModeloAreas(
+                    Integer.parseInt(request.getParameter("id")),
+                    request.getParameter("codigo"),
+                    request.getParameter("nombre")
             );
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("UPDATE areas SET codigo = ?, descripcion = ? WHERE id = ?;");
-                    SQL.setString (1, modelo.getCodigo ());
-                    SQL.setString (2, modelo.getDescripcion ());
-                    SQL.setInt (3, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("UPDATE areas SET codigo = ?, descripcion = ? WHERE id = ?;");
+                    SQL.setString(1, modelo.getCodigo());
+                    SQL.setString(2, modelo.getDescripcion());
+                    SQL.setInt(3, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (Exception e)
-            {
-                System.out.println (e);
+            } catch (Exception e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -116,36 +101,29 @@ public class ControladorAreas
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete (HttpServletRequest request)
-    {
-        if (!"".equals (request.getParameter ("id")))
-        {
-            String idtmp = request.getParameter ("id");
-            ModeloAreas modelo = new ModeloAreas ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
+            String idtmp = request.getParameter("id");
+            ModeloAreas modelo = new ModeloAreas();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
 
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("DELETE FROM `areas` "
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `areas` "
                             + "WHERE `Id` = ?;");
-                    SQL.setInt (1, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
                 }
-                SQL.close ();
-                con.close ();
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+                SQL.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -159,32 +137,28 @@ public class ControladorAreas
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloAreas> Read ()
-    {
-        LinkedList<ModeloAreas> listModeloAreases = new LinkedList<ModeloAreas> ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+    private LinkedList<ModeloAreas> Read() {
+        LinkedList<ModeloAreas> listModeloAreases = new LinkedList<ModeloAreas>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`, "
                     + "`codigo`, "
                     + "`descripcion` "
                     + "FROM `areas`;");
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                ModeloAreas modelo = new ModeloAreas ();
-                modelo.setId (res.getInt ("id"));
-                modelo.setCodigo (res.getString ("codigo"));
-                modelo.setDescripcion (res.getString ("descripcion"));
-                listModeloAreases.add (modelo);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloAreas modelo = new ModeloAreas();
+                modelo.setId(res.getInt("id"));
+                modelo.setCodigo(res.getString("codigo"));
+                modelo.setDescripcion(res.getString("descripcion"));
+                listModeloAreases.add(modelo);
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return listModeloAreases;
     }
@@ -198,16 +172,14 @@ public class ControladorAreas
      * @return String
      * @version: 07/05/2020
      */
-    public String Read (HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException
-    {
+    public String Read(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String out = null;
-        try
-        {
+        try {
             LinkedList<ModeloAreas> listmoAreases;
-            ControladorAreas controladorAreas = new ControladorAreas ();
-            listmoAreases = controladorAreas.Read ();
-            response.setContentType ("text/html;charset=UTF-8");
+            ControladorAreas controladorAreas = new ControladorAreas();
+            listmoAreases = controladorAreas.Read();
+            response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
@@ -219,32 +191,30 @@ public class ControladorAreas
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloAreas modeloAreas : listmoAreases)
-            {
+            for (ModeloAreas modeloAreas : listmoAreases) {
                 out += "<tr>";
-                out += "<td>" + modeloAreas.getId () + "</td>";
-                out += "<td>" + modeloAreas.getCodigo () + "</td>";
-                out += "<td>" + modeloAreas.getDescripcion () + "</td>";
+                out += "<td>" + modeloAreas.getId() + "</td>";
+                out += "<td>" + modeloAreas.getCodigo() + "</td>";
+                out += "<td>" + modeloAreas.getDescripcion() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloAreas.getId () + "\"";
-                out += "data-codigo=\"" + modeloAreas.getCodigo () + "\"";
-                out += "data-nombre=\"" + modeloAreas.getDescripcion () + "\"";
+                out += "data-id=\"" + modeloAreas.getId() + "\"";
+                out += "data-codigo=\"" + modeloAreas.getCodigo() + "\"";
+                out += "data-nombre=\"" + modeloAreas.getDescripcion() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloAreas.getId () + "\"";
-                out += "data-codigo=\"" + modeloAreas.getCodigo () + "\"";
-                out += "data-nombre=\"" + modeloAreas.getDescripcion () + "\"";
+                out += "data-id=\"" + modeloAreas.getId() + "\"";
+                out += "data-codigo=\"" + modeloAreas.getCodigo() + "\"";
+                out += "data-nombre=\"" + modeloAreas.getDescripcion() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-        } catch (Exception e)
-        {
-            System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }

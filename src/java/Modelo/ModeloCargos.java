@@ -9,8 +9,8 @@ package Modelo;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloCargos
-{
+public class ModeloCargos {
+
     int Id;
     ModeloPersonas modeloPersonas;
     String TipoCargo;
@@ -19,12 +19,10 @@ public class ModeloCargos
     String FechaFinCargo;
     String EstadoCargo;
 
-    public ModeloCargos ()
-    {
+    public ModeloCargos() {
     }
 
-    public ModeloCargos (int Id, ModeloPersonas modeloPersonas, String TipoCargo, int ValorCargo, String FechaInicioCargo, String FechaFinCargo, String EstadoCargo)
-    {
+    public ModeloCargos(int Id, ModeloPersonas modeloPersonas, String TipoCargo, int ValorCargo, String FechaInicioCargo, String FechaFinCargo, String EstadoCargo) {
         this.Id = Id;
         this.modeloPersonas = modeloPersonas;
         this.TipoCargo = TipoCargo;
@@ -34,74 +32,60 @@ public class ModeloCargos
         this.EstadoCargo = EstadoCargo;
     }
 
-    public int getId ()
-    {
+    public int getId() {
         return Id;
     }
 
-    public void setId (int Id)
-    {
+    public void setId(int Id) {
         this.Id = Id;
     }
 
-    public ModeloPersonas getModeloPersonas ()
-    {
+    public ModeloPersonas getModeloPersonas() {
         return modeloPersonas;
     }
 
-    public void setModeloPersonas (ModeloPersonas modeloPersonas)
-    {
+    public void setModeloPersonas(ModeloPersonas modeloPersonas) {
         this.modeloPersonas = modeloPersonas;
     }
 
-    public String getTipoCargo ()
-    {
+    public String getTipoCargo() {
         return TipoCargo;
     }
 
-    public void setTipoCargo (String TipoCargo)
-    {
+    public void setTipoCargo(String TipoCargo) {
         this.TipoCargo = TipoCargo;
     }
 
-    public int getValorCargo ()
-    {
+    public int getValorCargo() {
         return ValorCargo;
     }
 
-    public void setValorCargo (int ValorCargo)
-    {
+    public void setValorCargo(int ValorCargo) {
         this.ValorCargo = ValorCargo;
     }
 
-    public String getFechaInicioCargo ()
-    {
+    public String getFechaInicioCargo() {
         return FechaInicioCargo;
     }
 
-    public void setFechaInicioCargo (String FechaInicioCargo)
-    {
+    public void setFechaInicioCargo(String FechaInicioCargo) {
         this.FechaInicioCargo = FechaInicioCargo;
     }
 
-    public String getFechaFinCargo ()
-    {
+    public String getFechaFinCargo() {
         return FechaFinCargo;
     }
 
-    public void setFechaFinCargo (String FechaFinCargo)
-    {
+    public void setFechaFinCargo(String FechaFinCargo) {
         this.FechaFinCargo = FechaFinCargo;
     }
 
-    public String getEstadoCargo ()
-    {
+    public String getEstadoCargo() {
         return EstadoCargo;
     }
 
-    public void setEstadoCargo (String EstadoCargo)
-    {
+    public void setEstadoCargo(String EstadoCargo) {
         this.EstadoCargo = EstadoCargo;
     }
-    
+
 }

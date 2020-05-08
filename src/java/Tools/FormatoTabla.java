@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Tools;
 
 import java.awt.Color;
@@ -11,33 +10,28 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-
-
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class FormatoTabla extends DefaultTableCellRenderer{
+public class FormatoTabla extends DefaultTableCellRenderer {
 
-    private int columna_patron ;
+    private int columna_patron;
 
-    public FormatoTabla(int Colpatron)
-    {
+    public FormatoTabla(int Colpatron) {
         this.columna_patron = Colpatron;
     }
 
     @Override
-    public Component getTableCellRendererComponent ( JTable table, Object value, boolean selected, boolean focused, int row, int column )
-    {        
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean selected, boolean focused, int row, int column) {
         setBackground(Color.WHITE);//color de fondo
         table.setForeground(Color.BLACK);//color de texto
         //Si la celda corresponde a una fila con estado FALSE, se cambia el color de fondo a rojo
-        if( table.getValueAt(row,columna_patron).equals("Invalido") )
-        {
+        if (table.getValueAt(row, columna_patron).equals("Invalido")) {
             table.setForeground(Color.RED);//color de texto
         }
         super.getTableCellRendererComponent(table, value, selected, focused, row, column);
         return this;
- }
+    }
 
 }

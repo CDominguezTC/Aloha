@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
@@ -24,17 +23,15 @@ import javax.swing.JOptionPane;
  *
  * @author Carlos A Dominguez D
  */
-public class ControladorMarcaciones 
-{
-    public boolean Insert(ModeloMarcaciones modeloMarcaciones)
-    {
+public class ControladorMarcaciones {
+
+    public boolean Insert(ModeloMarcaciones modeloMarcaciones) {
         Tools tools = new Tools();
         boolean resulInser = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL;
             SQL = con.prepareStatement("INSERT INTO marcacion(id_empleado,fecha_marcacion,"
                     + "estado_marcacion,nombre_dispositivo,observacion,observacionPersonal) VALUE (?,?,?,?,?,?)");
@@ -42,125 +39,104 @@ public class ControladorMarcaciones
             SQL.setString(2, tools.formaFechaHoraMarcaciones(modeloMarcaciones.getFecha_marcacion(), modeloMarcaciones.getHora_marcacion()));
             SQL.setString(3, modeloMarcaciones.getEstado_marcacion());
             SQL.setString(4, modeloMarcaciones.getNombre_dispositivo());
-            SQL.setString(5, "MANUAL"); 
-            SQL.setString(6, modeloMarcaciones.getObservacionPersonal()); 
+            SQL.setString(5, "MANUAL");
+            SQL.setString(6, modeloMarcaciones.getObservacionPersonal());
             SQL.executeUpdate();
             resulInser = true;
             SQL.close();
             con.close();
-        } 
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al guardar el registro" + e);
         }
-        return resulInser;        
+        return resulInser;
     }
-    
-    public boolean Update(ModeloMarcaciones modeloMarcaciones)
-    {
+
+    public boolean Update(ModeloMarcaciones modeloMarcaciones) {
         Tools tools = new Tools();
         boolean resulInser = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL;
-            if ("Invalido".equals(modeloMarcaciones.getEstado_marcacion()))
-            {
-                SQL = con.prepareStatement("UPDATE marcacion SET estado_marcacion = ? WHERE id = ?;");                
-                SQL.setString(1, modeloMarcaciones.getEstado_marcacion());                                
+            if ("Invalido".equals(modeloMarcaciones.getEstado_marcacion())) {
+                SQL = con.prepareStatement("UPDATE marcacion SET estado_marcacion = ? WHERE id = ?;");
+                SQL.setString(1, modeloMarcaciones.getEstado_marcacion());
                 SQL.setInt(2, modeloMarcaciones.getId());
-            }
-            else
-            {
+            } else {
                 SQL = con.prepareStatement("UPDATE marcacion SET fecha_marcacion = ?,"
-                    + "estado_marcacion = ?,nombre_dispositivo = ?,observacion = ?,observacionPersonal = ? WHERE id = ?;");
+                        + "estado_marcacion = ?,nombre_dispositivo = ?,observacion = ?,observacionPersonal = ? WHERE id = ?;");
                 SQL.setString(1, tools.formaFechaHoraMarcaciones(modeloMarcaciones.getFecha_marcacion(), modeloMarcaciones.getHora_marcacion()));
                 SQL.setString(2, modeloMarcaciones.getEstado_marcacion());
                 SQL.setString(3, modeloMarcaciones.getNombre_dispositivo());
                 SQL.setString(4, "MODIFICADO");
-                SQL.setString(5,modeloMarcaciones.getObservacionPersonal());
+                SQL.setString(5, modeloMarcaciones.getObservacionPersonal());
                 SQL.setInt(6, modeloMarcaciones.getId());
             }
             SQL.executeUpdate();
             resulInser = true;
             SQL.close();
             con.close();
-        } 
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el registro " + e);
         }
-        return resulInser;        
+        return resulInser;
     }
-    
-    public ModeloMarcaciones Search(int id)
-    {
+
+    public ModeloMarcaciones Search(int id) {
         Tools tools = new Tools();
         ModeloMarcaciones modeloMarcaciones = new ModeloMarcaciones();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("SELECT id, id_empleado, fecha_marcacion, "
                     + "estado_marcacion, nombre_dispositivo, observacion, observacionPersonal FROM marcacion  where id = ?;");
             SQL.setInt(1, id);
             ResultSet res = SQL.executeQuery();
-            if (res.next())
-            {
+            if (res.next()) {
                 modeloMarcaciones.setId(res.getInt("id"));
                 modeloMarcaciones.setFecha_marcacion(res.getDate("fecha_marcacion"));
                 modeloMarcaciones.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
                 modeloMarcaciones.setEstado_marcacion(res.getString("estado_marcacion"));
                 modeloMarcaciones.setObservacion(res.getString("observacion"));
                 modeloMarcaciones.setObservacionPersonal(res.getString("observacionPersonal"));
-                
+
             }
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloMarcaciones;
     }
-    
 
-    public List <ModeloPersonas> Read(String Clave)
-    {
-        String forSql = "%" + Clave + "%";        
+    public List<ModeloPersonas> Read(String Clave) {
+        String forSql = "%" + Clave + "%";
         PreparedStatement SQL = null;
-        List <ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
-            if (Clave != null)
-            {
+        try {
+            if (Clave != null) {
                 SQL = con.prepareStatement("SELECT id,tipoIdentificacion,identificacion,"
-                    + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
-                    + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona "
+                        + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
+                        + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona "
                         + "WHERE identificacion LIKE ? OR nombres LIKE ? OR apellidos LIKE ? AND tipoPersona LIKE ? ORDER BY nombres ");
-                SQL.setString(1,forSql);
-                SQL.setString(2,forSql);
-                SQL.setString(3,forSql);
-                SQL.setString(4,"EMPLEADO");
-            }
-            else
-            {
+                SQL.setString(1, forSql);
+                SQL.setString(2, forSql);
+                SQL.setString(3, forSql);
+                SQL.setString(4, "EMPLEADO");
+            } else {
                 SQL = con.prepareStatement("SELECT id,tipoIdentificacion,identificacion,"
-                    + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
-                    + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona WHERE tipoPersona LIKE ? ORDER BY nombres ");
-                SQL.setString(1,"EMPLEADO");
+                        + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
+                        + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona WHERE tipoPersona LIKE ? ORDER BY nombres ");
+                SQL.setString(1, "EMPLEADO");
             }
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloPersonas modeloEmpleado = new ModeloPersonas();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
@@ -181,80 +157,62 @@ public class ControladorMarcaciones
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
         }
         return modeloEmpleados;
-    }            
-    
-    public boolean Delete(ModeloPersonas modeloEmpleados)
-    {
-        boolean resulDelete  = false;
+    }
+
+    public boolean Delete(ModeloPersonas modeloEmpleados) {
+        boolean resulDelete = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("DELETE FROM persona WHERE id = ?;");
             SQL.setInt(1, modeloEmpleados.getId());
-            SQL.executeUpdate();            
-            resulDelete = true;            
+            SQL.executeUpdate();
+            resulDelete = true;
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al borrar el empleado " + e);
         }
         return resulDelete;
-    }    
+    }
 
-    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa)
-    {        
+    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
         PreparedStatement SQL = null;
-        List <ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             SQL = con.prepareStatement("SELECT id,tipoIdentificacion,identificacion,"
                     + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
                     + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona "
-                        + "WHERE id_Dependencias LIKE ? OR id_Centro_Costos LIKE ? OR id_Empresa LIKE ? AND tipoPersona LIKE ? ORDER BY nombres ");
-            if ("0".equals(IdDepen))
-            {
-                SQL.setString(1,null);
+                    + "WHERE id_Dependencias LIKE ? OR id_Centro_Costos LIKE ? OR id_Empresa LIKE ? AND tipoPersona LIKE ? ORDER BY nombres ");
+            if ("0".equals(IdDepen)) {
+                SQL.setString(1, null);
+            } else {
+                SQL.setString(1, IdDepen);
             }
-            else
-            {
-                SQL.setString(1,IdDepen);
+
+            if ("0".equals(IdCentroCos)) {
+                SQL.setString(2, null);
+            } else {
+                SQL.setString(2, IdCentroCos);
             }
-            
-            if ("0".equals(IdCentroCos))
-            {
-                SQL.setString(2,null);
+
+            if ("0".equals(IdEmpresa)) {
+                SQL.setString(3, null);
+            } else {
+                SQL.setString(3, IdEmpresa);
             }
-            else
-            {
-                SQL.setString(2,IdCentroCos);
-            }
-            
-            if ("0".equals(IdEmpresa))
-            {
-                SQL.setString(3,null);
-            }
-            else
-            {
-                SQL.setString(3,IdEmpresa);
-            }
-            SQL.setString(4,"EMPLEADO");
-                       
+            SQL.setString(4, "EMPLEADO");
+
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloPersonas modeloEmpleado = new ModeloPersonas();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
@@ -275,31 +233,25 @@ public class ControladorMarcaciones
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
         }
         return modeloEmpleados;
-        
-        
+
     }
 
-    public ModeloPersonas SearchId(String idPersona)
-    {
+    public ModeloPersonas SearchId(String idPersona) {
         ModeloPersonas modeloEmpleados = new ModeloPersonas();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("SELECT id, tipoIdentificacion,identificacion,"
                     + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
                     + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona WHERE id = ?");
             SQL.setString(1, idPersona);
             ResultSet res = SQL.executeQuery();
-            if (res.next())
-            {
+            if (res.next()) {
                 modeloEmpleados.setId(res.getInt("id"));
                 modeloEmpleados.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modeloEmpleados.setIdentificacion(res.getString("identificacion"));
@@ -318,42 +270,34 @@ public class ControladorMarcaciones
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloEmpleados;
-        
+
     }
-    
-    public List<ModeloMarcaciones> SearchMarcaciones(int id, Date FechaInicial, Date FechaFinal, boolean verInvalidos) 
-    {
+
+    public List<ModeloMarcaciones> SearchMarcaciones(int id, Date FechaInicial, Date FechaFinal, boolean verInvalidos) {
         Tools tools = new Tools();
         PreparedStatement SQL = null;
-        List <ModeloMarcaciones> modeloMarcaciones = new ArrayList<ModeloMarcaciones>();
+        List<ModeloMarcaciones> modeloMarcaciones = new ArrayList<ModeloMarcaciones>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
-            if (verInvalidos == false)
-            {
+        try {
+            if (verInvalidos == false) {
                 SQL = con.prepareStatement("SELECT id ,id_empleado, fecha_marcacion,estado_marcacion,nombre_dispositivo,observacion "
-                    + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?  AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");
-            }
-            else
-            {
+                        + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?  AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");
+            } else {
                 SQL = con.prepareStatement("SELECT id ,id_empleado, fecha_marcacion,estado_marcacion,nombre_dispositivo,observacion "
-                    + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?   ORDER BY fecha_marcacion;");
+                        + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?   ORDER BY fecha_marcacion;");
             }
-            SQL.setInt(1, id);            
+            SQL.setInt(1, id);
             SQL.setString(2, tools.formatFechaIniConsulta(FechaInicial));
             SQL.setString(3, tools.formatFechaFinConsulta(FechaFinal));
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
-                ModeloMarcaciones modeloMarcacion = new ModeloMarcaciones(); 
+            while (res.next()) {
+                ModeloMarcaciones modeloMarcacion = new ModeloMarcaciones();
                 modeloMarcacion.setId(res.getInt("id"));
                 modeloMarcacion.setId_empleado(res.getInt("id_empleado"));
                 modeloMarcacion.setFecha_marcacion(res.getDate("fecha_marcacion"));
@@ -366,12 +310,10 @@ public class ControladorMarcaciones
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloMarcaciones;
-        
+
     }
 }

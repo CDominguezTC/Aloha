@@ -25,17 +25,16 @@ import javax.servlet.http.HttpServletResponse;
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorPersonas
-{
+public class ControladorPersonas {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
-    ConexionBdMysql conexion = new ConexionBdMysql ();
-    ControladorEmpresas controladorEmpresas = new ControladorEmpresas ();
-    ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
-    ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
-    ControladorCargos controladorCargos = new ControladorCargos ();
+    ConexionBdMysql conexion = new ConexionBdMysql();
+    ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
+    ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
+    ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
+    ControladorCargos controladorCargos = new ControladorCargos();
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd
@@ -46,13 +45,11 @@ public class ControladorPersonas
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert (HttpServletRequest request)
-    {
-        String Modulo = request.getParameter ("modulo");
-        switch (Modulo)
-        {
+    public String Insert(HttpServletRequest request) {
+        String Modulo = request.getParameter("modulo");
+        switch (Modulo) {
             case "Casino":
-                resultado = InsertCasino (request);
+                resultado = InsertCasino(request);
                 break;
         }
         return resultado;
@@ -68,35 +65,28 @@ public class ControladorPersonas
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete (HttpServletRequest request)
-    {
-        if (!"".equals (request.getParameter ("id")))
-        {
-            String idtmp = request.getParameter ("id");
-            ModeloPersonas modelo = new ModeloPersonas ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("DELETE FROM `persona` "
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
+            String idtmp = request.getParameter("id");
+            ModeloPersonas modelo = new ModeloPersonas();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `persona` "
                             + "WHERE `Id` = ?;");
-                    SQL.setInt (1, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setInt(1, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-4";
                 }
-                SQL.close ();
-                con.close ();
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+                SQL.close();
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -112,13 +102,11 @@ public class ControladorPersonas
      * @return String
      * @version: 07/05/2020
      */
-    public String Read (HttpServletRequest request, HttpServletResponse response)
-    {
-        String Modulo = request.getParameter ("modulo");
-        switch (Modulo)
-        {
+    public String Read(HttpServletRequest request, HttpServletResponse response) {
+        String Modulo = request.getParameter("modulo");
+        switch (Modulo) {
             case "Casino":
-                resultado = ReadCasino (request, response);
+                resultado = ReadCasino(request, response);
                 break;
         }
         return resultado;
@@ -132,14 +120,12 @@ public class ControladorPersonas
      * @return ModeloEmpresa
      * @version: 07/05/2020
      */
-    ModeloPersonas getModelo (int Id)
-    {
+    ModeloPersonas getModelo(int Id) {
         String resultado = null;
-        ModeloPersonas modelo = new ModeloPersonas ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+        ModeloPersonas modelo = new ModeloPersonas();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`tipoIdentificacion`,"
                     + "`identificacion`,"
@@ -152,27 +138,25 @@ public class ControladorPersonas
                     + "`grupoConsumo`"
                     + "FROM `persona`"
                     + "WHERE id = ?;");
-            SQL.setInt (1, Id);
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                modelo.setId (res.getInt ("id"));
-                modelo.setTipoIdentificacion (res.getString ("tipoIdentificacion"));
-                modelo.setIdentificacion (res.getString ("identificacion"));
-                modelo.setNombres (res.getString ("nombres"));
-                modelo.setApellidos (res.getString ("apellidos"));
-                modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (res.getString ("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (res.getString ("centroCostoId"))));
-                modelo.setObservaciones (res.getString ("observaciones"));
-                modelo.setConsumocasino (res.getString ("consumocasino"));
-                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+            SQL.setInt(1, Id);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                modelo.setId(res.getInt("id"));
+                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
+                modelo.setObservaciones(res.getString("observaciones"));
+                modelo.setConsumocasino(res.getString("consumocasino"));
+                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return modelo;
     }
@@ -187,14 +171,12 @@ public class ControladorPersonas
      * @return ModeloEmpresa
      * @version: 07/05/2020
      */
-    public ModeloPersonas GetPersonaCedula (HttpServletRequest request, HttpServletResponse response)
-    {
+    public ModeloPersonas GetPersonaCedula(HttpServletRequest request, HttpServletResponse response) {
         String resultado = null;
-        ModeloPersonas modelo = new ModeloPersonas ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            SQL = con.prepareStatement ("SELECT "
+        ModeloPersonas modelo = new ModeloPersonas();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`tipoIdentificacion`,"
                     + "`identificacion`,"
@@ -207,27 +189,25 @@ public class ControladorPersonas
                     + "`grupoConsumo`"
                     + "FROM `persona`"
                     + " WHERE identificacion = ?;");
-            SQL.setString (1, request.getParameter ("cedula"));
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                modelo.setId (res.getInt ("id"));
-                modelo.setTipoIdentificacion (res.getString ("tipoIdentificacion"));
-                modelo.setIdentificacion (res.getString ("identificacion"));
-                modelo.setNombres (res.getString ("nombres"));
-                modelo.setApellidos (res.getString ("apellidos"));
-                modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (res.getString ("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (res.getString ("centroCostoId"))));
-                modelo.setObservaciones (res.getString ("observaciones"));
-                modelo.setConsumocasino (res.getString ("consumocasino"));
-                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+            SQL.setString(1, request.getParameter("cedula"));
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                modelo.setId(res.getInt("id"));
+                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
+                modelo.setObservaciones(res.getString("observaciones"));
+                modelo.setConsumocasino(res.getString("consumocasino"));
+                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return modelo;
     }
@@ -241,27 +221,23 @@ public class ControladorPersonas
      * @return String
      * @version: 07/05/2020
      */
-    private String InsertCasino (HttpServletRequest request)
-    {
-        if ("".equals (request.getParameter ("id")))
-        {
-            ModeloPersonas modelo = new ModeloPersonas ();
-            modelo.setId (0);
-            modelo.setTipoIdentificacion (request.getParameter ("tipodoc"));
-            modelo.setIdentificacion (request.getParameter ("cedula"));
-            modelo.setNombres (request.getParameter ("nombre"));
-            modelo.setApellidos (request.getParameter ("apellido"));
-            modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (request.getParameter ("empresa"))));
-            modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (request.getParameter ("centrocosto"))));
-            modelo.setConsumocasino (request.getParameter ("consumo"));
-            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("grupoconsumo"))));
-            modelo.setObservaciones (request.getParameter ("observacion"));
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("INSERT INTO `persona`("
+    private String InsertCasino(HttpServletRequest request) {
+        if ("".equals(request.getParameter("id"))) {
+            ModeloPersonas modelo = new ModeloPersonas();
+            modelo.setId(0);
+            modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
+            modelo.setIdentificacion(request.getParameter("cedula"));
+            modelo.setNombres(request.getParameter("nombre"));
+            modelo.setApellidos(request.getParameter("apellido"));
+            modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
+            modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
+            modelo.setConsumocasino(request.getParameter("consumo"));
+            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
+            modelo.setObservaciones(request.getParameter("observacion"));
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("INSERT INTO `persona`("
                             + "`tipoIdentificacion`,"
                             + "`identificacion`,"
                             + "`nombres`,"
@@ -272,54 +248,47 @@ public class ControladorPersonas
                             + "`consumocasino`,"
                             + "`grupoConsumo`)"
                             + " VALUE (?,?,?,?,?,?,?,?,?);");
-                    SQL.setString (1, modelo.getTipoIdentificacion ());
-                    SQL.setString (2, modelo.getIdentificacion ());
-                    SQL.setString (3, modelo.getNombres ());
-                    SQL.setString (4, modelo.getApellidos ());
-                    SQL.setInt (5, modelo.getModeloEmpresa ().getId ());
-                    SQL.setInt (6, modelo.getModeloCentroCosto ().getId ());
-                    SQL.setString (7, modelo.getObservaciones ());
-                    SQL.setString (8, modelo.getConsumocasino ());
-                    SQL.setInt (9, modelo.getModeloGrupoConsumo ().getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setString(1, modelo.getTipoIdentificacion());
+                    SQL.setString(2, modelo.getIdentificacion());
+                    SQL.setString(3, modelo.getNombres());
+                    SQL.setString(4, modelo.getApellidos());
+                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
+                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
+                    SQL.setString(7, modelo.getObservaciones());
+                    SQL.setString(8, modelo.getConsumocasino());
+                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
-        }
-        else
-        {
-            ModeloPersonas modelo = new ModeloPersonas ();
-            modelo.setId (Integer.parseInt (request.getParameter ("id")));
-            modelo.setTipoIdentificacion (request.getParameter ("tipodoc"));
-            modelo.setIdentificacion (request.getParameter ("cedula"));
-            modelo.setNombres (request.getParameter ("nombre"));
-            modelo.setApellidos (request.getParameter ("apellido"));
-            modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (request.getParameter ("empresa"))));
-            modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (request.getParameter ("centrocosto"))));
-            modelo.setConsumocasino (request.getParameter ("consumo"));
-            modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (request.getParameter ("grupoconsumo"))));
-            modelo.setObservaciones (request.getParameter ("observacion"));
+        } else {
+            ModeloPersonas modelo = new ModeloPersonas();
+            modelo.setId(Integer.parseInt(request.getParameter("id")));
+            modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
+            modelo.setIdentificacion(request.getParameter("cedula"));
+            modelo.setNombres(request.getParameter("nombre"));
+            modelo.setApellidos(request.getParameter("apellido"));
+            modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
+            modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
+            modelo.setConsumocasino(request.getParameter("consumo"));
+            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
+            modelo.setObservaciones(request.getParameter("observacion"));
 
-            try
-            {
-                con = conexion.abrirConexion ();
-                try
-                {
-                    SQL = con.prepareStatement ("UPDATE `persona`  SET "
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    SQL = con.prepareStatement("UPDATE `persona`  SET "
                             + "`tipoIdentificacion` = ?,"
                             + "`identificacion` = ?,"
                             + "`nombres` = ?,"
@@ -330,32 +299,29 @@ public class ControladorPersonas
                             + "`consumocasino` = ?,"
                             + "`grupoConsumo` = ?"
                             + " WHERE `Id` = ?;");
-                    SQL.setString (1, modelo.getTipoIdentificacion ());
-                    SQL.setString (2, modelo.getIdentificacion ());
-                    SQL.setString (3, modelo.getNombres ());
-                    SQL.setString (4, modelo.getApellidos ());
-                    SQL.setInt (5, modelo.getModeloEmpresa ().getId ());
-                    SQL.setInt (6, modelo.getModeloCentroCosto ().getId ());
-                    SQL.setString (7, modelo.getObservaciones ());
-                    SQL.setString (8, modelo.getConsumocasino ());
-                    SQL.setInt (9, modelo.getModeloGrupoConsumo ().getId ());
-                    SQL.setInt (10, modelo.getId ());
-                    if (SQL.executeUpdate () > 0)
-                    {
+                    SQL.setString(1, modelo.getTipoIdentificacion());
+                    SQL.setString(2, modelo.getIdentificacion());
+                    SQL.setString(3, modelo.getNombres());
+                    SQL.setString(4, modelo.getApellidos());
+                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
+                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
+                    SQL.setString(7, modelo.getObservaciones());
+                    SQL.setString(8, modelo.getConsumocasino());
+                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
+                    SQL.setInt(10, modelo.getId());
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
-                        SQL.close ();
-                        con.close ();
+                        SQL.close();
+                        con.close();
                     }
-                } catch (SQLException e)
-                {
-                    System.out.println (e);
+                } catch (SQLException e) {
+                    System.out.println(e);
                     resultado = "-2";
-                    SQL.close ();
-                    con.close ();
+                    SQL.close();
+                    con.close();
                 }
-            } catch (SQLException e)
-            {
-                System.out.println (e);
+            } catch (SQLException e) {
+                System.out.println(e);
                 resultado = "-3";
             }
         }
@@ -372,14 +338,12 @@ public class ControladorPersonas
      * @return String
      * @version: 07/05/2020
      */
-    private String ReadCasino (HttpServletRequest request, HttpServletResponse response)
-    {
-        String cedula = request.getParameter ("cedula");
+    private String ReadCasino(HttpServletRequest request, HttpServletResponse response) {
+        String cedula = request.getParameter("cedula");
         String out = null;
-        try
-        {
-            LinkedList<ModeloPersonas> listaPersonas = new LinkedList<ModeloPersonas> ();
-            listaPersonas = Read (cedula);
+        try {
+            LinkedList<ModeloPersonas> listaPersonas = new LinkedList<ModeloPersonas>();
+            listaPersonas = Read(cedula);
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -393,78 +357,73 @@ public class ControladorPersonas
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloPersonas modeloPersonas : listaPersonas)
-            {
+            for (ModeloPersonas modeloPersonas : listaPersonas) {
                 out += "<tr>";
-                out += "<td>" + modeloPersonas.getIdentificacion () + "</td>";
-                out += "<td>" + modeloPersonas.getNombres () + " " + modeloPersonas.getApellidos () + "</td>";
-                out += "<td>" + modeloPersonas.getModeloEmpresa ().getNombre () + "</td>";
-                out += "<td>" + modeloPersonas.getModeloCentroCosto ().getDescripcion () + "</td>";
-                out += "<td>" + modeloPersonas.getModeloGrupoConsumo ().getDescripcion () + "</td>";
-                if ("1".equals (modeloPersonas.getCalienteSiNo ()))
-                {
+                out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
+                out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
+                out += "<td>" + modeloPersonas.getModeloEmpresa().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModeloCentroCosto().getDescripcion() + "</td>";
+                out += "<td>" + modeloPersonas.getModeloGrupoConsumo().getDescripcion() + "</td>";
+                if ("1".equals(modeloPersonas.getCalienteSiNo())) {
                     out += "<td>No</td>";
-                }
-                else
-                {
+                } else {
                     out += "<td>Si</td>";
                 }
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloPersonas.getId () + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres () + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos () + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa ().getId () + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto ().getId () + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloPersonas.getId () + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres () + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos () + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa ().getId () + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto ().getId () + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPersonas.getId () + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres () + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos () + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa ().getId () + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto ().getId () + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPersonas.getId () + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion () + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion () + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres () + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos () + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa ().getId () + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto ().getId () + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo ().getId () + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino () + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones () + "\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-        } catch (Exception e)
-        {
-            System.out.println ("Error en el proceso de la tabla " + e.getMessage ());
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }
@@ -476,15 +435,12 @@ public class ControladorPersonas
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloPersonas> Read (String cedula)
-    {
-        LinkedList<ModeloPersonas> listaModeloPersonas = new LinkedList<ModeloPersonas> ();
-        con = conexion.abrirConexion ();
-        try
-        {
-            if (cedula == null)
-            {
-                SQL = con.prepareStatement ("SELECT "
+    private LinkedList<ModeloPersonas> Read(String cedula) {
+        LinkedList<ModeloPersonas> listaModeloPersonas = new LinkedList<ModeloPersonas>();
+        con = conexion.abrirConexion();
+        try {
+            if (cedula == null) {
+                SQL = con.prepareStatement("SELECT "
                         + "`id`,"
                         + "`tipoIdentificacion`,"
                         + "`identificacion`,"
@@ -497,9 +453,8 @@ public class ControladorPersonas
                         + "`grupoConsumo`"
                         + "FROM `persona`;");
             }
-            if (cedula != null)
-            {
-                SQL = con.prepareStatement ("SELECT "
+            if (cedula != null) {
+                SQL = con.prepareStatement("SELECT "
                         + "`id`,"
                         + "`tipoIdentificacion`,"
                         + "`identificacion`,"
@@ -512,33 +467,31 @@ public class ControladorPersonas
                         + "`grupoConsumo`"
                         + "FROM `persona`"
                         + "WHERE `identificacion` = ? ;");
-                SQL.setString (1, cedula);
+                SQL.setString(1, cedula);
             }
 
-            ResultSet res = SQL.executeQuery ();
-            while (res.next ())
-            {
-                ModeloPersonas modelo = new ModeloPersonas ();
-                modelo.setId (res.getInt ("id"));
-                modelo.setTipoIdentificacion (res.getString ("tipoIdentificacion"));
-                modelo.setIdentificacion (res.getString ("identificacion"));
-                modelo.setNombres (res.getString ("nombres"));
-                modelo.setApellidos (res.getString ("apellidos"));
-                modelo.setModeloEmpresa (controladorEmpresas.getModelo (Integer.parseInt (res.getString ("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto (controladorCentroCosto.getModelo (Integer.parseInt (res.getString ("centroCostoId"))));
-                modelo.setObservaciones (res.getString ("observaciones"));
-                modelo.setConsumocasino (res.getString ("consumocasino"));
-                modelo.setModeloGrupoConsumo (controladorGrupoConsumo.getModelo (Integer.parseInt (res.getString ("grupoConsumo"))));
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloPersonas modelo = new ModeloPersonas();
+                modelo.setId(res.getInt("id"));
+                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
+                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
+                modelo.setObservaciones(res.getString("observaciones"));
+                modelo.setConsumocasino(res.getString("consumocasino"));
+                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
                 //modelo.setListModeloCargoses (controladorCargos.getListModelo (modelo.getId ()));
 
-                listaModeloPersonas.add (modelo);
+                listaModeloPersonas.add(modelo);
             }
-            res.close ();
-            SQL.close ();
-            con.close ();
-        } catch (SQLException e)
-        {
-            System.out.println (e);
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
         }
         return listaModeloPersonas;
     }

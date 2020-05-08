@@ -10,7 +10,7 @@ package Modelo;
  * @author Julian A Aristizabal
  */
 public class ModeloUsuarios {
-    
+
     private int id;
     private String nombre;
     private String login;
@@ -81,7 +81,5 @@ public class ModeloUsuarios {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
+
 }

@@ -3,59 +3,49 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloTipoConsumo 
-{
+public class ModeloTipoConsumo {
+
     int Id;
     String Nombre;
     int Cantidad;
 
-    public ModeloTipoConsumo()
-    {
+    public ModeloTipoConsumo() {
     }
-    
-    public ModeloTipoConsumo(int Id, String Nombre, int Cantidad)
-    {
+
+    public ModeloTipoConsumo(int Id, String Nombre, int Cantidad) {
         this.Id = Id;
         this.Nombre = Nombre;
         this.Cantidad = Cantidad;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return Id;
     }
 
-    public void setId(int Id)
-    {
+    public void setId(int Id) {
         this.Id = Id;
     }
 
-    public String getNombre()
-    {
+    public String getNombre() {
         return Nombre;
     }
 
-    public void setNombre(String Nombre)
-    {
+    public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
 
-    public int getCantidad()
-    {
+    public int getCantidad() {
         return Cantidad;
     }
 
-    public void setCantidad(int Cantidad)
-    {
+    public void setCantidad(int Cantidad) {
         this.Cantidad = Cantidad;
     }
-    
-    
+
 }

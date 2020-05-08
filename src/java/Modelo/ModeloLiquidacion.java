@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.util.Date;
@@ -12,8 +11,8 @@ import java.util.Date;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloLiquidacion 
-{
+public class ModeloLiquidacion {
+
     int id;
     int idEmpleado;
     String Cedula;
@@ -21,20 +20,20 @@ public class ModeloLiquidacion
     int idGrupoTurno;
     String GrupoTurno;
     int idTurno;
-    String Tunro;         
+    String Tunro;
     Date FechaInicio;
     String HoraInicio;
     Date FechaFin;
     String HoraFin;
-    String HoraDiferencia;    
-    String HoraDiurnas;    
-    String HoraNocturnas;    
-    String HoraExtras;    
+    String HoraDiferencia;
+    String HoraDiurnas;
+    String HoraNocturnas;
+    String HoraExtras;
     String HoraEntradaTardia;
     String HoraSalidaTemprana;
     String HoraDescuento;
-    int Bandera;    
-    ModeloTurnos modeloTurnos;    
+    int Bandera;
+    ModeloTurnos modeloTurnos;
 
     public ModeloLiquidacion() {
     }
@@ -230,5 +229,5 @@ public class ModeloLiquidacion
     public void setModeloTurnos(ModeloTurnos modeloTurnos) {
         this.modeloTurnos = modeloTurnos;
     }
-    
+
 }

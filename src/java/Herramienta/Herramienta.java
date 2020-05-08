@@ -12,22 +12,18 @@ import java.util.Date;
  *
  * @author Carlos A Dominguez D
  */
-public class Herramienta
-{
+public class Herramienta {
 
-    public Date getDate ()
-    {
-        Date utilDate = new Date (); //fecha actual
-        long lnMilisegundos = utilDate.getTime ();
-        Date sqlDate = new Date (lnMilisegundos);
+    public Date getDate() {
+        Date utilDate = new Date(); //fecha actual
+        long lnMilisegundos = utilDate.getTime();
+        Date sqlDate = new Date(lnMilisegundos);
         return sqlDate;
     }
 
-    public String GetDescrpCode (String cod)
-    {
+    public String GetDescrpCode(String cod) {
         String resp = "Error";
-        switch (cod)
-        {
+        switch (cod) {
             case "0":
                 resp = "Falla general del sistema contacte su proveedor";
                 break;
@@ -59,9 +55,8 @@ public class Herramienta
         return resp;
     }
 
-    public Timestamp getDateTimestamp ()
-    {
-        Timestamp timestamp = new Timestamp (System.currentTimeMillis ());
+    public Timestamp getDateTimestamp() {
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         return timestamp;
     }
 }
