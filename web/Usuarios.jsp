@@ -11,7 +11,7 @@
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesBotones.js"></script-->
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesUsuarios.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesUsuarios.js"></script>
         
     </head>
     <body class="nav-md">
@@ -177,7 +177,8 @@
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->
-        <%@include file="Principal/Script.html" %>  
+        <%@include file="Principal/Script.html" %>
+         
     </body>
 </html>
 

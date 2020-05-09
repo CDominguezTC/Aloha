@@ -82,22 +82,27 @@
                                                         <div id="Principal">
                                                             <div class="row">
                                                                 <input type="hidden" id="Id" name="Id">
+                                                                <input type="hidden" id="IdNoDispoOld" name="NoDispoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="numerodispositivo">No Dispositivo</label>
                                                                     <input type="number" class="form-control" id="IdNoDispositivo" name="NoDispo" min="0" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdNombreOld" name="NombreOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control" id="IdNombre" name="Nombre" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdIpOld" name="IpOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="direcionip">IP Dispositivo</label>
                                                                     <input type="text" class="form-control" id="IdIp" name="IP" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdPuertoDispoOld" name="PuertoDispoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puerto">Puerto</label>
                                                                     <input type="number" class="form-control" id="IdPuertoDispositivo" name="Puerto" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdModoOld" name="ModoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="modo">Modo</label>
                                                                     <select id="IdModo" class="form-control" required>
@@ -105,7 +110,8 @@
                                                                         <option value="1">ENTRADA</option>
                                                                         <option value="2">SALIDA</option>                                                                    
                                                                     </select>                                                                   
-                                                                </div>                                                                
+                                                                </div>    
+                                                                <input type="hidden" id="IdTipoLectorOld" name="TipoLectorOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipolector">Tipo Lector</label>
                                                                     <select id="IdTipoLector" class="form-control" required>
@@ -116,6 +122,7 @@
                                                                     </select>                                                                   
 
                                                                 </div>
+                                                                <input type="hidden" id="IdActivoOld" name="ActivoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="activo">Activo</label>
                                                                     <select id="IdActivo" class="form-control" required>
@@ -124,22 +131,27 @@
                                                                         <option value="2">No</option>                                                                                                                                            
                                                                     </select>                                                                          
                                                                 </div>
+                                                                <input type="hidden" id="IdSerieOld" name="SerieOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="serie">Serie</label>
                                                                     <input type="text" class="form-control" id="IdSerie" name="Serie" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdLicenciaOld" name="LicenciaOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="licencia">Licencia</label>
                                                                     <input type="text" class="form-control" id="IdLicencia" name="Licencia" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdImpresoraOld" name="ImpresoraOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="impresora">Impresora</label>
                                                                     <input type="text" class="form-control" id="IdImpresora" name="Impresora" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdEncabezadoImpresionOld" name="EncabezadoImpresionOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="encabezadoimpresion">Encabezado Impresion</label>
                                                                     <input type="text" class="form-control" id="IdEncabezadoImpresion" name="EncabezadoImpresion" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdUtilizaMenuOld" name="UtilizaMenuOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="menu">Utiliza Menu</label>
                                                                     <select id="IdUtilizaMenu" class="form-control" required>
@@ -148,14 +160,17 @@
                                                                         <option value="2">No</option>                                                                                                                                            
                                                                     </select>                                                                                                                                              
                                                                 </div>
+                                                                <input type="hidden" id="IdIpControladoraOld" name="IpControladoraOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="ipcontroladora">Ip Controladora</label>
                                                                     <input type="text" class="form-control" id="IdIpControladora" name="IpControladora" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdPuertoControladoraOld" name="PuertoControladoraOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="puertocontroladora">Puerto Controladora</label>
                                                                     <input type="number" class="form-control" id="IdPuertoControladora" name="PuertoControladora" required>
                                                                 </div>
+                                                                <input type="hidden" id="IdEventoOld" name="EventoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="menu">Evento</label>
                                                                     <select id="IdEvento" class="form-control" required>

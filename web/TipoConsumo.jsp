@@ -59,10 +59,12 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
+                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
+                                            <input type="hidden" id="IdCantidadOld" name="CantidadOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Cantidad</label>
                                                 <input type="number" class="form-control" id="IdCantidad" name="Cantidad" required="required">

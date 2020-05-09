@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js" ></script>         
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCentroCosto.js"></script> 
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -59,10 +59,12 @@
                                     <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
+                                            <input type="hidden" id="IdCodigoOld" name="CodigoOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Código</label>
                                                 <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
                                             </div>
+                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
@@ -162,6 +164,7 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
+        
     </body>
 </html>
 
