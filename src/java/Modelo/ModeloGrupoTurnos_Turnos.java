@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloGrupoTurnos_Turnos 
-{
+public class ModeloGrupoTurnos_Turnos {
+
     int id;
-    int  IdGrupoHorario;
-    int  IdHorario;
+    int IdGrupoHorario;
+    int IdHorario;
     String diaSeman;
 
     public ModeloGrupoTurnos_Turnos() {
@@ -58,6 +57,5 @@ public class ModeloGrupoTurnos_Turnos
     public void setDiaSeman(String diaSeman) {
         this.diaSeman = diaSeman;
     }
-    
-    
+
 }

@@ -10,7 +10,7 @@ package Modelo;
  * @author Julian A Aristizabal
  */
 public class ModeloPermisos {
-    
+
     private int id;
     private String nombre;
 
@@ -49,6 +49,5 @@ public class ModeloPermisos {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
+
 }

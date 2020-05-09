@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
@@ -18,74 +13,68 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Esta clase permite controlar los eventos de Grupo Turnos contrine Insert -
+ * Update, Delete, Read
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
-public class ControladorTipoConsumo
-{
+public class ControladorTipoConsumo {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
 
-    public String Insert(HttpServletRequest request){
-    
-        if ("".equals(request.getParameter("id")))
-        {
+    /**
+     * Permite la inserción o actualización de los datos en la tabla Bd Tipo
+     * Consumos
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
+    public String Insert(HttpServletRequest request) {
+        if ("".equals(request.getParameter("id"))) {
             ModeloTipoConsumo modelo = new ModeloTipoConsumo(
                     0,
                     request.getParameter("nombre"),
                     Integer.parseInt(request.getParameter("cantidad"))
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("INSERT INTO `tipoconsumo`"
                             + "(`Nombre`,"
                             + "`Cantidad`) "
-                            + "VALUE (?,?);", SQL.RETURN_GENERATED_KEYS);
+                            + "VALUE (?,?);");
                     SQL.setString(1, modelo.getNombre());
                     SQL.setInt(2, modelo.getCantidad());
-                    if (SQL.executeUpdate() > 0){
-                        
-                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int)generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "tipo_consumo", request.getParameter("nombreU"), i, "Se inserto el registro.");
-                            }
-                        }
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
-        } else
-        {
+        } else {
             ModeloTipoConsumo modelo = new ModeloTipoConsumo(
                     Integer.parseInt(request.getParameter("id")),
                     request.getParameter("nombre"),
                     Integer.parseInt(request.getParameter("cantidad"))
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("UPDATE `tipoconsumo`  SET "
                             + "`Nombre` = ?, "
                             + "`Cantidad` = ? "
@@ -93,21 +82,18 @@ public class ControladorTipoConsumo
                     SQL.setString(1, modelo.getNombre());
                     SQL.setInt(2, modelo.getCantidad());
                     SQL.setInt(3, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
@@ -115,35 +101,36 @@ public class ControladorTipoConsumo
         return resultado;
     }
 
-    public String Delete(HttpServletRequest request){
-    
-        if (!"".equals(request.getParameter("id")))
-        {
+    /**
+     * Permite la eliminar un dato en la tabla de Tipo Consumos
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
             String idtmp = request.getParameter("id");
             ModeloTipoConsumo modelo = new ModeloTipoConsumo();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
 
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("DELETE FROM `tipoconsumo` "
                             + "WHERE `Id` = ?;");
                     SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                 }
                 SQL.close();
                 con.close();
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
@@ -151,20 +138,24 @@ public class ControladorTipoConsumo
         return resultado;
     }
 
-    public LinkedList<ModeloTipoConsumo> Read(){
-    
+    /**
+     * Permite listar la información de la tabla de Tipo Consumo Metodo Private
+     *
+     * @author: Carlos A Dominguez D
+     * @return LinkedList
+     * @version: 07/05/2020
+     */
+    public LinkedList<ModeloTipoConsumo> Read() {
         LinkedList<ModeloTipoConsumo> listModeloTipoConsumo = new LinkedList<ModeloTipoConsumo>();
         con = conexion.abrirConexion();
-        try
-        {
+        try {
             SQL = con.prepareStatement("SELECT "
                     + "`Id`,"
                     + "`Nombre`,"
                     + "`Cantidad` "
                     + "FROM `tipoconsumo`;");
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloTipoConsumo modelo = new ModeloTipoConsumo();
                 modelo.setId(res.getInt("id"));
                 modelo.setNombre(res.getString("Nombre"));
@@ -174,35 +165,40 @@ public class ControladorTipoConsumo
             res.close();
             SQL.close();
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return listModeloTipoConsumo;
     }
 
+    /**
+     * Permite listar la información de la tabla de Tipo Consumo
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response
+     * @return String
+     * @version: 07/05/2020
+     */
     public String Read(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException{
-    
+            throws ServletException, IOException {
         String out = null;
-        try
-        {
+        try {
             LinkedList<ModeloTipoConsumo> listmoTipoConsumo;
             listmoTipoConsumo = Read();
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
-            out += "<tr>";            
+            out += "<tr>";
             out += "<th>Nomnre</th>";
             out += "<th>Cantidad</th>";
             out += "<th>Opcion</th>";
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloTipoConsumo modeloTipoConsumo : listmoTipoConsumo)
-            {
-                out += "<tr>";                
+            for (ModeloTipoConsumo modeloTipoConsumo : listmoTipoConsumo) {
+                out += "<tr>";
                 out += "<td>" + modeloTipoConsumo.getNombre() + "</td>";
                 out += "<td>" + modeloTipoConsumo.getCantidad() + "</td>";
                 out += "<td class=\"text-center\">";
@@ -222,35 +218,34 @@ public class ControladorTipoConsumo
                 out += "</tr>";
             }
             out += "</tbody>";
-//            PrintWriter pw = response.getWriter();
-//            pw.write(out);
-//            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
-//        String frm = request.getParameter("frm");
-//        System.out.println(frm);
-//        processRequest(request, response);
         return out;
     }
 
-    ModeloTipoConsumo getModelo(int id){
-    
+    /**
+     * Permite listar la información de la tabla de Tipo Consumo identificadno
+     * el Id
+     *
+     * @author: Carlos A Dominguez D
+     * @param Id
+     * @return ModeloTipoConsumo
+     * @version: 07/05/2020
+     */
+    public ModeloTipoConsumo getModelo(int Id) {
         ModeloTipoConsumo modelo = new ModeloTipoConsumo();
         con = conexion.abrirConexion();
-        try
-        {
+        try {
             SQL = con.prepareStatement("SELECT "
                     + "`Id`,"
                     + "`Nombre`,"
                     + "`Cantidad` "
                     + "FROM `tipoconsumo`"
                     + "WHERE Id = ?;");
-            SQL.setInt(1, id);
+            SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
 
                 modelo.setId(res.getInt("id"));
                 modelo.setNombre(res.getString("Nombre"));
@@ -260,11 +255,9 @@ public class ControladorTipoConsumo
             res.close();
             SQL.close();
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return modelo;
     }
-
 }

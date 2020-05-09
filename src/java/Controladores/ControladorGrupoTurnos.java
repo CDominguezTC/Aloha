@@ -1,181 +1,186 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloGrupoTurnos;
 import java.io.IOException;
-import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 /**
+ * Esta clase permite controlar los eventos de Grupo Turnos contrine Insert -
+ * Update, Delete, Read
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
-public class ControladorGrupoTurnos 
-{
+public class ControladorGrupoTurnos {
+
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
 
+    /**
+     * Permite la inserción o actualización de los datos en la tabla Bd Grupo
+     * Turnos
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
     public String Insert(HttpServletRequest request) {
-        if ("".equals(request.getParameter("id")))
-        {
+        if ("".equals(request.getParameter("id"))) {
             ModeloGrupoTurnos modelo = new ModeloGrupoTurnos(
                     0,
                     request.getParameter("codigo"),
                     request.getParameter("nombre")
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("INSERT INTO grupohorario(codigo,descripcion) VALUE (?,?)");
                     SQL.setString(1, modelo.getCodigo());
                     SQL.setString(2, modelo.getDescripcion());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
-        } else
-        {
+        } else {
             ModeloGrupoTurnos modelo = new ModeloGrupoTurnos(
                     Integer.parseInt(request.getParameter("id")),
                     request.getParameter("codigo"),
                     request.getParameter("nombre")
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("UPDATE grupohorario SET codigo = ?, descripcion = ? WHERE id = ?;");
                     SQL.setString(1, modelo.getCodigo());
                     SQL.setString(2, modelo.getDescripcion());
                     SQL.setInt(3, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
         }
         return resultado;
     }
-    
-     public String Delete(HttpServletRequest request) {
-        if (!"".equals(request.getParameter("id")))
-        {
+
+    /**
+     * Esta metodo permintem eliminar un dato de la base de datos de la tabla
+     * Grupo Turnos
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return string
+     * @version: 06-08-2020
+     *
+     */
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
             String idtmp = request.getParameter("id");
             ModeloGrupoTurnos modelo = new ModeloGrupoTurnos();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
-
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("DELETE FROM `grupohorario` "
                             + "WHERE `Id` = ?;");
                     SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                 }
                 SQL.close();
                 con.close();
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
         }
         return resultado;
     }
-    
-      public LinkedList<ModeloGrupoTurnos> Read() {
-        LinkedList<ModeloGrupoTurnos> listModeloGrupoTurnos = new LinkedList<ModeloGrupoTurnos>();        
-        con = conexion.abrirConexion();        
-        try
-        {
+
+    /**
+     * Permite listar la información de la tabla de Areas Metodo Private
+     *
+     * @author: Carlos A Dominguez D
+     * @return LinkedList
+     * @version: 07/05/2020
+     */
+    private LinkedList<ModeloGrupoTurnos> Read() {
+        LinkedList<ModeloGrupoTurnos> listModeloGrupoTurnos = new LinkedList<ModeloGrupoTurnos>();
+        con = conexion.abrirConexion();
+        try {
             SQL = con.prepareStatement("SELECT "
                     + "`id`, "
                     + "`codigo`, "
                     + "`descripcion` "
                     + "FROM `grupohorario`;");
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloGrupoTurnos modelo = new ModeloGrupoTurnos();
                 modelo.setId(res.getInt("id"));
                 modelo.setCodigo(res.getString("codigo"));
-                modelo.setDescripcion(res.getString("descripcion"));                
+                modelo.setDescripcion(res.getString("descripcion"));
                 listModeloGrupoTurnos.add(modelo);
             }
             res.close();
             SQL.close();
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return listModeloGrupoTurnos;
     }
-      
-      public String ReadGrupoTurnos(HttpServletRequest request, HttpServletResponse response) 
+
+    /**
+     * Permite listar la información de la tabla de Areas
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response
+     * @return String
+     * @version: 07/05/2020
+     */
+    public String Read(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String out = null;
-        try
-        {
+        try {
             LinkedList<ModeloGrupoTurnos> listmoGrupoTurnos;
-            ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
-            listmoGrupoTurnos = controladorGrupoTurnos.Read();
+            listmoGrupoTurnos = Read();
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
@@ -183,45 +188,36 @@ public class ControladorGrupoTurnos
             out += "<tr>";
             out += "<th>Id</th>";
             out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";            
+            out += "<th>Nombre</th>";
             out += "<th>Opcion</th>";
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloGrupoTurnos modeloGrupoTurnos : listmoGrupoTurnos)
-            {
+            for (ModeloGrupoTurnos modeloGrupoTurnos : listmoGrupoTurnos) {
                 out += "<tr>";
                 out += "<td>" + modeloGrupoTurnos.getId() + "</td>";
                 out += "<td>" + modeloGrupoTurnos.getCodigo() + "</td>";
-                out += "<td>" + modeloGrupoTurnos.getDescripcion()+ "</td>";                
+                out += "<td>" + modeloGrupoTurnos.getDescripcion() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
                 out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion()+ "\"";
+                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
                 out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion()+ "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";                
+                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
+                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-//            PrintWriter pw = response.getWriter();
-//            pw.write(out);
-//            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
-//        String frm = request.getParameter("frm");
-//        System.out.println(frm);
-//        processRequest(request, response);
         return out;
     }
-   
 }

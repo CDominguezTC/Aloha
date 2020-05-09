@@ -84,10 +84,10 @@
                                                         </div>
                                                         <div id="Principal">
                                                             <div class="row">                                                                  
-                                                                <input type="hidden" id="Id" name="Id" value="${id}">
+                                                                <input type="hidden" id="Id" name="Id" value="">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
-                                                                    <input type="text" class="form-control" id="IdCedula" value="${cedula}" name="cedula">
+                                                                    <input type="text" class="form-control" id="IdCedula" value="" name="cedula">
                                                                 </div>                                                                                                                 
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">                                                                    
                                                                     <input type="hidden" class="form-control" id="Idfrmm" value="" name="frm">
@@ -100,14 +100,20 @@
                                                         <div class="ln_solid"></div>
                                                         <div class="form-group"> 
                                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                                                <button class="btn btn-primary btn-sm" type="submit" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
+                                                                <!--button class="btn btn-primary btn-sm" type="submit" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button-->
+                                                                <button class="btn btn-primary btn-sm" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
                                                             </div>
                                                         </div>
                                                         <br>
                                                         <div>
-                                                            <h3>Nombre : ${nombre}</h3>                                            
-                                                            <h5>Cedula : ${cedula}</h5>                                            
-                                                            <h5>Cargo  : ${observacion}</h5> 
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="nombre">Nombre</label>
+                                                                <input type="text" class="form-control" id="IdHNombre" value="" name="nombre" disabled="">
+                                                            </div>
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="apellido">Apellido</label>
+                                                                <input type="text" class="form-control" id="IdHApellido" value="" name="apellido" disabled="">
+                                                            </div>                                                                                               
                                                         </div>
                                                         <div>
                                                             <h3  style=" color: #006699; font-family: sans-serif; text-align: center; font-weight: bolder;">
@@ -122,12 +128,11 @@
                                                                                 <option value="0" selected disabled>Seleccione</option>   
                                                                                 <%
                                                                                     LinkedList<ModeloCargos> modeloCargos;
-                                                                                    ControladorCargos controladorCargos = new ControladorCargos ();
-                                                                                    modeloCargos = controladorCargos.getModelo ();
-                                                                                    for (ModeloCargos modelo : modeloCargos)
-                                                                                    {
+                                                                                    ControladorCargos controladorCargos = new ControladorCargos();
+                                                                                    modeloCargos = controladorCargos.getModelo();
+                                                                                    for (ModeloCargos modelo : modeloCargos) {
                                                                                 %>
-                                                                                <option value="<%=modelo.getId ()%>"><%=modelo.getTipoCargo ()%></option>
+                                                                                <option value="<%=modelo.getId()%>"><%=modelo.getTipoCargo()%></option>
                                                                                 <%
                                                                                     }
                                                                                 %>                                                                                

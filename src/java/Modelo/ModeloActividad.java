@@ -3,22 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloActividad
-{
+public class ModeloActividad {
+
     int id;
     String codigo;
     String descripcion;
-    
+
     public ModeloActividad() {
     }
-        
+
     public ModeloActividad(int id, String codigo, String descripcion) {
         this.id = id;
         this.codigo = codigo;
@@ -48,5 +47,5 @@ public class ModeloActividad
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
+
 }

@@ -3,71 +3,59 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloAsocGrupoConsumo
-{
+public class ModeloAsocGrupoConsumo {
+
     int id;
     ModeloGrupoConsumo modeloGrupoConsumo;
-    ModeloHorarioConsumo modeloHorarioConsumo;    
+    ModeloHorarioConsumo modeloHorarioConsumo;
     int costo;
 
-    public ModeloAsocGrupoConsumo()
-    {
+    public ModeloAsocGrupoConsumo() {
     }
 
-    public ModeloAsocGrupoConsumo(int id, ModeloGrupoConsumo modeloGrupoConsumo, ModeloHorarioConsumo modeloHorarioConsumo, int costo)
-    {
+    public ModeloAsocGrupoConsumo(int id, ModeloGrupoConsumo modeloGrupoConsumo, ModeloHorarioConsumo modeloHorarioConsumo, int costo) {
         this.id = id;
         this.modeloGrupoConsumo = modeloGrupoConsumo;
         this.modeloHorarioConsumo = modeloHorarioConsumo;
         this.costo = costo;
     }
 
-    public int getId()
-    {
+    public int getId() {
         return id;
     }
 
-    public void setId(int id)
-    {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public ModeloGrupoConsumo getModeloGrupoConsumo()
-    {
+    public ModeloGrupoConsumo getModeloGrupoConsumo() {
         return modeloGrupoConsumo;
     }
 
-    public void setModeloGrupoConsumo(ModeloGrupoConsumo modeloGrupoConsumo)
-    {
+    public void setModeloGrupoConsumo(ModeloGrupoConsumo modeloGrupoConsumo) {
         this.modeloGrupoConsumo = modeloGrupoConsumo;
     }
 
-    public ModeloHorarioConsumo getModeloHorarioConsumo()
-    {
+    public ModeloHorarioConsumo getModeloHorarioConsumo() {
         return modeloHorarioConsumo;
     }
 
-    public void setModeloHorarioConsumo(ModeloHorarioConsumo modeloHorarioConsumo)
-    {
+    public void setModeloHorarioConsumo(ModeloHorarioConsumo modeloHorarioConsumo) {
         this.modeloHorarioConsumo = modeloHorarioConsumo;
     }
 
-    public int getCosto()
-    {
+    public int getCosto() {
         return costo;
     }
 
-    public void setCosto(int costo)
-    {
+    public void setCosto(int costo) {
         this.costo = costo;
     }
-    
-    
+
 }

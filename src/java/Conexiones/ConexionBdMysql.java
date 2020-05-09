@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Conexiones;
 
 import java.awt.HeadlessException;
@@ -23,8 +22,8 @@ import javax.swing.JOptionPane;
  *
  * @author Carlos A Dominguez D
  */
-public class ConexionBdMysql 
-{
+public class ConexionBdMysql {
+
     private static int Dim;
     public String Bd;
     public String Url;
@@ -33,42 +32,35 @@ public class ConexionBdMysql
     public String Pass;
     public File file;
     public static Statement st;
-    public static Statement State ;
+    public static Statement State;
     public static Statement rs;
     Connection con = null;
-    
-    public Connection  abrirConexion()
-    {
-        try 
-        {
+
+    public Connection abrirConexion() {
+        try {
             //file = new File("C://TcTime//ConBDMySql.ini");
             file = new File("C://Zred//ConBDMySql.ini");
             BufferedReader filein = null;
-            if (file != null)
-            {
-                try 
-                {
+            if (file != null) {
+                try {
                     filein = new BufferedReader(new FileReader(file));
                     String Linea;
-                    while (filein.ready())
-                    {   
+                    while (filein.ready()) {
                         Linea = filein.readLine();
                         //while ((Linea = filein.readLine()) != null)
                         //{                            
-                            StringTokenizer stk = new StringTokenizer(Linea, ";");
-                            while (stk.hasMoreTokens())
-                            {                                
-                                Bd = stk.nextToken();
-                                IpBD = stk.nextToken();
-                                User = stk.nextToken();
-                                Pass = stk.nextToken();                                
-                                
-                                st = null;
-                                try 
-                                {
-                                    Url = "jdbc:mysql://"+IpBD+"/" + Bd;
-                                    Class.forName("org.gjt.mm.mysql.Driver");
-                                    con = DriverManager.getConnection(Url, User, Pass);
+                        StringTokenizer stk = new StringTokenizer(Linea, ";");
+                        while (stk.hasMoreTokens()) {
+                            Bd = stk.nextToken();
+                            IpBD = stk.nextToken();
+                            User = stk.nextToken();
+                            Pass = stk.nextToken();
+
+                            st = null;
+                            try {
+                                Url = "jdbc:mysql://" + IpBD + "/" + Bd;
+                                Class.forName("org.gjt.mm.mysql.Driver");
+                                con = DriverManager.getConnection(Url, User, Pass);
 //                                 if (con != null)
 //                                    {
 //                                        //JOptionPane.showMessageDialog(null,"conexion Exitosa");                
@@ -78,24 +70,19 @@ public class ConexionBdMysql
 //                                    {
 //                                        JOptionPane.showMessageDialog(null,"conexion no Exitosa");
 //                                    }         
-                                } 
-                                catch (SQLException | ClassNotFoundException ex) 
-                                {
-                                    JOptionPane.showMessageDialog(null,"error" + ex);
-                                }
+                            } catch (SQLException | ClassNotFoundException ex) {
+                                JOptionPane.showMessageDialog(null, "error" + ex);
                             }
+                        }
                         //}
                     }
-                } 
-                catch (IOException | HeadlessException e) 
-                {
+                } catch (IOException | HeadlessException e) {
                     //Tools.LogSQL((SQLException) e);
                 }
             }
-        } catch (Exception e) 
-        {
+        } catch (Exception e) {
             //Tools.LogSQL((SQLException) e);
         }
-        return con;        
+        return con;
     }
 }

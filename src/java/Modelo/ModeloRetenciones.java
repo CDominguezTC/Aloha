@@ -3,15 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloRetenciones
-{
+public class ModeloRetenciones {
+
     int Id;
     String Codigo;
     String Nombre;
@@ -138,6 +137,5 @@ public class ModeloRetenciones
     public void setRetencion_CODIGOFE(String Retencion_CODIGOFE) {
         this.Retencion_CODIGOFE = Retencion_CODIGOFE;
     }
-    
-    
+
 }

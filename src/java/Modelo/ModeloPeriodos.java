@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.util.Date;
@@ -12,8 +11,8 @@ import java.util.Date;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloPeriodos 
-{
+public class ModeloPeriodos {
+
     int id;
     String codigo;
     String nombre;
@@ -25,7 +24,7 @@ public class ModeloPeriodos
     }
 
     public ModeloPeriodos(int id, String codigo, String nombre, String fechaInicio, String fechaFin, String observacion) {
-        this.id = id;   
+        this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
         this.fechaInicio = fechaInicio;
@@ -79,5 +78,5 @@ public class ModeloPeriodos
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
-    }    
+    }
 }

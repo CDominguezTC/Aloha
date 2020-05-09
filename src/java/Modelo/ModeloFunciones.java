@@ -4,15 +4,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloFunciones 
-{
+public class ModeloFunciones {
+
     int Id;
     String nombre;
     String descripcion;
@@ -69,7 +68,5 @@ public class ModeloFunciones
     public void setCodReloj(String codReloj) {
         this.codReloj = codReloj;
     }
-    
-    
-    
+
 }

@@ -18,74 +18,67 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * Esta clase permite controlar los eventos de Centro de Costo
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
-public class ControladorCentroCosto{
-
+public class ControladorCentroCosto {
 
     String resultado = "";
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
 
-    public String Insert(HttpServletRequest request){
-    
-        if ("".equals(request.getParameter("id")))
-        {
+    /**
+     * Permite la inserción o actualización de los datos en la tabla Bd Centro
+     * de costo
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
+    public String Insert(HttpServletRequest request) {
+        if ("".equals(request.getParameter("id"))) {
             ModeloCentroCosto modelo = new ModeloCentroCosto(
                     0,
                     request.getParameter("codigo"),
                     request.getParameter("descripcion")
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("INSERT INTO `centrocosto`("
                             + "`nombre`,"
                             + "`codigoInterno`)"
-                            + "VALUE (?,?);", SQL.RETURN_GENERATED_KEYS);
+                            + "VALUE (?,?);");
                     SQL.setString(1, modelo.getDescripcion());
                     SQL.setString(2, modelo.getCodigo());
-                    if (SQL.executeUpdate() > 0){
-                        
-                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int)generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "centrocosto", request.getParameter("nombreU"), i, "Se inserto el registro.");
-                            }
-                        }
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
-        } else
-        {
+        } else {
             ModeloCentroCosto modelo = new ModeloCentroCosto(
                     Integer.parseInt(request.getParameter("id")),
                     request.getParameter("codigo"),
                     request.getParameter("descripcion")
             );
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("UPDATE `centrocosto` SET "
                             + "`nombre` = ?, "
                             + "`codigoInterno` = ? "
@@ -93,21 +86,18 @@ public class ControladorCentroCosto{
                     SQL.setString(1, modelo.getDescripcion());
                     SQL.setString(2, modelo.getCodigo());
                     SQL.setInt(3, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                     SQL.close();
                     con.close();
                 }
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
@@ -115,35 +105,36 @@ public class ControladorCentroCosto{
         return resultado;
     }
 
-    public String Delete(HttpServletRequest request){
-    
-        if (!"".equals(request.getParameter("id")))
-        {
+    /**
+     * Permite la eliminar un dato en la tabla de Centros de Costo
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
+    public String Delete(HttpServletRequest request) {
+        if (!"".equals(request.getParameter("id"))) {
             String idtmp = request.getParameter("id");
             ModeloCentroCosto modelo = new ModeloCentroCosto();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
 
-            try
-            {
+            try {
                 con = conexion.abrirConexion();
-                try
-                {
+                try {
                     SQL = con.prepareStatement("DELETE FROM `centrocosto` "
                             + "WHERE `Id` = ?;");
                     SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0)
-                    {
+                    if (SQL.executeUpdate() > 0) {
                         resultado = "2";
                     }
-                } catch (SQLException e)
-                {
+                } catch (SQLException e) {
                     System.out.println(e);
                     resultado = "-2";
                 }
                 SQL.close();
                 con.close();
-            } catch (SQLException e)
-            {
+            } catch (SQLException e) {
                 System.out.println(e);
                 resultado = "-3";
             }
@@ -151,12 +142,18 @@ public class ControladorCentroCosto{
         return resultado;
     }
 
-    public LinkedList<ModeloCentroCosto> Read(){
-    
+    /**
+     * Permite listar la información de la tabla de Centros de Costo Metodo
+     * Private
+     *
+     * @author: Carlos A Dominguez D
+     * @return LinkedList
+     * @version: 07/05/2020
+     */
+    public LinkedList<ModeloCentroCosto> Read() {
         LinkedList<ModeloCentroCosto> listModeloCentroCostos = new LinkedList<ModeloCentroCosto>();
         con = conexion.abrirConexion();
-        try
-        {
+        try {
             SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`nombre`,"
@@ -164,8 +161,7 @@ public class ControladorCentroCosto{
                     + "`definicionId` "
                     + "FROM `centrocosto`;");
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloCentroCosto modelo = new ModeloCentroCosto();
                 modelo.setId(res.getInt("id"));
                 modelo.setCodigo(res.getString("codigoInterno"));
@@ -175,21 +171,26 @@ public class ControladorCentroCosto{
             res.close();
             SQL.close();
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return listModeloCentroCostos;
     }
 
+    /**
+     * Permite listar la información de la tabla de Centr de costo
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @param response
+     * @return String
+     * @version: 07/05/2020
+     */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-                
         String out = null;
         try {
-        
             LinkedList<ModeloCentroCosto> listmoCentroCosto;
-            ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
-            listmoCentroCosto = controladorCentroCosto.Read();
+            listmoCentroCosto = Read();
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
@@ -201,8 +202,7 @@ public class ControladorCentroCosto{
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloCentroCosto modeloCentroCosto : listmoCentroCosto)
-            {
+            for (ModeloCentroCosto modeloCentroCosto : listmoCentroCosto) {
                 out += "<tr>";
                 out += "<td>" + modeloCentroCosto.getCodigo() + "</td>";
                 out += "<td>" + modeloCentroCosto.getDescripcion() + "</td>";
@@ -223,25 +223,25 @@ public class ControladorCentroCosto{
                 out += "</tr>";
             }
             out += "</tbody>";
-//            PrintWriter pw = response.getWriter();
-//            pw.write(out);
-//            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
-//        String frm = request.getParameter("frm");
-//        System.out.println(frm);
-//        processRequest(request, response);
         return out;
     }
 
+    /**
+     * Permite listar la informacion de los centros de costos por ID
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
     ModeloCentroCosto getModelo(int Id) {
-    
+
         ModeloCentroCosto modelo = new ModeloCentroCosto();
         con = conexion.abrirConexion();
-        try
-        {
+        try {
             SQL = con.prepareStatement("SELECT "
                     + "`id`,"
                     + "`nombre`,"
@@ -251,21 +251,17 @@ public class ControladorCentroCosto{
                     + "WHERE id = ?;");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {     
+            while (res.next()) {
                 modelo.setId(res.getInt("id"));
                 modelo.setCodigo(res.getString("codigoInterno"));
-                modelo.setDescripcion(res.getString("nombre"));        
+                modelo.setDescripcion(res.getString("nombre"));
             }
             res.close();
             SQL.close();
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return modelo;
     }
-
 }
-

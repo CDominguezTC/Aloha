@@ -109,7 +109,7 @@ public class ControladorLiquidacion
                 modelogrupoTurnos_Turnos = controladorGrupoTurnos_Turnos.SearchIdGrupoHorario(modeloLiquidacion1.getIdGrupoTurno(),diaMarcacion);
                 for (ModeloGrupoTurnos_Turnos modeloGrupoTurnos_Turnos : modelogrupoTurnos_Turnos) 
                 {
-                    modeloTurnos = controladorTurnos.SearchId(modeloGrupoTurnos_Turnos.getIdHorario());
+                    //modeloTurnos = controladorTurnos.SearchId(modeloGrupoTurnos_Turnos.getIdHorario());
                     Date horaFinTurno = null;
                     Date horaInicioTurno = tools.getHoraDate(modeloTurnos.getHora_inicio());
 
@@ -150,7 +150,7 @@ public class ControladorLiquidacion
                     if(modeloLiquidacion1.getTunro() == null)
                     {
                         //modeloTurnos = controladorTurnos.SearchId(11);
-                        modeloTurnos = controladorTurnos.SearchName("DEFECTO");
+                        //modeloTurnos = controladorTurnos.SearchName("DEFECTO");
                         modeloLiquidacion1.setModeloTurnos(modeloTurnos);
                         modeloLiquidacion1.setIdTurno(modeloTurnos.getId());
                         modeloLiquidacion1.setTunro(modeloTurnos.getDescripcion());

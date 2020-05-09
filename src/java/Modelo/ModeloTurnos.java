@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package Modelo;
 
 import java.sql.Time;
@@ -12,14 +11,17 @@ import java.sql.Time;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloTurnos 
-{
+public class ModeloTurnos {
+
     int id;
     String codigo;
     String descripcion;
     String tipo_turno;
     String hora_inicio;
     String hora_fin;
+    String descuentaBreak;
+    String hora_inicioBreak;
+    String hora_finBreak;
     String teorico;
     String tolerancia_despues_entrada;
     String tolerancia_antes_salir;
@@ -42,17 +44,21 @@ public class ModeloTurnos
     String hora_inicio_diurno;
     String hora_inicio_nocturno;
     String turno_noche;
+    String turno_extra;
 
     public ModeloTurnos() {
     }
 
-    public ModeloTurnos(int id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_breack, String limite_turno, String gener_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche) {
+    public ModeloTurnos(int id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String descuentaBreak, String hora_inicioBreak, String hora_finBreak, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_breack, String limite_turno, String gener_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche, String turno_extra) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.tipo_turno = tipo_turno;
         this.hora_inicio = hora_inicio;
         this.hora_fin = hora_fin;
+        this.descuentaBreak = descuentaBreak;
+        this.hora_inicioBreak = hora_inicioBreak;
+        this.hora_finBreak = hora_finBreak;
         this.teorico = teorico;
         this.tolerancia_despues_entrada = tolerancia_despues_entrada;
         this.tolerancia_antes_salir = tolerancia_antes_salir;
@@ -75,6 +81,7 @@ public class ModeloTurnos
         this.hora_inicio_diurno = hora_inicio_diurno;
         this.hora_inicio_nocturno = hora_inicio_nocturno;
         this.turno_noche = turno_noche;
+        this.turno_extra = turno_extra;
     }
 
     public int getId() {
@@ -123,6 +130,30 @@ public class ModeloTurnos
 
     public void setHora_fin(String hora_fin) {
         this.hora_fin = hora_fin;
+    }
+
+    public String getDescuentaBreak() {
+        return descuentaBreak;
+    }
+
+    public void setDescuentaBreak(String descuentaBreak) {
+        this.descuentaBreak = descuentaBreak;
+    }
+
+    public String getHora_inicioBreak() {
+        return hora_inicioBreak;
+    }
+
+    public void setHora_inicioBreak(String hora_inicioBreak) {
+        this.hora_inicioBreak = hora_inicioBreak;
+    }
+
+    public String getHora_finBreak() {
+        return hora_finBreak;
+    }
+
+    public void setHora_finBreak(String hora_finBreak) {
+        this.hora_finBreak = hora_finBreak;
     }
 
     public String getTeorico() {
@@ -301,5 +332,12 @@ public class ModeloTurnos
         this.turno_noche = turno_noche;
     }
 
-    
+    public String getTurno_extra() {
+        return turno_extra;
+    }
+
+    public void setTurno_extra(String turno_extra) {
+        this.turno_extra = turno_extra;
+    }
+
 }

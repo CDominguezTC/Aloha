@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
@@ -18,43 +12,49 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
+ * Esta clase permite controlar los eventos de Identificacion contrine Insert -
+ * Update, Delete, Read
  *
- * @author Carlos A Dominguez D
+ * @author: Carlos A Dominguez D
+ * @version: 07/05/2020
  */
-public class ControladorIdentificacion 
-{
-    public boolean Insert(ModeloIdentificacion modeloIdentificacion)
-    {
-         boolean resulInser = false;
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-        con = conexionBdMysql.abrirConexion();
-        try 
-        {
-            PreparedStatement SQL;
-            SQL = con.prepareStatement("INSERT INTO identificador(codidentificador,idpersona) VALUE (?,?);");
-            SQL.setString(1, modeloIdentificacion.getIdentificador());
-            SQL.setString(2, modeloIdentificacion.getIdPersona());            
-            SQL.executeUpdate();
-            resulInser = true;
-            SQL.close();
-            con.close();
-        } 
-        catch (SQLException e) 
-        {
-            JOptionPane.showMessageDialog(null, "Error al guardar el empleado " + e);
-        }
-        return resulInser;        
-    }
-    
-    public boolean Update(ModeloIdentificacion modeloIdentificacion)
-    {
+public class ControladorIdentificacion {
+
+    /**
+     * Permite la inserción o actualización de los datos en la tabla Bd los
+     * Identificadores
+     *
+     * @author: Carlos A Dominguez D
+     * @param request
+     * @return String
+     * @version: 07/05/2020
+     */
+    public boolean Insert(ModeloIdentificacion modeloIdentificacion) {
         boolean resulInser = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
+            PreparedStatement SQL;
+            SQL = con.prepareStatement("INSERT INTO identificador(codidentificador,idpersona) VALUE (?,?);");
+            SQL.setString(1, modeloIdentificacion.getIdentificador());
+            SQL.setString(2, modeloIdentificacion.getIdPersona());
+            SQL.executeUpdate();
+            resulInser = true;
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al guardar el empleado " + e);
+        }
+        return resulInser;
+    }
+
+    public boolean Update(ModeloIdentificacion modeloIdentificacion) {
+        boolean resulInser = false;
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try {
             PreparedStatement SQL;
             SQL = con.prepareStatement("UPDATE identificador SET codidentificador = ?, idpersona = ? WHERE id = ?;");
             SQL.setString(1, modeloIdentificacion.getIdentificador());
@@ -64,172 +64,136 @@ public class ControladorIdentificacion
             resulInser = true;
             SQL.close();
             con.close();
-        } 
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar el empleado " + e);
         }
-        return resulInser;        
+        return resulInser;
     }
-    
-    public ModeloIdentificacion Search(String id)
-    {
+
+    public ModeloIdentificacion Search(String id) {
         ModeloIdentificacion modeloIdentificacion = new ModeloIdentificacion();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador"
                     + " WHERE codidentificador = ?");
             SQL.setString(1, id);
             ResultSet res = SQL.executeQuery();
-            if (res.next())
-            {
+            if (res.next()) {
                 modeloIdentificacion.setId(res.getInt("id"));
                 modeloIdentificacion.setIdentificador(res.getString("codidentificador"));
-                modeloIdentificacion.setIdPersona(res.getString("idpersona"));                
+                modeloIdentificacion.setIdPersona(res.getString("idpersona"));
             }
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloIdentificacion;
     }
-    
 
-    public List <ModeloIdentificacion> Read(String Clave)
-    {
-        String forSql = "%" + Clave + "%";        
+    public List<ModeloIdentificacion> Read(String Clave) {
+        String forSql = "%" + Clave + "%";
         PreparedStatement SQL = null;
-        List <ModeloIdentificacion> modeloIdentificacions = new ArrayList<ModeloIdentificacion>();
+        List<ModeloIdentificacion> modeloIdentificacions = new ArrayList<ModeloIdentificacion>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
-            if (Clave != null)
-            {
+        try {
+            if (Clave != null) {
                 SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador "
                         + "WHERE codidentificador LIKE ? ORDER BY codidentificador");
-                SQL.setString(1,forSql);                
-            }
-            else
-            {
-                SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador");                
+                SQL.setString(1, forSql);
+            } else {
+                SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador");
             }
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloIdentificacion modeloIdentificacion = new ModeloIdentificacion();
                 modeloIdentificacion.setId(res.getInt("id"));
                 modeloIdentificacion.setIdPersona(res.getString("idpersona"));
-                modeloIdentificacion.setIdentificador(res.getString("codidentificador"));                
+                modeloIdentificacion.setIdentificador(res.getString("codidentificador"));
                 modeloIdentificacions.add(modeloIdentificacion);
             }
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
         }
         return modeloIdentificacions;
-    }            
-    
-    public boolean Delete(ModeloIdentificacion modeloIdentificacion)
-    {
-        boolean resulDelete  = false;
+    }
+
+    public boolean Delete(ModeloIdentificacion modeloIdentificacion) {
+        boolean resulDelete = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("DELETE FROM identificador WHERE id = ?;");
             SQL.setInt(1, modeloIdentificacion.getId());
-            SQL.executeUpdate();            
-            resulDelete = true;            
+            SQL.executeUpdate();
+            resulDelete = true;
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
-            JOptionPane.showMessageDialog(null, "Error al borrar el empleado " + e);
-        }
-        return resulDelete;
-    }  
-    
-        public boolean Delete(ModeloPersonas modeloEmpleados)
-    {
-        boolean resulDelete  = false;
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-        con = conexionBdMysql.abrirConexion();
-        try 
-        {
-            PreparedStatement SQL = con.prepareStatement("DELETE FROM identificador WHERE idpersona = ?;");
-            SQL.setInt(1, modeloEmpleados.getId());
-            SQL.executeUpdate();            
-            resulDelete = true;            
-            SQL.close();
-            con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al borrar el empleado " + e);
         }
         return resulDelete;
     }
 
-    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa)
-    {        
-        PreparedStatement SQL = null;
-        List <ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+    public boolean Delete(ModeloPersonas modeloEmpleados) {
+        boolean resulDelete = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
+            PreparedStatement SQL = con.prepareStatement("DELETE FROM identificador WHERE idpersona = ?;");
+            SQL.setInt(1, modeloEmpleados.getId());
+            SQL.executeUpdate();
+            resulDelete = true;
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al borrar el empleado " + e);
+        }
+        return resulDelete;
+    }
+
+    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
+        PreparedStatement SQL = null;
+        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try {
             SQL = con.prepareStatement("SELECT id,tipoIdentificacion,identificacion,"
                     + "nombres,apellidos,tipoPersona,cod_nomina,id_Dependencias,id_Empresa,id_Grupo_Horario,"
                     + "id_Areas,id_Ciudad,id_Centro_Costos,observaciones FROM persona "
-                        + "WHERE id_Dependencias LIKE ? OR id_Centro_Costos LIKE ? OR id_Empresa LIKE ? AND tipoPersona LIKE ? ORDER BY nombres ");
-            if ("0".equals(IdDepen))
-            {
-                SQL.setString(1,null);
+                    + "WHERE id_Dependencias LIKE ? OR id_Centro_Costos LIKE ? OR id_Empresa LIKE ? AND tipoPersona LIKE ? ORDER BY nombres ");
+            if ("0".equals(IdDepen)) {
+                SQL.setString(1, null);
+            } else {
+                SQL.setString(1, IdDepen);
             }
-            else
-            {
-                SQL.setString(1,IdDepen);
+
+            if ("0".equals(IdCentroCos)) {
+                SQL.setString(2, null);
+            } else {
+                SQL.setString(2, IdCentroCos);
             }
-            
-            if ("0".equals(IdCentroCos))
-            {
-                SQL.setString(2,null);
+
+            if ("0".equals(IdEmpresa)) {
+                SQL.setString(3, null);
+            } else {
+                SQL.setString(3, IdEmpresa);
             }
-            else
-            {
-                SQL.setString(2,IdCentroCos);
-            }
-            
-            if ("0".equals(IdEmpresa))
-            {
-                SQL.setString(3,null);
-            }
-            else
-            {
-                SQL.setString(3,IdEmpresa);
-            }
-            SQL.setString(4,"EMPLEADO");
-                       
+            SQL.setString(4, "EMPLEADO");
+
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloPersonas modeloEmpleado = new ModeloPersonas();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
@@ -250,76 +214,63 @@ public class ControladorIdentificacion
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
         }
         return modeloEmpleados;
-        
-        
+
     }
 
-    public List<ModeloIdentificacion> SearchIdEmpleado(int id) 
-    {
-        List <ModeloIdentificacion> modeloIdentificaciones = new ArrayList<ModeloIdentificacion>();
+    public List<ModeloIdentificacion> SearchIdEmpleado(int id) {
+        List<ModeloIdentificacion> modeloIdentificaciones = new ArrayList<ModeloIdentificacion>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador"
                     + " WHERE idpersona = ?");
             SQL.setInt(1, id);
             ResultSet res = SQL.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 ModeloIdentificacion modeloIdentificacion = new ModeloIdentificacion();
                 modeloIdentificacion.setId(res.getInt("id"));
                 modeloIdentificacion.setIdentificador(res.getString("codidentificador"));
-                modeloIdentificacion.setIdPersona(res.getString("idpersona"));    
+                modeloIdentificacion.setIdPersona(res.getString("idpersona"));
                 modeloIdentificaciones.add(modeloIdentificacion);
             }
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloIdentificaciones;
-        
+
     }
 
-    public ModeloIdentificacion SearchIdentificador(String CodIdentificacion) 
-    {
+    public ModeloIdentificacion SearchIdentificador(String CodIdentificacion) {
         ModeloIdentificacion modeloIdentificacion = new ModeloIdentificacion();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
-        try 
-        {
+        try {
             PreparedStatement SQL = con.prepareStatement("SELECT id, codidentificador, idpersona FROM identificador"
                     + " WHERE codidentificador = ?");
             SQL.setString(1, CodIdentificacion);
             ResultSet res = SQL.executeQuery();
-            if (res.next())
-            {
-                
+            if (res.next()) {
+
                 modeloIdentificacion.setId(res.getInt("id"));
                 modeloIdentificacion.setIdentificador(res.getString("codidentificador"));
-                modeloIdentificacion.setIdPersona(res.getString("idpersona"));    
-                
+                modeloIdentificacion.setIdPersona(res.getString("idpersona"));
+
             }
             res.close();
             SQL.close();
             con.close();
-        }
-        catch (SQLException e) 
-        {
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
-        return modeloIdentificacion;        
+        return modeloIdentificacion;
     }
 }
