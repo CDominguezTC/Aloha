@@ -163,9 +163,6 @@ $(function(){
       var Frm = "UsuariosJSP";
       var Id = $(this).data('id');
       $('#Id').val($(this).data('id'));
-      var Nombre = $(this).data('nombre');
-      var Login = $(this).data('login');
-      var Password = $(this).data('password');
       var Accion = "Delete";
 
       if(Id != "1"){
@@ -173,9 +170,6 @@ $(function(){
         var data = {
             frm: Frm,
             id: Id,
-            nombre: Nombre,
-            login: Login,
-            password: Password,
             accion: Accion
         };
         Swal.fire({
@@ -603,7 +597,7 @@ $(function(){
               Swal.fire({
                   icon: 'success',
                   title: 'Guardado',
-                  text: 'Registro Guardado Satisfactoriamente.',
+                  text: 'Registro Guardado Satisfactoriamente.'
               });
               if(Id != ""){
                 //console.log("Ingreso a id no null " + Id + "!");
@@ -690,7 +684,7 @@ $(function(){
         data: data,
         success: function(resul, textStatus, jqXHR){
 
-          console.log("Auditoria realizada");
+          //console.log("Auditoria realizada");
             /*Swal.fire({
                 icon: 'success',
                 title: 'Guardado',
@@ -739,13 +733,17 @@ $(function(){
 
   function LimpiarCampos(){
 
-      $('#Id').val('');
-      $('#IdNombre').val('');
-      $('#IdLogin').val('');
-      $('#IdLogOld').val('');
-      $('#IdPassword').val('');
-      document.getElementById('IdPassword').disabled = false;
-      document.getElementById("IdNombre").focus();
+
+    $('#Id').val('');
+    $('#IdNombre').val('');
+    $('#IdNombreOld').val('');
+    $('#IdLogin').val('');
+    $('#IdLogOld').val('');
+    $('#IdPassword').val('');
+    $('#IdPasswordOld').val('');
+    
+    document.getElementById('IdPassword').disabled = false;
+    document.getElementById("IdNombre").focus();
   }
 
   function enableGif(){
