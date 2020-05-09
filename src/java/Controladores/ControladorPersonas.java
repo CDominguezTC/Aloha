@@ -6,7 +6,6 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloCargos;
 import Modelo.ModeloPersonas;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -15,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import sun.nio.cs.ext.GB18030;
