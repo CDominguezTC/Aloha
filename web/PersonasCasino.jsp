@@ -83,30 +83,32 @@
                                                         <div id="Principal">
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id">
+                                                                <input type="hidden" id="IdTipoDocOld" name="TipoDocOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Tipo de Identificación</label>
                                                                     <select id="IdTipoDoc" class="form-control" required>
                                                                         <option value="0" selected disabled>Seleccione</option>
                                                                         <option value="1">Cedula de Ciudadania</option>
                                                                         <option value="2">Tarjeta de Identidad</option>
-                                                                        <option value="3">Cedula de Extrangeria</option>                                                                    
+                                                                        <option value="3">Cedula de Extranjeria</option>                                                                    
                                                                     </select>
                                                                 </div>
-
+                                                                <input type="hidden" id="IdCedulaOld" name="cedulaOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
                                                                     <input type="number" class="form-control" id="IdCedula" name="cedula" min="0" required>
                                                                 </div>
-
+                                                                <input type="hidden" id="IdNombreOld" name="NombreOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control" id="IdNombre" value="">
                                                                 </div>
-
+                                                                <input type="hidden" id="IdApellidoOld" name="ApellidoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="apellido">Apellido</label>
                                                                     <input type="text" class="form-control" id="IdApellido">
                                                                 </div>
+                                                                <input type="hidden" id="IdEmpresaOld" name="EmpresaOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="empresa">Empresa</label>
                                                                     <select id="IdEmpresa" class="form-control" >
@@ -124,6 +126,7 @@
                                                                         %>
                                                                     </select>
                                                                 </div>
+                                                                <input type="hidden" id="IdCentroCostoOld" name="CentroCostoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="centro_costo">Centro Costo</label>
                                                                     <select id="IdCentroCosto" class="form-control" >
@@ -141,7 +144,7 @@
                                                                         %>
                                                                     </select>
                                                                 </div>
-
+                                                                <input type="hidden" id="IdConsumeOld" name="ConsumeOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Consume Casino</label>
                                                                     <select id="IdConsume" class="form-control" required>
@@ -150,6 +153,7 @@
                                                                         <option value="2">Si</option>                                                                    
                                                                     </select>
                                                                 </div>
+                                                                <input type="hidden" id="IdGrupoConsumoOld" name="GrupoConsumoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Grupo Consumo</label>
                                                                     <select id="IdGrupoConsumo" class="form-control" >
@@ -167,7 +171,7 @@
                                                                         %>
                                                                     </select>
                                                                 </div>
-
+                                                                <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
