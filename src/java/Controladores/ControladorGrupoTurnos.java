@@ -182,39 +182,49 @@ public class ControladorGrupoTurnos {
             LinkedList<ModeloGrupoTurnos> listmoGrupoTurnos;
             listmoGrupoTurnos = Read();
             response.setContentType("text/html;charset=UTF-8");
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";                                
+                for (ModeloGrupoTurnos modeloGrupoTurnos  : listmoGrupoTurnos) {
+                    out += "<option value=\"" + modeloGrupoTurnos.getId() + "\"> " + modeloGrupoTurnos.getDescripcion()+ "</option>";
+                }
+            } else {
 
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Id</th>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloGrupoTurnos modeloGrupoTurnos : listmoGrupoTurnos) {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloGrupoTurnos.getId() + "</td>";
-                out += "<td>" + modeloGrupoTurnos.getCodigo() + "</td>";
-                out += "<td>" + modeloGrupoTurnos.getDescripcion() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
-                out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
-                out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Id</th>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloGrupoTurnos modeloGrupoTurnos : listmoGrupoTurnos) {
+                    out += "<tr>";
+                    out += "<td>" + modeloGrupoTurnos.getId() + "</td>";
+                    out += "<td>" + modeloGrupoTurnos.getCodigo() + "</td>";
+                    out += "<td>" + modeloGrupoTurnos.getDescripcion() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
+                    out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloGrupoTurnos.getId() + "\"";
+                    out += "data-codigo=\"" + modeloGrupoTurnos.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloGrupoTurnos.getDescripcion() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
+
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }

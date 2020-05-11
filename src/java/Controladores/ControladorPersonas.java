@@ -247,7 +247,7 @@ public class ControladorPersonas {
                             + "`observaciones`,"
                             + "`consumocasino`,"
                             + "`grupoConsumo`)"
-                            + " VALUE (?,?,?,?,?,?,?,?,?);");
+                            + " VALUE (?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modelo.getTipoIdentificacion());
                     SQL.setString(2, modelo.getIdentificacion());
                     SQL.setString(3, modelo.getNombres());
@@ -258,6 +258,13 @@ public class ControladorPersonas {
                     SQL.setString(8, modelo.getConsumocasino());
                     SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
                     if (SQL.executeUpdate() > 0) {
+                        ControladorAuditoria auditoria = new ControladorAuditoria();
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int) generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "persona", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();
@@ -496,11 +503,12 @@ public class ControladorPersonas {
         return listaModeloPersonas;
     }
 
-        /**
-     * Permite consultar los datos de la Personas mediante elnumero de cedula, retonna un json
+    /**
+     * Permite consultar los datos de la Personas mediante elnumero de cedula,
+     * retonna un json
      *
      * @author: Carlos A Dominguez D
-     * @param request 
+     * @param request
      * @return String
      * @version: 08/05/2020
      */

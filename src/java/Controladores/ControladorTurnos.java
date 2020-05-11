@@ -344,102 +344,111 @@ public class ControladorTurnos {
             throws ServletException, IOException {
         String out = null;
         try {
-            LinkedList<ModeloTurnos> listmodemlo;
-            listmodemlo = Read();
+            LinkedList<ModeloTurnos> listaModeloTurnos;
+            listaModeloTurnos = Read();
             response.setContentType("text/html;charset=UTF-8");
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloTurnos modeloTurnos : listaModeloTurnos) {
+                    out += "<option value=\"" + modeloTurnos.getId() + "\"> " + modeloTurnos.getDescripcion() + "</option>";
+                }
+            } else {
 
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<td>Codigo</td>";
-            out += "<td>Nombre</td>";
-            out += "<td>Hora Ini</td>";
-            out += "<td>Hora Fin</td>";
-            out += "<td>Teorico</td>";
-            out += "<td>Hora Ini Br</td>";
-            out += "<td>Hora Fin Br</td>";
-            out += "<td>Descanso</td>";
-            out += "<td>Tiempo GAE</td>";
-            out += "<td>Tiempo GAS</td>";
-            out += "<td>Tiempo GDE</td>";
-            out += "<td>Tiempo GDS</td>";
-            out += "<td>Aprox AE</td>";
-            out += "<td>Aprox DS</td>";
-            out += "<td>Opciones</td>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloTurnos modeloTurnos : listmodemlo) {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloTurnos.getCodigo() + "</td>";
-                out += "<td>" + modeloTurnos.getDescripcion() + "</td>";
-                out += "<td>" + modeloTurnos.getHora_inicio() + "</td>";
-                out += "<td>" + modeloTurnos.getHora_fin() + "</td>";
-                out += "<td>" + modeloTurnos.getTeorico() + "</td>";
-                out += "<td>" + modeloTurnos.getHora_inicioBreak() + "</td>";
-                out += "<td>" + modeloTurnos.getHora_finBreak() + "</td>";
-                out += "<td>" + modeloTurnos.getDescanso() + "</td>";
-                out += "<td>" + modeloTurnos.getTiempo_maximo_entrada() + "</td>";
-                out += "<td>" + modeloTurnos.getTiempo_minimo_salida() + "</td>";
-                out += "<td>" + modeloTurnos.getTiempo_minimo_entrada() + "</td>";
-                out += "<td>" + modeloTurnos.getTiempo_maximo_salida() + "</td>";
-                out += "<td>" + modeloTurnos.getTolerancia_despues_entrada() + "</td>";
-                out += "<td>" + modeloTurnos.getTolerancia_antes_salir() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloTurnos.getId() + "\"";
-                out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloTurnos.getDescripcion() + "\"";
-                out += "data-horainicio=\"" + modeloTurnos.getHora_inicio() + "\"";
-                out += "data-horafin=\"" + modeloTurnos.getHora_fin() + "\"";
-                out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
-                out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
-                out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
-                out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
-                out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
-                out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
-                out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
-                out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
-                out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_salida() + "\"";
-                out += "data-tiempograciade=\"" + modeloTurnos.getTiempo_minimo_entrada() + "\"";
-                out += "data-tiempograciads=\"" + modeloTurnos.getTiempo_maximo_salida() + "\"";
-                out += "data-aproximacionae=\"" + modeloTurnos.getTolerancia_despues_entrada() + "\"";
-                out += "data-aproximacionds=\"" + modeloTurnos.getTolerancia_antes_salir() + "\"";
-                out += "data-horainiciodiurno=\"" + modeloTurnos.getHora_inicio_diurno() + "\"";
-                out += "data-horainicionocturno=\"" + modeloTurnos.getHora_inicio_nocturno() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloTurnos.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-trash\"></i> </button>";
-                //Boton Clonar
-                out += "<button class=\"SetFormulario btn btn-info btn-xs\"title=\"Clonar\"";
-                out += "data-id=\"\"";
-                out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
-                out += "data-nombre=\"Turno Clonado\"";
-                out += "data-horainicio=\"" + modeloTurnos.getHora_inicio() + "\"";
-                out += "data-horafin=\"" + modeloTurnos.getHora_fin() + "\"";
-                out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
-                out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
-                out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
-                out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
-                out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
-                out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
-                out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
-                out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
-                out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_entrada() + "\"";
-                out += "data-tiempograciade=\"" + modeloTurnos.getTiempo_minimo_salida() + "\"";
-                out += "data-tiempograciads=\"" + modeloTurnos.getTiempo_maximo_salida() + "\"";
-                out += "data-aproximacionae=\"" + modeloTurnos.getTolerancia_despues_entrada() + "\"";
-                out += "data-aproximacionds=\"" + modeloTurnos.getTolerancia_antes_salir() + "\"";
-                out += "data-horainiciodiurno=\"" + modeloTurnos.getHora_inicio_diurno() + "\"";
-                out += "data-horainicionocturno=\"" + modeloTurnos.getHora_inicio_nocturno() + "\"";
-                out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-copy\"></i> </button>";
-                out += "</td>";
+                out += "<td>Codigo</td>";
+                out += "<td>Nombre</td>";
+                out += "<td>Hora Ini</td>";
+                out += "<td>Hora Fin</td>";
+                out += "<td>Teorico</td>";
+                out += "<td>Hora Ini Br</td>";
+                out += "<td>Hora Fin Br</td>";
+                out += "<td>Descanso</td>";
+                out += "<td>Tiempo GAE</td>";
+                out += "<td>Tiempo GAS</td>";
+                out += "<td>Tiempo GDE</td>";
+                out += "<td>Tiempo GDS</td>";
+                out += "<td>Aprox AE</td>";
+                out += "<td>Aprox DS</td>";
+                out += "<td>Opciones</td>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloTurnos modeloTurnos : listaModeloTurnos) {
+                    out += "<tr>";
+                    out += "<td>" + modeloTurnos.getCodigo() + "</td>";
+                    out += "<td>" + modeloTurnos.getDescripcion() + "</td>";
+                    out += "<td>" + modeloTurnos.getHora_inicio() + "</td>";
+                    out += "<td>" + modeloTurnos.getHora_fin() + "</td>";
+                    out += "<td>" + modeloTurnos.getTeorico() + "</td>";
+                    out += "<td>" + modeloTurnos.getHora_inicioBreak() + "</td>";
+                    out += "<td>" + modeloTurnos.getHora_finBreak() + "</td>";
+                    out += "<td>" + modeloTurnos.getDescanso() + "</td>";
+                    out += "<td>" + modeloTurnos.getTiempo_maximo_entrada() + "</td>";
+                    out += "<td>" + modeloTurnos.getTiempo_minimo_salida() + "</td>";
+                    out += "<td>" + modeloTurnos.getTiempo_minimo_entrada() + "</td>";
+                    out += "<td>" + modeloTurnos.getTiempo_maximo_salida() + "</td>";
+                    out += "<td>" + modeloTurnos.getTolerancia_despues_entrada() + "</td>";
+                    out += "<td>" + modeloTurnos.getTolerancia_antes_salir() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloTurnos.getId() + "\"";
+                    out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloTurnos.getDescripcion() + "\"";
+                    out += "data-horainicio=\"" + modeloTurnos.getHora_inicio() + "\"";
+                    out += "data-horafin=\"" + modeloTurnos.getHora_fin() + "\"";
+                    out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
+                    out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
+                    out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
+                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
+                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
+                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
+                    out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
+                    out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
+                    out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_salida() + "\"";
+                    out += "data-tiempograciade=\"" + modeloTurnos.getTiempo_minimo_entrada() + "\"";
+                    out += "data-tiempograciads=\"" + modeloTurnos.getTiempo_maximo_salida() + "\"";
+                    out += "data-aproximacionae=\"" + modeloTurnos.getTolerancia_despues_entrada() + "\"";
+                    out += "data-aproximacionds=\"" + modeloTurnos.getTolerancia_antes_salir() + "\"";
+                    out += "data-horainiciodiurno=\"" + modeloTurnos.getHora_inicio_diurno() + "\"";
+                    out += "data-horainicionocturno=\"" + modeloTurnos.getHora_inicio_nocturno() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloTurnos.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-trash\"></i> </button>";
+                    //Boton Clonar
+                    out += "<button class=\"SetFormulario btn btn-info btn-xs\"title=\"Clonar\"";
+                    out += "data-id=\"\"";
+                    out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
+                    out += "data-nombre=\"Turno Clonado\"";
+                    out += "data-horainicio=\"" + modeloTurnos.getHora_inicio() + "\"";
+                    out += "data-horafin=\"" + modeloTurnos.getHora_fin() + "\"";
+                    out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
+                    out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
+                    out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
+                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
+                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
+                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
+                    out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
+                    out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
+                    out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_entrada() + "\"";
+                    out += "data-tiempograciade=\"" + modeloTurnos.getTiempo_minimo_salida() + "\"";
+                    out += "data-tiempograciads=\"" + modeloTurnos.getTiempo_maximo_salida() + "\"";
+                    out += "data-aproximacionae=\"" + modeloTurnos.getTolerancia_despues_entrada() + "\"";
+                    out += "data-aproximacionds=\"" + modeloTurnos.getTolerancia_antes_salir() + "\"";
+                    out += "data-horainiciodiurno=\"" + modeloTurnos.getHora_inicio_diurno() + "\"";
+                    out += "data-horainicionocturno=\"" + modeloTurnos.getHora_inicio_nocturno() + "\"";
+                    out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-copy\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
@@ -487,7 +496,7 @@ public class ControladorTurnos {
                     + "WHERE codigo = ? ORDER BY descripcion");
             SQL.setString(1, request.getParameter("codigo"));
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {                
+            while (res.next()) {
                 modeloTurnos.setId(res.getInt("id"));
                 modeloTurnos.setCodigo(res.getString("codigo"));
                 modeloTurnos.setDescripcion(res.getString("descripcion"));
@@ -527,7 +536,7 @@ public class ControladorTurnos {
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         resultado = new Gson().toJson(modeloTurnos);
 
         return resultado;

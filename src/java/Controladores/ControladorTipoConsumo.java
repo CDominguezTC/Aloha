@@ -51,7 +51,14 @@ public class ControladorTipoConsumo {
                             + "VALUE (?,?);");
                     SQL.setString(1, modelo.getNombre());
                     SQL.setInt(2, modelo.getCantidad());
-                    if (SQL.executeUpdate() > 0) {
+                    if (SQL.executeUpdate() > 0){                        
+                        ControladorAuditoria auditoria = new ControladorAuditoria();                        
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int)generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "tipo_consumo", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();

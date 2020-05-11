@@ -18,6 +18,7 @@ import Controladores.ControladorFestivo;
 import Controladores.ControladorFunciones;
 import Controladores.ControladorGrupoConsumo;
 import Controladores.ControladorGrupoTurnos;
+import Controladores.ControladorGrupoTurnos_Turnos;
 import Controladores.ControladorHorarioConsumo;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
@@ -339,13 +340,13 @@ public class ServletAlohaTiempos extends HttpServlet {
                     case "Upload":
                         Resultado = controladorTurnos.Insert(request);
                         break;
-                    case "Search":
-                        Resultado = controladorTurnos.tmp(request);
-                        response.setContentType("application/json");
-                        response.setCharacterEncoding("UTF-8");
-                        response.getWriter().write(Resultado);
-                        Accion = "Plano";
-                        break;
+//                    case "Search":
+//                        Resultado = controladorTurnos.tmp(request);
+//                        response.setContentType("application/json");
+//                        response.setCharacterEncoding("UTF-8");
+//                        response.getWriter().write(Resultado);
+//                        Accion = "Plano";
+//                        break;
                     case "Delete":
                         Resultado = controladorTurnos.Delete(request);
                         break;
@@ -749,7 +750,25 @@ public class ServletAlohaTiempos extends HttpServlet {
                         break;
                 }
                 break;
+            case "GrupoTurnosTurnosJSP":
+                ControladorGrupoTurnos_Turnos controladorGrupoTurnos_Turnos = new ControladorGrupoTurnos_Turnos();
+                Accion = request.getParameter("accion");
+                switch (Accion) {
+                    case "Upload":
+//                        Resultado = controladorGrupoTurnos.Insert(request);
+                        break;
+                    case "Delete":
+//                        Resultado = controladorGrupoTurnos.Delete(request);
+                        break;
+                    case "Read":
+//                        Resultado = controladorGrupoTurnos.Read(request, response);
+                        PrintWriter pw = response.getWriter();
+                        pw.write(Resultado);
+                        System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                        break;
+                }
 
+                break;
         }
         if (!"Plano".equals(Accion)) {
             String respuesta = herramienta.GetDescrpCode(Resultado);

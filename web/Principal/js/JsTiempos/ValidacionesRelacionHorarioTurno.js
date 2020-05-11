@@ -7,14 +7,16 @@ $(function ()
         LoadTabla();
         LoadGrupoTurnos();
         LoadTurnos();
-//        validacionBtn();
+        validacionBtn();
     });
 
     function LoadGrupoTurnos() {
-        var Frm = "Auditoria";
-        var Accion = "Select";
+        var Frm = "GrupoTurnosJSP";
+        var Evento = "Select";
+        var Accion = "Read";
         var data = {
             frm: Frm,
+            evento: Evento,
             accion: Accion
         };
         enableGif();
@@ -26,7 +28,7 @@ $(function ()
             success: function (resul, textStatus, jqXHR)
             {
                 disableGif();
-                $('#IdUsuariosA').html(resul);
+                $('#IdGrupo_Horario').html(resul);
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -49,9 +51,47 @@ $(function ()
             }
         });
     }
+    function LoadTurnos() {
+        var Frm = "TurnosJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdTurno').html(resul);
 
-
-
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
 
     $('#IdTurnoNocturno').click(function () {
         if ($(this).prop('checked') === true)

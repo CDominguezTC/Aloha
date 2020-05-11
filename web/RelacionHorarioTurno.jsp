@@ -53,69 +53,72 @@
                                 <br/>
                                 <!-- Formulario Registro -->
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-                                    <div class="row">
+                                    <div align="center" id="espera" style="display: none">
+                                        <img src="Principal/images/loading_dash.gif">
+                                    </div>
+                                    <div id="Principal">
+                                        <div class="row">
 
-                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                            <label for="grupo_horario">Grupo Turno</label>
-                                            <select id="grupo_horario" class="form-control" required>
-                                                <option value="" disabled selected>Seleccione</option>
-                                                <option value="1">Grupo de turno por defecto</option>
-                                            </select>
-                                        </div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="grupo_horario">Grupo Turno</label>
+                                                <select id="IdGrupo_Horario" class="form-control" required>
+                                                    <option value="" disabled selected>Seleccione</option>                                                    
+                                                </select>
+                                            </div>
 
-                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                            <label for="horario">Turno</label>
-                                            <select id="horario" class="form-control" required>
-                                                <option value="" disabled selected>Seleccione</option>
-                                                <option value="1">Turno por defecto</option>
-                                            </select>
-                                        </div>
-                                    </div>            
-                                    <div class="ln_solid"></div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-12" style="text-align: center" for="dia_semana">Dias Semana</label>
-                                        <div class="checkbox col-md-12">
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Lunes
-                                                </label>
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="turno">Turno</label>
+                                                <select id="IdTurno" class="form-control" required>
+                                                    <option value="" disabled selected>Seleccione</option>                                                    
+                                                </select>
                                             </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Miercoles
-                                                </label>
+                                        </div>            
+                                        <div class="ln_solid"></div>
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-12" style="text-align: center" for="dia_semana">Dias Semana</label>
+                                            <div class="checkbox col-md-12">
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Lunes
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Miercoles
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Viernes
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Domingo
+                                                    </label>
+                                                </div>
                                             </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Viernes
-                                                </label>
-                                            </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Domingo
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div class="checkbox col-md-12">
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Martes
-                                                </label>
-                                            </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Jueves
-                                                </label>
-                                            </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Sabado
-                                                </label>
-                                            </div>
-                                            <div class="checkbox col-md-3">
-                                                <label>
-                                                    <input type="checkbox" value="" id="IdTurnoExtra"> Festivo
-                                                </label>
+                                            <div class="checkbox col-md-12">
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Martes
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Jueves
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Sabado
+                                                    </label>
+                                                </div>
+                                                <div class="checkbox col-md-3">
+                                                    <label>
+                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Festivo
+                                                    </label>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

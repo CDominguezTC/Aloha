@@ -71,7 +71,7 @@ public class ControladorHorarioConsumo {
                             + "`domingo`,"
                             + "`festivo`,"
                             + "`tipoConsumo`) "
-                            + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
+                            + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modelo.getCodigo());
                     SQL.setString(2, modelo.getNombre());
                     SQL.setString(3, modelo.getHorainicio());
@@ -87,6 +87,13 @@ public class ControladorHorarioConsumo {
                     SQL.setString(13, modelo.getFestivo());
                     SQL.setInt(14, modelo.getModeloTipoConsumo().getId());
                     if (SQL.executeUpdate() > 0) {
+                        ControladorAuditoria auditoria = new ControladorAuditoria();
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int) generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "horario_consumo", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                            }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();

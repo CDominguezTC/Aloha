@@ -86,7 +86,6 @@ public class ControladorAuditoria {
                 //String pw = tl.encriptar(modelo.getPassword());
                 //SQL.setString(3, pw);
                 if (SQL.executeUpdate() > 0) {
-
                     resultado = "1";
                     SQL.close();
                     con.close();
