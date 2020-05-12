@@ -335,8 +335,8 @@ $(function(){
     document.getElementById("IdNoDispositivo").focus();
   }
 
-  $('#IdAgregar').click(function(e)
-  {
+  $('#IdAgregar').click(function(e){
+  
       LimpiarCampos();
   });
 

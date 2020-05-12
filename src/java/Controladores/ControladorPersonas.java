@@ -262,7 +262,7 @@ public class ControladorPersonas {
                         try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                             if (generatedKeys.next()) {
                                 int i = (int) generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "persona", request.getParameter("nombreU"), i, "Se inserto el registro.");
+                                auditoria.Insert("insertar", "persona", request.getParameter("nombreU"), i, "Se inserto el registro personacasino.");
                             }
                         }
                         resultado = "1";
