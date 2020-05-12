@@ -29,77 +29,152 @@ public class ControladorGrupoTurnos_Turnos {
     ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
     ControladorTurnos controladorTurnos = new ControladorTurnos();
 
+    /**
+     * Permite insertar la informcion envidsada desde la vista por el usurio a
+     * la base de datos.
+     *
+     * @author: Carlos A Dominguez D
+     * @param request este es enviado desdes la interface
+     * @return String retorna si la inservcion fue satistfacoria en la base de
+     * datos o si no es satisfactoria
+     * @version: 12/05/2020
+     */
     public String Insert(HttpServletRequest request) {
-        if ("".equals(request.getParameter("id"))) {
-            ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
-            modelo_GrupoTurnos_Turnos.setId(0);
-            modelo_GrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(Integer.parseInt(request.getParameter("idgrupohorario"))));
-            modelo_GrupoTurnos_Turnos.setIdModelo_Turnos(controladorTurnos.getModelo(Integer.parseInt(request.getParameter("idhorario"))));
-            modelo_GrupoTurnos_Turnos.setDia_Semana(request.getParameter("dia"));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("INSERT INTO `grupohorario_horario`("
-                            + "`IdGrupoHorario`,"
-                            + "`IdHorario`,"
-                            + "`diaSeman`) "
-                            + "VALUE ("
-                            + "?,?,?);");
-                    SQL.setInt(1, modelo_GrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId());
-                    SQL.setInt(2, modelo_GrupoTurnos_Turnos.getIdModelo_Turnos().getId());
-                    SQL.setString(3, modelo_GrupoTurnos_Turnos.getDia_Semana());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
+        LinkedList<ModeloGrupoTurnos_Turnos> ListaModeloGrupoTurnos_Turnos = new LinkedList<>();
+        String[] checkboxselect = request.getParameterValues("checkbox[]");
+        if (checkboxselect != null) {
+            for (String checkboxselect1 : checkboxselect) {
+                if (!"".equals(checkboxselect1)) {
+                    ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
+                    modelo_GrupoTurnos_Turnos = getModelo(Integer.parseInt(checkboxselect1));
+                    modelo_GrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(Integer.parseInt(request.getParameter("idgrupohorario"))));
+                    modelo_GrupoTurnos_Turnos.setId(0);
+                    ListaModeloGrupoTurnos_Turnos.add(modelo_GrupoTurnos_Turnos);
                 }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
             }
         } else {
-            ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
-            modelo_GrupoTurnos_Turnos.setId(Integer.parseInt(request.getParameter("id")));
-            modelo_GrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(Integer.parseInt(request.getParameter("idgrupohorario"))));
-            modelo_GrupoTurnos_Turnos.setIdModelo_Turnos(controladorTurnos.getModelo(Integer.parseInt(request.getParameter("idhorario"))));
-            modelo_GrupoTurnos_Turnos.setDia_Semana(request.getParameter("dia"));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("UPDATE `grupohorario_horario` SET "
-                            + "`IdGrupoHorario` = ?,"
-                            + "`IdHorario` = ?,"
-                            + "`diaSeman` = ?"
-                            + " WHERE `id` = ?;");
-                    SQL.setInt(1, modelo_GrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId());
-                    SQL.setInt(2, modelo_GrupoTurnos_Turnos.getIdModelo_Turnos().getId());
-                    SQL.setString(3, modelo_GrupoTurnos_Turnos.getDia_Semana());
-                    SQL.setInt(4, modelo_GrupoTurnos_Turnos.getId());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
+            if (!"".equals(request.getParameter("id"))) {
+                ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
+                modelo_GrupoTurnos_Turnos.setId(Integer.parseInt(request.getParameter("id")));
+                modelo_GrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(Integer.parseInt(request.getParameter("idgrupohorario"))));
+                modelo_GrupoTurnos_Turnos.setIdModelo_Turnos(controladorTurnos.getModelo(Integer.parseInt(request.getParameter("idhorario"))));
+                modelo_GrupoTurnos_Turnos.setDia_Semana(request.getParameter("dia"));
+                ListaModeloGrupoTurnos_Turnos.add(modelo_GrupoTurnos_Turnos);
+            } else {
+                ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
+                modelo_GrupoTurnos_Turnos.setId(0);
+                modelo_GrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(Integer.parseInt(request.getParameter("idgrupohorario"))));
+                modelo_GrupoTurnos_Turnos.setIdModelo_Turnos(controladorTurnos.getModelo(Integer.parseInt(request.getParameter("idhorario"))));
+                modelo_GrupoTurnos_Turnos.setDia_Semana(request.getParameter("dia"));
+                ListaModeloGrupoTurnos_Turnos.add(modelo_GrupoTurnos_Turnos);
             }
+        }
+        if (ListaModeloGrupoTurnos_Turnos.size() > 0) {
+            for (ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos : ListaModeloGrupoTurnos_Turnos) {
+                if (modelo_GrupoTurnos_Turnos.getId() == 0) {
+                    try {
+                        con = conexion.abrirConexion();
+                        try {
+                            SQL = con.prepareStatement("INSERT INTO `grupohorario_horario`("
+                                    + "`IdGrupoHorario`,"
+                                    + "`IdHorario`,"
+                                    + "`diaSeman`) "
+                                    + "VALUE ("
+                                    + "?,?,?);");
+                            SQL.setInt(1, modelo_GrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId());
+                            SQL.setInt(2, modelo_GrupoTurnos_Turnos.getIdModelo_Turnos().getId());
+                            SQL.setString(3, modelo_GrupoTurnos_Turnos.getDia_Semana());
+                            if (SQL.executeUpdate() > 0) {
+                                resultado = "1";
+                                SQL.close();
+                                con.close();
+                            }
+                        } catch (SQLException e) {
+                            System.out.println(e);
+                            resultado = "-2";
+                            SQL.close();
+                            con.close();
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e);
+                        resultado = "-3";
+                    }
+                }
+            }
+        } else {
+            for (ModeloGrupoTurnos_Turnos modelo_GrupoTurnos_Turnos : ListaModeloGrupoTurnos_Turnos) {
+                if (modelo_GrupoTurnos_Turnos.getId() == 0) {
+                    try {
+                        con = conexion.abrirConexion();
+                        try {
+                            SQL = con.prepareStatement("INSERT INTO `grupohorario_horario`("
+                                    + "`IdGrupoHorario`,"
+                                    + "`IdHorario`,"
+                                    + "`diaSeman`) "
+                                    + "VALUE ("
+                                    + "?,?,?);");
+                            SQL.setInt(1, modelo_GrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId());
+                            SQL.setInt(2, modelo_GrupoTurnos_Turnos.getIdModelo_Turnos().getId());
+                            SQL.setString(3, modelo_GrupoTurnos_Turnos.getDia_Semana());
+                            if (SQL.executeUpdate() > 0) {
+                                resultado = "1";
+                                SQL.close();
+                                con.close();
+                            }
+                        } catch (SQLException e) {
+                            System.out.println(e);
+                            resultado = "-2";
+                            SQL.close();
+                            con.close();
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e);
+                        resultado = "-3";
+                    }
+                } else {
+                    try {
+                        con = conexion.abrirConexion();
+                        try {
+                            SQL = con.prepareStatement("UPDATE `grupohorario_horario` SET "
+                                    + "`IdGrupoHorario` = ?,"
+                                    + "`IdHorario` = ?,"
+                                    + "`diaSeman` = ?"
+                                    + " WHERE `id` = ?;");
+                            SQL.setInt(1, modelo_GrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId());
+                            SQL.setInt(2, modelo_GrupoTurnos_Turnos.getIdModelo_Turnos().getId());
+                            SQL.setString(3, modelo_GrupoTurnos_Turnos.getDia_Semana());
+                            SQL.setInt(4, modelo_GrupoTurnos_Turnos.getId());
+                            if (SQL.executeUpdate() > 0) {
+                                resultado = "1";
+                                SQL.close();
+                                con.close();
+                            }
+                        } catch (SQLException e) {
+                            System.out.println(e);
+                            resultado = "-2";
+                            SQL.close();
+                            con.close();
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e);
+                        resultado = "-3";
+                    }
+                }
+            }
+
         }
         return resultado;
     }
 
+    /**
+     * Permite la elimincacion desde la interface, este metodo permite depurar la informacion de la base de datos 
+     *
+     * @author: Carlos A Dominguez D
+     * @param request este es enviado desdes la interface
+     * @return String retorna si la peticion fue satistfacoria en la base de
+     * datos o si no es satisfactoria
+     * @version: 12/05/2020
+     */
     public String Delete(HttpServletRequest request) {
         LinkedList<ModeloGrupoTurnos_Turnos> ListaModeloGrupoTurnos_Turnos = new LinkedList<>();
         String[] checkboxselect = request.getParameterValues("checkbox[]");
@@ -242,6 +317,43 @@ public class ControladorGrupoTurnos_Turnos {
             System.out.println(e);
         }
         return listaModeloGrupoTurnos_Turnos;
+    }
+    /**
+     * Permite obtener el modelo de datos este metodo requiere de entrada el Id del modelo
+     *
+     * @author: Carlos A Dominguez D
+     * @param Id Valor de Campo enteropara realizar la consulta de datos por Id
+     * @return ModeloGrupoTurnos_Turnos Retorna el modelo de los datos en su formato Modelos
+     * @version: 12/05/2020
+     */
+
+    public ModeloGrupoTurnos_Turnos getModelo(int Id) {
+        ModeloGrupoTurnos_Turnos modeloGrupoTurnos_Turnos = new ModeloGrupoTurnos_Turnos();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
+                    + "`id`,"
+                    + "`IdGrupoHorario`,"
+                    + "`IdHorario`,"
+                    + "`diaSeman` "
+                    + "FROM `grupohorario_horario`"
+                    + "WHERE id = ?;");
+            SQL.setInt(1, Id);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+
+                modeloGrupoTurnos_Turnos.setId(res.getInt("id"));
+                modeloGrupoTurnos_Turnos.setIdModelo_Grupo_Turnos(controladorGrupoTurnos.getModelo(res.getInt("IdGrupoHorario")));
+                modeloGrupoTurnos_Turnos.setIdModelo_Turnos(controladorTurnos.getModelo(res.getInt("IdHorario")));
+                modeloGrupoTurnos_Turnos.setDia_Semana(res.getString("diaSeman"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return modeloGrupoTurnos_Turnos;
     }
 
 }

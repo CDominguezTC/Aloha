@@ -26,6 +26,7 @@ $(function ()
             {
                 disableGif();
                 $('#IdGrupo_Horario').html(resul);
+                $('#IdGrupo_Horario_Modal').html(resul);
 
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -452,6 +453,78 @@ $(function ()
         }
     });
 
+
+    $('#IdClonarVarios').click(function (e)
+    {
+        var CheckBoxSelect = new Array();
+        $('input[type=checkbox]:checked').each(function () {
+            CheckBoxSelect.push($(this).val());
+        });
+        if (CheckBoxSelect.length > 0) {
+            if ($('#IdGrupo_Horario_Modal').val() !== null)
+            {
+                var Frm = "GrupoTurnosTurnosJSP";
+                var IdGrupoHorario = $('#IdGrupo_Horario_Modal').val();
+                var Accion = "Upload";
+                var data = {
+                    frm: Frm,
+                    checkbox: CheckBoxSelect,
+                    idgrupohorario: IdGrupoHorario,
+                    accion: Accion
+                };
+                enableGif();
+                $.ajax({
+                    type: "POST",
+                    url: "ServletAlohaTiempos",
+                    data: data,
+                    success: function (resul, textStatus, jqXHR)
+                    {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Guardado',
+                            text: 'Registro Guardado Satisfactoriamente.'
+                        });
+                        disableGif();
+                        //alert(resul);
+                        LimpiarCampos();
+                        LoadTabla();
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        disableGif();
+                        if (jqXHR.status === 0) {
+                            alert('Not connect: Verify Network.');
+                        } else if (jqXHR.status === 404) {
+                            alert('Requested page not found [404]');
+                        } else if (jqXHR.status === 500) {
+                            alert('Internal Server Error [500].');
+                        } else if (textStatus === 'parsererror') {
+                            alert('Requested JSON parse failed.');
+                        } else if (textStatus === 'timeout') {
+                            alert('Time out error.');
+                        } else if (textStatus === 'abort') {
+                            alert('Ajax request aborted.');
+                        } else {
+                            alert('Uncaught Error: ' + jqXHR.responseText);
+                        }
+                    }
+                });
+            } else
+            {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: 'Verifica todos los campos.'
+                });
+            }
+        } else
+        {
+            Swal.fire({
+                icon: 'question',
+                title: 'Error',
+                text: 'Por favor seleccione un item a duplicar.'
+            });
+        }
+    });
     $('#IdEliminarVarios').click(function (e)
     {
         var CheckBoxSelect = new Array();

@@ -146,7 +146,8 @@
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                 <button class="btn btn-danger btn-sm" type="button" id="IdEliminarVarios" name="EliminarVarios"><i class="fa fa-trash"></i> Eliminar Seleccionados</button>
-                                            </div>
+                                                <button class="btn btn-info btn-sm" type="button" id="IdGetModal" name="ClonarVarios" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-trash"></i> Clonar Seleccionados</button>
+                                            </div>                                            
                                             <div class="row">
                                             </div> 
                                         </div>
@@ -155,6 +156,29 @@
                             </div>
                         </div>
                         <!-- /Segunda Sección-->
+                        <!-- Modal-->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Grupo Turno</h5>                                        
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                            <label for="grupo_horario_modal">Nuevo Grupo Turno</label>
+                                            <select id="IdGrupo_Horario_Modal" class="form-control" required>
+                                                <option value="" disabled selected>Seleccione</option>                                                    
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" id="IdClonarVarios">Clonar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Modal-->                        
                     </div>
                 </div>
             </div>
