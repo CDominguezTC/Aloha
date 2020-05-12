@@ -185,9 +185,9 @@ public class ControladorGrupoTurnos {
             String parametro = request.getParameter("evento");
             if ("Select".equals(parametro)) {
                 out = "";
-                out += "<option value=\"0\" selected>Seleccione</option>";                                
-                for (ModeloGrupoTurnos modeloGrupoTurnos  : listmoGrupoTurnos) {
-                    out += "<option value=\"" + modeloGrupoTurnos.getId() + "\"> " + modeloGrupoTurnos.getDescripcion()+ "</option>";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloGrupoTurnos modeloGrupoTurnos : listmoGrupoTurnos) {
+                    out += "<option value=\"" + modeloGrupoTurnos.getId() + "\"> " + modeloGrupoTurnos.getDescripcion() + "</option>";
                 }
             } else {
 
@@ -229,5 +229,40 @@ public class ControladorGrupoTurnos {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
+    }
+
+    /**
+     * Permite listar la información de la tabla de Grupo Turnos identificadno
+     * el ID
+     *
+     * @author: Carlos A Dominguez D
+     * @param Id
+     * @return ModeloEmpresa
+     * @version: 11/05/2020
+     */
+    ModeloGrupoTurnos getModelo(int Id) {
+        ModeloGrupoTurnos modelo = new ModeloGrupoTurnos();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
+                    + "`id`, "
+                    + "`codigo`, "
+                    + "`descripcion` "
+                    + "FROM `grupohorario`"
+                    + " WHERE id = ?;");
+            SQL.setInt(1, Id);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                modelo.setId(res.getInt("Id"));
+                modelo.setCodigo(res.getString("codigo"));
+                modelo.setDescripcion(res.getString("descripcion"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return modelo;
     }
 }

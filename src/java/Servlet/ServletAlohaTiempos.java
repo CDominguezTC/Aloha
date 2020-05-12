@@ -93,22 +93,6 @@ public class ServletAlohaTiempos extends HttpServlet {
         Herramienta herramienta = new Herramienta();
         String Resultado = "";
         String Accion = null;
-//        switch (Formulario) {
-//            case "BuscarPersona":
-//                ModeloPersonas modeloPersonas = new ModeloPersonas();
-//                ControladorPersonas controladorPersonas1 = new ControladorPersonas();
-//                modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
-//                request.setAttribute("id", modeloPersonas.getId());
-//                request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
-//                request.setAttribute("cedula", modeloPersonas.getIdentificacion());
-//                request.setAttribute("observacion", modeloPersonas.getObservaciones());
-//                RequestDispatcher rd;
-//                rd = request.getRequestDispatcher("RegistroCargos.jsp");
-//                rd.forward(request, response);
-//                Accion = "Plano";
-//                break;
-//        }
-//        processRequest(request, response);
         String respuesta = "";
         HttpSession session = request.getSession(false);
         if (session != null) {
@@ -340,13 +324,6 @@ public class ServletAlohaTiempos extends HttpServlet {
                     case "Upload":
                         Resultado = controladorTurnos.Insert(request);
                         break;
-//                    case "Search":
-//                        Resultado = controladorTurnos.tmp(request);
-//                        response.setContentType("application/json");
-//                        response.setCharacterEncoding("UTF-8");
-//                        response.getWriter().write(Resultado);
-//                        Accion = "Plano";
-//                        break;
                     case "Delete":
                         Resultado = controladorTurnos.Delete(request);
                         break;
@@ -755,13 +732,13 @@ public class ServletAlohaTiempos extends HttpServlet {
                 Accion = request.getParameter("accion");
                 switch (Accion) {
                     case "Upload":
-//                        Resultado = controladorGrupoTurnos.Insert(request);
+                        Resultado = controladorGrupoTurnos_Turnos.Insert(request);
                         break;
                     case "Delete":
-//                        Resultado = controladorGrupoTurnos.Delete(request);
+                        Resultado = controladorGrupoTurnos_Turnos.Delete(request);
                         break;
                     case "Read":
-//                        Resultado = controladorGrupoTurnos.Read(request, response);
+                        Resultado = controladorGrupoTurnos_Turnos.Read(request, response);
                         PrintWriter pw = response.getWriter();
                         pw.write(Resultado);
                         System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");

@@ -58,7 +58,7 @@
                                     </div>
                                     <div id="Principal">
                                         <div class="row">
-
+                                            <input type="hidden" id="Id" name="Id">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="grupo_horario">Grupo Turno</label>
                                                 <select id="IdGrupo_Horario" class="form-control" required>
@@ -72,65 +72,33 @@
                                                     <option value="" disabled selected>Seleccione</option>                                                    
                                                 </select>
                                             </div>
-                                        </div>            
-                                        <div class="ln_solid"></div>
-                                        <div class="item form-group">
-                                            <label class="control-label col-md-12" style="text-align: center" for="dia_semana">Dias Semana</label>
-                                            <div class="checkbox col-md-12">
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Lunes
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Miercoles
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Viernes
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Domingo
-                                                    </label>
-                                                </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group" style="text-align: center">
+                                                <label for="tipo_id">Dias de la semana </label>
+                                                <select id="IdDia" class="form-control" required>
+                                                    <option value="0">Seleccione</option>
+                                                    <option value="1">Lunes</option>
+                                                    <option value="2">Martes</option>
+                                                    <option value="3">Miercoles</option>
+                                                    <option value="4">Jueves</option>                                                                    
+                                                    <option value="5">Viernes</option>                                                                    
+                                                    <option value="6">Sabado</option>                                                                    
+                                                    <option value="7">Domingo</option>                                                                    
+                                                    <option value="8">Festivo</option>                                                                    
+                                                </select>
                                             </div>
-                                            <div class="checkbox col-md-12">
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Martes
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Jueves
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Sabado
-                                                    </label>
-                                                </div>
-                                                <div class="checkbox col-md-3">
-                                                    <label>
-                                                        <input type="checkbox" value="" id="IdTurnoExtra"> Festivo
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        </div>                                            
                                     </div>
-                                    <!-- Botones Formulario -->
+                                    <!-- Botones Formulario -->                                    
                                     <div class="ln_solid"></div>
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                <button class="btn btn-primary btn-sm" type="button" disabled><i class="fa fa-plus"></i> Adicionar</button>
-                                                <button type="button" class="btn btn-dark btn-sm" disabled><i class="fa fa-eraser"></i> Limpiar</button>
-                                                <button type="button" class="btn btn-danger btn-sm" disabled><i class="fa fa-trash-o"></i> Limpiar Todo</button>
+                                                <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
+                                                <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
+                                                <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
                                             </div>
+                                            <div class="row">
+                                            </div> 
                                         </div>
                                     </div>  
                                     <!-- /Botones Formulario -->
@@ -162,70 +130,27 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>Grupo Horario</th>
-                                                    <th>Horario</th>
-                                                    <th>Dia Semana</th>
+                                                    <td>Selecione</td>
+                                                    <td>Grupo Turno</td>
+                                                    <td>Turno</td>
+                                                    <td>Dia</td>            
+                                                    <td>Opciones</td>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Lunes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Martes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Miercoles</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Jueves</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Viernes</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Sabado</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Domingo</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Grupo de turno por defecto</td>
-                                                    <td>Turno por defecto</td>
-                                                    <td>Festivo</td>
-                                                </tr>
+                                            <tbody>                                                
                                             </tbody>
                                         </table>
-                                        <!-- /Tabla -->
-                                        <!-- Botones Tabla -->
-                                        <div class="ln_solid"></div>
-                                        <div class="row">
-                                            <div class="form-group">
-                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                    <button class="btn btn-primary btn-sm" type="button"><i class="fa fa-plus"></i> Agregar</button>
-                                                    <button type="button" class="btn btn-success btn-sm" disabled><i class="fa fa-save"></i> Guardar</button>
-                                                    <button type="button" class="btn btn-danger btn-sm" disabled><i class="fa fa-trash"></i> Eliminar</button>
-                                                </div>
-                                                <div class="row">
-                                                </div> 
-                                            </div>
-                                        </div>  
-                                        <!-- /Botones Tabla -->
+                                        <!-- /Tabla -->                                        
                                     </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                <button class="btn btn-danger btn-sm" type="button" id="IdEliminarVarios" name="EliminarVarios"><i class="fa fa-trash"></i> Eliminar Seleccionados</button>
+                                            </div>
+                                            <div class="row">
+                                            </div> 
+                                        </div>
+                                    </div> 
                                 </div>                    
                             </div>
                         </div>

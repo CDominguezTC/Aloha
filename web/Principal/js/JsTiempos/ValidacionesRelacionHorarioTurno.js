@@ -1,8 +1,5 @@
 $(function ()
 {
-    var turnonocturnos = "N";
-    var turnoextra = "N";
-    var turnodescuento = "N";
     $(document).ready(function () {
         LoadTabla();
         LoadGrupoTurnos();
@@ -93,77 +90,36 @@ $(function ()
         });
     }
 
-    $('#IdTurnoNocturno').click(function () {
-        if ($(this).prop('checked') === true)
-        {
-            turnonocturnos = "S";
-        } else
-        {
-            turnonocturnos = "N";
-        }
-    });
-    $('#IdTurnoExtra').click(function () {
-        if ($(this).prop('checked') === true)
-        {
-            turnoextra = "S";
-        } else
-        {
-            turnoextra = "N";
-        }
-    });
-    $('#IdDescuentoBreack').click(function () {
-        if ($(this).prop('checked') === true)
-        {
-            turnodescuento = "S";
-        } else
-        {
-            turnodescuento = "N";
-        }
-    });
-
     $(document).on('click', '.SetFormulario', function () {
-        $('#IdTurnoNocturno').prop("checked", false);
-        $('#IdTurnoExtra').prop("checked", false);
-        $('#IdDescuentoBreack').prop("checked", false);
-
-        turnonocturnos = "N";
-        turnoextra = "N";
-        turnodescuento = "N";
-
+        LimpiarCampos();
         $('#Id').val($(this).data('id'));
-        $('#IdCodigo').val($(this).data('codigo'));
-        $('#IdNombre').val($(this).data('nombre'));
-        $('#IdHoraInicio').val($(this).data('horainicio'));
-        $('#IdHoraFin').val($(this).data('horafin'));
-        $('#IdTeorico').val($(this).data('teorico'));
+        $('#IdGrupo_Horario').val($(this).data('idgrupoturnos'));
+        $('#IdTurno').val($(this).data('idturnos'));
+        if ($(this).data('dia') === "Lunes") {
+            $('#IdDia').val(1);
+        }
+        if ($(this).data('dia') === "Martes") {
+            $('#IdDia').val(2);
+        }
+        if ($(this).data('dia') === "Miercoles") {
+            $('#IdDia').val(3);
+        }
+        if ($(this).data('dia') === "Jueves") {
+            $('#IdDia').val(4);
+        }
+        if ($(this).data('dia') === "Viernes") {
+            $('#IdDia').val(5);
+        }
+        if ($(this).data('dia') === "Sabado") {
+            $('#IdDia').val(6);
+        }
+        if ($(this).data('dia') === "Domingo") {
+            $('#IdDia').val(7);
+        }
+        if ($(this).data('dia') === "Festivo") {
+            $('#IdDia').val(8);
+        }
 
-        if ($(this).data('turnonocturno') === "S")
-        {
-            $('#IdTurnoNocturno').prop("checked", true);
-            turnonocturnos = "S";
-        }
-        if ($(this).data('turnoextra') === "S")
-        {
-            $('#IdTurnoExtra').prop("checked", true);
-            turnoextra = "S";
-        }
-        if ($(this).data('descuentobreak') === "S")
-        {
-            $('#IdDescuentoBreack').prop("checked", true);
-            turnodescuento = "S";
-        }
-
-        $('#IdHoraInicioBreack').val($(this).data('horainiciobreak'));
-        $('#IdHoraFinBreack').val($(this).data('horafinbreak'));
-        $('#IdTiempoBreack').val($(this).data('tiempobreak'));
-        $('#IdTiempoGraciaAE').val($(this).data('tiempograciaae'));
-        $('#IdTiempoGraciaAS').val($(this).data('tiempograciaas'));
-        $('#IdTiempoGraciaDE').val($(this).data('tiempograciade'));
-        $('#IdTiempoGraciaDS').val($(this).data('tiempograciads'));
-        $('#IdAproximacionAE').val($(this).data('aproximacionae'));
-        $('#IdAproximacionDS').val($(this).data('aproximacionds'));
-        $('#IdHoraInicioDiurno').val($(this).data('horainiciodiurno'));
-        $('#IdHoraInicioNocturno').val($(this).data('horainicionocturno'));
     });
 
     function validacionBtn() {
@@ -396,25 +352,9 @@ $(function ()
     function  LimpiarCampos()
     {
         $('#Id').val('');
-        $('#IdCodigo').val('');
-        $('#IdNombre').val('');
-        $('#IdHoraInicio').val('');
-        $('#IdHoraFin').val('');
-        $('#IdTeorico').val('');
-        $('#IdHoraInicioBreack').val('');
-        $('#IdHoraFinBreack').val('');
-        $('#IdTiempoBreack').val('');
-        $('#IdTiempoGraciaAE').val('');
-        $('#IdTiempoGraciaAS').val('');
-        $('#IdTiempoGraciaDE').val('');
-        $('#IdTiempoGraciaDS').val('');
-        $('#IdAproximacionAE').val('');
-        $('#IdAproximacionDS').val('');
-        $('#IdHoraInicioDiurno').val('');
-        $('#IdHoraInicioNocturno').val('');
-        $('#IdTurnoNocturno').prop("checked", false);
-        $('#IdTurnoExtra').prop("checked", false);
-        $('#IdDescuentoBreack').prop("checked", false);
+        $('#IdGrupo_Horario').val('0');
+        $('#IdTurno').val('0');
+        $('#IdDia').val('0');
     }
 
     $('#IdAgregar').click(function (e)
@@ -426,47 +366,44 @@ $(function ()
     {
         if (ValidaCampo() === true)
         {
-            var Frm = "TurnosJSP";
+            var Frm = "GrupoTurnosTurnosJSP";
             var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var HoraInicio = $('#IdHoraInicio').val();
-            var HoraFin = $('#IdHoraFin').val();
-            var Teorico = $('#IdTeorico').val();
-            var HoraInicioBreak = $('#IdHoraInicioBreack').val();
-            var HoraFinBreak = $('#IdHoraFinBreack').val();
-            var TiempoBreak = $('#IdTiempoBreack').val();
-            var TiempoGraciaAE = $('#IdTiempoGraciaAE').val();
-            var TiempoGraciaAS = $('#IdTiempoGraciaAS').val();
-            var TiempoGraciaDE = $('#IdTiempoGraciaDE').val();
-            var TiempoGraciaDS = $('#IdTiempoGraciaDS').val();
-            var AproximacionAE = $('#IdAproximacionAE').val();
-            var AproximacionDS = $('#IdAproximacionDS').val();
-            var HoraInicioDiurno = $('#IdHoraInicioDiurno').val();
-            var HoraInicioNocturno = $('#IdHoraInicioNocturno').val();
+            var IdGrupoHorario = $('#IdGrupo_Horario').val();
+            var IdHorario = $('#IdTurno').val();
+            var Dia = $('#IdDia').val();
+            if (Dia === "1") {
+                Dia = 'Lunes';
+            }
+            if (Dia === "2") {
+                Dia = 'Martes';
+            }
+            if (Dia === "3") {
+                Dia = 'Miercoles';
+            }
+            if (Dia === "4") {
+                Dia = 'Jueves';
+            }
+            if (Dia === "5") {
+                Dia = 'Viernes';
+            }
+            if (Dia === "6") {
+                Dia = 'Sabado';
+            }
+            if (Dia === "7") {
+                Dia = 'Domingo';
+            }
+            if (Dia === "8") {
+                Dia = 'Festivo';
+            }
+
+
             var Accion = "Upload";
             var data = {
                 frm: Frm,
                 id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                horainicio: HoraInicio,
-                horafin: HoraFin,
-                teorico: Teorico,
-                horainiciobreak: HoraInicioBreak,
-                horafinbreak: HoraFinBreak,
-                tiempobreak: TiempoBreak,
-                tiempograciaae: TiempoGraciaAE,
-                tiempograciaas: TiempoGraciaAS,
-                tiempograciade: TiempoGraciaDE,
-                tiempograciads: TiempoGraciaDS,
-                aproximacionae: AproximacionAE,
-                aproximacionds: AproximacionDS,
-                horainiciodiurno: HoraInicioDiurno,
-                horainicionocturno: HoraInicioNocturno,
-                turnonocturnos: turnonocturnos,
-                turnoextra: turnoextra,
-                turnodescuento: turnodescuento,
+                idgrupohorario: IdGrupoHorario,
+                idhorario: IdHorario,
+                dia: Dia,
                 accion: Accion
             };
             enableGif();
@@ -485,7 +422,6 @@ $(function ()
                     //alert(resul);
                     LimpiarCampos();
                     LoadTabla();
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
@@ -516,19 +452,77 @@ $(function ()
         }
     });
 
+    $('#IdEliminarVarios').click(function (e)
+    {
+        var CheckBoxSelect = new Array();
+        $('input[type=checkbox]:checked').each(function () {
+            CheckBoxSelect.push($(this).val());
+        });
+
+        if (CheckBoxSelect.length > 0) {
+            var Frm = "GrupoTurnosTurnosJSP";
+            var Accion = "Delete";
+            var data = {
+                frm: Frm,
+                checkbox: CheckBoxSelect,
+                accion: Accion
+            };
+            enableGif();
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function (resul, textStatus, jqXHR)
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Eliminado',
+                        text: 'Registro Eliminado Satisfactoriamente.'
+                    });
+                    disableGif();
+                    //alert(resul);
+                    LimpiarCampos();
+                    LoadTabla();
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        } else
+        {
+            Swal.fire({
+                icon: 'question',
+                title: 'Error',
+                text: 'Por favor seleccione un item a eliminar.'
+            });
+        }
+
+    });
+
     $(document).on('click', '.SetEliminar', function () {
 //        if (ValidaCampo() === true)
 //        {
-        var Frm = "TurnosJSP";
+        var Frm = "GrupoTurnosTurnosJSP";
         var Id = $(this).data('id');
-        var Codigo = $(this).data('codigo');
-        var Nombre = $(this).data('nombre');
         var Accion = "Delete";
         var data = {
             frm: Frm,
             id: Id,
-            codigo: Codigo,
-            nombre: Nombre,
             accion: Accion
         };
         Swal.fire({
@@ -582,72 +576,9 @@ $(function ()
         });
     });
 
-    $("#IdEliminar").click(function (e) {
-        if (ValidaCampo() === true)
-        {
-            var Frm = "ComercialJSP";
-            var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var Notas = $('#IdNotas').val();
-            var Accion = "Delete";
-            var data = {
-                frm: Frm,
-                id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                notas: Notas,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function (resul, textStatus, jqXHR)
-                {
-                    disableGif();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Eliminado',
-                        text: 'Registro Eliminado Satisfactoriamente.'
-                    });
-                    //alert(resul);
-                    LimpiarCampos();
-                    LoadTabla();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
-                }
-            });
-        } else
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Verifica todos los campos.'
-            });
-        }
-    });
-
     function LoadTabla()
     {
-        var Frm = "TurnosJSP";
+        var Frm = "GrupoTurnosTurnosJSP";
         var Accion = "Read";
         var data = {
             frm: Frm,

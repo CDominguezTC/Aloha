@@ -12,18 +12,18 @@ package Modelo;
 public class ModeloGrupoTurnos_Turnos {
 
     int id;
-    int IdGrupoHorario;
-    int IdHorario;
-    String diaSeman;
+    ModeloGrupoTurnos IdModelo_Grupo_Turnos;
+    ModeloTurnos IdModelo_Turnos;
+    String dia_Semana;
 
     public ModeloGrupoTurnos_Turnos() {
     }
 
-    public ModeloGrupoTurnos_Turnos(int id, int IdGrupoHorario, int IdHorario, String diaSeman) {
+    public ModeloGrupoTurnos_Turnos(int id, ModeloGrupoTurnos IdModelo_Grupo_Turnos, ModeloTurnos IdModeloTurnos, String dia_Semana) {
         this.id = id;
-        this.IdGrupoHorario = IdGrupoHorario;
-        this.IdHorario = IdHorario;
-        this.diaSeman = diaSeman;
+        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
+        this.IdModelo_Turnos = IdModeloTurnos;
+        this.dia_Semana = dia_Semana;
     }
 
     public int getId() {
@@ -34,28 +34,29 @@ public class ModeloGrupoTurnos_Turnos {
         this.id = id;
     }
 
-    public int getIdGrupoHorario() {
-        return IdGrupoHorario;
+    public ModeloGrupoTurnos getIdModelo_Grupo_Turnos() {
+        return IdModelo_Grupo_Turnos;
     }
 
-    public void setIdGrupoHorario(int IdGrupoHorario) {
-        this.IdGrupoHorario = IdGrupoHorario;
+    public void setIdModelo_Grupo_Turnos(ModeloGrupoTurnos IdModelo_Grupo_Turnos) {
+        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
     }
 
-    public int getIdHorario() {
-        return IdHorario;
+    public ModeloTurnos getIdModelo_Turnos() {
+        return IdModelo_Turnos;
     }
 
-    public void setIdHorario(int IdHorario) {
-        this.IdHorario = IdHorario;
+    public void setIdModelo_Turnos(ModeloTurnos IdModeloTurnos) {
+        this.IdModelo_Turnos = IdModeloTurnos;
     }
 
-    public String getDiaSeman() {
-        return diaSeman;
+    public String getDia_Semana() {
+        return dia_Semana;
     }
 
-    public void setDiaSeman(String diaSeman) {
-        this.diaSeman = diaSeman;
+    public void setDia_Semana(String dia_Semana) {
+        this.dia_Semana = dia_Semana;
     }
-
+    
+    
 }
