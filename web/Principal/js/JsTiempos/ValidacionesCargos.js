@@ -9,14 +9,11 @@ $(function ()
         LoadTabla();
         validacionBtn();
     });
-
     $(document).on('click', '.SetFormulario', function () {
         $('#Id').val($(this).data('id'));
         $('#IdNombre').val($(this).data('tipocargo'));
         $('#IdCodigo').val($(this).data('valor'));
     });
-
-
     $('#Idbuscar').click(function (e)
     {
         var Frm = "PersonasJSP";
@@ -31,7 +28,6 @@ $(function ()
                 text: 'Por favor ingrese el numero de cedula corecto.'
             }).then((result) => {
             });
-
         } else
         {
             var data = {
@@ -63,7 +59,6 @@ $(function ()
                             text: 'La personas con la identificacion. ' + Cedula + ' no existe en el sistema'
                         }).then((result) => {
                         });
-
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -87,8 +82,6 @@ $(function ()
             });
         }
     });
-
-
     function validacionBtn() {
 
         //alert("validacionBtn");
@@ -125,7 +118,6 @@ $(function ()
                             location.href = "Dashboard.jsp";
                         }
                     });
-
                 }
 
             },
@@ -329,7 +321,6 @@ $(function ()
     {
         LimpiarCampos();
     });
-
     $('#IdGuardar').click(function (e)
     {
         if (ValidaCampo() === true)
@@ -362,7 +353,6 @@ $(function ()
                     //alert(resul);
                     LimpiarCampos();
                     LoadTabla();
-
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     disableGif();
@@ -393,9 +383,6 @@ $(function ()
             //alert("Favor de completar todos los campos");
         }
     });
-
-
-
     $(document).on('click', '.SetEliminar', function () {
 //        if (ValidaCampo() === true)
 //        {
@@ -461,8 +448,6 @@ $(function ()
             }
         });
     });
-
-
 //        else
 //        {
 //            alert("Favor de completar todos los campos");
@@ -533,7 +518,6 @@ $(function ()
             //alert("Favor de completar todos los campos");
         }
     });
-
     function LoadTabla()
     {
         var Frm = "CargosTiemposJSP";
@@ -620,4 +604,71 @@ $(function ()
         window.onload = document.getElementById("espera").style = "display: none";
         window.onload = document.getElementById("Principal").style = "display: enable"
     }
+
+    $("#IdbtnDelete").click(function (e)
+    {
+        $("#Tabla tbody tr").each(function () {
+
+            if ($(this).find("input:checkbox:checked").length > 0)
+                $(this).remove();
+
+        })
+    });
+
+    $("#IdbtnNuevo").click(function (e)
+    {
+        tabla = $('#Tabla');
+        tr = $('tr:first', tabla);
+        tr.clone().appendTo(tabla).find(':text').val('');
+    });
+
+    $('#IdAplicarAccion').click(function (e)
+    {
+        $('#Idfrmm').val('CargosJSP');
+        $('#IdAccion').val('Upload');
+        //var resConfir = confirm("Desea aplicar la accicon");
+        Swal.fire({
+            title: 'Desea aplicar la accicon ?',
+            text: "La informacion se almacenara en el sistema",
+            icon: 'success',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, confirmar',
+            cancelButtonText: 'No, cancelar'
+        }).then((result) => {
+            if (result.value) {
+                enableGif();
+                var data = $('#IdRegistroCargosJSP').serialize();
+                console.log(data);
+                $.post("ServletAlohaTiempos", data, function (res, est, jqHXR)
+                {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Guardado',
+                        text: res
+                    });
+                    disableGif();
+                });
+            }
+        });
+
+        if (resConfir)
+        {
+            var data = $('#IdRegistroCargosJSP').serialize();
+            console.log(data);
+            $.post("ServletAlohaTiempos", data, function (res, est, jqHXR)
+            {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Guardado',
+                    text: res
+                });
+            });
+        } else
+        {
+            alert("Accion Cancelada");
+        }
+//        }
+    });
 });

@@ -144,7 +144,7 @@
                                                             <div class="text-center">                        
                                                                 <div class="col-lg-12" style="text-align: center">
                                                                     <div class="btn btn-default" style="float: left" id="IdbtnDelete"> Eliminar Items</div>
-                                                                    <div class="btn btn-success" style="float: right" id="btnNuevo"> Nuevo Item</div>
+                                                                    <div class="btn btn-success" style="float: right" id="IdbtnNuevo"> Nuevo Item</div>
                                                                 </div>                        
                                                             </div>                    
                                                         </div>
