@@ -229,9 +229,9 @@ public class Tools {
 
         try {
             String consulta = "SELECT pe.nombre "
-                    + "FROM permisos pe "
-                    + "INNER JOIN permisosxusuarios pu ON pe.id = pu.id_permiso "
-                    + "INNER JOIN usuarios us ON us.id = pu.id_usuario "
+                    + "FROM permiso pe "
+                    + "INNER JOIN permiso_x_usuario pu ON pe.id = pu.id_permiso "
+                    + "INNER JOIN usuario us ON us.id = pu.id_usuario "
                     + "WHERE us.login = ? AND pe.nombre = ?";
             SQL = con.prepareStatement(consulta);
 
@@ -243,9 +243,9 @@ public class Tools {
             if (rs.absolute(1)) {
                 return "true";
             }
-
             rs = SQL.executeQuery();
         } catch (Exception e) {
+            System.out.println("Tools.Tools.validoItem() " +e.getMessage() );
         }
 
         return "false";

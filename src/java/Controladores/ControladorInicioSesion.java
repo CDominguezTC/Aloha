@@ -36,7 +36,7 @@ public class ControladorInicioSesion {
         String usuario = request.getParameter("user");
         String pw = request.getParameter("pass");
         try {
-            String consulta = "SELECT * FROM usuarios WHERE login = ? AND password = ?";
+            String consulta = "SELECT * FROM usuario WHERE login = ? AND password = ?";
             SQL = con.prepareStatement(consulta);
             SQL.setString(1, usuario);
             String clave = tl.encriptar(pw);

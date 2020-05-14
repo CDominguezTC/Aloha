@@ -148,7 +148,9 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permisos p INNER JOIN permisosxusuarios pu ON p.id = pu.id_permiso INNER JOIN usuarios us ON us.id = pu.id_usuario "
+            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permiso p "
+                    + "INNER JOIN permiso_x_usuario pu ON p.id = pu.id_permiso "
+                    + "INNER JOIN usuario us ON us.id = pu.id_usuario "
                     + "WHERE us.id = ?");
 
             SQL.setString(1, usua);
@@ -177,8 +179,8 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permisos p WHERE p.id NOT IN (SELECT pu.id_permiso FROM permisosxusuarios pu INNER JOIN usuarios us ON us.Id = pu.id_usuario "
-                    + "INNER JOIN permisos p ON p.id = pu.id_permiso WHERE us.id = ?)");
+            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permiso p WHERE p.id NOT IN (SELECT pu.id_permiso FROM permiso_x_usuario pu INNER JOIN usuario us ON us.Id = pu.id_usuario "
+                    + "INNER JOIN permiso p ON p.id = pu.id_permiso WHERE us.id = ?)");
 
             SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();
@@ -206,7 +208,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT id, nombre from permisos ORDER BY id");
+            SQL = con.prepareStatement("SELECT id, nombre from permiso ORDER BY id");
 
             //SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();
@@ -246,7 +248,7 @@ public class ControladorPermisos {
                     //System.out.println(items[i]);
                     int idp = idPermiso(items[i].replaceAll("\\s", ""));
 
-                    SQL = con.prepareStatement("INSERT INTO permisosxusuarios (id_permiso, id_usuario) VALUES (?,?)");
+                    SQL = con.prepareStatement("INSERT INTO permiso_x_usuario (id_permiso, id_usuario) VALUES (?,?)");
                     SQL.setInt(1, idp);
                     SQL.setInt(2, Integer.parseInt(usr));
 
@@ -281,7 +283,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("DELETE FROM permisosxusuarios WHERE id_usuario = ?");
+            SQL = con.prepareStatement("DELETE FROM permiso_x_usuario WHERE id_usuario = ?");
             SQL.setString(1, user);
             if (SQL.executeUpdate() > 0) {
 
@@ -307,7 +309,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         int resul = 0;
         try {
-            SQL = con.prepareStatement("SELECT id FROM permisos WHERE nombre = ?");
+            SQL = con.prepareStatement("SELECT id FROM permiso WHERE nombre = ?");
             SQL.setString(1, permiso);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
