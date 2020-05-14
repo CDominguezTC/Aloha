@@ -346,7 +346,7 @@ $(function(){
           frm: Frm,
           id: Id,
           codigo: Codigo,
-          descripcion: Nombre,
+          nombre: Nombre,
           nombreU: NamUs,
           accion: Accion
       };

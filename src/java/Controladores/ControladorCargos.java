@@ -256,7 +256,7 @@ public class ControladorCargos {
                             SQL.setString(3, modeloConsumo.getModeloPersonas().getIdentificacion());
                             SQL.setString(4, modeloConsumo.getModeloPersonas().getObservaciones());
                             SQL.setInt(5, modeloConsumo.getModeloPersonas().getModeloCentroCosto().getId());
-                            SQL.setString(6, modeloConsumo.getModeloPersonas().getModeloCentroCosto().getDescripcion());
+                            SQL.setString(6, modeloConsumo.getModeloPersonas().getModeloCentroCosto().getNombre());
                             SQL.setInt(7, modeloConsumo.getModeloPersonas().getModeloGrupoConsumo().getId());
                             SQL.setString(8, modeloConsumo.getModeloPersonas().getModeloGrupoConsumo().getDescripcion());
                             SQL.setInt(9, modeloConsumo.getModeloCargos().getId());

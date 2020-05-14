@@ -32,7 +32,7 @@ public class ControladorPersonas {
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
-    ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto();
+    ControladorCentro_costo controladorCentroCosto = new ControladorCentro_costo();
     ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
     ControladorCargos controladorCargos = new ControladorCargos();
 
@@ -369,7 +369,7 @@ public class ControladorPersonas {
                 out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
                 out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
                 out += "<td>" + modeloPersonas.getModeloEmpresa().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModeloCentroCosto().getDescripcion() + "</td>";
+                out += "<td>" + modeloPersonas.getModeloCentroCosto().getNombre()+ "</td>";
                 out += "<td>" + modeloPersonas.getModeloGrupoConsumo().getDescripcion() + "</td>";
                 if ("1".equals(modeloPersonas.getCalienteSiNo())) {
                     out += "<td>No</td>";

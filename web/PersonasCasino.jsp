@@ -4,11 +4,12 @@
     Author     : Frankie
 --%>
 
+<%@page import="Controladores.ControladorCentro_costo"%>
 <%@page import="Modelo.ModeloPersonas"%>
 <%@page import="Controladores.ControladorGrupoConsumo"%>
 <%@page import="Modelo.ModeloGrupoConsumo"%>
-<%@page import="Controladores.ControladorCentroCosto"%>
-<%@page import="Modelo.ModeloCentroCosto"%>
+<%@page import="Controladores.ControladorCentro_costo"%>
+<%@page import="Modelo.ModeloCentro_costo"%>
 <%@page import="Controladores.ControladorEmpresas"%>
 <%@page import="Modelo.ModeloEmpresa"%>
 <%@page import="java.util.LinkedList"%>
@@ -132,13 +133,13 @@
                                                                     <select id="IdCentroCosto" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
-                                                                            LinkedList<ModeloCentroCosto> linkedListModeloCentroCosto;
-                                                                            ControladorCentroCosto controladorCentroCosto = new ControladorCentroCosto ();
-                                                                            linkedListModeloCentroCosto = controladorCentroCosto.Read ();
-                                                                            for (ModeloCentroCosto modeloCentroCosto : linkedListModeloCentroCosto)
+                                                                            LinkedList<ModeloCentro_costo> linkedListModeloCentroCosto;
+                                                                            ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
+                                                                            linkedListModeloCentroCosto = controladorCentro_costo.Read ();
+                                                                            for (ModeloCentro_costo modeloCentroCosto : linkedListModeloCentroCosto)
                                                                             {
                                                                         %>  
-                                                                        <option value=<%=modeloCentroCosto.getId ()%>><%=modeloCentroCosto.getDescripcion ()%></option>
+                                                                        <option value=<%=modeloCentroCosto.getId ()%>><%=modeloCentroCosto.getNombre()%></option>
                                                                         <%
                                                                             }
                                                                         %>
