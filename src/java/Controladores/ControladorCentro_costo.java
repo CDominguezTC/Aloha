@@ -48,7 +48,7 @@ public class ControladorCentro_costo {
         modeloCentro_costo.setNombre(request.getParameter("nombre"));
         modeloCentro_costo.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
-             HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloCentro_costo);            
         } else {

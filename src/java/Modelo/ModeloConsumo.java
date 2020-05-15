@@ -13,14 +13,14 @@ public class ModeloConsumo {
 
     int id;
     ModeloPersonas modeloPersonas;
-    ModeloCargos modeloCargos;
+    ModeloCargo modeloCargos;
     String Fechaconsumo;
     String diaconsumo;
 
     public ModeloConsumo() {
     }
 
-    public ModeloConsumo(int id, ModeloPersonas modeloPersonas, ModeloCargos modeloCargos, String Fechaconsumo, String diaconsumo) {
+    public ModeloConsumo(int id, ModeloPersonas modeloPersonas, ModeloCargo modeloCargos, String Fechaconsumo, String diaconsumo) {
         this.id = id;
         this.modeloPersonas = modeloPersonas;
         this.modeloCargos = modeloCargos;
@@ -44,11 +44,11 @@ public class ModeloConsumo {
         this.modeloPersonas = modeloPersonas;
     }
 
-    public ModeloCargos getModeloCargos() {
+    public ModeloCargo getModeloCargos() {
         return modeloCargos;
     }
 
-    public void setModeloCargos(ModeloCargos modeloCargos) {
+    public void setModeloCargos(ModeloCargo modeloCargos) {
         this.modeloCargos = modeloCargos;
     }
 

@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,7 @@ public class ControladorEmpresa {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user;
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -46,6 +48,8 @@ public class ControladorEmpresa {
         modeloEmpresa.setObservacion(request.getParameter("observacion"));
         modeloEmpresa.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloEmpresa);
         } else {
             modeloEmpresa.setId(Integer.parseInt(request.getParameter("id")));
@@ -77,7 +81,7 @@ public class ControladorEmpresa {
                         + "ciudad, "
                         + "observacion, "
                         + "estado)"
-                        + " VALUE  (?,?,?,?,?,?,?,?,?,?)");
+                        + " VALUE  (?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloEmpresa.getNombre());
                 SQL.setString(2, modeloEmpresa.getNit());
                 SQL.setString(3, modeloEmpresa.getDireccion());
@@ -87,8 +91,15 @@ public class ControladorEmpresa {
                 SQL.setString(7, modeloEmpresa.getExt());
                 SQL.setString(8, modeloEmpresa.getCiudad());
                 SQL.setString(9, modeloEmpresa.getObservacion());
-                SQL.setString(10, modeloEmpresa.getEstado());
+                SQL.setString(10, "S");
                 if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                    }
                     resultado = "1";
                     SQL.close();
                     con.close();
@@ -118,29 +129,37 @@ public class ControladorEmpresa {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("UPDATE empresa SET "
-                        + "nombre = ?, "
-                        + "nit = ?, "
-                        + "direccion = ?, "
-                        + "contacto = ?, "
-                        + "email = ?, "
-                        + "telefono = ?, "
-                        + "ext = ?, "
-                        + "ciudad = ?, "
-                        + "observacion = ?, "
-                        + "estado = ?"
-                        + " WHERE id = ? ");
-                SQL.setString(1, modeloEmpresa.getNombre());
-                SQL.setString(2, modeloEmpresa.getNit());
-                SQL.setString(3, modeloEmpresa.getDireccion());
-                SQL.setString(4, modeloEmpresa.getContacto());
-                SQL.setString(5, modeloEmpresa.getEmail());
-                SQL.setString(6, modeloEmpresa.getTelefono());
-                SQL.setString(7, modeloEmpresa.getExt());
-                SQL.setString(8, modeloEmpresa.getCiudad());
-                SQL.setString(9, modeloEmpresa.getObservacion());
-                SQL.setString(10, modeloEmpresa.getEstado());
-                SQL.setInt(11, modeloEmpresa.getId());
+
+                if ("N".equals(modeloEmpresa.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE empresa SET "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloEmpresa.getEstado());
+                    SQL.setInt(2, modeloEmpresa.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE empresa SET "
+                            + "nombre = ?, "
+                            + "nit = ?, "
+                            + "direccion = ?, "
+                            + "contacto = ?, "
+                            + "email = ?, "
+                            + "telefono = ?, "
+                            + "ext = ?, "
+                            + "ciudad = ?, "
+                            + "observacion = ? "                            
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloEmpresa.getNombre());
+                    SQL.setString(2, modeloEmpresa.getNit());
+                    SQL.setString(3, modeloEmpresa.getDireccion());
+                    SQL.setString(4, modeloEmpresa.getContacto());
+                    SQL.setString(5, modeloEmpresa.getEmail());
+                    SQL.setString(6, modeloEmpresa.getTelefono());
+                    SQL.setString(7, modeloEmpresa.getExt());
+                    SQL.setString(8, modeloEmpresa.getCiudad());
+                    SQL.setString(9, modeloEmpresa.getObservacion());                    
+                    SQL.setInt(10, modeloEmpresa.getId());
+                }
+
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
@@ -167,7 +186,7 @@ public class ControladorEmpresa {
      * @return LinkedList<ModeloEmpresa>
      * @version: 15/05/2020
      */
-    public LinkedList<ModeloEmpresa> Read() throws SQLException {
+    public LinkedList<ModeloEmpresa> Read(String estado) throws SQLException {
         LinkedList<ModeloEmpresa> ListaModeloEmpresa = new LinkedList<ModeloEmpresa>();
         con = conexion.abrirConexion();
         try {
@@ -182,7 +201,9 @@ public class ControladorEmpresa {
                     + "ciudad, "
                     + "observacion, "
                     + "estado"
-                    + " FROM empresa");
+                    + " FROM empresa"
+                    + " WHERE estado = ?");
+            SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
@@ -220,7 +241,8 @@ public class ControladorEmpresa {
         if (!"".equals(request.getParameter("id"))) {
             ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
             modeloEmpresa.setId(Integer.parseInt(request.getParameter("id")));
-            resultado = DeleteModelo(modeloEmpresa);
+            modeloEmpresa.setEstado("N");
+            resultado = Update(modeloEmpresa);
         }
         return resultado;
     }
@@ -268,11 +290,14 @@ public class ControladorEmpresa {
      * @version: 07/05/2020
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) {
-
         String out = null;
+        String estado = "S";
+        if (request.getParameter("estado") != null) {
+            estado = "N";
+        }
         try {
             LinkedList<ModeloEmpresa> listmodelo;
-            listmodelo = Read();
+            listmodelo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";

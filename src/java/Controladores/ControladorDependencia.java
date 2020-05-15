@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Esta clase permite controlar los eventos de Dependencias
@@ -24,6 +25,7 @@ public class ControladorDependencia {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user;
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -40,6 +42,8 @@ public class ControladorDependencia {
         modeloDependencia.setNombre(request.getParameter("nombre"));
         modeloDependencia.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloDependencia);
         } else {
             modeloDependencia.setId(Integer.parseInt(request.getParameter("id")));
@@ -64,11 +68,18 @@ public class ControladorDependencia {
                         + "codigo, "
                         + "nombre, "
                         + "estado)"
-                        + " VALUE (?,?,?)");
+                        + " VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloDependencia.getCodigo());
                 SQL.setString(2, modeloDependencia.getNombre());
-                SQL.setString(3, modeloDependencia.getEstado());
+                SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                    }
                     resultado = "1";
                     SQL.close();
                     con.close();
@@ -98,15 +109,23 @@ public class ControladorDependencia {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("UPDATE dependencia SET "
-                        + "codigo = ?, "
-                        + "nombre = ?, "
-                        + "estado = ?"
-                        + " WHERE id = ? ");
-                SQL.setString(1, modeloDependencia.getCodigo());
-                SQL.setString(2, modeloDependencia.getNombre());
-                SQL.setString(3, modeloDependencia.getEstado());
-                SQL.setInt(4, modeloDependencia.getId());
+
+                if ("N".equals(modeloDependencia.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE dependencia SET "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloDependencia.getEstado());
+                    SQL.setInt(2, modeloDependencia.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE dependencia SET "
+                            + "codigo = ?, "
+                            + "nombre = ? "
+                            + "WHERE id = ? ");
+                    SQL.setString(1, modeloDependencia.getCodigo());
+                    SQL.setString(2, modeloDependencia.getNombre());                    
+                    SQL.setInt(3, modeloDependencia.getId());
+                }
+
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
@@ -137,40 +156,8 @@ public class ControladorDependencia {
         if (!"".equals(request.getParameter("id"))) {
             ModeloDependencia modeloDependencia = new ModeloDependencia();
             modeloDependencia.setId(Integer.parseInt(request.getParameter("id")));
-            resultado = DeleteModelo(modeloDependencia);
-        }
-        return resultado;
-    }
-
-    /**
-     * Elimina los datos en la base de datos de la tabla: dependencia
-     *
-     * @author: Carlos Arturo Dominguez Diaz
-     * @param request
-     * @return String
-     * @version: 15/05/2020
-     */
-    public String DeleteModelo(ModeloDependencia modeloDependencia) throws SQLException {
-        try {
-            con = conexion.abrirConexion();
-            try {
-                SQL = con.prepareStatement("DELETE FROM dependencia "
-                        + " WHERE id = ? ");
-                SQL.setInt(1, modeloDependencia.getId());
-                if (SQL.executeUpdate() > 0) {
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Delete en Controladordependencia" + e);
-                resultado = "-2";
-                SQL.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Delete en Controladordependencia" + e);
-            resultado = "-3";
+            modeloDependencia.setEstado("N");
+            resultado = Update(modeloDependencia);
         }
         return resultado;
     }
@@ -218,15 +205,17 @@ public class ControladorDependencia {
      * @return LinkedList<ModeloDependencia>
      * @version: 15/05/2020
      */
-    public LinkedList<ModeloDependencia> Read() throws SQLException {
+    public LinkedList<ModeloDependencia> Read(String estado) throws SQLException {
         LinkedList<ModeloDependencia> ListaModeloDependencia = new LinkedList<ModeloDependencia>();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
                     + "nombre, "
-                    + "estado"
-                    + " FROM dependencia");
+                    + "estado "
+                    + "FROM dependencia "
+                    + "WHERE estado = ?");
+            SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloDependencia modeloDependencia = new ModeloDependencia();
@@ -257,14 +246,18 @@ public class ControladorDependencia {
     public String Read(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String out = null;
+        String estado = "S";
+        if (request.getParameter("estado") != null) {
+            estado = "N";
+        }
         try {
             LinkedList<ModeloDependencia> listmoDependencias;
-            listmoDependencias = Read();
+            listmoDependencias = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
-            out += "<tr>";            
+            out += "<tr>";
             out += "<th>Codigo</th>";
             out += "<th>Nombre</th>";
             out += "<th>Opcion</th>";
@@ -274,17 +267,17 @@ public class ControladorDependencia {
             for (ModeloDependencia modeloDependencia : listmoDependencias) {
                 out += "<tr>";
                 out += "<td>" + modeloDependencia.getCodigo() + "</td>";
-                out += "<td>" + modeloDependencia.getNombre()+ "</td>";
+                out += "<td>" + modeloDependencia.getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id=\"" + modeloDependencia.getId() + "\"";
                 out += "data-codigo=\"" + modeloDependencia.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloDependencia.getNombre()+ "\"";
+                out += "data-nombre=\"" + modeloDependencia.getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloDependencia.getId() + "\"";                                
+                out += "data-id=\"" + modeloDependencia.getId() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
