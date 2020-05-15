@@ -6,7 +6,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloUsuarios;
+import Modelo.ModeloUsuario;
 import Tools.Tools;
 import java.io.IOException;
 import java.sql.Connection;
@@ -39,13 +39,13 @@ public class ControladorUsuarios {
      * @return LinkedList
      * @version: 07/05/2020
      */
-    public LinkedList<ModeloUsuarios> Read() {
+    public LinkedList<ModeloUsuario> Read() {
 
-        LinkedList<ModeloUsuarios> modeloUsr = new LinkedList<ModeloUsuarios>();
+        LinkedList<ModeloUsuario> modeloUsr = new LinkedList<ModeloUsuario>();
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT id, nombre, login, password FROM usuario ORDER BY nombre");
+            SQL = con.prepareStatement("SELECT id, nombre, login, password, estado FROM usuario ORDER BY nombre");
             /*
              * SQL = con.prepareStatement("SELECT "
              * + "`id`, "
@@ -57,11 +57,12 @@ public class ControladorUsuarios {
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
 
-                ModeloUsuarios modeloUs = new ModeloUsuarios();
+                ModeloUsuario modeloUs = new ModeloUsuario();
                 modeloUs.setId(res.getInt("id"));
                 modeloUs.setNombre(res.getString("nombre"));
                 modeloUs.setLogin(res.getString("login"));
                 modeloUs.setPassword(res.getString("password"));
+                modeloUs.setPassword(res.getString("estado"));
                 modeloUsr.add(modeloUs);
             }
             res.close();
@@ -88,7 +89,7 @@ public class ControladorUsuarios {
         String out = null;
         try {
 
-            LinkedList<ModeloUsuarios> listmoUsr;
+            LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = Read();
             response.setContentType("text/html;charset=UTF-8");
 
@@ -102,7 +103,7 @@ public class ControladorUsuarios {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloUsuarios modeloUsua : listmoUsr) {
+            for (ModeloUsuario modeloUsua : listmoUsr) {
 
                 out += "<tr>";
                 out += "<td>" + modeloUsua.getNombre() + "</td>";
@@ -144,9 +145,9 @@ public class ControladorUsuarios {
      * @return ModeloUsuarios
      * @version: 07/05/2020
      */
-    public ModeloUsuarios getModelos(int Id) {
+    public ModeloUsuario getModelos(int Id) {
 
-        ModeloUsuarios modelo = new ModeloUsuarios();
+        ModeloUsuario modelo = new ModeloUsuario();
         con = conexion.abrirConexion();
         try {
 
@@ -189,11 +190,12 @@ public class ControladorUsuarios {
         Tools tl = new Tools();
         if ("".equals(request.getParameter("id"))) {
 
-            ModeloUsuarios modelo = new ModeloUsuarios(
+            ModeloUsuario modelo = new ModeloUsuario(
                     0,
                     request.getParameter("nombre"),
                     request.getParameter("login"),
-                    request.getParameter("password")
+                    request.getParameter("password"),
+                    request.getParameter("estado")
             );
             try {
 
@@ -233,11 +235,12 @@ public class ControladorUsuarios {
             }
         } else {
 
-            ModeloUsuarios modelo = new ModeloUsuarios(
+            ModeloUsuario modelo = new ModeloUsuario(
                     Integer.parseInt(request.getParameter("id")),
                     request.getParameter("nombre"),
                     request.getParameter("login"),
-                    request.getParameter("password")
+                    request.getParameter("password"),
+                    request.getParameter("estado")
             );
             try {
 
@@ -290,7 +293,7 @@ public class ControladorUsuarios {
         if (!"".equals(request.getParameter("id"))) {
 
             //String idtmp = request.getParameter("id");
-            ModeloUsuarios modelo = new ModeloUsuarios();
+            ModeloUsuario modelo = new ModeloUsuario();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
 
             try {

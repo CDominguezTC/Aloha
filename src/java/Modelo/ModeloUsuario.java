@@ -9,21 +9,27 @@ package Modelo;
  *
  * @author Julian A Aristizabal
  */
-public class ModeloUsuarios {
+public class ModeloUsuario {
 
+    /*private int id;
+    private String nombre;
+    private String login;
+    private String password;*/
     private int id;
     private String nombre;
     private String login;
     private String password;
+    private String estado;
 
-    public ModeloUsuarios() {
+    public ModeloUsuario() {
     }
 
-    public ModeloUsuarios(int id, String nombre, String login, String password) {
+    public ModeloUsuario(int id, String nombre, String login, String password, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.login = login;
         this.password = password;
+        this.estado = estado;
     }
 
     /**
@@ -81,5 +87,22 @@ public class ModeloUsuarios {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+
 
 }

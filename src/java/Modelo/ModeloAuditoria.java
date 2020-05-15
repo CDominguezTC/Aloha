@@ -15,14 +15,14 @@ public class ModeloAuditoria {
     private String operacion;
     private String tabla;
     private String fecha;
-    private ModeloUsuarios usuario;
+    private ModeloUsuario usuario;
     private int registro_modificado;
     private String observacion;
 
     public ModeloAuditoria() {
     }
 
-    public ModeloAuditoria(int id, String operacion, String tabla, String fecha, ModeloUsuarios usuario, int registro_modificado, String observacion) {
+    public ModeloAuditoria(int id, String operacion, String tabla, String fecha, ModeloUsuario usuario, int registro_modificado, String observacion) {
         this.id = id;
         this.operacion = operacion;
         this.tabla = tabla;
@@ -91,14 +91,14 @@ public class ModeloAuditoria {
     /**
      * @return the usuario
      */
-    public ModeloUsuarios getUsuario() {
+    public ModeloUsuario getUsuario() {
         return usuario;
     }
 
     /**
      * @param usuario the usuario to set
      */
-    public void setUsuario(ModeloUsuarios usuario) {
+    public void setUsuario(ModeloUsuario usuario) {
         this.usuario = usuario;
     }
 

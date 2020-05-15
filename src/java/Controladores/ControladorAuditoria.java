@@ -2,7 +2,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloAuditoria;
-import Modelo.ModeloUsuarios;
+import Modelo.ModeloUsuario;
 import Tools.Tools;
 import java.io.IOException;
 import java.sql.Connection;
@@ -46,7 +46,7 @@ public class ControladorAuditoria {
     public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion) {
 
         Tools tl = new Tools();
-        ModeloUsuarios modU = new ModeloUsuarios();
+        ModeloUsuario modU = new ModeloUsuario();
 
         String fecha = tl.formatoFechaHora();
         ControladorUsuarios controladorU = new ControladorUsuarios();
@@ -117,13 +117,13 @@ public class ControladorAuditoria {
         String out = null;
         try {
             ControladorUsuarios controladorU = new ControladorUsuarios();
-            LinkedList<ModeloUsuarios> listmoUsr;
+            LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read();
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
             out += "<option value=\"todos\">Todos</option>";
-            for (ModeloUsuarios modeloUsua : listmoUsr) {
+            for (ModeloUsuario modeloUsua : listmoUsr) {
                 out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
             }
         } catch (Exception e) {
@@ -145,7 +145,7 @@ public class ControladorAuditoria {
     private LinkedList<ModeloAuditoria> Read(String usr, String fini, String ffin) {
 
         LinkedList<ModeloAuditoria> modeloAud = new LinkedList<ModeloAuditoria>();
-        ModeloUsuarios modU = new ModeloUsuarios();
+        ModeloUsuario modU = new ModeloUsuario();
         ControladorUsuarios controladorU = new ControladorUsuarios();
         con = conexion.abrirConexion();
         Date date = null;

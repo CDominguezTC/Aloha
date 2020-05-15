@@ -7,7 +7,7 @@ package Tools;
 
 import Conexiones.ConexionBdMysql;
 import Controladores.ControladorUsuarios;
-import Modelo.ModeloUsuarios;
+import Modelo.ModeloUsuario;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

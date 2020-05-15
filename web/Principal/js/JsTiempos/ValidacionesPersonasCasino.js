@@ -369,14 +369,23 @@ $(function (){
 
       $('#Id').val('');
       $('#IdTipoDoc').val(0);
+      $('#IdTipoDocOld').val('');
       $('#IdCedula').val('');
+      $('#IdCedulaOld').val('');
       $('#IdNombre').val('');
+      $('#IdNombreOld').val('');
       $('#IdApellido').val('');
+      $('#IdApellidoOld').val('');
       $('#IdEmpresa').val(0);
+      $('#IdEmpresaOld').val('');
       $('#IdCentroCosto').val(0);
+      $('#IdCentroCostoOld').val('');
       $('#IdConsume').val(0);
+      $('#IdConsumeOld').val('');
       $('#IdGrupoConsumo').val(0);
+      $('#IdGrupoConsumoOld').val('');
       $('#IdObservacion').val('');
+      $('#IdObservacionOld').val('');
   }
 
   $('#IdAgregar').click(function (e){
@@ -755,7 +764,7 @@ $(function (){
         data: data,
         success: function(resul, textStatus, jqXHR){
 
-          console.log("Auditoria realizada");
+          //console.log("Auditoria realizada");
             /*Swal.fire({
                 icon: 'success',
                 title: 'Guardado',
