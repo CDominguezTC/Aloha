@@ -7,7 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloPermisos;
-import Modelo.ModeloUsuarios;
+import Modelo.ModeloUsuario;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,13 +35,13 @@ public class ControladorPermisos {
         try {
 
             ControladorUsuarios controladorU = new ControladorUsuarios();
-            LinkedList<ModeloUsuarios> listmoUsr;
+            LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read();
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
-            for (ModeloUsuarios modeloUsua : listmoUsr) {
+            for (ModeloUsuario modeloUsua : listmoUsr) {
 
                 //out += "<tr>";
                 //<option value="1">JULIAN A. ARISTIZABAL</option>

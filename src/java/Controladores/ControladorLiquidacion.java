@@ -106,7 +106,7 @@ public class ControladorLiquidacion
                 Date HoraInicio = tools.getHoraDate(modeloLiquidacion1.getHoraInicio());
                 //Date HoraFin = tools.getHoraDate(modeloLiquidacion1.getHoraFin());
                 String diaMarcacion = tools.getdiaMarcacion(modeloLiquidacion1.getFechaInicio());
-                modelogrupoTurnos_Turnos = controladorGrupoTurnos_Turnos.SearchIdGrupoHorario(modeloLiquidacion1.getIdGrupoTurno(),diaMarcacion);
+                //modelogrupoTurnos_Turnos = controladorGrupoTurnos_Turnos.SearchIdGrupoHorario(modeloLiquidacion1.getIdGrupoTurno(),diaMarcacion);
                 for (ModeloGrupoTurnos_Turnos modeloGrupoTurnos_Turnos : modelogrupoTurnos_Turnos) 
                 {
                     //modeloTurnos = controladorTurnos.SearchId(modeloGrupoTurnos_Turnos.getIdHorario());
