@@ -104,15 +104,24 @@ public class ControladorCentro_costo {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("UPDATE centro_costo SET "
-                        + "codigo = ?, "
-                        + "nombre = ?, "
-                        + "estado = ?"
-                        + " WHERE id = ? ");
-                SQL.setString(1, modeloCentro_costo.getCodigo());
-                SQL.setString(2, modeloCentro_costo.getNombre());
-                SQL.setString(3, modeloCentro_costo.getEstado());
-                SQL.setInt(4, modeloCentro_costo.getId());
+                if ("N".equals(modeloCentro_costo.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE centro_costo SET "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloCentro_costo.getEstado());
+                    SQL.setInt(2, modeloCentro_costo.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE centro_costo SET "
+                            + "codigo = ?, "
+                            + "nombre = ?, "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloCentro_costo.getCodigo());
+                    SQL.setString(2, modeloCentro_costo.getNombre());
+                    SQL.setString(3, modeloCentro_costo.getEstado());
+                    SQL.setInt(4, modeloCentro_costo.getId());
+                }
+
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
@@ -143,43 +152,12 @@ public class ControladorCentro_costo {
         if (!"".equals(request.getParameter("id"))) {
             ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
             modeloCentro_costo.setId(Integer.parseInt(request.getParameter("id")));
-            resultado = DeleteModelo(modeloCentro_costo);
+            modeloCentro_costo.setEstado("N");
+            resultado = Update(modeloCentro_costo);
         }
         return resultado;
     }
 
-    /**
-     * Elimina los datos en la base de datos de la tabla: centro_costo
-     *
-     * @author: Diego Fernando Guzman
-     * @param request
-     * @return String
-     * @version: 11/05/2020
-     */
-    public String DeleteModelo(ModeloCentro_costo modeloCentro_costo) throws SQLException {
-        try {
-            con = conexion.abrirConexion();
-            try {
-                SQL = con.prepareStatement("DELETE FROM centro_costo "
-                        + " WHERE id = ? ");
-                SQL.setInt(1, modeloCentro_costo.getId());
-                if (SQL.executeUpdate() > 0) {
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Delete en Controladorcentro_costo" + e);
-                resultado = "-2";
-                SQL.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Delete en Controladorcentro_costo" + e);
-            resultado = "-3";
-        }
-        return resultado;
-    }
 
     /**
      * Retorna un modelo de la tabla centro_costo dependiendo de un ID
@@ -189,7 +167,7 @@ public class ControladorCentro_costo {
      * @return String
      * @version: 11/05/2020
      */
-    public ModeloCentro_costo getModelo(Integer Id){
+    public ModeloCentro_costo getModelo(Integer Id) {
         ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
         con = conexion.abrirConexion();
         try {
@@ -224,15 +202,17 @@ public class ControladorCentro_costo {
      * @return LinkedList<ModeloCentro_costo>
      * @version: 11/05/2020
      */
-    public LinkedList<ModeloCentro_costo> Read() throws SQLException {
+    public LinkedList<ModeloCentro_costo> Read( String estado) throws SQLException {
         LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = new LinkedList<ModeloCentro_costo>();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
                     + "nombre, "
-                    + "estado"
-                    + " FROM centro_costo");
+                    + "estado "
+                    + "FROM centro_costo"
+                    + "WHERE estado = ?");
+            SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
@@ -262,21 +242,25 @@ public class ControladorCentro_costo {
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
-        try {            
-            LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = Read();
+        String estado = "S";
+        if (!"null".equals(request.getParameter("estado"))) {
+            estado = "N";
+        }
+        
+        try {
+            LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<thead>";
-            out += "<tr>";            
+            out += "<tr>";
             out += "<th>Codigo</th>";
             out += "<th>Nombe</th>";
-            out += "<th>Opciones</th>";            
+            out += "<th>Opciones</th>";
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
             for (ModeloCentro_costo modeloCentro_costo : ListaModeloCentro_costo) {
                 out += "<tr>";
-                out += "<td>" + modeloCentro_costo.getId() + "</td>";
                 out += "<td>" + modeloCentro_costo.getCodigo() + "</td>";
                 out += "<td>" + modeloCentro_costo.getNombre() + "</td>";
                 out += "<td class=\"text-center\">";

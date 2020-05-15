@@ -117,29 +117,18 @@
                                         <!-- Tabla -->
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
-                                                <tr>
-                                                    <th>InterCod</th>
+                                                <tr>                                                    
                                                     <th>Código</th>
                                                     <th>Descripción</th>
                                                     <th>Opciones</th>   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td></td>                                     
+                                                <tr>                         
                                                     <td></td>                                     
                                                     <td></td>                                     
                                                     <td class="text-center">
-                                                        <button class="SetFormulario btn btn-warning btn-md" 
-                                                                data-id=""
-                                                                data-codigo=""
-                                                                data-nombre=""                                                                
-                                                                type="button" id="IdModificar" name="Modificar">Editar</button>
-                                                        <button class="SetEliminar btn btn-dark btn-md" 
-                                                                data-id=""
-                                                                data-codigo=""
-                                                                data-nombre=""                                                                
-                                                                type="button" id="IdEliminar" name="Eliminar"></button>
+                                                     
                                                     </td>                                                    
                                                 </tr>
                                             </tbody>

@@ -594,7 +594,7 @@ $(function(){
             direccion: Direccion,
             contacto: Contacto,
             telefono: Telefono,
-            extension: Extension,
+            ext: Extension,
             email: Email,
             observacion: Observacion,
             nombreU: NamUs,

@@ -11,40 +11,40 @@ package Modelo;
  */
 public class ModeloEmpresa {
 
-    int id;
+    Integer id;
     String nombre;
     String nit;
     String direccion;
-    String ciudad;
     String contacto;
     String email;
     String telefono;
     String ext;
-    String fax;
+    String ciudad;
     String observacion;
+    String estado;
 
     public ModeloEmpresa() {
     }
 
-    public ModeloEmpresa(int id, String nombre, String nit, String direccion, String ciudad, String contacto, String email, String telefono, String ext, String fax, String observacion) {
+    public ModeloEmpresa(Integer id, String nombre, String nit, String direccion, String contacto, String email, String telefono, String ext, String ciudad, String observacion, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.nit = nit;
         this.direccion = direccion;
-        this.ciudad = ciudad;
         this.contacto = contacto;
         this.email = email;
         this.telefono = telefono;
         this.ext = ext;
-        this.fax = fax;
+        this.ciudad = ciudad;
         this.observacion = observacion;
+        this.estado = estado;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -70,14 +70,6 @@ public class ModeloEmpresa {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
     }
 
     public String getContacto() {
@@ -112,12 +104,12 @@ public class ModeloEmpresa {
         this.ext = ext;
     }
 
-    public String getFax() {
-        return fax;
+    public String getCiudad() {
+        return ciudad;
     }
 
-    public void setFax(String fax) {
-        this.fax = fax;
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
     }
 
     public String getObservacion() {
@@ -126,6 +118,14 @@ public class ModeloEmpresa {
 
     public void setObservacion(String observacion) {
         this.observacion = observacion;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

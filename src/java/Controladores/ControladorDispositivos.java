@@ -1,7 +1,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloDispositivos;
+import Modelo.ModeloDispositivo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,241 +20,282 @@ import javax.swing.JOptionPane;
 public class ControladorDispositivos {
 
     String resultado = "";
+    Connection con;
+    PreparedStatement SQL = null;
+    ConexionBdMysql conexion = new ConexionBdMysql();
 
     /**
-     * Permite la inserción o actualización de los datos en la tabla Bd
-     * Dispositivos
+     * Dato que viene de la vista, valida si inserta o actualiza en la tabla
+     * dispositivo
      *
-     * @author: Carlos A Dominguez D
+     * @author: Carlos Arturo Dominguez Diaz
      * @param request
      * @return String
-     * @version: 07/05/2020
+     * @version: 14/05/2020
      */
-    public String Insert(HttpServletRequest request) {
-
-        ModeloDispositivos modeloDispositivos = new ModeloDispositivos();
-        try {
-            System.out.println(request.getParameter("id"));
-            if ("".equals(request.getParameter("id"))) {
-                modeloDispositivos.setId(0);
-                modeloDispositivos.setNumeroDispositivo(Integer.parseInt(request.getParameter("nodispositivo")));
-                modeloDispositivos.setNombre(request.getParameter("nombre"));
-                modeloDispositivos.setDireccionIP(request.getParameter("ip"));
-                modeloDispositivos.setPuerto(request.getParameter("puertoDispositivo"));
-                modeloDispositivos.setModo(request.getParameter("modo"));
-                modeloDispositivos.setTipoLector(request.getParameter("tipolector"));
-                modeloDispositivos.setActivo(request.getParameter("activo"));
-                modeloDispositivos.setSerie(request.getParameter("serie"));
-                modeloDispositivos.setLicencia(request.getParameter("licencia"));
-                modeloDispositivos.setImpresora(request.getParameter("impresora"));
-                modeloDispositivos.setEncabezadoImpresion(request.getParameter("encabezadoimpresion"));
-                modeloDispositivos.setUtilizaMenu(request.getParameter("utilizamenu"));
-                modeloDispositivos.setIpControladora(request.getParameter("ipcontroladora"));
-                modeloDispositivos.setPuertoControladora(request.getParameter("puertocontroladora"));                
-                modeloDispositivos.setEvento(request.getParameter("evento"));                
-                Connection con;
-                ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-                con = conexionBdMysql.abrirConexion();
-                PreparedStatement SQL = null;
-                SQL = con.prepareStatement("INSERT INTO `dispositivo`("
-                        + "`numeroDispositivo`,"
-                        + "`nombre`,"
-                        + "`direccionIP`,"
-                        + "`puerto`,"
-                        + "`modo`,"
-                        + "`ipControladora`,"
-                        + "`puertoControladora`,"
-                        + "`tipoLector`,"
-                        + "`Activo`,"
-                        + "`Serie`,"
-                        + "`Licencia`,"
-                        + "`Impresora`,"
-                        + "`EncabezadoImpresion`,"
-                        + "`UtilizaMenu`,"
-                        + "`Evento`) "
-                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
-                SQL.setInt(1, modeloDispositivos.getNumeroDispositivo());
-                SQL.setString(2, modeloDispositivos.getNombre());
-                SQL.setString(3, modeloDispositivos.getDireccionIP());
-                SQL.setString(4, modeloDispositivos.getPuerto());
-                SQL.setString(5, modeloDispositivos.getModo());
-                SQL.setString(6, modeloDispositivos.getIpControladora());
-                SQL.setString(7, modeloDispositivos.getPuertoControladora());
-                SQL.setString(8, modeloDispositivos.getTipoLector());
-                SQL.setString(9, modeloDispositivos.getActivo());
-                SQL.setString(10, modeloDispositivos.getSerie());
-                SQL.setString(11, modeloDispositivos.getLicencia());
-                SQL.setString(12, modeloDispositivos.getImpresora());
-                SQL.setString(13, modeloDispositivos.getEncabezadoImpresion());
-                SQL.setString(14, modeloDispositivos.getUtilizaMenu());
-                SQL.setString(15, modeloDispositivos.getEvento());
-                if (SQL.executeUpdate() > 0){
-                    ControladorAuditoria auditoria = new ControladorAuditoria();                        
-                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                        if (generatedKeys.next()) {
-                            int i = (int)generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "dispositivo", request.getParameter("nombreU"), i, "Se inserto el registro.");
-                        }
-                    }
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-                }
-
-            } else {
-                modeloDispositivos.setId(Integer.parseInt(request.getParameter("id")));
-                modeloDispositivos.setNumeroDispositivo(Integer.parseInt(request.getParameter("nodispositivo")));
-                modeloDispositivos.setNombre(request.getParameter("nombre"));
-                modeloDispositivos.setDireccionIP(request.getParameter("ip"));
-                modeloDispositivos.setPuerto(request.getParameter("puertoDispositivo"));
-                modeloDispositivos.setModo(request.getParameter("modo"));
-                modeloDispositivos.setTipoLector(request.getParameter("tipolector"));
-                modeloDispositivos.setActivo(request.getParameter("activo"));
-                modeloDispositivos.setSerie(request.getParameter("serie"));
-                modeloDispositivos.setLicencia(request.getParameter("licencia"));
-                modeloDispositivos.setImpresora(request.getParameter("impresora"));
-                modeloDispositivos.setEncabezadoImpresion(request.getParameter("encabezadoimpresion"));
-                modeloDispositivos.setIpControladora(request.getParameter("ipcontroladora"));
-                modeloDispositivos.setPuertoControladora(request.getParameter("puertocontroladora"));
-                modeloDispositivos.setUtilizaMenu(request.getParameter("utilizamenu"));
-                modeloDispositivos.setEvento(request.getParameter("evento"));
-                Connection con;
-                ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-                con = conexionBdMysql.abrirConexion();
-
-                PreparedStatement SQL;
-                SQL = con.prepareStatement("UPDATE `dispositivo`  SET "
-                        + "`numeroDispositivo` = ?,"
-                        + "`nombre` = ?,"
-                        + "`direccionIP` = ?,"
-                        + "`puerto` = ?,"
-                        + "`modo` = ?,"
-                        + "`ipControladora` = ?,"
-                        + "`puertoControladora` = ?,"
-                        + "`tipoLector` = ?,"
-                        + "`Activo` = ?,"
-                        + "`Serie` = ?,"
-                        + "`Licencia` = ?,"
-                        + "`Impresora` = ?,"
-                        + "`EncabezadoImpresion` = ?,"
-                        + "`UtilizaMenu` = ?,"
-                        + "`Evento` = ?"
-                        + "WHERE `id` = ?;");
-                SQL.setInt(1, modeloDispositivos.getNumeroDispositivo());
-                SQL.setString(2, modeloDispositivos.getNombre());
-                SQL.setString(3, modeloDispositivos.getDireccionIP());
-                SQL.setString(4, modeloDispositivos.getPuerto());
-                SQL.setString(5, modeloDispositivos.getModo());
-                SQL.setString(6, modeloDispositivos.getIpControladora());
-                SQL.setString(7, modeloDispositivos.getPuertoControladora());
-                SQL.setString(8, modeloDispositivos.getTipoLector());
-                SQL.setString(9, modeloDispositivos.getActivo());
-                SQL.setString(10, modeloDispositivos.getSerie());
-                SQL.setString(11, modeloDispositivos.getLicencia());
-                SQL.setString(12, modeloDispositivos.getImpresora());
-                SQL.setString(13, modeloDispositivos.getEncabezadoImpresion());
-                SQL.setString(14, modeloDispositivos.getUtilizaMenu());
-                SQL.setString(15, modeloDispositivos.getEvento());
-                SQL.setInt(16, modeloDispositivos.getId());
-                SQL.executeUpdate();
-                resultado = "1";
-                SQL.close();
-                con.close();
-            }
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar la empresa " + e);
-            resultado = "-1";
+    public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        ModeloDispositivo modeloDispositivo = new ModeloDispositivo();
+        modeloDispositivo.setNumero(Integer.parseInt(request.getParameter("numero")));
+        modeloDispositivo.setNombre(request.getParameter("nombre"));
+        modeloDispositivo.setDireccion_ip(request.getParameter("direccion_ip"));
+        modeloDispositivo.setPuerto(Integer.parseInt(request.getParameter("puerto")));
+        modeloDispositivo.setModo(request.getParameter("modo"));
+        modeloDispositivo.setIp_controladora(request.getParameter("ip_controladora"));
+        modeloDispositivo.setPuerto_controladora(Integer.parseInt(request.getParameter("puerto_controladora")));
+        modeloDispositivo.setTipo_lector(request.getParameter("tipo_lector"));
+        modeloDispositivo.setActivo(request.getParameter("activo"));
+        modeloDispositivo.setSerie(request.getParameter("serie"));
+        modeloDispositivo.setLicencia(request.getParameter("licencia"));
+        modeloDispositivo.setImpresora(request.getParameter("impresora"));
+        modeloDispositivo.setEncabezado_impresion(request.getParameter("encabezado_impresion"));
+        modeloDispositivo.setUtiliza_menu(request.getParameter("utiliza_menu"));
+        modeloDispositivo.setEvento(request.getParameter("evento"));
+        modeloDispositivo.setEstado(request.getParameter("estado"));
+        if ("".equals(request.getParameter("id"))) {
+            resultado = Insert(modeloDispositivo);
+        } else {
+            modeloDispositivo.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = Update(modeloDispositivo);
         }
         return resultado;
     }
 
     /**
-     * Permite listar la información de la tabla de Dispositivos Metodo Private
+     * Inserta los datos en la base de datos de la tabla: dispositivo
      *
-     * @author: Carlos A Dominguez D
-     * @return LinkedList
-     * @version: 07/05/2020
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param Modelo
+     * @return String
+     * @version: 14/05/2020
      */
-    private LinkedList<ModeloDispositivos> Read() {
-        PreparedStatement SQL = null;
-        LinkedList<ModeloDispositivos> modeloDispositivos = new LinkedList<ModeloDispositivos>();
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-        con = conexionBdMysql.abrirConexion();
+    public String Insert(ModeloDispositivo modeloDispositivo) throws SQLException {
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`numeroDispositivo`,"
-                    + "`nombre`,"
-                    + "`direccionIP`,"
-                    + "`puerto`,"
-                    + "`modo`,"
-                    + "`ipControladora`,"
-                    + "`puertoControladora`,"
-                    + "`tipoLector`,"
-                    + "`Activo`,"
-                    + "`Serie`,"
-                    + "`Licencia`,"
-                    + "`Impresora`,"
-                    + "`EncabezadoImpresion`,"
-                    + "`UtilizaMenu`, "
-                    + "`Evento` "
-                    + "FROM `dispositivo`;");
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("INSERT INTO dispositivo("
+                        + "numero, "
+                        + "nombre, "
+                        + "direccion_ip, "
+                        + "puerto, "
+                        + "modo, "
+                        + "ip_controladora, "
+                        + "puerto_controladora, "
+                        + "tipo_lector, "
+                        + "activo, "
+                        + "serie, "
+                        + "licencia, "
+                        + "impresora, "
+                        + "encabezado_impresion, "
+                        + "utiliza_menu, "
+                        + "evento, "
+                        + "estado)"
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                SQL.setInt(1, modeloDispositivo.getNumero());
+                SQL.setString(2, modeloDispositivo.getNombre());
+                SQL.setString(3, modeloDispositivo.getDireccion_ip());
+                SQL.setInt(4, modeloDispositivo.getPuerto());
+                SQL.setString(5, modeloDispositivo.getModo());
+                SQL.setString(6, modeloDispositivo.getIp_controladora());
+                SQL.setInt(7, modeloDispositivo.getPuerto_controladora());
+                SQL.setString(8, modeloDispositivo.getTipo_lector());
+                SQL.setString(9, modeloDispositivo.getActivo());
+                SQL.setString(10, modeloDispositivo.getSerie());
+                SQL.setString(11, modeloDispositivo.getLicencia());
+                SQL.setString(12, modeloDispositivo.getImpresora());
+                SQL.setString(13, modeloDispositivo.getEncabezado_impresion());
+                SQL.setString(14, modeloDispositivo.getUtiliza_menu());
+                SQL.setString(15, modeloDispositivo.getEvento());
+                SQL.setString(16, modeloDispositivo.getEstado());
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en Controladordispositivo" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en Controladordispositivo" + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * Actualiza los datos en la base de datos de la tabla:dispositivo
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 14/05/2020
+     */
+    public String Update(ModeloDispositivo modeloDispositivo) throws SQLException {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("UPDATE dispositivo SET "
+                        + "numero = ?, "
+                        + "nombre = ?, "
+                        + "direccion_ip = ?, "
+                        + "puerto = ?, "
+                        + "modo = ?, "
+                        + "ip_controladora = ?, "
+                        + "puerto_controladora = ?, "
+                        + "tipo_lector = ?, "
+                        + "activo = ?, "
+                        + "serie = ?, "
+                        + "licencia = ?, "
+                        + "impresora = ?, "
+                        + "encabezado_impresion = ?, "
+                        + "utiliza_menu = ?, "
+                        + "evento = ?, "
+                        + "estado = ?"
+                        + " WHERE id = ? ");
+                SQL.setInt(1, modeloDispositivo.getNumero());
+                SQL.setString(2, modeloDispositivo.getNombre());
+                SQL.setString(3, modeloDispositivo.getDireccion_ip());
+                SQL.setInt(4, modeloDispositivo.getPuerto());
+                SQL.setString(5, modeloDispositivo.getModo());
+                SQL.setString(6, modeloDispositivo.getIp_controladora());
+                SQL.setInt(7, modeloDispositivo.getPuerto_controladora());
+                SQL.setString(8, modeloDispositivo.getTipo_lector());
+                SQL.setString(9, modeloDispositivo.getActivo());
+                SQL.setString(10, modeloDispositivo.getSerie());
+                SQL.setString(11, modeloDispositivo.getLicencia());
+                SQL.setString(12, modeloDispositivo.getImpresora());
+                SQL.setString(13, modeloDispositivo.getEncabezado_impresion());
+                SQL.setString(14, modeloDispositivo.getUtiliza_menu());
+                SQL.setString(15, modeloDispositivo.getEvento());
+                SQL.setString(16, modeloDispositivo.getEstado());
+                SQL.setInt(17, modeloDispositivo.getId());
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Update en Controladordispositivo" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Update en Controladordispositivo" + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * Llena un Listado de la tabla dispositivo
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param vacio
+     * @return LinkedList<ModeloDispositivo>
+     * @version: 14/05/2020
+     */
+    public LinkedList<ModeloDispositivo> Read() throws SQLException {
+        LinkedList<ModeloDispositivo> ListaModeloDispositivo = new LinkedList<ModeloDispositivo>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT id,"
+                    + "numero, "
+                    + "nombre, "
+                    + "direccion_ip, "
+                    + "puerto, "
+                    + "modo, "
+                    + "ip_controladora, "
+                    + "puerto_controladora, "
+                    + "tipo_lector, "
+                    + "activo, "
+                    + "serie, "
+                    + "licencia, "
+                    + "impresora, "
+                    + "encabezado_impresion, "
+                    + "utiliza_menu, "
+                    + "evento, "
+                    + "estado"
+                    + " FROM dispositivo");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloDispositivos modeloDispositivoss = new ModeloDispositivos();
-                modeloDispositivoss.setId(res.getInt("id"));
-                modeloDispositivoss.setNumeroDispositivo(res.getInt("numeroDispositivo"));
-                modeloDispositivoss.setNombre(res.getString("nombre"));
-                modeloDispositivoss.setDireccionIP(res.getString("direccionIP"));
-                modeloDispositivoss.setPuerto(res.getString("puerto"));
-                modeloDispositivoss.setModo(res.getString("modo"));
-                modeloDispositivoss.setIpControladora(res.getString("ipControladora"));
-                modeloDispositivoss.setPuertoControladora(res.getString("puertoControladora"));
-                modeloDispositivoss.setTipoLector(res.getString("tipoLector"));
-                modeloDispositivoss.setActivo(res.getString("Activo"));
-                modeloDispositivoss.setSerie(res.getString("Serie"));
-                modeloDispositivoss.setLicencia(res.getString("Licencia"));
-                modeloDispositivoss.setImpresora(res.getString("Impresora"));
-                modeloDispositivoss.setEncabezadoImpresion(res.getString("EncabezadoImpresion"));
-                modeloDispositivoss.setUtilizaMenu(res.getString("UtilizaMenu"));
-                modeloDispositivoss.setEvento(res.getString("Evento"));
-                modeloDispositivos.add(modeloDispositivoss);
+                ModeloDispositivo modeloDispositivo = new ModeloDispositivo();
+                modeloDispositivo.setId(res.getInt("id"));
+                modeloDispositivo.setNumero(res.getInt("numero"));
+                modeloDispositivo.setNombre(res.getString("nombre"));
+                modeloDispositivo.setDireccion_ip(res.getString("direccion_ip"));
+                modeloDispositivo.setPuerto(res.getInt("puerto"));
+                modeloDispositivo.setModo(res.getString("modo"));
+                modeloDispositivo.setIp_controladora(res.getString("ip_controladora"));
+                modeloDispositivo.setPuerto_controladora(res.getInt("puerto_controladora"));
+                modeloDispositivo.setTipo_lector(res.getString("tipo_lector"));
+                modeloDispositivo.setActivo(res.getString("activo"));
+                modeloDispositivo.setSerie(res.getString("serie"));
+                modeloDispositivo.setLicencia(res.getString("licencia"));
+                modeloDispositivo.setImpresora(res.getString("impresora"));
+                modeloDispositivo.setEncabezado_impresion(res.getString("encabezado_impresion"));
+                modeloDispositivo.setUtiliza_menu(res.getString("utiliza_menu"));
+                modeloDispositivo.setEvento(res.getString("evento"));
+                modeloDispositivo.setEstado(res.getString("estado"));
+                ListaModeloDispositivo.add(modeloDispositivo);
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladordispositivo" + e);
         }
-        return modeloDispositivos;
+        return ListaModeloDispositivo;
     }
 
     /**
-     * Permite la eliminar un dato en la tabla de Dispositivos
+     * llena un modelo que viene con datos de un request para ser Eliminado
      *
-     * @author: Carlos A Dominguez D
+     * @author: Carlos Arturo Dominguez Diaz
      * @param request
      * @return String
-     * @version: 07/05/2020
+     * @version: 14/05/2020
      */
-    public String Delete(HttpServletRequest request) {
-        ModeloDispositivos modeloDispositivos = new ModeloDispositivos();
-        modeloDispositivos.setId(Integer.parseInt(request.getParameter("id")));
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-        con = conexionBdMysql.abrirConexion();
+    public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        if (!"".equals(request.getParameter("id"))) {
+            ModeloDispositivo modeloDispositivo = new ModeloDispositivo();
+            modeloDispositivo.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = DeleteModelo(modeloDispositivo);
+        }
+        return resultado;
+    }
+
+    /**
+     * Elimina los datos en la base de datos de la tabla: dispositivo
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 14/05/2020
+     */
+    public String DeleteModelo(ModeloDispositivo modeloDispositivo) throws SQLException {
         try {
-            PreparedStatement SQL = con.prepareStatement("DELETE FROM dispositivo WHERE id = ?;");
-            SQL.setInt(1, modeloDispositivos.getId());
-            SQL.executeUpdate();
-            resultado = "2";
-            SQL.close();
-            con.close();
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("DELETE FROM dispositivo "
+                        + " WHERE id = ? ");
+                SQL.setInt(1, modeloDispositivo.getId());
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Delete en Controladordispositivo" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al borrar la empresa " + e);
-            resultado = "-2";
+            System.out.println("Error en la consulta SQL Delete en Controladordispositivo" + e);
+            resultado = "-3";
         }
         return resultado;
     }
@@ -271,7 +312,7 @@ public class ControladorDispositivos {
     public String Read(HttpServletRequest request, HttpServletResponse response) {
         String out = null;
         try {
-            LinkedList<ModeloDispositivos> listmodelo;
+            LinkedList<ModeloDispositivo> listmodelo;
             listmodelo = Read();
             response.setContentType("text/html;charset=UTF-8");
 
@@ -289,14 +330,14 @@ public class ControladorDispositivos {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloDispositivos modelo : listmodelo) {
+            for (ModeloDispositivo modelo : listmodelo) {
                 out += "<tr>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNumeroDispositivo() + "</td>";
+                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNumero()+ "</td>";
                 out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNombre() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getDireccionIP() + "</td>";
+                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getDireccion_ip()+ "</td>";
                 out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getPuerto() + "</td>";
                 out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getSerie() + "</td>";
-                if ("1".equals(modelo.getUtilizaMenu())) {
+                if ("1".equals(modelo.getUtiliza_menu())) {
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">Si</td>";
                 } else {
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">No</td>";
@@ -310,40 +351,25 @@ public class ControladorDispositivos {
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
-                out += "data-nodispositivo=\"" + modelo.getNumeroDispositivo() + "\"";
+                out += "data-nodispositivo=\"" + modelo.getNumero()+ "\"";
                 out += "data-nombre=\"" + modelo.getNombre() + "\"";
-                out += "data-ip=\"" + modelo.getDireccionIP() + "\"";
+                out += "data-ip=\"" + modelo.getDireccion_ip()+ "\"";
                 out += "data-puertodispositivo=\"" + modelo.getPuerto() + "\"";
                 out += "data-modo=\"" + modelo.getModo() + "\"";
-                out += "data-tipolector=\"" + modelo.getTipoLector() + "\"";
+                out += "data-tipolector=\"" + modelo.getTipo_lector()+ "\"";
                 out += "data-activo=\"" + modelo.getActivo() + "\"";
                 out += "data-serie=\"" + modelo.getSerie() + "\"";
                 out += "data-licencia=\"" + modelo.getLicencia() + "\"";
                 out += "data-impresora=\"" + modelo.getImpresora() + "\"";
-                out += "data-encabezadoimpresion=\"" + modelo.getEncabezadoImpresion() + "\"";
-                out += "data-utilizamenu=\"" + modelo.getUtilizaMenu() + "\"";
-                out += "data-ipcontroladora=\"" + modelo.getIpControladora() + "\"";
-                out += "data-puertocontroladora=\"" + modelo.getPuertoControladora() + "\"";
+                out += "data-encabezadoimpresion=\"" + modelo.getEncabezado_impresion()+ "\"";
+                out += "data-utilizamenu=\"" + modelo.getUtiliza_menu() + "\"";
+                out += "data-ipcontroladora=\"" + modelo.getIp_controladora()+ "\"";
+                out += "data-puertocontroladora=\"" + modelo.getPuerto_controladora() + "\"";
                 out += "data-evento=\"" + modelo.getEvento() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i></button>";
                 //Boton Eliminar                
                 out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modelo.getId() + "\"";
-                out += "data-nodispositivo=\"" + modelo.getNumeroDispositivo() + "\"";
-                out += "data-nombre=\"" + modelo.getNombre() + "\"";
-                out += "data-ip=\"" + modelo.getDireccionIP() + "\"";
-                out += "data-puertodispositivo=\"" + modelo.getPuerto() + "\"";
-                out += "data-modo=\"" + modelo.getModo() + "\"";
-                out += "data-tipolector=\"" + modelo.getTipoLector() + "\"";
-                out += "data-activo=\"" + modelo.getActivo() + "\"";
-                out += "data-serie=\"" + modelo.getSerie() + "\"";
-                out += "data-licencia=\"" + modelo.getLicencia() + "\"";
-                out += "data-impresora=\"" + modelo.getImpresora() + "\"";
-                out += "data-encabezadoimpresion=\"" + modelo.getEncabezadoImpresion() + "\"";
-                out += "data-utilizamenu=\"" + modelo.getUtilizaMenu() + "\"";
-                out += "data-ipcontroladora=\"" + modelo.getIpControladora() + "\"";
-                out += "data-puertocontroladora=\"" + modelo.getPuertoControladora() + "\"";
-                out += "data-evento=\"" + modelo.getEvento() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
                 out += "</td>";
                 out += "</tr>";
@@ -356,64 +382,64 @@ public class ControladorDispositivos {
     }
 
     /**
-     * Permite listar la información de la tabla de Dispositivos indetificado
-     * por ID
+     * Retorna un modelo de la tabla dispositivo dependiendo de un ID
      *
-     * @author: Carlos A Dominguez D
-     * @param Id
-     * @return ModeloDispositivos
-     * @version: 07/05/2020
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 14/05/2020
      */
-    public ModeloDispositivos getModelo(Integer Id) {
-        ModeloDispositivos modeloDispositivoss = new ModeloDispositivos();
-        PreparedStatement SQL = null;
-        Connection con;
-        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
-        con = conexionBdMysql.abrirConexion();
+    public ModeloDispositivo getModelo(Integer Id) throws SQLException {
+        ModeloDispositivo modeloDispositivo = new ModeloDispositivo();
+        con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`numeroDispositivo`,"
-                    + "`nombre`,"
-                    + "`direccionIP`,"
-                    + "`puerto`,"
-                    + "`modo`,"
-                    + "`ipControladora`,"
-                    + "`puertoControladora`,"
-                    + "`tipoLector`,"
-                    + "`Activo`,"
-                    + "`Serie`,"
-                    + "`Licencia`,"
-                    + "`Impresora`,"
-                    + "`EncabezadoImpresion`,"
-                    + "`UtilizaMenu` "
-                    + "`Evento` "
-                    + "FROM `dispositivo`;");
+            SQL = con.prepareStatement("SELECT id,"
+                    + "numero, "
+                    + "nombre, "
+                    + "direccion_ip, "
+                    + "puerto, "
+                    + "modo, "
+                    + "ip_controladora, "
+                    + "puerto_controladora, "
+                    + "tipo_lector, "
+                    + "activo, "
+                    + "serie, "
+                    + "licencia, "
+                    + "impresora, "
+                    + "encabezado_impresion, "
+                    + "utiliza_menu, "
+                    + "evento, "
+                    + "estado"
+                    + " FROM dispositivo"
+                    + " WHERE id = ? ");
+            SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                modeloDispositivoss.setId(res.getInt("id"));
-                modeloDispositivoss.setNumeroDispositivo(res.getInt("numeroDispositivo"));
-                modeloDispositivoss.setNombre(res.getString("nombre"));
-                modeloDispositivoss.setDireccionIP(res.getString("direccionIP"));
-                modeloDispositivoss.setPuerto(res.getString("puerto"));
-                modeloDispositivoss.setModo(res.getString("modo"));
-                modeloDispositivoss.setIpControladora(res.getString("ipControladora"));
-                modeloDispositivoss.setPuertoControladora(res.getString("puertoControladora"));
-                modeloDispositivoss.setTipoLector(res.getString("tipoLector"));
-                modeloDispositivoss.setActivo(res.getString("Activo"));
-                modeloDispositivoss.setSerie(res.getString("Serie"));
-                modeloDispositivoss.setLicencia(res.getString("Licencia"));
-                modeloDispositivoss.setImpresora(res.getString("Impresora"));
-                modeloDispositivoss.setEncabezadoImpresion(res.getString("EncabezadoImpresion"));
-                modeloDispositivoss.setUtilizaMenu(res.getString("UtilizaMenu"));
-                modeloDispositivoss.setEvento(res.getString("Evento"));
+                modeloDispositivo.setId(res.getInt("id"));
+                modeloDispositivo.setNumero(res.getInt("numero"));
+                modeloDispositivo.setNombre(res.getString("nombre"));
+                modeloDispositivo.setDireccion_ip(res.getString("direccion_ip"));
+                modeloDispositivo.setPuerto(res.getInt("puerto"));
+                modeloDispositivo.setModo(res.getString("modo"));
+                modeloDispositivo.setIp_controladora(res.getString("ip_controladora"));
+                modeloDispositivo.setPuerto_controladora(res.getInt("puerto_controladora"));
+                modeloDispositivo.setTipo_lector(res.getString("tipo_lector"));
+                modeloDispositivo.setActivo(res.getString("activo"));
+                modeloDispositivo.setSerie(res.getString("serie"));
+                modeloDispositivo.setLicencia(res.getString("licencia"));
+                modeloDispositivo.setImpresora(res.getString("impresora"));
+                modeloDispositivo.setEncabezado_impresion(res.getString("encabezado_impresion"));
+                modeloDispositivo.setUtiliza_menu(res.getString("utiliza_menu"));
+                modeloDispositivo.setEvento(res.getString("evento"));
+                modeloDispositivo.setEstado(res.getString("estado"));
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error buscandp el dato solicitado " + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladordispositivo" + e);
         }
-        return modeloDispositivoss;
+        return modeloDispositivo;
     }
+
 }

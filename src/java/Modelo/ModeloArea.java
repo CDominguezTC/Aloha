@@ -9,17 +9,17 @@ package Modelo;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloCiudad {
+public class ModeloArea {
 
     Integer id;
     String codigo;
     String nombre;
     String estado;
 
-    public ModeloCiudad() {
+    public ModeloArea() {
     }
 
-    public ModeloCiudad(Integer id, String codigo, String nombre, String estado) {
+    public ModeloArea(Integer id, String codigo, String nombre, String estado) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
@@ -57,5 +57,6 @@ public class ModeloCiudad {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
+    
+    
 }

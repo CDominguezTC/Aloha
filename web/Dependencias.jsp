@@ -118,15 +118,13 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>InterCod</th>
                                                     <th>Código</th>
                                                     <th>Descripción</th>
                                                     <th>Opciones</th>   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                    <td></td>                                     
+                                                <tr>            
                                                     <td></td>                                     
                                                     <td></td>                                     
                                                     <td class="text-center">

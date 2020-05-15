@@ -5,15 +5,15 @@
  */
 package Servlet;
 
-import Controladores.ControladorAreas;
+import Controladores.ControladorArea;
 import Controladores.ControladorAsocGrupoConsumo;
 import Controladores.ControladorAuditoria;
 import Controladores.ControladorCargos;
-import Controladores.ControladorCiudades;
+import Controladores.ControladorCiudad;
 import Controladores.ControladorCentro_costo;
-import Controladores.ControladorDependencias;
+import Controladores.ControladorDependencia;
 import Controladores.ControladorDispositivos;
-import Controladores.ControladorEmpresas;
+import Controladores.ControladorEmpresa;
 import Controladores.ControladorFestivo;
 import Controladores.ControladorFunciones;
 import Controladores.ControladorGrupoConsumo;
@@ -245,14 +245,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "AreasJSP":
-                    ControladorAreas controladorAreas = new ControladorAreas();
+                    ControladorArea controladorAreas = new ControladorArea();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorAreas.Insert(request);
+                            Resultado = controladorAreas.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorAreas.Delete(request);
+                            Resultado = controladorAreas.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorAreas.Read(request, response);
@@ -264,14 +264,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     
                     break;
                 case "EmpresaJSP":
-                    ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
+                    ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorEmpresas.Insert(request);
+                            Resultado = controladorEmpresas.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorEmpresas.Delete(request);
+                            Resultado = controladorEmpresas.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorEmpresas.Read(request, response);
@@ -302,14 +302,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     
                     break;
                 case "CiudadJSP":
-                    ControladorCiudades controladorCiudades = new ControladorCiudades();
+                    ControladorCiudad controladorCiudades = new ControladorCiudad();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorCiudades.Insert(request);
+                            Resultado = controladorCiudades.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorCiudades.Delete(request);
+                            Resultado = controladorCiudades.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorCiudades.Read(request, response);
@@ -539,10 +539,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorDispositvos.Insert(request);
+                            Resultado = controladorDispositvos.Insert(request,response);
                             break;
                         case "Delete":
-                            Resultado = controladorDispositvos.Delete(request);
+                            Resultado = controladorDispositvos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorDispositvos.Read(request, response);
@@ -553,14 +553,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "DependenciasJSP":
-                    ControladorDependencias controladorDependencias = new ControladorDependencias();
+                    ControladorDependencia controladorDependencias = new ControladorDependencia();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorDependencias.Insert(request);
+                            Resultado = controladorDependencias.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorDependencias.Delete(request);
+                            Resultado = controladorDependencias.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorDependencias.Read(request, response);

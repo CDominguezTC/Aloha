@@ -31,7 +31,7 @@ public class ControladorPersonas {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
-    ControladorEmpresas controladorEmpresas = new ControladorEmpresas();
+    ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
     ControladorCentro_costo controladorCentroCosto = new ControladorCentro_costo();
     ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
     ControladorCargos controladorCargos = new ControladorCargos();
