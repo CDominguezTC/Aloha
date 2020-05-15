@@ -158,7 +158,6 @@ public class ControladorCentro_costo {
         return resultado;
     }
 
-
     /**
      * Retorna un modelo de la tabla centro_costo dependiendo de un ID
      *
@@ -202,7 +201,7 @@ public class ControladorCentro_costo {
      * @return LinkedList<ModeloCentro_costo>
      * @version: 11/05/2020
      */
-    public LinkedList<ModeloCentro_costo> Read( String estado) throws SQLException {
+    public LinkedList<ModeloCentro_costo> Read(String estado) throws SQLException {
         LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = new LinkedList<ModeloCentro_costo>();
         con = conexion.abrirConexion();
         try {
@@ -243,10 +242,9 @@ public class ControladorCentro_costo {
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
         String estado = "S";
-        if (!"null".equals(request.getParameter("estado"))) {
+        if (request.getParameter("estado") != null) {
             estado = "N";
         }
-        
         try {
             LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
@@ -273,8 +271,6 @@ public class ControladorCentro_costo {
 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
-                out += "data-codigo=\"" + modeloCentro_costo.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloCentro_costo.getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
