@@ -155,7 +155,7 @@ public class ControladorUsuarios {
                     + "`nombre`,"
                     + "`login`,"
                     + "`password` "
-                    + "FROM `usuarios`"
+                    + "FROM `usuario`"
                     + "WHERE id = ?;");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
@@ -503,7 +503,7 @@ public class ControladorUsuarios {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT id FROM usuarios WHERE login = ?");
+            SQL = con.prepareStatement("SELECT id FROM usuario WHERE login = ?");
             SQL.setString(1, name);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {

@@ -16,6 +16,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Esta clase permite controlar los eventos de Centro de Costo
@@ -29,6 +30,7 @@ public class ControladorCentro_costo {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user;
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd Centro
@@ -46,7 +48,9 @@ public class ControladorCentro_costo {
         modeloCentro_costo.setNombre(request.getParameter("nombre"));
         modeloCentro_costo.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
-            resultado = Insert(modeloCentro_costo);
+             HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
+            resultado = Insert(modeloCentro_costo);            
         } else {
             modeloCentro_costo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloCentro_costo);
@@ -70,11 +74,18 @@ public class ControladorCentro_costo {
                         + "codigo, "
                         + "nombre, "
                         + "estado)"
-                        + " VALUE (?,?,?)");
+                        + " VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloCentro_costo.getCodigo());
                 SQL.setString(2, modeloCentro_costo.getNombre());
-                SQL.setString(3, modeloCentro_costo.getEstado());
+                SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
+                      ControladorAuditoria auditoria = new ControladorAuditoria();
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int) generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            }
+                        }
                     resultado = "1";
                     SQL.close();
                     con.close();
@@ -209,7 +220,7 @@ public class ControladorCentro_costo {
                     + "codigo, "
                     + "nombre, "
                     + "estado "
-                    + "FROM centro_costo"
+                    + "FROM centro_costo "
                     + "WHERE estado = ?");
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
