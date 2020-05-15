@@ -9,6 +9,7 @@ import Controladores.ControladorArea;
 import Controladores.ControladorAsocGrupoConsumo;
 import Controladores.ControladorAuditoria;
 import Controladores.ControladorCargo;
+import Controladores.ControladorCargo_hoteleria;
 import Controladores.ControladorCiudad;
 import Controladores.ControladorCentro_costo;
 import Controladores.ControladorDependencia;
@@ -628,28 +629,28 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     
                     break;
-//                case "CargosHoteleriaJSP":
-//                    ControladorCargo controladorCargos = new ControladorCargo();
-//                    Accion = request.getParameter("accion");
-//                    switch (Accion) {
-//                        case "Upload":
-//                            Resultado = controladorCargos.Insert(request);
-//                            break;
+                case "CargosHoteleriaJSP":
+                    ControladorCargo_hoteleria controladorCargos = new ControladorCargo_hoteleria();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = controladorCargos.Insert(request, response);
+                            break;
 //                        case "Insert":
-//                            Resultado = controladorCargos.Update(request);
+//                            Resultado = controladorCargos.Update(request, response);
 //                            break;
-//                        case "Delete":
-//                            Resultado = controladorCargos.Delete(request);
-//                            break;
-//                        case "Read":
-//                            Resultado = controladorCargos.Read(request, response);
-//                            PrintWriter pw = response.getWriter();
-//                            pw.write(Resultado);
-//                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-//                            break;
-//                    }
-//                    
-//                    break;
+                        case "Delete":
+                            Resultado = controladorCargos.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = controladorCargos.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+                    
+                    break;
                 case "GenerarLiquidacionCasino":
                     ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
                     controladorLiquidacionCasino.Select("GenerarLiquidacionCasino", request, response);
