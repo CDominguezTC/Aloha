@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Esta clase permite controlar los eventos de los Usuarios contrine Insert -
@@ -31,52 +32,230 @@ public class ControladorUsuarios {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user = "";
 
     /**
-     * Permite listar la información de la tabla de Usuarios Metodo Private
+     * Permite la inserción o actualización de los datos en la tabla Bd Usuarios
      *
      * @author Julian A Aristizabal
-     * @return LinkedList
+     * @param request
+     * @return String
      * @version: 07/05/2020
      */
-    public LinkedList<ModeloUsuario> Read() {
+    public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
-        LinkedList<ModeloUsuario> modeloUsr = new LinkedList<ModeloUsuario>();
+        ModeloUsuario modeloUsuario = new ModeloUsuario();
+        modeloUsuario.setNombre(request.getParameter("nombre"));
+        modeloUsuario.setLogin(request.getParameter("login"));
+        modeloUsuario.setPassword(request.getParameter("password"));
+        modeloUsuario.setEstado(request.getParameter("estado"));
+        if ("".equals(request.getParameter("id"))) {
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
+            resultado = Insert(modeloUsuario);
+        } else {
+            modeloUsuario.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = Update(modeloUsuario);
+        }
+        return resultado;
+    }
+
+    /**
+     * Inserta los datos en la base de datos de la tabla: usuario
+     *
+     * @author: Julian A Aristizabal
+     * @param Modelo
+     * @return String
+     * @version: 15/5/2020
+     */
+    public String Insert(ModeloUsuario modeloUsuario) throws SQLException {
+        Tools tl = new Tools();
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("INSERT INTO usuario("
+                        + "nombre, "
+                        + "login, "
+                        + "password)"
+                        + " VALUE = (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
+                SQL.setString(1, modeloUsuario.getNombre());
+                SQL.setString(2, modeloUsuario.getLogin());
+                String pw = tl.encriptar(modeloUsuario.getPassword());
+                SQL.setString(3, pw);
+                if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int) generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            }
+                        }
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en Controladorusuario" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en Controladorusuario" + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * Actualiza los datos en la base de datos de la tabla:usuario
+     *
+     * @author: Julian A Aristizabal
+     * @param request
+     * @return String
+     * @version: 15/5/2020
+     */
+    public String Update(ModeloUsuario modeloUsuario) throws SQLException {
+        Tools tl = new Tools();
+        try {
+            con = conexion.abrirConexion();
+            try {
+                if ("N".equals(modeloUsuario.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE usuario SET "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloUsuario.getEstado());
+                    SQL.setInt(2, modeloUsuario.getId());
+                } else {
+
+                    SQL = con.prepareStatement("UPDATE usuario SET "
+                            + "nombre = ?, "
+                            + "login = ?, "
+                            + "password = ?, "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    //SQL.setInt(1, modeloUsuario.getId());
+                    SQL.setString(1, modeloUsuario.getNombre());
+                    SQL.setString(2, modeloUsuario.getLogin());
+                    String pw = tl.encriptar(modeloUsuario.getPassword());
+                    SQL.setString(3, pw);
+                    //SQL.setString(4, modeloUsuario.getPassword());
+                    SQL.setString(4, modeloUsuario.getEstado());
+                    SQL.setInt(5, modeloUsuario.getId());
+                }
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Update en Controladorusuario" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Update en Controladorusuario" + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * llena un modelo que viene con datos de un request para ser Eliminado
+     *
+     * @author: Julian A Aristizabal
+     * @param request
+     * @return String
+     * @version: 15/5/2020
+     */
+    public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        if (!"".equals(request.getParameter("id"))) {
+            ModeloUsuario modeloUsuario = new ModeloUsuario();
+            modeloUsuario.setId(Integer.parseInt(request.getParameter("id")));
+            modeloUsuario.setEstado("N");
+            resultado = Update(modeloUsuario);
+        }
+        return resultado;
+    }
+
+    /**
+     * Retorna un modelo de la tabla usuario dependiendo de un ID
+     *
+     * @author: Julian A Aristizabal
+     * @param request
+     * @return String
+     * @version: 15/5/2020
+     */
+    public ModeloUsuario getModelo(Integer Id) throws SQLException {
+        ModeloUsuario modeloUsuario = new ModeloUsuario();
         con = conexion.abrirConexion();
         try {
-
-            SQL = con.prepareStatement("SELECT id, nombre, login, password, estado FROM usuario ORDER BY nombre");
-            /*
-             * SQL = con.prepareStatement("SELECT "
-             * + "`id`, "
-             * + "`nombre`, "
-             * + "`login`, "
-             * + "`password`, "
-             * + "FROM `usuarios`;");
-             */
+            SQL = con.prepareStatement("SELECT id,"
+                    + "nombre, "
+                    + "login, "
+                    + "password, "
+                    + "estado"
+                    + " FROM usuario"
+                    + " WHERE id = ? ");
+            SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-
-                ModeloUsuario modeloUs = new ModeloUsuario();
-                modeloUs.setId(res.getInt("id"));
-                modeloUs.setNombre(res.getString("nombre"));
-                modeloUs.setLogin(res.getString("login"));
-                modeloUs.setPassword(res.getString("password"));
-                modeloUs.setPassword(res.getString("estado"));
-                modeloUsr.add(modeloUs);
+                modeloUsuario.setId(res.getInt("id"));
+                modeloUsuario.setNombre(res.getString("nombre"));
+                modeloUsuario.setLogin(res.getString("login"));
+                modeloUsuario.setPassword(res.getString("password"));
+                modeloUsuario.setEstado(res.getString("estado"));
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-
-            System.err.println("Error buscando el dato solicitado: " + e.getSQLState());
-            //JOptionPane.showMessageDialog(null, "Error buscando el dato solicitado: " + e.getSQLState());
+            System.out.println("Error en la consulta SQL GetModelo en Controladorusuario" + e);
         }
-        return modeloUsr;
+        return modeloUsuario;
     }
 
     /**
+     * Llena un Listado de la tabla usuario
+     *
+     * @author: Julian A Aristizabal
+     * @param estado
+     * @return LinkedList<ModeloUsuario>
+     * @version: 15/5/2020
+     */
+    public LinkedList<ModeloUsuario> Read(String estado) throws SQLException {
+        LinkedList<ModeloUsuario> ListaModeloUsuario = new LinkedList<ModeloUsuario>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT id, "
+                    + "nombre, "
+                    + "login, "
+                    + "password, "
+                    + "estado"
+                    + " FROM usuario "
+                    + "WHERE estado = ?");
+            SQL.setString(1, estado);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloUsuario modeloUsuario = new ModeloUsuario();
+                modeloUsuario.setId(res.getInt("id"));
+                modeloUsuario.setNombre(res.getString("nombre"));
+                modeloUsuario.setLogin(res.getString("login"));
+                modeloUsuario.setPassword(res.getString("password"));
+                modeloUsuario.setEstado(res.getString("estado"));
+                ListaModeloUsuario.add(modeloUsuario);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL GetModelo en Controladorusuario" + e);
+        }
+        return ListaModeloUsuario;
+    }
+    
+        /**
      * Permite listar la información de la tabla de Usuarios
      *
      * @author Julian A Aristizabal
@@ -87,10 +266,14 @@ public class ControladorUsuarios {
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
+        String estado = "S";
+        if (request.getParameter("estado") != null) {
+            estado = "N";
+        }
         try {
 
             LinkedList<ModeloUsuario> listmoUsr;
-            listmoUsr = Read();
+            listmoUsr = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
@@ -138,193 +321,6 @@ public class ControladorUsuarios {
     }
 
     /**
-     * Permite listar la información de la tabla de Usuarios identificadno el ID
-     *
-     * @author Julian A Aristizabal
-     * @param Id
-     * @return ModeloUsuarios
-     * @version: 07/05/2020
-     */
-    public ModeloUsuario getModelos(int Id) {
-
-        ModeloUsuario modelo = new ModeloUsuario();
-        con = conexion.abrirConexion();
-        try {
-
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`nombre`,"
-                    + "`login`,"
-                    + "`password` "
-                    + "FROM `usuario`"
-                    + "WHERE id = ?;");
-            SQL.setInt(1, Id);
-            ResultSet res = SQL.executeQuery();
-            while (res.next()) {
-
-                modelo.setId(res.getInt("id"));
-                modelo.setNombre(res.getString("nombre"));
-                modelo.setLogin(res.getString("login"));
-                modelo.setPassword(res.getString("password"));
-            }
-            res.close();
-            SQL.close();
-            con.close();
-        } catch (SQLException e) {
-
-            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
-        }
-        return modelo;
-    }
-
-    /**
-     * Permite la inserción o actualización de los datos en la tabla Bd Usuarios
-     *
-     * @author Julian A Aristizabal
-     * @param request
-     * @return String
-     * @version: 07/05/2020
-     */
-    public String Insert(HttpServletRequest request) {
-
-        Tools tl = new Tools();
-        if ("".equals(request.getParameter("id"))) {
-
-            ModeloUsuario modelo = new ModeloUsuario(
-                    0,
-                    request.getParameter("nombre"),
-                    request.getParameter("login"),
-                    request.getParameter("password"),
-                    request.getParameter("estado")
-            );
-            try {
-
-                con = conexion.abrirConexion();
-                try {
-
-                    SQL = con.prepareStatement("INSERT INTO `usuarios`("
-                            + "`nombre`,"
-                            + "`login`,"
-                            + "`password`)"
-                            + "VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
-                    SQL.setString(1, modelo.getNombre());
-                    SQL.setString(2, modelo.getLogin());
-                    String pw = tl.encriptar(modelo.getPassword());
-                    SQL.setString(3, pw);
-                    if (SQL.executeUpdate() > 0) {
-                        ControladorAuditoria auditoria = new ControladorAuditoria();
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int) generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "usuarios", request.getParameter("nombreU"), i, "Se inserto el registro.");
-                            }
-                        }
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.err.println("Error en el proceso: " + e.getMessage());
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.err.println("Error en el proceso: " + e.getMessage());
-                resultado = "-3";
-            }
-        } else {
-
-            ModeloUsuario modelo = new ModeloUsuario(
-                    Integer.parseInt(request.getParameter("id")),
-                    request.getParameter("nombre"),
-                    request.getParameter("login"),
-                    request.getParameter("password"),
-                    request.getParameter("estado")
-            );
-            try {
-
-                con = conexion.abrirConexion();
-                try {
-
-                    SQL = con.prepareStatement("UPDATE `usuarios` SET "
-                            + "`nombre` = ?, "
-                            + "`login` = ?, "
-                            + "`password` = ? "
-                            + "WHERE `id` = ?;");
-                    SQL.setString(1, modelo.getNombre());
-                    SQL.setString(2, modelo.getLogin());
-                    String pw = tl.encriptar(modelo.getPassword());
-                    SQL.setString(3, pw);
-                    SQL.setInt(4, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-
-                    System.err.println("Error en el proceso: " + e.getMessage());
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-
-                System.err.println("Error en el proceso: " + e.getMessage());
-                resultado = "-3";
-            }
-        }
-
-        return resultado;
-    }
-
-    /**
-     * Permite la eliminar un dato en la tabla de Usuarios
-     *
-     * @author Julian A Aristizabal
-     * @param request
-     * @return String
-     * @version: 07/05/2020
-     */
-    public String Delete(HttpServletRequest request) {
-
-        if (!"".equals(request.getParameter("id"))) {
-
-            //String idtmp = request.getParameter("id");
-            ModeloUsuario modelo = new ModeloUsuario();
-            modelo.setId(Integer.parseInt(request.getParameter("id")));
-
-            try {
-
-                con = conexion.abrirConexion();
-                try {
-
-                    SQL = con.prepareStatement("DELETE FROM `usuarios` "
-                            + "WHERE `id` = ?;");
-                    SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-
-                        resultado = "2";
-                    }
-                } catch (SQLException e) {
-
-                    System.err.println("Error en el proceso: " + e.getMessage());
-                    resultado = "-2";
-                }
-                SQL.close();
-                con.close();
-            } catch (SQLException e) {
-
-                System.err.println("Error en el proceso: " + e.getMessage());
-                resultado = "-3";
-            }
-        }
-        return resultado;
-    }
-
-    /**
      * Permite la Validacion del login usuario en el sistema
      *
      * @author Julian A Aristizabal
@@ -339,7 +335,7 @@ public class ControladorUsuarios {
         con = conexion.abrirConexion();
 
         try {
-            String consulta = "SELECT id FROM usuarios WHERE login = ?";
+            String consulta = "SELECT id FROM usuario WHERE login = ?";
             SQL = con.prepareStatement(consulta);
 
             SQL.setString(1, log);
@@ -380,7 +376,7 @@ public class ControladorUsuarios {
         Tools tl = new Tools();
 
         try {
-            String consulta = "SELECT password FROM usuarios WHERE id = ?";
+            String consulta = "SELECT password FROM usuario WHERE id = ?";
             SQL = con.prepareStatement(consulta);
 
             String clave = tl.encriptar(pw);
@@ -425,7 +421,7 @@ public class ControladorUsuarios {
         Tools tl = new Tools();
 
         try {
-            String consulta = "UPDATE usuarios SET password = ? WHERE id = ?";
+            String consulta = "UPDATE usuario SET password = ? WHERE id = ?";
             SQL = con.prepareStatement(consulta);
 
             String clave = tl.encriptar(pw);
@@ -467,7 +463,7 @@ public class ControladorUsuarios {
         Tools tl = new Tools();
 
         try {
-            String consulta = "UPDATE usuarios SET password = ? WHERE login = ?";
+            String consulta = "UPDATE usuario SET password = ? WHERE login = ?";
             SQL = con.prepareStatement(consulta);
 
             String clave = tl.encriptar(pw);

@@ -36,11 +36,12 @@ public class ControladorCentro_costo {
      * Permite la inserción o actualización de los datos en la tabla Bd Centro
      * de costo
      *
-     * @author: Carlos A Dominguez D
+     * @author: Julian Aristizabal
      * @param request
      * @return String
      * @version: 07/05/2020
      */
+    
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
