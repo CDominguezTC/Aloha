@@ -6,7 +6,7 @@
 package Servlet;
 
 import Controladores.ControladorArea;
-import Controladores.ControladorAsocGrupoConsumo;
+import Controladores.ControladorAsociacion_grupo_consumo_horario_consumo;
 import Controladores.ControladorAuditoria;
 import Controladores.ControladorCargo;
 import Controladores.ControladorCargo_hoteleria;
@@ -17,16 +17,16 @@ import Controladores.ControladorDispositivos;
 import Controladores.ControladorEmpresa;
 import Controladores.ControladorFestivo;
 import Controladores.ControladorFunciones;
-import Controladores.ControladorGrupoConsumo;
+import Controladores.ControladorGrupo_consumo;
 import Controladores.ControladorGrupoTurnos;
 import Controladores.ControladorGrupoTurnos_Turnos;
-import Controladores.ControladorHorarioConsumo;
+import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
 import Controladores.ControladorPersonas;
-import Controladores.ControladorTipoConsumo;
+import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuarios;
 import Herramienta.Herramienta;
@@ -284,14 +284,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     
                     break;
                 case "HorarioConsumoJSP":
-                    ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo();
+                    ControladorHorario_consumo controladorHorarioConsumo = new ControladorHorario_consumo();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorHorarioConsumo.Insert(request);
+                            Resultado = controladorHorarioConsumo.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorHorarioConsumo.Delete(request);
+                            Resultado = controladorHorarioConsumo.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorHorarioConsumo.Read(request, response);
@@ -381,14 +381,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "GrupoConsumoJSP":
-                    ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
+                    ControladorGrupo_consumo controladorGrupoConsumo = new ControladorGrupo_consumo();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorGrupoConsumo.Insert(request);
+                            Resultado = controladorGrupoConsumo.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorGrupoConsumo.Delete(request);
+                            Resultado = controladorGrupoConsumo.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorGrupoConsumo.Read(request, response);
@@ -399,14 +399,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "AsocGrupoConsumoJSP":
-                    ControladorAsocGrupoConsumo controladorAsocGrupoConsumo = new ControladorAsocGrupoConsumo();
+                    ControladorAsociacion_grupo_consumo_horario_consumo controladorAsocGrupoConsumo = new ControladorAsociacion_grupo_consumo_horario_consumo();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorAsocGrupoConsumo.Insert(request);
+                            Resultado = controladorAsocGrupoConsumo.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorAsocGrupoConsumo.Delete(request);
+                            Resultado = controladorAsocGrupoConsumo.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorAsocGrupoConsumo.Read(request, response);
@@ -417,14 +417,14 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "TipoConsumoJSP":
-                    ControladorTipoConsumo controladorTipoConsumo = new ControladorTipoConsumo();
+                    ControladorTipo_consumo controladorTipoConsumo = new ControladorTipo_consumo();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorTipoConsumo.Insert(request);
+                            Resultado = controladorTipoConsumo.Insert(request,response);
                             break;
                         case "Delete":
-                            Resultado = controladorTipoConsumo.Delete(request);
+                            Resultado = controladorTipoConsumo.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorTipoConsumo.Read(request, response);

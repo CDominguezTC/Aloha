@@ -83,13 +83,13 @@ public class ModeloPersonas {
     int id_Centro_Costos;
     ModeloEmpresa modeloEmpresa;
     ModeloCentro_costo modeloCentroCosto;
-    ModeloGrupoConsumo modeloGrupoConsumo;
+    ModeloGrupo_consumo modeloGrupoConsumo;
     LinkedList<ModeloCargo> listModeloCargoses;
 
     public ModeloPersonas() {
     }
 
-    public ModeloPersonas(int id, String tipoIdentificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String ciudad, String tipoPersona, String tipoVisitante, int usuarioId, String codigoInterno, String extensionTelefonica, String foto, String nombreEPS, String vencimientoEPS, String nombreARP, Date pasadoJudicialVencto, String huella, String recibeVisitas, Blob plantillaHuella, int longitudPlantilla, Date vencimientoARP, int enrollNumber, int definicionId, int itinerarioId, String accesoRestringido, Date vencimientoPension, Date vencimientoSeguridadIndustrial, Date vencimientoAudiovisualSeguridadIndustrial, Date vencimientoTrabajoAlturas, Date vencimientoTrabajoConfinados, Date vencimientoTrabajoCaliente, Date vencimientoTrabajoExcavaciones, Date vencimientoTrabajoEnergiaElectrica, Date vencimientoOtros, String rH, String seguridadIndustrialSiNo, String audiovisualSiNo, String alturasSiNo, String confinadosSiNo, String calienteSiNo, String excavacionesSiNo, String strienergiaElectricaSiNo, String otrosSiNo, String telefono, int zonaId, String tipoAcceso, Date fechaInicioAcceso, Date fechaFinAcceso, String observaciones, String consumocasino, int tipoTrabajoId, int empresaenqueTrabajaId, String tarjetaAcceso, String cod_nomina, int id_Dependencias, int id_Empresa, String estado, int id_Grupo_Horario, int id_Turnos, int id_Departamento, int id_Areas, int id_Ciudad, int id_Centro_Costos, ModeloEmpresa modeloEmpresa, ModeloCentro_costo modeloCentroCosto, ModeloGrupoConsumo modeloGrupoConsumo, LinkedList<ModeloCargo> listModeloCargoses) {
+    public ModeloPersonas(int id, String tipoIdentificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String ciudad, String tipoPersona, String tipoVisitante, int usuarioId, String codigoInterno, String extensionTelefonica, String foto, String nombreEPS, String vencimientoEPS, String nombreARP, Date pasadoJudicialVencto, String huella, String recibeVisitas, Blob plantillaHuella, int longitudPlantilla, Date vencimientoARP, int enrollNumber, int definicionId, int itinerarioId, String accesoRestringido, Date vencimientoPension, Date vencimientoSeguridadIndustrial, Date vencimientoAudiovisualSeguridadIndustrial, Date vencimientoTrabajoAlturas, Date vencimientoTrabajoConfinados, Date vencimientoTrabajoCaliente, Date vencimientoTrabajoExcavaciones, Date vencimientoTrabajoEnergiaElectrica, Date vencimientoOtros, String rH, String seguridadIndustrialSiNo, String audiovisualSiNo, String alturasSiNo, String confinadosSiNo, String calienteSiNo, String excavacionesSiNo, String strienergiaElectricaSiNo, String otrosSiNo, String telefono, int zonaId, String tipoAcceso, Date fechaInicioAcceso, Date fechaFinAcceso, String observaciones, String consumocasino, int tipoTrabajoId, int empresaenqueTrabajaId, String tarjetaAcceso, String cod_nomina, int id_Dependencias, int id_Empresa, String estado, int id_Grupo_Horario, int id_Turnos, int id_Departamento, int id_Areas, int id_Ciudad, int id_Centro_Costos, ModeloEmpresa modeloEmpresa, ModeloCentro_costo modeloCentroCosto, ModeloGrupo_consumo modeloGrupoConsumo, LinkedList<ModeloCargo> listModeloCargoses) {
         this.id = id;
         this.tipoIdentificacion = tipoIdentificacion;
         this.identificacion = identificacion;
@@ -697,11 +697,11 @@ public class ModeloPersonas {
         this.modeloCentroCosto = modeloCentroCosto;
     }
 
-    public ModeloGrupoConsumo getModeloGrupoConsumo() {
+    public ModeloGrupo_consumo getModeloGrupoConsumo() {
         return modeloGrupoConsumo;
     }
 
-    public void setModeloGrupoConsumo(ModeloGrupoConsumo modeloGrupoConsumo) {
+    public void setModeloGrupoConsumo(ModeloGrupo_consumo modeloGrupoConsumo) {
         this.modeloGrupoConsumo = modeloGrupoConsumo;
     }
 

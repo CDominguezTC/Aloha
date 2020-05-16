@@ -9,14 +9,14 @@ package Modelo;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloHorarioConsumo {
+public class ModeloHorario_consumo {
 
-    int id;
+    Integer id;
     String codigo;
     String nombre;
-    String horainicio;
-    String horafin;
-    String cantidadconsumos;
+    String hora_inicio;
+    String hora_fin;
+    Integer cantidad_consumo;
     String lunes;
     String martes;
     String miercoles;
@@ -25,18 +25,19 @@ public class ModeloHorarioConsumo {
     String sabado;
     String domingo;
     String festivo;
-    ModeloTipoConsumo modeloTipoConsumo;
+    ModeloTipo_consumo Modelo_tipo_consumo;
+    String estado;
 
-    public ModeloHorarioConsumo() {
+    public ModeloHorario_consumo() {
     }
 
-    public ModeloHorarioConsumo(int id, String codigo, String nombre, String horainicio, String horafin, String cantidadconsumos, String lunes, String martes, String miercoles, String jueves, String viernes, String sabado, String domingo, String festivo, ModeloTipoConsumo modeloTipoConsumo) {
+    public ModeloHorario_consumo(Integer id, String codigo, String nombre, String hora_inicio, String hora_fin, Integer cantidad_consumo, String lunes, String martes, String miercoles, String jueves, String viernes, String sabado, String domingo, String festivo, ModeloTipo_consumo Modelo_tipo_consumo, String estado) {
         this.id = id;
         this.codigo = codigo;
         this.nombre = nombre;
-        this.horainicio = horainicio;
-        this.horafin = horafin;
-        this.cantidadconsumos = cantidadconsumos;
+        this.hora_inicio = hora_inicio;
+        this.hora_fin = hora_fin;
+        this.cantidad_consumo = cantidad_consumo;
         this.lunes = lunes;
         this.martes = martes;
         this.miercoles = miercoles;
@@ -45,14 +46,15 @@ public class ModeloHorarioConsumo {
         this.sabado = sabado;
         this.domingo = domingo;
         this.festivo = festivo;
-        this.modeloTipoConsumo = modeloTipoConsumo;
+        this.Modelo_tipo_consumo = Modelo_tipo_consumo;
+        this.estado = estado;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,28 +74,28 @@ public class ModeloHorarioConsumo {
         this.nombre = nombre;
     }
 
-    public String getHorainicio() {
-        return horainicio;
+    public String getHora_inicio() {
+        return hora_inicio;
     }
 
-    public void setHorainicio(String horainicio) {
-        this.horainicio = horainicio;
+    public void setHora_inicio(String hora_inicio) {
+        this.hora_inicio = hora_inicio;
     }
 
-    public String getHorafin() {
-        return horafin;
+    public String getHora_fin() {
+        return hora_fin;
     }
 
-    public void setHorafin(String horafin) {
-        this.horafin = horafin;
+    public void setHora_fin(String hora_fin) {
+        this.hora_fin = hora_fin;
     }
 
-    public String getCantidadconsumos() {
-        return cantidadconsumos;
+    public Integer getCantidad_consumo() {
+        return cantidad_consumo;
     }
 
-    public void setCantidadconsumos(String cantidadconsumos) {
-        this.cantidadconsumos = cantidadconsumos;
+    public void setCantidad_consumo(Integer cantidad_consumo) {
+        this.cantidad_consumo = cantidad_consumo;
     }
 
     public String getLunes() {
@@ -160,12 +162,22 @@ public class ModeloHorarioConsumo {
         this.festivo = festivo;
     }
 
-    public ModeloTipoConsumo getModeloTipoConsumo() {
-        return modeloTipoConsumo;
+    public ModeloTipo_consumo getModelo_tipo_consumo() {
+        return Modelo_tipo_consumo;
     }
 
-    public void setModeloTipoConsumo(ModeloTipoConsumo modeloTipoConsumo) {
-        this.modeloTipoConsumo = modeloTipoConsumo;
+    public void setModelo_tipo_consumo(ModeloTipo_consumo Modelo_tipo_consumo) {
+        this.Modelo_tipo_consumo = Modelo_tipo_consumo;
     }
 
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+    
+    
+    
 }

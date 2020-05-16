@@ -285,9 +285,9 @@ $(function(){
         var data = {
             frm: Frm,
             id: Id,
-            horario: Horario,
-            grupoconsumo: GrupoHorario,
-            valor: Valor,
+            horario_consumo: Horario,
+            grupo_consumo: GrupoHorario,
+            costo_consumo: Valor,
             nombreU: NamUs,
             accion: Accion
         };

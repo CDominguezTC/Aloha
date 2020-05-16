@@ -4,8 +4,10 @@
     Author     : Carlos A Dominguez D
 --%>
 
-<%@page import="Controladores.ControladorTipoConsumo"%>
-<%@page import="Modelo.ModeloTipoConsumo"%>
+<%@page import="Controladores.ControladorTipo_consumo"%>
+<%@page import="Modelo.ModeloTipo_consumo"%>
+<%@page import="Controladores.ControladorTipo_consumo"%>
+<%@page import="Modelo.ModeloTipo_consumo"%>
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -117,10 +119,10 @@
                                                 <select id="IdTipoConsumo" class="form-control" required>
                                                         <option value="-1" disabled selected>Seleccione</option>
                                                         <%
-                                                            LinkedList<ModeloTipoConsumo> linkedListModeloTipoConsumos;
-                                                            ControladorTipoConsumo controladorTipoConsumo = new ControladorTipoConsumo();
-                                                            linkedListModeloTipoConsumos = controladorTipoConsumo.Read();
-                                                            for (ModeloTipoConsumo modeloTipoConsumo : linkedListModeloTipoConsumos)
+                                                            LinkedList<ModeloTipo_consumo> linkedListModeloTipoConsumos;
+                                                            ControladorTipo_consumo controladorTipoConsumo = new ControladorTipo_consumo();
+                                                            linkedListModeloTipoConsumos = controladorTipoConsumo.Read("S");
+                                                            for (ModeloTipo_consumo modeloTipoConsumo : linkedListModeloTipoConsumos)
                                                             {
                                                         %>  
                                                         <option value=<%=modeloTipoConsumo.getId()%>><%=modeloTipoConsumo.getNombre()%></option>

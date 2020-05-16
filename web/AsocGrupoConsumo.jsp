@@ -4,10 +4,10 @@
     Author     : Carlos A Dominguez D
 --%>
 
-<%@page import="Controladores.ControladorHorarioConsumo"%>
-<%@page import="Modelo.ModeloHorarioConsumo"%>
-<%@page import="Controladores.ControladorGrupoConsumo"%>
-<%@page import="Modelo.ModeloGrupoConsumo"%>
+<%@page import="Controladores.ControladorHorario_consumo"%>
+<%@page import="Modelo.ModeloHorario_consumo"%>
+<%@page import="Controladores.ControladorGrupo_consumo"%>
+<%@page import="Modelo.ModeloGrupo_consumo"%>
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -71,13 +71,13 @@
                                                     <select id="IdGrupo_Horario" class="form-control" required>
                                                         <option value="-1" disabled selected>Seleccione</option>
                                                         <%
-                                                            LinkedList<ModeloGrupoConsumo> linkedListModeloGrupoConsumos;
-                                                            ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
-                                                            linkedListModeloGrupoConsumos = controladorGrupoConsumo.Read();
-                                                            for (ModeloGrupoConsumo modeloGrupoConsumo : linkedListModeloGrupoConsumos)
+                                                            LinkedList<ModeloGrupo_consumo> linkedListModeloGrupoConsumos;
+                                                            ControladorGrupo_consumo controladorGrupoConsumo = new ControladorGrupo_consumo();
+                                                            linkedListModeloGrupoConsumos = controladorGrupoConsumo.Read("S");
+                                                            for (ModeloGrupo_consumo modeloGrupoConsumo : linkedListModeloGrupoConsumos)
                                                             {
                                                         %>  
-                                                        <option value=<%=modeloGrupoConsumo.getId()%>><%=modeloGrupoConsumo.getDescripcion()%></option>
+                                                        <option value=<%=modeloGrupoConsumo.getId()%>><%=modeloGrupoConsumo.getNombre()%></option>
                                                         <%
                                                             }
                                                         %>
@@ -89,10 +89,10 @@
                                                     <select id="IdHorario" class="form-control" required>
                                                         <option value="-1" disabled selected>Seleccione</option>
                                                         <%
-                                                            LinkedList<ModeloHorarioConsumo> linkedListModeloHorarioConsumos;
-                                                            ControladorHorarioConsumo controladorHorarioConsumo = new ControladorHorarioConsumo();
-                                                            linkedListModeloHorarioConsumos = controladorHorarioConsumo.Read();
-                                                            for (ModeloHorarioConsumo modeloHorarioConsumo : linkedListModeloHorarioConsumos)
+                                                            LinkedList<ModeloHorario_consumo> linkedListModeloHorarioConsumos;
+                                                            ControladorHorario_consumo controladorHorarioConsumo = new ControladorHorario_consumo();
+                                                            linkedListModeloHorarioConsumos = controladorHorarioConsumo.Read("S");
+                                                            for (ModeloHorario_consumo modeloHorarioConsumo : linkedListModeloHorarioConsumos)
                                                             {
                                                         %>  
                                                         <option value=<%=modeloHorarioConsumo.getId()%>><%=modeloHorarioConsumo.getNombre()%></option>

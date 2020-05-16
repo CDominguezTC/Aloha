@@ -9,19 +9,21 @@ package Modelo;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloGrupoConsumo {
+public class ModeloGrupo_consumo {
 
-    int id;
+    Integer id;
     String codigo;
-    String descripcion;
+    String nombre;
+    String estado;
 
-    public ModeloGrupoConsumo() {
+    public ModeloGrupo_consumo() {
     }
 
-    public ModeloGrupoConsumo(int id, String codigo, String descripcion) {
+    public ModeloGrupo_consumo(int id, String codigo, String nombre, String estado) {
         this.id = id;
         this.codigo = codigo;
-        this.descripcion = descripcion;
+        this.nombre = nombre;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -40,12 +42,20 @@ public class ModeloGrupoConsumo {
         this.codigo = codigo;
     }
 
-    public String getDescripcion() {
-        return descripcion;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

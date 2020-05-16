@@ -287,14 +287,21 @@ $(function(){
   }
 
   function LimpiarCampos(){
-
-      $('#Id').val('');
-      $('#IdCodigo').val('');
-      $('#IdNombre').val('');
-      $('#IdCodigoOld').val('');
-      $('#IdNombreOld').val('');
-
-      document.getElementById("IdCodigo").focus();
+        $('#Id').val('');
+        $('#IdCodigo').val('');
+        $('#IdNombre').val('');
+        $('#IdHoraInicio').val('');
+        $('#IdHoraFin').val('');
+        $('#IdNoConsumos').val('');
+        $('#IdTipoConsumo').val('-1');
+        $('#IdLunes').val('N');
+        $('#IdMartes').val('N');
+        $('#IdMiercoles').val('N');
+        $('#IdJueves').val('N');
+        $('#IdViernes').val('N');
+        $('#IdSabado').val('N');
+        $('#IdDomingo').val('N');
+        $('#IdFestivo').val('N');
   }
 
   $('#IdAgregar').click(function(e){
@@ -329,9 +336,9 @@ $(function(){
             id: Id,
             codigo: Codigo,
             nombre: Nombre,
-            horainicio: HoraInicio,
-            horafin: HoraFin,
-            cantidadconsumos: NoConsumo,
+            hora_inicio: HoraInicio,
+            hora_fin: HoraFin,
+            cantidad_consumo: NoConsumo,
             lunes: Lunes,
             martes: Martes,
             miercoles: Miercoles,
@@ -340,7 +347,7 @@ $(function(){
             sabado: Sabado,
             domingo: Domingo,
             festivo: Festivo,
-            tipoconsumo: TipoConsumo,
+            tipo_consumo: TipoConsumo,
             nombreU: NamUs,
             accion: Accion
         };
