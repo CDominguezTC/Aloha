@@ -15,7 +15,7 @@ public class ModeloUsuario {
     private String nombre;
     private String login;
     private String password;*/
-    private int id;
+    private Integer id;
     private String nombre;
     private String login;
     private String password;

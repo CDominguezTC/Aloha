@@ -36,11 +36,12 @@ public class ControladorCentro_costo {
      * Permite la inserción o actualización de los datos en la tabla Bd Centro
      * de costo
      *
-     * @author: Carlos A Dominguez D
+     * @author: Julian Aristizabal
      * @param request
      * @return String
      * @version: 07/05/2020
      */
+    
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
@@ -48,7 +49,7 @@ public class ControladorCentro_costo {
         modeloCentro_costo.setNombre(request.getParameter("nombre"));
         modeloCentro_costo.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
-             HttpSession session = request.getSession();
+            HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloCentro_costo);            
         } else {
