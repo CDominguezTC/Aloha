@@ -13,6 +13,8 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,60 +47,65 @@ public class ControladorAuditoria {
      */
     public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion) {
 
-        Tools tl = new Tools();
-        ModeloUsuario modU = new ModeloUsuario();
-
-        String fecha = tl.formatoFechaHora();
-        ControladorUsuarios controladorU = new ControladorUsuarios();
-        int idusua = controladorU.idUsuario(usua);
-
-        modU = controladorU.getModelos(idusua);
-        if (idmodi == 3001) {
-            idmodi = idusua;
-        }
-        ModeloAuditoria modelo = new ModeloAuditoria(
-                0,
-                operacion,
-                tabla,
-                fecha,
-                modU,
-                idmodi,
-                observacion
-        );
         try {
-            con = conexion.abrirConexion();
-            try {
 
-                SQL = con.prepareStatement("INSERT INTO `auditoria`("
-                        + "`operacion`,"
-                        + "`tabla`,"
-                        + "`fecha`,"
-                        + "`id_usuario`,"
-                        + "`registro_modificado`,"
-                        + "`observacion`) "
-                        + "VALUES (?,?,?,?,?,?);");
-                SQL.setString(1, modelo.getOperacion());
-                SQL.setString(2, modelo.getTabla());
-                SQL.setString(3, modelo.getFecha());
-                SQL.setInt(4, modelo.getUsuario().getId());
-                SQL.setInt(5, modelo.getRegistro_modificado());
-                SQL.setString(6, modelo.getObservacion());
-                //String pw = tl.encriptar(modelo.getPassword());
-                //SQL.setString(3, pw);
-                if (SQL.executeUpdate() > 0) {
-                    resultado = "1";
+            Tools tl = new Tools();
+            ModeloUsuario modU = new ModeloUsuario();
+            
+            String fecha = tl.formatoFechaHora();
+            ControladorUsuarios controladorU = new ControladorUsuarios();
+            int idusua = controladorU.idUsuario(usua);
+            
+            modU = controladorU.getModelo(idusua);
+            if (idmodi == 3001) {
+                idmodi = idusua;
+            }
+            ModeloAuditoria modelo = new ModeloAuditoria(
+                    0,
+                    operacion,
+                    tabla,
+                    fecha,
+                    modU,
+                    idmodi,
+                    observacion
+            );
+            try {
+                con = conexion.abrirConexion();
+                try {
+                    
+                    SQL = con.prepareStatement("INSERT INTO `auditoria`("
+                            + "`operacion`,"
+                            + "`tabla`,"
+                            + "`fecha`,"
+                            + "`id_usuario`,"
+                            + "`registro_modificado`,"
+                            + "`observacion`) "
+                            + "VALUES (?,?,?,?,?,?);");
+                    SQL.setString(1, modelo.getOperacion());
+                    SQL.setString(2, modelo.getTabla());
+                    SQL.setString(3, modelo.getFecha());
+                    SQL.setInt(4, modelo.getUsuario().getId());
+                    SQL.setInt(5, modelo.getRegistro_modificado());
+                    SQL.setString(6, modelo.getObservacion());
+                    //String pw = tl.encriptar(modelo.getPassword());
+                    //SQL.setString(3, pw);
+                    if (SQL.executeUpdate() > 0) {
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                    }
+                } catch (SQLException e) {
+                    System.err.println("Error en el proceso: " + e.getMessage());
+                    resultado = "-2";
                     SQL.close();
                     con.close();
                 }
             } catch (SQLException e) {
                 System.err.println("Error en el proceso: " + e.getMessage());
-                resultado = "-2";
-                SQL.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.err.println("Error en el proceso: " + e.getMessage());
-            resultado = "-3";
+                resultado = "-3";
+            }            
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorAuditoria.class.getName()).log(Level.SEVERE, null, ex);
         }
         return resultado;
     }
@@ -118,7 +125,7 @@ public class ControladorAuditoria {
         try {
             ControladorUsuarios controladorU = new ControladorUsuarios();
             LinkedList<ModeloUsuario> listmoUsr;
-            listmoUsr = controladorU.Read();
+            listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
@@ -175,7 +182,7 @@ public class ControladorAuditoria {
                     date = new java.util.Date(timestamp.getTime());
                     modeloA.setFecha(dt1.format(date));
                 }
-                modU = controladorU.getModelos(res.getInt("id_usuario"));
+                modU = controladorU.getModelo(res.getInt("id_usuario"));
                 modeloA.setUsuario(modU);
                 modeloA.setRegistro_modificado(res.getInt("registro_modificado"));
                 modeloA.setObservacion(res.getString("observacion"));
