@@ -11,76 +11,8 @@ $(function ()
     });
     $(document).on('click', '.SetFormulario', function () {
         $('#Id').val($(this).data('id'));
-        $('#IdNombre').val($(this).data('tipocargo'));
-        $('#IdCodigo').val($(this).data('valor'));
-    });
-    $('#Idbuscar').click(function (e)
-    {
-        var Frm = "PersonasJSP";
-        var Cedula = $('#IdCedula').val();
-        var Accion = "Search";
-        var Modulo = "Casino";
-        if (Cedula === "")
-        {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Alerta',
-                text: 'Por favor ingrese el numero de cedula corecto.'
-            }).then((result) => {
-            });
-        } else
-        {
-            var data = {
-                frm: Frm,
-                cedula: Cedula,
-                modulo: Modulo,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function (resul, textStatus, jqXHR)
-                {
-                    disableGif();
-                    if (resul.id !== 0) {
-                        $('#Id').val(resul.id);
-                        $('#IdHNombre').val(resul.nombres);
-                        $('#IdHApellido').val(resul.apellidos);
-                    } else
-                    {
-                        $('#Id').val('');
-                        $('#IdHNombre').val('');
-                        $('#IdHApellido').val('');
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Alerta',
-                            text: 'La personas con la identificacion. ' + Cedula + ' no existe en el sistema'
-                        }).then((result) => {
-                        });
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
-                }
-            });
-        }
+        $('#IdNombre').val($(this).data('nombre'));
+        $('#IdCodigo').val($(this).data('codigo'));
     });
     function validacionBtn() {
 
@@ -141,7 +73,6 @@ $(function ()
             }
         });
     }
-
     function editoBotonG(usuariof, page) {
 
         var Frm = "Permisos";
@@ -192,7 +123,6 @@ $(function ()
         /*var botonEnviar = document.getElementById("");
          botonEnviar.disabled === true;*/
     }
-
     function editoBotonE(usuariof, page) {
 
         var Frm = "Permisos";
@@ -244,7 +174,6 @@ $(function ()
         /*var botonEnviar = document.getElementById("");
          botonEnviar.disabled === true;*/
     }
-
     function editoBotonB(usuariof, page) {
 
         var Frm = "Permisos";
@@ -296,7 +225,6 @@ $(function ()
         /*var botonEnviar = document.getElementById("");
          botonEnviar.disabled === true;*/
     }
-
     function ValidaCampo()
     {
         var res = false;
@@ -309,14 +237,12 @@ $(function ()
         }
         return res;
     }
-
     function  LimpiarCampos()
     {
         $('#Id').val('');
         $('#IdCodigo').val('');
         $('#IdNombre').val('');
     }
-
     $('#IdAgregar').click(function (e)
     {
         LimpiarCampos();
@@ -325,7 +251,7 @@ $(function ()
     {
         if (ValidaCampo() === true)
         {
-            var Frm = "CargosTiemposJSP";
+            var Frm = "CargosJSP";
             var Id = $('#Id').val();
             var Codigo = $('#IdCodigo').val();
             var Nombre = $('#IdNombre').val();
@@ -384,9 +310,8 @@ $(function ()
         }
     });
     $(document).on('click', '.SetEliminar', function () {
-//        if (ValidaCampo() === true)
-//        {
-        var Frm = "CargosTiemposJSP";
+
+        var Frm = "CargosJSP";
         var Id = $(this).data('id');
         var Codigo = $(this).data('codigo');
         var Nombre = $(this).data('nombre');
@@ -448,79 +373,9 @@ $(function ()
             }
         });
     });
-//        else
-//        {
-//            alert("Favor de completar todos los campos");
-//        }
-
-    //});
-
-    $("#IdEliminar").click(function (e) {
-        if (ValidaCampo() === true)
-        {
-            var Frm = "ComercialJSP";
-            var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var Notas = $('#IdNotas').val();
-            var Accion = "Delete";
-            var data = {
-                frm: Frm,
-                id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                notas: Notas,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function (resul, textStatus, jqXHR)
-                {
-                    disableGif();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Eliminado',
-                        text: 'Registro Eliminado Satisfactoriamente.'
-                    });
-                    //alert(resul);
-                    LimpiarCampos();
-                    LoadTabla();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
-                }
-            });
-        } else
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Verifica todos los campos.'
-            });
-            //alert("Favor de completar todos los campos");
-        }
-    });
     function LoadTabla()
     {
-        var Frm = "CargosTiemposJSP";
+        var Frm = "CargosJSP";
         var Accion = "ReadTiempos";
         var data = {
             frm: Frm,
@@ -604,71 +459,4 @@ $(function ()
         window.onload = document.getElementById("espera").style = "display: none";
         window.onload = document.getElementById("Principal").style = "display: enable"
     }
-
-    $("#IdbtnDelete").click(function (e)
-    {
-        $("#Tabla tbody tr").each(function () {
-
-            if ($(this).find("input:checkbox:checked").length > 0)
-                $(this).remove();
-
-        })
-    });
-
-    $("#IdbtnNuevo").click(function (e)
-    {
-        tabla = $('#Tabla');
-        tr = $('tr:first', tabla);
-        tr.clone().appendTo(tabla).find(':text').val('');
-    });
-
-    $('#IdAplicarAccion').click(function (e)
-    {
-        $('#Idfrmm').val('CargosJSP');
-        $('#IdAccion').val('Upload');
-        //var resConfir = confirm("Desea aplicar la accicon");
-        Swal.fire({
-            title: 'Desea aplicar la accicon ?',
-            text: "La informacion se almacenara en el sistema",
-            icon: 'success',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sí, confirmar',
-            cancelButtonText: 'No, cancelar'
-        }).then((result) => {
-            if (result.value) {
-                enableGif();
-                var data = $('#IdRegistroCargosJSP').serialize();
-                console.log(data);
-                $.post("ServletAlohaTiempos", data, function (res, est, jqHXR)
-                {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Guardado',
-                        text: res
-                    });
-                    disableGif();
-                });
-            }
-        });
-
-        if (resConfir)
-        {
-            var data = $('#IdRegistroCargosJSP').serialize();
-            console.log(data);
-            $.post("ServletAlohaTiempos", data, function (res, est, jqHXR)
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Guardado',
-                    text: res
-                });
-            });
-        } else
-        {
-            alert("Accion Cancelada");
-        }
-//        }
-    });
 });

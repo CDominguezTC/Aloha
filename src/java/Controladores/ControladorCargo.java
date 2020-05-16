@@ -1,7 +1,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloArea;
+import Modelo.ModeloCargo;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,12 +14,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Esta clase permite controlar los eventos de Areas
+ * Esta clase permite controlar los eventos de Cargos
  *
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorArea {
+public class ControladorCargo {
 
     String resultado = "";
     Connection con;
@@ -29,51 +29,48 @@ public class ControladorArea {
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
-     * area
+     * cargo
      *
-     * @param response
-     * @throws java.sql.SQLException
      * @author: Carlos Arturo Dominguez Diaz
      * @param request
      * @return String
      * @version: 15/05/2020
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        ModeloArea modeloArea = new ModeloArea();
-        modeloArea.setCodigo(request.getParameter("codigo"));
-        modeloArea.setNombre(request.getParameter("nombre"));
-        modeloArea.setEstado(request.getParameter("estado"));
+        ModeloCargo modeloCargo = new ModeloCargo();
+        modeloCargo.setCodigo(request.getParameter("codigo"));
+        modeloCargo.setNombre(request.getParameter("nombre"));
+        modeloCargo.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
-            resultado = Insert(modeloArea);
+            resultado = Insert(modeloCargo);
         } else {
-            modeloArea.setId(Integer.parseInt(request.getParameter("id")));
-            resultado = Update(modeloArea);
+            modeloCargo.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = Update(modeloCargo);
         }
         return resultado;
     }
 
     /**
-     * Inserta los datos en la base de datos de la tabla: area
+     * Inserta los datos en la base de datos de la tabla: cargo
      *
-     * @param modeloArea
-     * @throws java.sql.SQLException
      * @author: Carlos Arturo Dominguez Diaz
+     * @param Modelo
      * @return String
      * @version: 15/05/2020
      */
-    public String Insert(ModeloArea modeloArea) throws SQLException {
+    public String Insert(ModeloCargo modeloCargo) throws SQLException {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("INSERT INTO area("
+                SQL = con.prepareStatement("INSERT INTO cargo("
                         + "codigo, "
                         + "nombre, "
                         + "estado)"
-                        + " VALUE (?,?,?)");
-                SQL.setString(1, modeloArea.getCodigo());
-                SQL.setString(2, modeloArea.getNombre());
+                        + " VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
+                SQL.setString(1, modeloCargo.getCodigo());
+                SQL.setString(2, modeloCargo.getNombre());
                 SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
@@ -88,46 +85,44 @@ public class ControladorArea {
                     con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Insert en Controladorarea" + e);
+                System.out.println("Error en la consulta SQL Insert en Controladorcargo" + e);
                 resultado = "-2";
                 SQL.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Insert en Controladorarea" + e);
+            System.out.println("Error en la consulta SQL Insert en Controladorcargo" + e);
             resultado = "-3";
         }
         return resultado;
     }
 
     /**
-     * Actualiza los datos en la base de datos de la tabla:area
+     * Actualiza los datos en la base de datos de la tabla:cargo
      *
-     * @param modeloArea
-     * @throws java.sql.SQLException
      * @author: Carlos Arturo Dominguez Diaz
+     * @param request
      * @return String
      * @version: 15/05/2020
      */
-    public String Update(ModeloArea modeloArea) throws SQLException {
+    public String Update(ModeloCargo modeloCargo) throws SQLException {
         try {
             con = conexion.abrirConexion();
             try {
-
-                if ("N".equals(modeloArea.getEstado())) {
-                    SQL = con.prepareStatement("UPDATE area SET "
+                if ("N".equals(modeloCargo.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE cargo SET "
                             + "estado = ?"
                             + " WHERE id = ? ");
-                    SQL.setString(1, modeloArea.getEstado());
-                    SQL.setInt(2, modeloArea.getId());
+                    SQL.setString(1, modeloCargo.getEstado());
+                    SQL.setInt(2, modeloCargo.getId());
                 } else {
-                    SQL = con.prepareStatement("UPDATE area SET "
+                    SQL = con.prepareStatement("UPDATE cargo SET "
                             + "codigo = ?, "
                             + "nombre = ? "
-                            + "WHERE id = ? ");
-                    SQL.setString(1, modeloArea.getCodigo());
-                    SQL.setString(2, modeloArea.getNombre());                    
-                    SQL.setInt(3, modeloArea.getId());
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloCargo.getCodigo());
+                    SQL.setString(2, modeloCargo.getNombre());
+                    SQL.setInt(3, modeloCargo.getId());
                 }
 
                 if (SQL.executeUpdate() > 0) {
@@ -136,13 +131,13 @@ public class ControladorArea {
                     con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Update en Controladorarea" + e);
+                System.out.println("Error en la consulta SQL Update en Controladorcargo" + e);
                 resultado = "-2";
                 SQL.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Update en Controladorarea" + e);
+            System.out.println("Error en la consulta SQL Update en Controladorcargo" + e);
             resultado = "-3";
         }
         return resultado;
@@ -151,8 +146,6 @@ public class ControladorArea {
     /**
      * llena un modelo que viene con datos de un request para ser Eliminado
      *
-     * @param response
-     * @throws java.sql.SQLException
      * @author: Carlos Arturo Dominguez Diaz
      * @param request
      * @return String
@@ -160,112 +153,103 @@ public class ControladorArea {
      */
     public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         if (!"".equals(request.getParameter("id"))) {
-            ModeloArea modeloArea = new ModeloArea();
-            modeloArea.setId(Integer.parseInt(request.getParameter("id")));
-            modeloArea.setEstado("N");
-            resultado = Update(modeloArea);
+            ModeloCargo modeloCargo = new ModeloCargo();
+            modeloCargo.setId(Integer.parseInt(request.getParameter("id")));
+            modeloCargo.setEstado("N");
+            resultado = Update(modeloCargo);
         }
         return resultado;
     }
 
     /**
-     * Retorna un modelo de la tabla area dependiendo de un ID
+     * Retorna un modelo de la tabla cargo dependiendo de un ID
      *
-     * @param Id
-     * @throws java.sql.SQLException
      * @author: Carlos Arturo Dominguez Diaz
+     * @param request
      * @return String
      * @version: 15/05/2020
      */
-    public ModeloArea getModelo(Integer Id) throws SQLException {
-        ModeloArea modeloArea = new ModeloArea();
+    public ModeloCargo getModelo(Integer Id) throws SQLException {
+        ModeloCargo modeloCargo = new ModeloCargo();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
                     + "nombre, "
-                    + "estado "
-                    + "FROM area "
-                    + "WHERE id = ? ");
+                    + "estado"
+                    + " FROM cargo"
+                    + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                modeloArea.setId(res.getInt("id"));
-                modeloArea.setCodigo(res.getString("codigo"));
-                modeloArea.setNombre(res.getString("nombre"));
-                modeloArea.setEstado(res.getString("estado"));
+                modeloCargo.setId(res.getInt("id"));
+                modeloCargo.setCodigo(res.getString("codigo"));
+                modeloCargo.setNombre(res.getString("nombre"));
+                modeloCargo.setEstado(res.getString("estado"));
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorarea" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladorcargo" + e);
         }
-        return modeloArea;
+        return modeloCargo;
     }
 
     /**
-     * Llena un Listado de la tabla area
+     * Llena un Listado de la tabla cargo
      *
-     * @param estado
-     * @return LinkedList
-     * @throws java.sql.SQLException
-     * @author: Carlos Arturo Dominguez Diaz     
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param vacio
+     * @return LinkedList<ModeloCargo>
      * @version: 15/05/2020
      */
-    public LinkedList<ModeloArea> Read(String estado) throws SQLException {
-        LinkedList<ModeloArea> ListaModeloArea = new LinkedList<ModeloArea>();
+    public LinkedList<ModeloCargo> Read(String estado) throws SQLException {
+        LinkedList<ModeloCargo> ListaModeloCargo = new LinkedList<ModeloCargo>();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
                     + "nombre, "
                     + "estado "
-                    + "FROM area "
-                    + "WHERE estado = ?");
+                    + "FROM cargo "
+                    + "WHERE estado = ?" );
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloArea modeloArea = new ModeloArea();
-                modeloArea.setId(res.getInt("id"));
-                modeloArea.setCodigo(res.getString("codigo"));
-                modeloArea.setNombre(res.getString("nombre"));
-                modeloArea.setEstado(res.getString("estado"));
-                ListaModeloArea.add(modeloArea);
+                ModeloCargo modeloCargo = new ModeloCargo();
+                modeloCargo.setId(res.getInt("id"));
+                modeloCargo.setCodigo(res.getString("codigo"));
+                modeloCargo.setNombre(res.getString("nombre"));
+                modeloCargo.setEstado(res.getString("estado"));
+                ListaModeloCargo.add(modeloCargo);
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorarea" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladorcargo" + e);
         }
-        return ListaModeloArea;
+        return ListaModeloCargo;
     }
 
     /**
-     * Permite listar la informacion de la tabla de Areas
+     * Llena un Listado de la tabla cargo en una cadena con caracteristicas HTML
      *
-     * @throws javax.servlet.ServletException
-     * @throws java.io.IOException
-     * @author: Carlos A Dominguez D
+     * @author: Carlos Arturo Dominguez Diaz
      * @param request
-     * @param response
      * @return String
-     * @version: 07/05/2020
+     * @version: 15/05/2020
      */
-    public String Read(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
         String estado = "S";
         if (request.getParameter("estado") != null) {
             estado = "N";
         }
         try {
-            LinkedList<ModeloArea> listmoAreases;
-            ControladorArea controladorAreas = new ControladorArea();
-            listmoAreases = controladorAreas.Read(estado);
-            response.setContentType("text/html;charset=UTF-8");
-
+            LinkedList<ModeloCargo> listmoCargos;
+            listmoCargos = Read(estado);
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -275,28 +259,32 @@ public class ControladorArea {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloArea modeloAreas : listmoAreases) {
+            for (ModeloCargo modeloCargos : listmoCargos) {
                 out += "<tr>";
-                out += "<td>" + modeloAreas.getCodigo() + "</td>";
-                out += "<td>" + modeloAreas.getNombre() + "</td>";
+                out += "<td>" + modeloCargos.getCodigo()+ "</td>";
+                out += "<td>" + modeloCargos.getNombre()+ "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloAreas.getId() + "\"";
-                out += "data-codigo=\"" + modeloAreas.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloAreas.getNombre() + "\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                out += "data-id=\"" + modeloCargos.getId() + "\"";
+                out += "data-codigo=\"" + modeloCargos.getCodigo()+ "\"";
+                out += "data-nombre=\"" + modeloCargos.getNombre()+ "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloAreas.getId() + "\"";
+                out += "data-id=\"" + modeloCargos.getId() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
             }
             out += "</tbody>";
-        } catch (SQLException e) {
+//            PrintWriter pw = response.getWriter();
+//            pw.write(out);
+//            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+        } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }
+
 }

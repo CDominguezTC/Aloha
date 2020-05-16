@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,6 +28,7 @@ public class ControladorCiudad {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user;
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -43,6 +45,8 @@ public class ControladorCiudad {
         modeloCiudad.setNombre(request.getParameter("nombre"));
         modeloCiudad.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloCiudad);
         } else {
             modeloCiudad.setId(Integer.parseInt(request.getParameter("id")));
@@ -65,13 +69,20 @@ public class ControladorCiudad {
             try {
                 SQL = con.prepareStatement("INSERT INTO ciudad("
                         + "codigo, "
-                        + "nombre, "                        
+                        + "nombre, "
                         + "estado)"
-                        + " VALUE (?,?,?)");
+                        + " VALUE (?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloCiudad.getCodigo());
                 SQL.setString(2, modeloCiudad.getNombre());
-                SQL.setString(3, modeloCiudad.getEstado());
+                SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                    }
                     resultado = "1";
                     SQL.close();
                     con.close();
@@ -101,15 +112,22 @@ public class ControladorCiudad {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("UPDATE ciudad SET "
-                        + "codigo = ?, "
-                        + "nombre = ?, "
-                        + "estado = ?"
-                        + " WHERE id = ? ");
-                SQL.setString(1, modeloCiudad.getCodigo());
-                SQL.setString(2, modeloCiudad.getNombre());
-                SQL.setString(3, modeloCiudad.getEstado());
-                SQL.setInt(4, modeloCiudad.getId());
+                if ("N".equals(modeloCiudad.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE ciudad SET "
+                            + "estado = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloCiudad.getEstado());
+                    SQL.setInt(2, modeloCiudad.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE ciudad SET "
+                            + "codigo = ?, "
+                            + "nombre = ? "                            
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloCiudad.getCodigo());
+                    SQL.setString(2, modeloCiudad.getNombre());                    
+                    SQL.setInt(3, modeloCiudad.getId());
+                }
+
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
@@ -140,40 +158,8 @@ public class ControladorCiudad {
         if (!"".equals(request.getParameter("id"))) {
             ModeloCiudad modeloCiudad = new ModeloCiudad();
             modeloCiudad.setId(Integer.parseInt(request.getParameter("id")));
-            resultado = DeleteModelo(modeloCiudad);
-        }
-        return resultado;
-    }
-
-    /**
-     * Elimina los datos en la base de datos de la tabla: ciudad
-     *
-     * @param modeloCiudad
-     * @author: Carlos Arturo Dominguez Diaz
-     * @return String
-     * @version: 14/05/2020
-     */
-    public String DeleteModelo(ModeloCiudad modeloCiudad) throws SQLException {
-        try {
-            con = conexion.abrirConexion();
-            try {
-                SQL = con.prepareStatement("DELETE FROM ciudad "
-                        + " WHERE id = ? ");
-                SQL.setInt(1, modeloCiudad.getId());
-                if (SQL.executeUpdate() > 0) {
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Delete en Controladorciudad" + e);
-                resultado = "-2";
-                SQL.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Delete en Controladorciudad" + e);
-            resultado = "-3";
+            modeloCiudad.setEstado("N");
+            resultado = Update(modeloCiudad);
         }
         return resultado;
     }
@@ -186,15 +172,17 @@ public class ControladorCiudad {
      * @return LinkedList<ModeloCiudad>
      * @version: 14/05/2020
      */
-    public LinkedList<ModeloCiudad> Read() throws SQLException {
+    public LinkedList<ModeloCiudad> Read(String estado) throws SQLException {
         LinkedList<ModeloCiudad> ListaModeloCiudad = new LinkedList<ModeloCiudad>();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
-                    + "nombre, "                    
+                    + "nombre, "
                     + "estado"
-                    + " FROM ciudad");
+                    + " FROM ciudad"
+                    + " WHERE estado = ?");
+            SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloCiudad modeloCiudad = new ModeloCiudad();
@@ -225,14 +213,18 @@ public class ControladorCiudad {
     public String Read(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String out = null;
+        String estado = "S";
+        if (request.getParameter("estado") != null) {
+            estado = "N";
+        }
         try {
             LinkedList<ModeloCiudad> listmoCiudades;
-            listmoCiudades = Read();
+            listmoCiudades = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<thead>";
-            out += "<tr>";            
+            out += "<tr>";
             out += "<th>Codigo</th>";
             out += "<th>Nombre</th>";
             out += "<th>Opcion</th>";
@@ -240,15 +232,15 @@ public class ControladorCiudad {
             out += "</thead>";
             out += "<tbody>";
             for (ModeloCiudad modeloCiudad : listmoCiudades) {
-                out += "<tr>";                
+                out += "<tr>";
                 out += "<td>" + modeloCiudad.getCodigo() + "</td>";
-                out += "<td>" + modeloCiudad.getNombre()+ "</td>";
+                out += "<td>" + modeloCiudad.getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id=\"" + modeloCiudad.getId() + "\"";
                 out += "data-codigo=\"" + modeloCiudad.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloCiudad.getNombre()+ "\"";
+                out += "data-nombre=\"" + modeloCiudad.getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";

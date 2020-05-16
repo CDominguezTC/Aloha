@@ -5,26 +5,24 @@
  */
 package Modelo;
 
-import java.util.Date;
-
 /**
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloFestivo {
+public class ModeloCargo_hoteleria {
 
     Integer id;
-    Date fecha;
-    String nota;
+    String tipo_cargo;
+    Integer valor_cargo;
     String estado;
 
-    public ModeloFestivo() {
+    public ModeloCargo_hoteleria() {
     }
 
-    public ModeloFestivo(Integer id, Date fecha, String nota, String estado) {
+    public ModeloCargo_hoteleria(Integer id, String tipo_cargo, Integer valor_cargo, String estado) {
         this.id = id;
-        this.fecha = fecha;
-        this.nota = nota;
+        this.tipo_cargo = tipo_cargo;
+        this.valor_cargo = valor_cargo;
         this.estado = estado;
     }
 
@@ -36,20 +34,20 @@ public class ModeloFestivo {
         this.id = id;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getTipo_cargo() {
+        return tipo_cargo;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
+    public void setTipo_cargo(String tipo_cargo) {
+        this.tipo_cargo = tipo_cargo;
     }
 
-    public String getNota() {
-        return nota;
+    public Integer getValor_cargo() {
+        return valor_cargo;
     }
 
-    public void setNota(String nota) {
-        this.nota = nota;
+    public void setValor_cargo(Integer valor_cargo) {
+        this.valor_cargo = valor_cargo;
     }
 
     public String getEstado() {

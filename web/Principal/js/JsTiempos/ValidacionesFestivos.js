@@ -278,7 +278,7 @@ $(function(){
             frm: Frm,
             id: Id,
             fecha: Fecha,
-            nombre: Nombre,
+            nota: Nombre,
             nombreU: NamUs,
             accion: Accion
         };

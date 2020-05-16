@@ -6,7 +6,12 @@
 package Herramienta;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,4 +64,38 @@ public class Herramienta {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         return timestamp;
     }
+
+    /**
+     * Permite la conversion de un String a Util.Date
+     *
+     * @autor Carlos A Dominguez diaz
+     * @version 15/05/2020
+     * @param FechaString
+     * @return
+     */
+    public Date getStringDate(String FechaString) {
+        Date date = null;
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            date = formatter.parse(FechaString);
+            System.out.println(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(Herramienta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return date;
+    }
+
+    /**
+     * Permite la conversion de un Util.Date a un Sql.Date
+     *
+     * @param fecha
+     * @autor Carlos A Dominguez diaz
+     * @version 15/05/2020
+     * @return
+     */
+    public java.sql.Date getUtilDate_SqlDate(Date fecha) {
+        java.sql.Date sDate = new java.sql.Date(fecha.getTime());
+        return sDate;
+    }
+
 }

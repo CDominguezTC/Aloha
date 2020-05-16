@@ -34,7 +34,7 @@ public class ControladorPersonas {
     ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
     ControladorCentro_costo controladorCentroCosto = new ControladorCentro_costo();
     ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo();
-    ControladorCargos controladorCargos = new ControladorCargos();
+    ControladorCargo controladorCargos = new ControladorCargo();
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd

@@ -13,8 +13,8 @@ $(function(){
   $(document).on('click', '.SetFormulario', function() {
 
         $('#Id').val($(this).data('id'));
-        $('#IdNombre').val($(this).data('tipocargo'));
-        $('#IdNombreOld').val($(this).data('tipocargo'));
+        $('#IdNombre').val($(this).data('cargo'));
+        $('#IdNombreOld').val($(this).data('cargo'));
         $('#IdCantidad').val($(this).data('valor'));
         $('#IdCantidadOld').val($(this).data('valor'));
     });
@@ -269,15 +269,15 @@ $(function(){
 
     if (ValidaCampo() === true){
       var NamUs = document.getElementById('usering').innerHTML
-      var Frm = "CargosJSP";
+      var Frm = "CargosHoteleriaJSP";
       var Id = $('#Id').val();
       var Cantidad = $('#IdCantidad').val();
       var Nombre = $('#IdNombre').val();
-      var Accion = "Insert";
+      var Accion = "Upload";
       var data = {
           frm: Frm,
           id: Id,
-          cantidad: Cantidad,
+          valor: Cantidad,
           nombre: Nombre,
           nombreU: NamUs,
           accion: Accion
@@ -338,7 +338,7 @@ $(function(){
   $(document).on('click', '.SetEliminar', function() {
 
     $('#Id').val($(this).data('id'));
-    var Frm = "CargosJSP";
+    var Frm = "CargosHoteleriaJSP";
     var Id = $(this).data('id');
     var Accion = "Delete";
     var data = {
@@ -401,7 +401,7 @@ $(function(){
   $("#IdEliminar").click(function(e) {
       if (ValidaCampo() === true)
       {
-          var Frm = "CargosJSP";
+          var Frm = "CargosHoteleriaJSP";
           var Id = $('#Id').val();
           var Accion = "Delete";
           var data = {
@@ -537,7 +537,7 @@ $(function(){
 
   function LoadTabla(){
 
-      var Frm = "CargosJSP";
+      var Frm = "CargosHoteleriaJSP";
       var Accion = "Read";
       var data = {
           frm: Frm,

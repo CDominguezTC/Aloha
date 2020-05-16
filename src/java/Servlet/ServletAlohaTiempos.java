@@ -8,7 +8,8 @@ package Servlet;
 import Controladores.ControladorArea;
 import Controladores.ControladorAsocGrupoConsumo;
 import Controladores.ControladorAuditoria;
-import Controladores.ControladorCargos;
+import Controladores.ControladorCargo;
+import Controladores.ControladorCargo_hoteleria;
 import Controladores.ControladorCiudad;
 import Controladores.ControladorCentro_costo;
 import Controladores.ControladorDependencia;
@@ -341,18 +342,18 @@ public class ServletAlohaTiempos extends HttpServlet {
                     
                     break;
                     
-                case "CargosTiemposJSP":
-                    ControladorCargos controladorCargost = new ControladorCargos();
+                case "CargosJSP":
+                    ControladorCargo controladorCargo = new ControladorCargo();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorCargost.InsertTiempos(request);
+                            Resultado = controladorCargo.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorCargost.DeleteTiempos(request);
+                            Resultado = controladorCargo.Delete(request, response);
                             break;
                         case "ReadTiempos":
-                            Resultado = controladorCargost.ReadTiempos(request, response);
+                            Resultado = controladorCargo.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
@@ -438,10 +439,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorFestivo.Insert(request);
+                            Resultado = controladorFestivo.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorFestivo.Delete(request);
+                            Resultado = controladorFestivo.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorFestivo.Read(request, response);
@@ -628,18 +629,18 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     
                     break;
-                case "CargosJSP":
-                    ControladorCargos controladorCargos = new ControladorCargos();
+                case "CargosHoteleriaJSP":
+                    ControladorCargo_hoteleria controladorCargos = new ControladorCargo_hoteleria();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorCargos.Insert(request);
+                            Resultado = controladorCargos.Insert(request, response);
                             break;
-                        case "Insert":
-                            Resultado = controladorCargos.Update(request);
-                            break;
+//                        case "Insert":
+//                            Resultado = controladorCargos.Update(request, response);
+//                            break;
                         case "Delete":
-                            Resultado = controladorCargos.Delete(request);
+                            Resultado = controladorCargos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorCargos.Read(request, response);
@@ -655,11 +656,11 @@ public class ServletAlohaTiempos extends HttpServlet {
                     controladorLiquidacionCasino.Select("GenerarLiquidacionCasino", request, response);
                     Accion = "Plano";
                     break;
-                case "GenerarLiquidacionHoteleria":
-                    ControladorCargos controladorCargo = new ControladorCargos();
-                    controladorCargo.Select("GenerarLiquidacionHoteleria", request, response);
-                    Accion = "Plano";
-                    break;
+//                case "GenerarLiquidacionHoteleria":
+//                    ControladorCargo controladorCargoH = new ControladorCargo();
+//                    controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
+//                    Accion = "Plano";
+//                    break;
                 case "BuscarPersona":
                     ModeloPersonas modeloPersonas = new ModeloPersonas();
                     ControladorPersonas controladorPersonas1 = new ControladorPersonas();
@@ -674,7 +675,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = "Plano";
                     break;
                 case "UtilidadesJSP":
-                    //ControladorCargos controladorCargos = new ControladorCargos ();
+                    //ControladorCargos controladorCargos = new ControladorCargo ();
                     Accion = request.getParameter("accion");
                     String usua = request.getParameter("usr");
                     switch (Accion) {
