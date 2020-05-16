@@ -51,21 +51,22 @@ public class ControladorAuditoria {
         String fecha = tl.formatoFechaHora();
         ControladorUsuarios controladorU = new ControladorUsuarios();
         int idusua = controladorU.idUsuario(usua);
-
-        modU = controladorU.getModelos(idusua);
-        if (idmodi == 3001) {
-            idmodi = idusua;
-        }
-        ModeloAuditoria modelo = new ModeloAuditoria(
-                0,
-                operacion,
-                tabla,
-                fecha,
-                modU,
-                idmodi,
-                observacion
-        );
+        
         try {
+            modU = controladorU.getModelo(idusua);
+            if (idmodi == 3001) {
+                idmodi = idusua;
+            }
+            ModeloAuditoria modelo = new ModeloAuditoria(
+                    0,
+                    operacion,
+                    tabla,
+                    fecha,
+                    modU,
+                    idmodi,
+                    observacion
+            );
+        
             con = conexion.abrirConexion();
             try {
 
@@ -118,7 +119,7 @@ public class ControladorAuditoria {
         try {
             ControladorUsuarios controladorU = new ControladorUsuarios();
             LinkedList<ModeloUsuario> listmoUsr;
-            listmoUsr = controladorU.Read();
+            listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
@@ -175,7 +176,7 @@ public class ControladorAuditoria {
                     date = new java.util.Date(timestamp.getTime());
                     modeloA.setFecha(dt1.format(date));
                 }
-                modU = controladorU.getModelos(res.getInt("id_usuario"));
+                modU = controladorU.getModelo(res.getInt("id_usuario"));
                 modeloA.setUsuario(modU);
                 modeloA.setRegistro_modificado(res.getInt("registro_modificado"));
                 modeloA.setObservacion(res.getString("observacion"));
