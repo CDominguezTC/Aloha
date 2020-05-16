@@ -47,15 +47,16 @@ public class ControladorAuditoria {
      */
     public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion) {
 
+        con = conexion.abrirConexion();
         try {
 
             Tools tl = new Tools();
             ModeloUsuario modU = new ModeloUsuario();
-            
+
             String fecha = tl.formatoFechaHora();
             ControladorUsuarios controladorU = new ControladorUsuarios();
             int idusua = controladorU.idUsuario(usua);
-            
+
             modU = controladorU.getModelo(idusua);
             if (idmodi == 3001) {
                 idmodi = idusua;
@@ -72,7 +73,7 @@ public class ControladorAuditoria {
             try {
                 con = conexion.abrirConexion();
                 try {
-                    
+
                     SQL = con.prepareStatement("INSERT INTO `auditoria`("
                             + "`operacion`,"
                             + "`tabla`,"
@@ -103,7 +104,7 @@ public class ControladorAuditoria {
             } catch (SQLException e) {
                 System.err.println("Error en el proceso: " + e.getMessage());
                 resultado = "-3";
-            }            
+            }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAuditoria.class.getName()).log(Level.SEVERE, null, ex);
         }
