@@ -1,0 +1,97 @@
+<!-- CAPTURA DE FOTO, HUELLA. FIRMA -->
+
+<link href="Principal/js/JsVisitantes/public/controls/dhtmlx/skins/web/dhtmlx.css" rel="stylesheet" type="text/css" />
+<link href="Principal/js/JsVisitantes/public/css/whole.css" rel="stylesheet" type="text/css" />
+<link href="Principal/js/JsVisitantes/public/css/base.css" rel="stylesheet" type="text/css" />
+
+<script src="Principal/js/JsVisitantes/public/controls/dhtmlx/codebase/dhtmlx.js"></script>
+
+<!--script src="Principal/js/JsVisitantes/public/controls/jquery/jquery.js"></script-->
+<script src="Principal/js/JsVisitantes/public/controls/jquery/jquery.form.js"></script>
+<script src="Principal/js/JsVisitantes/public/controls/jquery/jquery.validate.js"></script>
+
+<script src="Principal/js/JsVisitantes/public/controls/jBox/jquery.jBox-2.3.min.js"></script>
+<script src="Principal/js/JsVisitantes/public/controls/jBox/i18n/jquery.jBox-zh-CN.js"></script>
+<!--script src="Principal/js/JsVisitantes/public/js/common.js"></script-->
+<script src="Principal/js/JsVisitantes/public/js/commonConfig.js"></script>
+<script src="Principal/js/JsVisitantes/public/js/commonValidate.js"></script>
+<script src="Principal/js/JsVisitantes/public/js/init.js"></script>
+<script src="Principal/js/JsVisitantes/public/js/dhtmlxCommon.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/baseCamera.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/baseFPRegister.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/baseMethod.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/Firma/signature_pad.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/baseISSObject.js"></script>
+<script src="Principal/js/JsVisitantes/base/js/baseCamera.js"></script>
+
+<!--script src="base/js/Firma.js"></script>
+
+<script src="printThis-master/printThis.js"></script-->
+
+<script>
+
+    function checkDriverForLogin()
+    {
+
+        loadXml("Principal/js/JsVisitantes/base/xml/BaseISSOnlineServer.xml");
+        var browserFlag = "";
+
+        var paramArray = new Array();
+
+        browserFlag = getBrowserType();
+        paramArray[0] = 'Instale el driver del lector USB o reinicie el servicio.';
+        paramArray[1] = 'Verificar';
+
+        checkDriver(paramArray, browserFlag, true);
+    }
+
+    checkDriverForLogin();
+
+    function checkDriverForLogin()
+    {
+
+        loadXml("Principal/js/JsVisitantes/base/xml/BaseISSOnlineServer.xml");
+        var browserFlag = "";
+
+        var paramArray = new Array();
+
+        browserFlag = getBrowserType();
+        paramArray[0] = 'Instale el driver del lector USB o reinicie el servicio.';
+        paramArray[1] = 'Verificar';
+
+        checkDriver(paramArray, browserFlag, true);
+    }
+
+    checkDriverForLogin();
+
+
+    function openCamera()
+    {
+        openCameraAloha();
+    }
+
+
+    function openCapturadorHuella()
+    {
+        submitRegister('Huella', 'Huellas:', '¿Desea guardar los cambios realizados?', null, true);
+    }
+
+    function openCapturadorFirma()
+    {
+        createWindow('Firma_XPPen.html?random=' + 1000 + '^0^0^1200^650^' + "Firma");
+    }
+
+    function esckeydown(e)
+    {
+        var theEvent = window.event || e;
+        var code = theEvent.keyCode || theEvent.which;
+        if (code == 27)
+        {
+            theEvent.returnValue = null;
+            window.returnValue = null;
+            closeWindow();
+        }
+    }
+
+
+</script>

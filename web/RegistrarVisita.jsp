@@ -34,11 +34,11 @@
             }
 
         </style>
-        
+
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
-        
+
 
         <!-- Contenido -->
         <div class="right_col" role="main">
@@ -363,38 +363,6 @@
 
 
         <%@include file="Principal/Script.html" %>  
+        <%@include file="Principal/js/JsVisitantes/fotohuellafrima.html" %>  
     </body>
-
-    <script>
-
-        function openCamera()
-        {
-            openCameraAloha();
-        }
-
-
-        function openCapturadorHuella()
-        {
-            submitRegister('Huella', 'Huellas:', '¿Desea guardar los cambios realizados?', null, true);
-        }
-
-        function openCapturadorFirma()
-        {
-            createWindow('Firma_XPPen.html?random=' + 1000 + '^0^0^1200^650^' + "Firma");
-        }
-
-        function esckeydown(e)
-        {
-            var theEvent = window.event || e;
-            var code = theEvent.keyCode || theEvent.which;
-            if (code == 27)
-            {
-                theEvent.returnValue = null;
-                window.returnValue = null;
-                closeWindow();
-            }
-        }
-    </script>
-
-
 </html>

@@ -6,11 +6,11 @@
 
 <%@page import="Controladores.ControladorCentro_costo"%>
 <%@page import="Modelo.ModeloPersonas"%>
-<%@page import="Controladores.ControladorGrupoConsumo"%>
-<%@page import="Modelo.ModeloGrupoConsumo"%>
+<%@page import="Controladores.ControladorGrupo_consumo"%>
+<%@page import="Modelo.ModeloGrupo_consumo"%>
 <%@page import="Controladores.ControladorCentro_costo"%>
 <%@page import="Modelo.ModeloCentro_costo"%>
-<%@page import="Controladores.ControladorEmpresas"%>
+<%@page import="Controladores.ControladorEmpresa"%>
 <%@page import="Modelo.ModeloEmpresa"%>
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -19,7 +19,32 @@
     <head>        
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPersonasCasino.js" ></script>         
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPersonasCasino.js" ></script>       
+        <!-- Kit FontAwesome para Botones (Mientras) -->
+        <script type="text/javascript" src="Principal/js/fontawesome/newjavascript.js"></script>
+        <style>
+
+            .center {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 50%;
+                pointer-events:none;
+            }
+
+            #Invisible {
+                cursor: default;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+        </style>
+
+
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -29,20 +54,8 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Personas</h3>
+                        <h3>Personas Casino</h3>
                     </div>
-
-                    <!-- <div class="title_right">
-                       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-                         <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Buscar...">
-                           <span class="input-group-btn">
-                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                           </span>
-                         </div>
-                       </div>
-                     </div>-->
-
                 </div>
 
                 <!-- Primera Sección-->
@@ -63,7 +76,7 @@
                                     <div class="clearfix"></div>
                                     <div class="row">
                                         <!-- Empleados -->
-                                        <div class="col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-md-8 col-sm-12 col-xs-12">
                                             <div class="x_panel">
                                                 <div class="x_title">
                                                     <h2>Configuración</h2>
@@ -116,12 +129,11 @@
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
                                                                             LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
-                                                                            ControladorEmpresas controladorEmpresas = new ControladorEmpresas ();
-                                                                            linkedListModeloEmpresas = controladorEmpresas.Read ();
-                                                                            for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas)
-                                                                            {
+                                                                            ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
+                                                                            linkedListModeloEmpresas = controladorEmpresas.Read("S");
+                                                                            for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
                                                                         %>  
-                                                                        <option value=<%=modeloEmpresa.getId ()%>><%=modeloEmpresa.getNombre ()%></option>
+                                                                        <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -135,11 +147,10 @@
                                                                         <%
                                                                             LinkedList<ModeloCentro_costo> linkedListModeloCentroCosto;
                                                                             ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
-                                                                            linkedListModeloCentroCosto = controladorCentro_costo.Read ();
-                                                                            for (ModeloCentro_costo modeloCentroCosto : linkedListModeloCentroCosto)
-                                                                            {
+                                                                            linkedListModeloCentroCosto = controladorCentro_costo.Read("S");
+                                                                            for (ModeloCentro_costo modeloCentroCosto : linkedListModeloCentroCosto) {
                                                                         %>  
-                                                                        <option value=<%=modeloCentroCosto.getId ()%>><%=modeloCentroCosto.getNombre()%></option>
+                                                                        <option value=<%=modeloCentroCosto.getId()%>><%=modeloCentroCosto.getNombre()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -160,13 +171,12 @@
                                                                     <select id="IdGrupoConsumo" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>
                                                                         <%
-                                                                            LinkedList<ModeloGrupoConsumo> linkedListModeloGrupoConsumo;
-                                                                            ControladorGrupoConsumo controladorGrupoConsumo = new ControladorGrupoConsumo ();
-                                                                            linkedListModeloGrupoConsumo = controladorGrupoConsumo.Read ();
-                                                                            for (ModeloGrupoConsumo modeloGrupoConsumo : linkedListModeloGrupoConsumo)
-                                                                            {
+                                                                            LinkedList<ModeloGrupo_consumo> linkedListModeloGrupoConsumo;
+                                                                            ControladorGrupo_consumo controladorGrupoConsumo = new ControladorGrupo_consumo();
+                                                                            linkedListModeloGrupoConsumo = controladorGrupoConsumo.Read("S");
+                                                                            for (ModeloGrupo_consumo modeloGrupoConsumo : linkedListModeloGrupoConsumo) {
                                                                         %>  
-                                                                        <option value=<%=modeloGrupoConsumo.getId ()%>><%=modeloGrupoConsumo.getDescripcion ()%></option>
+                                                                        <option value=<%=modeloGrupoConsumo.getId()%>><%=modeloGrupoConsumo.getNombre()%></option>
                                                                         <%
                                                                             }
                                                                         %>
@@ -178,6 +188,10 @@
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>
                                                             </div>
+
+
+
+
                                                             <div class="modal fade" id="ModalGt4001" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
@@ -265,6 +279,52 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <!-- Capturar Foto_Huella Visitante -->   
+                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                            <div class="x_panel">
+                                                <div class="x_title">
+                                                    <h2>Capturar</h2>
+                                                    <ul class="nav navbar-right panel_toolbox">
+                                                        <li><a></a>
+                                                        </li>
+                                                        <li class="dropdown">
+                                                            <a></i></a>
+                                                        </li>
+                                                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                                <div class="x_content">
+
+                                                    <div class="profile_img">
+                                                        <div id="crop-avatar">
+                                                            <!-- Img Captura Foto-Huella -->
+                                                            <img id="IdImagen"class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="245" width="245">
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Ignorar -->
+                                                    <label for="Invisible1" id="Invisible" style="visibility:hidden">-</label>
+                                                    </br>
+
+                                                    <!-- /Ignorar -->
+
+                                                    <!-- Botones -->
+                                                    <div class="ln_solid"></div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-2">
+                                                            <button class="btn btn-primary btn-sm" type="button" onclick="openCamera();" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
+                                                            <button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button> 
+                                                            <button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
+                                                        </div>
+                                                    </div>
+                                                    <!-- /Botones -->
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Capturar Foto_Huella Visitante -->  
                                     </div>
                                     <!-- /Empleados -->
                                 </div>
@@ -329,6 +389,7 @@
         </footer>
         <!-- Footer -->        
         <%@include file="Principal/Script.html" %>  
+        <%@include file="Principal/js/JsVisitantes/fotohuellafrima.html" %>  
         <script>
 
             $('#myDatepicker').datetimepicker();
