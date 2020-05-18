@@ -1,0 +1,159 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.2.3 Elevator Levels</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection75 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;margin-left:
+0cm'><a name="_Toc427071747"><span lang=EN-US>5.2</span><span lang=EN-US>.3 </span></a><span
+lang=EN-US>Elevator</span><span lang=EN-US> Levels</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Elevator </span><span lang=EN-US>levels
+indicate that one or several selected doors can be opened by verification of a
+combination of multi person within certain time zone. The combination of multi
+person set in Personnel Access Level option.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Add </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span style='font-family:宋体'>（</span><span lang=EN-US>1</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>. Click [</span><span
+lang=EN-US>Elevator</span><span lang=EN-US>] &gt; [Access Levels] &gt; [Add] to
+enter the Add Levels editing interface:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=310
+height=156 src="user_help.files/image134.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span style='font-family:宋体'>（</span><span lang=EN-US>2</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>. Set each parameter: Level
+Name (unrepeatable), Time Zone.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span style='font-family:宋体'>（</span><span lang=EN-US>3</span><span
+style='font-family:宋体'>）</span><span lang=EN-US>. Click [OK]</span><span
+lang=EN-US>, the system </span><span lang=EN-US>prompt</span><span lang=EN-US>s
+”Add floors to the current elevator control level immediately”</span><span
+lang=EN-US>, click [OK] to add </span><span lang=EN-US>fl</span><span
+lang=EN-US>oors, click [Cancel] to return the </span><span lang=EN-US>elevator</span><span
+lang=EN-US> levels list. The added level is displayed in the list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%;text-autospace:ideograph-other'><span
+lang=zh-CN><img border=0 width=227 height=106
+src="user_help.files/image135.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=576 height=301
+src="user_help.files/image136.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: </span><span lang=EN-US>Different </span><span lang=EN-US>floors
+of different elevator controllers </span><span lang=EN-US>can be selected and
+added to an </span><span lang=EN-US>elevator</span><span lang=EN-US> level.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Set By Levels</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add/Delete Personnel for Selected Levels:</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:3.3pt;text-indent:0cm'><span style='font-family:宋体'>（</span><span
+lang=EN-US>1</span><span style='font-family:宋体'>）</span><span lang=EN-US>Click
+[</span><span lang=EN-US>Elevator</span><span lang=EN-US>] &gt; [Set By Levels]
+to enter the edit interface, Click a</span><span lang=EN-US>n Elevator</span><span
+lang=EN-US> level in left list, personnel having right of opening door in this
+access level will display on right list. </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:3.3pt;text-indent:0cm'><span style='font-family:宋体'>（</span><span
+lang=EN-US>2</span><span style='font-family:宋体'>）</span><span lang=EN-US>In the
+left list, click [Add Personnel] under Operations to pop-up the Add Personnel
+box; select personnel (multiple) and click </span><span lang=zh-CN><img
+border=0 width=24 height=17
+src="user_help.files/image089.png"></span><span lang=EN-US>&nbsp;to
+move it to the right selected list, then click [OK] to save and complete.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:3.3pt;text-indent:0cm'><span style='font-family:宋体'>（</span><span
+lang=EN-US>3</span><span style='font-family:宋体'>）</span><span lang=EN-US>Click
+the level to view the personnel in the right list. Select personnel and click
+[Delete Personnel] above the right list, then Click [OK] to delete.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Set By
+Employee</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add selected personnel to selected </span><span
+lang=EN-US>elevator</span><span lang=EN-US> levels, or delete selected
+personnel from the </span><span lang=EN-US>elevator</span><span lang=EN-US>
+levels.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add/Delete levels for Selected Personnel:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(1) Click [</span><span lang=EN-US>Elevator</span><span
+lang=EN-US>] &gt; [</span><span lang=EN-US>Elevator</span><span lang=EN-US>
+Levels] &gt; [Set By </span><span lang=EN-US>Person</span><span lang=EN-US>],
+click employee to view the levels in the right list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(2) Click [Add to Levels] under Operations to
+pop-up the Add to Levels box, select Level (multiple) and click </span><span
+lang=zh-CN><img border=0 width=24 height=17
+src="user_help.files/image089.png"></span><span lang=EN-US>&nbsp;to
+move it to the right selected list; click [OK] to save and complete.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(3) Select Level (multiple) in the right
+list, and click [Delete from levels] above the list, then click [OK] to delete
+the selected levels.</span><a name="_Toc13401"></a><a name="_Toc306348206"></a></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

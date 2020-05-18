@@ -1,0 +1,102 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.6 辅助输出</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection34 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638129"><span lang=EN-US
+style='font-size:10.5pt'>4.1.6 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>辅助输出</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>主要接报警器等，在联动的时候使用。可以对辅助输出的继电器进行远程打开、关闭、常开。操作后，继电器会执行相应的动作。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【门禁设备】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【辅助输出】，进入<b>辅助输出</b>页面：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=645 height=165
+src="user_help.files/image063.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>点击需要修改的辅助输出后面的【编辑】，如下图：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=282 height=273
+src="user_help.files/image064.jpg">&nbsp; &nbsp;</span><span style='position:absolute;z-index:251645440;margin-left:0px;margin-top:0px;
+width:308px;height:258px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=308 height=258 style='vertical-align:top'><span style='position:
+  absolute;z-index:251645440'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>主要字段说明如下</span></b><span
+    style='font-family:幼圆'>：</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>输出名称</span></b><span
+    style='font-family:幼圆'>：可自定义输出点名称。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>丝印名称</span></b><span
+    style='font-family:幼圆'>：对应硬件上的丝印，比如</span><span lang=EN-US>OUT1</span><span
+    style='font-family:幼圆'>。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>常开时间段</span></b><span
+    style='font-family:幼圆'>：选择辅助输出点的常开时间段。设置的该时间段内，辅助输出点将会处于常开状态。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:
+    Wingdings'>?</span><b><span style='font-family:幼圆'>注意事项</span></b><span
+    style='font-family:幼圆'>：此处只可修改名称、常开时间段和备注，其他选项不可修改。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=304 height=254
+src="user_help.files/image065.png"></span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,135 @@
+<#assign formId = "personalitySetForm">
+<#assign editPage = "true">
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script type="text/javascript">
+function getCookie(name)//取cookies函数
+{
+	var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+	if(arr != null) return unescape(arr[2]); return null;
+}
+var cookieLan = getCookie("language");
+$().ready(function() {
+	
+	$("#${formId}").validate( {
+		debug : true,
+		rules : 
+		{
+			"referenceLanguage" : 
+			{
+				required : true
+			}
+		},
+		submitHandler: function(form) {
+			submitForm();
+		}
+		
+	});
+});
+
+function submitForm()
+{
+	
+	if(formData == $("#${formId}").serialize())
+	{
+		closeWindow();
+	}
+	else
+	{
+		onLoading(function(){
+			/**-----皮肤操作----**/
+			/* var selectSkin = myCombos[skinSelect].getSelectedValue();
+			createCookie("dhtmlx.skin", selectSkin); */
+			
+			/**-----语言操作----**/
+			var selectLanguage = myCombos[languageSelect].getSelectedValue();
+			var path="baseLanguageAction!initNational.action?selectLanguage="+selectLanguage;
+			
+			$.ajax({
+				url: path,
+				success: function(data){
+					if (data==true)
+					{
+						openMessage(msgType.success);
+						window.location.reload();
+						closeWindow();
+					}
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					closeMessage(0);
+					messageBox({
+						messageType : "alert",
+						title : "${common_prompt_title}",
+						text : "${common_prompt_serverError}"
+					});
+				}
+			});
+		});
+	}
+	
+}
+</script>
+
+
+<form method="post" id="${formId}" action="">
+	<table class="tableStyle">
+
+		<tr valign="middle">
+			<th><label>${base_i18n_language}</label></th>
+			<td valign="middle">
+				<select name="referenceLanguage" id="languageSelect" mode="image" imagePath="${base}/base/images/flags/" style="width: 200px;">
+					<#if authLanguageMap?exists>
+						<#list authLanguageMap?keys as languageKey> 
+							<#assign countSum=0>
+							<#assign countTransSum=0>
+							<#list authLanguageMap.get(languageKey).languageResourceStatistics as statistics>
+								<#assign countSum=countSum+statistics.totalQuantity>
+								<#assign countTransSum=countTransSum+statistics.finishedQuantity>
+							</#list>
+							<#if countTransSum==countSum>
+								<option value="${languageKey}" img_src="${languageKey}.png">${authLanguageMap.get(languageKey).i18nName}</option>
+							</#if>
+						</#list>
+					</#if>
+				</select>
+			</td>
+		</tr>
+		<#noparse>
+		<!-- <tr valign="middle">
+			<th><label>${base_personalitySet_skin}</label></th>
+			<td valign="middle">
+				<select id="skinSelect" mode="image" imagePath="${base}/base/images/skinIcon/">
+					<option value="dhx_skyblue" img_src="skyblue.png">skyblue</option>
+					<option value="dhx_web" img_src="web.png">web</option>
+					<option value="dhx_terrace" img_src="terrace.png">terrace</option>
+				</select>
+				</td>
+		</tr> -->
+		</#noparse>
+	</table>
+</form>
+<script type="text/javascript">
+	/* var skinSelect = "skinSelect";
+	myCombos[skinSelect] = dhtmlXComboFromSelect(skinSelect);
+	myCombos[skinSelect].readonly(true);
+	myCombos[skinSelect].forEachOption(function(opt){
+		if(opt.value == dhtmlx.skin)
+		{
+			myCombos[skinSelect].selectOption(opt.index);
+		}
+	}); */
+	var languageSelect = "languageSelect";
+	myCombos[languageSelect] = dhtmlXComboFromSelect(languageSelect);
+	myCombos[languageSelect].readonly(true);
+	
+	myCombos[languageSelect].forEachOption(function(opt){
+		if(opt.value == "${currentLanguage}")
+		{
+			myCombos[languageSelect].selectOption(opt.index);
+		}
+	});
+	
+	var formData = $("#${formId}").serialize();
+</script>
+</#macro>

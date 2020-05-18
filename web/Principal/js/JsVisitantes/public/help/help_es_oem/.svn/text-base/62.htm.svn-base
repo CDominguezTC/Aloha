@@ -1,0 +1,99 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.5.4 Eventos de Excepción</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection62 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077059"></a><a name="_Toc5837"></a><a name="_Toc417486956"></a><a
+name="_Toc413852716"><span lang=ES-MX>4.5.4 Eventos de Excepción</span></a></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>De clic en [Reportes]
+&gt; [Eventos de Excepción] para ver los eventos de excepción en las
+condiciones especificadas. Las opciones son las mismas que en [Todos los
+Eventos].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=590
+height=130 id="图片 28"
+src="user_help.files/image113.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Limpiar Todos Los Eventos</span><span
+lang=ES-MX>: De clic en [Limpiar Todos Los Eventos] para emerger una ventana y
+de clic en [OK] para limpiar los eventos de excepción.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Por Puerta</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Ver los niveles de
+acceso por puerta. De clic en [Reportes] &gt; [Por Puerta], la lista de datos
+en la izquierda muestra todas las puertas en el sistema, seleccione una puerta
+y se mostrará el personal que tiene el nivel de acceso a la puerta en la lista
+de la derecha.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=646
+height=184 src="user_help.files/image114.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Por Usuario</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Ver los niveles de
+acceso por personal. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>De clic en [Reportes]
+&gt; [Por Usuario], la lista de datos en la izquierda muestra todos los
+usuarios, seleccione un usuario y se mostrarán las puertas a las que el
+personal tiene acceso.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=zh-CN><img border=0
+width=637 height=154
+src="user_help.files/image115.jpg"></span></b></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:22.0pt;line-height:240%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,68 @@
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+<script type="text/javascript">
+	$().ready(function() {
+	    $("#editFormOK").attr({disabled:"true"});
+		// 字母和数字的验证
+		$("#${formId}").validate( {
+			debug : true,
+			submitHandler : function()
+			{
+				if($("#addAccDoorIds").val() == "")
+				{
+					openMessage(msgType.error);
+					return false;
+				}
+				$("#id_entity_group").val($("#addAccDoorIds").val());
+				<@submitHandler callBackFun="reloadSelectItem()"/>
+			}
+		});
+	});
+	
+	function addDoor()
+	{
+	    var path = '/accDoorAction!getDoorInfo.action?mapId=' + $("#id_mapId").val() + '^0^0^870^500^${acc_door_select}';
+	    createWindow(path);
+	}
+	
+	function buttonFunction()
+	{
+	    if($("#addAccDoorIds").val() == "")
+		{
+			$("#editFormOK").attr({disabled:"true"});
+		}
+		else
+		{
+		    $("#editFormOK").removeAttr("disabled");
+		}
+	}
+	var personLevels = "";
+</script>
+
+<form enctype="multipart/form-data" id="${formId}" action="baseMapAction!addEntity.action?logMethod=${logMethod!}"
+	onkeydown="if(event.keyCode==13){return false;}" method="post">
+	<input type="hidden" value="${(mapId)!}" name="mapId" id="id_mapId">
+	<input type="hidden" value="${(entityType)!}" name="entityType" id="id_entityType">
+	<input type="hidden" value="${(width)!}" name="width" id="id_width">
+	<input type="hidden" name="entityGroup" class="wZBaseCharField" id="id_entity_group">
+    <div style="width: 90%; margin-left: 10px;height:10%; margin-top: 10px;">
+        <h1 style="width: 100%; height: 100%; margin-bottom: 10px;">${acc_door_select}<span class="required">*</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="javascript:void(0)" onclick="addDoor()">${common_op_add}</a>
+        <a href="javascript:void(0)" onclick="checkAllPersonLevel()">${acc_dev_selectAll}</a>
+        <a href="javascript:void(0)" onclick="uncheckAllPersonLevel()">${acc_dev_unselectAll}</a>
+        </h1>
+    </div>
+    <fieldset style="border: 1px solid #DDDDDD; margin-left: 10px; margin-right: 10px; padding: 0px;overflow: auto;height:96%"> 
+        <div id="sub_selectedAccLevel" style="height:200px; padding-left:8px; overflow:auto; line-height:22px;">
+           <!-- 没有选择读头的时候，有提示图标 -->
+           <span class="warningImage"></span>
+           <span class="warningColor">${acc_door_noDoor}</span>
+        </div>
+        <div>
+            <input type="hidden" name="addAccDoorIds" id="addAccDoorIds"/>
+            <input type="hidden" name="delAccDoorIds" id="delAccDoorIds" />
+            <input type="hidden" name="originDoorIds" id="originDoorIds" />
+        </div>
+    </fieldset>
+</form>
+</#macro>

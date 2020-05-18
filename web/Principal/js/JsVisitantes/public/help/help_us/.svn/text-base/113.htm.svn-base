@@ -1,0 +1,66 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 8.2.2 Role</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection113 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072425"></a><a name="_Toc414032720"></a><a
+name="_Toc387761947"><span lang=EN-US>8.2.2 </span></a><span lang=EN-US>Role</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN>When using the system, the super user needs
+to assign different levels to new users. To avoid setting users one by one, you
+can set roles with specific levels in role management, and assign appropriate
+roles to users when adding users. A super user has all the levels, can assign
+rights to new users and set corresponding roles (levels) according to
+requirements. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. Click [System Management] &gt; [Authority
+Management] &gt; [Role] &gt; [New]:</span></p>
+
+<p class=MsoNormal style='line-height:150%'><span lang=zh-CN><img border=0
+width=437 height=521 src="user_help.files/image189.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. Set the code and name, assign permissions
+for the role.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3. Click [OK] to save. </span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

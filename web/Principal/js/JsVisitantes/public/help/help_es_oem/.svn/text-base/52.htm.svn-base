@@ -1,0 +1,58 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.4 Funciones Avanzadas de Control de Acceso</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection52 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077049"></a><a name="_Toc26322"></a><a name="_Toc413852706"></a><a
+name="_Toc417486946"><span lang=ES-MX>4.4 </span></a><span lang=ES-MX>Funciones
+Avanzadas de Control de Acceso</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Las funciones avanzadas de control de acceso
+es una función opcional del sistema. Si requiere estas funciones, contacte a su
+representante comercial o Ingeniero de soporte. Estas funciones pueden
+utilizarse después de obtener y activar una licencia.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: A excepción de los vínculos globales, para poder utilizar las
+funciones avanzadas es necesario activar la verificación en segundo plano. Para
+más información, consulte </span><a href="29.htm#_4.1.2_Operaciones_del"><span
+lang=ES-MX>4.1.2 Operaciones del Dispositivo.</span></a></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

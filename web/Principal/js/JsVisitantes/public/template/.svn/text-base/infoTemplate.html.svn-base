@@ -1,0 +1,36 @@
+<!--此页面为弹窗模版，主要是对下方的操作按钮进行一个封装使用
+（说明：如果页面是进行弹窗，但没有这种按钮操作，无需继承该模版，
+只需调用createWindow或者openWindowByOperate方法） -->
+
+<!-- 定义关闭按钮文本 -->
+<#if !closeButtonText??>
+	<#assign closeButtonText = "${common_op_close}">
+</#if>
+<table width="100%" height="100%">
+	<tr valign="top">
+		<td class="content_td">
+			<div class="content_div" style="height: 0px;overflow: hidden;">
+				<script type="text/javascript">
+					opTemplateHeightResize();
+				</script>
+				<span></span>
+				<!-- content begin-->
+				<#if infoContent?exists>
+					<@infoContent/>
+				<#else>
+					<!-- <center>请填充内容</center> -->
+				</#if>
+				<!-- content end-->
+			</div>
+		</td>
+	</tr>
+	<tr valign="middle" height="46px">
+		<td >
+			<!-- editAfter begin-->
+			<div class="bottomDiv bottomDivR">
+				<button class='button-form' onclick="closeWindow()" id="closeButton">${closeButtonText}</button>
+			</div>
+			<!-- editAfter end-->
+		</td>
+	</tr>
+</table>

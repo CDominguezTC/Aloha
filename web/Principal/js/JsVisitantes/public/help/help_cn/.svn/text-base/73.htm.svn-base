@@ -1,0 +1,92 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.3.1 梯控时间段</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection73 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638168"></a><a name="_Toc21916"><span
+lang=EN-US style='font-size:10.5pt'>5.3.1 </span></a><span style='font-size:
+10.5pt;font-family:幼圆'>梯控时间段</span></h3>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【时间段】可以看到已添加的梯控时间段。该界面提供时间段新增、编辑和删除操作。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=489 height=124
+src="user_help.files/image157.jpg"></span></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【时间段】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】可以看到添加新的梯控时间段。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=576 height=360
+src="user_help.files/image158.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各参数说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>时间段名称</span></b><span
+style='font-family:幼圆'>：任意字符，最多</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>个字符组合。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>备注</span></b><span
+style='font-family:幼圆'>：对当前时间段的的解释及主要应用的场合，最多</span><span lang=EN-US>50</span><span
+style='font-family:幼圆'>字符。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>时间区间</span></b><span
+style='font-family:幼圆'>和<b>开始、结束时间</b>：一个梯控时间段包含一周及三个假日类型的最多三个时间区间，设置每个时间区间内的开始、结束时间。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设置方式</span></b><span
+style='font-family:幼圆'>：若时间段为持续释放时间段，填写第一个时间区间为</span><span lang=EN-US>00:00~23:59</span><span
+style='font-family:幼圆'>，第二个和第三个区间为</span><span lang=EN-US>00:00~00:00</span><span
+style='font-family:幼圆'>；若时间段为常闭：全都为</span><span lang=EN-US>00:00~00:00</span><span
+style='font-family:幼圆'>。如果只使用一个时间区间，只填写第一个时间区间，第二个和第三个时间区间使用默认值。如果使用前两个区间，第三个区间使用默认值；如果使用两个或三个时间区间，保证这些时间区间无时间的交集且不跨天，否则系统提示错误。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><b><span
+style='font-family:幼圆'>假日类型</span></b><span style='font-family:幼圆'>：时间段中的三种假日类型跟星期几无关，如果某个时间为某个假日类型，梯控时间段按照假日类型的时间区间。假日类型为可选，若不填写，系统以默认值写入。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><b><span
+style='font-family:幼圆'>复制星期一的时间到其他工作日：</span></b><span style='font-family:幼圆'>可快速复制星期一的时间段到其他工作日。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

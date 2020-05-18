@@ -1,0 +1,138 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.6 Solutions of Exceptions</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection100 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427071772"></a><a name="_Toc414032708"></a><a
+name="_Toc326246378"><span lang=EN-US>7.6</span></a><span lang=EN-US> </span><span
+lang=EN-US>Solutions of Exceptions</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>1. Client browser can not playback video, preview, or Real-Time
+Monitoring page has no video pops-up:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Firstly, Ensure IE11 and above version
+browser is available, client and Video Server are on the same network segment
+and the video ActiveX installation is successful. If the ActiveX installation
+fails, above all, uninstall the video ActiveX that were originally installed,
+run the &quot;regsvr32-u NetVideoActiveX23.ocx&quot;command, and then in the
+browser, set all the options in &quot;Tools -&gt; Internet Options -&gt; Security
+-&gt; Custom Level&quot; on the ActiveX to &quot;Enable or Prompt&quot;,
+re-open the browser, re-login screen and open the video preview page, run the
+button &quot;all add items of the site&quot;.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. The network or power of video device is shut off while
+previewing the video screen.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Check whether the network or power is
+connected normally. Refresh the page after ensuring that the connection is
+normal, refresh the page, and re-open the video preview.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><a name="OLE_LINK3"></a><a name="OLE_LINK2"><span lang=EN-US
+style='font-family:"Myriad Pro","sans-serif";color:#92D050'>3. In the E-Map, no
+video pops-up after clicking the camera icon:</span></a></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Make sure to use IE11 and above version
+browser, client and Video Server on the same network segment and the video
+ActiveX installation is successful. Also, view whether the browser is
+preventing the temporary window pops up, if it is, change to allow window pops
+up to the site.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>4. .Video linkage is triggered, the video server does not have
+video or size of the video file that the client downloads from the Video Server
+is 0kb:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>First, ensure that the software server has
+set Time Server (keep the Windows time service and has set the NTP function of
+the video server), it is recommended to set the time interval of the video
+server smaller to ensure accurate synchronization software server and video
+server time, so as to keep the time consistent between software server and controllers.
+It is recommended set Linkage Recording Time more than 5 seconds, to avoid
+executing video linkage commands delay, which may lead to the downloaded 0kb
+video file.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>5. The Video system is not normal to use in windows server 2008:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Desktop
+Experience feature needs to be added in windows server2008 before the normal
+use of the video.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Step 1: Run”
+services.msc” to open the “Service Manager”.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Step2: Set the
+start type of “Windows Audio” and “Themes” as Automatically Start.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Step3: Run the
+service manager, click [Add functions], check the “Desktop Experience” box and
+click [Install]. Reboot the server after the installation is done.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>6. The video downloaded to local can not be played:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Please choose a third part of video player to
+play the file, or else it can’t be played normally.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>7. When the browser is <a name="OLE_LINK51"></a><a
+name="OLE_LINK50">chrom42 or above version</a>, the system will prompt you to
+install video controls though you have already installed.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>The old NPAPI controls are disabled in
+chrom42 or above version. You should open the browser, and enter “chrome://flags/#enable-npapi”
+in address bar to enable the controls.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:22.0pt;line-height:240%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

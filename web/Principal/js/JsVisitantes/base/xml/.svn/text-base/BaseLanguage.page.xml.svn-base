@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseLanguage">
+			<field name="#checkbox" width="40" columnMinWidth="40"
+				label="headCheckBox" type="ro" align="left" valign="middle"
+				headerMenu="false" sort="na" isShow="true" content="ids" />
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="code" width="160" columnMinWidth="70" label="${base_i18n_langName}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" convertMethod="com.zk.base.i18n.BaseLanguageUtil#convertI18NNameByCode#code" />
+			<field name="%code" width="0" columnMinWidth="0" label=""
+                type="ro" align="left" valign="middle" headerMenu="false" sort="server"
+                isShow="true">
+            </field>
+			<field name="buildInFlag" width="140" columnMinWidth="70" label="${base_i18n_isbuiltin}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" >
+				<value name="true">${common_yes}</value>
+				<value name="false">${common_no}</value>
+			</field>
+			<field name="%buildInFlag" width="0" columnMinWidth="0" label=""
+				type="ro" align="left" valign="middle" headerMenu="false" sort="server"
+				isShow="true">
+			</field>
+			<field name="#finishProgress" width="140" columnMinWidth="100" label="${common_progress_finish}/${common_all}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true" convertMethod="com.zk.base.i18n.BaseLanguageUtil#convertLanguageProgress">
+			</field>
+			<field name="#operate" width="*" columnMinWidth="130" label="${common_relatedOp}" type="ro" align="left" valign="middle" headerMenu="false" sort="na" isShow="true">
+				<value shiro="{#}:BaseLanguage:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="baseLanguageAction!loadModule.action?baseLanguage.id=(id)">${common_op_edit}</a>]]>
+					</param>
+				</value>
+				<value shiro="{#}:BaseLanguage:export" text="${common_op_del}">
+					<param state="true">
+						<![CDATA[<a href="baseLanguageAction!downloadResource.action?baseLanguage.id=(id)">${base_i18n_exportLanguagePack}</a>]]>
+					</param>
+				</value>
+			</field>
+		</object>
+	</objects>	
+	<toolbars>
+		<toolbar actionName="baseLanguage">
+			<item shiro="*" id="baseLanguageAction!getAllLanguage.action^0^0^600^220" type="button" img="comm_add.png" imgdis="comm_add.png"
+				text="${common_op_new}" action="openWindowByOperate"></item>
+			<item shiro="*" id="baseLanguageAction!delete.action" type="button" img="comm_del.png" imgdis="comm_del.png"
+				text="${common_op_del}" action="deleLanguage"></item>
+		</toolbar>
+		<toolbar actionName="baseLanguageResource">
+			<item shiro="*" id="baseLanguageAction!loadModule.action" type="button" img="comm_back.png"
+				text="${common_op_return}" action="backToModule"></item>
+			<item id="sep1" type="separator"/>
+			<item shiro="*" id="baseLanguageResourceAction!saveChangedLangRes.action" type="button" img="common_save.png"
+				text="${base_i18n_save}" action="saveLangToDb"></item>
+			<item id="sep2" type="separator"/>
+			<item shiro="*" id="baseLanguageResourceAction!saveChangedLangRes.action" type="button" img="comm_edit.png"
+				text="${base_i18n_saveAndBack}" action="saveBack"></item>
+		</toolbar>
+	</toolbars> 
+</page>

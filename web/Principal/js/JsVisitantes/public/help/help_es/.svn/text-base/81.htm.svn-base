@@ -1,0 +1,58 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6 Módulo de Visitantes</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection81 style='layout-grid:15.6pt'>
+
+<h1 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc427077451"></a><a name="_Toc427077332"></a><a
+name="_Toc7814"></a><a name="_Toc417486975"></a><a name="_Toc414032688"><span
+lang=ES-MX style='font-size:16.0pt'>6 </span></a><span lang=ES-MX
+style='font-size:16.0pt'>Módulo de Visitantes</span></h1>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Después de dar clic en [Visitante], emergerá
+la siguiente ventana. De clic en [OK] para registrar las PC cliente que
+accederán al servidor en la lista de Lugar de Entrada. Para más información
+acerca del registro de Lugar de Entrada, consulte </span><a
+href="89.htm#_6.3.3_Lugar_de"><span lang=ES-MX>6.3.3 Lugar de Entrada </span></a><span
+lang=ES-MX>.</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=271 height=127
+src="user_help.files/image146.jpg"></span></b></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

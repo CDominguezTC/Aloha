@@ -1,0 +1,29 @@
+<#include "/public/template/winTemplate.html">
+<#macro winContent>
+<div style="text-align: center;">
+	<br/>
+	<br/>
+	<br/>
+	${base_i18n_referenceLanguage!}：
+	<select name="referenceLanguage" id="referenceLanguage" style="width: 300px">
+ 		<option value="">select</option>
+ 		<option value="zh_CN">${base_i18n_zh!}</option>
+ 		<option value="en_US">${base_i18n_en!}</option>
+	</select>
+</div>	
+	<script>
+		function fun(){
+			var referenceLanguage=$("#referenceLanguage").val();
+			if(!referenceLanguage)
+			{
+				messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_i18n_referenceLanguage}"});
+				return;
+			}
+			var updateLanguage=$("#updateLanguage").val();
+			openWindow('baseLanguageAction!loadLanguageResource.action?updateLanguage='+updateLanguage+'&referenceLanguage='+referenceLanguage,'no');
+			closeWindow();
+		}
+		
+	</script>
+</#macro>
+<#macro confirmFunction>fun()</#macro>

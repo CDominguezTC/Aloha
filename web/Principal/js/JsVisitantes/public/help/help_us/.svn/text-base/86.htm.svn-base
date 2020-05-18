@@ -1,0 +1,62 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.2 Reservation</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection86 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427072398"></a><a name="_Toc414032693"></a><a
+name="_6.2_Reservation"></a><span lang=EN-US>6.2 </span><span lang=EN-US>Reservation</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>1. Click [Reservation] &gt; [Reservation]
+&gt; [New]:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=358 height=305 id="Picture 160"
+src="user_help.files/image156.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. Complete the reservation information,
+click [OK].</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>The personnel can reserve visitor for
+themselves by “Personal Self-Login”. The method is same with above
+descriptions. About how to login to the personal-self system, please refer to </span><a
+href="11.htm#_2.2_Personal_Self-Login"><span lang=EN-US>2.2 Personal Self-Login</span></a><span
+lang=EN-US>.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

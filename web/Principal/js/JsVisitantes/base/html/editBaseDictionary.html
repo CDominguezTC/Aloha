@@ -1,0 +1,121 @@
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script src="" type="text/javascript">
+$(document).ready(function() {
+	var isAllowModify = "${(entity.allowModify?string('true','false'))!}";
+	if(isAllowModify == "true")
+	{
+		$("#ismdfy").attr("checked","true");
+	}
+	// 字母和数字的验证
+	$("#${formId}").validate( {
+		debug : true,
+		rules : {
+			"entity.code" : {
+				required : true,
+				overRemote : ["baseDictionaryAction!isNotExist.action", "${(entity.code)!}"]
+			},
+			"entity.name" : {
+				required : true,
+				validInputStr: true,
+				overRemote : ["baseDictionaryAction!isNotExist.action", "${(entity.code)!}"]
+			}
+		},
+		submitHandler: function(form) {
+			<@submitHandler callBackFun="reloadTree()"/>
+		}
+	});
+	
+	});
+
+	
+	
+ /*
+  * var timeoutid;
+	var codeObj=$("#dictCode");
+	var idval="${(entity.id)!}";
+  * //添加键盘事件.
+	codeObj.keyup(function(event){
+		var evet=event|| windows.event;
+		var keyCode=evet.keyCode;
+		//退格,插入,回车,空格
+		if(keyCode>=65&&keyCode<=90||keyCode==9 ||keyCode==40 ||keyCode==8||keyCode==45|| keyCode==32){
+			var codeValue=codeObj.val();
+			var info=$("#info");
+			if(codeValue!=""&& codeValue.length>0){
+				clearTimeout(timeoutid);
+				timeoutid=setTimeout(function(){$.ajax({
+						url:"baseDictionaryAction!lookforCode.action",
+						type:"get",
+						dataType:"html",
+						data:"code="+codeObj.val()+"&id="+idval,
+						timeout:500,
+						error:function(){alert("error loading xml document");},
+						success:function(data){
+								console.log("返回数据："+data);		
+								if(data){
+									info.html(<font color=blue>可以使用此别名!</font>);
+								}else{
+									info.html(<font color=blue>系统存在别名,请另取!</font>);
+								}
+						}
+					});
+				},800);
+
+			}else{
+				codeObj.val("${(entity.code)!}"); //将原值不变，
+			}
+		}
+	});*/
+	
+	
+ 
+//});
+</script>
+
+<form method="post" id="${formId}" action="baseDictionaryAction!edit.action">
+	<input type="hidden" id="dictId" name="entity.id" value="${(entity.id)!}"/>
+    <table class="tableStyle">
+		<colgroup>
+		  <col width="35%"/>
+		  <col width="*"/>
+		  </colgroup>
+        <tr><th colspan="9" align="left"></th></tr>
+        <tr>
+       		<th><label>${base_dictionary_name}</label><span class="required">*</span></th>
+       		<td><input id="dictName" name="entity.name" value="${(entity.name)!}"/></td>
+        </tr>
+        <tr>
+			<th><label>${base_dictionary_alias}</label><span class="required">*</span></th>
+        	<td><input id="dictCode" name="entity.code" value="${(entity.code)!}"/> <span id="info"></span></td>
+        </tr>
+        <tr id="trLanguage">
+        	<th><label>${base_dictionary_language}</label><span class="required">*</span></th>
+        	<td>
+        		<select name="entity.supportLang">
+        			<option value="*">*</option>
+        			<option value="zh_CN">zh_CN</option>
+        			<option value="en_US">en_US</option>
+        		</select>
+        	</td>
+        </tr>        
+        <tr>
+        	<th><label>${base_dictionary_isAllowModify}</label><span class="required">*</span></th>
+        	<td>
+        		<input id="ismdfy" name="entity.allowModify" type="checkbox" value="true"/>
+        	</td>
+        </tr>
+        <tr>
+        	<td colspan="9" align="left" height="10px;"></td>
+        </tr>
+       </table>
+</form>
+<script type="text/javascript">
+	//只为新建所提供，不给予编辑
+	var dictId = $('#dictId').val();
+	if(typeof(dictId) != "undefined" && dictId != '')
+	{
+		$('#trLanguage').remove();
+	}
+</script>
+</#macro>

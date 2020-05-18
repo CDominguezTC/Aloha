@@ -1,0 +1,22 @@
+<html>
+	<head>
+		<script src="timer.js"></script>
+	</head>
+	<body>
+		<div id="begintime"></div>
+		<div id="endtime"></div>
+		<button onclick="aa('begintime')">alertTimer1</button>
+		<button onclick="aa('endtime')">alertTimer2</button>
+		<script>
+			// 参数1 必须，时间控件显示的divid 参数2可选，默认同参数1，为了form提交，增加隐藏域，赋值name属性 参数3可选(true/false)是否显示时间格式化,默认false 参数4 时间控件初始值，可选，默认00:00:00 参数5 可选，时间显示格式化，默认HH:MM:SS
+			showTimer('begintime',"emp.begintime",true,"12:45","HH:MM");
+			showTimer('endtime',"emp.endtime",true,"21:67","HH:MM");
+			//showTimer('begintime');
+			//showTimer('endtime',true,"21:67:67","HH:MM");
+			//returnTimer(divid) 取得divid时间控件的值
+			function aa(id){
+				alert(returnTimer(id));
+			}
+		</script>
+	</body>
+</html>

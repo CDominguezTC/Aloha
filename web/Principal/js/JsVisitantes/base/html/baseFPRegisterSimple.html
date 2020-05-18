@@ -1,0 +1,666 @@
+<div style="position: relative; background:rgb(243, 245,240); left: -2px; top: -7px; width: 455px; height: 450px; background: url('${base}/base/images/base_fingerBg.png') repeat-x scroll center center">
+	<div>
+		<input type="hidden" id="whetherModify" name="whetherModify" alt="" value="111" />
+	</div>
+	<div id="showFPImageDiv" style="padding-left: 70px; padding-top: 30px; width: 112px; height: 145px; diaplay: block;"></div>  
+	<div id="showPromptInfoDiv" style="position: absolute; text-align: right; left: 35px; top: 210px; height: 20px; background-attachment:rgb(243, 245,240); diaplay: block;">
+		<span style='color:#3C85C8; font-size: 14px;'>${base_fp_promptInfo}<!-- ${base_fp_promptInfo}:复选框上的提示信息--></span>
+	</div>
+	<div id="showCollInfoDiv" style="position: absolute; text-align: right; left: 249px; top: 30px; width: 195px; height: 20px; background-attachment: rgb(243, 245,240); diaplay: block;"></div>
+	<div id="showFPTextDiv" style="position: absolute; text-align: right; left: 300px; top: 53px; width: 141px; height: 20px; background-attachment: rgb(243, 245,240); diaplay: block;"></div>
+	<div id="showHandInfoDiv" style="position: absolute; text-align: right; left: 350px; top: 76px; width: 91px; height: 20px; background-attachment: rgb(243, 245,240); diaplay: block;"></div>
+	<div id="showFingerInfoDiv" style="position: absolute; text-align: right; left: 350px; top: 99px; width: 91px; height: 20px; background-attachment: rgb(243, 245,240); diaplay: block;"></div>
+	<div id="duressFingerDiv" style="position: absolute; left: 320px; top: 270px; width: 140px; height: 23px; diaplay: block;">
+		<input type="checkbox" id="duressFinger" name="checkboxName">&nbsp;${base_fp_duressFinger}</input><!-- ${base_fp_duressFinger}:胁迫指纹 -->
+	</div>
+	<div style="position: absolute; left: 320px; top: 295px; width: 70px; height: 28px; diaplay: block;">
+		<button type="button" id="submitButtonId" name="submitButtonName" onclick="submitEvent();" class="button-form" style="width: 70px; height: 25px;">
+			${common_edit_ok}<!-- ${common_edit_ok}:确定 border: 1px solid #AAAAAA; -->
+		</button>
+	</div>
+	<div style="position: absolute; left: 320px; top: 335px; width: 70px; height: 28px; diaplay: block;">
+		<button type="button" id="closeButton" name="closeButton" class="button-form" onclick="cancelEvent('${base_fp_save}', '${pers_person_templateCount}:');" style="width: 70px; height: 25px;">
+			${common_edit_cancel}<!-- ${common_edit_cancel}:取消  top: 225px;-->
+		</button>
+	</div>
+	<div id="fp_select_div" style="position: absolute; left: 0px; top: 233px; width:310px; diaplay: block;">
+		<div style="width:100%; height:28px;">
+			<input type="checkbox" id="finger4" style="padding-left:38px;" onclick="selectChange(this)" value="4"></input>
+			<input type="checkbox" id="finger3" style="padding-left:12px;" onclick="selectChange(this)" value="3"></input>
+			<input type="checkbox" id="finger2" style="padding-left:12px;" onclick="selectChange(this)" value="2"></input>
+			<input type="checkbox" id="finger1" style="padding-left:10px;" onclick="selectChange(this)" value="1"></input>
+			<input type="checkbox" id="finger0" style="padding-left:2px;" onclick="selectChange(this)" value="0"></input>
+			<input type="checkbox" id="finger5" style="padding-left:7px;" onclick="selectChange(this)" value="5"></input>
+			<input type="checkbox" id="finger6" style="padding-left:7px;" onclick="selectChange(this)" value="6"></input>
+			<input type="checkbox" id="finger7" style="padding-left:6px;" onclick="selectChange(this)" value="7"></input>
+			<input type="checkbox" id="finger8" style="padding-left:12px;" onclick="selectChange(this)" value="8"></input>
+			<input type="checkbox" id="finger9" style="padding-left:13px;" onclick="selectChange(this)" value="9"></input>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+//选中的手指
+var fingerSelected = "";
+//保存当前正在采集的手指标记--删除时，消除当前正在采集的手指颜色时用到
+var lastFPIdNum = null;
+//XDomainRequest对象实例
+var xDomainRequest = null;
+//当前手指是否被选中
+//var fingerSelectedFlag = null;
+//两次点击是否同一个手指
+var isSameFinger = false;
+//判断是否修改了数据(包括新增和删除)
+var fpModifyFlag = false;
+
+/**
+ * beginCapture接口的回调函数--beginFPRegister()的回调函数
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ */
+function beginCaptureCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	//返回码var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时
+	if(ret == 0)
+	{
+		//检查采集次数、显示图像
+		captureAndGetImage();
+	}
+	else if(ret == -2001)
+	{
+		//${base_fp_connectFail}:连接指纹采集器失败
+		//显示框--采集提示
+		collectTips(null, "${base_fp_connectFail}", "simple");
+		fingerDisabled(-1);
+	}
+	else if(ret == -2002)
+	{
+		getWebServerInfoForSimple(null, null, "1");
+	}
+	else if(ret == -2005)
+	{
+		//取消采集
+		cancelRegister();
+		//${base_fp_pressFinger}:请选择手指
+		//显示框--采集提示
+		collectTips(null, "${base_fp_pressFinger}", "simple");
+	}
+}
+/**
+ * ajax调用错误处理
+ * @author wenxin
+ * @create 2013-06-01 19:44:31 pm
+ */
+function errorMsg()
+{
+	messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_connectPrompt}"});
+}
+/**
+ *  getImage接口的回调函数-captureAndGetImage()的回调函数
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ */
+function getImageCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	resultData = resultData.replace(/[\n\t]/g, "");
+	resultData = resultData.replace(/[\n]/g, "");
+	var base64FPImg = "";
+	//指纹采集次数
+	var collCount = 0;
+	//是否成功返回 true:失败时返回；false:成功时返回
+	var successFlag = false;
+	//返回码
+	var ret = "";
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+		if(ret == 0 && obj.data != undefined)
+		{
+			collCount = obj.data.enroll_index;
+			base64FPImg = obj.data.jpg_base64;
+		}
+	}
+	if(collCount != 3)
+	{
+		//第一次和第二次采集，显示采集次数、指纹图像、进度条
+		if(collCount == 1 || collCount == 2)
+		{
+			//${base_fp_collCount}:按压指纹剩余次数:
+			var text = "${base_fp_collCount}"+(FINGERPRINT_NUMBER - collCount);
+			//显示框--采集提示
+			collectTips(null, text, "simple");
+			//显示指纹图像
+			showImage(null, base64FPImg, "simple");
+			//清空图像
+			setTimeout("clearImageData()", 1000);
+		}
+		//定时器
+		timer = setTimeout("captureAndGetImage()", 1000);
+	}
+	else
+	{
+		//将定时器的递归调用关闭 -- 此处需再考虑一下
+		clearTimeout(timer);
+		//显示指纹图像
+		showImage(null, base64FPImg, "simple");
+		//清空图像
+		setTimeout("clearImageData()", 1000);
+		//获取指纹模板
+		getFPTemplateForSimple();
+		//如果胁迫指纹选中，则取消选中
+		if(duressFingerFlag)
+		{
+			$("#duressFinger").attr("checked", false);
+		}
+		$("#duressFinger").attr("disabled", false);
+		$("#submitButtonId").attr("disabled", false);
+		collectFlag = false;
+		fingerEnabled();
+		//fpIdNum = -1;
+	}
+}
+/**
+ * 选择手指后，点击open开始登记
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ * @param num 当前正在采集的手指编号
+ */
+function beginRegister(num)
+{
+	//第二次点击和上一次点击(点击删除时不计)不是同一个，当前有手指正在采集
+	if(isSameFinger)
+	{
+		if(collectFlag)
+		{
+			//取消采集
+			//将定时器的递归调用关闭
+			clearTimeout(timer);
+			//取消采集
+			cancelRegister();
+		}
+		else
+		{
+			//采集
+			fpRegister(num);
+		}
+	}
+	else
+	{
+		if(collectFlag)
+		{
+			//先取消采集，再采集
+			//将定时器的递归调用关闭 
+			clearTimeout(timer);
+			//取消采集
+			cancelRegister();
+		}
+		else
+		{
+			//直接采集
+			fpRegister(num);
+		}
+	}
+}
+/**
+ * 开始采集前--样式改变和显示提示信息
+ * @author wenxin
+ * @create 2013-06-18 10:18:31 am
+ * @param num 当前正在采集的手指编号
+ */
+function fpRegister(num)
+{
+	//采集
+	collectFlag = true;
+	$("#duressFinger").attr("disabled", true);
+	$("#submitButtonId").attr("disabled", true);
+	//${base_fp_collCount}:按压指纹剩余次数:
+	var text = "${base_fp_collCount}"+FINGERPRINT_NUMBER;
+	//显示框--采集提示
+	collectTips(null, text, "simple");
+	//显示当前采集的手指信息
+	showCurrentFingerInfo(num);
+	duressFingerFlag = $("#duressFinger").attr("checked");
+	//开始采集
+	beginFPRegister(1);
+}
+/**
+ * 显示当前采集的手指信息
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ * @param num 当前正在采集的手指编号
+ */
+function showCurrentFingerInfo(num)
+{
+	if(num == -1)
+	{
+		$("#showFPTextDiv").html("");
+		$("#showHandInfoDiv").html("");
+		$("#showFingerInfoDiv").html("");
+		return false;
+	}
+	var handInfo = "";
+	var fingerInfo = "";
+	//${base_fp_currentFingerInfo}:当前手指信息:
+	var fpText = "${base_fp_currentFingerInfo}";
+	$("#showFPTextDiv").html("<span style='color:afb5b9; font-size: 14px;'>"+fpText+"</span>");
+	var hand = num>4?"right":"left";
+	if(hand == "left")
+	{
+		//${base_fp_leftHand}:左手
+		handInfo = "${base_fp_leftHand}";
+	}
+	else if(hand == "right")
+	{
+		//${base_fp_rightHand}:右手
+		handInfo = "${base_fp_rightHand}";
+	}
+	$("#showHandInfoDiv").html("<span style='color:afb5b9; font-size: 14px;'>"+handInfo+"</span>");
+	if(num == 0 || num == 5)
+	{
+		//${base_fp_thumb}:拇指
+		fingerInfo = "${base_fp_thumb}";
+	}
+	else if(num == 1 || num == 6)
+	{
+		//${base_fp_forefinger}:食指
+		fingerInfo = "${base_fp_forefinger}";
+	}
+	else if(num == 2 || num == 7)
+	{
+		//${base_fp_middleFinger}:中指
+		fingerInfo = "${base_fp_middleFinger}";
+	}
+	else if(num == 3 || num == 8)
+	{
+		//${base_fp_ringFinger}:无名指
+		fingerInfo = "${base_fp_ringFinger}";
+	}
+	else if(num == 4 || num == 9)
+	{
+		//${base_fp_littleFinger}:小指
+		fingerInfo = "${base_fp_littleFinger}";
+	}
+	$("#showFingerInfoDiv").html("<span style='color:afb5b9; font-size: 14px;'>"+fingerInfo+"</span>");
+}
+/**
+ * 将所有的finger可选
+ * @author wenxin
+ * @create 2013-12-18 11:18:11 am
+ */
+function fingerEnabled()
+{
+	for(var i = 0; i < 10; i ++)
+	{
+		$("#finger"+i).attr("disabled", false);
+	}
+}
+/**
+ * 将除了传入的fingerId以外的finger不可选
+ * @author wenxin
+ * @create 2013-12-18 11:18:11 am
+ */
+function fingerDisabled(fingerId)
+{
+	for(var i = 0; i < 10; i ++)
+	{
+		if(i != fingerId)
+		{
+			$("#finger"+i).attr("disabled", true);
+		}
+	}
+}
+/**
+ * 复选框选中出发事件，将选择的手指标记保存在全局变量
+ * @author wenxin
+ * @create 2013-06-01 11:18:11 am
+ */
+function selectChange(obj)
+{
+	//切换手指后，将原来的选中取消。
+	if(collectFlag && !isContains(fingerIdArray, fpIdNum) && fpIdNum != null)
+	{
+		document.getElementById("finger" + fpIdNum).checked = false;
+	}
+	//当前手指正在采集指纹，第二次点击时
+	if((fpIdNum == obj.value) && collectFlag)
+	{
+		isSameFinger = true;
+	}
+	fingerSelected = obj.id;
+	fpIdNum = obj.value;
+	if(readyStateForSimple){
+		//fingerSelectedFlag = document.getElementById(fingerSelected).checked;
+		//判断当前手指是否在fingerIdArray中
+		var isCollected = isContains(fingerIdArray, fpIdNum);//判断该手指是否已经有指纹
+		//不在数组中
+		if(!isCollected)
+		{
+			//保存当前正在采集的手指标记
+			lastFPIdNum = fpIdNum;
+		}
+		//删除
+		if(isCollected)
+		{
+			//如果当前正在采集
+			if(collectFlag)
+			{
+				//将定时器的递归调用关闭 -- 此处需再考虑一下
+				clearTimeout(timer);
+				isSameFinger = true;
+				//取消采集
+				cancelRegister();
+			}
+			messageBox({
+				messageType : "confirm",
+				text : "${base_fp_del}",//${base_fp_del}:删除当前选中的指纹吗?
+				callback : function(result){
+					delFPData(result, null, "simple");
+				}
+			});
+		}
+		else
+		{
+			fingerDisabled(obj.value);
+			//开始采集
+			beginRegister(fpIdNum);
+		}
+	}
+	else
+	{
+		messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_canceling}"});
+		readyStateForSimple = true;
+		if(!collectFlag)
+		{
+			document.getElementById("finger" + fpIdNum).checked = false;
+			//${base_fp_pressFinger}:请选择手指
+			collectTips(null, "${base_fp_pressFinger}", "simple");
+			showCurrentFingerInfo(-1);
+		}
+	}
+}
+/**
+ * 点击确定按钮时，触发事件
+ * @author wenxin
+ * @create 2013-06-04 16:12:21 pm
+ * @param ${pers_person_templateCount}:指纹数
+ */
+function submitEvent()
+{
+	storeDataToHtml();
+	showFPCount('${pers_person_templateCount}:');
+	closeWindow();
+}
+/**
+ * 获取指纹模板回调函数--getFPTemplateForSimple()的回调函数
+ * @author wenxin
+ * @create 2013-06-04 17:50:31 pm
+ */
+function getTemplateCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	var obj = jQuery.parseJSON(resultData);
+	
+	var fpTemplate = "";
+	//是否成功返回 true:失败时返回；false:成功时返回
+	var successFlag = false;
+	//返回码
+	var ret = "";
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+		if(obj.data != undefined && ret == 0)
+		{
+			fpTemplate = obj.data.template;
+		}
+	}
+	if(ret == 0)
+	{
+		//判断手指是否已经采集指纹
+		var compareRet = "";
+		//如果前面已经录入指纹
+		if(templateDataArray.length > 0)
+		{
+			//发送请求，进行后台指纹比对
+			compareRet = fpComparision(fpTemplate, templateDataArray);
+		}
+		if($.trim(compareRet) == "dllNotExist")
+		{
+			document.getElementById("finger" + fpIdNum).checked = false;
+				//显示框--采集提示
+				collectTips(null, "${auth_login_loadLibraryError}", "simple");
+		}
+		else
+		{
+			if(compareRet == "noFingerServer")
+			{
+				document.getElementById("finger" + fpIdNum).checked = false;
+				//显示框--采集提示
+				collectTips(null, "${base_fp_noStartFingerService}", "simple");
+			}
+			else
+			{
+				//此手指未采集指纹
+				if(compareRet != "ok")
+				{
+					//${base_fp_registerSuccess}:成功登记指纹
+					//显示框--采集提示
+					collectTips(null, "${base_fp_registerSuccess}", "simple");
+					fpModifyFlag = true;
+					//胁迫指纹
+					if(duressFingerFlag)
+					{
+						//将手指标记保存到数组中
+						fingerIdArray[fingerIdArray.length] = parseInt(fpIdNum) + DURESS_FINGER_NUM;
+					}
+					else
+					{
+						//将手指标记保存到数组中
+						fingerIdArray[fingerIdArray.length] = fpIdNum;
+					}
+					//将指纹模板保存到数组中
+					templateDataArray[templateDataArray.length] = fpTemplate;
+				}			
+				else
+				{
+					document.getElementById("finger" + fpIdNum).checked = false;
+					//显示框--采集提示
+					collectTips(null, "${base_fp_repeatCollection}", "simple");
+				}
+			}
+		}
+		
+	}
+	else if(ret == -2003)
+	{
+		//${base_fp_pressFingerAgain}:请重按手指
+		//显示框--采集提示
+		collectTips(null, "${base_fp_pressFingerAgain}", "simple");
+		document.getElementById("finger" + fpIdNum).checked = false;//复选框取消选中
+	}
+}
+/**
+ * 取消采集，当采集中断时
+ * 和baseFPRegister.html中的cancelRegister函数功能形同，但是实现方式不一样
+ * @author wenxin
+ * @create 2013-06-05 19:07:31 pm
+ */
+function cancelRegister()
+{
+	//当前有手指在采集指纹
+	if(collectFlag)
+	{
+		//取消采集
+		cancelCaptureForSimple();
+	}
+}
+/**
+ * 取消采集回调函数--cancelRegister()的回调函数
+ * @author wenxin
+ * @create 2013-06-04 17:50:31 pm
+ */
+function cancelCaptureCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	var obj = jQuery.parseJSON(resultData);
+	//返回码
+	var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时,ret == -2005--表示当前还没有采集，但是取消采集
+	if(ret == 0 || ret == -2005)
+	{
+		readyStateForSimple = true;
+		//alert("isSameFinger:"+isSameFinger+" fpIdNum:"+fpIdNum+" ret:"+ret);
+		if((!isSameFinger && fpIdNum != null) || ret == -2005)
+		{
+			collectFlag = true;
+			//${base_fp_collCount}:按压指纹剩余次数:
+			var text = "${base_fp_collCount}"+FINGERPRINT_NUMBER;
+			//显示框--采集提示
+			collectTips(null, text, "simple");
+			//显示当前采集的手指信息
+			showCurrentFingerInfo(fpIdNum);
+			duressFingerFlag = $("#duressFinger").attr("checked");
+			//开始采集
+			beginFPRegister(1);
+		}
+		else if(isSameFinger || fpIdNum == null)
+		{
+			//点击同一个手指，取消采集后，再点，则不会采集
+			collectFlag = false;
+			isSameFinger = false;
+			fingerEnabled();
+			//如果胁迫指纹选中，则取消选中
+			if(duressFingerFlag)
+			{
+				$("#duressFinger").attr("checked", false);
+			}
+			if(fpModifyFlag)
+			{
+				$("#submitButtonId").attr("disabled", false);
+			}
+			$("#duressFinger").attr("disabled", false);
+			var text = "";
+			if(fpIdNum == null)
+			{
+				//${base_fp_pressFinger}:请选择手指
+				text = "${base_fp_pressFinger}";
+			}
+			else
+			{
+				//${base_fp_collCount}:按压指纹剩余次数:
+				text = "${base_fp_collCount}"+FINGERPRINT_NUMBER;
+			}
+			//显示框--采集提示
+			collectTips(null, text, "simple");
+			/*if(lastFPIdNum != fpIdNum)
+			{
+				document.getElementById("finger" + lastFPIdNum).checked = false;
+			}*/
+		}
+	}
+}
+/**
+ * 查动态库连接回调函数
+ * @author wenxin
+ * @create 2013-05-15 17:12:21 pm
+ * @param xDomainRequest:xdr 对象
+ */
+function getDLLConnectCallBack(xDomainRequest)
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	//返回码
+	var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时
+	if(ret == 0)
+	{
+		//${base_fp_connectFail}:连接指纹采集器失败
+		collectTips(null, "${base_fp_connectFail}", "simple");
+		fingerDisabled(-1);
+	}
+	else
+	{
+		//${base_fp_loadFail}:加载ZKFinger10失败
+		collectTips(null, "${base_fp_loadFail}", "simple");
+	}
+}
+/**
+ * 清空
+ * @author wenxin
+ * @create 2013-09-05 16:57:11 pm
+ */
+function clearImageData()
+{
+	//清空指纹图像
+	clearFPImage(null, "registerForSimple");
+}
+/**
+ * 页面加载时，初始化数据
+ * @author wenxin
+ * @create 2013-07-09 15:18:31 pm
+ */
+function dataInit()
+{
+	//如果是访客，则需要调整css样式--临时处理
+	if(isVisPager)
+	{
+		$("#finger3").css("padding-left", "10px");
+		$("#finger2").css("padding-left", "9px");
+		$("#finger1").css("padding-left", "6px");
+		$("#finger0").css("padding-left", "0px");
+		$("#finger5").css("padding-left", "4px");
+		$("#finger6").css("padding-left", "3px");
+		$("#finger7").css("padding-left", "4px");
+		$("#finger8").css("padding-left", "9px");
+		$("#finger9").css("padding-left", "10px");
+	}
+	if(!duressFingerShowFlag)
+	{
+		$("#duressFingerDiv").hide();
+	}
+	fpIdNum = null;
+	//获取页面的指纹数据
+	getDataFromPage();
+	//渲染--将已经采集指纹的手指标记
+	renderInit(null, null, "simple");
+	//存放国际化元素数组
+	var paramArray = new Array();
+	paramArray[0] = "${base_fp_pressFinger}";
+	paramArray[1] = "${base_fp_connectFail}";
+	/*var connRet = getFingerServiceConn();
+	if(connRet != "ok")
+	{
+		//显示框--采集提示
+		collectTips(null, "${base_fp_noStartFingerService}", "simple");
+	}*/
+	//检查指纹采集器
+	checkFPReader(null, paramArray, "simple");
+	//将确定按钮置灰
+	$("#submitButtonId").attr("disabled", true);
+}
+//初始化数据
+dataInit();
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.11 Alarm Monitoring</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection38 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427071710"></a><a name="_Toc413852692"></a><a
+name="_Toc409765244"><span lang=EN-US>4.1.11 </span></a><span lang=EN-US>Alarm
+Monitoring</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Monitor alarm events of
+doors. If a door sends an alarm and is not confirmed, the page will always
+display the alarm events. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=zh-CN><img border=0
+width=576 height=76 id="图片 284"
+src="user_help.files/image082.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: The alarm type description will display only when the firmware
+version of the device supports, or Event Description will only display “alarm”,
+detail types will not distinguish. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Cancel alarm</span><span lang=EN-US>: Select the door in alarm
+status, and click [Cancel alarm]</span><span lang=EN-US>, the system will send
+email to alarm monitoring recipient’s mailbox (The mailbox must be set in the</span><a
+href="51.htm#_4.3.7_Parameters"><span lang=EN-US>4.3.7 Parameters</span></a><span
+lang=EN-US> )</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: When <span style='letter-spacing:-.2pt'>a door has multiple
+alarm states, It will display just one alarm type description in the descending
+severity order, the order as follows: tamper-resistant alarm &gt; duress alarm
+(password + fingerprint) &gt; duress password or fingerprint alarm &gt;
+unexpected opening alarm &gt; opening timeout alarm &gt; device disconnects
+alarm.</span></span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

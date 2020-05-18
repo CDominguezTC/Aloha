@@ -1,0 +1,100 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.2.1 Card</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection24 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072336"></a><a name="_Toc387761900"><span lang=EN-US>3.2.1 </span></a><span
+lang=EN-US>Card</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Batch Issue Card</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>1</span><span
+lang=EN-US>) </span><span lang=EN-US>Click [Personnel] &gt; [Card Manage] &gt;
+[Batch Issue Card]:</span></p>
+
+<p class=MsoNormal style='line-height:150%'><span lang=zh-CN><img border=0
+width=576 height=334 src="user_help.files/image026.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>2) </span><span lang=EN-US>Enter Start and
+End Personnel No. and click [Generate List] to generate personnel list and show
+all personnel without cards within this number series</span><span lang=EN-US>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note:</span><span lang=EN-US> The </span><span lang=EN-US>Enter
+Start and End Personnel No.</span><span lang=EN-US> only support numbers.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>3) </span><span lang=EN-US>Select </span><span
+lang=EN-US>the way of </span><span lang=EN-US>Issuing </span><span lang=EN-US>card</span><span
+lang=EN-US>: Issue machine or Read</span><span lang=EN-US>er</span><span
+lang=EN-US>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>For the use of the Issue machine, punching on
+the Issue machine directly. The System will get the card number and issue it to
+the user in the left list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>For the use of Read, you need to select the
+position of punching, click </span><span lang=EN-US><img border=0 width=14
+height=11 src="user_help.files/image027.jpg"></span><span
+lang=EN-US>&nbsp;[Start to read], the system will read the card number
+automatically, and issue it to the user in the left list one by one. After
+that, click&nbsp; </span><span lang=EN-US><img border=0 width=33 height=12
+id="Picture 24" src="user_help.files/image028.jpg"></span><span
+lang=EN-US>&nbsp;[Stop to read].</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: During Batch Issue Card, System will check whether the card
+number issues card or not, if card has been issued before, </span><span
+lang=EN-US>the system</span><span lang=EN-US> will prompt “The Card Number has
+already been issued”.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>4) </span><span lang=EN-US>Click [OK] to
+complete card issue and return. </span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

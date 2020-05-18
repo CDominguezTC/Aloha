@@ -1,0 +1,432 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.2 人员</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection20 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638115"></a><a name="_Toc387761891"></a><a
+name="_4.2_人员管理"></a><span lang=EN-US style='font-size:10.5pt'>3.1.2 </span><span
+style='font-size:10.5pt;font-family:幼圆'>人员</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>用户使用本管理系统时，需要在系统中登记人员，或者通过导入的方式，将其他软件或资料中的人员信息导入到本系统，具体操作请参见</span><a
+href="118.htm#_附录1_常用操作"><span style='font-family:幼圆'>附录</span><span
+lang=EN-US>1 </span><span style='font-family:幼圆'>常用操作</span></a><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>对人员的操作包括：新增人员、编辑人员、部门调整和删除人员。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761892"></a><a
+name="_5.2.1_新增人员"></a><a name="_4.2.1_新增人员"></a><span lang=EN-US
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>新增人员</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【人事】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【人员】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，显示新增人员基础资料编辑页面：</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=639 height=451
+src="user_help.files/image020.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>人员编号</span></b><span
+style='font-family:幼圆'>：默认人员编号最大长度为</span><span lang=EN-US>9</span><span
+style='font-family:幼圆'>位，有效范围为</span><span lang=EN-US>1-799999999</span><span
+style='font-family:幼圆'>，可根据实际情况进行配置。默认只支持数字，同时扩展支持带字母的人员编号。人员编号必填，并且不允许重复。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：配置人员编号最大长度和是否支持字母时，需要当前的设备支持该配置，可进入【人事】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【参数设置】进行修改。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>部门</span></b><span
+style='font-family:幼圆'>：在下拉菜单中选择，点击【确定】，若之前未进行部门配置，只能选择系统默认的部门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>姓名</span></b><span
+style='font-family:幼圆'>：最大长度不能超过</span><span lang=EN-US>50</span><span
+style='font-family:幼圆'>位，不支持逗号。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>密码</span></b><span
+style='font-family:幼圆'>：只支持数字，最大长度不能超过</span><span lang=EN-US>6</span><span
+style='font-family:幼圆'>位，不能与其他人员得密码或门禁胁迫密码重复。关于门禁胁迫密码的说明，请见下文</span><a
+href="31.htm#_4.1.3_门管理"><span lang=EN-US>4.1.3 </span><span style='font-family:
+幼圆'>门管理</span></a><span style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>手机号码</span></b><b><span
+lang=EN-US>/</span></b><b><span style='font-family:幼圆'>车牌号</span></b><span
+style='font-family:幼圆'>：最大长度</span><span lang=EN-US>20</span><span
+style='font-family:幼圆'>位，可以不填。</span></p>
+
+<p class=MsoNormal style='margin-top:2.5pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>卡号</span></b><span
+style='font-family:幼圆'>：卡号不能重复，最大长度</span><span lang=EN-US>10</span><span
+style='font-family:幼圆'>位。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>个人照片</span></b><span
+style='font-family:幼圆'>：最佳尺寸为</span><span lang=EN-US>120×140</span><span
+style='font-family:幼圆'>像素，支持</span><b><span lang=EN-US style='color:#92D050'>jpg/jpeg/bmp/png/gif</span></b><span
+style='font-family:幼圆'>格式的图片。支持通过摄像头抓拍照片，不支持通过</span><b><span lang=EN-US
+style='color:#92D050'>Safari</span></b><b><span style='font-family:幼圆;
+color:#92D050'>浏览器</span></b><span style='font-family:幼圆'>上传个人照片。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>上传个人照片流程如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1</span><span style='font-family:幼圆'>）单击【人事】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【人员】，单击人员编号或点击【编辑】，弹出人员基础资料编辑界面。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2</span><span style='font-family:幼圆'>）点击浏览选择照片后，点击【确定】保存并退出。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>抓拍照片流程如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1</span><span style='font-family:幼圆'>）连接摄像头外接设备，或开启自带的摄像头设备。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2</span><span style='font-family:幼圆'>）单击【人事】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【人员】，单击人员编号或【编辑】，弹出人员基础资料编辑界面。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3</span><span style='font-family:幼圆'>）点击【抓拍】，弹出抓拍界面，浏览器选择允许使用摄像头，页面如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=427 height=255
+src="user_help.files/image021.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>4</span><span style='font-family:幼圆'>）点击【抓拍】后采集到图像，点击【确定】</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：</span> <b><span
+style='font-family:幼圆'>登记指纹</span></b><span style='font-family:幼圆'>包括登记指纹和登记胁迫指纹。如果按胁迫指纹，会触发报警信号传送到系统。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>指纹登记流程如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）单击【登记】，弹出登记界面；</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）选择手指，连续在指纹仪上按压指纹三次，系统提示</span><b><span
+style='font-family:幼圆;color:#92D050'>成功登记指纹</span></b><span style='font-family:
+幼圆'>；</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）点击【确定】保存并关闭指纹登记页面。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;color:windowtext'><img border=0
+width=272 height=282
+src="user_help.files/image022.jpg">&nbsp; </span><span
+lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang=EN-US style='font-size:
+12.0pt;font-family:宋体;color:windowtext'><img border=0 width=267 height=282
+src="user_help.files/image023.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>如需删除已登记的指纹，单击该指纹，确认删除该指纹。如需登记胁迫指纹，先勾选【胁迫指纹】，再登记指纹即可。</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><a name="OLE_LINK18"></a><a
+name="OLE_LINK19"><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></a><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）指纹登记过程中，系统将当前人员的指纹和已采集的指纹进行比对，判断是否重复采集；若同一手指采集多次，则提示</span><b><span
+style='font-family:幼圆;color:#92D050'>请不要重复录入指纹</span></b><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=17 style='margin-bottom:7.8pt;text-indent:0cm'><span style='font-size:
+9.0pt;font-family:幼圆'>（</span><span lang=EN-US style='font-size:9.0pt;
+font-family:"Myriad Pro","sans-serif"'>2</span><span style='font-size:9.0pt;
+font-family:幼圆'>）如果系统中未安装指纹仪驱动，点击<b><span style='color:#92D050'>下载驱动</span></b>，会提示下载、安装指纹仪驱动程序。</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt;background:white'><span
+style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span style='font-family:
+幼圆'>）如果安装了指纹仪驱动后，指纹登记按钮在</span><span lang=EN-US>IE</span><span
+style='font-family:幼圆'>浏览器中显示为灰色，但在其他浏览器</span><span lang=EN-US>(</span><span
+style='font-family:幼圆'>火狐、谷歌</span><span lang=EN-US>)</span><span
+style='font-family:幼圆'>中显示正常，请按如下操作更改</span><span lang=EN-US style='background:
+white'>IE</span><span style='font-family:幼圆;background:white'>浏览器的设置，解决该问题：</span></p>
+
+<p class=17 style='margin-top:0cm;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:7.1pt;text-indent:0cm;background:white'><span lang=EN-US
+style='font-size:9.0pt;font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:9.0pt;font-family:幼圆'>点击浏览器的【工具】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-size:9.0pt;
+font-family:幼圆'>【</span><span lang=EN-US style='font-size:9.0pt;font-family:
+"Myriad Pro","sans-serif"'>Internet</span><span style='font-size:9.0pt;
+font-family:幼圆'>选项】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【</span><span style='font-size:9.0pt;font-family:幼圆'>安全】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【</span><span
+style='font-size:9.0pt;font-family:幼圆'>可信站点】，将</span><a href="http://localhost/"><b><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif";
+color:#92D050'>http://localhost</span></b></a><span style='font-size:9.0pt;
+font-family:幼圆'>添加到可信站点；重启浏览器。</span></p>
+
+<p class=17 style='margin-top:0cm;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:7.1pt;text-indent:0cm;background:white'><span lang=EN-US
+style='font-size:9.0pt;font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:9.0pt;font-family:幼圆'>点击浏览器的【工具】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-size:9.0pt;
+font-family:幼圆'>【</span><span lang=EN-US style='font-size:9.0pt;font-family:
+"Myriad Pro","sans-serif"'>Internet</span><span style='font-size:9.0pt;
+font-family:幼圆'>选项】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【</span><span style='font-size:9.0pt;font-family:幼圆'>高级】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【</span><span
+style='font-size:9.0pt;font-family:幼圆'>重置】，弹出<b><span style='color:#92D050'>重置</span></b></span><b><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Internet Explorer</span></b><b><span style='font-size:9.0pt;
+font-family:幼圆;color:#92D050'>设置</span></b><span style='font-size:9.0pt;
+font-family:幼圆'>的对话框，点击【重置】；并重启浏览器。（第一步设置不起作用时，使用此设置）</span></p>
+
+<p class=17 style='margin-top:0cm;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:7.1pt;text-indent:0cm;background:white'><span lang=EN-US
+style='font-size:9.0pt;font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span style='font-size:9.0pt;font-family:幼圆'>如果以上设置均无效，请进行如下操作（以</span><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>IE11</span><span
+style='font-size:9.0pt;font-family:幼圆'>浏览器为例）：点击</span><span lang=EN-US
+style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>IE11</span><span
+style='font-size:9.0pt;font-family:幼圆'>浏览器的【工具】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-size:9.0pt;font-family:
+幼圆'>【</span><span lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>Internet</span><span
+style='font-size:9.0pt;font-family:幼圆'>选项】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【</span><span
+style='font-size:9.0pt;font-family:幼圆'>高级】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-size:9.0pt;font-family:
+幼圆'>【安全】，勾选</span><span style='font-size:9.0pt;font-family:幼圆'>“<b><span
+style='color:#92D050'>允许运行或安装此软件，即使签名无效</span></b>”</span><span
+style='font-size:9.0pt;font-family:幼圆'>，并去掉勾选</span><span style='font-size:
+9.0pt;font-family:幼圆'>“<b><span style='color:#92D050'>检查服务器证书吊销</span></b>”</span><span
+style='font-size:9.0pt;font-family:幼圆'>，并重启浏览器。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>4</span><span
+style='font-family:幼圆'>）如果使用</span><span lang=EN-US>IE8</span><span
+style='font-family:幼圆'>以下版本的浏览器，指纹登记界面会不同，具体如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=271 height=287
+src="user_help.files/image024.jpg">&nbsp; <img
+border=0 width=261 height=287
+src="user_help.files/image025.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>如需进行门禁设置，点击【门禁设置】：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=639 height=129
+src="user_help.files/image026.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>超级用户</span></b><span
+style='font-family:幼圆'>：超级用户不受时间段、反潜、互锁、多卡、节假日、时间反潜等限制，有很高的开门优先级。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备操作权限</span></b><span
+style='font-family:幼圆'>：设置为管理员后下发到设备中，具有设备的管理员权限。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>延长通行</span></b><span
+style='font-family:幼圆'>：勾选后，可延长该人员通行时的等待时间。适用于残疾人或者其他有特别需要的人群。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>黑名单</span></b><span
+style='font-family:幼圆'>：勾选后，将临时禁用该人员的门禁权限。</span></p>
+
+<p class=MsoCommentText><b><span style='font-size:9.0pt;font-family:幼圆'>设置有效时间</span></b><span
+style='font-size:9.0pt;font-family:幼圆'>：设置临时门禁权限，只在有效时间内能开门，如不勾选</span><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>, </span><span
+style='font-size:9.0pt;font-family:幼圆'>则默认为始终有效。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：</span></p>
+
+<p class=MsoCommentText style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm'><span style='font-size:9.0pt;font-family:幼圆'>（</span><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>1</span><span
+style='font-size:9.0pt;font-family:幼圆'>）并非所有设备都支持“黑名单”功能。在用户添加设备时，系统会提醒当前设备是否支持。如果用户的确需要使用该功能，请对不支持的设备进行升级。</span></p>
+
+<p class=MsoCommentText style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm'><span style='font-size:9.0pt;font-family:幼圆'>（</span><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>2</span><span
+style='font-size:9.0pt;font-family:幼圆'>）并非所有设备都支持“设置有效时间”到时分秒功能，部分设备只支持设置到年月日。在用户添加设备时，系统会提醒当前设备是否支持。如果用户的确需要使用该功能，请对不支持的设备进行升级。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3. </span><span style='font-family:幼圆'>如需进行梯控设置，点击【梯控设置】：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=EN-US><img border=0 width=647
+height=79 src="user_help.files/image027.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>超级用户</span></b><span
+style='font-family:幼圆'>：超级用户不受时间段、节假日等限制，有很高的优先级。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设置有效时间</span></b><span
+style='font-family:幼圆'>：设置临时梯控权限，只在有效时间内能按电梯楼层按键。如不勾选</span><span lang=EN-US>, </span><span
+style='font-family:幼圆'>则默认为始终有效。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：权限组需要预先设定才可选择。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>4. </span><span style='font-family:幼圆'>点击【详细信息】可完善人员详细信息：</span></p>
+
+<p class=MsoCommentText><span lang=EN-US><img border=0 width=639 height=195
+src="user_help.files/image028.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>部分字段定义如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>邮箱</span></b><span
+style='font-family:幼圆'>：人员的有效邮箱，最大长度</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>位。支持</span><span lang=EN-US>-</span><span
+style='font-family:幼圆'>“</span><span lang=EN-US>-</span><span style='font-family:
+幼圆'>”，“</span><span lang=EN-US>_</span><span style='font-family:幼圆'>”，“</span><span
+lang=EN-US>.</span><span style='font-family:幼圆'>”特殊字符，其他的特殊字符不支持。当勾选</span><b><span
+style='font-family:幼圆;color:#92D050'>事件通知</span></b><span style='font-family:
+幼圆'>”后，</span> <span style='font-family:幼圆'>邮箱则为必填项。</span></p>
+
+<p class=MsoCommentText style='margin-top:2.5pt;margin-right:0cm;margin-bottom:
+2.5pt;margin-left:0cm'><b><span style='font-size:9.0pt;font-family:幼圆'>事件通知</span></b><span
+style='font-family:幼圆'>：</span><span style='font-size:9.0pt;font-family:幼圆;
+color:black'>勾选之后，当该人员发生门禁或梯控事件时，系统会通过邮件实时通知到该人员。如果没有设置邮箱服务器，勾选【事件通知】后会弹出邮箱参数设置界面。具体设置内容请参见下文</span><a
+href="109.htm#_8.1.5_邮件管理"><span lang=EN-US style='font-size:9.0pt;font-family:
+"Myriad Pro","sans-serif"'>8.1.5 </span><span style='font-size:9.0pt;
+font-family:幼圆'>邮件管理</span></a><span style='font-size:9.0pt;font-family:幼圆;
+color:black'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>自助密码</span></b><span
+style='font-family:幼圆'>：支持字母和数字，最大长度</span><span lang=EN-US>6</span><span
+style='font-family:幼圆'>位，初始密码为</span><b><span lang=EN-US style='color:#92D050'>123456</span></b><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>5. </span><span style='font-family:幼圆'>人员信息输入结束后，点击【确定】保存并退出，在人员列表会显示已增加的人员。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761895"></a><a
+name="_4.2.2_人员信息维护"></a><a name="_5.2.2_人员维护"></a><span lang=EN-US
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>删除人员</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【人事】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【人员】，勾选人员，单击上方的【彻底删除】，点击【确定】完成彻底删除。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：彻底删除会将该人员的所有信息全部删除。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761896"><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>部门调整</span></b></a></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=258 height=223
+src="user_help.files/image029.jpg"></span><span
+lang=EN-US>&nbsp; </span><span style='position:absolute;z-index:251661824;
+margin-left:0px;margin-top:0px;width:338px;height:182px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=338 height=182 style='vertical-align:top'><span style='position:
+  absolute;z-index:251661824'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>1</span><span style='font-family:
+    幼圆'>）点击【人事】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+    style='font-family:幼圆'>【人员】，选择人员，点击【部门调整】，显示部门调整页面；</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>2</span><span style='font-family:
+    幼圆'>）选择要调动到的部门；</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>3</span><span style='font-family:
+    幼圆'>）设置完成后点击【确定】保存并退出。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=335 height=178
+src="user_help.files/image030.png"></span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

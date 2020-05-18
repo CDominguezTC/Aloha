@@ -1,0 +1,51 @@
+/*-------------ϵͳ����css��ʽ����------------*/
+/*�˴�cssֻ�ܹ�ϵͳ����ҵ��ϵͳʹ�ã������ϵͳʹ�ã���Ҫ��ȡ��public*/
+ @charset "utf-8";
+ 
+/*�û�*/
+.tabs_userinfo {
+	width: 600px;
+	height: 350px;
+}
+
+.div_user_groups {
+	width: 330px;
+	height: 170px;
+	overflow: auto;
+	border: 1px solid #CAE2F9;
+	padding: 5px;
+	color: #FF9900;
+}
+
+
+/*��ݿⱸ��*/
+#id_div_backupPlan div,#id_div_backupPlan div span {
+	line-height: 22px;
+}
+
+/*��*/
+#id_tab_pers,#id_tab_acc,#id_tab_syslog,#id_tab_att,#id_tab_base,#id_tab_att_cut,#id_tab_device,#id_tab_iclock,#id_tab_pos,#id_tab_acc_doorset
+	{
+	height: 200px;
+	overflow: auto;
+}
+
+#id_permissions {
+	width: 600px;
+	height: 265px;
+}
+
+#id_permissions div {
+	border: solid #A8BCDF;
+	border-width: 0px 1px 1px 1px;
+	clear: both;
+}
+
+#id_permissions div div {
+	border: 0px;
+}
+
+/* 提示信息字体颜色 */
+/* .warningColor {
+     color: rgb(229, 122, 20);
+} */

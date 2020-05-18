@@ -1,0 +1,66 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.2 预约</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection87 style='layout-grid:15.6pt'>
+
+<h2 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707527"></a><a name="_6.2_预约"></a><span
+lang=EN-US style='font-size:12.0pt'>6.2 </span><span style='font-size:12.0pt;
+font-family:幼圆'>预约</span></h2>
+
+<p class=MsoNormal><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【访客】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【预约】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【预约】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，出现如下界面：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=303 height=238
+src="user_help.files/image193.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>被访人</span></b><span
+style='font-family:幼圆'>：点击输入框可在系统中选择已添加的人员为被访人。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>编辑完成之后，点击【确定】，该条信息会显示在预约列表，可以点击对应行后面的【编辑】或【删除】，对该条预约信息进行编辑或删除。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>员工还可通过“员工自助登录”进入系统为自己预约访客，预约过程同上，此处不再赘述。关于如何登录员工自助系统，请参见上文</span><a
+href="11.htm#_2.2_员工自助登录"><span lang=EN-US>2.2 </span><span style='font-family:
+幼圆'>员工自助登录</span></a><span style='font-family:幼圆'>。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

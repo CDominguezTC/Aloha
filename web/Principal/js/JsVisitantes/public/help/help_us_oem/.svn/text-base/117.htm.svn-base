@@ -1,0 +1,447 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> Appendix 2 Access Event Type</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection117 style='layout-grid:15.6pt'>
+
+<h2><a name="_Appendix 2 Access Event Type"></a><a name="_Toc427071789"></a><a
+name="_Toc387761954"></a><a name="_Toc414032725"></a><a name="_附录2_门禁事件描述"></a><span
+lang=EN-US>Appendix 2 </span><span lang=EN-US>Access Event Type</span></h2>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Normal
+Events</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Normal Punch Opening</span><span lang=EN-US>: In [Only Card]
+verification mode, the person having open door levels punch card at valid time
+period, open the door, and trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Normal Press Fingerprint Opening</span><span lang=EN-US>: In
+[Only Fingerprint] or [Card or Fingerprint] verification mode, the person
+having open door levels press fingerprint at valid time period, the door is
+opened, and trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Card </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>and</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'> Fingerprint Opening</span><span lang=EN-US>: In [Card </span><span
+lang=EN-US>and </span><span lang=EN-US>Fingerprint] verification mode, the
+person having the open permission, punch the card and press the fingerprint at
+the valid time period, and the door is opened, and trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Exit button Open</span><span lang=EN-US>: press the exit button
+to open the door within the door valid time zone, and trigger this normal
+event.</span><span lang=EN-US> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Trigger the exit button (locked)</span><span lang=EN-US>:
+indicates the normal event<a name="OLE_LINK109"> </a><a name="OLE_LINK107">triggered
+by</a> pressing the exit button when the exit button is locked</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Punch during Normal Open Time Zone</span><span lang=EN-US>: At
+the normal open period (set normal open period for a single door or for
+first-person normally open), or through the remote normal open operation, the
+person having open door permission punch effective card at the opened door to
+trigger this normal events.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Press Fingerprint during Normal Open Time Zone</span><span
+lang=EN-US>: At the normal open period (set normal open period for a single
+door or for first-person normally open), or through the remote normal open
+operation, the person having open door permission press the effective
+fingerprint at the opened door to trigger this normal events.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>First-Person Normally Open (Punch Card)</span><span lang=EN-US>:
+In [Only Card] verification mode, the person having first-person normally open
+permission, punch at the setting first-person normally open time period (the
+door is closed), and trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>First-Person Normally Open (Press Fingerprint)</span><span
+lang=EN-US>: In [Only Fingerprint] or [Card plus Fingerprint] verification
+mode, the person having first-person normally open permission, press the
+fingerprint at the setting first-person normally open period (the door is
+closed), and trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>First-Person Normally Open (Card plus Fingerprint)</span><span
+lang=EN-US>: In [Card plus Fingerprint] verification mode, the person having
+first-person normally open permission, punch the card and press the fingerprint
+at the setting first-person normally open period (the door is closed), and
+trigger the normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Normal Open Time Zone Over</span><span lang=EN-US>: After the
+normal open time zone over, the door will close automatically. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Remote Normal Opening: When set the door
+state to normal open in the remote opening operation, this normal event is
+triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Cancel Normal Open</span><span lang=EN-US>: When Punch the valid
+card or use remote opening function to cancel the current door normal open
+state, this normal event is triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Disable Intraday Passage Mode Time Zone</span><span lang=EN-US>:
+In door normal open state, punch effective card for five times (must be the
+same user), or select [Disable Intraday Passage Mode Time Zone] in remote
+closing operation, and this normal event is triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Enable Intraday Passage Mode Time Zone</span><span lang=EN-US>:
+If the intraday passage mode time zone is disabled, punch effective card for
+five times (must be the same user), or select [Enable Intraday Passage Mode
+Time Zone] in remote opening operation, and this normal event is triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Opening Door (Punching)</span><span lang=EN-US>: In
+[Only Card] verification mode, Multi-Person combination can be used to open the
+door. After the last card is verified, the system trigger this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Opening Door (Press Fingerprint)</span><span
+lang=EN-US>: In [Only Fingerprint] or [Card plus Fingerprint] verification
+mode, Multi-Person combination can be used to open the door. After the last
+fingerprint is verified, the system trigger this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Opening Door (Card plus Fingerprint)</span><span
+lang=EN-US>: In [Card plus Fingerprint] verification mode, Multi-Person
+combination can be used to open the door. After the last card plus fingerprint
+is verified, the system trigger this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Emergency Password Opening Door</span><span lang=EN-US>:
+Emergency password (also known as super password) set for the current door can
+be used for door open. </span><span lang=EN-US>T</span><span lang=EN-US>his
+normal event will be triggered after the emergency password is verified.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Opening Door during Normal Open Time Zone</span><span
+lang=EN-US>: If the current door is set a normally open period, the door will
+open automatically after the setting start time has expired, and this normal
+event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Linkage Event Triggered</span><span lang=EN-US>: After linkage
+configuration takes effect, this normal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Cancel Alarm: When the user cancels the alarm
+of corresponding door successful, this normal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Remote Opening</span><span lang=EN-US>: When the user opens a
+door by [Remote Opening] successful, this normal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Remote Closing</span><span lang=EN-US>: When the user closes a
+door by [Remote Closing] successful, this normal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Open Auxiliary Output</span><span lang=EN-US>: In linkage
+setting, if the user selects Auxiliary Output for Output Point, selects Open
+for Action Type, this normal event will be triggered when the linkage setting
+takes effect.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Close Auxiliary Output</span><span lang=EN-US>: In linkage
+setting, if the user selects Auxiliary Output for Output Point, selects Close
+for Action Type, or closes the opened auxiliary output by [Door Setting] &gt;
+[Close Auxiliary Output], this normal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door Opened Correctly</span><span lang=EN-US>: When the door
+sensor detects the door has been properly opened, triggering this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door Closed Correctly</span><span lang=EN-US>: When the door
+sensor detects the door has been properly closed, triggering this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Auxiliary Input Point Disconnected</span><span lang=EN-US>: Will
+be triggered auxiliary input point is disconnected.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Auxiliary Input Point Shorted</span><span lang=EN-US>: When the
+auxiliary input point short circuit, trigger this normal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Device Start</span><span lang=EN-US>: Will be triggered if
+device starts (this event will not be displayed on the real-time monitor, but
+you can check it in the event report).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Abnormal
+Events</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Too Short Punch Interval</span><span lang=EN-US>: When the
+interval between two punching is less than the set time interval, this abnormal
+event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Too Short Fingerprint Pressing Interval</span><span lang=EN-US>:
+When the interval between two fingerprints pressing is less than the set time
+interval, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door Inactive Time Zone (Punch Card)</span><span lang=EN-US>: In
+[Only Card] verification mode, if the user having the door open permission
+punch but not at door effective period of time, this abnormal event will be
+triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door Inactive Time Zone (Press Fingerprint)</span><span
+lang=EN-US>: If the user having the door open permission, press the fingerprint
+but not at the door effective time period, this abnormal event will be
+triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door Inactive Time Zone (Exit Button)</span><span lang=EN-US>:
+If the user having the door open permission, press exit button but not at the
+effective period of time, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Illegal Time Zone</span><span lang=EN-US>: If the user with the
+permission of opening the door, punches during the invalid time zone, this
+abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Illegal Access</span><span lang=EN-US>: If the registered card
+without the permission of current door is punched to open the door, this
+abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Anti-Passback</span><span lang=EN-US>: When the anti-pass back
+takes effect, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Interlock</span><span lang=EN-US>: When the interlocking rules
+take effect, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Verification (Punching)</span><span lang=EN-US>:
+When Multi-Person combination opens the door, the card verification before the
+last one (whether verified or not), this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Verification (Press Fingerprint)</span><span
+lang=EN-US>: In [Only Fingerprint] or [Card or Fingerprint] verification mode,
+When Multi-Person combination opens the door, the fingerprint verification
+before the last one (whether verified or not), this abnormal event will be
+triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Unregistered Card</span><span lang=EN-US>: If the current card
+is not registered in the system, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Unregistered Fingerprint</span><span lang=EN-US>: If the current
+fingerprint is not registered or it is registered but not synchronized with the
+system, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Opening Door Timeout</span><span lang=EN-US>: If the door sensor
+detects that it is expired the delay time after opened, if not close the door,
+this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Card Expired</span><span lang=EN-US>: If the person with the
+door access level, punches after the effective time of the access control and
+cannot be verified, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fingerprint Expired</span><span lang=EN-US>: If the person with
+the door access permission, presses fingerprint after the effective time of the
+access control and cannot be verified, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Password Error</span><span lang=EN-US>: If using [Card plus
+Password] verification mode, duress password or emergency password to open
+door, this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Failed to Close door during Normal Open Time Zone</span><span
+lang=EN-US>: If the current door is in normal open state, but the user can not
+close it by [Remote Closing], this abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Verification Mode Error</span><span lang=EN-US>: If the user
+opening door mode is inconsistent with that set for current door, this abnormal
+event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Background Verification Failed</span><span lang=EN-US
+style='color:windowtext'>: When Global Zone APB verification is failed, this
+abnormal event will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Background Verification Success</span><span lang=EN-US>: When
+Global Zone APB verification is successful, this abnormal event will be
+triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Background Verification Timeout</span><span lang=EN-US>: When
+the value of Global Zone APB does not return in set time, this abnormal event
+will be triggered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Multi-Person Verification Failed</span><span lang=EN-US>: When
+Multi-Person combination opens the door, the verification is failed, and
+triggers this abnormal event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Alarm
+Events</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Duress Password Opening Door</span><span lang=EN-US>: Use the
+duress password of current door for verifying successfully and trigger this
+alarm event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Duress Fingerprint Opening Door</span><span lang=EN-US>: Use the
+duress fingerprint of current door for verifying successfully and trigger this
+alarm event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Duress Opening Door Alarm</span><span lang=EN-US>: Use the
+duress password or duress fingerprint set for current door for verifying
+successfully and trigger this alarm event.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Opened Accidentally</span><span lang=EN-US>: Except all normal
+events, if the door sensor detects that the door is opened, and this alarm
+event will be triggered. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="OLE_LINK108"></a><a name="OLE_LINK105"></a><a
+name="OLE_LINK106"><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Door-open timeout</span><span lang=EN-US>: This alarm event is
+triggered when the opened door is not locked at closing door time.</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050;letter-spacing:-.2pt'>Tamper-Resistant Alarm</span><span
+lang=EN-US style='letter-spacing:-.2pt'>: This alarm event will be triggered
+when AIO device is tampered.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Invalid Card Punching</span><span lang=EN-US>: This alarm event
+will be triggered when invalid card punching for five times continuously.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span
+lang=EN-US>Note: User can self-define the level of each event (normal, abnormal
+or alarm).</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:21.0pt;line-height:150%'><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

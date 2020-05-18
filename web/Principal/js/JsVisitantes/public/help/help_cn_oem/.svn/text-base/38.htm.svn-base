@@ -1,0 +1,475 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.10 实时监控</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection38 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707478"></a><a name="_5.1.10_实时监控"></a><span
+lang=EN-US style='font-size:10.5pt'>4.1.10 </span><span style='font-size:10.5pt;
+font-family:幼圆'>实时监控</span></h3>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>点击【门禁设备】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【实时监控】，实时监控系统内的门禁控制器所包含的门的状态及实时事件，包括正常事件及异常事件（含报警事件）等。实时监控界面如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=656 height=314
+src="user_help.files/image075.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span style='font-family:幼圆'>各种图标状态含义如下表所示</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.45pt;border-collapse:collapse;border:none'>
+ <tr style='height:25.65pt'>
+  <td width=79 style='width:59.35pt;border:solid #92D050 1.0pt;border-left:
+  none;padding:0cm 5.4pt 0cm 5.4pt;height:25.65pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>图标</span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border:solid #92D050 1.0pt;border-left:
+  none;padding:0cm 5.4pt 0cm 5.4pt;height:25.65pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>状态</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border:solid #92D050 1.0pt;border-left:none;
+  padding:0cm 5.4pt 0cm 5.4pt;height:25.65pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>图标</span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border-top:solid #92D050 1.0pt;
+  border-left:none;border-bottom:solid #92D050 1.0pt;border-right:none;
+  padding:0cm 5.4pt 0cm 5.4pt;height:25.65pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:35.2pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.2pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=22 height=30 id="图片 26"
+  src="user_help.files/image076.jpg"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.2pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>设备被禁用</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:35.2pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=30 height=30
+  src="user_help.files/image077.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_offline.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.2pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门离线状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:42.7pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.7pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30 id="图片 2"
+  src="user_help.files/image078.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_nosensor.png">/<img border=0
+  width=30 height=30 id="图片 3"
+  src="user_help.files/image079.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_old.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.7pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>未设置门磁，继电器关闭</span><span
+  lang=EN-US> /</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:42.7pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30 id="图片 4"
+  src="user_help.files/image080.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 5"
+  src="user_help.files/image079.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.7pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>未设置门磁，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:41.3pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.3pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30 id="图片 6"
+  src="user_help.files/image081.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_closed.png">/<img border=0
+  width=30 height=30 src="user_help.files/image082.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_closed_old.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.3pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span
+  style='font-family:幼圆'>联机状态下门关，继电器关闭</span><span lang=EN-US>/</span><span
+  style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:41.3pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30 id="图片 9"
+  src="user_help.files/image083.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_closed_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 8"
+  src="user_help.files/image082.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_closed_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.3pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>联机状态下门关，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:42.6pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.6pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30
+  id="图片 10" src="user_help.files/image084.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_opened.png">/<img border=0
+  width=30 height=30 id="图片 11"
+  src="user_help.files/image085.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_opened_old.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.6pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>联机状态下门开，继电器关闭</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:42.6pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30
+  id="图片 12" src="user_help.files/image086.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_opened_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 13"
+  src="user_help.files/image085.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_opened_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.6pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>联机状态下门开，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:42.5pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=30 height=30 id="图片 16"
+  src="user_help.files/image087.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_opened.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.5pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开报警，继电器关闭</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:42.5pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=30 height=30 id="图片 14"
+  src="user_help.files/image088.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_opened_unlocked.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:42.5pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开报警，继电器打开</span></p>
+  </td>
+ </tr>
+ <tr style='height:43.1pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.1pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=EN-US><img border=0
+  width=30 height=30 id="图片 17"
+  src="user_help.files/image089.png">/<img border=0
+  width=30 height=30 id="图片 19"
+  src="user_help.files/image090.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.1pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开超时报警，继电器关闭</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器，门磁打开</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:43.1pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=EN-US><img border=0
+  width=30 height=30 id="图片 18"
+  src="user_help.files/image091.png">/<img border=0
+  width=30 height=30 id="图片 20"
+  src="user_help.files/image090.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.1pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开超时报警，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器，门磁打开</span></p>
+  </td>
+ </tr>
+ <tr style='height:43.0pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal align=center style='margin-top:7.8pt;margin-right:0cm;
+  margin-bottom:7.8pt;margin-left:0cm;text-align:center;line-height:150%'><span
+  lang=EN-US><img border=0 width=30 height=30 id="图片 247"
+  src="user_help.files/image092.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开超时报警，继电器关闭</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>门磁关闭</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:43.0pt'>
+  <p class=MsoNormal align=center style='margin-top:7.8pt;margin-right:0cm;
+  margin-bottom:7.8pt;margin-left:0cm;text-align:center;line-height:150%'><span
+  lang=EN-US><img border=0 width=30 height=30 id="图片 248"
+  src="user_help.files/image093.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门开超时报警，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>门磁关闭</span></p>
+  </td>
+ </tr>
+ <tr style='height:41.5pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.5pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30
+  id="图片 21" src="user_help.files/image094.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_closed.png">/<img border=0
+  width=30 height=30 id="图片 23"
+  src="user_help.files/image095.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.5pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门关报警，继电器关闭</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:41.5pt'>
+  <p class=MsoNormal><span lang=EN-US><img border=0 width=30 height=30
+  id="图片 22" src="user_help.files/image096.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_closed_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 24"
+  src="user_help.files/image095.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:41.5pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>门关报警，继电器打开</span><span
+  lang=EN-US>/</span><span style='font-family:幼圆'>无继电器状态</span></p>
+  </td>
+ </tr>
+ <tr style='height:32.9pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:32.9pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=30 height=30 id="图片 25"
+  src="user_help.files/image097.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_nosensor_unlocked.png"></span></p>
+  </td>
+  <td width=252 style='width:188.7pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:32.9pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>未设置门磁，门报警，继电器关闭</span></p>
+  </td>
+  <td width=85 style='width:63.8pt;border-top:none;border-left:none;border-bottom:
+  solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;padding:0cm 5.4pt 0cm 5.4pt;
+  height:32.9pt'>
+  <p class=MsoNormal align=center style='text-align:center'><span lang=EN-US><img
+  border=0 width=30 height=30
+  src="user_help.files/image098.png"
+  alt="说明: 说明: D:\门禁梯控视频图标素材\doorState\door_alarm_nosensor.png"></span></p>
+  </td>
+  <td width=234 style='width:175.45pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:32.9pt'>
+  <p class=MsoNormal><span style='font-family:幼圆'>未设置门磁，门报警，继电器打开</span></p>
+  </td>
+ </tr>
+ <tr style='height:30.9pt'>
+  <td width=650 colspan=4 style='width:487.3pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:30.9pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:
+  Wingdings'>?</span><b><span style='font-family:幼圆'>注意事项</span></b><span
+  style='font-family:幼圆'>：无继电器状态，代表当前固件不支持“检测继电器状态”功能。</span></p>
+  </td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:10.5pt'>1. </span><b><span
+style='font-size:10.5pt;font-family:幼圆'>门</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>监控所有</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统默认首页显示并监控当前用户权限范围内设备的所有门，用户可以根据【区域】，【控制器】或【门】有针对性的监控一个或多个门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>远程开</span></b><b><span
+lang=EN-US>/</span></b><b><span style='font-family:幼圆'>关门</span></b><span
+style='font-family:幼圆'>：分为对单个门的控制和对所有门的控制。对单个门控制时，直接将光标移至门的图标上，在弹出的对话框中单击【远程开门</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>关门】操作；对所有门控制时，直接单击“当前所有”后的【远程开门</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>关门】。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>远程开门时，用户可以自定义开门的时长（系统默认为</span><span
+lang=EN-US>15</span><span style='font-family:幼圆'>秒）；也可以选择【启用当天常开时间段】，或直接将门的当前状态设置为常开，此时门不受任何时间段的限制（相当于</span><span
+lang=EN-US>24</span><span style='font-family:幼圆'>小时常开）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>如需将门关闭，需要先执行【禁用当天常开时间段】，避免因其他常开时间段生效而开门，然后使用【远程关门】将门关闭。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：如果远程开关门一直返回失败，请检查设备列表是否有太多当前断开的设备，如果有，请检查网络。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>取消报警</span></b><span
+style='font-family:幼圆'>：一旦页面上出现有报警的门，系统会响起警报声。取消报警分为对单个门的控制和所有门的控制。对单个门控制时，直接将光标移至门的图标上，在弹出的对话框中单击【取消报警】；对所有门控制时，直接单击“当前所有”后的【取消报警】；取消报警成功，系统中的警报声自动消失。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：如果取消报警一直返回失败，请检查设备列表是否有太多当前断开的设备，如果有，请检查网络。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>远程常开</span></b><span
+style='font-family:幼圆'>：将门远程设置为常开状态。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>显示照片</span></b><span
+style='font-family:幼圆'>：如果实时监控涉及到人员，监控页面会显示人员照片（人员没有登记照片会提示“默认照片”）。人员照片下方会显示事件名称、时间以及人员的姓名。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>事件声音提醒：</span></b><span
+style='font-family:幼圆'>当前页面有报警状态或者相应的报警事件时，会产生对应的声音。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="OLE_LINK26"></a><a
+name="OLE_LINK17"><span lang=EN-US style='font-family:Wingdings'>l<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>快速门管理</span></b></a></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>将光标移动到状态监控的门图标处，也可进行上述操作，还可</span><b><span
+style='font-family:幼圆;color:#92D050'>查询门最近发生事件</span></b><span
+style='font-family:幼圆;color:windowtext'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=104 height=202
+src="user_help.files/image099.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>查询门最近发生记录：</span></b><span
+style='font-family:幼圆'>点击可快速查看短时间内发生在该门上的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>未注册卡分配给人：</span></b><span
+style='font-family:幼圆'>在实时监控出现卡未注册事件时，在卡号上右击可以进行【未注册卡分配给人】。将未在设备中存在的卡，分配给系统内没有卡的人，或者新增一个人员并把当前卡号分配给此人。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>事件监控</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统自动获取监控到的设备的事件记录（默认显示</span><span
+lang=EN-US>200</span><span style='font-family:幼圆'>条记录），包括正常门禁事件和异常门禁事件（含报警事件）。正常门禁事件用绿色表示，报警事件用红色字表示，其他异常事件用橙色表示。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:10.5pt'>2. </span><b><span
+style='font-size:10.5pt;font-family:幼圆'>辅助输入</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>监控当前辅助输入的实时事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=642 height=314
+src="user_help.files/image100.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:10.5pt'>3. </span><b><span
+style='font-size:10.5pt;font-family:幼圆'>辅助输出</span></b></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>可以进行远程打开、远程关闭、远程常开等操作。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=643 height=312
+src="user_help.files/image101.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:10.5pt'>4. </span><b><span
+style='font-size:10.5pt;font-family:幼圆'>梯控</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>关于梯控的实时监控，请参见下文</span><a
+href="71.htm#_5.1.7_实时监控"><span lang=EN-US>5.1.7 </span><span style='font-family:
+幼圆'>实时监控</span></a><span style='font-family:幼圆'>。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

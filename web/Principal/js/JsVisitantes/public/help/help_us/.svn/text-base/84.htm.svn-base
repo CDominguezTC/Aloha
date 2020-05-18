@@ -1,0 +1,175 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.1.1 Entry Registration</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection84 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072396"></a><a name="_Toc414032690"><span lang=EN-US>6.1.1 </span></a><span
+lang=EN-US>Entry Registration</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Entry
+Registration</span></p>
+
+<p class=MsoNormal><span lang=EN-US>1. Click [Register] &gt; [Entry Register]
+&gt; [Entry Register], the system will detect the hardware environment based on
+the parameters of [Parameters] in [Basic Management] before entering the
+registration page:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=310 height=203 id="Picture 149"
+src="user_help.files/image145.jpg"></span></p>
+
+<p class=MsoNormal><span lang=zh-CN>If the detecting is completed, click
+[Close] to continue registering, shown as the left figure below. If the
+detecting failed, the system will prompt, click [OK] to close the registration
+window, shown as the right figure below.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=310 height=218
+src="user_help.files/image146.jpg">&nbsp; <img border=0
+width=268 height=126 src="user_help.files/image147.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US
+style='font-size:14.0pt;font-family:Wingdings'>?</span><span lang=EN-US>Note:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>1) In the
+[Parameters] of [Basic Management], if you checked the” Type of Photo Printed
+on the Receipt Catch Photo”, “Fingerprint Registration is Required” and “Use
+High-Speed Portable HD Doc Scanner”, the related controls or drives will be
+detected. More details about [Parameters], please refer to </span><a
+href="88.htm#_6.3.1_Parameters"><span lang=EN-US>6.3.1 Parameters</span></a><span
+lang=EN-US>.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2) Upon
+detection of a driver is not installed or installed an older version of the
+driver, the system will be prompted to download the latest drivers.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2. The
+registration page is shown as below:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=637 height=418 id="Picture 152"
+src="user_help.files/image148.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Host/Visited</span><span lang=zh-CN>: Select the visited
+personnel.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Visit Department</span><span lang=zh-CN style='color:windowtext'>:
+</span><span lang=zh-CN>Select the department the visitor will visit. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="OLE_LINK47"></a><a name="OLE_LINK46"><span
+lang=zh-CN style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Visit
+Reason</span></a><span lang=zh-CN style='color:windowtext'>: </span><span
+lang=zh-CN>Select the visit reason. You can also input a new reason, and the
+reason will be added in the Visit Reason list in the [ Visit Reason] of [Basic
+Management].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>ID Type</span><span lang=zh-CN>: Passport, Driver’s License, ID
+Card and Others are available to choose.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Entrance</span><span lang=zh-CN>: Select the entry place for the
+visitor. You can add an entry place in the [ Entry Place] of [Basic
+Management].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>ID Number</span><span lang=zh-CN style='color:windowtext'>: The
+numbers and letters are legal, the max length is 20.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Head Potrait</span><span lang=zh-CN style='color:windowtext'>:
+If there is a camera (High-Speed</span><span lang=EN-US> Portable HD Doc
+Scanner</span><span lang=zh-CN style='color:windowtext'> ) connected with the
+server, you can click [Capture] to take the visitor’s photo. The browser may
+block the camera to access, please click </span><span lang=zh-CN><img border=0
+width=18 height=13 src="user_help.files/image149.jpg"></span><span
+lang=zh-CN style='color:windowtext'>&nbsp;in the IP address bar to select the
+camera and set it allowed to access this page. </span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=325 height=158
+src="user_help.files/image150.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Exit
+Registration</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>There are 2
+ways: </span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>1. Click [Exit
+Registration] below Operations as a visitor is ready to leave.</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=576 height=361
+src="user_help.files/image151.jpg"></span></p>
+
+<p class=MsoNormal><span lang=EN-US>Select the Exit Place and click [OK].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. You can also click [Exit Registration] in
+the menu bar when there is too much information in the list: </span><span
+lang=zh-CN><img border=0 width=298 height=26
+src="user_help.files/image152.jpg"></span><span
+lang=zh-CN>:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=642 height=402 id="Picture 157"
+src="user_help.files/image153.jpg"></span></p>
+
+<p class=MsoNormal><span lang=zh-CN>Input the ID Number to get the other
+information of this visitor quickly. </span><span lang=EN-US>Select the Exit
+Place and click [OK].</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

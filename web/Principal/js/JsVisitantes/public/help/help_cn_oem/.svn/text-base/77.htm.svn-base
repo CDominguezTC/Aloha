@@ -1,0 +1,82 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.3.5 参数设置</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection77 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707517"><span lang=EN-US
+style='font-size:10.5pt'>5.3.5 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>参数设置</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【梯控】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【参数设置】，显示如下界面：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=576 height=219
+src="user_help.files/image169.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span style='font-family:幼圆'>获取事件记录方式：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>周期性获取</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>从设置并生效的时间起，每隔多少个小时下载一次新记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>定点获取</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>每到设置的整点，系统会自动下载一次新记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span style='font-family:幼圆'>实时监控页面弹出人员照片大小</span></b><span
+style='font-family:幼圆'>：当有梯控事件发生时，会弹出人员照片，设置弹出照片的大小，范围是</span><span lang=EN-US>80-500px</span><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span style='font-family:幼圆'>报警监控收件人邮箱</span></b><span
+style='font-family:幼圆'>：当监控中有报警事件发生时，可发送报警到该邮箱。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> Anexo 4 Preguntas y Respuestas</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection119 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077489"></a><a name="_Toc427077370"></a><a name="_Toc12613"></a><a
+name="_Toc417487013"></a><a name="_Toc414032727"></a><a name="_Toc387761956"><span
+lang=ES-MX>Anexo 4 Preguntas y Respuestas</span></a></h2>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>P: &iquest;Cómo usar un enrolador de tarjetas?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>R: Conecte el enrolador a la PC mediante un
+puerto USB. Luego seleccione el registro de tarjeta de personal individual o
+por lote. Para el registro individual mueva el cursor al campo de tarjeta y presente
+la tarjeta en el enrolador y se mostrará el número de tarjeta automáticamente.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>P: &iquest;Para qué sirve la configuración de privilegios?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>R: Tiene los siguientes usos: 1. Para
+unificar los niveles del mismo tipo y establecerlos a los usuarios nuevos. 2.
+Determinar que atributos del sistema pueden acceder los usuarios.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>P: &iquest;Cómo hacer cuentas para todo el personal de finanzas de la
+compa&ntilde;ía?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>R: Primero debe crear un nuevo privilegio en
+el módulo de sistema y definir las funciones o niveles para este privilegio.
+Después debe crear un usuario, ingresar la información del usuario, seleccionar
+el privilegio y agregar la cuenta. Para otras cuentas, haga lo mismo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>P: En Windows Server 2003, el navegador IE browser muestra un
+error al acceder al sistema, &iquest;cómo resolverlo?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>A: Este problema ocurre porque debe ajustar
+la configuración de seguridad. Si desea acceder al sistema, configure de la
+siguiente manera: de clic en Inicio &#8211; Panel de Control &#8211; Agregar o Remover
+Programas, seleccione [Agregar o quitar componentes de Windows] y de clic en la
+opción de [Configuración de seguridad mejorada de Internet Explorer], y
+desmarque. Luego de clic en [Siguiente] para removerla del sistema. Acceda de
+nuevo desde el navegador y el sistema se mostrará normalmente.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>P: Al respaldar o restaurar la base de datos falla, &iquest;cuál puede
+ser la razón?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>R:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Respaldo falla</span><span lang=ES-MX>: Revise las variables del
+entorno del sistema, vaya a Propiedades &gt; Variables de entorno del sistema y
+establezca como: “C:\Program Files\ZK BioSecurity3.0\MainResource\postgresql\bin:”.
+“C:\Program Files” es la ruta de instalación, puede modificarla según sus
+necesidades.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Restaurar falla</span><span lang=ES-MX>: Pueden ser diversas
+razones: La versión del sistema es obsoleta o muy nueva o la base de dato ha
+sido da&ntilde;ada. Necesitará revisar estos factores o reinstalar la base de datos.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

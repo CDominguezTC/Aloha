@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml 129:  -->
+
+<page>
+	<objects>
+		<object actionName="baseSysParam">
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="createTime" width="140" columnMinWidth="70" label="${base_system_createTime}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="#paramValue" width="150" columnMinWidth="70"
+				label="${base_system_parameterValue}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="na" isShow="true" convertMethod="com.zk.base.util.BaseSysParamUtil#getParamValue#id"/>
+			<field name="description" width="*" columnMinWidth="70"
+				label="${base_system_description}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true" />
+			<!--<field name="#operate" width="*" columnMinWidth="70" label="${common_relatedOp}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true">
+				<value shiro="base:BaseSysParam:edit" text="${common_op_edit}">
+					<param state="true" filterMethod="com.zk.base.util.BaseSysParamUtil#isShow#id">
+						<![CDATA[<a href="javascript:openWindow('(rootPath)/baseSysParamAction!getById.action?id=(id)^0^0^420^220^${common_op_edit}')">${common_op_edit}</a>]]>
+					</param>
+				</value>
+		</field> -->
+		</object>
+	</objects>
+
+	<toolbars>
+		<toolbar actionName="baseSysParam">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+		</toolbar>
+	</toolbars>
+</page>

@@ -1,0 +1,170 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.1 部门</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection19 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638114"><span lang=EN-US
+style='font-size:10.5pt'>3.1.1 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>部门</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>管理公司人员之前，需要描述和管理公司的部门组织架构。第一次使用本系统时，默认已有一个名为【<b>部门名称</b>】，编号为【</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>】的一级部门，该部门可以修改，但不能删除。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>部门管理主要包括新增部门、编辑部门和删除部门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761889"><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>新增部门</span></b></a></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=302 height=205
+src="user_help.files/image016.jpg"></span><span
+lang=EN-US>&nbsp;</span><span style='position:absolute;z-index:251663872;
+margin-left:0px;margin-top:0px;width:324px;height:206px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=324 height=206 style='vertical-align:top'><span style='position:
+  absolute;z-index:251663872'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>1</span><span style='font-family:幼圆'>）点击【人员管理】</span><span
+    lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:
+    幼圆'>【部门】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+    style='font-family:幼圆'>【新增】，显示新增部门页面；</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>2</span><span style='font-family:幼圆'>）信息输入完成后，点击【确定】完成新增，点击【取消】取消新增，点击【保存并继续】保存新增并继续添加。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>【上级部门】是确定公司组织架构的重要参数，在页面左侧会以部门树的形式显示公司的组织结构图。新增部门还可以通过【导入】的方式，将其他软件或系统中的部门信息导入到本系统，具体操作请参见</span><span
+    lang=EN-US><a href="#_附录1_常用操作"><span lang=EN-US style='font-family:幼圆'><span
+    lang=EN-US>附录</span></span>1 <span lang=EN-US style='font-family:幼圆'><span
+    lang=EN-US>常用操作</span></span></a></span><span style='font-family:幼圆'>。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=320 height=202
+src="user_help.files/image017.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>部门编号</span></b><span
+style='font-family:幼圆'>：只支持字母和数字，不能与其他部门编号重复，长度不超过</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>位。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>部门名称</span></b><span
+style='font-family:幼圆'>：任意字符，最多</span><span lang=EN-US>100</span><span
+style='font-family:幼圆'>个字符组合。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>排序</span></b><span
+style='font-family:幼圆'>：只支持数字，最多十位数。同一级的部门编号排序越小越靠前。此处的排序只会影响左边部门树的排列，不会影响部门列表的显示。如果不填写，系统将默认按照添加的先后顺序进行排列。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>上级部门</span></b><span
+style='font-family:幼圆'>：下拉单选框选择上级部门，点击【确定】。如果需要取消，再次单击已经选择的选项即可。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761890"><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>编辑部门</span></b></a></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【人员管理】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【部门】，点击对应操作下的【编辑】，重新修改部门信息：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>删除部门</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=212 height=99
+id="Picture 84" src="user_help.files/image018.jpg">&nbsp;</span><span style='position:absolute;z-index:251662848;margin-left:0px;margin-top:0px;
+width:405px;height:111px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=405 height=111 style='vertical-align:top'><span style='position:
+  absolute;z-index:251662848'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span style='font-family:幼圆'>（</span><span
+    lang=EN-US>1</span><span style='font-family:幼圆'>）点击【人员管理】</span><span
+    lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:
+    幼圆'>【部门】，选中需要删除的部门，点击【删除】；</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span style='font-family:幼圆'>（</span><span
+    lang=EN-US>2</span><span style='font-family:幼圆'>）点击【确定】确认删除，点击【取消】取消删除。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:
+    Wingdings'>?</span><b><span style='font-family:幼圆'>注意事项</span></b><span
+    style='font-family:幼圆'>：</span> <span style='font-family:幼圆'>如果该部门下有子部门或人员，则该部门将不能删除。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=401 height=107
+src="user_help.files/image019.png"></span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

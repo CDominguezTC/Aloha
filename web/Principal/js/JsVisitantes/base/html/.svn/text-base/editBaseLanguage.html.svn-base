@@ -1,0 +1,256 @@
+<#assign editPage = "true">
+<#include "/public/template/base.html">
+<#macro baseMainContent>
+<style type="text/css">
+.refLang
+{
+	background-color:#a9a9a9;
+}
+</style>
+<form method="post" id="editBaselangResForm" name="editBaselangResForm" action="baseLanguageResourceAction!saveChangedLangRes.action">
+	<div class="searchTopBox">
+		${base_i18n_viewSwitch}:
+		<select id="viewCheck" name="viewCheck" onchange="viewChange(this)">
+			<option value="0">${common_all}</option>
+			<option value="1">${base_i18n_noTranslation}</option>
+			<option value="2">${base_i18n_translated}</option>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;${base_i18n_autoSave}：
+		<select id="autoSaveTime" name="autoSaveTime" onchange="autoSaveChange(this)">
+			<option value="30">30${base_i18n_second}</option>
+			<option value="60">1${base_i18n_minute}</option>
+			<option value="180">3${base_i18n_minute}</option>
+			<option value="300">5${base_i18n_minute}</option>
+			<option value="0">${base_i18n_cancelAutoSave}</option>
+		</select>
+        &nbsp;&nbsp;&nbsp;&nbsp;${base_i18n_showKeyName}:<input id="isshowkey" type="checkbox" onclick="showKey(this)"/>
+		&nbsp;&nbsp;&nbsp;&nbsp;<font color="red"><label id="savedTimeShow"></label></font>
+	</div>
+	<input type="hidden" name="confirmBack" id="confirmBack"/>
+	<div id="operate" style="clear: both;"></div>
+	<!-- 获取操作按钮的js控制 -->
+	<script type="text/javascript">
+		createToolbar('baseAction!getPageXML.action?xmlPath=${base}/base/xml/BaseLanguage.page.xml&actionName=baseLanguageResource');
+	</script>
+	<div class="dhx_toolbar_base_18_dhx_skyblue in_layoutcell">
+		<table width="100%" style="padding-top:5px">
+			<tr>
+                <td style="display:none" id="isshowtd"><font size="2">${base_i18n_keyName}</font></td>
+				<#assign refCode ='${referenceLanguage}'>
+				<td style="width:40%;"><font size="2">${base_i18n_referenceLanguage}:${languageMap.get(refCode).i18nName}</font></td>
+				<#assign editCode ='${editLangCode}'>
+				<td style="width:40%;"><font size="2">${base_i18n_langToTranslated}:${languageMap.get(editCode).i18nName}</font></td>
+			</tr>
+		</table>
+	</div>
+	<div style="overflow:auto;height:580px">
+		<table width="100%" id="baseLangResId">
+			<#if langResMap?exists>
+			<#assign iSum=0>
+			<#list Request.langResMap?keys as key>
+			<tr>
+                <td style='width:20%;display:none' class='resKeyisshow'><input type='text' style='width: 99%;padding: 0px;margin: 0px;' name='langResList[${iSum}].name' value='${key}' readonly='readonly'/></td>
+				<td style="width:40%;"><input type="text" style="width: 99%;padding: 0px;margin: 0px;" value="${langResMap.get(key)[0]}" title="${langResMap.get(key)[0]}" class="refLang" readonly="readonly"/></td>
+				<td style="width:40%;"><input type="text" style="width: 99%;padding: 0px;margin: 0px" name="langResList[${iSum}].content" value="${langResMap.get(key)[1]}" title="${langResMap.get(key)[1]}" onchange="changeSaveFlag()"/></td>
+			</tr>
+			<#assign iSum=iSum+1>
+			</#list>
+			</#if>
+		</table>
+	</div>
+	<script>
+		// 返回按钮操作
+		function backToModule(para){
+			var backPath = para;
+			location.href=backPath;
+		}
+		// 保存
+		function saveLangToDb(){
+			$("#editBaselangResForm").ajaxSubmit({
+				success: function(result)
+				{
+					openMessage(msgType.success, result[sysCfg.msg]);
+				},
+				error : function(XMLHttpRequest, textStatus, errorThrown)
+				{
+					messageBox({
+						messageType : "alert",
+						title : "${common_prompt_title}",
+						text : "${common_prompt_serverError}"
+					});
+				}
+			});
+		}
+		// 保存后返回
+		function saveBack(){
+			document.getElementById("confirmBack").value="true";
+			$("#editBaselangResForm").submit();
+		}
+		// 翻译语言状态切换
+		function viewChange(selectObj)
+        {
+	        $("#baseLangResId").hide();
+	        onLoading(function()
+	        {
+		        var viewCheck = selectObj.value;
+		        var path = "baseLanguageResourceAction!reloadLangResForAjax.action?viewCheck=" + viewCheck;
+		        $.ajax({
+                    url : path,
+                    dataType : "json",
+                    async : true,
+                    success : function(data)
+                    {
+	                    $("#baseLangResId tr").each(function(i, obj)
+	                    {
+		                    $(obj).remove();
+	                    });
+	                    var i = 0;
+	                    var isDisplay = "display:none";
+	                    if ($("#isshowkey").attr("checked"))
+	                    {
+		                    isDisplay = "display:inline";
+	                    }
+	                    var htmlcontent = "";
+	                    var j = 0;
+	                    for ( var p in data)
+	                    {
+		                    htmlcontent += "<tr><td style='width:20%;" + isDisplay + "' class='resKeyisshow'><input type='text' style='width: 99%;padding: 0px;margin: 0px;' name='langResList[" + i + "].name' value='" + p + "' readonly='readonly'/></td>";
+		                    htmlcontent += "<td style='width:40%'><input type='text' style='width: 99%;padding: 0px;margin: 0px;' value='" + data[p][0] + "' title='" + data[p][0] + "' class='refLang' readonly='readonly'/></td>"
+		                    htmlcontent += "<td style='width:40%'><input type='text' style='width: 99%;padding: 0px;margin: 0px;' name='langResList[" + i + "].content' value='" + data[p][1] + "' title='" + data[p][1] + "' onchange='changeSaveFlag()''/></td>"
+		                    htmlcontent += "</tr>";
+		                    //$("#baseLangResId").append(htmlcontent);
+		                    i++;
+		                    j++;
+		                    if (j == 1000)
+		                    {
+			                    $("#baseLangResId").append(htmlcontent);
+			                    htmlcontent = "";
+			                    j = 0;
+		                    }
+	                    }
+	                    $("#baseLangResId").append(htmlcontent);
+	                    $("#baseLangResId").show();
+	                    closeMessage();
+                    },
+                    error : function(XMLHttpRequest, textStatus, errorThrown)
+                    {
+	                    messageBox({
+	                        messageType : "alert",
+	                        title : "${common_prompt_title}",
+	                        text : "${common_prompt_serverError}"
+	                    });
+	                    $("#baseLangResId").show();
+	                    closeMessage();
+                    }
+                });
+	        });
+        }
+        // 自动保存功能
+        var optionValue = document.getElementById("autoSaveTime").value;
+        var timerObj = setTimeout("autoSaveLangRes()", parseInt(optionValue) * 1000);
+        function autoSaveChange(selectObj)
+        {
+	        optionValue = selectObj.value;
+	        if (optionValue == 0 && timerObj)
+	        {
+		        clearTimeout(timerObj);
+	        }
+	        else
+	        {
+		        if (timerObj)
+		        {
+			        clearTimeout(timerObj);
+		        }
+		        timerObj = setTimeout("autoSaveLangRes()", parseInt(optionValue) * 1000);
+	        }
+        }
+        // ajax自动保存
+        function autoSaveLangRes()
+        {
+	        if (changeFlag == true)
+	        {
+		        $("#editBaselangResForm").ajaxSubmit({
+		            success : function(result)
+		            {
+			            $("#savedTimeShow").html("${base_i18n_already}" + new Date().format("yyyy-MM-dd HH:mm:ss") + "${base_i18n_save}");
+			            if (timerObj)
+			            {
+				            timerObj = setTimeout("autoSaveLangRes()", parseInt(optionValue) * 1000);
+			            }
+			            changeFlag = false;
+		            },
+		            error : function(XMLHttpRequest, textStatus, errorThrown)
+		            {
+			            messageBox({
+			                messageType : "alert",
+			                title : "${common_prompt_title}",
+			                text : "${common_prompt_serverError}"
+			            });
+		            }
+		        });
+	        }
+	        else
+	        {
+		        if (timerObj)
+		        {
+			        timerObj = setTimeout("autoSaveLangRes()", parseInt(optionValue) * 1000);
+		        }
+	        }
+        }
+        function showKey(obj)
+        {
+	        if (obj.checked == true)
+	        {
+		        $("#baseLangResId").hide();
+		        onLoading(function()
+		        {
+			        //分批次加载，解决IE大数据卡顿现象
+			        $(".resKeyisshow:lt(20)").show();
+			        var count = $(".resKeyisshow").length;
+			        var i = 19;
+			        function timerLoad()
+			        {
+				        $(".resKeyisshow:gt(" + i + "):lt(20)").show();
+				        i = i + 20;
+				        if (i < count)
+				        {
+					        setTimeout(timerLoad, 20);
+				        }
+				        else
+				        {
+					        $("#baseLangResId").show();
+					        closeMessage();
+				        }
+			        }
+			        ;
+			        if (i < count)
+			        {
+				        setTimeout(timerLoad, 20);
+			        }
+			        else
+			        {
+				        $("#baseLangResId").show();
+				        closeMessage();
+			        }
+		        });
+		        $("#isshowtd").show();
+	        }
+	        else
+	        {
+		        $(".resKeyisshow").hide();
+		        $("#isshowtd").hide();
+	        }
+        }
+        // 当任何一个内容发生改变时修改数据库
+        var changeFlag = false;
+        function changeSaveFlag()
+        {
+	        changeFlag = true;
+	        if (timerObj)
+	        {
+		        timerObj = setTimeout("autoSaveLangRes()", parseInt(optionValue) * 1000);
+	        }
+        }
+	</script>
+</form>
+</#macro>

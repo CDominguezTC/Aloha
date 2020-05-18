@@ -1,0 +1,59 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.5.3 Last Known Position</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection62 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072374"></a><a name="_Toc413852714"><span lang=EN-US>4.5.</span></a><span
+lang=EN-US>3</span><span lang=EN-US> Last </span><span lang=EN-US>Known</span><span
+lang=EN-US> </span><span lang=EN-US>Position</span></h3>
+
+<p class=MsoCommentText style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm'><span lang=EN-US style='font-family:"Arial,微软雅黑"'>Check
+out the final position of personnel who has access privileges to access. It is
+convenient to locate a personnel.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Click [Access] <span style='letter-spacing:
+-.1pt'>&gt; [Reports] </span>&gt; [</span><span lang=EN-US>Last Know Position]
+to check out.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=613 height=200 id="图片 10"
+src="user_help.files/image113.jpg"></span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

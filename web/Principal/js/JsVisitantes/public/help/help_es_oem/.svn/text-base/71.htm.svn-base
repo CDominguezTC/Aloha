@@ -1,0 +1,200 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.7 Monitoreo en Tiempo Real</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection71 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077068"></a><a name="_Toc417486965"></a><a name="_Toc23904"></a><a
+name="_Toc414032677"></a><a name="_Toc10172"></a><a name="_6.1.7_实时监控"></a><a
+name="_5.1.7实时监控"></a><a name="_5.1.7_实时监控"></a><a
+name="_5.1.7_Real-Time_Monitoring"></a><a name="_5.1.7_Monitoreo_en"></a><span
+lang=ES-MX>5.1.7 Monitoreo en Tiempo Real</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Elevador] &gt; [Dispositivos]
+&gt; [Monitoreo en Tiempo Real] para monitorear el estado y los eventos en
+tiempo real de las puertas de los paneles de elevador, incluyendo eventos
+normales, anormales, alarmas, vínculos, etc. La interfaz de monitoreo en tiempo
+real se muestra a continuación:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=553 height=283
+src="user_help.files/image126.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>1. Monitoreo De Eventos</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>El sistema obtiene
+automáticamente los eventos de los dispositivos (por default muestra </span><span
+lang=ES-MX>2</span><span lang=ES-MX>00 eventos), incluyendo eventos de acceso
+normales y anormales (incluyendo alarmas). Los eventos normales se muestran en
+color verde, los eventos de alarma en rojo y otros eventos anormales en
+naranja.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Monitoreo de &Aacute;reas</span><span lang=ES-MX>:</span><span
+lang=ES-MX> Por default, se monitorean todos los pisos del dispositivo de
+elevador. Es posible filtrar el monitoreo de los pisos por &Aacute;rea, Estado, Nombre
+de Dispositivo y No. de Serie.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Mostrar Fotos</span><span lang=ES-MX>:
+Si está activado se mostrará la foto registrada del usuario al ocurrir una
+verificación correcta </span><span lang=ES-MX>(si no tiene foto registrada, se
+muestra la imagen default). También se muestra el nombre del evento, fecha,
+hora y nombre</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. Liberación de Botón Remoto</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>De clic en [Apertura
+Remota de Botón]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=zh-CN><img border=0
+width=314 height=314
+src="user_help.files/image127.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Ingrese la contrase&ntilde;a
+de usuario (la contrase&ntilde;a de inicio de sesión), luego de clic en [Siguiente]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=313 height=313
+id="图片 82" src="user_help.files/image128.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione el piso y de clic en [Siguiente]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=313 height=313
+src="user_help.files/image129.jpg"></span></b><span
+lang=zh-CN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='color:#92D050'>Descripción de los
+campos:</span></p>
+
+<p class=MsoNormal><span lang=ES-MX style='color:#92D050'>Apertura Remota</span><span
+lang=ES-MX style='color:windowtext'>: Determina cuando la tecla correspondiente
+al piso seleccionado puede ser presionada</span><span lang=ES-MX
+style='display:none'>{0&gt;&lt;}0{&gt;</span><span lang=ES-MX>. Es posible
+personalizar la duración de la liberación de la tecla (15seg por default), o
+seleccionar el horario de liberación programado. También es posible establecer
+el estado del piso en liberación continua. En este caso, el piso no estará
+sujeto a restricciones de horarios, incluyendo el horario de piso activo,
+horario programado o duración de apertura de botón. En otras palabras, el piso
+estará liberado continuamente las 24 horas todos los días. </span><span
+class=tw4winMark><span lang=ES-MX>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Habilitar Horario de Apertura Programado</span><span lang=ES-MX>:
+Para detener el acceso a un piso, primero debe deshabilitar el horario de
+apertura programado para prevenir que el piso sea liberado debido a que otros
+horarios de apertura tomen efecto. Después deberá cerrarlo con Bloqueo de Botón
+Remoto. </span><span class=tw4winMark><span lang=ES-MX>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Liberación de Botón Continua</span><span lang=ES-MX>: El piso
+que se mantiene en estado de liberación continua no está sujeto a restricciones
+de horarios, esto significa que estará continuamente liberado las 24 horas cada
+día. Para detener la liberación del piso, debe seleccionar Desactivar Horario
+de Liberación.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Si se muestra continuamente un mensaje de error al liberar
+remotamente<span style='display:none'> &lt;}0{&gt;</span>, revise si están los
+dispositivos desconectados en la lista de dispositivos o la conexión de la red.
+</span><span class=tw4winMark><span lang=ES-MX>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione las opciones y de clic en
+[Completar] para terminar de habilitar el botón.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. Bloqueo Remoto de Botón</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>De clic en [Bloqueo
+Remoto de Botón]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=zh-CN><img border=0
+width=313 height=314
+src="user_help.files/image130.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Ingrese la contrase&ntilde;a
+de usuario (la contrase&ntilde;a de inicio de sesión), luego de clic en [Siguiente]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=313 height=313
+src="user_help.files/image131.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione el piso y de clic en [Siguiente]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=313 height=313
+src="user_help.files/image132.jpg"></span></b><span
+lang=zh-CN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Bloqueo Remoto de Botón</span><span lang=ES-MX style='color:
+windowtext'>: Bloquea el botón liberado remotamente.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Si un mensaje de falla es devuelto, revise que el dispositivo
+no se encuentre desconectado o revise la conexión de red<span style='display:
+none'> &lt;}0{&gt;</span>. </span><span class=tw4winMark><span lang=ES-MX>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione las opciones y de clic en
+[Finalizar] para completar el bloqueo del botón.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

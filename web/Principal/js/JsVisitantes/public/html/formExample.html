@@ -1,0 +1,126 @@
+<#assign formId = "testEditForm">
+<!-- 当不能保证该页面不会出现2个以上表单时，就需要自定义表单id -->
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script type="text/javascript">
+	$().ready(function(){
+		/*
+		// 字母和数字的验证  
+		jQuery.validator.addMethod("chrnum", function(value, element) {  
+		    var chrnum = /^([a-zA-Z0-9]+)$/;  
+		    return this.optional(element) || (chrnum.test(value));  
+		}, "只能输入数字和字母(字符A-Z, a-z, 0-9)");
+		
+		// 字节长度验证  
+		jQuery.validator.addMethod("byteRangeLength", function(value, element, param) {  
+		    var length = value.length;  
+		    for (var i = 0; i < value.length; i++) {  
+		        if (value.charCodeAt(i) > 127) {  
+		            length++;  
+		        }  
+		    }  
+		    return this.optional(element) || (length >= param[0] && length <= param[1]);  
+		},$.validator.format("请确保输入的值在{0}-{1}个字节之间(一个中文字算2个字节)"));
+		*/
+		$("#${formId}").validate( {
+			debug : true,
+			rules : {
+				"employee.name" : {
+					required : true,
+					rangelength : [ 2, 15 ]
+				},
+				"employee.email" : {
+					required : true,
+					email : true
+				},
+				"employee.gender" : {
+					required : true
+				},
+				"employee.password" : {
+					required : true,
+					digits : true
+				},
+				"selectTest" : {
+					required : true
+				}
+			}
+			,/*重写提交方法*/
+			submitHandler: function(form) {
+				alert("验证通过后，进行自定义拦截函数");
+				<@submitHandler/>
+			}
+		});
+		/*
+		$("#phone").rules("add", {required: function(obj){
+			if($("#phone").val() == "")
+			{
+				alert($(obj).val());
+				
+			}
+			//return true;
+			return false;
+		}});*/
+	});
+</script>
+
+<div>页面源码路径：public/html/formExample.html</div>
+<form method="post" id="${formId}" action="testAction!edit.action">
+    <table class="tableStyle">
+        <tr valign="middle">
+        	<th><label>姓名</label><span class="required">*</span></th>
+        	<td><input name="employee.name" type="text"/></td>
+        	<th><label>邮箱</label><span class="required">*</span></th>
+        	<td><input name="employee.email" type="text"/></td></tr>
+        <tr >
+        	<th><label>密码</label><span class="required">*</span></th>
+        	<td><input name="employee.password" type="password"/></td>
+        	<th><label>性别</label><span class="required">*</span></th>
+        	<td><input name="employee.gender" type="text"/></td>
+        </tr>   
+        <tr>
+        	<th><label>民族</label><span class="required">*</span></th>
+        	<td><select name="selectTest"><option value="">-----</option><option value="1">汉族</option><option value="2">满族</option><option value="3">维吾尔族</option></select></td>
+        	<th><label>手机<span class="required">*</span></label></th>
+        	<td><input type="text" id="phone"/></td>
+        </tr>
+        <tr>
+        	<th><label>常用地址</label></th>
+        	<td><textarea style="height: 50px"></textarea></td>
+        	<th><label>密码</label></th>
+        	<td><input type="password"/></td>
+        </tr>
+    </table>
+</form>
+
+<div>
+	<#noparse>
+	<br/><br/>
+	<p>说明：</p>
+	表单id定义统一使用${formId}，如果该表单一定时最原始的表单，请使用默认的编辑模版中的${formId}即可，
+	如果该表单可能出现在其他表单的上面（后面出现），那么即需要重写formId，用法如下：<br/>
+	
+	<#assign formId = "updatePasswordForm"><br/>
+	<#include "/public/template/editTemplate.html">
+	<br/>
+	写在include上面即可（不能使用editForm）,下面的id统一使用${formId}，不管有没有重写id，如：<span><</span>form method="post" id="${formId}"<br/>
+	另外如果是一个页面，如果需要在表单提交前定义其他拦截函数，统一在validate里面加,
+			<br/>
+			/*重写提交方法*/<br/>
+			submitHandler: function(form) {<br/>
+				alert("验证通过后，进行自定义拦截函数");<br/>
+				<@submitHandler/><br/>
+			}<br/>
+	如需自定义提交表单，使用$("#${formId}").submit();<br/>
+	建议大家不要使用自定义提交表单，使用加验证规则，
+	
+	
+	<br/><br/><br/>
+	<div style="color: red">
+		*建议大家如果看完页面说明后，还是有点不明白的话，可查看下该页面源码(如果没有表单请大家一定不要使用edit模版，别乱套了，
+		如果只是需要确定取消按钮的窗口，请使用弹窗模版，用法可【弹窗和进度条】中的示例)
+		
+	</div>
+	</#noparse>
+</div>
+
+</#macro>

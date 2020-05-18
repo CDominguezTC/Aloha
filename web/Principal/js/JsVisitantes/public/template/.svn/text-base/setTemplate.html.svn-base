@@ -1,0 +1,108 @@
+<#if !formId??>
+	<!-- 定义表单id（也是整个编辑模版标识） -->
+	<#assign formId = "editForm">
+</#if>
+
+<#macro submitHandler gridName="gridbox" callBackFun="">
+	onLoading(function(){
+		$('#${formId}').ajaxSubmit({
+			async : false,
+			dataType : 'json',
+			success: function(result)
+			{	
+				dealRetResult(eval(result));
+				<#if callBackFun!="">
+					eval('${callBackFun!}');
+				</#if>
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown)
+			{
+				if(XMLHttpRequest.status == 0)
+				{
+					openMessage(msgType.error, "${common_prompt_serverFailed}");
+				}
+				else
+				{
+					openMessage(msgType.error, "${common_prompt_serverError}" + XMLHttpRequest.status);
+				}
+			}
+		});
+	});
+</#macro>
+<script type="text/javascript">
+$.validator.setDefaults({
+	debug: true
+	,
+	errorElement: "em"
+	/*,
+	wrapper: "div"*/
+	,
+	errorPlacement: errorFun,
+	ignore: "",
+	success: function(element) {
+		element.parents(".ts_box").parent().find(".dhtmlxComboxError").removeClass("dhtmlxComboxError");
+		element.parents(".ts_box").remove();
+	}
+	,
+	onchange:true,
+	
+	submitHandler: function(form) {
+		<@submitHandler gridName="gridbox"/>
+	}
+});
+</script>
+
+<#if setMain?exists>
+	<@setMain />
+<#else>
+<div style="margin: 0px; padding: 0px;height: 100%;">
+	<!-- request.is_ajax-->
+	<table width="100%" height="100%">
+		<tr valign="top">
+			<td class="content_td">
+				<div class="content_div" style="height: 0px;overflow: hidden;">
+					<script type="text/javascript">
+						opTemplateHeightResize();
+					</script>
+					<!-- form begin-->
+					<#if setContent?exists>
+						<!-- 表单提交后的处理 -->
+						<@setContent />
+					<#else>
+						<center>请填充内容</center>
+					</#if>
+				</div>
+				<!-- form end-->
+			</td>
+		</tr>
+		<tr valign="top">
+			<td height="50px">
+				<!-- editAfter begin-->
+				<div class="bottomDiv bottomDivL" id="bottomDiv${formId}" style="z-index: 200;text-align:${((enableRTL!'')=='true')?string('right','left')}">
+					<button class='button-form' id="${formId}OK" disabled="disabled">${common_edit_ok}</button>
+				</div>
+				<!-- editAfter end-->
+			</td>
+		</tr>
+	</table>
+	
+</div>
+</#if>
+<script type="text/javascript">
+var isContinueAdd = false;
+$(document).ready(function(){
+	if(document.getElementById("hasPermission"))
+	{
+		$("#${formId}OK").attr("disabled", false);
+	}
+	
+	//添加或编辑页面点击确定按钮时，显示list页面
+	$("#${formId}OK").click(function(){
+		$("#${formId}").submit();
+	});
+	
+	$("form input[type=text][readonly!=readonly]:first").focus();
+	$("<input type='submit' style='display: none;' id='${formId}Submit'/>").appendTo("#${formId}");
+});
+
+</script>

@@ -1,0 +1,202 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.7 Real-Time Monitoring</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection71 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427071743"></a><a name="_Toc10172"></a><a name="_Toc414032677"></a><a
+name="_6.1.7_实时监控"></a><a name="_5.1.7实时监控"></a><a name="_5.1.7_实时监控"></a><a
+name="_5.1.7_Real-Time_Monitoring"></a><span lang=EN-US>5.1.7 </span><span
+lang=EN-US>Real-Time Monitoring</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Click [Access Device] &gt; [Real-Time
+Monitoring], real-time monitor the status and real-time events of elevator
+controllers in the system, including normal events and abnormal events
+(including alarm events). Real-Time Monitoring interface is shown as follows:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=576 height=297
+src="user_help.files/image125.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>1. Event Monitoring</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>System automatically
+acquires monitored device event records (by default, display </span><span
+lang=EN-US>2</span><span lang=EN-US>00 records), including normal and abnormal </span><span
+lang=EN-US>elevator</span><span lang=EN-US> control events (including alarm
+events). Normal events appear in green, alarm events appear in red, other
+abnormal events appear in orange.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Monitor Area</span><span lang=EN-US>:</span><span lang=EN-US>
+All floors with elevator controller in the system is monitored by default, you
+can targete to monitor one or more floors by Area, Status, Device Name and
+Serial NO.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Show Photos</span><span lang=EN-US>: </span><span
+lang=EN-US>If Real-Time Monitoring is involved in a person, the monitor
+displays the personal photo (if no photo is registered, display default photo).
+The event name, time and name are displaye</span><span lang=EN-US>d.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. Remotely Release Button</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Click [Remotely Release
+Button]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=zh-CN><img border=0
+width=343 height=345 src="user_help.files/image126.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Input the user password
+(the system logging password), click [Next Step]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=360 height=358
+src="user_help.files/image127.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Select the floor, and click [Next Step]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=355 height=357
+src="user_help.files/image128.jpg"></span><span lang=zh-CN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='color:#92D050'>Remote Release</span><span
+lang=EN-US style='color:windowtext'>: </span><span lang=EN-US style='display:
+none'>{0&gt;&lt;}0{&gt;</span><span lang=EN-US>It determines whether the key
+corresponding to the selected floor can be pressed. You can customize the key
+release duration (15s by default), or select Enable Intraday Passage Mode Time
+Zone. You can also directly set the current status of the floor to continuously
+release. In this case, the floor is not subject to restrictions of any periods,
+including Floor Active Time Zone, Floor Passage Mode Time Zone, and Button Open
+Duration. That is, the floor will be continuously released in 24 hours every
+day. </span><span class=tw4winMark><span lang=EN-US>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Enable Intraday Passage Mode Time Zone</span><span lang=EN-US>:
+To close a floor, you must first set Disable Intraday Passage Mode Time Zone to
+prevent the case that the floor is opened because other continuous open periods
+take effect. Then, you need to set to close the Remote Lock Button. </span><span
+class=tw4winMark><span lang=EN-US>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Sustained Release Button</span><span lang=EN-US>: The floor that
+is set to the continuously release state is not subject to restrictions of any
+periods, that is, the floor will be continuously released in 24 hours every
+day. To close the floor, you must select Disable Intraday Passage Mode Time
+Zone.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: <span style='display:none'>&nbsp;&lt;}0{&gt;</span>If a failure
+message is always returned for the remote release key, check whether there are
+too many currently disconnected devices on the device list. If yes, check the
+network connection. </span><span class=tw4winMark><span lang=EN-US>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Select the options, click [Complete] to
+finish enabling the button.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. Remotely Lock Button</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Click [Remotely Lock
+Button]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=zh-CN><img border=0
+width=358 height=357 src="user_help.files/image129.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Input the user password
+(the system logging password), click [Next Step]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=302 height=302
+src="user_help.files/image130.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Select the floor, and click [Next Step]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=304 height=302
+src="user_help.files/image131.jpg"></span><span lang=zh-CN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Remote Locking</span><span lang=EN-US style='color:windowtext'>:
+Lock the remotely released button.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: <span style='display:none'>&nbsp;&lt;}0{&gt;</span>If a
+failure message is always returned for the remote lock key, check whether there
+are too many currently disconnected devices on the device list. If yes, check
+the network connection. </span><span class=tw4winMark><span lang=EN-US>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Select the options, click [Complete] to
+finish enabling the button.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='display:none'>&nbsp;&nbsp; </span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

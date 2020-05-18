@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<canvas id="canvas" width="450" height="320" style="background: url('${base}/base/images/base_fpVerify.jpg');"></canvas>
+<!-- background: url('${base}/base/images/base_fingerBg.jpg') repeat-x scroll center center background-color:rgb(70, 130, 180);-->
+<input type="hidden" id="whetherModify" name="whetherModify" alt="" value="111" />
+
+<script type="text/javascript">
+//全局2d画笔
+var globalContext = null;
+//页面右上角圆弧的背景色
+var arcBgColor = "rgb(54, 100, 139)";
+//页面背景色
+var bgColor = "rgb(0, 0, 0)";
+//验证标记--是否已经进行验证 true:正在进行验证;false:否
+var verifyFlag = false;
+//模式:1--1:1,2--1:N
+var model = "2";
+
+/**
+ * 画椭圆 -- 给context添加绘画椭圆的属性
+ * @author wenxin
+ * @create 2013-05-15 10:11:21 am
+ * @param x, y 椭圆定位的坐标
+ * @param width, height 椭圆的宽度和高度
+ */
+CanvasRenderingContext2D.prototype.oval = function(x, y, width, height) 
+{
+    var k = (width/0.75)/2,w = width/2,h = height/2;
+    this.strokeStyle = bgColor;
+	this.beginPath();
+	
+	this.moveTo(x, y-h);
+	this.bezierCurveTo(x+k, y-h, x+k, y+h, x, y+h);
+	this.bezierCurveTo(x-k, y+h, x-k, y-h, x, y-h);
+	this.closePath();
+	this.stroke();
+	return this;
+}
+/**
+ * 复选框选中触发事件--选择1:1比对或者1:N
+ * @author wenxin
+ * @create 2013-06-24 11:18:11 am
+ */
+function selectChange(obj)
+{
+	//模式:1--1:1,2--1:N
+	model = obj.value;
+	if(model == "1")
+	{
+		$("#persNumText").attr("disabled", false);
+	}
+	else if(model == "2")
+	{
+		$("#persNumText").attr("disabled", true);
+	}
+	//显示框--采集提示
+	collectTips(globalContext, "", "verification");
+}
+ /**
+ * 查动态库连接回调函数
+ * @author wenxin
+ * @create 2013-05-15 17:12:21 pm
+ * @param ${pers_person_templateCount}:指纹数
+ */
+function getDLLConnectCallBack(result)
+{
+	if(globalContext == null)
+	{
+		globalContext = document.getElementById("canvas").getContext("2d");
+	}
+	//返回码
+	var ret = null;
+	ret = result.ret;
+	//接口调用成功返回时
+	if(ret == 0)
+	{
+		//${base_fp_connectFail}:连接指纹采集器失败
+		collectTips(globalContext, "${base_fp_connectFail}", "verification");
+	}
+	else
+	{
+		//${base_fp_loadFail}:加载ZKFinger10失败
+		collectTips(globalContext, "${base_fp_loadFail}", "verification");
+	}
+}
+/**
+ * 调用begincapture接口，开始采集指纹
+ * @author wenxin
+ * @create 2013-06-24 10:11:21 am
+ * @param context 2d画布上下文
+ */
+function beginCapture(context)
+{
+	$.ajax( {
+		type : "GET",
+		url : issOnlineUrl+"/beginCapture?type=2&random="+getRandomNum(),
+		dataType : "json",
+		async: true,
+		success : function(result) 
+		{
+			//返回码
+			var ret = null;
+			ret = result.ret;
+			//接口调用成功返回时
+			if(ret == 0)
+			{
+				verifyFlag = true;
+				//检查采集、显示图像
+				checkColl();
+			}
+			else if(ret == -2001)
+			{
+				//${base_fp_connectFail}:连接指纹采集器失败
+				//显示框--采集提示
+				collectTips(context, "${base_fp_connectFail}", "verification");
+			}
+			else if(ret == -2002)
+			{
+				getWebServerInfo(null, null, "1");
+			}
+			else if(ret == -2005)
+			{
+				//取消采集
+				cancelCapture();
+				//开始采集
+				beginCapture(globalContext);
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) 
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_connectPrompt}"});
+	    }
+	});
+}
+/**
+ * 检查采集--递归调用，如果有采集到指纹，显示图像，获取模板，进行比对
+ * @author wenxin
+ * @create 2013-06-24 10:11:21 am
+ */
+function checkColl()
+{
+	var base64FPImg = "";
+	//返回码
+	var ret = null;
+	$.ajax( {
+		type : "GET",
+		url : issOnlineUrl+"/getImage?random="+getRandomNum(),
+		dataType : "json",
+		async: true,
+		success : function(result) 
+		{
+			//alert(objToStr(data));
+			//指纹采集次数
+			var collCount = 0;
+			ret = result.ret;
+			if(ret == 0)
+			{
+				collCount = result.data.enroll_index;
+				base64FPImg = result.data.jpg_base64;
+			}
+			if(collCount != 3)
+			{
+				//定时器
+				timer = setTimeout("checkColl()", 1000);
+			}
+			else
+			{
+				//将定时器关闭
+				clearTimeout(verifyTimer);
+				//显示指纹图像
+				showImage(globalContext, base64FPImg, "verification");
+				//存放国际化元素数组
+				var paramArray = new Array();
+				paramArray[0] = '${base_fp_registerSuccess}';//${base_fp_registerSuccess}:成功登记指纹
+				paramArray[1] = '${base_fp_pressFingerAgain}';//${base_fp_pressFingerAgain}:请重按手指
+				paramArray[3] = '${base_fp_connectPrompt}';//${base_fp_connectPrompt}:请检查网络连接
+				//获取指纹模板
+				getFPTemplate(paramArray, "verification");
+				$("#oneToMany").attr("disabled", false);
+				$("#oneToOne").attr("disabled", false);
+			}
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) 
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_connectPrompt}"});
+	    }
+	});
+}
+/**
+ * 指纹比对
+ * @author wenxin
+ * @create 2013-06-24 17:41:21 pm
+ * @param fpTemplate 指纹模板
+ */
+function fpComparison(fpTemplate)
+{
+	if(model == "1")
+	{
+		if($("#persNumText").val() != "${pers_person_pin}")
+		{
+			$("#pin").val($("#persNumText").val());
+		}
+	}
+	$("#verifyModel").val(model);
+	$("#verifyTemplate").val(fpTemplate);
+	//表单提交
+	formSubmit("fpVerifyForm");
+}
+/**
+ * 取消采集
+ * @author wenxin
+ * @create 2013-06-24 19:57:11 pm
+ */
+function cancelCapture()
+{
+	//将定时器的递归调用关闭
+	clearTimeout(timer);
+	//取消采集
+	$.ajax( {
+		type : "GET",
+		url : issOnlineUrl+"/cancelCapture?random="+getRandomNum(),
+		dataType : "json",
+		async: true,
+		success : function(result) 
+		{
+			verifyFlag = false;
+		},
+		error : function(XMLHttpRequest, textStatus, errorThrown) 
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_connectPrompt}"});
+	    }
+	});
+}
+/**
+ * 确定按钮事件
+ * @author wenxin
+ * @create 2013-06-26 16:57:11 pm
+ */
+function beginVerify()
+{
+	if($("#persNumText").val() == "${pers_person_pin}" && model == "1")
+	{
+		//${base_fp_enterPin}:请输入人员编号
+		//显示框--采集提示
+		collectTips(globalContext, "${base_fp_enterPin}", "verification");
+		return;
+	}
+	else
+	{
+		//${base_fp_verifyInfo}:请水平按压手指验证
+		//显示框--采集提示
+		collectTips(globalContext, "${base_fp_verifyInfo}", "verification");
+	}
+	
+	//取消采集--如果当前正在采集
+	cancelEvent();
+	$("#oneToMany").attr("disabled", true);
+	$("#oneToOne").attr("disabled", true);
+	//开始采集
+	beginCapture(globalContext);
+}
+/**
+ * 取消按钮事件
+ * @author wenxin
+ * @create 2013-06-26 16:57:11 pm
+ */
+function cancelEvent()
+{
+	$("#oneToMany").attr("disabled", false);
+	$("#oneToOne").attr("disabled", false);
+	//正在进行验证，还没有关闭指纹采集
+	if(verifyFlag)
+	{
+		//取消采集
+		cancelCapture();
+	}
+}
+/**
+ * 清空
+ * @author wenxin
+ * @create 2013-09-05 16:57:11 pm
+ */
+function clearImageData()
+{
+	//清空指纹图像
+	clearFPImage(globalContext, "verification");
+	//显示框--采集提示
+	collectTips(globalContext, "${base_fp_verifyInfo}", "verification");
+}
+/**
+ * 表单提交回调函数
+ * @author wenxin
+ * @create 2013-06-26 16:57:11 pm
+ */
+function callBackFormSubmit(msg)
+{ 
+	if(msg.ret == "ok")//成功
+	{
+		collectTips(globalContext, "${base_fp_verifySuccess}", "verification");
+		setTimeout("closeVerify()", 1000);
+		setTimeout(_callBackFunction("dashboard.action"), 1000);
+	}
+	else if(msg.msg == "disabled")
+	{
+		collectTips(globalContext, "${auth_login_disabled}", "verification");
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_login_disabled}");
+		$(".errorTip").show();
+	}else if(msg.msg == "notExist")
+	{
+		collectTips(globalContext, "${base_fp_verifyFail}", "verification");
+		setTimeout("clearImageData()", 1000);
+		beginCapture(globalContext);
+	}
+	
+	/*
+	if(msg == "error")
+  	{
+  		//${base_fp_verifyFail}:验证失败
+		//显示框--采集提示
+		collectTips(globalContext, "${base_fp_verifyFail}", "verification");
+		//清空
+		setTimeout("clearImageData()", 1000);
+		//开始采集
+		beginCapture(globalContext);
+  	}
+	else if(msg == "")
+	{
+		//${base_fp_verifySuccess}:验证通过
+		//显示框--采集提示
+		collectTips(globalContext, "${base_fp_verifySuccess}", "verification");
+		var head = location.href;
+ 		head = head.substring(0, head.lastIndexOf("/"));
+ 		var url = head + "/baseLanguageAction!loadLanguageResource.action";
+ 		window.location.href = url;
+	}
+  	else if(msg == "disabled")
+  	{
+  		//显示框--采集提示
+		collectTips(globalContext, "${auth_login_disabled}", "verification");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_login_disabled}");
+		$(".errorTip").show();
+  	}
+	else if(msg == "trialOver")
+  	{
+  		//显示框--采集提示
+		collectTips(globalContext, "${auth_license_noLicense}", "verification");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_license_noLicense}");
+		$(".errorTip").show();
+  	}
+  	else
+  	{
+ 		//${base_fp_verifySuccess}:验证通过
+		//显示框--采集提示
+		collectTips(globalContext, "${base_fp_verifySuccess}", "verification");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+	    //延时进行登录
+		setTimeout(_callBackFunction(msg), 1000);
+  	}
+	*/
+}
+/**
+ * 关闭比对页面
+ * @author wenxin
+ * @create 2013-06-21 14:57:11 pm
+ */
+function closeVerify()
+{
+	//正在进行验证，还没有关闭指纹采集
+	if(verifyFlag)
+	{
+		//取消采集
+		cancelCapture();
+	}
+	closeWindow();
+}
+/**
+ * 页面加载时，初始化数据
+ * @author wenxin
+ * @create 2013-07-09 15:18:31 pm
+ */
+function dataInit()
+{
+	var canvas = document.getElementById("canvas");
+	var context = canvas.getContext("2d");
+	globalContext = context;
+	//文本框内提示信息并清空
+	//checkText();
+	
+	//${base_fp_verifyInfo}:请水平按压手指验证
+	//显示框--采集提示
+	collectTips(context, "${base_fp_verifyInfo}", "verification");
+	
+	//开始采集
+	beginCapture(context);
+	//定时器
+	verifyTimer = setTimeout("closeVerify()", 5000);
+}
+//初始化数据
+dataInit();
+
+</script>

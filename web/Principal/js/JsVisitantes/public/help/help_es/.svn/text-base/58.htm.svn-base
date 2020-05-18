@@ -1,0 +1,74 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.5 Reportes de Acceso</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection58 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077428"></a><a name="_Toc427077309"></a><a name="_Toc19141"></a><a
+name="_Toc388344267"></a><a name="_Toc413852712"></a><a name="_Toc417486952"><span
+lang=ES-MX>4.5</span></a><span lang=ES-MX> Reportes de Acceso</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Incluye reportes de:
+Todos los Eventos, Eventos de Hoy, &Uacute;ltima Posición Registrada, Eventos de
+Excepción, Eventos por Puerta y Eventos por Usuario. Es posible exportar
+después de buscar los datos.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Puede generar
+estadísticas de datos relevantes de los dispositivos y generar reportes,
+incluyendo información de verificación con tarjetas, información de operación
+de puertas, accesos, etc.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Acerca de los eventos
+normales y anormales, consulte </span><a href="37.htm#_4.1.10_Monitoreo_en"><span
+lang=ES-MX>4.1.10 Monitoreo en Tiempo Real </span></a><span lang=ES-MX>para los
+detalles.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Modo de Verificación:
+Solo Tarjeta, Solo Huella, Solo Contrase&ntilde;a, Tarjeta y Contrase&ntilde;a, Tarjeta y
+Huella, Tarjeta o Contrase&ntilde;a, etc.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Solo los eventos generados cuando el usuario usa la contrase&ntilde;a
+de emergencia para abrir las puertas incluirán modo de verificación Solo
+Contrase&ntilde;a.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

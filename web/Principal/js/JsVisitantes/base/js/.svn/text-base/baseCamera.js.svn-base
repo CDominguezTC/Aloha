@@ -1,0 +1,598 @@
+function openCameraAloha()
+{
+	//createWindow('base_baseFPRegister.html?random=' + getRandomNum() + '^0^0^465^480^' + title);//public/html/applet.html
+	createWindow('opCaptureContent.html?random=' + getRandomNum() + '^0^0^465^300^Capturar');//public/html/applet.html
+
+}
+
+function openCameraAlohaConsecutivo()
+{
+	//createWindow('base_baseFPRegister.html?random=' + getRandomNum() + '^0^0^465^480^' + title);//public/html/applet.html
+	//createWindow('opCaptureContent.html?random=' + getRandomNum() + '^0^0^465^300^Capturar');//public/html/applet.html
+	createWindow('CamaraConsecutivo.html?random=' + getRandomNum() + '^0^0^465^300^Capturar');//public/html/applet.html
+	
+	//pers_opCaptureContent.action^0^0^465^282^Capturar'
+}
+
+function createHtml(type,containerWidth,containerHeight)
+{
+	var html = null;
+	if(type === "simple")
+	{
+		var swf = "capture_cert_01.swf";
+		if(window.module === "pers")
+		{
+			swf = "capture.swf";
+			var style = $("#id_cap_div").attr("style");
+	    	style += ";background:url()"
+	    	$("#id_cap_div").attr("style",style);
+		}
+		html = "<object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' " + "id='myFlash_cert" + 
+		"'" + "width='" + containerWidth + "px'" + "height='" + containerHeight + "px'" + 
+		"codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0' id='video' align='middle'>" +
+		"<param name='allowScriptAccess' value='sameDomain' />" + "<param name='movie' value='${base}/public/media/swf/" +
+		swf + "' />" + "<param name='quality' value='best' />" + "<param name='bgcolor' value='#ffffff' />" + 
+		"<param name='wmode' value='transparent' />" + "<param name='allowScriptAccess' value='always' />" + 
+		"<param name='swliveconnect' value='true'/>" + "<embed wmode='transparent' src='${base}/public/media/swf/" +
+		swf + "'" + "width='" + containerWidth + "px'" + "height='" + containerHeight + "px'" +
+		"quality='best' bgcolor='#ffffff' align='middle' allowScriptAccess='sameDomain' type='application/x-shockwave-flash' " +
+		"name='myFlash_cert'" + "swLiveConnect='true'  pluginspage='http://www.macromedia.com/go/getflashplayer' class='"+
+		"certFlash' />" + "</object>";
+	}else
+	{
+		if(containerWidth == 220)
+		{
+			containerWidth = 187;
+		}
+		html = "<div id='initTip'><span class='warningImage'></span><a class='example-image-link warningColor' href='"+createGif('Simple')+"' data-lightbox='example-2' style='padding-top:1px;text-decoration:underline;color:#E57A14'>"+"Autorizar Camara"+"</a></div>";
+		html += '<video id="video" height="'+containerHeight+'px" width="'+containerWidth+'px" autoplay></video> ';
+	}
+
+	return html;
+};
+
+function saveCapture(type,previewWidth,previewHeight)
+{
+	if(type === "html5")
+	{
+		var video = document.getElementById('video');
+		var canvas = document.createElement('canvas');
+		canvas.width = previewWidth;
+		canvas.height = previewHeight;
+		context = canvas.getContext("2d");
+		
+		var sheight = video.videoHeight - 10;
+		var swidth = sheight * previewWidth/previewHeight;
+		var sx = (video.videoWidth - swidth)/2;
+		var sy = 5;
+		
+		if(window.module == "vis")
+		{
+			context.drawImage(video,0,0,previewWidth,previewHeight);
+		}
+		else
+		{
+			context.drawImage(video,sx,sy,swidth,sheight,0,0,previewWidth,previewHeight);
+		}
+		$("#preview").text("");
+		$("#preview").append(canvas);
+		//var imgData = canvas.toDataURL("image/bmp");
+		var imgData = canvas.toDataURL("image/jpeg");
+		//alert(imgData);
+		//var imgData = canvas.toDataURL("image/jpg");
+		//imgData = CanvasToBMP.toDataURL(canvas);
+
+		
+		//alert(base64String);
+	
+	
+		
+		//var base64String = imgData.substr(22); //取得base64字串
+		var base64String = new Array();
+		base64String = imgData.split(",");
+		
+		//alert(base64String);
+		//alert(base64String[0]);
+		//alert(base64String[1]);
+		
+		$("#capturePhoto").val(base64String[1]);
+		//$("#capturePhoto").val(base64String);
+	}
+	else
+	{
+		var capture = getCapture("myFlash_cert");
+		if (capture == null)
+		{
+			openMessage(msgType.warning, "${common_camera_noCamera}".replace("<br/>",""));
+		}
+		else if (capture.saveCamera != undefined)
+		{
+			capture.saveCamera();
+		}else
+		{
+			openMessage(msgType.warning, "${common_camera_noCamera}".replace("<br/>",""));
+		}
+	}
+}
+
+//获取Object标签对象
+function getCapture(id)
+{
+	return document.embeds[id] || window[id] || window.document[id] || document.getElementById(id);
+}
+
+//摄像头回调方法
+function myFlash_DoFSCommand(command, args)
+{
+	if (command == "send_pic")//发送的是base64的图片
+	{
+		var img = '<img id="id_capture_photo" width="120px" height="140px" src=""/>';
+		$("#preview").text("");
+		$("#preview").append(img);
+		$("#preview").removeClass("user");
+		var photo_byte = "data:image/gif;base64," + args;
+		//系统操作类型（登记或签离）
+		$("#id_capture_photo")[0].src = photo_byte;
+		$("#id_capture_photo").show();
+		$("#capturePhoto").val(args);
+		photo_byte = null;
+	}
+	else
+	if (command == "send_cert_pic")//发送证件图片
+	{
+		var img = '<img id="id_capture_photo" width="'+window.containerWidth+'px" height="'+window.containerHeight+'px" src=""/>';
+		$("#preview").text("");
+		$("#preview").append(img);
+		$("#preview").removeClass("user");
+		var photo_byte = "data:image/gif;base64," + args;
+		//系统操作类型（登记或签离）
+		$("#id_capture_photo")[0].src = photo_byte;
+		$("#id_capture_photo").show();
+		$("#capturePhoto").val(args);
+		photo_byte = null;
+	}else if(command=="send_no_cam"){
+		if(args==-1)
+		{
+			//异步避免其他脚本影响，位置出现在上方
+			setTimeout(function(){
+				openMessage(msgType.warning, "${common_camera_cameraError}".replace("<br/>",""));
+			}, 10);
+		}
+		else
+		{
+			openMessage(msgType.warning, "${common_camera_noCamera}".replace("<br/>",""));
+		}
+	}
+	else
+	{
+		openMessage(msgType.warning, "Autorizar Camara".replace("<br/>",""));
+	}
+}
+
+function startWebcam(previewWidth,previewHeight,captureButton,browseType,e){
+	
+//	debugger;
+//	console.info(MediaStreamTrack.getSources());
+    navigator.getUserMedia({
+        video: true,
+        audio: false
+    }, onSuccess, onError);
+
+    function onSuccess(stream) {
+    	var style = $("#id_cap_div").attr("style");
+    	style += ";background:url()"
+    	$("#id_cap_div").attr("style",style);
+    	$("#initTip").remove();
+    	$(document).off("click",captureButton);
+    	$(document).on("click",captureButton,function(e){
+    		saveCapture(browseType,previewWidth,previewHeight);
+    	});
+    	$("#camera_message").text("");
+        var video = document.getElementById('video');
+        video.src = window.URL.createObjectURL(stream) || stream;
+        video.onloadedmetadata = function(e) {
+            if(stream.getVideoTracks()[0].readyState === "ended")
+            {
+            	message = "${common_camera_inUse}";
+            	$("#id_cap_div").html("<span class='warningImage'></span><p class='warningColor' style='padding-top:1px'>"+message+"</p>");
+            	var style = $("#id_cap_div").attr("style");
+            	style += ";background:url(/vis/images/PC/noCamera.png) center no-repeat"
+            	$("#id_cap_div").attr("style",style);
+            }
+        };
+        video.autoplay = true;
+        window.stream = stream;
+        setTimeout(function(){
+        	captureBorder(previewWidth,previewHeight);
+		}, 2500);
+    }
+    function onError() {
+    	$("#initTip").remove();
+    	var errorType = arguments[0].name;
+    	var message = "";
+    	var hyperlink = false;
+    	switch (errorType)
+		{
+			case "PermissionDeniedError":
+			case "PermissionDismissedError":
+				hyperlink = true;
+				message = "Autorizar Camara";
+				break;
+			case "SourceUnavailableError":
+			case "MediaDeviceFailedDueToShutdown":
+				message = "${common_camera_inUse}";
+				break;
+			case "DevicesNotFoundError":
+				message = "${common_camera_noCamera}";
+				break;
+			default:
+				if(window.console)
+				{
+					console.error("exception not define:" + errorType);
+				}
+				message = "${common_camera_noCamera}";
+				break;
+		}
+    	var img = '<img id="noCamera" width="'+previewWidth+'px" height="'+previewHeight+'px" src="${base}/vis/images/PC/noCamera.png"/>';
+    	$(document).off("click",captureButton);
+    	$(document).on("click",captureButton,function(e){
+    		openMessage(msgType.warning, message.replace("<br/>",""));
+    	});
+    	if(hyperlink)
+    	{
+    		showPemisson(message);
+    	}
+    	else
+    	{
+    		$("#id_cap_div").html("<span class='warningImage'></span><p class='warningColor' style='padding-top:1px'>"+message+"</p>");
+    	}
+    }
+}
+
+function showPemisson(message)
+{
+	var gif = createGif();
+	$("#id_cap_div").html("<span class='warningImage'></span><a class='example-image-link warningColor' href='"+gif+"' data-lightbox='example-2' style='padding-top:1px;text-decoration:underline;color:#E57A14'>"+message+"</a>");
+}
+
+function createGif(simple)
+{
+	var simple = simple || "";
+	var gif = "${base}/base/images/camera/";
+	gif += window.module;
+	if(navigator.userAgent.indexOf("Firefox")!=-1)
+	{
+		gif += "Ff";
+	}
+	else
+	{
+		gif += "Chrome";
+	}
+	
+	if("${application['system.language']}" === "zh_CN")
+	{
+		gif += "Zh";
+	}
+	else
+	{
+		gif += "En";
+	}
+	gif += simple;
+	
+	gif += ".gif";
+	
+	return gif;
+}
+
+function createCamera(container,containerWidth,containerHeight,captureButton,previewWidth,previewHeight,module)
+{
+	window.containerWidth = containerWidth;
+	window.containerHeight = containerHeight;
+	window.module = module || "vis";
+	var type = "html5";
+	navigator.getUserMedia || (navigator.getUserMedia = navigator.mozGetUserMedia || navigator.webkitGetUserMedia || navigator.msGetUserMedia);
+	if (!navigator.getUserMedia) {
+		type = "simple";
+	}
+	$(container).html(createHtml(type,containerWidth,containerHeight));
+	$(document).off("click",captureButton);
+	$(document).on("click",captureButton,function(e){
+		if(type === "simple")
+		{
+			saveCapture(type,previewWidth,previewHeight);
+		}
+		else
+		{
+			openMessage(msgType.warning, "Autorizar Camara".replace("<br/>",""));
+		}
+	});
+	if(type==="html5")
+	{
+		if(previewWidth == 220)
+		{
+			previewWidth = 187;
+		}
+		startWebcam(previewWidth,previewHeight,captureButton,type);
+	}
+}
+
+//IPC预览
+function createIPCamera(channelId,width,height)
+{
+	$("#id_cap_div").css("width","220px");
+	if(channelId.length == 0)
+	{
+		$("#id_cap_div").html("<span class='warningImage'></span><p class='warningColor' style='padding-top:1px'>${common_newDev}</p>");
+		$(document).off("click","#capture");
+		$(document).on("click","#capture",function(e){
+			openMessage(msgType.warning, "${common_newDev}");
+		});
+		return;
+	}
+	var action = "vidChannelAction!getVidPreview.action?channelId="+channelId
+	var content = '<iframe id="ipc_preview" position="absolute" z-index="-1" width="220px" height="'+height+'px" frameborder="no" border="0" src="'+action+'"></iframe>';
+	$("#id_cap_div").html(content);
+	document.getElementById("ipc_preview").onload=function(){
+		$(document).off("click","#capture");
+		$(document).on("click","#capture",function(e){
+			saveIPCapture(channelId,width,height);
+		});
+	};
+}
+
+//IPC拍照
+function saveIPCapture(channelId,width,height)
+{
+	$.ajax({ 
+		type: "post", 
+    	contentType: "application/json", 
+    	url: "/rs/vid_channel/capture", 
+    	data: "{channelId:"+channelId+"}",
+    	dataType: "json", 
+    	success: function (result){
+    		if(result.data == undefined || result.data == null)
+    		{
+    			openMessage(msgType.error);
+    			return;
+    		}
+    		if(result.data == "")
+    		{
+    			openMessage(msgType.error, "${common_camera_disabled}");
+    			return;
+    		}
+    		var img = '<img id="id_capture_photo" height="'+height+'px" src=""/>';
+    		$("#preview").text("");
+    		$("#preview").append(img);
+    		$("#preview").removeClass("user");
+    		var photo = "data:image/gif;base64," + result.data;
+    		//系统操作类型（登记或签离）
+    		$("#id_capture_photo")[0].src = photo;
+    		$("#id_capture_photo").show();
+    		$("#capturePhoto").val(result.data);
+    	},
+		error : function(XMLHttpRequest, textStatus, errorThrown) 
+		{
+			openMessage(msgType.error);
+	    }
+		
+	});
+}
+
+/**
+ * HTML5拍照截取图片的虚框
+ * 
+ * @author <a href=mailto:oujunxiao.ou@zkteco.com>欧骏骁</a>
+ * @since 2015年4月30日 下午2:16:50
+ */
+function captureBorder(previewWidth,previewHeight)
+{
+	var video = document.getElementById('video');
+	var position = $("#video").position();
+    $("#border").css("position","absolute");
+    var realWidth = video.videoWidth/video.videoHeight*window.containerHeight;
+//    $("#id_cap_div").css("width",realWidth+"px");
+    var width = (realWidth-previewWidth)/2;
+    var height = (window.containerHeight-previewHeight)/2;
+    $("#border").css("left",position.left+width);
+    $("#border").css("top",position.top+height+5);
+    $("#border").css("width",previewWidth);
+    $("#border").css("height",previewHeight-10);
+    $("#border").css("border","1px dashed rgb(38, 219, 74)");
+}
+
+function SendImageToServerAloha(Data)
+{
+	$.ajax( {
+			url : "ScriptData",
+			data: JSON.stringify(Data),
+			type: 'POST',
+			dataType: 'json',
+			contentType: 'application/json',
+			mimeType: 'application/json',
+			success : function(result) 
+			{
+				var x = result;
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown) 
+			{
+				messageBox({messageType: "alert", title: "Error", text: "Error al Guardar la Imagen"});
+			}
+		});
+	
+}
+
+
+var imgWidth;
+var imgHeight;
+function StartSign()
+ {   
+	var isInstalled = document.documentElement.getAttribute('SigPlusExtLiteExtension-installed');  
+	if (!isInstalled) {
+		alert("SigPlusExtLite extension is either not installed or disabled. Please install or enable extension.");
+		return;
+	}	
+	var canvasObj = document.getElementById('cnv');
+	canvasObj.getContext('2d').clearRect(0, 0, canvasObj.width, canvasObj.height);
+	//document.FORM1.sigStringData.value = "SigString: ";
+	//document.FORM1.sigRawData.value = "Base64 String: ";
+	imgWidth = canvasObj.width;
+	imgHeight = canvasObj.height;
+	var message = { "firstName": "", "lastName": "", "eMail": "", "location": "", "imageFormat": 1, "imageX": imgWidth, "imageY": imgHeight, "imageTransparency": false, "imageScaling": false, "maxUpScalePercent": 0.0, "rawDataFormat": "ENC", "minSigPoints": 25 };
+		
+	top.document.addEventListener('SignResponse', SignResponse, false);
+	var messageData = JSON.stringify(message);
+	var element = document.createElement("MyExtensionDataElement");
+	element.setAttribute("messageAttribute", messageData);
+	document.documentElement.appendChild(element);
+	var evt = document.createEvent("Events");
+	evt.initEvent("SignStartEvent", true, false);				
+	element.dispatchEvent(evt);		
+}
+function SignResponse(event)
+{	
+	var str = event.target.getAttribute("msgAttribute");
+	var obj = JSON.parse(str);
+	SetValues(obj, imgWidth, imgHeight);
+}
+function SetValues(objResponse, imageWidth, imageHeight)
+{
+	var obj = null;
+	if(typeof(objResponse) === 'string'){
+		obj = JSON.parse(objResponse);
+	} else{
+		obj = JSON.parse(JSON.stringify(objResponse));
+	}		
+	
+	var ctx = document.getElementById('cnv').getContext('2d');
+
+		if (obj.errorMsg != null && obj.errorMsg!="" && obj.errorMsg!="undefined")
+		{
+			alert(obj.errorMsg);
+		}
+		else
+		{
+			if (obj.isSigned)
+			{
+				//document.FORM1.sigRawData.value += obj.imageData;
+				//document.FORM1.sigStringData.value += obj.sigString;
+				var img = new Image();
+				img.onload = function () 
+				{
+					ctx.drawImage(img, 0, 0, imageWidth, imageHeight);
+				}
+				img.src = "data:image/png;base64," + obj.imageData;
+				var Ims = "" + obj.imageData;
+				alert(Ims);
+				Documento = $("#Documento").val();
+				Consecutivo = $("#NoConsecutivo").val();
+				FIRMA = Documento + "_" + Consecutivo;
+				Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "fotos" + "&Documento=" + "Firma_" + FIRMA + "&Imagen=" + Ims;
+				SendImageToServerAloha(Data);
+			}
+		}
+}
+
+
+/*! canvas-to-bmp version 1.0 ALPHA
+    (c) 2015 Ken "Epistemex" Fyrstenberg
+    MIT License (this header required)
+*/
+
+var CanvasToBMP = {
+
+  /**
+   * Convert a canvas element to ArrayBuffer containing a BMP file
+   * with support for 32-bit (alpha).
+   *
+   * Note that CORS requirement must be fulfilled.
+   *
+   * @param {HTMLCanvasElement} canvas - the canvas element to convert
+   * @return {ArrayBuffer}
+   */
+  toArrayBuffer: function(canvas) {
+
+    var w = canvas.width,
+        h = canvas.height,
+        w4 = w * 4,
+        idata = canvas.getContext("2d").getImageData(0, 0, w, h),
+        data32 = new Uint32Array(idata.data.buffer), // 32-bit representation of canvas
+
+        stride = Math.floor((32 * w + 31) / 32) * 4, // row length incl. padding
+        pixelArraySize = stride * h,                 // total bitmap size
+        fileLength = 122 + pixelArraySize,           // header size is known + bitmap
+
+        file = new ArrayBuffer(fileLength),          // raw byte buffer (returned)
+        view = new DataView(file),                   // handle endian, reg. width etc.
+        pos = 0, x, y = 0, p, s = 0, a, v;
+
+    // write file header
+    setU16(0x4d42);          // BM
+    setU32(fileLength);      // total length
+    pos += 4;                // skip unused fields
+    setU32(0x7a);            // offset to pixels
+
+    // DIB header
+    setU32(108);             // header size
+    setU32(w);
+    setU32(-h >>> 0);        // negative = top-to-bottom
+    setU16(1);               // 1 plane
+    setU16(32);              // 32-bits (RGBA)
+    setU32(3);               // no compression (BI_BITFIELDS, 3)
+    setU32(pixelArraySize);  // bitmap size incl. padding (stride x height)
+    setU32(2835);            // pixels/meter h (~72 DPI x 39.3701 inch/m)
+    setU32(2835);            // pixels/meter v
+    pos += 8;                // skip color/important colors
+    setU32(0xff0000);        // red channel mask
+    setU32(0xff00);          // green channel mask
+    setU32(0xff);            // blue channel mask
+    setU32(0xff000000);      // alpha channel mask
+    setU32(0x57696e20);      // " win" color space
+
+    // bitmap data, change order of ABGR to BGRA
+    while (y < h) {
+      p = 0x7a + y * stride; // offset + stride x height
+      x = 0;
+      while (x < w4) {
+        v = data32[s++];                     // get ABGR
+        a = v >>> 24;                        // alpha channel
+        view.setUint32(p + x, (v << 8) | a); // set BGRA
+        x += 4;
+      }
+      y++
+    }
+
+    return file;
+
+    // helper method to move current buffer position
+    function setU16(data) {view.setUint16(pos, data, true); pos += 2}
+    function setU32(data) {view.setUint32(pos, data, true); pos += 4}
+  },
+
+  /**
+   * Converts a canvas to BMP file, returns a Blob representing the
+   * file. This can be used with URL.createObjectURL().
+   * Note that CORS requirement must be fulfilled.
+   *
+   * @param {HTMLCanvasElement} canvas - the canvas element to convert
+   * @return {Blob}
+   */
+  toBlob: function(canvas) {
+    return new Blob([this.toArrayBuffer(canvas)], {
+      type: "image/bmp"
+    });
+  },
+
+  /**
+   * Converts the canvas to a data-URI representing a BMP file.
+   * Note that CORS requirement must be fulfilled.
+   *
+   * @param canvas
+   * @return {string}
+   */
+  toDataURL: function(canvas) {
+    var buffer = new Uint8Array(this.toArrayBuffer(canvas)),
+        bs = "", i = 0, l = buffer.length;
+    while (i < l) bs += String.fromCharCode(buffer[i++]);
+    return "data:image/bmp;base64," + btoa(bs);
+  }
+};

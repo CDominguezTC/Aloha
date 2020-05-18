@@ -1,0 +1,154 @@
+<#include "/public/template/editTemplate.html">
+<@shiro.hasPermission name="base:BaseMail:getMailParam" text="${base_mail_paramSetting}">
+<input type="hidden" id="hasPermission"/>
+</@shiro.hasPermission>
+<#macro editContent>
+<script type="text/javascript">
+	$().ready(function(){
+		$("#${formId}").validate( {
+			debug : true,
+			rules : {
+				"serverHost" : {
+					required: true
+				},
+				"serverPort" : {
+					required: true,
+					digits : true
+				},
+				"userName" : {
+					required: true,
+					email : true
+				},
+				"password" : {
+					required: true
+				},
+				"mailName" : {
+				}
+			}
+		});
+	});
+	function changePort(){
+	    if(document.getElementById("SSLSelect").checked==true){
+	        document.getElementById("serverPort").value='465';
+	        document.getElementById("SSLSelect").value='1';
+	    }else{
+	        document.getElementById("serverPort").value='25';
+	    }
+	    clearTestResult();
+	}
+	function testSend(){
+		clearTestResult();
+		$('#testSendButton').attr("disabled","disabled");
+	    if ($("#serverHost").valid()==0||$("#serverPort").valid()==0||$("#userName").valid()==0||$("#password").valid()==0)
+	    {
+	    	$('#testSendButton').attr("disabled",false);
+	        return;
+	    }
+	    $('#loadImg').css("display","inline");
+		var ajax_option={
+			url:"baseMailAction!testSend.action",
+			success:function(data){
+				$('#loadImg').css("display","none");
+				$('#testSendButton').attr("disabled",false);
+			    var text = "<font color='red'>${base_media_failure}</font>";
+			    if (data&&data.ret=="ok"){
+			        text = "<font color='green'>${base_media_success}</font>";
+			    }else if(data&&data.msg){
+			        text = "<font color='red'>"+data.msg+"</font>";
+			    }
+			    $("#testResultText").html(text);
+			},
+    		error:function(){
+    			$('#loadImg').css("display","none");
+    			$('#testSendButton').attr("disabled",false);
+    		    document.getElementById("testResultText").innerText="${base_media_failure}";
+    		}
+		}
+		$('#${formId}').ajaxSubmit(ajax_option);
+	}
+	function clearTestResult(){
+	    $("#testResultText").html("");
+	}
+</script>
+
+<form method="post" id="${formId}" action="baseMailAction!edit.action?logMethod=getMailParam">
+	<div style="padding: 10px;">
+		<fieldset>
+			<legend>${base_mail_paramSetting}</legend>
+			<table class="tableStyle">
+				<tr height="20px">
+					<td width="150px;">
+						<label>${base_mail_serverIp}</label><span class="required">*</span>
+					</td>
+					<td>
+						<input id="serverHost" name="serverHost" type="text" value="${mailServerHost}"  maxlength="20" style="ime-mode:disabled" onchange="clearTestResult()" /><span class="gray" style="font-family: 'Times New Roman', Times, serif">(smtp.xxx.xxx)</span>
+					</td>
+				</tr>
+				<tr height="20px">
+					<td>
+						<label>${base_mail_serverPort}</label><span class="required">*</span>
+					</td>
+					<td>
+						<input id="serverPort" name="serverPort" type="text" value="${mailServerPort}"  maxlength="8" style="ime-mode:disabled" onchange="clearTestResult()" />
+                        <input type="checkbox" id="SSLSelect" name="SSLSelect" value="${mailSSLSelect}" <#if "${mailSSLSelect}"=="1">checked="checked"</#if> onchange="changePort()"/>SSL
+					</td>
+				</tr>
+				<!-- 
+				<tr height="20px">
+					<td>
+						${base_mail_sendEmailAddress}
+					</td>
+					<td>
+						<input id="fromAddress" name="fromAddress" value="${mailFromAddress}"  maxlength="35" style="ime-mode:disabled" /><span class="gray" style="font-family: 'Times New Roman', Times, serif">(xxx@xxx.xxx)</span>
+					</td>
+				</tr>
+				 -->
+				<tr height="20px">
+					<td>
+						<label>${base_mail_userName}</label><span class="required">*</span>
+					</td>
+					<td>
+						<input id="userName" name="userName" type="text" value="${mailUserName}"  maxlength="100" style="ime-mode:disabled" onchange="clearTestResult()" /><span class="gray" style="font-family: 'Times New Roman', Times, serif">(xxx@xxx.xxx)</span>
+					</td>
+				</tr>
+				<tr height="20px">
+					<td>
+						<label>${base_mail_password}</label><span class="required">*</span>
+					</td>
+					<td>
+						<input type="password" style="display:none"><!-- 为了去除谷歌浏览器记住密码 问题-->
+						<input type="password" id="password" name="password" value="${mailPassword}" maxlength="100" onkeypress="return isNotSpace(event);" style="ime-mode:disabled" onchange="clearTestResult()" />
+						<input type="password" style="display:none"><!-- 为了去除谷歌浏览器记住密码 问题-->
+					</td>
+				</tr>
+				<tr height="20px">
+					<td>
+						<label>${base_mail_senderName}</label>
+					</td>
+					<td>
+						<input id="mailName"  name="mailName" type="text" value="${showMailName}" maxlength="20" onchange="clearTestResult()"/>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>${common_prompt}</legend>
+    			<div style="margin-top: 10px;margin-left: 10px;">
+                    <span class="warningImage"></span>
+                    <span class="warningColor">${base_mail_correctParame}</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 10px;">
+                    <span class="warningImage"></span>
+                    <span class="warningColor">${base_mail_smtpServeDredge}</span>
+                </div>
+                <div style="margin-top: 10px;margin-left: 10px;">
+                    <span class="warningImage"></span>
+                    <span class="warningColor">${base_mail_connectTestTip}</span>
+                </div>
+		</fieldset>
+        <br/>
+        <input type="button" id="testSendButton"  name="testSendButton" value="${base_mail_connectTest}" onclick="testSend()"/>&nbsp;&nbsp;&nbsp;<img id="loadImg" src="${base}/public/images/searching.gif" style="display:none"/><label id="testResultText"></label>
+	</div>
+</form>
+</#macro>

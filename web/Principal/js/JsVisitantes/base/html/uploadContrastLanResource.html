@@ -1,0 +1,66 @@
+<#include "/public/template/winTemplate.html">
+<#macro winContent>
+<style>
+<!--
+.langTable
+{
+	width: 100%; 
+	text-align: center;
+	padding-left: 25px;
+	padding-top: 15px;
+}
+.leftTd
+{
+	text-align: left;
+	height: 40px;
+}
+.selectTd
+{
+	width: 300px;
+}
+-->
+</style>
+
+	<table class="langTable">
+	<tr>
+			<td>  </td>
+	</tr>
+		<tr>
+			<td>
+				<input type="file" name="file" id="langResfile" size="30" />
+		 	</td>
+		</tr>
+	</table>
+
+	<script>
+	function fun(){
+		$.ajaxFileUpload({
+			url : "baseModuleAction!contrastLanguageProperies.action",
+			secureuri : false,
+			fileElementId : "langResfile",
+			dataType : "json",
+			async : true,
+			success : function(datas){
+				messageBox({
+					messageType : "alert",
+					text :datas.msg,
+					callFun:callFun()
+				});
+			},
+			error : function(XMLHttpRequest, textStatus, errorThrown)
+			{
+				messageBox({
+					messageType : "alert",
+					title : "${common_prompt_title}",
+					text : "${common_prompt_serverError}"
+				});
+			}
+		});
+		callFun();
+	}
+	function callFun(){
+				closeWindow()
+	}
+	</script>
+</#macro>
+<#macro confirmFunction>fun()</#macro>

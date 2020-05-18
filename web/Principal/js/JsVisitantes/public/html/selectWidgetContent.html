@@ -1,0 +1,286 @@
+<!-- 条件查询下的双列表 -->
+<#assign gridName = "leftGTSelectGridbox">
+<div id="idQueryDiv">
+	<div id="searchBox${gridName!}" style="display: none;">
+		<div class="searchTopBox">
+			<table cellpadding="0" cellspacing="0" >
+				<tr style="overflow: hidden;height: 22px;" id="rightSearchBox${gridName!}">
+					<td>
+						<div id="topSearchBox${gridName!}" style="float: right;"></div>
+					</td>
+					<td valign="middle">
+						<div id="moreConditionButton${gridName!}" style="margin-left: 12px">
+							<a id="moreConditionLink${gridName!}" href="javascript:moreScreeningCondition('${common_search_retract}','${common_more}','${gridName!}')" value="hide">
+								<span id="moreConditionText${gridName!}">${common_more}</span>
+								<img id="moreConditionIcon${gridName!}" src="${base}/public/images/minlingDown.gif" style="margin-top: -5px"/>
+							</a>
+						</div>
+					</td>
+					<td valign="middle">
+						<div id="searchButton${gridName!}" class="search_button" style="margin-left: 20px;" onclick="getFilterEmp();reloadGrid('leftGTSelectGridbox');" title="${common_search_query}"></div>
+					</td>
+					<td valign="middle">
+						<div id="clearSearchEmpSelect" style="margin-left: 20px" class="search_clear_button" onclick="clearCondition('searchBox${gridName!}','${gridName!}')" title="${common_search_clearTitle}"></div>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div class="searchBelowBox">
+			<div class="searchBelowBox_tip" id="searchTextDiv${gridName!}">
+				<span style="font-weight: bold;">${common_search_currentQuery}:</span><span id="searchText${gridName!}" style="padding-left: 5px;">${common_none}</span>
+				<span style="display: none;" id="noSearchText${gridName!}">${common_none}</span>
+			</div>
+			<div id="belowSearchBox${gridName!}" class="searchBelowBox_input"></div>
+		</div>
+		<script type="text/javascript">
+			window.setTimeout(function(){
+				$("#belowSearchBox${gridName!}").width($("#searchBox${gridName!}").width() - 10).css('z-index','12');
+			},100);
+		</script>
+	</div>
+	
+	<table style="width: 100%;height: 305px;">
+		<tr valign="top">
+			<td width="48%" height="100%">
+				<div style="height:20px; margin-top: 5px;">${common_alternative}<span id="leftGirdEmp"></span></div>
+				<div id="leftGTSelectGridbox"></div>
+				<div id="leftGTSelectGridbox_paging" class="dhxGridBoxPaging" setMode="true,true,false,true"></div>
+			</td>
+			<td align="center" valign="middle">
+				<div id="idButtonDiv" class="otherGrid dhxform_obj_dhx_web" style="text-align: center;width: 100%;padding-top: 15px">
+					<div style="height: 25px;" class="multiSelectDiv" id="gridAddAll">
+					    <div dir="${((enableRTL!'false')=='true')?string('rtl','ltr')}" tabindex="0" role="link" class="dhxform_btn" style="width: 32px"><div class="dhxform_btn_txt" style="margin: 0px auto;float: none">&gt;&gt;</div></div>
+					</div>
+					<div style="height: 25px;" class="radioSelectDiv" id="gridAdd">
+						<div dir="${((enableRTL!'false')=='true')?string('rtl','ltr')}" tabindex="0" role="link" class="dhxform_btn" style="width: 32px"><div class="dhxform_btn_txt" style="margin: 0px auto;float: none">&nbsp;&gt;&nbsp;</div></div>
+					</div>
+					<div style="height: 25px;" class="radioSelectDiv" id="gridRemove">
+						<div dir="${((enableRTL!'false')=='true')?string('rtl','ltr')}" tabindex="0" role="link" class="dhxform_btn" style="width: 32px"><div class="dhxform_btn_txt" style="margin: 0px auto;float: none">&nbsp;&lt;&nbsp;</div></div>
+					</div>
+					
+					<div style="height: 25px;" class="multiSelectDiv" id="gridRemoveAll">
+						<div dir="${((enableRTL!'false')=='true')?string('rtl','ltr')}" tabindex="0" role="link" class="dhxform_btn" style="width: 32px"><div class="dhxform_btn_txt" style="margin: 0px auto;float: none">&lt;&lt;</div></div>
+					</div>
+				</div>
+			</td>
+			<td width="48%">
+				<div style="height:20px;margin-top: 5px;">${common_selected}(<span id="selectedEmp" style="font-weight: bold;">0</span>)</div>
+				<div id="rightGTSelectGridbox"></div>
+			</td>
+		</tr>
+	</table>
+	
+	<div id="divEstopList" class="divEstopList"></div>
+	<#if selectExpandContent?exists>
+		<@selectExpandContent />
+	</#if>
+	
+	<!-- 加载grid -->
+	<script type="text/javascript">
+		$().ready(function() {
+			//用来解决选人控件左边Grid右边线的
+			var width = $("#leftGTSelectGridbox").width();
+			$("#leftGTSelectGridbox").width(width-2);
+		});
+		
+		//var actionName =  Request.QueryString["actionName"].ToString();
+		var pageConfigXML;
+		var leftTreeId;
+		<#if leftTreeId??>
+			leftTreeId = "${leftTreeId!}";
+		<#else>
+			if(system && system.submenuTree)
+			{
+				leftTreeId = system.submenuTree.getSelectedItemId();//如：grid^pers_listPersDepartment.action
+			}
+			else
+			{
+				leftTreeId = window.top.location.pathname.substring(1);
+			}
+		</#if>
+		//alert("leftTreeId="+leftTreeId);
+		var packageName = $("#packageName").val();
+		if($("#packageName").val() == "")
+		{
+			packageName = leftTreeId.split("_")[0];
+		}
+		
+		//alert(actionName);
+		var actionName=$("#actionName").val();
+		var xmlFileName =$("#xmlFileName").val();
+		//actionName = actionName.substring(0, 1).toLowerCase() + actionName.substring(1);
+		var packagePath = "baseAction!getPageXML.action?packageName=" + packageName + "&actionName=";
+		//alert("packagePath=="+packagePath);
+		<#if pageConfigXML??>
+			<#noparse>
+				//请按照该形式自定义 配置文件的路径,必须放在<#include的上面
+				//<#assign pageConfigXML = "pers/html/xml/personPageConfig.xml">
+			</#noparse>
+			pageConfigXML = "${pageConfigXML!}";
+		<#else>
+			pageConfigXML = packagePath + actionName + "&xmlFileName=" + xmlFileName;
+		</#if>
+		//alert("pageConfigXML=="+pageConfigXML);
+		var customData = $("#customData").val();
+		loadSearchConfig('${base}/'+ pageConfigXML, '${gridName!}');
+		var rightGTSelectFilter = $("#widgetGTId").val();
+		var submitGroup = $("#submitGroup").val();
+		
+		if(rightGTSelectFilter == "" || rightGTSelectFilter == undefined)
+		{
+			rightGTSelectFilter = "&findEmpIds="+$("#findEmpIds").val();
+		}
+		else
+		{
+			rightGTSelectFilter = "&findEmpIds=" + rightGTSelectFilter;
+		}
+		
+		//右边没人的时候禁用按钮
+		if(submitGroup==""||submitGroup=="-1")
+		{
+			$("#OK").attr("disabled", true);
+			$("#save_continue").attr("disabled", true);
+		}
+		//左边列表过滤
+		var leftGTSelectFilter = $("#widgetGTId").val();
+		if(leftGTSelectFilter == "" || leftGTSelectFilter == undefined)
+		{
+			leftGTSelectFilter = "-1";
+		}
+		if(filterLeftGridGTObj != "" && filterLeftGridGTObj != "-1")
+		{
+			leftGTSelectFilter += "," + filterLeftGridGTObj;
+		}
+		
+		var showRigthNum = function(){
+			$("#selectedEmp").text(mygrids["rightGTSelectGridbox"].getRowsNum());
+			//修改右边的checkbox的name 和onclick事件里面的参数
+			$("#rightGTSelectGridbox input[type='checkbox']:first").attr('id',"rightGTSelectHeadCheckBox");
+			$("#rightGTSelectGridbox input[type='checkbox']:first").click(function(){
+					checkedAll('rightGTSelectIds', "rightGTSelectHeadCheckBox", "count");
+			});
+			$("#rightGTSelectGridbox input[name='leftGTSelectIds']").each(function(){ 
+				$(this).attr("name", "rightGTSelectIds");
+				$(this).attr("onclick", "isCheckedAll('rightGTSelectIds', 'rightGTSelectHeadCheckBox', 'count')");
+			});
+			
+// 			if(actionName.indexOf("Reader") >= 0)
+// 			{
+// 				mygrids["rightGTSelectGridbox"].forEachRow(function(id){
+// 					var index = this.getRowIndex(id);
+// 					mygrids["rightGTSelectGridbox"].cells(id,0).setValue(index+1);
+// 				});
+// 			}
+			
+			if((actionName.indexOf("Reader") >= 0 || actionName.indexOf("Channel") >= 0)&& customData != null && customData != "")
+			{
+				var array = customData.split("$");
+				mygrids['rightGTSelectGridbox'].clearAll();
+				for(var index in array)
+				{
+					if(actionName.indexOf("Reader") >= 0)
+					{
+						var json = $.parseJSON(array[index].replace(/'([^']*)'/g, '"$1"'));
+						mygrids['rightGTSelectGridbox'].addRow(json.readerId, [json.readerOrder, "<input id=\'rightGTSelectIds\' value='"+json.readerId+"' name=\'rightGTSelectIds\' type=\'checkbox\' style=\'margin-left:8px\' onclick=\'isCheckedAll(\"rightGTSelectIds\", \"rightGTSelectHeadCheckBox\", \"count\")\'></input>", 
+						json.readerName, json.door, json.dev], parseInt(json.readerOrder)-1);
+					}
+					if(actionName.indexOf("Channel") >= 0)
+					{
+						var json = $.parseJSON(array[index].replace(/'([^']*)'/g, '"$1"'));
+						mygrids['rightGTSelectGridbox'].addRow(json.channelId, ["<input id=\'rightGTSelectIds\' value='"+json.channelId+"' name=\'rightGTSelectIds\' type=\'checkbox\' style=\'margin-left:8px\' onclick=\'isCheckedAll(\"rightGTSelectIds\", \"rightGTSelectHeadCheckBox\", \"count\")\'></input>", 
+						json.channelName, json.devName, json.devSn]);
+					}
+				}
+				$("#selectedEmp").text(array.length);
+			}
+		}
+		
+		//判断是单选按钮还是多选按钮
+		selectGTWidgetStyle(gtSupportRadio);
+		
+		var leftGridCallback = function(){
+			//var colIndex = this.getColIndexById("id");
+// 			if(actionName.indexOf("Reader") >= 0)
+// 			{
+// 				mygrids['leftGTSelectGridbox'].setColumnHidden(0,true);
+// 			}
+			//四个按钮功能
+			changeOtherGridContact();
+		}
+		if(leftGTSelectFilter=="-1")
+		{
+			leftGTSelectFilter=submitGroup;
+		}
+		//加载左边列表
+		$("#filterIds").val(leftGTSelectFilter);
+		loadGrid(packageName, actionName, "leftGTSelectGridbox", "leftGTSelectHeadCheckBox", "leftGTSelectIds", null, leftGridCallback, null, xmlFileName);
+		$("#leftGTSelectGridbox").height("240px");
+		mygrids["leftGTSelectGridbox"].enableResetHeight = false;
+		
+		//加载右边列表
+		loadGrid(packageName, actionName, "rightGTSelectGridbox", "rightGTSelectHeadCheckBox", "rightGTSelectIds", null, showRigthNum, rightGTSelectFilter, xmlFileName);
+		$("#rightGTSelectGridbox").height("270px");
+		mygrids['rightGTSelectGridbox'].enableSorting = false;
+		mygrids["rightGTSelectGridbox"].enableResetHeight = false;
+		
+		//添加左表格单击事件
+		mygrids["leftGTSelectGridbox"].attachEvent("onRowSelect",function(rid,cind){
+			clickGTChangeCheckState("leftGTSelect",rid,cind);
+		});
+		
+		//添加左表格行双击事件
+		mygrids["leftGTSelectGridbox"].attachEvent("onRowDblClicked",dblTGTClickLeftToRight);
+		
+		//添加右表格行单击事件
+		mygrids["rightGTSelectGridbox"].attachEvent("onRowSelect",function(rid,cind){
+			clickGTChangeCheckState("rightGTSelect",rid,cind);
+		});
+		
+		//添加右表格双击事件
+		mygrids["rightGTSelectGridbox"].attachEvent("onRowDblClicked",function(rid,cind){
+			//清空
+		    $("#filterIds").val("-1");
+		    
+			var myRightGrid=mygrids["rightGTSelectGridbox"];
+			var myLeftGrid=mygrids["leftGTSelectGridbox"];
+			
+		    myRightGrid.deleteRow(rid)
+			
+		    $("#rightGTSelectHeadCheckBox").attr("checked", false);
+		    leftGTGridFilter(myRightGrid);
+			leftGTCurrPageNum = myLeftGrid.pagingToolbar.getInput("pageNumber").value;//获取当前页号
+			reloadGrid('leftGTSelectGridbox', delGTLeftRowsExistsRight);
+		    $("#selectedEmp").text(myRightGrid.getRowsNum());
+			if(customData != null && customData != "")
+			{
+				orderGTGrid(myRightGrid);
+			}
+			var rightObj = document.getElementsByName("rightGTSelectIds");
+			if(rightObj.length > 0)
+			{
+				$("#"+gtOKId).attr("disabled", false);
+			}
+			else
+			{
+				$("#"+gtOKId).attr("disabled", true);
+			}
+		});
+		
+		//查询按钮加过滤条件
+		function getFilterEmp()
+    	{
+    		var filterEmp = mygrids['rightGTSelectGridbox'].getAllRowIds(',').split(',');//右边已选人员
+    		if(filterEmp != "")
+    		{
+    			//$('#filterIds').val(filterLeftGridGTObj + "," + filterEmp); 会出现 “，filterEmp”导致查询语句报错
+    			filterLeftGridGTObj = (filterLeftGridGTObj == undefined || filterLeftGridGTObj == "" ) ? "" : filterLeftGridGTObj;
+    			$('#filterIds').val((filterLeftGridGTObj == "" ? "" : (filterLeftGridGTObj + ","))+ filterEmp); 
+    		}
+    		else
+    		{
+    			$('#filterIds').val(filterLeftGridGTObj);
+    		}
+    	}
+		
+	</script>
+</div>

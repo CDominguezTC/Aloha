@@ -1,0 +1,6 @@
+<#include "/public/template/base.html">
+
+<#macro leftContent>
+	<input type="hidden" id="leftMenuXML" value="baseAction!getPageXML.action?xmlPath=${base}/public/publicMenu.xml"/>
+	<input type="hidden" id="isCollapse" value="<#if application['system.devMode'] == 'true'>false<#else>true</#if>"/>
+</#macro>

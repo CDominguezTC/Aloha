@@ -1,0 +1,26 @@
+<!-- 报警声音页面 -->
+<div id="idAlarmSound" style="width:0px; height: 0px;"></div>
+<script type="text/javascript">
+	// 打开报警声音
+	function playAlarmSound()
+	{
+		if($("#idAlarmSound").html() == "")//避免声音重复
+	  	{
+	      	if($.browser.msie)// IE下
+	      	{
+	          	$("#idAlarmSound").append('<bgsound src="/public/media/sound/alarm.mid" loop="-1"/>');
+	      	}
+	      	else
+	      	{
+	          	$("#idAlarmSound").append('<embed src="/public/media/sound/alarm.mid" type="application/x-mplayer2" hidden="true" autostart="true" playcount="true" loop="true" height="0" width="0"/>');
+	      	}
+		}
+	}
+	
+	// 关闭报警声音
+	function closeAlarmSound()
+	{
+		$("#idAlarmSound").html("");
+	}
+	
+</script>

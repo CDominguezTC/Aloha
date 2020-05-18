@@ -1,0 +1,97 @@
+
+<script>
+    $().ready(function () {
+
+        createCamera("#id_cap_div", 220, 140, "#capture", 120, 140, "pers");
+        
+        //?????J????????????
+        getCurrentWindow().onClose = function () {
+
+            if (window.stream)
+            {
+                var nav = $("#ExplorerName").val();
+                //alert(nav);
+                if (nav == "Chrome")
+                {
+                    window.stream.getTracks().forEach(function (track) {
+                        track.stop();
+                    });
+                } else
+                {
+                    window.stream.stop();
+                }
+            }
+        }
+
+    });
+
+    function submitEvent()
+    {
+        imgData = $("#capturePhoto").val();
+        var IMAGENX = new Array();
+        IMAGENX = imgData.split(",");
+        Documento = $("#Documento").val();
+        //				Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "huellas" + "&Documento=" + Documento + "&Imagen=" + IMAGENX[1] + ",1" + "&Templates=" + "XX" + "&FingerIds=" + "1" + "&id=" + "1" + "&IdPersona=" + "15";
+        //SendImageToServerAloha("TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "huellas" + "&Documento=" + Documento + "&Imagen=" + ImageBase64 + "&Templates=" + template + "&FingerIds=" + fingerid + "&id=" + id + "&IdPersona=" + IdPersona);
+
+
+
+        Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "fotos" + "&Documento=" + Documento + "&Imagen=" + imgData;
+        SendImageToServerAloha(Data);
+        //SendImageToServerAloha("fotos", Documento, imgData);
+        if (imgData != "")
+        {
+            $("#id_img_pers").attr("src", "data:image/jpg;base64," + imgData);
+            $("#personIdPhoto").val(imgData);
+            $("#personPhoto").val("");
+        }
+        closeWindow();
+    }
+
+</script>
+
+<form method="post" id="tet" action="" onkeydown="if (event.keyCode == 13) {
+                    return false;
+                }">
+    <div id="visitorInput" style="height: 100%; overflow: visible;">
+        <div id="driver_tip_div" style="width:100%;height:30px;padding-top: 10px;background:rgb(242, 221, 13);font-size: large; color:#000;text-align: center;display: none;">
+            <span id="driver_tip_msg" style="width:100%;"></span>
+        </div>
+
+        <!-- '????' -->
+        <div id="captureDiv" style="height: 100%; overflow: visible; padding-top: 5px;padding-left: 5px;float:left; display:inline;">
+            <div id="headPortraitTab" style="text-align: center;float: left;white-space: nowrap;padding-top: 5px;padding-left:5px;display: inline; ">
+
+                <table>
+                    <tr>
+                        <td style="padding-left: 18px;">
+                            <div id="preview" style="padding-top: 2px;padding-left: 15px;padding-bottom:1px;width:120px;height:140px;">
+                                <img id="id_capturePhoto_img"  width="120px" height="120px" src="/resources/fotos/sinfoto.png"/> 
+                            </div>
+                            <p align="center" style="margin-bottom:18px">Capturar Foto</p>
+                            <input  id="capturePhoto"  name="capturePhoto" type="hidden" value=""/>
+                        </td>
+                        <td style="padding-left: 25px;">
+                            <div id="id_cap_div" class="capture" style="margin-top: 2px;margin-bottom:5px;">
+                            </div>
+
+                            <div class="bottomDivR" style="margin-top:5px;padding-bottom:2px;" >
+                                <input type="button" id="capture"  class="button-form" value="Capturar"> </input>
+                            </div>
+                            <div id="border"></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</form>
+<div class="bottomDiv bottomDivR" id="BottomDiv" style="margin-top: 10px;z-index: 200" >
+    <button type="button" id="submitButtonId" name="makeSureName" onclick="submitEvent()" class="button-form">
+        OK
+    </button>
+    <button class="button-form" type="button" id="closeButton" name="closeButton" onclick="closeWindow();">
+        Cancelar
+    </button>
+</div>

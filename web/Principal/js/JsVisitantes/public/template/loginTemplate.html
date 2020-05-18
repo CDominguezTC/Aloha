@@ -1,0 +1,41 @@
+<#if !formId??>
+	<!-- 定义表单id（也是整个编辑模版标识） -->
+	<#assign formId = "editForm">
+</#if>
+<html>
+	<head>
+		<title>${sysName}</title>
+		<meta http-equiv="pragma" content="no-cache">
+		<meta http-equiv="cache-control" content="no-cache">
+		<link href="login/css/forgotPwdAndReset.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="${base}/public/css/base.css" />
+		<link rel="stylesheet" type="text/css" href="${base}/public/css/whole.css" media="screen" />
+		<link rel="stylesheet" type="text/css" href="${base}/public/css/head.css" />
+		<link rel="STYLESHEET" type="text/css" href="${base}/public/controls/dhtmlx/dhtmlxMessage/codebase/skins/dhtmlxmessage_dhx_skyblue.css" />
+		<link rel="STYLESHEET" type="text/css" href="${base}/public/controls/dhtmlx/dhtmlxWindows/codebase/dhtmlxwindows.css" />
+		<link rel="STYLESHEET" type="text/css" href="${base}/public/controls/dhtmlx/dhtmlxWindows/codebase/skins/dhtmlxwindows_dhx_blue.css" />
+		<link rel="STYLESHEET" type="text/css" href="${base}/public/controls/dhtmlx/dhtmlxWindows/codebase/skins/dhtmlxwindows_dhx_skyblue.css" />
+		<link href="login/css/login.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="${base}/public/controls/jquery/jquery.js" charset="UTF-8"></script>
+		<script charset="utf-8" type="text/javascript" src="${base}/public/controls/dhtmlx/dhtmlxToolbar/codebase/dhtmlxcommon.js"></script>
+		<link rel="STYLESHEET" type="text/css" href="${base}/public/controls/dhtmlx/dhtmlxMessage/codebase/skins/dhtmlxmessage_dhx_skyblue.css"/>
+		<script type="text/javascript" src="${base}/public/controls/dhtmlx/dhtmlxMessage/codebase/dhtmlxmessage.js"></script>
+		<script type="text/javascript" src="${base}/public/controls/jBox/jquery.jBox-2.3.min.js"></script>
+		<link href="${base}/public/controls/jBox/Skins/Default/jbox.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div class="top_bg">
+			<div class="top_box">
+				<div class="top_logo"></div>
+				<div class="top_title">
+					<span>${sysName}</span>
+				</div>
+			</div>
+		</div>
+		<#if mainContent?exists>
+			<@mainContent/>
+		</#if>
+		<div class="bottom_bg"><span></span></div>
+	</body>
+</html>

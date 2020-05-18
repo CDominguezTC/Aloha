@@ -1,0 +1,108 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.3.1 Parameters</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection88 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072400"></a><a name="_Toc414032695"></a><a
+name="_7.3.1_参数设置"></a><a name="_6.3.1_参数设置"></a><a name="_6.3.1_Parameters"></a><span
+lang=EN-US>6.3.1 </span><span lang=EN-US>Parameters</span></h3>
+
+<p class=MsoNormal><span lang=EN-US>Click [Basic Management] &gt; [Parameters]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=639 height=380
+src="user_help.files/image157.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Common
+Parameter Option</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Print</span><span lang=EN-US>: Select whether to print receipt
+when the server connected with a printer, select whether to use the catch photo
+in the receipt.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Exit Registration</span><span lang=EN-US>: Enable or disable the
+auto sign-off function. Auto sign-out means a visitor leaves by directly
+punching a card or using his/her fingerprint at the preset auto sign-out place,
+without performing the Exit Registration operation in the software. Setting
+automatic sign-out place means specifying some readers as the auto sign-out
+place. Click [Immediately Set Credit Card (fingerprint) Automatic Sign-out of
+Place]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=377 height=295
+src="user_help.files/image158.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Click [OK] to finish.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Visitor Detail Information Today Remind Time</span><span
+lang=EN-US>: Set the remind time of unsigned-out visitor lists every day.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Permission</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Whether to Issue Card</span><span lang=EN-US>: Whether to issue
+card for the visitor.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fingerprint Registration is Required</span><span lang=EN-US>:
+Whether to register the fingerprint for the visitor.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Normal
+Parameter Option</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Device</span><span lang=EN-US>: Whether to use Certificate
+Identification Equipment and High-Speed Portable HD Doc Scanner. </span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

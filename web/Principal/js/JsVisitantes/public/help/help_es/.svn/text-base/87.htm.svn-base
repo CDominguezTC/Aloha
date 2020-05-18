@@ -1,0 +1,111 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.3.1 Parámetros</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection87 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077457"></a><a name="_Toc427077338"></a><a name="_Toc21404"></a><a
+name="_Toc417486981"></a><a name="_Toc414032695"></a><a name="_7.3.1_参数设置"></a><a
+name="_6.3.1_参数设置"></a><a name="_6.3.1_Parameters"></a><a
+name="_6.3.1_Parámetros"></a><span lang=ES-MX>6.3.1 Parámetros</span></h3>
+
+<p class=MsoNormal><span lang=ES-MX>De clic en [Gestión Básica] &gt;
+[Parámetros]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=554 height=567
+src="user_help.files/image159.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Parámetros
+Comunes</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Imprimir</span><span lang=ES-MX>: Seleccione si desea imprimir
+un recibo cuando la PC servidor tenga una impresora conectada y seleccione si
+desea imprimir la foto capturada en el recibo.</span></p>
+
+<p class=MsoNormal><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Registrar Salida</span><span lang=ES-MX>: Habilite o deshabilite
+la función de lector de salida default. Auto Salida significa que cuando un
+visitante sale presentando una tarjeta o usando su huella en un lector pre
+definido, sin realizar la operación de Registrar Salida en el software. La
+configuración de lector de salida default requiere especificar los lectores
+para realizar la salida automática. De clic en [Establezca el lector de salida
+default]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=450 height=350
+src="user_help.files/image160.png"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [OK] para terminar.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Mostrar Pop-Up con Información de Visitantes</span><span
+lang=ES-MX>: Establece la hora para recordar los visitantes que no han salido,
+cada día.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Privilegio</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Tarjeta de Acceso</span><span lang=ES-MX>: Seleccione si desea
+usar tarjeta de acceso para los visitantes.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Huella Digital</span><span lang=ES-MX>: Seleccione para
+registrar las huellas digitales de los visitantes.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Parámetros
+Normales</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Dispositivos</span><span lang=ES-MX>: Seleccione si desea usar
+dispositivos para escanear documentos. </span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.5 Access Reports</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection59 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427072371"></a><a name="_Toc388344267"></a><a
+name="_Toc413852712"><span lang=EN-US>4.5 Access Reports</span></a></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Includes “All
+transactions”, “Events from Today”, “All Exception Events” and so on. You can
+export </span><span lang=EN-US>a</span><span lang=EN-US>fter query. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>You can generate
+statistics of relevant device data from reports, including card verification
+information, door operation information, and normal punching information, etc.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>About the Normal and
+abnormal event please refer to</span><span lang=EN-US> </span><a
+href="38.htm#_4.1.10 Real-Time Monitoring"><span lang=EN-US style='color:purple'>4.1.10
+Real-Time Monitoring</span></a><span lang=EN-US> for details.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Verify mode: Only Card,
+Only Fingerprint, Only Password, Card plus Password, Card plus Fingerprint,
+Card or Fingerprint and etc.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: Only event records generated when the user uses emergency
+password to open doors will include Only password verification mode.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

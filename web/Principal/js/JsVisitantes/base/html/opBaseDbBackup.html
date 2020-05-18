@@ -1,0 +1,167 @@
+<#assign editPage = "true">
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+<style>
+#editFormEditMain {
+    overflow: hidden !important;
+}
+</style>
+<form method="post" id="${formId}" action="baseDbBackupAction!planBackup.action">
+    <input style="display: none" name="backuptype" value="2"/>
+    <div style="padding:20px;width: 500px;height: 80px">
+        <fieldset>
+            <table class="tableStyle">
+                <legend>${base_db_backupPlan}</legend>
+                <tr><td>
+                    <div class="div_box" id="id_div_backupPlan" style="height: 70px;margin-top: 5px">
+                        <input type="hidden" id="id_model_pk" name="pk" value="">
+                        <input type="hidden" id="id_model_info" app_label="dbapp" model_name="DbBackup" name="info">
+                        <div class="">
+                            ${common_from}
+                            <input id="startTime" type="text" class="Wdate" value="${dbBackupStartTime}" name="startTime" style="width: 160px;"/>
+                            ${base_db_backPlanStart}
+                            ${base_db_backPlanRate}
+                            <select name="intervalTime" id="intervalTime" style="width: 40px;">
+                                <option value="1" <#if (dbBackupIntervalTime)??&&(dbBackupIntervalTime=="1")>selected</#if><#if !(baseOplogKeptMonth)??>selected</#if>>1</option>
+                                <option value="3" <#if (dbBackupIntervalTime)??&&(dbBackupIntervalTime=="3")>selected</#if>>3</option>
+                                <option value="7" <#if (dbBackupIntervalTime)??&&(dbBackupIntervalTime=="7")>selected</#if>>7</option>
+                                <option value="30" <#if (dbBackupIntervalTime)??&&(dbBackupIntervalTime=="30")>selected</#if>>30</option>
+                            </select>
+                            ${common_day}
+                        </div>
+                        <div>${base_db_lastdbBackupTime}:<#if (lastdbBackupTime)??&&(lastdbBackupTime=="")>${common_none}<#else>${lastdbBackupTime}</#if></div>
+                        <div id="leftStill"></div>
+                    </div>
+                </tr></td>
+            </table>
+        </fieldset>
+    </div>
+    <div style="padding:20px;width: 500px;height: 50px">
+        <fieldset>
+            <legend><span>${common_prompt_title}</span></legend>
+            <div style="margin-top: 10px;margin-left: 10px;">
+                <span class="warningImage"></span>
+                <span class="warningColor">${base_db_backupTip}</span>
+            </div>
+        </fieldset>
+    </div>
+</form>
+<script type="text/javascript">
+    $('#intervalTime').val('${dbBackupIntervalTime}');
+    var leftStillStr ='${base_db_nextdbBackupTime}'+':${nextdbBackupTime},'+'${base_db_leftStill}'.format('${backupday}','${backuphour}','${backupmin}','${backupsed}');
+    $('#leftStill').html(leftStillStr);
+    $("#${formId}").validate({
+        debug : true,
+        submitHandler : function()
+        {
+            var startTime = $("#startTime").val();
+            if (!backupPlanValid(startTime))
+            {
+                return false;
+            }
+            $('#${formId}').ajaxSubmit({
+                async : false,
+                success : function(result)
+                {
+                    dealRetResult(result);
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown)
+                {
+                    messageBox({
+                        messageType : "alert",
+                        title : "${common_prompt_title}",
+                        text : "${common_prompt_serverError}"
+                    });
+                }
+            });
+            closeWindow();
+        }
+    });
+    //判断计划备份的输入是否正确 
+    function backupPlanValid(startTime)
+    {
+        if (startTime == "")
+        {
+            messageBox({
+                messageType : "alert",
+                title : "${common_prompt_title}",
+                text : "${base_db_backupNotNull}"
+            });
+            return false;
+        }
+        //判断是否符合日期格式 
+        var dt = startTime.split(" ");
+        if (dt.length != 2)
+        {
+            messageBox({
+                messageType : "alert",
+                title : "${common_prompt_title}",
+                text : "${base_db_backupInputError}"
+            });
+            return false;
+        }
+
+        var date = dt[0];
+        var time = dt[1];
+        var regexp = new RegExp(/^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/);
+        var result = date.match(regexp);
+        if (result == null)
+        {
+            messageBox({
+                messageType : "alert",
+                title : "${common_prompt_title}",
+                text : "${base_db_backupDateError}"
+            });
+            return false;
+        }
+        regexp = new RegExp(/^((0[0-9])|(1[0-9])|(2[0-3])|[0-9])(:([0-5][0-9])){2}$/);
+        result = time.match(regexp);
+        if (result == null)
+        {
+            messageBox({
+                messageType : "alert",
+                title : "${common_prompt_title}",
+                text : "${base_db_backupTimeError}"
+            });
+            return false;
+        }
+        return true;
+    }
+
+    //页面加载事件 
+    $("#id_chk_backupNow").click(function()
+    {
+        $("#id_div_backupPlan").hide();
+    });
+    $("#id_chk_backupPlan").click(function()
+    {
+        $("#id_div_backupPlan").show();
+    });
+    $("#id_chk_cancelPlan").click(function()
+    {
+        $("#id_div_backupPlan").hide();
+    });
+
+    createLongDhxCalendar("startTime");
+    $("#startTime").val("${dbBackupStartTime}");
+    
+    
+
+    var check_number = function(el, ev)
+    {
+        var event = ev || window.event;
+        var currentKey = event.charCode || event.keyCode;
+        if (currentKey != 8 && currentKey != 46 && (currentKey<37 || currentKey>40) && (currentKey<48 || currentKey>57) && (currentKey<96 || currentKey>105))
+        {
+            if (window.event)
+            {
+                event.returnValue = false;
+            }
+            else
+            {
+                event.preventDefault();
+            }
+        }
+    }
+</script>
+</#macro>

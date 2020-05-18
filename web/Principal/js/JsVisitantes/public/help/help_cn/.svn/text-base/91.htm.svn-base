@@ -1,0 +1,140 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 6.3.3 登记地点</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection91 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638186"></a><a name="_6.3.3_登记地点"></a><span
+lang=EN-US style='font-size:10.5pt'>6.3.3 </span><span style='font-size:10.5pt;
+font-family:幼圆'>登记地点</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增地点</span></b></p>
+
+<p class=MsoNormal><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【访客】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【基础管理】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【登记地点】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，出现如下界面：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=357 height=230
+src="user_help.files/image201.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段定义如下：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>登记地点名称</span></b><span
+style='font-family:幼圆'>：任意字符，不超过</span><span lang=EN-US>50</span><span
+style='font-family:幼圆'>个，不可重复。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>IP</span></b><b><span style='font-family:
+幼圆'>地址</span></b><span style='font-family:幼圆'>：登记访客信息的客户端所使用电脑的</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>访客机类型</span></b><span
+style='font-family:幼圆'>：默认为普通电脑，当连接了访客机之后，可选择访客机的类型：立式或台式。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>支持摄像头类型</span></b><span
+style='font-family:幼圆'>：选择客户安装的摄像头类型，分为</span><span lang=EN-US>USB</span><span
+style='font-family:幼圆'>摄像头和网络摄像机（网络摄像机必须在“视频设备”中添加）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>默认权限</span></b><span
+style='font-family:幼圆'>：选择该登记地点登记的访客的默认门禁和梯控权限。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2</span><span style='font-family:幼圆'>．也可点击【编辑】或【删除】进行相应操作。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>自动签离地点设置</span></b></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>详见上文</span><a
+href="89.htm#_7.3.1_参数设置"><span lang=EN-US>7.3.1 </span><span style='font-family:
+幼圆'>参数设置</span></a><span style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>访客机自动登录脚本下载</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>下载访客机自动登录脚本，运行脚本，可直接登录进入访客机界面。</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US><img border=0
+width=287 height=235
+src="user_help.files/image202.jpg">&nbsp;&nbsp;&nbsp;
+</span><span style='position:absolute;z-index:251648512;margin-left:0px;
+margin-top:0px;width:318px;height:168px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=318 height=168 style='vertical-align:top'><span style='position:
+  absolute;z-index:251648512'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><b><span lang=EN-US
+    style='font-size:14.0pt;font-family:Wingdings'>?</span></b><b><span
+    style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>1. </span><span
+    style='font-family:幼圆'>下载脚本之前，必须新增一个相应的登记地点，</span><span lang=EN-US>IP</span><span
+    style='font-family:幼圆'>地址必须为运行脚本的服务器</span><span lang=EN-US>IP</span><span
+    style='font-family:幼圆'>地址，访客机类型必须为台式访客机或立式访客机，不能是普通电脑。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2. </span><span
+    style='font-family:幼圆'>运行脚本时，需要单机右键，选择</span><span lang=EN-US>“</span><span
+    style='font-family:幼圆'>以管理员身份运行</span><span lang=EN-US>”</span><span
+    style='font-family:幼圆'>。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=314 height=164
+src="user_help.files/image203.png"></span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,33 @@
+<div style="height: 250px;">
+		<div id="menuObj"></div>
+	</div>
+<script>
+var menuXMLString = '<menu>' + 
+'<item text="${common_rtMonitor_cardRegisterEmp}" img="comm_issueCard.png" id="addCardToNewEmp" />' + 
+'<item text="${acc_rtMonitor_addToRegEmp}" img="comm_issueCard.png" id="addCardToOldEmp" />' +
+'</menu>';
+
+var menu = new dhtmlXMenuObject({
+	parent: "menuObj",
+icons_path: "../common/imgs/",
+xml: menuXMLString,
+//onload: function() { checkUserData("myMenuXML"); }
+});
+//menu.setIconsPath(sysCfg.rootPath + "/public/images/dhtmlxToolbarImgs/");
+menu.renderAsContextMenu();
+menu.attachEvent("onClick", function onButtonClick(menuItemId, type) 
+{
+var data = eventGrid.contextID;
+var datas = data.split("_");
+var cardNo = eventGrid.cells(datas[0], eventGrid.getColIndexById("cardNo")).getValue();	//获取卡号，传到后台
+if(menuItemId == "addCardToNewEmp")
+{
+createWindow("persCustomFieldAction!getAllField.action?cardNo=" + cardNo + "^0^0^900^440^${common_op_add}");
+}
+else
+{
+createWindow("accEmployeeAction!filterEmpByVaildCard.action?cardNo="+cardNo+"^0^0^900^460^${pers_person_selectedPerson}")
+}
+return true;
+});
+	</script>

@@ -1,0 +1,5 @@
+1.ZKBioSecurity用户手册 V1.01.files 替换为 user_help.files
+2.幼圆 替换为 Arial,微软雅黑
+3.___left.htm内容 使用copy 粘贴方式
+left:
+1.d.add(0,-1,"BioSecurity用户手册 V1.1-20150806","");去掉后面

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+
+<page>
+	<objects>
+		<object actionName="baseMail">
+			<field name="#checkbox" width="40" columnMinWidth="40"
+				label="headCheckBox" type="ro" align="left" valign="middle"
+				headerMenu="false" sort="na" isShow="true" content="ids" />
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="sender" width="140" columnMinWidth="70" label="${base_media_sender}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server" isShow="true" >
+			</field>
+			<field name="receiver" width="140" columnMinWidth="70" label="${base_media_receiver}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="subject" width="120" columnMinWidth="70"
+				label="${base_media_subject}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true" />
+			<field name="content" width="150" columnMinWidth="70"
+				label="${base_media_content}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true" />
+			<field name="attachments" width="80" columnMinWidth="40"
+				label="${base_media_attachments}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true" />
+			<field name="commitTime" width="120" columnMinWidth="70" label="${base_media_submitTime}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="sendTime" width="120" columnMinWidth="70" label="${bsse_media_sendTime}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="na"
+				isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="ret" width="120" columnMinWidth="70" label="${base_media_status}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="na"
+				isShow="true">
+				<value name="0"><![CDATA[<font color="green">${base_media_success}</font>]]></value>
+				<value name="1"><![CDATA[<font color="green">${base_media_waitSend}</font>]]></value>
+				<value name="-1"><![CDATA[<font color="red">${base_media_failure}</font>]]></value>
+				<value name="-2"><![CDATA[<font color="orange">${base_media_continueSend}</font>]]></value>
+			</field>
+			<field name="retMessage" width="*" columnMinWidth="70"
+				label="${base_media_errMessage}" type="txt" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true" />
+		</object>
+	</objects>
+
+	<searchs>
+		<search actionName="baseMail">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140"
+					inputWidth="140"></item>
+				<item type="input" name="entity.sender" label="${base_media_sender}" maxlength="30"></item>
+				<item type="input" name="entity.receiver" label="${base_media_receiver}"></item>
+			</items>
+		</search>
+	</searchs>
+
+	<toolbars>
+		<toolbar actionName="baseMail">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+			<item shiro="base:BaseMail:del" id="baseMailAction!del.action" type="button" img="comm_del.png"
+				imgdis="comm_del.png" text="${common_op_del} " action="manyDel"></item>
+			<item shiro="base:BaseMail:getMailParam" id="baseMailAction!getMailParam.action^0^0^500^520" type="button"
+				img="comm_edit.png" imgdis="comm_edit.png" text="${base_mail_paramSetting}" action="openWindowToForm"></item>
+			<item shiro="base:BaseMail:export" id="baseMailAction!export.action^0^0^550^250" type="button"
+				img="comm_export.png" imgdis="comm_export.png" text="${common_op_export}" action="openWindowForExport"></item>
+		</toolbar>
+	</toolbars>
+</page>

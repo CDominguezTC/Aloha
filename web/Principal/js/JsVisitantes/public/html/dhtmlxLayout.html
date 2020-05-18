@@ -1,0 +1,36 @@
+<div id="parentId" style="position: relative;width:100%;height: 100%; aborder: #B5CDE4 1px solid;">
+	<div id="testOut">attachHeader头部</div>
+</div>
+<script>
+	var parentLayout;
+	var childIdLayout;
+	window.setTimeout(doOnLoad,200);//处理异步问题
+	function doOnLoad()
+	{
+		/*不使用异步处理，须自行动态判断高度
+		 var height = $(document.body).height()- 115;
+		 $("#parentId").height(height);
+		*/
+		parentLayout = new dhtmlXLayoutObject("parentId", "2U", "dhx_skyblue");
+		setLayoutResize(parentLayout);
+		var layout_a="a";
+		var layout_b="b";
+		if("${enableRTL!}"=='true'){
+				layout_a="b";
+				layout_b="a";
+		}
+		parentLayout.attachHeader("testOut");
+		parentLayout.cells(layout_a).setWidth(200);
+		parentLayout.cells(layout_a).setText("使用方法");
+		parentLayout.cells(layout_a).attachHTMLString("请直接查看public/html/dhtmlxLayout.html页面源码");
+		//parentLayout.cells("a").hideHeader();
+		parentLayout.cells(layout_b).hideHeader();
+		childIdLayout = parentLayout.cells(layout_b).attachLayout("3T");
+		childIdLayout.cells("a").attachHTMLString("<a target='new' href='http://docs.dhtmlx.com/doku.php?id=dhtmlxlayout:api_toc_alpha'>更多方法使用请参考官网</a>");
+		//childIdLayout.cells("a").hideHeader();
+		//childIdLayout.cells("b").hideHeader();
+		//childIdLayout.cells("c").hideHeader();
+		
+		$("#parentId").prepend($("#testOut"));
+	}
+</script>

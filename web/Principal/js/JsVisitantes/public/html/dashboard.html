@@ -1,0 +1,230 @@
+<#include "/public/template/base.html"> 
+<#macro loadJSAndCSS>
+<link rel="stylesheet" type="text/css" href="${base}/public/css/dashboard.css" />
+<script src="${base}/base_lightbox.js.action"></script>
+<link href="${base}/base/css/lightbox.css" rel="stylesheet" type="text/css" />
+</#macro> 
+
+<#macro baseMainContent>
+<#include "/public/template/head.html">
+
+<div class="index_box">
+	<div id="indexBox"></div>
+	<div style="clear: both;width: 100%"></div>
+	<div style="margin: 20px 6px;" align="right">
+		<button class='button-form' onclick="restoreDefault()" style="border-radius: 0px;" id="OK">${common_restoreDefault}</button>
+	</div>
+</div>
+
+<div id="domeBox" style="display: none">
+	<div class="(box_class)">
+		<div class="index_in_box" id="(sysCode)Module">
+			<div class="index_(sysCode)_img">
+				<a href="(sysCode)_index.action">(moduleName)</a>
+			</div>
+			<div style="float: right;top: -200px;margin-top: -50px;opacity: 0.5;">
+				<img src="${base}/public/images/dashboard/set.png" style="cursor: pointer;" onclick="createWindow('public_dashboardDefine.action?sysCode=(sysCode)&maxCount=(maxCount)^0^0^600^550^(moduleName)')">
+			</div>
+			<div class="index_tab1_link">
+				<ul class="box_ul (boxUl) box_ul_enableRTL">
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="eMsg" style="padding-bottom: 20px;display:none;width: 500px"></div>
+</#macro>
+
+<#macro extendHeadCssAndJs>
+<script type="text/javascript">
+
+	function initDashboardData(sysCode)
+	{
+		$.ajax({
+			type: "POST",
+			url: "authUserDashboardAction!getSelectedResLists.action",
+			data : {
+				sysCode: sysCode
+			},
+			dataType: "json",
+			async: true,
+			success: function(data)
+			{
+				
+				if(document.getElementById(sysCode + "Module"))
+				{
+					$("#"+ sysCode +"Module .box_ul").html("");
+					var items = data.item;
+					for(var i = 0; i< items.length; i++)
+					{
+						var link = items[i].actionLink;
+						if(link.indexOf("javascript") == -1)
+						{
+							link = sysCode +'_index.action?menuId='+ urlEncode(items[i].actionLink);
+						}
+						$("#"+ sysCode +"Module .box_ul").append('<li><a href="'+ link +'" title="'+ items[i].text + '">' + items[i].text +'</a></li>');
+					}
+				}
+				
+			}
+		});
+	}
+
+	function initDashboard(sysCode, moduleName)
+	{
+		$("#domeBox .box_ul").html("");
+		
+		var html = $("#domeBox").html().replace(/\(sysCode\)/g, sysCode);
+		html = html.replace(/\(moduleName\)/g, moduleName);
+		
+		var language = "${(currentLanguage == 'zh_CN')?string('zh_CN','en_US')}";
+		html = html.replace(/\(boxUl\)/g, "box_ul_" + language);
+		
+		var maxCount = language == "zh_CN" ? 10 : 5;
+		var boxClass = "min_box";
+		if(sysCode == "acc")
+		{
+			boxClass = "max_box";
+			maxCount = maxCount * (language == "zh_CN" ? 2 : 3);
+			includeScript("${base}/acc_accDevice.js.action");
+		}
+		html = html.replace(/\(box_class\)/g, boxClass);
+		html = html.replace(/\(maxCount\)/g, maxCount);
+		$("#indexBox").append(html);
+		
+		initDashboardData(sysCode);
+	}
+	
+	var moduleCodes = new Array();
+	
+	<#list moduleList('true') as item>
+		<#assign tempItem="${item.code}_module">
+		<#if item_index < 5>
+			initDashboard("${item.code}", "${nestedVar('{{tempItem}}')}");
+			moduleCodes.push("${item.code}");
+		</#if>
+	</#list>
+	
+
+	function restoreDefault()
+	{
+		messageBox({messageType:"confirm", text:"${common_prompt_executeOperate}".format("${common_restoreDefault}".toLowerCase()), callback:function(result){
+			if(result)
+			{
+				onLoading(function()
+				{
+					$.ajax({
+				        type : "POST",
+				        url : "authUserDashboardAction!restoreDefault.action",
+				        dataType : "json",
+				        async : true,
+				        success : function(result)
+				        {
+					        dealRetResult(result, function()
+					        {
+					        	for (var i = 0; i < moduleCodes.length; i++)
+					        	{
+					        		initDashboardData(moduleCodes[i]);
+					        	}
+					        });
+				        }
+				    });
+				});
+			}
+			
+		}});
+		
+	}
+	
+	/**
+	 * 显示系统检测提示功能
+	 * 
+	 * @author lynn.chen
+	 * @see 相关类或方法，不需要请删除此行
+	 * @since 2014年12月17日 下午4:43:08
+	 * @returns {创建成功的XMLHttpRequest对象}
+	 */
+	function showSystemPrompt()
+	{
+		/* if(getFirstWindow() != null)
+		{
+			getFirstWindow().close();
+		} */
+		$.jBox.closeMessager();
+		
+		var path = "baseSystemTipAction!checkCompleteInfo.action";
+		$.ajax({
+			type: "GET",
+			url: path,
+			dataType: "json",
+			async : true,
+			success: function(data)
+		    {
+				var tipHtml = '<table class="eMsg" style="padding: 0px 5px;">';
+				
+				if(data.length == 0)//无数据则不作处理
+				{
+					return;
+				}
+
+				var tipHtml = '<table class="eMsg" style="padding: 0px 5px;">';
+				
+				if(data.length == 0)//无数据则不作处理
+				{
+					return;
+				}
+				
+				var tipIsNotNull = false;
+				for(var i=0; i<data.length; i++)
+				{
+					/* if(data[i].orderNumber < 100)
+					{ */
+						tipHtml +='<tr valign="top">' +
+										'<th>'+ data[i].showName +'</th>' +
+										'<td nowrap="nowrap" style="text-align: center"><a href="'+ data[i].href +'">'+ data[i].operateName +'</a></td>' +
+									'</tr>';
+						tipIsNotNull = true;
+					/* } */
+				}
+				tipHtml += '</table>';
+				
+				if(tipIsNotNull)
+				{
+					$.jBox.messager(tipHtml, "${common_prompt}", 0, {
+						showIcon : false,
+						showSpeed: 'slow',
+						draggable: true,
+					    showType : 'slide',
+					    width: 'auto',
+					    /* id: "systemPrompt", */
+					    /* buttons : {
+					        '${common_devMonitor_doTotPrompt}' : true
+				        }, */
+					    closed : function(v, h, f)
+				        {
+					    	createCookie("eMsgIsColse", true);
+				        }
+					});
+					$(".jbox-messager .jbox").css({
+						right: "12px", 
+						bottom : "12px", 
+						"box-shadow": "0 0 5px #aaaaaa",
+						"max-width": "500px",
+						"z-index": 50//为了避免和工作面板弹窗同时弹出产生冲突
+					});
+				}
+
+			}
+        });
+		
+	}
+	
+	//if(getCookie("eMsgIsColse") != "true")
+	//{
+		showSystemPrompt();
+	//}
+		createCookie("backUrl",window.location.pathname);
+</script>
+</#macro>

@@ -1,0 +1,413 @@
+<#if extendHeadCssAndJs?exists >
+	<!-- 执行自定义的脚本 -->
+	<@extendHeadCssAndJs/>
+</#if>
+
+<script type="text/javascript">
+	var pageConfigXML;
+	var leftTreeId;
+	try
+    {
+		leftTreeId = window.top.system.submenuTree.getSelectedItemId();//如：grid^pers_listPersDepartment.action
+		leftTreeId = (leftTreeId.indexOf("^") == -1 ? leftTreeId : leftTreeId.split("^")[1]);
+		
+		if(leftTreeId.indexOf("iframe:") == 0)
+		{
+			leftTreeId = leftTreeId.replace("iframe:","");
+			leftTreeId = leftTreeId.indexOf("?") != -1 ? leftTreeId.substring(0, leftTreeId.indexOf("?")) : leftTreeId;
+			leftTreeId = leftTreeId.indexOf("//") != -1 ? leftTreeId.substring(leftTreeId.lastIndexOf("/")) : leftTreeId;
+		}
+    }
+    catch (e)
+    {
+    	leftTreeId = window.location.pathname.substring(1);
+    	leftTreeId = leftTreeId.indexOf("?") != -1 ? leftTreeId.substring(0, leftTreeId.indexOf("?")) : leftTreeId;
+    	leftTreeId = leftTreeId.indexOf("//") != -1 ? leftTreeId.substring(leftTreeId.lastIndexOf("/")) : leftTreeId;
+    }
+
+	var packageName = leftTreeId.split("_")[0];
+	var actionName = leftTreeId.split("_list")[1].split(".")[0];//包含实体名和非实体名
+	var xmlFileName = actionName;
+	///^[A-Z]+$/.test( 'ABCD' )
+	//如果最前面出现多个大写字符，会自动把最后一个大写字母前面的字符转为小写
+	for(var i=0;i<actionName.length;i++){
+		var c=actionName.charAt(i);
+		if(c<'A' || c>'Z')
+		{
+			if(i>1)
+			{
+				actionName = actionName.substring(0, i-1).toLowerCase() + actionName.substring(i-1);
+			}
+			else
+			{
+				actionName = actionName.substring(0, 1).toLowerCase() + actionName.substring(1);
+			}
+			break;
+		}
+	}
+	var packagePath = "baseAction!getPageXML.do?packageName=" + packageName + "&actionName=";
+	<#if pageConfigXML??>
+		<#noparse>
+			//请按照该形式自定义 配置文件的路径,必须放在<#include的上面
+			//<#assign pageConfigXML = "pers/html/xml/personPageConfig.xml">
+		</#noparse>
+		pageConfigXML = "${pageConfigXML!}";
+	<#else>
+		pageConfigXML = packagePath + actionName;
+	</#if>
+	
+	//给搜索按钮添加样式切换效果
+	var searchButtons = $(".button");
+	$(".button").each(function(b){
+		$(this).hover(function(){
+			$(this).css("background","url(public/images/btn_bg_hover.jpg) repeat scroll 0 0 transparent");
+		},
+		function(){
+			$(this).css("background","none repeat scroll 0 0 #fff");
+		}); 
+	});
+</script>
+
+<#macro searchContent gridName = "gridbox" width="100%" top="44" actionName="" searchConfigXML="" callbackFun="">
+	<#noparse>
+		<!-- 请按照该形式配置gridName<#assign gridName = "gridbox"> -->
+	</#noparse>
+	<#if actionName?? && actionName !="">
+		<script type="text/javascript">
+			<#if searchConfigXML?? && searchConfigXML !="">
+				xmlFileName = '${searchConfigXML}';
+			</#if>
+			pageConfigXML = packagePath + "${actionName!}&xmlFileName=" + xmlFileName;
+		</script>
+	<#elseif searchConfigXML?? && searchConfigXML !="">
+		<script type="text/javascript">
+			pageConfigXML += '${searchConfigXML!}';
+		</script>
+	</#if>
+	<div id="searchBox${gridName!}" style="display: none;min-height: 44px" class="searchBox">
+		<div class="searchTopBox">
+			<span style="${((enableRTL!'false') == 'true')?string('float:right','float:left')}">
+				<table cellpadding="0" cellspacing="0" >
+					<tr style="overflow: hidden;height: 22px;" id="rightSearchBox${gridName!}">
+						<td>
+							<div id="topSearchBox${gridName!}" style="float: right;"></div>
+						</td>
+						<td valign="middle">
+							<div id="moreConditionButton${gridName!}" style="margin-left: 12px">
+								<a id="moreConditionLink${gridName!}" href="javascript:moreScreeningCondition('${common_search_retract}','${common_more}','${gridName!}')" value="hide">
+									<span id="moreConditionText${gridName!}">${common_more}</span>
+									<img id="moreConditionIcon${gridName!}" src="${base}/public/images/minlingDown.gif" style="margin-top: -5px"/>
+								</a>
+							</div>
+						</td>
+						<td valign="middle">
+							<div id="searchButton${gridName!}" class="search_button" style="margin-left: 20px;" onclick="searchButton('${gridName!}')" title="${common_search_query}">
+								<!-- <img id="searchButton${gridName!}" src="${base}/public/images/search.png" 
+									onclick="searchButton('${gridName!}')" style="cursor: pointer;"/> -->
+								<!-- <button id="searchButton${gridName!}" class="button" onclick="searchButton('${gridName!}')" type="button" style="padding-left: 5px; min-width: 66px;cursor: pointer;">
+									<span class="icon_find" style="cursor: default;">${common_search_query}</span>
+								</button> -->
+							</div>
+						</td>
+						<td valign="middle">
+							<div style="margin-left: 20px" class="search_clear_button" onclick="clearCondition('searchBox${gridName!}','${gridName!}')" title="${common_search_clearTitle}">
+								<!-- <img id="searchButton${gridName!}" src="${base}/public/images/clear.png" 
+									onclick="clearCondition('searchBox${gridName!}','${gridName!}')" style="cursor: pointer;"/> -->
+								<!-- <a id="clearSearch" href="javascript:c">${common_search_clear}</a> -->
+							</div>
+						</td>
+					</tr>
+				</table>
+			</span>
+		</div>
+		<div class="searchBelowBox">
+			<div id="searchTextDiv${gridName!}" class="searchBelowBox_tip">
+				<span style="font-weight: bold;">${common_search_currentQuery}:</span><span id="searchText${gridName!}" style="padding-left: 5px;">${common_none}</span>
+				<span style="display: none;" id="noSearchText${gridName!}">${common_none}</span>
+			</div>
+			<div id="belowSearchBox${gridName!}" class="searchBelowBox_input"></div>
+		</div>
+		
+		<script type="text/javascript">
+			window.setTimeout(function(){
+				//表格宽度自适应调整
+				var topW=$("#rightSearchBox${gridName!}").width();
+				if(topW>$("#searchBox${gridName!}").width()){
+					$("#searchBox${gridName!}").width(topW);
+					$("[id$=LayoutBox${gridName!}]").width(topW);
+				}
+				
+				$("#belowSearchBox${gridName!}").width($("#searchBox${gridName!}").width() - 10).css('z-index','12');	
+			},100);
+		</script>
+	</div>
+	<script type="text/javascript">
+		loadSearchConfig('${base}/'+ pageConfigXML, '${gridName!}');
+		window.setTimeout(function(){
+			var paramArray = leftTreeId.indexOf("?") >= 0 ? leftTreeId.split("?")[1].split("&") : "";
+			if(paramArray != "")
+			{
+				var tempArray = "";
+				for(var i = 0; i < paramArray.length; i++)
+				{
+					tempArray = paramArray[i].split("=");
+					if(tempArray[0] == "searchHide")
+					{
+						var searchValue = tempArray[1];
+						searchValue = searchValue.replace("[","{");
+						searchValue = searchValue.replace("]","}");
+						
+						var searchArray = eval("(" + searchValue + ")");
+						
+						for(var searchName in searchArray)
+						{
+							$("#topSearchBox${gridName!}").append("<input type='hidden' name='" + searchName + "' value='" + searchArray[searchName] + "' />");
+						}
+						break;
+					}
+				}
+			}
+			
+			//焦点
+			$("input[type=text][readonly!=readonly][disabled!='disabled']:first").focus();
+		}, 200);
+		
+		/**搜索按钮*/
+		function searchButton(gridName)
+		{
+			window.setTimeout(function()
+			{
+				var value = $('#beginTime').val();
+				var valu = $('#endTime').val();
+				if(null != $('#tips').html())
+				{
+					$('#tips').remove();
+				}
+				if(valu == null|| valu == '' || valu >= value)
+				{
+					reloadGrid(gridName+'^selectedFirstRow','${callbackFun}');
+				}
+				else
+				{
+					openMessage(msgType.warning, '${common_search_dateMsg}');
+				}
+			},100)
+		}
+	</script>
+</#macro>
+
+<!-- 双列表 -->
+<#macro bothGrid leftGridName="leftGridbox" rightGridName="rightGridbox" 
+	leftActionName="" rightActionName="" leftHeadCheckBox="leftHeadCheckBox" rightHeadCheckBox="rightHeadCheckBox"
+	leftCheckBoxName="leftIds" rightCheckBoxName="rightIds" searchHideId="searchHideId" xmlFileName=""
+	leftTitle="" rightTitle="" leftPagingMode="true,true,false,true" rightPagingMode="true,true,false,true" 
+	leftGridHeight="75%" rightGridHeight="75%" minWidth="550px" bothSearch="true" >
+<div id="layoutBox${leftGridName!}" style="width: 100%;height: 100%;margin-top: -1px;overflow: visible;"></div>
+<div id="leftLayoutBox${leftGridName!}" style="width: 99.8%;height: 100%;min-width: ${minWidth!};">
+	<@searchContent gridName="${leftGridName!}"  actionName="${leftActionName!}" searchConfigXML="${xmlFileName!}"/>
+	
+	<div id="leftOperate${leftGridName!}"  style="clear: both;min-height: 30px;"></div>
+	<!-- 获取操作按钮的js控制 -->
+	<script type="text/javascript">
+		createToolbar('${base}/' + packagePath + "${leftActionName!}&xmlFileName=" + xmlFileName, "leftOperate${leftGridName!}");
+	</script>
+	<div id="${leftGridName!}" class="dhxGridBox"></div>
+	
+	<div id="${leftGridName!}_paging" class="dhxGridBoxPaging" setMode="${leftPagingMode!}"></div>
+</div>
+<!-- 权限组列表 -->
+<div id="rightLayoutBox${rightGridName!}" style="width: 99.8%;height: 100%;min-width: ${minWidth!};">
+	<#if bothSearch == "true"><!-- 两个列表都需要查询 -->
+		<@searchContent gridName="${rightGridName!}" actionName="${rightActionName!}" searchConfigXML="${xmlFileName!}"/>
+	<#else><!-- 左边列表才需要查询 -->
+		<@searchContent gridName="${rightGridName!}" actionName="${rightActionName!}" searchConfigXML="${xmlFileName!}"/>
+		<script type="text/javascript">
+			$("#searchBox${rightGridName!}").attr("style", "display:none");
+		</script>
+	</#if>
+	<div id="rightOperate${rightGridName!}" style="clear: both;min-height: 30px;"></div>
+	<!-- 获取操作按钮的js控制 -->
+	<script type="text/javascript">
+		createToolbar('${base}/' + packagePath + "${rightActionName!}&xmlFileName=" + xmlFileName, "rightOperate${rightGridName!}");
+	</script>
+	<div id="${rightGridName!}" class="dhxGridBox"></div>
+	<div id="${rightGridName!}_paging" class="dhxGridBoxPaging" setMode="${rightPagingMode!}"></div>
+</div>
+<!-- 加载grid -->
+<script type="text/javascript">
+	var layoutName = "layoutBox${leftGridName!}";
+	var leftLayoutId = "leftLayoutBox${leftGridName!}";
+	var rightLayoutId = "rightLayoutBox${rightGridName!}";
+	
+	if($.browser.msie)//ie
+	{
+		$("#" + leftLayoutId).css("position", "relative");
+		$("#" + rightLayoutId).css("position", "relative");
+	}
+	
+	myLayouts[layoutName] = new dhtmlXLayoutObject(layoutName, "2U", sysCfg.dhxSkin);
+	var layout_a="a";
+	var layout_b="b";
+	if("${enableRTL!}"=='true'){
+		layout_a="b";
+		layout_b="a";
+	}
+	setLayoutResize(myLayouts[layoutName]);
+	//myLayouts[layoutName].cells("a").setWidth(850);
+	var leftText = "<div style='font-weight: normal'>${leftTitle!}</div>";
+	myLayouts[layoutName].cells(layout_a).setText(leftText);
+	myLayouts[layoutName].cells(layout_a).attachObject(leftLayoutId);
+	
+	myLayouts[layoutName].cells(layout_a).setCollapsedText("");
+	//myLayouts[layoutName].cells("a").hideHeader();
+	
+	myLayouts[layoutName].cells(layout_b).attachObject(rightLayoutId);
+	
+	var rightTitle = "${rightTitle!}".indexOf("(text)") != -1 ? "${rightTitle!}".replace("(text)","<span id='objName' style='color: #000'></span>") : "${rightTitle!}".format("<span id='objName' style='color: #000'></span>");
+	var rightText = "<div style='font-weight: normal'>" + rightTitle + "</div>";
+	myLayouts[layoutName].cells(layout_b).setText(rightText);
+	
+	myLayouts[layoutName].cells(layout_b).setCollapsedText("");//myLayouts[layoutName].cells("b").getText()
+	//myLayouts[layoutName].cells("b").hideHeader();
+	
+	$("#" + leftLayoutId).parent().css("overflow-x","scroll");
+	$("#" + rightLayoutId).parent().css("overflow-x","scroll");
+	
+	resizeGird("${leftGridName!}");
+	resizeGird("${rightGridName!}");
+	
+	var searchHideName = "";
+	
+	var rightGridCallback = function(){
+		<#if rightGridHeight != "75%">
+			//mygrids["${rightGridName!}"].enableResetHeight = false;
+		</#if>
+		//$("#bothGrid${leftActionName!}").show();
+	};
+	var leftGridCallback = function(){
+		
+		<#if leftGridHeight != "75%">
+			//mygrids["${leftGridName!}"].enableResetHeight = false;
+		</#if>
+		
+		searchHideName = $("#${searchHideId!}").attr("name");
+		var rowId = 0;
+		if(mygrids["${leftGridName!}"].getRowId(0) != undefined){
+			
+			mygrids["${leftGridName!}"].selectRow(0);
+			rowId = mygrids["${leftGridName!}"].getRowId(0);
+			//setRightTitleById(rowId);
+		}
+		setRightTitleById(rowId);
+		loadGrid(packageName, "${rightActionName!}", "${rightGridName!}", "${rightHeadCheckBox!}", "${rightCheckBoxName}", null, rightGridCallback, "&type=noFilter", xmlFileName);
+		//loadGrid("acc", "accLevelSet", "levelSetGridbox", "levelSetHeadCheckBox", "levelSetIds", null, null, "&accEmployeeSet.id="+rowId, "EmpLevelByEmp");
+		//将右边选中的行赋值给隐藏的输入框
+		$("#${searchHideId!}").val(rowId);
+	};
+	 
+	//加载列表
+	loadGrid(packageName, "${leftActionName!}", "${leftGridName!}", "${leftHeadCheckBox!}", "${leftCheckBoxName!}", null, leftGridCallback, null, xmlFileName);
+	//点击门禁权限组列表行事件
+	mygrids["${leftGridName!}"].attachEvent("onRowSelect", function(id){
+		setRightTitleById(id);
+		reloadGrid("${rightGridName!}");
+		return false;
+	});
+	
+	function setRightTitleById(id)
+	{
+		var titleText = "";
+		if(mygrids["${leftGridName!}"].doesRowExist(id)){
+			
+			var firstColText = mygrids["${leftGridName!}"].cells(id, 0).getValue();
+			var firstColIndex = 0;
+			if(firstColText.indexOf("type=\"checkbox\"") !=-1 || firstColText.indexOf("type='checkbox'") !=-1)
+			{
+				firstColIndex = 1;
+			}
+			//loadMygrid(mygrids["${rightGridName!}"].path + "&" + searchHideName + "=" + id, "${rightGridName!}");
+			//loadMygrid(mygrids["${rightActionName!}"].path+"&accEmployeeSet.id=" + id, "levelSetGridbox");
+			
+			var firstColText = mygrids["${leftGridName!}"].cells(id, firstColIndex).getValue();
+			var secondColText = mygrids["${leftGridName!}"].cells(id, firstColIndex + 1).getValue();
+			titleText = firstColText + (secondColText != "" ? "(" + secondColText + ")" : "");
+		}
+		else
+		{}
+		//将右边选中的行赋值给隐藏的输入框
+		$("#${searchHideId!}").val(id);
+		$("#objName").html(titleText);
+	}
+	
+</script>
+</#macro>
+
+<#if mainContent?exists>
+	<@mainContent/>
+<#else>
+	<div id="listBox" style="height: 100%;width: 100%;">
+		<#if customSearchContent?exists>
+			<@customSearchContent/>
+		<#else>
+			<@searchContent/>
+		</#if>
+
+		<#if customOperateContent?exists>
+			<@customOperateContent/>
+		<#else>
+			<div id="operate" style="clear: both;min-height: 30px;margin-bottom: 6px;"></div>
+			<!-- 获取操作按钮的js控制 -->
+			<script type="text/javascript">
+				createToolbar('${base}/' + pageConfigXML);
+			</script>
+		</#if>
+		<!-- 列表显示 -->
+		<div id="gridbox"></div>
+		<#if customGridPaging?exists>
+			<@customGridPaging/>
+		<#else>
+			<div id="gridbox_paging" class="dhxGridBoxPaging"></div>
+		</#if>
+		<script type="text/javascript">
+			resizeGird("gridbox");
+		</script>
+		<!-- 加载grid -->
+		<script type="text/javascript">
+			/*加载初始化条件*/
+			var searchParam = "";
+			var paramArray = leftTreeId.indexOf("?") >= 0 ? leftTreeId.split("?")[1].split("&") : "";
+			if(paramArray != "")
+			{
+				var tempArray = "";
+				for(var i = 0; i < paramArray.length; i++)
+				{
+					tempArray = paramArray[i].split("=");
+					//{eventType:yichang,eventType2:yichang2}
+					if(tempArray[0] == "searchHide")
+					{
+						var searchValue = tempArray[1];
+						searchValue = searchValue.replace("[","{");
+						searchValue = searchValue.replace("]","}");
+						var searchArray = eval("(" + searchValue + ")");
+						for(var searchName in searchArray)
+						{
+							searchParam += ("&" + searchName + "=" + searchArray[searchName]);
+						}
+						break;
+					}
+				}
+			}
+			loadGrid(packageName, actionName, null, null, null, null, null, searchParam);
+			setSizesGrid();
+	</script>
+	</div>
+	<div id="addBox" style="height: 100%;display: none">
+		<!-- 编辑区 -->
+	</div>
+</#if>
+
+<!-- 自定义（扩展）脚本 -->
+<#if extendJs?exists >
+	<!-- 执行自定义的脚本 -->
+	<@extendJs/>
+</#if>

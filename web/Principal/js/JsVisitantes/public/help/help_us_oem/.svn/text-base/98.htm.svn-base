@@ -1,0 +1,78 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.4 Video Event Record</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection98 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427071770"></a><a name="_Toc414032706"><span lang=EN-US>7.4 </span></a><span
+lang=EN-US>Video Event Record</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>View the records of catching pictures and
+videos.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Click [Video] &gt; [Video Device] &gt; [Video
+Event Record]:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=576 height=259
+src="user_help.files/image171.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>The media file is:</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=16 height=13
+src="user_help.files/image172.jpg"></span><span
+style='font-family:幼圆'>：</span><span lang=EN-US>Indicates that the linkage type
+is “Video”, you can click to download this file. Please choose a third part of
+video player to play the file, or else it can not be played normally.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=16 height=12
+src="user_help.files/image173.jpg"></span><span
+style='font-family:幼圆'>：</span><span lang=EN-US>Indicates that the linkage type
+is “Capture”, you can click to view this file.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></b><b><span
+lang=EN-US> </span></b><span lang=EN-US>Note: If the “Video” and “Capture” are
+both selected, there will be 2 records. For more details about the way to set
+the linkage type, please refer to </span><a href="46.htm#_5.3.2_Linkage_Setting"><span
+lang=EN-US>4.3.2 Linkage Setting</span></a><span lang=EN-US>.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

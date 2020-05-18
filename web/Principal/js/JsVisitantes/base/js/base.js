@@ -1,0 +1,10 @@
+$("#id_chk_backupNow").click(function(){
+	alert(213);
+	$("#id_div_backupPlan").hide();
+});
+$("#id_chk_backupPlan").click(function(){
+	$("#id_div_backupPlan").show();
+});
+$("#id_chk_cancelPlan").click(function(){
+	$("#id_div_backupPlan").hide();
+});

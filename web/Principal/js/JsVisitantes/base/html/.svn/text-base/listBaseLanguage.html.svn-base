@@ -1,0 +1,64 @@
+<#include "/public/template/base.html">
+<#macro baseMainContent>
+<div id="listBox" style="height: 100%;width: 100%;">
+	<div id="operate" style="clear: both;"></div>
+	<!-- 获取操作按钮的js控制 -->
+	<script type="text/javascript">
+		createToolbar('baseAction!getPageXML.action?xmlPath=${base}/base/xml/BaseLanguage.page.xml&actionName=baseLanguage');
+	</script>
+	<div id="gridbox" class='dhxGridBox' style="width: 100%"></div>
+	<div id="gridbox_paging" class="dhxGridBoxPaging"></div>
+</div>
+<script>
+	var gridName = "gridbox";
+	/* 加载grid */
+	resizeGird(gridName);
+	loadGrid("base", "baseLanguage");
+	
+
+	function deleLanguage(deletePath)
+	{
+		var idsStr = getGridCheckboxValue();
+		if(idsStr=="")
+		{
+			messageBox({messageType:"alert", text: "${common_prompt_selectObj}"});
+			return false;
+		}
+		var ids = idsStr.toString().split(',');
+		for(var i=0;i<ids.length;i++)
+		{
+			var buildInFlag = mygrids[gridName].cells(ids[i], mygrids[gridName].getColIndexById("%buildInFlag")).getValue();
+			if(buildInFlag=='true')
+			{
+				messageBox({messageType:"alert", text: "${base_i18n_forbidOperator}"});
+				return false;
+			}
+			var currentLanguage = '${currentLanguage}';
+			var selectLanguage = mygrids[gridName].cells(ids[i], mygrids[gridName].getColIndexById("%code")).getValue();
+			if (selectLanguage == currentLanguage){
+			    messageBox({messageType:"alert", text: "${base_i18n_currentUseLanguageNoDel}"});
+                return false;
+			}
+		}
+		deletePath = deletePath.indexOf("#")>0 ? deletePath.split("#")[1] : deletePath;
+		deletePath+="?ids="+idsStr;
+		
+		messageBox({messageType:"confirm", text:"${common_prompt_sureToDelThese}", callback:function(ret){
+		    if(ret)
+	        {
+	            $.get(deletePath, function(result){
+	                if(result)
+	                {   
+	                    document.location.href="base_listBaseLanguage.action?type=custom";
+	                }
+	                else
+	                {
+	                    messageBox({messageType:"alert", text: "${common_op_failed}"});
+	                }
+	            }, "json");
+	        }
+		}});
+		
+	}
+</script>
+</#macro>

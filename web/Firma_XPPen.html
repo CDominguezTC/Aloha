@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+
+
+
+<script src="Principal/js/JsVisitantes/base/js/Firma/signature_pad.js"></script>
+<body>
+
+	<button id="saveandfinish" onclick="ObtenerImagenBase64()"
+		class="button-form">Guardar y Finalizar</button>
+
+	<button id="cleancanvas" onclick="LimpiarCanvas()" class="button-form">Limpiar</button>
+
+	<!-- Contenedor y Elemento Canvas -->
+	<div id="signature-pad" class="signature-pad">
+		<div class="description">Firmar aqui</div>
+		<div class="signature-pad--body">
+			<canvas
+				style="width: 1440px; height: 620px; border: 1px black solid;"
+				id="canvas"></canvas>
+		</div>
+	</div>
+
+	<!-- Formulario que recoge los datos y los enviara al servidor -->
+	<!--  form id="form" action="./savedraw.php" method="post">
+    <input type="hidden" name="pacient_id" value="<?php echo $user->id; ?>">
+    <input type="hidden" name="base64" value="" id="base64">
+    
+</form -->
+
+
+
+	<script type="text/javascript">
+		var wrapper = document.getElementById("signature-pad");
+
+		var canvas = wrapper.querySelector("canvas");
+		var signaturePad = new SignaturePad(canvas, {
+			backgroundColor : 'rgb(255, 255, 255)'
+		});
+
+		function resizeCanvas() {
+
+			var ratio = Math.max(window.devicePixelRatio || 1, 1);
+
+			canvas.width = canvas.offsetWidth * ratio;
+			canvas.height = canvas.offsetHeight * ratio;
+			canvas.getContext("2d").scale(ratio, ratio);
+
+			signaturePad.clear();
+		}
+
+		function ObtenerImagenBase64() {
+			var imgData = canvas.toDataURL("image/jpeg");
+			var base64String = new Array();
+			base64String = imgData.split(",");
+			//alert(base64String[1]);
+
+			Documento = $("#Documento").val();
+
+			FIRMA = Documento;
+			Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen="
+					+ "fotos" + "&Documento=" + "Firma_" + FIRMA + "&Imagen="
+					+ base64String[1];
+			SendImageToServerAloha(Data);
+
+			closeWindow();
+		}
+
+		var limpiar = document.getElementById("limpiar");
+
+		function LimpiarCanvas() {
+			canvas.width = canvas.width;
+			canvas.height = canvas.height;
+			resizeCanvas();
+		}
+
+		window.onresize = resizeCanvas;
+		resizeCanvas();
+	</script>
+	<script>
+		document.getElementById('form').addEventListener("submit", function(e) {
+
+			var ctx = document.getElementById("canvas");
+			var image = ctx.toDataURL(); // data:image/png....
+			document.getElementById('base64').value = image;
+		}, false);
+	</script>
+</body>
+</html>
+

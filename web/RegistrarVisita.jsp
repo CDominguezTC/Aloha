@@ -9,10 +9,12 @@
 <html>
     <head>
         <%@include file="Principal/Head.html" %> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesVisita.js" ></script> 
         <!-- Kit FontAwesome para Botones (Mientras) -->
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <style>
-   
+
             .center {
                 display: block;
                 margin-left: auto;
@@ -32,9 +34,11 @@
             }
 
         </style>
+        
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
+        
 
         <!-- Contenido -->
         <div class="right_col" role="main">
@@ -84,20 +88,20 @@
 
                                                     <div class="row">
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                        <!--div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                             <label for="tipo_id">Tipo Documento</label>
                                                             <select id="tipo_id" class="form-control" required>
                                                                 <option value="" disabled selected>Seleccione</option>
                                                                 <option value="1">CEDULA DE CIUDADANIA</option>
                                                             </select>
-                                                        </div>
+                                                        </div -->
 
                                                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                             <label for="Documento">Documento</label>
-                                                            <input type="number" class="form-control" id="IdDocumento" name="Documento" min="0" required>
+                                                            <input type="text" class="form-control" id="IdDocumento" name="Documento" min="0" required>
                                                         </div>
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                                             <label for="Nombre">Nombre</label>
                                                             <input type="text" class="form-control" id="IdNombre" required="required">
                                                         </div>
@@ -111,7 +115,7 @@
                                                         </div>
 
                                                         <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_visitante">Tipo de Visitante</label>
+                                                            <label for="tipo_visitante">Tipo de Visita</label>
                                                             <select id="tipo_visitante" class="form-control" required>
                                                                 <option value="" disabled selected>Seleccione</option>
                                                                 <option value="1">GENERAL</option>
@@ -123,15 +127,15 @@
                                                             <input type="number" class="form-control" id="IdNroTarjeta" name="NroTarjeta" min="0" required>
                                                         </div>
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                        <!-- div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                             <label for="tipo_trabajo">Tipo de Trabajo</label>
                                                             <select id="tipo_trabajo" class="form-control" required>
                                                                 <option value="" disabled selected>Seleccione</option>
                                                                 <option value="1"></option>
                                                             </select>
-                                                        </div>
+                                                        </div -->
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                             <label for="tipo_empresav">Empresa Visitante</label>
                                                             <select id="tipo_empresav" class="form-control" required disabled>
                                                                 <option value="" disabled selected>Seleccione</option>
@@ -139,7 +143,7 @@
                                                             </select>
                                                         </div>
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                             <label for="tipo_empresas">Empresa S-Social</label>
                                                             <select id="tipo_empresas" class="form-control" required disabled>
                                                                 <option value="" disabled selected>Seleccione</option>
@@ -149,18 +153,18 @@
 
                                                         <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                             <label for="obs_visitante">Observ. Visitante</label>
-                                                            <select id="obs_visitante" class="form-control" required>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
+                                                            <textarea id="obs_visitante" class="form-control" required>
+                                                                <!--option value="" disabled selected>Seleccione</option>
+                                                                <option value="1"></option-->
+                                                            </textarea>
                                                         </div>
 
                                                         <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                             <label for="obs_ingreso">Observ. Ingreso</label>
-                                                            <select id="obs_ingreso" class="form-control" required>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
+                                                            <textarea id="obs_ingreso" class="form-control" required>
+                                                                <!--option value="" disabled selected>Seleccione</option>
+                                                                <option value="1"></option-->
+                                                            </textarea>
                                                         </div>
 
                                                     </div>
@@ -217,9 +221,9 @@
                                                 <div class="ln_solid"></div>
                                                 <div class="form-group">
                                                     <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-2">
-                                                        <button class="btn btn-primary btn-sm" type="button" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
-                                                        <button class="btn btn-success btn-sm" type="button" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button> 
-                                                        <button class="btn btn-warning btn-sm" type="button" id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
+                                                        <button class="btn btn-primary btn-sm" type="button" onclick="openCamera();" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
+                                                        <button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button> 
+                                                        <button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
                                                     </div>
                                                 </div>
                                                 <!-- /Botones -->
@@ -357,7 +361,40 @@
         </footer>
         <!-- /Footer -->
 
- 
+
         <%@include file="Principal/Script.html" %>  
     </body>
+
+    <script>
+
+        function openCamera()
+        {
+            openCameraAloha();
+        }
+
+
+        function openCapturadorHuella()
+        {
+            submitRegister('Huella', 'Huellas:', '¿Desea guardar los cambios realizados?', null, true);
+        }
+
+        function openCapturadorFirma()
+        {
+            createWindow('Firma_XPPen.html?random=' + 1000 + '^0^0^1200^650^' + "Firma");
+        }
+
+        function esckeydown(e)
+        {
+            var theEvent = window.event || e;
+            var code = theEvent.keyCode || theEvent.which;
+            if (code == 27)
+            {
+                theEvent.returnValue = null;
+                window.returnValue = null;
+                closeWindow();
+            }
+        }
+    </script>
+
+
 </html>

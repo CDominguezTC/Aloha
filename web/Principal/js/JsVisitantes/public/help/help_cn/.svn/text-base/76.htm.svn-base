@@ -1,0 +1,113 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.3.4 全局联动</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection76 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638171"></a><a name="_5.3.4_全局联动"></a><span
+lang=EN-US style='font-size:10.5pt'>5.3.4 </span><span style='font-size:10.5pt;
+font-family:幼圆'>全局联动</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>全局联动可以跨设备进行联动设置。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>&nbsp;1. </span><span style='font-family:
+幼圆'>点击【梯控】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【梯控】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【全局联动】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【新增】，显示全局联动页面：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=576 height=465
+src="user_help.files/image169.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动名称</span></b><span
+style='font-family:幼圆'>：对当前设置的联动命名，方便记忆。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动触发条件</span></b><span
+style='font-family:幼圆'>：即所选设备的事件类型，除触发联动事件、取消报警、开启</span><span lang=EN-US>/</span><span
+style='font-family:幼圆'>关闭辅助输出、设备启动外，其他均可作为触发条件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>输入点</span></b><b><span
+lang=EN-US>/</span></b><b><span style='font-family:幼圆'>输出点</span></b><span
+style='font-family:幼圆'>：选择设备的输入</span><span lang=EN-US>/</span><span
+style='font-family:幼圆'>输出点。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动动作</span></b><span
+style='font-family:幼圆'>：关闭、打开、常开。默认为关闭；如果打开，需要设置延时时间。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>视频联动：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）弹出视频：设置是否需要在实时监控页面弹出实时预览图，并设置弹出的时长。如果设置了视频联动，必须要在读头设置中绑定摄像头，才可实现视频联动功能。具体绑定方法请参见上文</span><a
+href="32.htm#_4.1.4_读头"><span lang=EN-US>4.1.4 </span><span style='font-family:
+幼圆'>读头</span></a><span style='font-family:幼圆'>中的“绑定</span><span lang=EN-US>/</span><span
+style='font-family:幼圆'>解绑摄像头”。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）录像：设置是否需要进行后台录像，并设置后台录像的时长。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）拍照：设置是否需要后台抓拍图像。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>延时</span></b><span
+style='font-family:幼圆'>：范围是</span><span lang=EN-US>1~254s</span><span
+style='font-family:幼圆'>（动作类型为打开时此项有效）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>编辑完成后，点击【确定】保存并退出，新增联动设置显示在联动设置列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：不允许设备存在输入点和输出点相同的联动设置。同一设备允许进行多次符合逻辑的联动设置。允许一次设置多个联动触发条件。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

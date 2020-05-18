@@ -1,0 +1,145 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.1 Access Control Time Zones</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection42 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072354"></a><a name="_Toc451"></a><a name="_Toc388344254"></a><a
+name="_Toc413852695"><span lang=EN-US>4.2.1 </span></a><a name="_Toc270513295"><span
+lang=EN-US>Access Control Time </span></a><span lang=EN-US>Zones</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>It set usage time of a
+door, the reader is usable during valid time periods of certain doors and
+unusable during other time periods. Time Zone can also be used to set Normal
+Open time periods, or set access level so that specified users can only access
+specified doors during specified time periods (including access levels and
+First-Person Normally Open).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>The system controls
+access according to Time Zones (up to 255 time zones). The format of each
+interval for a time zone: HH: MM-HH: MM, Initially, by default the system has
+an access control time zone named [24 hours Accessible]. This time period
+cannot be modified and deleted. The user can add new Access Control Time Zones
+that can be modified or delete.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>1. Add Access Control Time Zone</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>(1) Click [Access
+Control] &gt; [Time zones] &gt; [</span><span lang=EN-US>New</span><span
+lang=EN-US>] to enter the time zone setting interface:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=576
+height=358 src="user_help.files/image087.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>The parameters are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Time Zone Name</span><span lang=EN-US>:
+Any character, up to a combination of 30 characters.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Remarks</span><span lang=EN-US>:
+Detailed description of the current time zone, including explanation of current
+time zone and primary applications. The field is up to 50 characters.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Interval and Start/ End Time</span><span
+lang=EN-US>: One Access Control Time Zone includes 3 intervals for each day in
+a week, and 3 intervals for each of the three Holidays. Set the Start and End
+Time of each interval.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Setting</span><span lang=EN-US>: If the interval is Normal Open,
+just enter 00:00-23:59 as the interval 1, and 00:00-00:00 as the interval 2/3.
+If the interval is Normal Close: All are 00:00-00:00. If only using one
+interval, user just needs to fill out the interval 1, and the interval 2/3 will
+use the default value. Similarly, when only using the first two intervals, the
+third interval will use the default value. When using two or three intervals,
+user needs to ensure two or three intervals have no time intersection, and the
+time shall not span days. Or the system will prompt error.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050;letter-spacing:-.2pt'>Holiday Type</span><span
+lang=EN-US style='letter-spacing:-.2pt'>: Three holiday types are unrelated to
+the day of a week. If a date is set to a holiday type, the three intervals of
+the holiday type will be used for access. The holiday type is optional. If the
+user does not enter one, system will use the default value.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050;letter-spacing:-.2pt'>Copy on Monday</span><span
+lang=EN-US style='letter-spacing:-.2pt'>:</span><span lang=EN-US> </span><span
+lang=EN-US style='letter-spacing:-.2pt'>You can quickly copy the settings of
+Monday from Tuesday to Sunday.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>(2) After setting,
+click [OK] to save, and it will display in the list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>2. Maintenance of
+Access Control Time Zones</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Edit</span><span lang=EN-US>: Click
+the [Edit] button under </span><span lang=EN-US>O</span><span lang=EN-US>peration
+to enter the edit interface. After editing, click [OK] to save.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Delete</span><span lang=EN-US>: Click
+the [Delete] button under Related Operation, then click [OK] to delete, or
+click [Cancel] to cancel the operation. A time zone in use cannot be deleted.
+Or tick the check boxes before one or more time zones in the list, and click
+the [Delete] button over the list, then click [OK] to delete, click [Cancel] to
+cancel the operation.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page>
+	<objects>
+		<object actionName="baseMediaFile">
+			<field name="#checkbox" width="40" columnMinWidth="40" 
+				label="headCheckBox" type="ro" align="left" valign="middle"
+				headerMenu="false"  sort="na" isShow="true" content="ids" valueField="id"/>
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="name" width="120" columnMinWidth="70" label="${base_file_alias}" 
+			type="ro" align="left" valign="middle" headerMenu="true" sort="server" 
+			isShow="true">
+				<value shiro="base:BaseMediaFile:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="javascript:openWindow('(rootPath)/baseMediaFileAction!getById.action?id=(id)^0^0^500^270^${common_op_edit}')">(value)</a>]]>
+					</param>
+					<param state="false">
+						<![CDATA[(value)]]>
+					</param>
+				</value>
+			</field>
+			<field name="size" width="120" columnMinWidth="70" label="${base_file_size}" 
+			type="ro" align="left" valign="middle" headerMenu="true" sort="server" isShow="true"/>
+			<field name="suffix" width="120" columnMinWidth="70" label="${base_file_suffix}" 
+			type="ro" align="left" valign="middle" headerMenu="true" sort="server" isShow="true"/>
+			<field name="path" width="160" columnMinWidth="70" label="${base_file_path}" 
+			type="ro" align="left" valign="middle" headerMenu="true" sort="server" isShow="false"/>	
+			<field name="#operate" width="*" columnMinWidth="70" label="${common_relatedOp}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true">
+				<value shiro="base:BaseMediaFile:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="javascript:openWindow('(rootPath)/baseMediaFileAction!getById.action?id=(id)^0^0^500^270^${common_op_edit}')">${common_op_edit}</a>]]>
+					</param>
+				</value>
+				<value shiro="base:BaseMediaFile:del" text="${common_op_del}">
+					<param state="true" filterMethod="com.zk.base.util.BaseFieldUtil#isIniBaseMediaFile#(id)">
+						<![CDATA[<a href="javascript:delById('(rootPath)/baseMediaFileAction!del.action?ids=(id)')">${common_op_del}</a>]]>
+					</param>
+				</value>
+			</field>
+		</object>
+	</objects>
+	<searchs>
+		<search actionName="baseMediaFile">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140"
+					inputWidth="140"></item>
+				<item type="input" name="baseMediaFile.name" label="${base_file_alias}" maxlength="20"></item>
+			</items>
+		</search>
+	</searchs>
+	<toolbars>
+		<toolbar actionName="baseMediaFile">
+			<item shiro="*" id="listBaseMediaFileGridbox" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"	text="${common_op_refresh}" action="reloadGrid"></item>
+			<item shiro="base:BaseMediaFile:add" id="base_editBaseMediaFile.action^0^0^500^270^${common_op_new}" type="button" img="comm_add.png" imgdis="comm_add.png" text="${common_op_new}" action="openWindowToForm"></item>
+			<item shiro="base:BaseMediaFile:del" id="baseMediaFileAction!del.action^ids#listbaseMediaFileGridbox" type="button" img="comm_del.png" imgdis="comm_del.png"	text="${common_op_del} " action="manyDel"></item>
+		</toolbar>
+	</toolbars>
+</page>

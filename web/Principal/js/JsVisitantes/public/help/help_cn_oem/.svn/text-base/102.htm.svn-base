@@ -1,0 +1,141 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.6 异常情况及排除方案</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection102 style='layout-grid:15.6pt'>
+
+<h2 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707542"></a><a name="_Toc326246378"><span
+lang=EN-US style='font-size:12.0pt'>7.6</span></a><span lang=EN-US
+style='font-size:12.0pt'> </span><span style='font-size:12.0pt;font-family:
+幼圆'>异常情况及排除方案</span></h2>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>1. </span></b><b><span style='font-family:幼圆'>客户端浏览器中无法进行视频预览和实时监控页面无视频弹出</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>首先确保使用</span><span lang=EN-US>IE11</span><span
+style='font-family:幼圆'>及以上版本的浏览器，客户机与视频服务器在同一个网段，视频控件安装成功。如果控件安装失败，首先卸载原来安装的视频控件，运行“</span><span
+lang=EN-US>regsvr32&#8211;u WebVideoActiveX.oc</span><span style='font-family:幼圆'>”</span>
+<span lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US> </span><span
+style='font-family:幼圆'>“</span><span lang=EN-US>regsvr32 &#8211;u
+WebVideoViewPlus.ocx</span><span style='font-family:幼圆'>”</span> <span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US> </span><span
+style='font-family:幼圆'>“</span><span lang=EN-US>regsvr32 &#8211;u ActiveXPlugin.ocx</span><span
+style='font-family:幼圆'>”命令。然后在浏览器中，“工具</span><span lang=EN-US>-&gt;Internet</span><span
+style='font-family:幼圆'>选项</span><span lang=EN-US>-&gt;</span><span
+style='font-family:幼圆'>安全</span><span lang=EN-US>-&gt;</span><span
+style='font-family:幼圆'>自定义级别”中的有关</span><span lang=EN-US>Active</span><span
+style='font-family:幼圆'>控件的所有选项全设为“启用或提示</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，在重新打开浏览器，重新登录界面，到达视频预览界面，运行</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>网站所有加载项</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>即可。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>2. </span></b><b><span style='font-family:幼圆'>预览视频时，视频设备的电源或网络被切断</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>当出现这种情况时，系统会弹出如下所示的提示框：</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+lang=EN-US><img border=0 width=402 height=125
+src="user_help.files/image215.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>点击【停止脚本】，重新检查网络或电源是否连接正常。确保连接正常之后，刷新页面，重新开启视频预览即可。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><a
+name="OLE_LINK3"></a><a name="OLE_LINK2"><b><span lang=EN-US>3. </span></b></a><b><span
+style='font-family:幼圆'>电子地图中点击摄像头小图标，无视频弹出</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>请确保使用</span><span lang=EN-US>IE8</span><span
+style='font-family:幼圆'>及以上版本的浏览器，客户机与视频服务器在同一个网段，视频控件安装成功的情况下，看看浏览器是否阻止临时窗口弹出，如果浏览器阻止临时窗口弹出，改为允许该网站的窗口弹出即可。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>4. </span></b><b><span style='font-family:幼圆'>视频联动触发，视频服务器没有录像或者客户端从软件服务器下载的视频文件大小为</span></b><b><span
+lang=EN-US>0kb</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>首先确保软件服务器中已设置好</span><span lang=EN-US>Timeserver</span><span
+style='font-family:幼圆'>功能（</span><span lang=EN-US>Windows time</span><span
+style='font-family:幼圆'>服务开启，视频服务器的</span><span lang=EN-US>NTP</span><span
+style='font-family:幼圆'>功能已设好），建议将视频服务器的校时间隔设置小一点，确保软件服务器与视频服务器时间精确同步，确保门禁控制器的时间与软件服务器的时间保持同步。联动录像时间最好设置超过</span><span
+lang=EN-US>5</span><span style='font-family:幼圆'>秒，避免因视频服务器执行联动录像命令延时，而造成下载的文件大小为</span><span
+lang=EN-US>0kb</span><span style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>5. </span></b><b><span style='font-family:幼圆'>在</span></b><b><span
+lang=EN-US>windows server 2008</span></b><b><span style='font-family:幼圆'>中，视频模块的功能不能正常使用</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>在</span><span lang=EN-US>windows server2008</span><span
+style='font-family:幼圆'>中，需要添加桌面体验功能才可正常使用视频模块的功能，具体添加方法如下：</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>第一步：在运行框中键入“</span><span lang=EN-US>services.msc</span><span
+style='font-family:幼圆'>”打开“服务管理”窗口；</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>第二步：将</span><span lang=EN-US>Windows Audio</span><span
+style='font-family:幼圆'>服务和</span><span lang=EN-US>Themes</span><span
+style='font-family:幼圆'>服务的启动方式设置为“自动”；</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>第三步：运行服务器管理器，点击“添加功能”，勾选“桌面体验”后点击“安装”，安装完成后提示重启，重启复查安装成功，即可正常使用视频功能。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>6. </span></b><b><span style='font-family:幼圆'>下载到本地的视频文件播放不了</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>如果使用系统默认的播放软件无法播放视频文件，请下载并安装第三方视频播放软件，如暴风影音。</span> </p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><a
+name="OLE_LINK49"></a><a name="OLE_LINK48"><b><span lang=EN-US>7.&nbsp;</span></b></a><b><span
+style='font-family:幼圆'>使用</span></b><b><span lang=EN-US>chrome42</span></b><b><span
+style='font-family:幼圆'>版本以上，视频预览页面会加载不到视频插件，导致预览失败并且提示需要安装插件</span></b></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+lang=EN-US>Chrome42</span><span style='font-family:幼圆'>版本之后，全面禁用了旧的</span><span
+lang=EN-US>NPAPI</span><span style='font-family:幼圆'>插件，打开浏览器标签，在地址栏中输入：</span><span
+lang=EN-US>chrome://flags/#enable-npapi</span><span style='font-family:幼圆'>，将</span><span
+lang=EN-US>NPAPI</span><span style='font-family:幼圆'>插件启用即可。</span> </p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+lang=EN-US>&nbsp;</span></b></p>
+
+</div>
+
+<b><span lang=X-NONE style='font-size:16.0pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

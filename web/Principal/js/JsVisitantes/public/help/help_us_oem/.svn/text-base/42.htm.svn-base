@@ -1,0 +1,128 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.2 Access Control Holidays</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection42 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427071714"></a><a name="_Toc27200"></a><a name="_Toc388344255"></a><a
+name="_Toc413852696"><span lang=EN-US>4.2.2 </span></a><a name="_Toc270513296"><span
+lang=EN-US>Access Control Holiday</span></a><span lang=EN-US>s</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Access Control Time of
+a holiday may differ from that of a weekday. The system provides access control
+time setting for holidays. Access Control Holiday Management includes Add,
+Modify and Delete.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Add</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>(1) Click [Access
+Control] &gt; [Holidays] &gt; [Add] to enter edit interface:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=298
+height=206 src="user_help.files/image086.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Holiday Name</span><span lang=EN-US>:
+Any character, up to a combination of 30 characters.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Holiday Type</span><span lang=EN-US>:
+Holiday Type 1/2/3, namely, a current holiday record belongs to the three
+holiday types and each holiday type includes up to 32 holidays.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Start/ End Date</span><span
+lang=EN-US>: The date format: 2010-1-1. Start Date cannot be later than End
+Date otherwise the system will prompt an error. The year of Start Date cannot
+be earlier than the current year, and the holiday cannot span years.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Recurring</span><span lang=EN-US>: It
+refers a holiday whether to require modification in different years. The
+default is No. For example, the Near Year’s Day is on January 1 each year, and
+can be set as Yes. The Mother's Day is on the second Sunday of each May, this
+date is not fixed and should be set as No.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>For example, the date
+of Near Year’s Day is set as January 1, 2010, and the holiday type is 1, then
+on January 1, Access Time Control will not follow the time of Friday, but the
+Access Control Time of Holiday Type 1.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><span lang=EN-US style='line-height:150%'>(2)
+After editing, click [OK] button to save, and it will display in holiday list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Modify</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Click Holiday Name or
+[Edit] button under Operations to enter the edit interface. After modification,
+click [OK] to save and quit.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Delete</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>In the access control
+holiday list, click [Delete] button under Operation</span><span lang=EN-US>s</span><span
+lang=EN-US>. Click [OK] to delete, click [Cancel] to cancel the operation. An
+Access Control Holiday in use cannot be deleted. </span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

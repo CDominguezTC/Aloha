@@ -1,0 +1,124 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 8.1.2 Base de Datos</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection104 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077101"></a><a name="_Toc6480"></a><a name="_Toc417486998"></a><a
+name="_Toc414032712"></a><a name="_Toc387761940"></a><a name="_7.1_用户管理"></a><a
+name="_9.1_用户管理"></a><span lang=ES-MX>8.1.2</span><span lang=ES-MX> Base de
+Datos</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=ES-MX>De clic en [Sistema] &gt;
+[Gestión Básica] &gt; [Base de Datos]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=554 height=83
+src="user_help.files/image177.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Se muestran los registros de operación de los
+respaldos de la base de datos. Es posible respaldar ahora, programar un
+respaldo automático o borrar según sea necesario.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Respaldar
+Ahora</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Respalda inmediatamente la base de datos en
+la ruta especificada.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Respaldo
+Programado</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Respaldo Programado]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=458
+height=289 src="user_help.files/image178.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Ingrese el tiempo de inicio y el intervalo
+entre dos respaldos programados, luego de clic en [OK].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Restaurar
+base de datos</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>1. De clic en el botón de inicio de Windows </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=ES-MX>[Todos los
+Programas]</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=ES-MX>[BioSecurity]</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=ES-MX> y ejecute la “Consola de Admin”. Encontrará el ícono de “Consola de
+Admin” en la barra de tareas como se muestra a continuación, de clic derecho en
+el ícono y luego clic izquierdo en Restaurar “Base de Datos”.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=319 height=367
+id="图片 231" src="user_help.files/image179.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;&nbsp; <img border=0 width=382
+height=113 id="Picture 183"
+src="user_help.files/image180.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>2. En la ventana emergente, de clic en
+“Examinar” para seleccionar archivo de respaldo para restaurar la base de datos.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX><img border=0 width=449 height=338
+id="Picture 184"
+src="user_help.files/image181.png"></span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

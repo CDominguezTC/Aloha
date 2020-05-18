@@ -1,0 +1,222 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.1 新增梯控设备</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection65 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707505"></a><a name="_Toc21592"><span
+lang=EN-US style='font-size:10.5pt'>5.1.1 </span></a><span style='font-size:
+10.5pt;font-family:幼圆'>新增梯控设备</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统支持以下</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>种方式新增梯控设备：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>1. </span></b><b><span style='font-family:
+幼圆'>手动新增设备</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>(1)</span><span style='font-family:幼圆'>点击【梯控设备】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【设备】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，显示页面如下：</span></p>
+
+<p class=17 style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:0cm'><b><span style='font-size:9.0pt;font-family:
+幼圆'>通信方式为</span></b><b><span lang=EN-US style='font-size:9.0pt;font-family:
+"Myriad Pro","sans-serif"'>TCP/IP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;</span></b><b><span style='font-size:9.0pt;font-family:幼圆'>通信方式为</span></b><b><span
+lang=EN-US style='font-size:9.0pt;font-family:"Myriad Pro","sans-serif"'>RS485</span></b></p>
+
+<p class=MsoNormal align=left style='text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=255 height=302
+src="user_help.files/image141.jpg"></span><span
+lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp; </span><span lang=EN-US><img border=0
+width=253 height=302 src="user_help.files/image142.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>IP</span></b><b><span style='font-family:
+幼圆'>地址</span></b><span style='font-family:幼圆'>：梯控设备的</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址。</span><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><b><span style='font-family:幼圆'>串口号</span></b><span style='font-family:
+幼圆'>：</span><span lang=EN-US>COM1~COM254</span><span style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>通信端口</span></b><span
+style='font-family:幼圆'>：默认为</span><span lang=EN-US>4370</span><span
+style='font-family:幼圆'>。</span><span lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>RS485</b></span><b><span style='font-family:幼圆'>地址</span></b><span
+style='font-family:幼圆'>：设备机器号。串口号相同时，机器号不可重复。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:207.8pt'><b><span lang=EN-US>RS485</span></b><b><span
+style='font-family:幼圆'>地址拨码图</span></b><span style='font-family:幼圆'>：可根据该图核对控制器上对应拨码开关的位置。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:207.8pt'><b><span style='font-family:幼圆'>波特率</span></b><span
+style='font-family:幼圆'>：与设备波特率相同，默认为</span><span lang=EN-US>38400</span><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>公共参数或属性</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备名称</span></b><span
+style='font-family:幼圆'>：任意字符，最多由</span><span lang=EN-US>20</span><span
+style='font-family:幼圆'>个字符组成。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>通信密码</span></b><span
+style='font-family:幼圆'>：只能为数字或字母，最多</span><span lang=EN-US>6</span><span
+style='font-family:幼圆'>位。新出厂设备及初始化后的设备，通信密码为空，此处无须填写。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>扩展板数量</span></b><span
+style='font-family:幼圆'>：梯控设备可控制楼层数量的扩展。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>每个扩展板继电器数量</span></b><span
+style='font-family:幼圆'>：每个扩展板具有</span><span lang=EN-US>16</span><span
+style='font-family:幼圆'>个继电器。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>区域</span></b><span
+style='font-family:幼圆'>：对设备进行区域划分，实时监控时可以根据区域对设备进行过滤。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>新增时删除设备中数据</span></b><span
+style='font-family:幼圆'>：选择该项，新增设备成功后，系统将自动清空设备中的所有数据（梯控事件记录除外）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备扩展参数</span></b><span
+style='font-family:幼圆'>：序列号、设备类型、固件版本号、辅助输入数量、继电器数量、设备指纹版本等。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）编辑完成后，点击【确定】，系统将尝试连接当前设备。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>若连接成功，将读取相应的设备扩展参数并保存到系统中。若连接失败，将会给出实际的错误原因。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：删除设备时，软件会清空设备中已有的人员信息、时间段、节假日、以及梯控权限的相关设置，但不会清空设备中已有的事件记录。除非设备中的数据不再使用，否则不要删除软件中正在使用的设备，以免造成数据丢失。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>梯控控制器的设置要求</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:35.7pt;text-indent:-17.85pt'><span lang=EN-US style='font-size:
+6.5pt;font-family:Wingdings;color:windowtext;position:relative;top:-1.5pt'>&sup2;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b><span lang=EN-US>TCP/
+IP</span></b><b><span style='font-family:幼圆'>通信要求</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>支持并开启</span><span
+lang=EN-US>TCP/ IP</span><span style='font-family:幼圆'>通信，设备与</span><span
+lang=EN-US>PC</span><span style='font-family:幼圆'>直接连接或共同连接至网络，查询设备的</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址等信息。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:35.7pt;text-indent:-17.85pt'><span lang=EN-US style='font-size:
+6.5pt;font-family:Wingdings;color:windowtext;position:relative;top:-1.5pt'>&sup2;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><b><span lang=EN-US>RS485</span></b><b><span
+style='font-family:幼圆'>通信要求</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>支持并开启</span><span
+lang=EN-US>RS485</span><span style='font-family:幼圆'>通信，设备与</span><span
+lang=EN-US>PC</span><span style='font-family:幼圆'>通过</span><span lang=EN-US>RS485</span><span
+style='font-family:幼圆'>相连，查询设备的串口号、</span><span lang=EN-US>RS485</span><span
+style='font-family:幼圆'>机器号、波特率等信息。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>2. </span></b><b><span style='font-family:
+幼圆'>搜索设备</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>搜索以太网中的梯控设备，操作过程如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）点击【梯控设备】</span><span lang=EN-US style='font-family:
+Wingdings'>à</span><span style='font-family:幼圆'>【设备】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【搜索设备】，显示搜索页面；</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）点击【开始搜索】，提示【搜索中</span><span lang=EN-US>……</span><span
+style='font-family:幼圆'>】；</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）搜索完成后，显示梯控设备列表和搜索到的设备总数。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=576 height=319
+src="user_help.files/image143.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：此处为</span><span
+lang=EN-US>UDP</span><span style='font-family:幼圆'>广播的方式搜索梯控设备，广播不能跨路由器。</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址可以跨网段，但必须属于同一个子网，且网关与</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址必须在同一网段。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>4</span><span
+style='font-family:幼圆'>）点击设备后的【添加】，弹出编辑对话框，输入自定义的设备名称，点击【确定】完成新增设备至设备列表。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>5</span><span
+style='font-family:幼圆'>）梯控设备的默认</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址可能会与网络中其他设备</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>冲突，需修改梯控设备的</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址：点击设备后的【修改</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址】，弹出对话框，输入新</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址和其他参数（<b>注</b>：网关与</span><span lang=EN-US>IP</span><span
+style='font-family:幼圆'>地址必须在同一网段）。</span></p>
+
+<p class=MsoNormal><b><span lang=EN-US style='font-size:12.0pt;font-family:
+Wingdings;color:#92D050'>?</span></b><b><span style='font-family:幼圆;color:#92D050'>注意事项：梯控设备主要用在局域网（含</span></b><b><span
+lang=EN-US style='color:#92D050'>VPN</span></b><b><span style='font-family:
+幼圆;color:#92D050'>）中，系统不支持自动添加梯控设备。</span></b></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

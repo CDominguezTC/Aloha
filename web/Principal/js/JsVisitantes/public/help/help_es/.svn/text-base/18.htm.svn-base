@@ -1,0 +1,139 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.1 Gestión de Departamentos</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection18 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077388"></a><a name="_Toc427077269"></a><a name="_Toc32397"><span
+lang=ES-MX>3.1.1</span></a><span lang=ES-MX> Gestión de Departamentos</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Antes de gestionar el personal es necesario
+establecer el organigrama de departamentos de la compa&ntilde;ía. El sistema cuenta
+con un departamento raíz llamado [Nombre de Departamento] con el número de ID
+[1]. Este departamento puede ser modificado pero no puede ser eliminado.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Las funciones principales incluyen Agregar,
+Editar y Borrar Departamento.</span></p>
+
+<p class=MsoNormal><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><a
+name="_Toc388344226"><span lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=ES-MX
+style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Agregar un
+Departamento</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX>1. De clic en [Personal] &gt; [Departamentos] &gt; [Nuevo]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=470 height=321 id="图片 16"
+src="user_help.files/image014.png"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>ID de Departamento.</span><span lang=ES-MX>: Se pueden ingresar
+letras y números. No se puede repetir y no debe exceder 30 caracteres.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nombre de Departamento</span><span lang=ES-MX>: Cualquier caracter.
+Máximo 100 caracteres.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Clasificación</span><span lang=ES-MX>: Solo soporta números y el
+rango válido es de 1 a 999999999. Mientras menor sea el número de un
+departamento en la clasificación de un mismo nivel, mayor jerarquía tendrá. Si
+no se ingresa ningún valor será asignado de acuerdo al orden en que se agregue.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Departamento Superior</span><span lang=ES-MX>: Seleccione un
+departamento superior de la lista desplegable. El departamento superior es un
+parámetro importante para determinar el organigrama de la compa&ntilde;ía. En la parte
+izquierda de la interfaz se mostrará el organigrama de la compa&ntilde;ía en forma de
+diagrama de árbol.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>2. Después de editar, de clic en [OK] para
+agregar, de clic en [Cancelar] para cancelar o de clic en [Guardar y Nuevo]
+para guardar los cambios y agregar uno nuevo. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Para agregar un departamento, también puede
+usar la herramienta [Importar] para importar la información de departamentos de
+un documento o un software de terceros a este sistema. Para más detalles
+consulte el anexo </span><a href="116.htm#_Anexo_1_Operaciones"><span
+lang=ES-MX>Anexo 1 Operaciones Comunes</span></a><span lang=ES-MX>. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Editar un Departamento</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Personal] &gt; [Personal] &gt;
+[Departamentos] &gt; [</span><span lang=ES-MX>Editar</span><span lang=ES-MX>]</span><span
+lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Borrar un Departamento</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Personal] &gt; [Personal] &gt;
+[Departamentos] &gt; [</span><span lang=ES-MX>Borrar</span><span lang=ES-MX>]</span><span
+lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc417486913"></a><a name="_Toc387761891"></a><a
+name="_4.2_人员管理"></a><span lang=ES-MX>2. De clic en [OK] para borrar.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

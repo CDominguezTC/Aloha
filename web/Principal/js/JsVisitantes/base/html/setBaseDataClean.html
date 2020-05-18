@@ -1,0 +1,175 @@
+<#assign pageConfigXML = "base/html/setBaseDataClean.html">
+<#include "/public/template/setTemplate.html"> 
+<@shiro.hasPermission name="base:BaseDataClean:edit" text="${common_op_edit}">
+<input type="hidden" id="hasPermission"/>
+</@shiro.hasPermission>
+<#macro setContent>
+
+<script type="text/javascript">
+
+$().ready(function() {
+    if($("#recordId .tableStyle tr").size()==0){
+        $("#recordId").hide();
+    }
+	$("#${formId}").validate( {
+	});
+});
+function createSel(id,sel,value)
+{
+	var htmlStr = "";
+	for(var i = 0; i < 24; i++)
+	{
+		if(i < 10)
+		{
+			var time = "0"+i+":00:00"
+			if(sel == "" && time == value)
+			{
+				htmlStr += "<option value='"+time+"' selected='selected'>"+time+"</option>";
+			}
+			else if(time == sel)
+			{
+				htmlStr += "<option value='"+time+"' selected='selected'>"+time+"</option>";
+			}
+			else
+			{
+				htmlStr += "<option value='"+time+"'>"+time+"</option>";
+			}
+		}
+		else
+		{
+			var time = i+":00:00"
+			
+			if(time == value)
+			{
+				htmlStr += "<option value='"+time+"' selected='selected'>"+time+"</option>";
+			}
+			else
+			{
+				htmlStr += "<option value='"+time+"'>"+time+"</option>";
+			}
+		}
+	}
+	$("#"+id).html(htmlStr);
+	
+}
+
+function cleanNow(text,id,action)
+{
+	var value = $("#"+id).val();
+	messageBox({messageType:"confirm", text: text.format(value),
+				callback: function(result){
+					if(result)
+					{
+						$.ajax( {
+								type : "POST",
+								url : action+"&keptMonth=" + value,
+								dataType : "text",
+								success : function(data)
+								{
+									if (data.trim() == "SUCCESS")
+									{
+										openMessage(msgType.success, "${base_dataClean_cleanRet}");
+									}
+								},
+								error : function(XMLHttpRequest, textStatus, errorThrown)
+								{
+									openMessage(msgType.error, "${common_prompt_serverError}" + "-628");
+								}
+							});
+					}
+			}});
+}
+</script>
+<form method="post" action="baseDataCleanAction!edit.action" id="${formId}" >
+	<div style="padding:20px">
+		<#if (xmlMap)?? >
+			<#assign iSum=0>
+            <#assign flag=false>
+			<#list xmlMap?keys as xmlName>
+            <#if (xmlName?index_of("base")>0)>
+		<fieldset>
+			<legend>${xmlViewMap.get(xmlName)}</legend>
+			<table class="tableStyle">
+				<colgroup>
+			    	<col width="20%"/>
+			    	<col width="*"/>
+				</colgroup>
+                <#assign flag=false>
+                <#else>
+                <#if flag==false>
+        <fieldset id="recordId">
+            <legend>${base_dataClean_record}</legend>
+            <table class="tableStyle">
+                <colgroup>
+                    <col width="20%"/>
+                    <col width="*"/>
+                </colgroup>
+                <#assign flag=true>
+                </#if>
+                </#if>
+				<#list xmlMap.get(xmlName) as dataClean>
+                <@shiro.hasPermission name="${dataClean.module}:sys">
+				<tr>
+					<td align="left">
+						${dataClean.textI18N}<span style="color:red">*</span>
+					</td>
+					<td>
+						<span>${base_dataClean_keptMsg1}&nbsp;</span>
+						
+						<select style="width:80px" name="dataCleanList[${iSum}].keptMonth" id="keptMonth${iSum}">
+							<#if (dataClean.selectKeptMonthList)?? >
+								<#list dataClean.selectKeptMonthList as selectKeptMonth>
+									<option value="${selectKeptMonth}" <#if "${dataClean.keptMonth}"==selectKeptMonth>selected</#if>>${selectKeptMonth}</option>
+								</#list>
+							</#if>
+						</select>
+						<span>${base_dataClean_keptMsg2}</span>
+					</td>
+					<td>
+					<label>${base_dataClean_startDate}</label>
+					</td>
+					<td>
+						<select name="dataCleanList[${iSum}].time" id="${iSum}time" style="width:100px"></select>
+						<script type="text/javascript">
+							createSel("${iSum}time","","${dataClean.time}");
+						</script>
+					</td><input type="hidden" value="${dataClean.id}" name="dataCleanList[${iSum}].id"/>
+                    <#if dataClean.immeCleanAction?? >
+					<@shiro.hasPermission name="base:BaseDataClean:immediateClean" text="${base_dataClean_cleanNow}">
+						<td><input type="button"  value="${base_dataClean_cleanNow}" onclick="cleanNow('${dataClean.immeCleanTipI18N}','keptMonth${iSum}','${dataClean.immeCleanAction}')"/></td>
+                    </@shiro.hasPermission>
+					<#else>
+						<td width="194px"><#if dataClean.showTip=="true"><span class="warningColor">${base_dataClean_warn}</span></#if>&nbsp;&nbsp;</td>
+					</#if>
+				</tr>
+                    </@shiro.hasPermission>
+                    <#assign iSum=iSum+1>
+					</#list>
+                    <#assign noBaseCount=(noBaseCount)>
+                    <#assign totalCount=(totalCount)>
+                    <#if iSum==noBaseCount||iSum==totalCount>
+			</table>
+		</fieldset>
+		<br/>
+        </#if>
+		</#list>
+			</#if>
+		<br/>
+		<fieldset>
+			<legend>${base_map_prompt}</legend>
+            <div style="margin-top: 10px;margin-left: 10px;">
+                <span class="warningImage"></span>
+                <span class="warningColor">${base_dataClean_message1}</span>
+            </div>
+            <div style="margin-top: 10px;margin-left: 10px;">
+                <span class="warningImage"></span>
+                <span class="warningColor">${base_dataClean_message5}</span>
+            </div>
+            <div style="margin-top: 10px;margin-left: 10px;">
+                <span class="warningImage"></span>
+                <span class="warningColor">${base_dataClean_message2}</span>
+            </div>
+		</fieldset>
+		</div>
+	</form>
+</#macro>

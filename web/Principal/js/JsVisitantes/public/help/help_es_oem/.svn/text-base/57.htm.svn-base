@@ -1,0 +1,85 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.4.5 Vínculos Globales</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection57 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;margin-left:
+0cm'><a name="_Toc427077054"></a><a name="_Toc417486951"></a><a name="_Toc27747"></a><a
+name="_Toc413852711"></a><a name="_Toc388376836"><span lang=ES-MX>4.4.5
+Vínculos Globales</span></a></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='letter-spacing:-.3pt'>Los vínculos
+globales permiten configurar datos entre dispositivos. Solo los dispositivos
+con firmware PUSH soportan esta función.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=ES-MX style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Agregar</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>1. De clic en [Control de Acceso] <span
+style='letter-spacing:-.1pt'>&gt; [Funciones Avanzadas]</span>&gt; [</span><span
+lang=ES-MX>Vínculos Globales</span><span lang=ES-MX>] &gt; [</span><span
+lang=ES-MX>Nuevo</span><span lang=ES-MX>]</span><span lang=ES-MX>:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=554 height=450
+src="user_help.files/image109.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>2. Seleccione las condiciones del vínculo
+global, el punto de inicio (el sistema filtrará los dispositivos según la
+selección del primer paso), el punto de salida y la acción del vínculo. Para
+más detalles acerca de estos parámetros, consulte </span><a
+href="46.htm#_4.3.2_Vínculos"><span lang=ES-MX>4.3.2 Vínculos</span></a><a
+name="_Hlt419897891"></a><a name="_Hlt419897892"></a><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Es posible seleccionar múltiples eventos de puerta, pero los
+eventos “Falla al conectar al servidor”, “Recuperar conexión” y “Conexión de
+dispositivo apagado” serán filtrados de los eventos de puerta.</span><span
+lang=ES-MX> </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>2. De clic en [OK] para guardar y salir. El
+vínculo global agregado se mostrará en la lista.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

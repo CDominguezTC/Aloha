@@ -1,0 +1,74 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.3 Video Preview</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection98 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427072410"></a><a name="_Toc414032705"><span lang=EN-US>7.3 </span></a><span
+lang=EN-US>Video Preview</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Click [Video] &gt; [Video Device] &gt; [Video
+Preview], the left side is the device and channel lists, click a channel to
+view the monitor screen.</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=630 height=326
+id="Picture 174" src="user_help.files/image170.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Re-click the
+channel to shut down the screen.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><b><span lang=EN-US
+style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span lang=EN-US>Note:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>1) A video can
+allow five users to preview at the same time. In chronological order, the
+exceeded users can not preview the video normally, and the page will be grey. </span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2) If there are
+no video controls in the system, the prompts will be displayed:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=zh-CN><img border=0
+width=576 height=345 src="user_help.files/image171.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Click ”Click here to download”, the controls
+will be downloaded. Install the controls, and refresh the page, you can view
+the monitor screen normally. To prevent the video displayed abnormally, please
+install the controls that ZKBioSecurity offered.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,74 @@
+<#include "/public/template/winTemplate.html">
+<#macro winContent>
+<style>
+<!--
+.langTable
+{
+	width: 100%; 
+	text-align: center;
+	padding-left: 25px;
+	padding-top: 15px;
+}
+.leftTd
+{
+	text-align: left;
+	height: 40px;
+}
+.selectTd
+{
+	width: 300px;
+}
+-->
+</style>
+
+	<table class="langTable">
+		<tr>
+			<td class="leftTd">${base_i18n_newLanguage!}</td>
+			<td>
+				<select class="selectTd" id="newLanguage" name="newLanguage">
+				<#if allLanguage?exists>
+					<option value="">${base_i18n_pleaseSelect}</option>
+					<#list Request.allLanguage as language>
+				 		<option value="${language.languageId}">${language.languageName}</option>
+					</#list>
+				</#if>
+			 	</select>
+		 	</td>
+		</tr>
+	</table>
+
+	<script>
+		function fun(){
+		    $("#confirmButton").attr('disabled',"true");
+			var newLanguage=$("#newLanguage").val();
+			if(!newLanguage)
+			{
+				messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_i18n_selectNewLanguage}"});
+				$("#confirmButton").removeAttr("disabled");
+				return;
+			}
+			$.ajax({
+				type: "GET",
+				url: "baseLanguageAction!isExitLanguage.action?newLanguage="+newLanguage,
+				dataType: "html",
+				async: false,
+				success: function(result)
+				{
+					if(result=="false")
+					{
+					    $("#confirmButton").removeAttr("disabled");
+						messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_i18n_alreadyExist}"});
+					}else if (result=="true"){
+					    var path = "baseLanguageAction!creatLanguage.action?newLanguage="+newLanguage;
+		                document.location.href=path;
+					}
+				},
+				error:function (XMLHttpRequest, textStatus, errorThrown)
+				{
+					messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_prompt_serverError}" + "-628"});
+				}
+			})
+		}
+	</script>
+</#macro>
+<#macro confirmFunction>fun()</#macro>

@@ -1,0 +1,756 @@
+<#include "/public/template/base.html">
+<#macro baseMainContent>
+<link rel="stylesheet" type="text/css" href="${base}/acc/css/acc.css?un=${sysTimeMillis}" media="screen" />
+
+<input type="hidden" id="systemCode" value="acc" />
+<div id="monitorParentId" style="width: 100%; height: 100%;overflow: hidden;">
+	<div id="rtMonitorSearch" class="searchTopBox" style="border: none;">
+	    <table cellspacing="0" cellpadding="0" class="searchTable">
+  			<tr valign="middle">
+  				<td valign="middle">
+  					${base_area_entity}
+  				</td>
+				<td valign="middle">
+					<div id="areaZone" objName="baseArea" selectWidth="120"></div>
+				</td>
+				<td>
+					${common_status}
+				</td>
+				<td>
+					<select style="width: 80px;" id="devStatus" onchange="dataFilter()">
+						<option value="">------</option>
+						<option value="0">离线</option>
+						<option value="1">在线</option>
+						<option value="2">禁用</option>
+						<option value="-1">未知</option>
+					</select>
+				</td>
+				<td>
+					${common_dev_name}
+				</td>
+				<td>
+					<input id="devName" type="text" style="width: 120px;" onchange="dataFilter()" onkeyup="dataFilter()"/>
+				</td>
+				<td valign="middle">
+					${common_dev_sn}
+				</td>
+				<td valign="middle">
+					<input id="devSn" type="text" style="width: 120px;" onchange="dataFilter()" onkeyup="dataFilter()"/>
+				</td>
+				<td valign="middle">
+					<a id="clearSearch" href="javascript:clearCondition('rtMonitorSearch');$('input[filterObj]').val('');areaTree.setSubChecked(0,false);dataFilter();">${common_search_clear}</a>
+				</td>
+   			</tr>
+	    </table>
+    </div>
+    
+    <div id="doorFooter" style="display: none">
+    	<div style="float: left;margin-left: 5px;">
+    		当前门数量：<span id="doorCount">0</span>
+    	</div>
+    	<div class="divBorder" style="margin-left: 5%;">
+    		<img height="12px" src="${base}/public/images/redPilot.png"/>离线：<em id="doorOffLineCount">0</em>&nbsp;
+    		<img height="12px" src="${base}/public/images/greenPilot.png"/>在线：<em id="doorOnlineCount">0</em>&nbsp; 
+			<img height="12px" src="${base}/public/images/yellowPilot.png"/>禁用：<em id="doorDisbleCount">0</em>&nbsp;
+			<img height="12px" src="${base}/public/images/unknownPilot.png"/>未知：<em id="doorUnknownCount">0</em>
+	    </div>
+	    <div class="divBorder" style="margin-left: 5%;">
+    		门名称&nbsp;<input type="text" filterObj="door" name="name" style="height: 16px;line-height: 16px;margin-top: -2px" onchange="dataFilter()" onkeyup="dataFilter()"/>
+	    </div>
+    </div>
+    
+    <div id="auxInFooter" style="display: none">
+    	<div style="float: left;margin-left: 5px;">
+    		当前辅助输入数量：<span id="auxInCount">0</span>
+    	</div>
+    	<div class="divBorder" style="margin-left: 5%;">
+    		<img height="12px" src="${base}/public/images/redPilot.png"/>离线：<em id="auxInOffLineCount">0</em>&nbsp;
+    		<img height="12px" src="${base}/public/images/greenPilot.png"/>在线：<em id="auxInOnlineCount">0</em>&nbsp; 
+			<img height="12px" src="${base}/public/images/yellowPilot.png"/>禁用：<em id="auxInDisbleCount">0</em>&nbsp;
+			<img height="12px" src="${base}/public/images/unknownPilot.png"/>未知：<em id="auxInUnknownCount">0</em>
+	    </div>
+	    <div class="divBorder" style="margin-left: 5%;">
+    		辅助输入名称&nbsp;<input type="text" filterObj="auxIn" name="name" style="height: 16px;line-height: 16px;margin-top: -2px" onchange="dataFilter()" onkeyup="dataFilter()"/>
+	    </div>
+    </div>
+    
+    <div id="auxOutFooter" style="display: none">
+    	<div style="float: left;margin-left: 5px;">
+    		当前辅助输出数量：<span id="auxOutCount">0</span>
+    	</div>
+    	<div class="divBorder" style="margin-left: 5%;">
+    		<img height="12px" src="${base}/public/images/redPilot.png"/>离线：<em id="auxOutOffLineCount">0</em>&nbsp;
+    		<img height="12px" src="${base}/public/images/greenPilot.png"/>在线：<em id="auxOutOnlineCount">0</em>&nbsp; 
+			<img height="12px" src="${base}/public/images/yellowPilot.png"/>禁用：<em id="auxOutDisbleCount">0</em>&nbsp;
+			<img height="12px" src="${base}/public/images/unknownPilot.png"/>未知：<em id="auxOutUnknownCount">0</em>
+	    </div>
+	    <div class="divBorder" style="margin-left: 5%;">
+    		辅助输出名称&nbsp;<input type="text" filterObj="auxOut" name="name" style="height: 16px;line-height: 16px;margin-top: -2px" onchange="dataFilter()" onkeyup="dataFilter()"/>
+	    </div>
+    </div>
+    
+    <div id="eventTop_footer" style="display: none">
+    	<div style="float: left;">
+    		当前显示条数：<em id="currEventCount">0</em>/<em id="maxEventCount">100</em>
+    	</div>
+	    <div class="divBorder" style="margin-left: 5%;">
+	    	总接收条数：<em id="totalEventCount">0</em>
+	    </div>
+	    <div class="divBorder" style="margin-left: 5%;">
+    		<img height="12px" src="${base}/public/images/greenPilot.png"/>${common_normal}：<em id="normalEventCount">0</em>&nbsp; 
+			<img height="12px" src="${base}/public/images/yellowPilot.png"/>异常：<em id="warningEventCount">0</em>
+			<img height="12px" src="${base}/public/images/redPilot.png"/>报警：<em id="alarmEventCount">0</em>&nbsp;
+	    </div>
+	    <div style="float: right;">
+	    	${common_devMonitor_msgTip}
+	    	<input id="msgCheckbox" type="checkbox" onclick="enableMsg(this)"/>
+	    </div>
+    </div>
+    <div id="eventBottom_footer" style="display: none">
+    	<div style="float: left;">
+    		监控开始时间：<span id="eventStartTime"></span>
+    	</div>
+	    <div class="divBorder" style="margin-left: 5%;">
+	    	已监控：<span id="monitorTime"></span>
+	    </div>
+	    <div class="divBorder" style="margin-left: 5%;">
+	    	<a href="javascript:clearEventRow()">清空行数据</a>
+	    </div>
+	    <div class="divBorder" style="margin-left: 2px;">
+	    	<a href="javascript:refreshEventRT()">重置</a>
+	    </div>
+	    <div style="float: right;">
+			<img id="monitorStateImg" src="${base}/public/images/greenPilotLamp.gif" height="12px"/>
+			${common_devMonitor_suspendMonitor}
+			<input type="checkbox" onclick="disableEventMonitor(this)"/>
+		</div>
+    </div>
+</div>
+
+
+<div id="doorTemplateContainer" style="display: none">
+	<div align="center">
+		<div onmouseover="showPopUpInfo(this);" onmouseout="hidePopUpInfo(this);">
+			<img onmousedown="return false;" border="0" src="${base}/acc/images/doorState/icon/door_{obj.image}.jpg">
+			<div class="dhx_item_popupText poPupInfo displayN" style="position: fixed;top: 263px;left: 325px;z-index: 9999999;" align="left">
+				<div style="font-family: Arial, Helvetica, Sans-serif;font-size: 12px;font-weight: bold;color: #688060;margin:0 0 4px 0;">${acc_rtMonitor_doorState}</div>
+				<span class="st">${common_dev_entity}:&nbsp;</span><span class="devName ut">{obj.devAlias}</span><br/>
+				<span class="st">序列号:&nbsp;</span><span class="devName ut">{obj.devSn}</span><br/>
+				<span class="st">${acc_door_number}:&nbsp;</span><span class="doorNo ut">{obj.no}</span><br/>
+				<span class="st">${acc_door_sensor}:&nbsp;</span><span class="sensor ut">{obj.sensor}</span><br/>
+				<span class="st">${acc_door_relay}:&nbsp;</span><span class="relay ut">{obj.relay}</span><br/>
+				<span class="st">${common_alarm}:&nbsp;</span><span class="alarm ut">{obj.alarm}</span><br/>
+				<div style="display: {obj.display}">
+					<ul class="poPupInfo_op_ul">
+						<li onclick="operateDoor('accRTMonitorAction!openDoor.action', '{obj.id}')" title="${acc_eventNo_8}">${acc_eventNo_8}</li>
+						<li onclick="operateDoor('accRTMonitorAction!closeDoor.action', '{obj.id}')" title="${acc_eventNo_9}">${acc_eventNo_9}</li>
+						<li onclick="operateDoor('accRTMonitorAction!normalOpenDoor.action', '{obj.id}')" title="${acc_rtMonitor_remoteNormalOpen}">${acc_rtMonitor_remoteNormalOpen}</li>
+						<li onclick="operateDoor('accRTMonitorAction!enableNormalOpenDoor.action', '{obj.id}')" title="${common_rtMonitor_enableIntradayTZ}">${common_rtMonitor_enableIntradayTZ}</li>
+						<li onclick="operateDoor('accRTMonitorAction!disableNormalOpenDoor.action', '{obj.id}')" title="${common_rtMonitor_disableIntradayTZ}">${common_rtMonitor_disableIntradayTZ}</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<p class="dhx_item_text" style="word-wrap:break-word; word-break:normal;" title="{obj.name}">{obj.name}</p>
+	</div>
+</div>
+<div id="auxInTemplateContainer" style="display: none">
+	<div align="center">
+		<div onmouseover="showPopUpInfo(this);" onmouseout="hidePopUpInfo(this);">
+			<img onmousedown="return false;" border="0" src="${base}/acc/images/auxInState/icon/aux_in_{obj.image}.jpg" >
+			<div class="dhx_item_popupText poPupInfo displayN" style="position: fixed;top: 263px;left: 325px;z-index: 9999999;" align="left">
+				<div style="font-family: Arial, Helvetica, Sans-serif;font-size: 12px;font-weight: bold;color: #688060;margin:0 0 4px 0;">辅助输入状态</div>
+				<span class="st">${common_dev_entity}:&nbsp;</span><span class="devName ut">{obj.devAlias}</span><br/>
+				<span class="st">辅助输入编号:&nbsp;</span><span class="doorNo ut">{obj.no}</span><br/>
+			</div>
+		</div>
+		<p class="dhx_item_text" style="word-wrap:break-word; word-break:normal;" title="{obj.name}">{obj.name}</p>
+	</div>
+</div>
+<div id="auxOutTemplateContainer" style="display: none">
+	<div align="center">
+		<div onmouseover="showPopUpInfo(this);" onmouseout="hidePopUpInfo(this);">
+			<img onmousedown="return false;" border="0" src="${base}/acc/images/auxInState/icon/aux_in_{obj.image}.jpg" >
+			<div class="dhx_item_popupText poPupInfo displayN" style="position: fixed;top: 263px;left: 325px;z-index: 9999999;" align="left">
+				<div style="font-family: Arial, Helvetica, Sans-serif;font-size: 12px;font-weight: bold;color: #688060;margin:0 0 4px 0;">辅助输出状态</div>
+				<span class="st">${common_dev_entity}:&nbsp;</span><span class="devName ut">{obj.devAlias}</span><br/>
+				<span class="st">辅助输出编号:&nbsp;</span><span class="doorNo ut">{obj.no}</span><br/>
+			</div>
+		</div>
+		<p class="dhx_item_text" style="word-wrap:break-word; word-break:normal;" title="{obj.name}">{obj.name}</p>
+	</div>
+</div>
+<script type="text/javascript">
+
+	//进行条件过滤
+	function dataFilter()
+	{
+		for(var key in rtDataViews)
+	    {
+			rtDataViews[key].filter(function(obj,value){
+				var areaIdArray = areaTree.comboxObj.getActualValue().split(",");
+				if((areaIdArray == "" || $.inArray(obj.areaId.toString(), areaIdArray) != -1) 
+						&& ($("#devName").val() == "" || obj.devAlias.indexOf($("#devName").val()) != -1)
+						&& ($("#devStatus").val() == "" || obj.connect == $("#devStatus").val())
+						&& ($("#devSn").val() == "" || obj.devSn.indexOf($("#devSn").val()) != -1)
+						&& ($("input[filterObj="+ value +"]").val() == "" || obj[$("input[filterObj="+ value +"]").attr("name")].indexOf($("input[filterObj="+ value +"]").val()) != -1))
+				{
+					return true;
+				}
+				return false;
+			},key);
+			setViewFooterValues(key);
+	    }
+	}
+
+	var areaTree = loadComboxTree("areaZone","baseAreaAction!getAreaTreeJson.action", dataFilter);
+	
+	var layoutName = "monitorParentId";
+	var rtDataViews = new Array();
+	
+	var loadTotal = 3;
+	var loadIndex = 0;
+	var devStateClientId = new Date().getTime() + "devState";//一个用户可以开多个页面，该值用来保存当前页面创建时间，及初始化状态的时间。
+	var eventClientId = new Date().getTime() + "event";//一个用户可以开多个页面，该值用来保存当前页面创建时间，及初始化状态的时间。
+	doRTMonitorLoad();
+	function doRTMonitorLoad()
+	{
+		//构建当前页面的layout分块管理。
+	    myLayouts[layoutName] = new dhtmlXLayoutObject("monitorParentId", "2E", sysCfg.dhxSkin);
+		setLayoutResize(myLayouts[layoutName]);
+		myLayouts[layoutName].attachHeader("rtMonitorSearch");
+		
+		myLayouts[layoutName].cells("a").progressOn();
+
+	    var tabbar = myLayouts[layoutName].cells("a").attachTabbar();
+		tabbar.setSkin(sysCfg.dhxSkin);
+		tabbar.setImagePath("${base}/public/controls/dhtmlx/dhtmlxTabbar/codebase/imgs/");
+		//tabbar.enableAutoSize(false, true);
+		
+		var dataViewConfig = {
+			type: {
+		        template: "html->doorTemplateContainer",
+		        css:"ficon",
+		    	width:70,
+				height:70,
+				margin:0,
+				padding:3
+		    }
+		};
+		
+		doInitDoor(tabbar, dataViewConfig);
+		doInitAuxIn(tabbar, dataViewConfig);
+		doInitAuxOut(tabbar, dataViewConfig);
+	    
+		tabbar.setTabActive(tabbar.getAllTabs()[1]);
+		
+	    initEventGrid();//加载事件列表
+	    
+		var intervalId = window.setInterval(function(){
+			if(loadIndex == loadTotal)
+			{
+				myLayouts[layoutName].cells("a").progressOff();
+				loadDevStateData();//开始加载数据
+				window.clearInterval(intervalId);
+			}
+		},200);
+	}
+	
+	/***门状态监控***/
+	function doInitDoor(tabbar, dataViewConfig)
+	{
+		tabbar.addTab("door", "&nbsp;&nbsp;${acc_rtMonitor_doorStatusMonitor}&nbsp;&nbsp;", "*");
+		tabbar.setCustomStyle("door", "#000", "green", "");
+		//--doorOperate --- start
+		var doorOperate = tabbar.cells("door").attachToolbar();
+		doorOperate.id = "door";
+		createToolbar("${base}/baseAction!getPageXML.action?packageName=acc&actionName=accDoor&xmlFileName=AccRTMonitor",doorOperate);
+		//--doorOperate --- end
+		
+		rtDataViews["door"] = tabbar.cells("door").attachDataView(dataViewConfig);
+	    rtDataViews["door"].load("accRTMonitorAction!getAllDoor.action", "json", function(){
+	    	loadIndex++;
+	    	setViewFooterValues("door");
+	    });
+	    
+	    var doorStatusBar = tabbar.cells("door").attachStatusBar();
+	    doorStatusBar.setText($("#doorFooter").html());
+	    $("#doorFooter").remove();
+	}
+	
+	/***辅助输入状态监控***/
+	function doInitAuxIn(tabbar, dataViewConfig)
+	{
+		tabbar.addTab("auxIn", "&nbsp;&nbsp;辅助输入状态监控&nbsp;&nbsp;", "*");
+		tabbar.setCustomStyle("auxIn", "#000", "green", "");
+	    //--auxInOperate --- start
+		var auxInOperate = tabbar.cells("auxIn").attachToolbar();
+		auxInOperate.id = "auxIn";
+		createToolbar("${base}/baseAction!getPageXML.action?packageName=acc&actionName=auxIn&xmlFileName=AccRTMonitor", auxInOperate);
+		
+		//--auxInDataView --- start
+	    rtDataViews["auxIn"] = tabbar.cells("auxIn").attachDataView($.extend(dataViewConfig, {type: {template: "html->auxInTemplateContainer"}}));
+	    rtDataViews["auxIn"].load("accRTMonitorAction!getAllAuxIn.action", "json", function(){
+	    	loadIndex++;
+	    	setViewFooterValues("auxIn");
+	    	//myLayouts[layoutName].cells("a").progressOff();
+	    });
+	    var auxInStatusBar = tabbar.cells("auxIn").attachStatusBar("100%", "20px");
+	    auxInStatusBar.setText($("#auxInFooter").html());
+	    $("#auxInFooter").remove();
+	}
+	
+	/***辅助输出状态监控***/
+	function doInitAuxOut(tabbar, dataViewConfig)
+	{
+		tabbar.addTab("auxOut", "&nbsp;&nbsp;辅助输出状态监控&nbsp;&nbsp;", "*");
+		tabbar.setCustomStyle("auxOut", "#000", "green", "");
+	    //--auxOutOperate --- start
+		var auxOutOperate = tabbar.cells("auxOut").attachToolbar();
+		auxOutOperate.id = "auxOut";
+		createToolbar("${base}/baseAction!getPageXML.action?packageName=acc&actionName=auxOut&xmlFileName=AccRTMonitor", auxOutOperate);
+	    
+		//--auxOutDataView --- start
+		rtDataViews["auxOut"] = tabbar.cells("auxOut").attachDataView($.extend(dataViewConfig, {type: {template: "html->auxOutTemplateContainer"}}));
+	    rtDataViews["auxOut"].load("accRTMonitorAction!getAllAuxOut.action", "json", function(){
+	    	loadIndex++;
+	    	setViewFooterValues("auxOut");
+	    });
+	    var auxOutStatusBar = tabbar.cells("auxOut").attachStatusBar();
+	    auxOutStatusBar.setText($("#auxOutFooter").html());
+	    $("#auxOutFooter").remove();
+	}
+	
+	function operateDoor(itemId, id)
+	{
+		var itemText = operateToolbars["door"].getListOptionText("moreActions",itemId);
+		itemText = (itemText ? itemText : operateToolbars["door"].getItemText(itemId));
+		
+		var data = (id ? ({title: itemText + "(" + rtDataViews["door"].get(id).name + ")", id: id}) : ({title: itemText + "(当前所有门)", id: 0}));
+		
+    	verifyLoginPwd(function(data){
+    		
+    		if(itemId.indexOf("openDoor") != -1)
+    		{
+    			var html = "<div style='padding:30px;margin-left:20px;'>" +
+	    						"<form id='openDoorForm' action='" + itemId + "' method='post' enctype='multipart/form-data'>" +
+	    							"开门：<input type='text' name='openInterval' size='8' value='15'/>" +
+	    							"${common_second}<span id='openDoorTime' class='openDoorTime'>(1-254)</span>" + 
+	    						"</form>" +
+							"</div>";
+				$.jBox(html, {
+					title: data.title,
+					submit: function (v, h, f) {
+					    if (v == "ok")
+					    {
+					    	$("#openDoorForm").submit();
+					        return false;
+					    }
+					}
+				});
+				setFocus($("input[name=openInterval]")[0]);
+				$("input[name=openInterval]").focus();
+				$("#openDoorForm").validate({
+					rules : {
+						"interval" : {
+							required : true,
+							range: [1, 254]
+						}
+					},
+				 	submitHandler: function(form)
+				   	{    
+						onLoading(function(){
+							if(data.id)
+				    		{
+				    			rtDataViews["door"].select(data.id);
+				    		}
+				    		else
+				    		{
+				    			rtDataViews["door"].selectAll();
+				    		}
+							$(form).ajaxSubmit({
+								async : true,
+								dataType : 'json',
+								data: {
+				        			ids: rtDataViews["door"].getSelected().toString()
+								},
+								success: function(result)
+								{	
+									dealRetResult(eval(result),function(){
+										rtDataViews["door"].unselectAll();
+										$.jBox.close();
+									});
+								}
+							});
+						});
+				   	} 
+				 });
+    		}
+    		else
+    		{
+    			var html = "<div style='padding-top:5px'>" +
+	    						"${common_prompt_executeOperate}".format(itemText) +
+							"</div>";
+				$.jBox.confirm(html, data.title,
+					function (v, h, f) {
+					    if (v == "ok")
+					    {
+					    	onLoading(function(){
+					    		if(data.id)
+					    		{
+					    			rtDataViews["door"].select(data.id);
+					    		}
+					    		else
+					    		{
+					    			rtDataViews["door"].selectAll();
+					    		}
+					        	$.ajax({
+									type: "POST",
+									url: itemId,
+									async : true,
+									data: {
+					        			ids: rtDataViews["door"].getSelected().toString()
+									},
+									success: function(result)
+								    {
+					        			dealRetResult(eval(result),function(){
+					        				rtDataViews["door"].unselectAll();
+											$.jBox.close();
+										});
+									}
+						        });
+				       		});
+					        return false;
+					    }
+					    return true;
+					}
+				);
+    		}
+    	}, data);
+	}
+	
+	
+	//显示浮动信息
+	function showPopUpInfo(obj)
+	{
+		var offsetTop = $(obj).offset().top + $(obj).height()/1.5 - $(document).scrollTop();
+		if($(document.body).height() - offsetTop < $(obj).children("div").height())//判断距离底部的距离是否小于提示框的高度
+		{
+			offsetTop = $(obj).offset().top - ($(document).scrollTop() + $(obj).children("div").height() + 10) + $(obj).height()/2.5;
+		}
+		
+		var offsetLeft = $(obj).offset().left + $(obj).width()/1.5 - $(document).scrollLeft();
+		if($(window).width() - offsetLeft < $(obj).children("div").width())//判断距离底部的距离是否小于提示框的高度
+		{
+			offsetLeft = $(obj).offset().left - ($(document).scrollLeft() + $(obj).children("div").width() + 10) + $(obj).width()/2.5;
+		}
+		
+		$(obj).children("div").css("top", offsetTop);
+		$(obj).children("div").css("left", offsetLeft);
+		$(obj).children("div").show();
+		
+	}
+	
+	//隐藏浮动信息
+	function hidePopUpInfo(obj)
+	{
+		$(obj).children("div").hide();
+	}
+	
+	var jqAjax;
+	var devStateTimeout;
+	window.clearTimeout(devStateTimeout);
+	function loadDevStateData()
+	{
+		window.clearTimeout(devStateTimeout);
+		isRefreshPage = false;
+		alarmLogId = 0;
+		var actionName = "accRTMonitor";
+		if(jqAjax)
+    	{
+    		jqAjax.abort();//中断请求
+    	}
+		jqAjax = $.ajax({
+		    type: "GET",
+		    url: sysCfg.rootPath + "/accRTMonitorAction!getDevStateData.action?clientId=" + devStateClientId,
+		    dataType: "json",
+		    async: true,
+		    success: function(data)
+		    {
+				//console.log(rtData);
+				if(data != null)
+				{
+					//console.log(rtData);
+					dealDevStateData(data);//回调函数,获取门磁等状态
+				}
+				devStateTimeout = window.setTimeout("loadDevStateData()" , 3000);
+		    },
+		    error:function (XMLHttpRequest, textStatus, errorThrown)
+		    {
+	 			window.clearTimeout(devStateTimeout);
+	 		}
+		});
+	}
+	
+	//处理设备状态数据
+	function dealDevStateData(data)
+	{
+		for(var index in data)
+		{
+			var viewCode = index.substring(0,index.indexOf("States"));
+			for(var i = 0; i < data[index].length; i++)
+			{
+				var id = data[index][i].id;
+				if(rtDataViews[viewCode].exists(id))
+				{
+					var viewData = rtDataViews[viewCode].get(id);
+					rtDataViews[viewCode].set(id, $.extend(viewData, data[index][i]));
+				}
+			}
+			setViewFooterValues(viewCode);
+		}
+	}
+    
+	//设置grid底部的一些对象的值
+	function setViewFooterValues(viewCode)
+	{
+		var offLineCount = 0;//离线
+	    var onlineCount = 0;//在线
+	    var disbleCount = 0;//禁用
+	    var unknownCount = 0;//未知
+	    
+        for(var i = 0; i < rtDataViews[viewCode].dataCount(); i++)
+        {
+        	var connect = rtDataViews[viewCode].get(rtDataViews[viewCode].idByIndex(i)).connect;
+            switch (connect)
+	    	{
+				case 0:
+					offLineCount++;
+					break;
+				case 1:
+					onlineCount++;
+					break;
+				case 2:
+					disbleCount++;
+					break;
+				case -1:
+					unknownCount++;
+					break;
+			}
+        }
+        
+		$("#" + viewCode + "OffLineCount").html(offLineCount);
+		$("#" + viewCode + "OnlineCount").html(onlineCount);
+		$("#" + viewCode + "DisbleCount").html(disbleCount);
+		$("#" + viewCode + "UnknownCount").html(unknownCount);
+		
+		$("#" + viewCode + "Count").html(rtDataViews[viewCode].dataCount());
+		
+	    return true;
+	}
+	
+	//初始化事件列表
+	var eventGrid;
+	var eventTimeout;
+	function initEventGrid()
+	{
+		/***实时事件***/
+		//myLayouts[layoutName].cells("b").progressOn();
+	    myLayouts[layoutName].cells("b").setText("${acc_rtMonitor_realTimeEvent!}");
+	    myLayouts[layoutName].setCollapsedText("b", myLayouts[layoutName].cells("b").getText());
+	    
+	    eventGrid = myLayouts[layoutName].cells("b").attachGrid();
+		eventGrid.setImagePath(sysCfg.rootPath + "/public/controls/dhtmlx/dhtmlxGrid/codebase/imgs/");
+	    eventGrid.setSkin(sysCfg.dhxSkin);
+	   	
+		$.ajax({
+			type: "get",
+			async: false,
+			dataType: "json",
+			url: "baseAction!getGridHeader.action",
+			data: 
+			{
+				packageName: "acc",
+				actionName: "accTransaction",
+				xmlFileName: "accRTMonitor",
+				dataFmt: "row"
+			},
+			success : function(data, textStatus) 
+			{
+				eventGrid.setHeader(data.headers);
+				eventGrid.setColumnIds(data.ids);//不能出现空格
+				eventGrid.setInitWidths(data.widths);//150
+				eventGrid.setColAlign(data.aligns);
+				eventGrid.setColTypes(data.types);//ro
+				eventGrid.setColSorting(data.sorts);// 禁用排序
+				
+				eventGrid.setColumnMinWidth(data.minWidthBuffer);//设置列的最小宽度("50,70,70,70,70,70,70,70")
+				eventGrid.enableHeaderMenu(data.headerMenuBuffer);//设置可进行字段可选的列
+				
+				eventGrid.enableAutoHeight(false);
+				eventGrid.enableAutoWidth(false);
+				
+				var cspanStr = "#cspan";
+				for(var i = 0; i < data.headers.split(",").length -2; i++)
+				{
+					cspanStr += ",#cspan";
+				}
+				eventGrid.attachFooter($("#eventTop_footer").html() + "," + cspanStr,"text-align:left;font-style:normal;");
+			   	$("#eventTop_footer").remove();
+			   	eventGrid.attachFooter($("#eventBottom_footer").html() + "," + cspanStr,"text-align:left;font-style:normal;");
+			   	$("#eventBottom_footer").remove();
+			   	
+				eventGrid.init();
+				
+				//showLoading(true, gridName);//加载数据时进行提示
+				initMonitorTime();
+			}
+		});
+		loadEventData();
+		myLayouts[layoutName].cells("a").progressOff();
+	}
+	
+	//初始化监控时间
+	var setTimeInterval;
+	function initMonitorTime()
+	{
+		window.clearInterval(setTimeInterval);
+		var eventStartTime = new Date();
+		$("#eventStartTime").html(eventStartTime.format(sysCfg.sysLongDateFmt));
+		function setMonitorTime()
+ 		{
+ 			var second = (new Date().getTime() - eventStartTime.getTime())/1000;
+ 			$("#monitorTime").html(formatSeconds(second));
+ 			
+ 		}
+		setMonitorTime();
+  		setTimeInterval = window.setInterval(setMonitorTime,1000);
+	}
+	
+	//获取实时事件数据
+	function loadEventData()
+	{
+		window.clearTimeout(eventTimeout);
+		$.ajax({
+		    type: "GET",
+		    url: sysCfg.rootPath+"/accRTMonitorAction!getEventData.action?clientId=" + eventClientId,
+		    dataType: "json",
+		    async: true,
+		    success: function(data)
+		    {
+				if(data != null && typeof(eventGrid.setSizes) == "function")
+				{
+					var rows = data.rows;
+					var normalNum = 0;
+					var warningNum = 0;
+					var alarmNum = 0;
+					for(var index in rows)
+					{
+						var id = rows[index].id;
+						var maxEventCount = parseInt($("#maxEventCount").html().trim());
+						if(eventGrid.getRowsNum() >= maxEventCount)
+						{
+							eventGrid.deleteRow(eventGrid.getRowId(eventGrid.getRowsNum()-1));
+						}
+			        	eventGrid.addRow(id, rows[index].data, 0);
+			        	eventGrid.setRowTextStyle(id, rows[index].style);
+			        	for(var key in rows[index].userdata)
+			        	{
+			        		eventGrid.setUserData(id, key, rows[index].userdata[key]);
+			        	}
+			        	
+			        	switch (rows[index].userdata["status"])
+				    	{
+							case "normal":
+								normalNum++;
+								break;
+							case "warning":
+								warningNum++;
+								break;
+							case "alarm":
+								alarmNum++;
+								break;
+						}
+		        	}
+					eventGrid.setSizes(false);
+					
+					setEventFooterValues(rows.length, normalNum, warningNum, alarmNum);
+				}
+				if(eventTimeout < 0)//是否暂停监控
+				{
+					return;
+				}
+				eventTimeout = window.setTimeout("loadEventData()" , 1000);
+		    },
+		    error:function (XMLHttpRequest, textStatus, errorThrown)
+		    {
+	 			window.clearTimeout(eventTimeout);
+	 		}
+		});
+	}
+	
+	//设置事件底部统计数据的值
+	function setEventFooterValues(rowNum, normalNum, warningNum, alarmNum)
+	{
+		$("#currEventCount").html(eventGrid.getRowsNum());
+		
+		var totalCount = parseInt($("#totalEventCount").html().trim());
+		$("#totalEventCount").html(totalCount + (rowNum ? rowNum : 0));
+		
+		var normalCount = parseInt($("#normalEventCount").html().trim());
+		$("#normalEventCount").html(normalCount + (normalNum ? normalNum : 0));
+		
+		var warningCount = parseInt($("#warningEventCount").html().trim());
+		$("#warningEventCount").html(warningCount + (warningNum ? warningNum : 0));
+		
+		var alarmCount = parseInt($("#alarmEventCount").html().trim());
+		$("#alarmEventCount").html(alarmCount + (alarmNum ? alarmNum : 0));
+	}
+	
+	//清空行
+	function clearEventRow()
+	{
+		eventGrid.clearAll();
+		setEventFooterValues();
+	}
+	
+	//重置
+	function refreshEventRT()
+	{
+		eventGrid.clearAll();
+		$("#currEventCount").html(0);
+		
+		$("#totalEventCount").html(0);
+		
+		$("#normalEventCount").html(0);
+		
+		$("#warningEventCount").html(0);
+		
+		$("#alarmEventCount").html(0);
+		
+		initMonitorTime();
+	}
+	
+	//暂停监控
+	function disableEventMonitor(obj)
+	{
+		if(obj.checked)//选中时则暂停
+		{
+			window.clearTimeout(eventTimeout);
+			eventTimeout = -1;
+			//${common_devMonitor_monitorSuspended}:监控已暂停
+			openMessage(msgType.warning, "${common_devMonitor_monitorSuspended}");
+			$("#monitorStateImg").attr("src", sysCfg.rootPath +"/public/images/redPilotLamp.gif");
+		}
+		else
+		{
+			eventTimeout = 0;
+			//${common_devMonitor_monitorOpened}:监控已开启
+			openMessage(msgType.success, "${common_devMonitor_monitorOpened}");
+			$("#monitorStateImg").attr("src", sysCfg.rootPath +"/public/images/greenPilotLamp.gif");
+			loadEventData();
+		}
+	}
+</script>
+</#macro>
+

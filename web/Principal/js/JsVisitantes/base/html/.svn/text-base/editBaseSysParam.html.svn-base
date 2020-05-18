@@ -1,0 +1,55 @@
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script type="text/javascript">
+$().ready(function(){
+	// 字母和数字的验证
+	$("#${formId}").validate({
+		debug : true,
+		rules : {
+			"entity.paramValue" : {
+				required : true
+			},
+			"entity.description" : {
+				required : true
+			}
+		},
+		submitHandler: function(form) {
+			
+			<@submitHandler />
+			//callBackFun="reloadWindow()"
+		}
+	});
+	
+});
+function reloadWindow()
+{
+	reloadGrid();
+	messageBox({messageType:"confirm", text:"${base_sysParam_opPrompt}", callback:function(result){
+		if(result)
+		{
+			window.location.reload();
+		}
+	}});	
+}
+</script>
+
+<form method="post" id="${formId}" action="baseSysParamAction!edit.action">
+	<input type="hidden" name="entity.id" value="${(entity.id)!}"/>
+	<input type="hidden" name="entity.paramName" value="${(entity.paramName)!}"/>
+    <table class="tableStyle">
+    	<colgroup>
+		  <col width="35%"/>
+		  <col width="*"/>
+		  </colgroup>
+        <tr><th colspan="9" align="left"></th></tr>
+        <tr>
+       		<th><label>${base_system_parameterValue}</label><span class="required">*</span></th>
+       		<td><input name="entity.paramValue" type="text" value="${(entity.paramValue)!}" style="width: 200px" maxlength="40"/></td>
+        </tr>   
+        <tr>
+        	<th><span class="required"></span><label>${base_system_description}</label><span class="required">*</span></th>
+        	<td><input name="entity.description" type="text" value="${(entity.description)!}" style="width: 200px" disabled="disabled"/></td>
+        </tr>
+       </table>
+</form>
+</#macro>

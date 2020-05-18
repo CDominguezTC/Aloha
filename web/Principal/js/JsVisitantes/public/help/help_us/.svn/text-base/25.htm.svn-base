@@ -1,0 +1,81 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.2.2 Wiegand Format</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection25 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072337"></a><a name="_Toc387761903"><span lang=EN-US
+style='font-size:16.0pt;line-height:172%'>3.2.2 </span></a><span lang=EN-US>Wiegand
+Format</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Wiegand Format is the card format that can be
+identified by Wiegand reader. The software is embedded with 9 Wiegand formats.
+You may set the Wiegand card format as required. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%;text-autospace:ideograph-other'><span
+lang=zh-CN><img border=0 width=576 height=217
+src="user_help.files/image029.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>This software supports two modes for adding
+Wiegand Format, if mode 1 does not meet your setting requirement, switch to
+mode 2.</span><span lang=EN-US> </span><span lang=EN-US>Take Wiegand Format 37
+as</span><span lang=EN-US> an</span><span lang=EN-US> example:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=576 height=326
+src="user_help.files/image030.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc387761904"><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Format Specifying:</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>p indicates Parity Position, s indicates Site
+Code, c indicates Cardholder ID, f indicates Facility Code, m indicates
+Manufactory Code, e indicates Even Parity, O indicates Odd Parity, b indicates
+both odd check and even check, x indicates parity bits no check.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>The previous Wiegand Format 37: the first
+parity bits (p) check “eeeeeeeeeeeeeeeeee”, the second parity bits check
+“ooooooooooooooooooo”. Card Check Format only can be set “ p, x, m, f, c, s”,
+Parity Check Format only can be set “ x, b, o, e”.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

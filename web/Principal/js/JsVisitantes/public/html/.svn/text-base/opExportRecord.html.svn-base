@@ -1,0 +1,199 @@
+<#assign editPage = "true">
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+<script type="text/javascript">
+$(function(){
+	var gridName = $("#gridName").val();
+	var value = getDisplayField(gridName);
+	var array = value.split("@");
+	$("#jsonColumn").val(array[0]);
+	$("#queryConditions").val(array[1]);
+	if(window.top.system.submenuTree)
+	{
+		$("#tableNameParam").val(window.top.system.submenuTree.getSelectedItemText());
+	}
+	
+	var actionName = $("#actionName").val();
+	$("#${formId}").prop("action", actionName);
+	
+	//设置双列表的文件名与表名 
+	var tableNameSearch;
+	if($("#objName").html() != null && $("#objName").html() != "")
+	{
+		tableNameSearch = $("#objName").html() + rightText.substring(rightText.indexOf("</span>") + 7,rightText.indexOf("</div>"));
+		$("#tableNameSearch").val(tableNameSearch);
+	}	
+	
+	//设置左边点击记录，右边显示具体值的查询条件
+	var searchHideId = $("#searchHideId").val();
+	$("#searchObjectId").val(searchHideId);
+	
+	//设置select条件
+	if(document.getElementById("cutomName"))
+	{
+		$("#custom").val($("#cutomName").val());
+	}
+	// 导出格式选择
+	var typeStr = $("#typeStr").val();
+	if (!typeStr||typeStr=="")
+	{
+	    $("#reportType").append("<option value='XLS'>${common_report_excel}</option>");
+	    $("#reportType").append("<option value='PDF'>${common_report_pdf}</option>");
+	    $("#reportType").append("<option value='CSV'>${common_report_csv}</option>");
+	}
+	else
+	{
+	    var typeArr = typeStr.split("|");
+	    for (var i=0;i<typeArr.length;i++)
+	    {
+	        if(typeArr[i]=="XLS")
+	        {
+	            $("#reportType").append("<option value='XLS'>${common_report_excel}</option>");
+	        }
+	        else if(typeArr[i]=="PDF")
+            {
+	            $("#reportType").append("<option value='PDF'>${common_report_pdf}</option>");
+            }
+	        else if(typeArr[i]=="CSV")
+            {
+	            $("#reportType").append("<option value='CSV'>${common_report_csv}</option>");
+            }
+	    }
+	}
+});
+</script>
+<form method='POST' action='' id='${formId}' enctype='multipart/form-data'>
+	<input style="display: none" name="jsonColumn" id="jsonColumn"/>
+	<input style="display: none" name="queryConditions" id="queryConditions"/>
+	<input style="display: none" name="tableNameParam" id="tableNameParam"/>
+	<input style="display: none" name="searchObjectId" id="searchObjectId"/>
+	<input style="display: none" name="tableNameSearch" id="tableNameSearch"/>
+	<input style="display: none" name="custom" id="custom"/>
+	<table class="tableStyle">
+		<tbody>
+			<tr>
+				<td width="120px">${common_report_fileType}</td>
+				<td background='#f1fcfe'>
+					<select class='exportselect' name='reportType' id='reportType'>
+						<!-- <option value='PDF'>${common_report_pdf}</option>
+						<option value='XLS'>${common_report_excel}</option>
+						<option value='CSV'>${common_report_csv}</option> -->
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>${common_report_exportType}</td>
+				<td>
+					<div>
+						<input type='radio' checked='checked' value='1' name='exportType' style="margin-right:3px">${common_report_allRecordAtMost}
+					</div>
+					<div id='id_div_choicerecords' style="margin: 5px 0px;">
+						<ul>
+							<li id='id_li_records' class='clearB'>
+								<input type='radio' value='3' name='exportType' style="margin-right:3px">${common_report_selCountToExport}
+								<ul style='margin: 3px 3px 3px 16px;'>
+									<li id="selectCount">
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>
+</#macro>
+<script type="text/javascript">
+$().ready(function(){
+		$("#${formId}").validate({
+			debug : true,
+			submitHandler: function(form){
+				if(!preSubmit())
+				{
+					return false;
+				}
+				$('#${formId}').ajaxSubmit({
+					async:false,
+					success: function(result){
+						dealRetResult(result);
+						exportEnd = true;
+					}
+				});
+				//setTimeout("closeWindow()",500);
+				openMessage(msgType.loading);
+				var result = 0;
+				var exportEnd = false;
+				function getExportResult()
+				{
+				    window.setTimeout(function(){
+				        $.ajax({
+	                        type: "POST",
+	                        url: "exportAction!getExportResult.action",
+	                        dataType: "text",
+	                        async: true,
+	                        success: function(data)
+	                        {
+	                            result = data;
+	                            if(result != 3 || exportEnd) 
+	                            {
+	                                closeMessage();
+	                                closeWindow();
+	                            }
+	                            else
+	                            {
+	                                getExportResult();
+	                            }   
+	                        }
+	                    });
+				    }, 500);
+				    
+				}
+				getExportResult();
+			}
+		});
+});
+$("#selectCount").html('${common_report_selCountToExportDetail}'.format('<input type="text" maxlength="8" size="4" name="recordstart" value="1" style="width:45px" disabled="disabled">','<input type="text" maxlength="5" size="4" name="recordcount" value="100" style="width:45px" disabled="disabled">'));
+function preSubmit()
+{
+	if($("input[name='exportType']:checked").attr("value") == "3")
+	{
+		if($("input[name='recordstart']").val() == "" || $("input[name='recordcount']").val() == "" )
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_report_exportTypeNull}"});
+			return false;
+		}
+		var regexp = new RegExp(/^\d*$/);
+		var result1 = $("input[name='recordstart']").val().match(regexp);
+		var result2 = $("input[name='recordcount']").val().match(regexp);
+		if(result1 == null || result2 == null)
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_report_exportTypeError}"});
+			return false;
+		}
+		if($("input[name='recordstart']").val() <= 0)
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_report_fromIndexNotZero}"});
+			return false;
+		}
+		if($("input[name='recordcount']").val() > 60000)
+		{
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_report_maxCount}"});
+			return false;
+		}
+	}
+	return true;
+}
+$(":radio[name='exportType']").click(function(){
+	if($("input[name='exportType']:checked").attr("value") == "3")
+	{
+		$("input[name='recordstart']").attr("disabled",false);
+		$("input[name='recordcount']").attr("disabled",false);
+	}
+	else
+	{
+		$("input[name='recordstart']").attr("disabled",true);
+		$("input[name='recordcount']").attr("disabled",true);
+	}
+});
+</script>

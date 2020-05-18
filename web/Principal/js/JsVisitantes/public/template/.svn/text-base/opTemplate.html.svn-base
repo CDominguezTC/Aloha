@@ -1,0 +1,375 @@
+<!--此页面为操作模版页面，主要是进度条使用进行封装 -->
+<script type="text/javascript">	
+	var currentProgress_node_id = "currentProgress"; 
+	var totalProgress_node_id = "totalProgress";
+	var totalProgress = 0;
+	
+	//设置进度
+    function setProgress(node_id,progress) 
+    { 
+    	if (node_id) 
+    	{ 
+       		$("#" + node_id + " > span").css("width", String(progress) + "%"); 
+           	$("#" + node_id + "Text").html(String(progress) + "%");
+        }
+    } 
+    
+	//开始进行执行进度，并根据type做不同的显示
+	var beginDo = false;
+	function beginProgress(path, type, callback)
+	{
+		beginDo = true;
+		setProgress(currentProgress_node_id, 0);
+		setProgress(totalProgress_node_id, 0);
+		$("#" + currentProgress_node_id + " > img").show();
+		$("#" + totalProgress_node_id + " > img").show();
+		//if(!type)
+		//{
+			$('#confirmButton').attr('disabled',true);
+			//$('#closeButton').attr('disabled',true);
+		//}
+		getCurrentWindow().button("close").disable();
+		doProgress(path, type, callback);
+	}
+	
+	//进行循环获取进度阶段
+	var proIntervalId;
+	window.clearInterval(proIntervalId);
+	function doProgress(path, type, callback)
+	{
+		path = (path == null? "processAction!getProcess.action" : path);
+		window.clearInterval(proIntervalId);
+		
+		var isSendSucceed = false;
+		proIntervalId = setInterval(function(){
+			if(!getCurrentWindow())
+			{
+				return;
+			}
+			isSendSucceed = false;
+			$.ajaxSetup( {
+				async : false,
+				dataType : 'json'
+			});
+	       	$.get(path, function(result,textStatus) {
+	       		isSendSucceed = true;
+				if(type != "singleMode")
+				{
+					setProgress(currentProgress_node_id,result.currentProgress);
+					if(result.currentProgressTitle)
+					{
+						$("#currentProgressTitle").html(result.currentProgressTitle);
+					}
+				}
+				totalProgress = result.totalProgress;
+	            setProgress(totalProgress_node_id,result.totalProgress);
+	            
+	            var isScrollBottom = false;
+	            if (document.getElementById("infoDiv").scrollTop == (document.getElementById("infoDiv").scrollHeight - document.getElementById("infoDiv").clientHeight))
+				{
+					isScrollBottom = true;
+				}
+	            $("#infoDiv").html(result.progressContent);
+	            var marginBot = 0;
+	            
+				if (isScrollBottom)
+				{
+					document.getElementById("infoDiv").scrollTop = document.getElementById("infoDiv").scrollHeight;
+				}
+	       		if(result.totalProgress >= 100)
+	       		{
+	       			if(type != "singleMode")
+					{
+						setProgress(currentProgress_node_id,100);
+						$("#" + currentProgress_node_id + " > img").hide();
+						if(result.currentProgressTitle)
+						{
+							$("#currentProgressTitle").html(result.currentProgressTitle);
+						}
+					}
+	       			if(callback && callback != null)
+	       			{
+	       				callback();
+	       			}
+	       			$("#" + totalProgress_node_id + " > img").hide();
+	       			finishProgress(type);
+	       			window.clearInterval(proIntervalId);
+	       			return;
+	       		} 
+			}, "json");
+	       	
+			if(!isSendSucceed)
+			{
+				window.clearInterval(proIntervalId);
+				messageBox({messageType: "alert",text: "${common_prompt_sendRequestFailed}"});
+				//alert("The request failed!");
+				closeWindow();
+				return;
+			}
+       	}, 1000);
+	}	
+    
+	//隐藏或显示处理消息
+    var infoNum = 1;
+	function showAndHideInfo(obId,tipId,oOpenTip,oShutTip)
+	{
+		if(infoNum %2 != 0)
+		{
+			$("#"+obId).hide();
+			$("#"+tipId).html(oShutTip);
+			updateWindow(null,$("#infoDiv").height(),null,"-");
+		}
+		else
+		{
+			$("#" + obId).show();
+			$("#" + tipId).html(oOpenTip);
+			updateWindow(null,$("#infoDiv").height(),null,"+");
+		}
+		infoNum++;
+	}
+	
+	//完成进度时的处理方法
+	var finishIntervalId;
+	window.clearTimeout(finishIntervalId);
+	function finishProgress(type)
+	{
+		//$('#closeButton').attr('disabled',false);
+		getCurrentWindow().button("close").enable();
+		if((type && type == "public")){
+			$('#stopButton').attr('disabled',false);
+			var num = 5;//关闭时间（秒）
+			$("#closeInfo").html("${common_op_aboutOfClose}".format(num));
+			finishIntervalId = setInterval(function(){
+				
+				if(!document.getElementById("totalProgressDiv"))//如果页面已关闭，则直接清除定时器
+				{
+					clearInterval(finishIntervalId);
+					return;
+				}
+				num--;
+				if(num >= 1 )
+				{
+					$("#closeInfo").html("${common_op_aboutOfClose}".format(num));
+				}
+				else
+				{
+					clearInterval(finishIntervalId);
+					$(".dhtmlx-confirm div[result='false']").click();
+					closeWindow();
+				}
+			}, 1000);
+		}
+		else
+		{
+			$('#confirmButton').attr('disabled',false);
+		}
+	}
+	
+	function stopCloseWin()
+	{
+		clearInterval(finishIntervalId);
+		$('#stopButton').attr('disabled',true);
+		$("#closeInfo").html("");
+	}
+	
+	function closeWin()
+	{
+		if(beginDo && totalProgress < 100)
+		{
+			 messageBox({messageType: "confirm",text: "${common_op_closeInfo}",callback: function(result){
+				 if(result)
+				 {
+					 closeWindow();
+					//清除定时器
+					window.clearInterval(finishIntervalId);
+					window.clearInterval(proIntervalId);}
+				 }
+			 });
+		}
+		else
+		{
+			closeWindow();
+			//清除定时器
+			window.clearInterval(finishIntervalId);
+			window.clearInterval(proIntervalId);
+		}
+	}
+</script>
+
+<#macro closeButton>
+<button class='button-form' onclick="closeWin();" id="closeButton">${common_op_close}</button>
+</#macro>
+
+<#macro progressBar>
+<div>
+	<#if !singleMode?exists || singleMode !="true">
+	<div style="height:40px;overflow: hidden;" id="currentProgressDiv">
+		<div style="margin-bottom: 2px"><span id="currentProgressTitle">${common_op_currProgress}</span></div>
+		<div id="currentProgress" class="progressBar">
+			<span> </span>
+			<img src="/public/images/searching.gif" width="14px" style="margin-top: -15px;float: right;display: none"/>
+		</div>
+		<div id="currentProgressText" class="progressBarText"></div>
+	</div>
+	</#if>
+	<div style="height:42px;overflow: hidden;" id="totalProgressDiv">
+		<div style="margin-bottom: 2px"><span id="totalProgressTitle">${common_op_totalProgress}</span></div>
+		<div id="totalProgress" class="progressBar">
+			<span> </span>
+			<img src="/public/images/searching.gif" width="14px" style="margin-top: -15px;float: right;display: none"/>
+		</div>
+		<div id="totalProgressText" class="progressBarText"></div>
+	</div>
+</div>
+</#macro>
+
+<#noparse>
+<!-- <#assign confirmButtonText = "同步"> -->
+</#noparse>
+
+<div id="wholeDiv">
+	<#if opContent?exists> 
+		<@opContent/>
+		<div style="width: 100%">&nbsp;</div>
+		<div class="opFooter">
+			<@progressBar/>
+			<div class="buttonDiv" style="height: 25px" id="buttonDiv">
+				<div style="float: left;" align="left">
+					<button class="button-form"  onclick="showAndHideInfo('infoDiv','hideButton','${common_op_hiddenInfo}','${common_op_detailInfo}')"
+						id="hideButton">
+						${common_op_hiddenInfo}
+					</button>
+				</div>
+				<div style="float: left;color: red; margin-left: 50px;padding-top: 2px;" align="" id="closeInfo">
+					<!-- 窗口将在5秒后关闭 -->
+				</div>
+				<div style="float: right;" align="right">
+					<button class='button-form' id="confirmButton" onclick="${confirmFunction!};" id="confirmButton">${confirmButtonText}</button>
+					<@closeButton/>
+				</div>
+			</div>
+			<div class="infoDiv" id="infoDiv">
+			
+			</div>
+		</div>
+	<#else>
+		<div class="opFooter">
+			<@progressBar/>
+			<div class="infoDiv" id="infoDiv">
+			</div>
+			<div class="buttonDiv " id="buttonDiv">
+				<div style="float: left;color: #3C85C8;" align="left" id="closeInfo">
+					<!-- 窗口将在5秒后关闭 -->
+				</div>
+				<div style="float: right;" align="right">
+					<button class="button-form" id="stopButton" onclick="stopCloseWin()" disabled="disabled" style="cursor: pointer;">${common_op_delayClose}</button>
+					<button class="button-form" onclick="closeWin()"  id="closeButton">${common_op_close}</button>
+				</div>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			
+			$().ready(function(){
+				var dealDataPath = "";
+				var getProgressPath = "";
+				var callback = null;
+				//判断是否是通过js方法调用，还是操作栏点击调用
+				if(openProgressParams != null)
+				{
+					if(openProgressParams.singleMode)
+					{
+						$("#currentProgressDiv").hide();
+					}
+					dealDataPath = openProgressParams.dealDataPath;
+					getProgressPath = openProgressParams.getProgressPath;
+					if(openProgressParams.currentProgressTitle)
+					{
+						$("#currentProgressTitle").html(openProgressParams.currentProgressTitle);
+					}
+					if(openProgressParams.totalProgressTitle)
+					{
+						$("#totalProgressTitle").html(openProgressParams.totalProgressTitle);
+					}
+					if(openProgressParams.callback)
+					{
+						callback = openProgressParams.callback;
+					}
+					
+					openProgressParams = null;
+				}
+				else if(operateToolbars[operateObjId].getUserData(currentOperateId, "dealDataPath"))
+				{
+					//先发送处理数据的请求，然后进行进度监控请求（异步）
+					if(operateToolbars[operateObjId].getUserData(currentOperateId, "singleMode") && operateToolbars[operateObjId].getUserData(currentOperateId, "singleMode"))
+					{
+						$("#currentProgressDiv").hide();
+					}
+					dealDataPath = operateToolbars[operateObjId].getUserData(currentOperateId, "dealDataPath");
+					if(operateToolbars[operateObjId].getUserData(currentOperateId, "getProgressPath"))
+					{
+						getProgressPath = operateToolbars[operateObjId].getUserData(currentOperateId, "getProgressPath");
+					}
+					else
+					{
+						getProgressPath = "processAction!getProcess.action";
+					}
+					//设置当前进度标题
+					if(operateToolbars[operateObjId].getUserData(currentOperateId, "currentProgressTitle"))
+					{
+						$("#currentProgressTitle").html(operateToolbars[operateObjId].getUserData(currentOperateId, "currentProgressTitle"));
+					}
+					//设置总体进度标题
+					if(operateToolbars[operateObjId].getUserData(currentOperateId, "totalProgressTitle"))
+					{
+						$("#totalProgressTitle").html(operateToolbars[operateObjId].getUserData(currentOperateId, "totalProgressTitle"));
+					}
+					dealDataPath += (dealDataPath.indexOf("?")>0 ? "&" : "?") + "ids=" + getGridCheckboxValue("ids");
+				}
+				else if(sysCfg.devMode)
+				{
+					//testBeginProgress("yes","public");
+					messageBox({messageType: "alert",text: "当前信息错误请写好Toolbar操作配置文件中的dealPath和progressPath"});
+					//alert("当前信息错误请写好Toolbar操作配置文件中的dealPath和progressPath");
+					return;
+				}
+				var clientId = new Date().getTime()  + "_" +  Math.round(Math.random() * 10000);
+				if(dealDataPath != null)
+				{
+					var param = dealDataPath.indexOf("?") > 0 ? dealDataPath.split("?")[1] : "";
+					dealDataPath = dealDataPath.split("?")[0];
+					dealDataPath = dealDataPath + "?clientId=" + clientId;
+					var data = {};
+					if(param != "")
+					{
+						var paramArray = param.split("&");
+						var tempArray = "";
+						for(var i = 0; i < paramArray.length; i++)
+					    {
+							tempArray = paramArray[i].split("=");
+							data[tempArray[0]] = tempArray[1];			
+					    }
+					}
+
+					$.ajax({
+						type: "POST",
+						url: dealDataPath,
+						data: data,
+						dataType: "json",
+						async: true,
+						success: function(result) 
+						{
+							//返回结果为true(成功)或者false(失败)
+							if (!result) 
+							{
+								openMessage(msgType.error);
+							} 
+						}
+					});
+				}
+				getProgressPath += (getProgressPath.indexOf("?") > 0 ? "&" : "?") + "clientId=" + clientId;
+				beginProgress(getProgressPath, "public", callback);
+			});
+		</script>
+	</#if>
+</div>

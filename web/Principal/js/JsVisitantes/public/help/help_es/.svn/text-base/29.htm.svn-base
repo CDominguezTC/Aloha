@@ -1,0 +1,399 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.2 Operaciones del Dispositivo</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection29 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077399"></a><a name="_Toc427077280"></a><a name="_Toc20464"></a><a
+name="_Toc417486923"></a><a name="_Toc387761908"></a><a name="_5.1.2_设备操作"></a><a
+name="_5.2.2_新增视频设备"></a><a name="_4.1.2_设备操作"></a><a
+name="_4.1.2_Operaciones_del"></a><span lang=ES-MX>4.1.2</span><span
+lang=ES-MX> Operaciones del Dispositivo</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Permiten realizar
+diversas funciones relacionadas con los dispositivos y el sistema tales como
+cargar y descargar datos, sincronizar fecha y hora, actualizar firmware,
+ajustar parámetros, entre otras. Los usuarios pueden editar los dispositivos de
+acuerdo a sus privilegios en el sistema.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=624
+height=313 id="图片 85"
+src="user_help.files/image038.jpg"></span></b></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Editar o Borrar un Dispositivo</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Editar</span><span lang=ES-MX>: De
+clic en el nombre del dispositivo, o en [Editar] debajo de operaciones para
+abrir la interfaz de editar.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Borrar</span><span lang=ES-MX>:
+Seleccione el dispositivo, de clic en [Borrar] y luego [OK] para borrar el
+dispositivo.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=338
+height=323 id="图片 88"
+src="user_help.files/image039.jpg"></span></b><span
+lang=ES-MX>&nbsp;&nbsp;&nbsp; </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Para la configuración y
+mayor información de los parámetros mostrados anteriormente, consulte los respectivos
+capítulos. Los objetos mostrados en gris no son editables. El nombre de cada
+dispositivo debe ser único.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>El tipo de panel de
+acceso no puede ser modificado. Si el tipo es incorrecto, deberá eliminar el
+dispositivo y agregarlo manualmente de nuevo.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Deshabilitar/Habilitar</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='letter-spacing:-.3pt'>Seleccione el
+dispositivo y de clic en [Deshabilitar/Habilitar] en la parte superior para
+iniciar o detener el uso del dispositivo. Cuando la comunicación entre el
+dispositivo y el sistema es interrumpida o existe alguna falla, el dispositivo
+se mostrará deshabilitado automáticamente. Después de solucionar el problema en
+la red o el dispositivo, de clic en [Habilitar] para reconectar el dispositivo
+y restablecer la comunicación.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Sincronizar Datos</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Para sincronizar los
+datos del sistema al dispositivo, seleccione el dispositivo y de clic en
+[Sincronizar Datos al Dispositivo] y de clic en [OK] para realizar la
+sincronización.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=596
+height=396 id="图片 91"
+src="user_help.files/image040.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:6.0pt;text-indent:-6.0pt'><span lang=ES-MX style='font-size:12.0pt;
+font-family:Wingdings'>?</span><span lang=ES-MX>Nota: [Sincronizar Datos al
+Dispositivo] primero borrará los datos del dispositivo (excepto los eventos) y
+descargará los datos y configuraciones de nuevo. Al realizar esta operación,
+mantenga la conexión de red estable y evite el corte de energía. Si el
+dispositivo está trabajando normalmente utilice esta función con precaución.
+Use esta función solo cuando sea necesario.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Actualizar Firmware</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Seleccione el
+dispositivo que requiera actualizar y de clic en [Actualizar Firmware] para
+abrir la interfaz y de clic en [Examinar] para seleccionar el archivo de
+actualización (llamado emfw.cfg) y de clic en [OK] para iniciar la
+actualización.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: El usuario no debe actualizar el firmware sin previa consulta.
+Contacte con su distribuidor antes de realizar la actualización para recibir
+indicaciones. Realizar actualizaciones sin consultar puede generar problemas y
+afectar el uso normal.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Reiniciar Dispositivo</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Reiniciará el
+dispositivo seleccionado.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descargar Parámetros del Dispositivo</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Descargará los
+parámetros comunes del dispositivo. Por ejemplo, la versión del firmware
+después de actualizar el dispositivo.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descargar Información de Usuarios</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Refresca el número de
+usuarios actual y las huellas digitales del dispositivo. El valor final se
+mostrará en la lista de dispositivos.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descargar Eventos</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Descarga los eventos
+del dispositivo al sistema. Se muestran dos opciones para esta operación:
+Descargar Eventos Nuevos y Descargar Todos los Eventos.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descargar Eventos Nuevos</span><span
+lang=ES-MX>: El sistema solo descargará los eventos nuevos desde la última vez
+que se descargaron eventos y se guardaron en la base de datos. Los datos
+repetidos no se rescriben.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descargar Todos los Eventos</span><span
+lang=ES-MX>: El sistema descargará todos los eventos. Los datos repetidos no se
+rescriben.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Cuando el estado de la
+red y la comunicación entre el dispositivo es normal, el sistema obtendrá los
+eventos del dispositivo en tiempo real y los guardará en la base de datos. Sin
+embargo, cuando la comunicación es interrumpida por alguna razón y los eventos
+no pueden ser obtenidos en tiempo real, puede usar la función [Descargar
+Eventos] para obtener los eventos del dispositivo manualmente. Además, el
+sistema, por default, intentará descargar los eventos de los dispositivos
+diariamente de manera automática a las 00:00.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Los paneles de acceso pueden almacenar hasta 100mil eventos.
+Cuando los eventos exceden este número, el dispositivo eliminará los eventos
+más antiguos (elimina 10mil eventos por default).</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Sincronizar Fecha y Hora</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Sincroniza la fecha y
+hora del dispositivo conforme a la fecha y hora del servidor.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Configurar Servidor</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Configuración de parámetros del dispositivo
+conectado al servidor.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Verificación en Segundo Plano</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(1) Seleccione el
+dispositivo que estará en línea y de </span><span lang=ES-MX>clic en</span><span
+lang=ES-MX> [Más] &gt; [Verificación en Segundo Plano]: </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=zh-CN><img border=0
+width=553 height=480 id="图片 94"
+src="user_help.files/image041.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Verificación en Segundo Plano</span><span lang=ES-MX>: Activa o
+desactiva la función de verificación en segundo plano.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Si el dispositivo está fuera de línea</span><span lang=ES-MX>:
+Si el dispositivo está fuera de línea podrá seleccionar: Niveles de Acceso
+Estándar o Denegar Acceso.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>(2) Después de configurar, de clic en
+[Iniciar] para cargar los parámetros de verificación en segundo plano.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Si requiere utilizar las funciones avanzadas de control de
+acceso, active la Verificación en Segundo Plano y cargue los parámetros al
+dispositivo. </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Huso Horario</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Si el dispositivo soporta la función de uso
+horario y no está en el mismo huso horario que el servidor, es necesario establecer
+el huso horario del dispositivo. Después de configurarse, el dispositivo
+sincronizará el tiempo automáticamente según el huso horario y la hora del
+servidor.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Horario de Verano</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Establezca el horario
+de verano según los requerimientos de cada región.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Modificar IP</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione el dispositivo y de clic en
+[Modificar IP] para mostrar la interfaz de modificación. Se obtendrán los datos
+del dispositivo como IP, máscara de subred y Gateway (si no se pueden obtener
+los datos la IP no se podrá modificar). Ingrese la nueva IP, mascara de subred
+y Gateway. De clic en [OK] para guardar los cambios y salir. Esta función es la
+misma que [Modificar Dirección IP] en</span><a href="28.htm#_4.1.1_Dispositivos"><span
+lang=ES-MX> 4.1.1 Dispositivos</span></a><span lang=ES-MX>.</span><span
+lang=ES-MX> La diferencia entre ambas es que una función se realiza con los
+equipos que ya han sido agregados al sistema y la otra con los equipos que no
+han sido agregados al sistema todavía.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Modificar Contrase&ntilde;a</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Ingrese la contrase&ntilde;a
+anterior antes de realizar la modificación. Después de la verificación introduzca
+la nueva contrase&ntilde;a dos veces y de clic en [OK] para modificar la contrase&ntilde;a de
+comunicación.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: La contrase&ntilde;a de comunicación no puede contener espacios; es
+recomendado usar la combinación de números y letras para incrementar el nivel
+de seguridad del dispositivo. Es recomendado establecer la contrase&ntilde;a de
+comunicación para cada dispositivo.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Dirección RS485</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Solo se puede modificar
+la dirección RS485 a los equipos que no cuentan con DIP Switch.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Sensibilidad de Huella Digital (Para equipos con función de
+huella digital)</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>El usuario puede
+ajustar la sensibilidad de identificación de huella digital en el dispositivo
+en una escala de 35 a 70, siendo 55 por default. Al agregar el dispositivo, el
+sistema obtendrá el dato de sensibilidad. El usuario puede ver el nivel de
+sensibilidad desde la lista de dispositivos. <span style='letter-spacing:-.3pt'>Realizar
+la operación por lote es permitido.</span></span><span lang=ES-MX> </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><a
+name="_5.3_设备通讯管理"></a><a name="_6.3_设备监控"></a><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>&nbsp;&nbsp;</span><span lang=ES-MX
+style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Reglas del
+Dispositivo</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Se muestran las reglas de acceso del
+dispositivo.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=379 height=365
+id="图片 100" src="user_help.files/image042.jpg"></span></b></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.3pt;vertical-align:middle'><a
+name="_Toc387761909"><span lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span lang=ES-MX
+style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Capacidad del
+Dispositivo</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Comprueba la capacidad de huellas digitales del
+dispositivo.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

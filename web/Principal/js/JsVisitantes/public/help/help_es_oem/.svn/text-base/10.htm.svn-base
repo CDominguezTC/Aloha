@@ -1,0 +1,76 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 2.1 Inicio de Sesión</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection10 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077007"></a><a name="_Toc18107"></a><a name="_Toc417486903"><span
+lang=ES-MX>2.1 </span></a><span lang=ES-MX>Inicio de Sesión</span></h2>
+
+<p class=MsoNormal align=center style='margin-top:6.0pt;margin-right:0cm;
+margin-bottom:6.0pt;margin-left:0cm;text-align:center'><span lang=zh-CN><img
+border=0 width=303 height=248 id="图片 1"
+src="user_help.files/image006.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Después de instalar el software, puede dar
+doble clic en el ícono de </span><span lang=ES-MX>BioSecurity para acceder al
+sistema o puede abrir uno de los navegadores recomendados e ingresar la
+dirección IP y el puerto en la barra de dirección</span><a
+href="http://127.0.0.1:8088/"><span lang=ES-MX> http://127.0.0.1:8088</span></a><span
+lang=ES-MX> (</span><span lang=ES-MX>por default).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Si accede como PC cliente, ingrese la
+dirección IP y el puerto del servidor en la barra de dirección.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Ingrese el usuario y la contrase&ntilde;a y de clic
+en [Login], o de clic en [Huella Digital]</span><span lang=ES-MX> y pulse la
+huella de administrador para acceder al sistema.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>.</span><span lang=ES-MX style='font-size:
+14.0pt;font-family:Wingdings'>?</span><span lang=ES-MX>Nota: El usuario
+administrador por default es [admin] y la contrase&ntilde;a es [admin]. Después de
+acceder al sistema por primera vez, cambie la contrase&ntilde;a en [Información
+Personal].</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

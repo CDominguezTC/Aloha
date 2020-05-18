@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此配置文件是数据列表显示字段配置  -->
+<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<toolbars>
+		<toolbar actionName="example">
+			<item id="public_winExample.action^0^0^800^400"
+				type="button" img="pers_changeDept.png" imgdis="pers_changeDept.png" text="弹窗模版" action="openWindowByOperate"></item>
+			<!--(id*{checkboxName:'ids',selectedNum:1,conditionMode:'!=',noSelectPrompt:'请选择你要操作的角色',noRightSelectPrompt:'只能选择一个操作的角色',split:','})-->
+			<item shiro="pers:PersPerson:export" id="testAction.action!test" type="button" img="pers_changeDept.png" imgdis="pers_changeDept.png" text="ajax操作示例"
+				action="executeOperate"></item>
+			<item shiro="pers:PersPerson:export" id="testFunc^自定义确认提示信息——{0}" type="button" img="pers_changeDept.png" imgdis="pers_changeDept.png" text="回调函数操作示例"
+				action="executeOperate"></item>
+			<item id="public_opExample.action^0^0^700^340" type="button"
+				img="pers_changeDept.png" imgdis="other.png" text="可自定义操作模版 " action="openWindowByOperate">
+			</item> 
+			<item id="public_opTemplate.action?id=(id*{selectedNum:0,conditionMode:'=='})^0^0^600^285" type="button"
+				img="pers_changeDept.png" imgdis="pers_changeDept.png" text="操作之双进度条"
+				action="openWindowByOperate"> 
+				<userdata name="dealDataPath">baseProcessRateAction!testDealData.action</userdata>
+				<userdata name="currentProgressTitle">我是当前进度</userdata>
+				<userdata name="totalProgressTitle">我是总体进度</userdata>
+			</item>
+			<item id="public_opTemplate.action^0^0^600^285" type="button"
+				img="pers_changeDept.png" imgdis="pers_changeDept.png" text="无需选择之双进度条"
+				action="openWindowByOperate"> 
+				<userdata name="dealDataPath">baseProcessRateAction!testDealData.action</userdata>
+				<userdata name="currentProgressTitle">我是当前进度</userdata>
+				<userdata name="totalProgressTitle">我是总体进度</userdata>
+			</item> 
+			<item id="public_opTemplate.action^0^0^600^245" type="button"
+				img="pers_changeDept.png" imgdis="pers_changeDept.png" text="操作之单进度条"
+				action="openWindowByOperate"> 
+				<userdata name="dealDataPath">baseProcessRateAction!testDealData.action</userdata>
+				<userdata name="singleMode">true</userdata> 
+			</item>
+			<item id="moreActions" type="buttonSelect" img="pers_changeDept.png" imgdis="pers_changeDept.png" 
+				text="更多" renderSelect="false" openAll="true"> 
+				<item id="print_page" type="button" text="操作1" img="comm_add.png" action="alert"></item> 
+				<item id="import#public_opTemplate.action^0^0^600^270" type="button" text="操作2" img="comm_add.png" action="openWindowByOperate"></item>
+				<item id="print_sel" type="button" text="操作3" img="comm_add.png"></item> 
+				<item id="print_s1" type="separator"></item>
+				<item id="print_cfg" type="button" text="操作4" img="comm_add.png"></item> </item>
+		</toolbar>
+	</toolbars>
+</page>

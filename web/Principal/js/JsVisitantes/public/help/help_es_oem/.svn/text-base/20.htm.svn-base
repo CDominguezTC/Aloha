@@ -1,0 +1,130 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.3 Atributos Personalizables</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection20 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077017"></a><a name="_Toc27823"></a><a name="_Toc417486914"><span
+lang=ES-MX style='font-size:16.0pt;line-height:172%'>3.1.3 </span></a><span
+lang=ES-MX>Atributos Personalizables</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Algunos atributos
+personales pueden ser personalizados o eliminados para cubrir requisitos
+especiales de algunos clientes. Cuando el sistema es usado por primera vez,
+algunos atributos serán establecidos por default. Puede ajustar estos atributos
+para cumplir los requerimientos del proyecto. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nuevo Atributo</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>1) De clic en </span><span
+lang=ES-MX>[Personal] &gt;</span><span lang=ES-MX> [Personal] &gt; [Atributos
+Personalizables] &gt; [Nuevo], edite los parámetros y de clic en [OK] para
+guardar y salir.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=300 height=287 id="图片 55"
+src="user_help.files/image022.jpg"></span><span
+lang=ES-MX>&nbsp;&nbsp; </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nombre del Atributo</span><span lang=ES-MX style='color:windowtext'>:
+Debe ingresar un nombre único de máximo 30 caracteres. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Tipo de Entrada</span><span lang=ES-MX style='color:windowtext'>:
+Seleccione el tipo de entrada la cual incluye “Lista desplegable”, “Opción
+Múltiple”, “Opción &Uacute;nica” y “Texto”.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Valor</span><span lang=ES-MX>: Adecuado para entrada de </span><span
+lang=ES-MX style='color:windowtext'>lista desplegable, opción múltiple y opción
+única. Uso de “1” para distinguir los valores múltiples. Si la entrada de datos
+es texto el campo de valor no es adecuado.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fila/Columna</span><span lang=ES-MX>: La fila y columna de un
+campo se utilizan juntos para controlar la posición de visualización de un
+campo. Es posible ingresar números y el número de columna no puede exceder de
+99 y el número de fila solo puede ser </span><span lang=ES-MX style='color:
+windowtext'>1 ó 2. La combinación de fila y columna debe ser única. Ejemplo: en
+la siguiente figura, el campo de tipo de empleado se encuentra en la columna 1,
+fila 1 y el campo de tipo de contratación está en columna 1, fila 2.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=640 height=163
+src="user_help.files/image023.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Editar un Atributo Personalizable.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Editar] debajo de Operaciones
+para modificar el atributo correspondiente.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Borrar un Atributo Personalizable.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Borrar] debajo de Operaciones
+para borrar el atributo correspondiente. Si el atributo se encuentra en uso, el
+Sistema mostrará una advertencia para confirmar la operación.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=ES-MX style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span
+lang=ES-MX>Nota: Una vez que se elimina el atributo no puede ser recuperado.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,167 @@
+<style>
+	.field{
+		border: 1px solid #c3c2c2;
+		height: 100%;
+		float: left;
+		width:95%;
+	}
+	.field legend{
+		border: 1px solid #dcdfe2;
+		font-weight: bold;
+	}
+	.field div{
+		margin-top: 2px;
+		border: 1px solid #c3c2c2;
+	}
+	.field p{
+		color: #3C85C8;
+	}
+	.field ul{
+		list-style-type: decimal;
+		list-style-position: inside;
+	}
+	.field ul li{
+		color: red;
+	}
+	.field h6{
+		background-color: #dcdfe2;
+		font-weight: bold;
+		height: 20px;
+		line-height: 20px;
+		padding-left: 5px;
+	}
+</style>
+<script type="text/javascript">
+function testFunc()
+{
+	alert("我被executeOperate()方法调用了");
+}
+</script>
+<div style="padding: 5px 0px;">页面源码路径：public/html/windowsExample.html</div>
+<div id="mainDiv" style="overflow: auto;height: 100%">
+	<div id="operate" style="clear: both;margin-top: 1px;"></div>
+	<!-- 获取操作按钮的js控制  -->
+	<script type="text/javascript">
+		createToolbar('baseAction!getPageXML.action?xmlPath=${base}/public/xml/SysExample.page.xml&actionName=example');
+	</script>
+	<script type="text/javascript">
+		function fun()
+		{
+			alert("我被点击了");
+		}
+	</script>
+	<table style="margin-left: 10px;margin-top: 3px;" cellpadding="0" cellspacing="0">
+		<tr>
+			<td width="50%" valign="top">
+				<fieldset class="field">
+			    	<legend>弹窗调用示例</legend>
+			    	<div>
+						<button onclick="createWindow('public_winExample.action^0^0^500^200^我是标题')" >url弹出示例</button>
+						<h6>调用函数</h6>
+						<p>createWindow('public_winExample.action^0^0^500^200^我是标题')</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>'public_winExample.action^0^0^500^200^我是标题'：public_winExample.action代表弹窗路径</li>
+						</ul>
+					</div>
+					<div>
+						<button onclick="createWindow('#^0^0^500^200^我是标题','我是填充进来的，记住#开头是含按钮的','fun')" >html弹出示例(含确定取消按钮)</button>
+						<h6>调用函数</h6>
+						<p>createWindow('#^0^0^500^200^我是标题','我是填充进来的，记住#开头是含按钮的','fun')</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>'#^0^0^500^200^我是标题'：#代表直接使用弹窗模版</li>
+							<li>'我是填充进来的，记住#开头是含按钮的'：代表填充的html内容</li>
+							<li>'fun'：代表点击确定时调用的函数名</li>
+						</ul>
+						<font color=""></font>
+					</div>
+					<div>
+						<button onclick="createWindow('*^0^0^500^200^我是标题','我是填充进来的，*开头里面只有我')" >html弹出示例(纯填充html)</button>
+						<h6>调用函数</h6>
+						<p>createWindow('*^0^0^500^200^我是标题','我是填充进来的，*开头里面只有我')</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>'#^0^0^500^200^我是标题'：#代表直接使用弹窗模版</li>
+							<li>'我是填充进来的，*开头里面只有我'：代表填充的html内容</li>
+						</ul>
+						<font color=""></font>
+					</div>
+			    </fieldset>
+			</td>
+			<td width="50%" valign="top">
+				<fieldset class="field">
+			    	<legend>进度条调用示例</legend>
+					<div>
+						<script type="text/javascript">
+							function openSingleProgress()
+							{
+								var callback = function()
+								{
+									alert("处理已完成");
+								};
+								var progressParams = 
+								{
+									"dealDataPath" : "processAction!testDealData.action",
+									"singleMode" : true,
+									"callback" : callback
+								};
+								openProgress(progressParams);
+							}
+						</script>
+						<button onclick="openSingleProgress()" >启用单进度条</button>
+						<h6>调用函数</h6>
+						<p>openProgress(progressParams)</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>请参考dhtmlxCommon.js下的openProgress方法注释</li>
+						</ul>
+					</div>
+					<div>
+						<script type="text/javascript">
+							function openTwoProgress()
+							{
+								var callback = function()
+								{
+									alert("处理已完成");
+								};
+								var progressParams = 
+								{
+									"winTitle" : "我是窗口标题",
+									"dealDataPath" : "processAction!testDealData.action",
+									"singleMode" : false,
+									"callback" : callback
+								};
+								openProgress(progressParams);
+							}
+						</script>
+						<button onclick="openTwoProgress()" >启用双进度条</button>
+						<h6>调用函数</h6>
+						<p>openProgress(progressParams)</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>请参考dhtmlxCommon.js下的openProgress方法注释,它和单进度条的区别就是 singleMode为false</li>
+						</ul>
+					</div>
+					<div>
+						<button onclick="createWindow('public_opExample.action^0^0^700^340^自定义操作模版（进度条）')" >自定义操作模版（进度条）</button>
+						<h6>调用函数</h6>
+						<p>createWindow('public_opExample.action^0^0^700^340^自定义操作模版（进度条）')</p>
+						<h6>参数详解</h6>
+						<ul>
+							<li>这里主要是使用弹窗函数</li>
+							<li>注意：需在请求路径中加pageId时间戳标识（保证唯一），可参考public_opExample.action</li>
+						</ul>
+						<font color=""></font>
+					</div>
+				</fieldset>
+			</td>
+		</tr>
+	</table>
+	<div style="margin-left: 10px;margin-top: 2px;border: 1px solid #3C85C8;padding: 5px;">
+   		<span style="color: red">特别提示(传参)</span>：如果要在弹窗方法进行参数传递，能够在页面中进行获取，请使用如下方法：
+   		getLocationParam("name",getCurrentWindow().path)———>chenli
+   		[createWindow('public_winExample.action?name=chenli^0^0^500^200^我是标题')]
+	</div>
+</div>    
+	

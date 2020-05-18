@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml 129:  -->
+
+<page>
+	<objects>
+		<object actionName="baseArea">
+			<field name="#checkbox" width="40" columnMinWidth="40"
+				label="headCheckBox" type="ro" align="left" valign="middle"
+				headerMenu="false" sort="na" isShow="true" content="ids" />
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="code" width="140" columnMinWidth="70" label="${base_area_number}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" >
+				<value shiro="base:BaseArea:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="javascript:openWindow('(rootPath)/baseAreaAction!getById.action?id=(id)^0^0^420^300^${common_op_edit}')">(value)</a>]]>
+					</param>
+					<param state="false">
+						<![CDATA[(value)]]>
+					</param>
+				</value>
+			</field>
+			<field name="name" width="160" columnMinWidth="70" label="${base_area_name}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="parentArea.code" width="150" columnMinWidth="70"
+				label="${base_area_parentAreaNumber}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="na" isShow="true" />
+			<field name="parentArea.name" width="160" columnMinWidth="70"
+				label="${base_area_parentAreaName}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="na" isShow="true" />
+			<field name="remark" width="150" columnMinWidth="70" label="${common_remark}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="#operate" width="*" columnMinWidth="70" label="${common_relatedOp}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true">
+				<value shiro="base:BaseArea:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="javascript:openWindow('(rootPath)/baseAreaAction!getById.action?id=(id)^0^0^420^300^${base_area_editArea}')">${common_op_edit}</a>]]>
+					</param>
+				</value>
+				<value shiro="base:BaseArea:del" text="${common_op_del}">
+					<param state="true">
+						<![CDATA[<a href="javascript:delById('(rootPath)/baseAreaAction!del.action?ids=(id)')">${common_op_del}</a>]]>
+					</param>
+				</value>
+		</field>
+		</object>
+	</objects>
+
+	<searchs>
+		<search actionName="baseArea">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140"
+					inputWidth="140"></item>
+				<item type="input" name="entity.code" label="${base_area_number}" maxlength="30"></item>
+				<item type="input" name="entity.name" label="${base_area_name}" maxlength="30"></item>
+			</items>
+		</search>
+	</searchs>
+
+	<toolbars>
+		<toolbar actionName="baseArea">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+			<item shiro="base:BaseArea:add" id="base_editBaseArea.action^0^0^420^300" type="button"
+				img="comm_add.png" imgdis="comm_add.png" text="${common_op_new}" action="openWindowToForm"></item>
+			<item shiro="base:BaseArea:del" id="baseAreaAction!del.action" type="button" img="comm_del.png"
+				imgdis="comm_del.png" text="${common_op_del} " action="manyDel"></item>
+		</toolbar>
+	</toolbars>
+</page>

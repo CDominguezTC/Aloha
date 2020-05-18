@@ -1,0 +1,217 @@
+<div id="overlay" class="for_all apple_overlay"
+	style="background-image: none; display: block; z-index: 10000;">
+	<div id="id_worktable_search_form">
+
+		<div id="id_search" class="div_box"
+			style="padding-bottom: 2px !important; margin-bottom: 2px !important;margin: 0px">
+			<h1>
+				<div id="id_title">
+					&nbsp;
+				</div>
+			</h1>
+			<div>
+				<table width="96%" class="tbl_form_search" id="id_form_search">
+					<tbody>
+						<tr>
+							<td>
+								<label class="" for="id_user__username">
+									用户名
+								</label>
+							</td>
+							<td>
+								<input type="text" maxlength="30" name=""
+									id="search_id_user__username" fieldname="user__username">
+							</td>
+							<td>
+								<label class="" for="id_action_flag">
+									动作标志
+								</label>
+							</td>
+							<td>
+								<select id="search_id_action_flag" name=""
+									fieldname="action_flag">
+									<option selected="selected" value="">
+										---------
+									</option>
+									<option value="1">
+										增加
+									</option>
+									<option value="2">
+										修改
+									</option>
+									<option value="3">
+										删除
+									</option>
+									<option value="4">
+										其他
+									</option>
+								</select>
+							</td>
+							<td>
+								<div class="topSearchBtn"
+									style="text-align: right; display: block; width: 150px;">
+									<span style="padding-right: 10px;"
+										class="Link_blue1 floatL displayB"> <span
+										class="action_topSearch floatL"></span> <a
+										id="id_header_search" href="javascript:void(0)" class="floatL">查询</a>
+									</span>
+									<span style="padding-right: 10px;"
+										class="Link_blue1 floatL displayB"> <span
+										class="action_topClear floatL"></span> <a id="id_header_clear"
+										href="javascript:void(0)" class="floatL">清除</a> </span>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div id="id_datalist">
+			<div class="grid clearL">
+				<div class="action Link_blue1"></div>
+				<div class="pages floatR Link_blue2">
+					<div class="page_info">
+						共
+						<span class="color_orange">2</span> 记录/
+						<span class="color_orange">1</span> 页
+					</div>
+					<div class="page_nav_go">
+						<div class="page_nav">
+							<a class="first_page" href="?p=1" alt="1" title="首页"></a>
+							<a class="pre_page" href="?p=1" alt="1" title="前一页"></a>
+							<a class="next_page" href="?p=1" alt="1" title="后一页"></a>
+							<a class="last_page" href="?p=1" alt="1" title="最后一页"></a>
+						</div>
+						<div class="page_go">
+							<input type="text" value="1" id="id_page_num_input"
+								class="page_num_input">
+							<a id="go_page" class="go_page" href="javascript:void(0)"
+								title="go"></a>
+						</div>
+					</div>
+				</div>
+				<div id="id_show_style" class="div_id_middiv div_show_style floatR">
+					<ul></ul>
+				</div>
+				<div class="list_outBox">
+					<div id="id_tbl">
+						<div class="dt_hdiv" style="overflow-x: hidden;">
+							<table class="table dt_hdiv_tbl" id="id_tbl" style="">
+								<thead>
+									<tr>
+										<th field="user" id="user" style="width: 38px;">
+											<div style="width: 38px;">
+												用户
+											</div>
+										</th>
+										<th field="action_time|fmt_datetime"
+											id="action_time|fmt_datetime" style="width: 136px;">
+											<div style="width: 136px;">
+												动作时间
+											</div>
+										</th>
+										<th field="content_type" id="content_type"
+											style="width: 63px;">
+											<div style="width: 63px;">
+												对象类型
+											</div>
+										</th>
+										<th field="object_repr" id="object_repr" style="width: 72px;">
+											<div style="width: 72px;">
+												对象描述
+											</div>
+										</th>
+										<th field="action_flag" id="action_flag" style="width: 48px;">
+											<div style="width: 48px;">
+												动作标识
+											</div>
+										</th>
+										<th field="change_message" id="change_message"
+											style="width: 185px;">
+											<div style="width: 185px;">
+												改变消息
+											</div>
+										</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<div class="dt_bdiv" style="height: 280px;">
+							<table class="dt_bdiv_tbl table">
+								<tbody>
+									<tr class="row0"
+										title="[2012-08-23 14:25:21]admin: 修改 000000111 " data="150"
+										id="id_row_0">
+										<td title="admin" class="" style="width: 38px;">
+											<div style="width: 38px;">
+												admin
+											</div>
+										</td>
+										<td title="2012-08-23 14:25:21" class="" style="width: 136px;">
+											<div style="width: 136px;">
+												2012-08-23 14:25:21
+											</div>
+										</td>
+										<td title="Pers" class="" style="width: 63px;">
+											<div style="width: 63px;">
+												Personnel
+											</div>
+										</td>
+										<td title="000000111 " class="" style="width: 72px;">
+											<div style="width: 72px;">
+												000000111
+											</div>
+										</td>
+										<td title="修改" class="" style="width: 48px;">
+											<div style="width: 48px;">
+												修改
+											</div>
+										</td>
+										<td title="是否加班(否-&gt;);节假日休息(否-&gt;)" class=""
+											style="width: 185px;">
+											<div style="width: 185px;">
+												是否加班(否-&gt;);节假日休息(否-&gt;)
+											</div>
+										</td>
+									</tr>
+									<tr class="row1"
+										title="[2012-08-23 14:25:20]admin: 增加 000000111 " data="149"
+										id="id_row_1">
+										<td title="admin" class="" style="width: 38px;">
+											<div style="width: 38px;">
+												admin
+											</div>
+										</td>
+										<td title="2012-08-23 14:25:20" class="" style="width: 136px;">
+											<div style="width: 136px;">
+												2012-08-23 14:25:20
+											</div>
+										</td>
+										<td title="Personnel" class="" style="width: 63px;">
+											<div style="width: 63px;">
+												Personnel
+											</div>
+										</td>
+										<td title="000000111 " class="" style="width: 72px;">
+											<div style="width: 72px;">
+												000000111
+											</div>
+										</td>
+										<td title="增加" class="" style="width: 48px;">
+											<div style="width: 48px;">
+												增加
+											</div>
+										</td>
+										<td title="" class="" style="width: 185px;">
+											<div style="width: 185px;"></div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

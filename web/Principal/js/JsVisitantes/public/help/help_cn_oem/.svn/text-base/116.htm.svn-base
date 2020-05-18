@@ -1,0 +1,68 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 8.3 通信管理</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection116 style='layout-grid:15.6pt'>
+
+<p class=2TimesNewRoman1212 style='line-height:normal'><a name="_Toc426707556"></a><a
+name="_Toc387756262"><span lang=EN-US style='font-family:"Myriad Pro","sans-serif"'>8.3
+</span></a><span style='font-family:幼圆'>通信管理</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【系统管理】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【通信管理】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【服务器下发命令】，显示当前系统向设备下发的命令列表</span><span
+lang=EN-US>:</span></p>
+
+<p class=MsoNormal style='line-height:150%'><span lang=EN-US><img border=0
+width=619 height=399 src="user_help.files/image232.jpg"></span></p>
+
+<p class=MsoNormal style='line-height:150%'><span style='font-family:幼圆'>如果<b>返回值</b>大于或等于</span><span
+lang=EN-US>0</span><span style='font-family:幼圆'>，下发命令成功；如果<b>返回值</b>是负数，下发命令失败。此功能菜单供调试使用，数据出现问题时，可以导出数据给技术支持分析使用。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>清空命令表</span></b><span
+style='font-family:幼圆'>：清空服务器下发命令列表中的所有内容。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>导出</span></b><span
+style='font-family:幼圆'>：导出命令列表，保存到本地。</span></p>
+
+<p class=p0 style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif"'>&nbsp;</span></p>
+
+</div>
+
+<b><span lang=X-NONE style='font-size:16.0pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

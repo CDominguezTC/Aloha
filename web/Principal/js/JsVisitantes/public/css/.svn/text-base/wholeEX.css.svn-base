@@ -1,0 +1,157 @@
+@charset "utf-8";
+
+
+html,body,table {
+	direction:rtl!important;
+	unicode-bidi:bidi-override;
+}
+
+table,tr,td,div {
+	text-align:right;
+	align:right;
+}
+
+/*消息框样式*/
+.dhtmlx_modal_box div {
+	text-align:center!important;
+}
+
+/*警告信息图标样式*/
+.warningImage{
+	float:right!important;
+}
+
+/*表格*/
+.tableStyle th {
+	text-align:right;
+}
+
+/*用户验证窗口文本样式*/
+#userVerifyForm .tableStyle th {
+	text-align:right;
+}
+
+/*dashboard样式*/
+.box_ul_enableRTL{
+	text-align:right;
+}
+
+/*登录页面按钮样式*/
+.login_but .but_fing,.login_but .but_login,.login_but .but_fing_disabled{
+	background-position:right center;
+	text-align:right;
+}
+
+/*grid表头单元格样式*/
+div.gridbox_dhx_web.gridbox table.hdr td div.hdrcell{
+	padding-right:10px;	
+}
+
+/*下拉框控件*/
+div.dhxcombolist_dhx_web div.dhxcombo_option div.dhxcombo_option_text.dhxcombo_option_text_image{
+	margin-left:0px;
+	margin-right:20px;
+}
+
+/*语言设置窗口的下拉控件样式*/
+#personalitySetForm div.dhxcombo_dhx_web input.dhxcombo_input{
+	margin-right:23px!important;
+}
+
+/*下拉框控件图标样式*/
+div.dhxcombo_dhx_web div.dhxcombo_top_image div.dhxcombo_image, 
+div.dhxcombolist_dhx_web div.dhxcombo_option div.dhxcombo_image {
+	right:3px;
+}
+div.dhxcombo_dhx_web div.dhxcombo_top_image{
+	right:0px;
+}
+
+
+/*工具栏控件*/
+.dhx_toolbar_dhx_web div.dhx_toolbar_btn,
+.dhx_toolbar_dhx_web div.dhx_toolbar_arw,
+.dhx_toolbar_dhx_web div.dhx_toolbar_text,
+.dhx_toolbar_dhx_web div.dhx_toolbar_sep{
+	float:right!important;
+}
+/*工具栏输入框样式*/
+.dhx_toolbar_dhx_web div.dhx_toolbar_btn .dhxtoolbar_input {
+	float:right!important;
+	direction:rtl!important;
+}
+
+/*工具栏按钮图片样式*/
+.dhx_toolbar_dhx_web div.dhx_toolbar_btn img{
+	float:right!important;
+}
+.dhx_toolbar_dhx_web div.dhx_toolbar_btn div.dhxtoolbar_text, .dhx_toolbar_dhx_web div.dhx_toolbar_arw div.arwimg{
+	float:right!important;
+}
+
+/*accordion控件*/
+.dhxacc_base_dhx_subMenu div.dhx_cell_acc div.dhx_cell_hdr img.dhx_cell_hdr_icon{
+	right:11px;
+}
+
+.dhxacc_base_dhx_subMenu div.dhx_cell_acc div.dhx_cell_hdr div.dhx_cell_hdr_arrow{
+	right:202px!important;
+}
+
+/*折叠面板滚动条*/
+div.dhx_cell_acc .mCustomScrollBox > .mCSB_scrollTools{
+	right:219px!important;
+}
+
+div.dhx_cell_acc .mCustomScrollBox >  .mCSB_container{
+	margin-right:0px;
+	margin-left:16px;
+	
+}
+
+.dhxacc_base_dhx_subMenu div.dhx_cell_acc div.dhx_cell_hdr div.dhx_cell_hdr_text.dhx_cell_hdr_icon {
+    margin-right: 43px!important;
+    margin-left: 36px!important;
+    padding-right: 5px!important;
+    padding-left: 0px!important;
+}
+
+.dhxtree_dhx_subMenu td.standartTreeRow{
+	padding-right:40px!important;
+} 
+
+.dhxacc_base_dhx_subMenu div.dhx_cell_acc div.dhx_cell_cont_acc{
+	border-left:0px none!important;
+	border-right:5px solid #3C85C8;
+}
+
+.divTopCheckbox{
+	text-align:right;
+}
+
+.divBorder{
+	float:right;
+}
+
+.tag_dir{
+	direnction:rtl;
+}
+
+/*head*/
+.top_box .top_r_box {
+	float:left;
+}
+
+.top_r_box_company{
+	text-align:left;
+	padding-left:5px;
+}
+
+/*login*/
+.l{
+	float:right;
+}
+
+.r{
+	float:left;
+}

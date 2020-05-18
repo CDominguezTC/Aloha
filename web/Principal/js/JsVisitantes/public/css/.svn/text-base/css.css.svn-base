@@ -1,0 +1,86 @@
+
+.l{
+	float: left;
+}
+.r{
+	float: right;
+}
+.top_box .top_logo {
+	/* background-color: #474b4f; */
+	float: left;
+	height: 62px;
+	width: 240px;
+	overflow: hidden;
+	text-align: center;
+}
+.top_box {
+	background-color: #3C85C8;
+	height: 62px;
+	overflow: hidden;
+	width: 100%;
+}
+
+.top_but {
+}
+
+.top_but ul li {
+	height:100%;
+	display: inline;
+	overflow: hidden;
+}
+
+.top_but ul li a:link,.top_but a:visited,.top_but a:active  {
+	color: #474b4f;
+	text-decoration: none;
+	font-size: 16px;
+	line-height: 62px;
+	padding: 23px 30px;
+}
+
+.top_but_hov  {
+	color: #474b4f;
+	text-decoration: none;
+	font-size: 18px;
+	background-color: #3f4245;
+	color: #fff !important;
+}
+.top_but a:hover {
+	background-color: #f3f5f0;
+	color: #000 !important;
+	
+}.top_box .top_r_box {
+	float: right;
+	height: 62px;
+	padding-right: 10px;
+}
+.top_r_box span a {
+	text-decoration: none;
+}
+.top_r_box span img {
+	padding-right: 5px;
+	padding-left: 5px;
+	/* padding-top: 16px; */
+	margin-top: -4px;
+}
+.top_r_box em {
+	font-size: 14px;
+	font-weight: normal;
+	padding-right: 10px;
+	font-style: normal;
+	color: #FFFFFF;
+	line-height: 62px;
+}
+
+.top_r_box_showcompany{
+	position:relative;
+	top:-10px;
+	height:30px
+}
+
+.top_r_box_company{
+	text-align:right;
+	position:relative;
+	top:10px;
+	font-size:14px;
+	color: #fff
+}

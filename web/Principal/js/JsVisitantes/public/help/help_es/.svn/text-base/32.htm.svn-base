@@ -1,0 +1,104 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.5 Entradas Auxiliares</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection32 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;margin-left:
+0cm'><a name="_Toc427077402"></a><a name="_Toc427077283"></a><a name="_Toc11676"></a><a
+name="_Toc417486926"></a><a name="_Toc413852686"><span lang=ES-MX>4.1.5
+Entradas Auxiliar</span></a><span lang=ES-MX>es</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Se utilizan principalmente para conectar
+dispositivos, como sensores infrarrojos o sensores de humo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>1. De clic en [Dispositivos de Acceso] &gt;
+[Entradas Auxiliares], accederá a la siguiente interfaz:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=629 height=158
+id="图片 112" src="user_help.files/image047.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>2. De clic en [Editar] para modificar los
+parámetros:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=419 height=349
+id="图片 115" src="user_help.files/image048.png"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nombre</span><span lang=ES-MX style='color:windowtext'>:</span><span
+lang=ES-MX style='color:#92D050'> </span><span lang=ES-MX>Puede editar el
+nombre.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nombre en el board</span><span lang=ES-MX>: El nombre como se
+muestra en el hardware, por ejemplo IN5. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>3.</span><span lang=ES-MX> De clic en
+[Editar] para modificar el nombre y las notas. Otros campos no se pueden editar
+aquí.</span></p>
+
+<p class=MsoNormal style='margin-left:21.0pt;text-indent:-21.0pt'><span
+lang=ES-MX style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Asociar / Desasociar Cámara</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Se realiza la asociación con la cámara para
+establecer vínculos y poder generar pop up de video, grabar video o capturar
+una imagen cuando ocurra un evento específico. Para más información consulte </span><a
+href="../../../Users/Users/Users/Anna/Downloads/Latest20150318ZKBioSecurity%203.0%20User%20Manual.docx#_5.1.4_Reader"><span
+lang=ES-MX>4.1.4 Reader</span></a><span lang=ES-MX>: Asociar / Desasociar
+Cámara.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Una entrada auxiliar se puede asociar con más de un canal de
+video.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

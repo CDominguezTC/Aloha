@@ -1,0 +1,236 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 附录4 用户使用FAQ</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection121 style='layout-grid:15.6pt'>
+
+<h2 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707561"></a><a name="_Toc387761956"><span
+style='font-size:12.0pt;font-family:幼圆'>附录</span></a><span lang=EN-US
+style='font-size:12.0pt'>4 </span><span style='font-size:12.0pt;font-family:
+幼圆'>用户使用</span><span lang=EN-US style='font-size:12.0pt'>FAQ</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：发卡器怎么用？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：选择人员发卡或批量发卡，将发卡器通过</span><span lang=EN-US>USB</span><span
+style='font-family:幼圆'>接口与电脑相连，鼠标点击卡号录入栏，在发卡器上刷卡，则在录入栏自动显示该卡卡号。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：设置角色有什么作用？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：角色的设置可以为新分配的同一类用户设置统一权限，在新增用户时直接选择所需角色。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：我想为公司财务部的所有人员设置账号，要怎么操作？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）首先，在系统设置中创建一个新角色。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>）配置这个角色需要使用到的各项功能。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>3</span><span style='font-family:幼圆'>）新建一个角色组，配置这个角色组拥有的角色。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>4</span><span style='font-family:幼圆'>）再到用户中，新增一个用户，设置用户信息，选择您为此类用户设置的角色组，完成一个账号的添加。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>5</span><span style='font-family:幼圆'>）按此操作创建其他用户。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：如何调整人员的部门？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：调整人员部门有以下几种方式：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）在人员列表中，点击人员编号或</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>操作</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>下的</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>编辑</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，在部门项目中修改人员的部门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>）在人员列表中，勾选需要调整部门的人员，点击上方的</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>调整部门</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，弹出对话框，修改部门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：如何为访客设置门禁权限？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：设置门禁权限步骤如下：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）在系统中新增这些人员，录入相关信息。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>）选择适合他们的门禁权限组，如没有适合的，需要进入门禁系统中新增。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>3</span><span style='font-family:幼圆'>）设置有效时间（使用门禁权限的起始和结束日期）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：门禁节假日如何设置？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：门禁节假日共有</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>、</span><span lang=EN-US>2</span><span style='font-family:
+幼圆'>、</span><span lang=EN-US>3</span><span style='font-family:幼圆'>三类，以设置元旦假日为例：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）在门禁节假日中，新增一个节假日</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>元旦</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，设置假日类型为</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>，假日起始、结束时间都是</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>月</span><span lang=EN-US>1</span><span style='font-family:
+幼圆'>日。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>）在门禁时间段中，新增一个门禁时间段，设置这个假日类型</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>的三个门禁时间区间，例如门禁区间</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>设为</span><span lang=EN-US>8~20</span><span
+style='font-family:幼圆'>时，区间</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>、</span><span lang=EN-US>3</span><span style='font-family:
+幼圆'>不设（即为常闭）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>3</span><span style='font-family:幼圆'>）将这个门禁时间段应用到门禁权限组中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>4</span><span style='font-family:幼圆'>）为这个门禁权限组设置拥有权限的人员。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q</span></b><b><span style='font-family:
+幼圆'>：在</span></b><b><span lang=EN-US>Windows Server 2003</span></b><b><span
+style='font-family:幼圆'>上使用</span></b><b><span lang=EN-US>IE</span></b><b><span
+style='font-family:幼圆'>浏览器访问本系统会出现显示错误的情况，如何解决？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：出现此问题是因为</span><span lang=EN-US>Server 2003</span><span
+style='font-family:幼圆'>对</span><span lang=EN-US>IE</span><span
+style='font-family:幼圆'>浏览器有一个</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>安全配置选项</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的设置，如果想正常访问本系统，请进行如下配置：【开始】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【控制面板】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【添加或删除程序】，点击</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>添加和删除</span><span lang=EN-US>Windows</span><span
+style='font-family:幼圆'>组件</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，在界面中用鼠标选中</span><span lang=EN-US>“Internet Explorer</span><span
+style='font-family:幼圆'>增强的安全配置</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>选项，去除它前面方格内的勾，单击</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>下一步</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，将该选项从系统中删除，重新打开浏览器可正常访问本系统。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q: </span></b><b><span style='font-family:
+幼圆'>如果数据库备份或还原失败，可能的原因？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：<b>备份失败</b>，请检查环境变量是否配置好，如果没有，请在服务器的</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>系统属性</span><span lang=EN-US>”&gt;“</span><span
+style='font-family:幼圆'>高级</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>中进行配置，如下图：</span></p>
+
+<p class=MsoCommentText align=center style='text-align:center;line-height:150%'><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif"'><img border=0
+width=260 height=96 src="user_help.files/image245.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span style='font-family:幼圆'>数据库还原失败</span></b><span
+style='font-family:幼圆'>，原因有几种，系统版本太高或太低，或者数据库损坏，需要根据系统的提示更改系统版本或修复、重新安装数据库。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>Q:<a name="OLE_LINK14"> IE</a></span></b><b><span
+style='font-family:幼圆'>下无法登录，点击登录按钮无任何反应？</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span lang=EN-US>A</span></b><span
+style='font-family:幼圆'>：一般出现在</span><span lang=EN-US>Windows&nbsp;Server&nbsp;2003</span><span
+style='font-family:幼圆'>的</span><span lang=EN-US>IE</span><span
+style='font-family:幼圆'>浏览器中，</span><span lang=EN-US> 2003&nbsp;IE</span><span
+style='font-family:幼圆'>浏览器默认安全级别较高，禁用了脚本。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.05pt'><b><span style='font-family:幼圆'>解决方法</span></b><span
+style='font-family:幼圆'>：将浏览器【工具】</span><span lang=EN-US style='font-family:
+Wingdings'>à</span><span style='font-family:幼圆'>【</span><span lang=EN-US>Internet&nbsp;</span><span
+style='font-family:幼圆'>选项】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【安全设置】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【脚本】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+style='font-family:幼圆'>【活动脚本】设为启用。</span></p>
+
+<p class=MsoNormal align=center style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:center;line-height:120%'><span
+lang=EN-US style='font-size:10.5pt;line-height:120%'>&nbsp;</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

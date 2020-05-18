@@ -1,0 +1,125 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.3 Floor</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection67 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427071739"><span lang=EN-US>5.1.3 Floor</span></a></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc414032673"></a><a name="_Toc2229"><span
+lang=EN-US>Click [Elevator Device] &gt; [Floor], select a floor name in the list
+to click [Edit]:</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=354 height=327
+src="user_help.files/image119.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Device Name</span><span lang=EN-US>:
+It is not editable.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Floor Number</span><span lang=EN-US>: The
+system automatically numbered according to the number of relays.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Floor Name</span><span lang=EN-US>:
+The default setting is “Device Name- Floor Number”, it is editable within 30
+characters.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Floor Active Time Zone</span><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>, Floor Passage Mode Time Zone</span><span
+lang=EN-US>:<b> </b></span><span lang=EN-US>The default setting is Null. The
+Floor Active Time Zones that are initialized or newly added by users will be
+displayed here so that users can select a period. <span style='display:none'>&lt;0}{0&gt;&lt;}0{&gt;</span>When
+editing a floor, the Floor Active Time Zone must be specified. The key for
+closing the related floor can be released continuously only after the effective
+periods of this floor are specified. Floor Passage Mode Time Zone <span
+style='display:none'>&nbsp;&lt;0}{0&gt;&nbsp; </span>takes effect only within
+the floor effective period. It is recommended that the floor continuous release
+period be included in the floor effective period. </span><span
+class=tw4winMark><span lang=EN-US>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Button Open Duration</span><span lang=EN-US>: It is used to
+control the time period to press floor button after verification. The default
+value is 5 seconds, the range is 0~254 seconds.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>The above Settings are Copied to</span><span
+lang=EN-US>: Including below two options.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=EN-US
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>All </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Floors</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'> of </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>C</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>urrent </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>D</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>evice</span><span lang=EN-US>: </span><span lang=EN-US>T</span><span
+lang=EN-US>o apply</span><span lang=EN-US> the above settings</span><span
+lang=EN-US> to al</span><span lang=EN-US>l floor</span><span lang=EN-US>s of
+the current </span><span lang=EN-US>elevator</span><span lang=EN-US> device.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=EN-US
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>All </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>floors</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'> of all </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>D</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>evices</span><span lang=EN-US>: </span><span lang=EN-US>T</span><span
+lang=EN-US>o apply</span><span lang=EN-US> the above settings</span><span
+lang=EN-US> to all </span><span lang=EN-US>floors</span><span lang=EN-US>
+within the current user’s level.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

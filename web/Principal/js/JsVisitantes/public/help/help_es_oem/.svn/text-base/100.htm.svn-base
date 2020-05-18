@@ -1,0 +1,143 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.6 Solución de Excepciones</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection100 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077097"></a><a name="_Toc27001"></a><a name="_Toc417486994"></a><a
+name="_Toc414032708"></a><a name="_Toc326246378"><span lang=ES-MX>7.6</span></a><span
+lang=ES-MX> Solución de Excepciones</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>1. El navegador cliente no puede reproducir video,
+pre-visualizar, o el monitoreo en tiempo real no muestra pop-up de video:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Asegure de usar el navegador IE11 o superior,
+que la PC cliente y el dispositivo de video estén en el mismo segmento de red y
+que se haya instalado el driver o ActiveX correctamente. Si la instalación del
+ActiveX falla, desinstale el ActiveX de video que fue instalado originalmente,
+ejecute el comando &quot;regsvr32-u NetVideoActiveX23.ocx&quot;, y después, en
+el navegador, configure las opciones en Herramientas &gt; Opciones de Internet
+&gt; Seguridad &gt; Nivel Personalizado y en los controladores seleccione
+&quot;Habilitado o Preguntar”, abra el navegador, inicie sesión y abra la
+página de video en tiempo real y seleccione &quot;agregar todos los objetos del
+sitio”.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>2. La red o la fuente de alimentación es apagada mientras se
+realiza el monitoreo en tiempo real.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Revise que la red o la alimentación estén
+conectados correctamente. Refresque o vuelva a abrir la página de monitoreo de
+video en tiempo real después de asegurar que la conexión es normal.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><a name="OLE_LINK3"></a><a name="OLE_LINK2"><span lang=ES-MX
+style='font-family:"Myriad Pro","sans-serif";color:#92D050'>3. En el mapa
+virtual, no se muestra el pop-up de video después de dar clic en el ícono de la
+cámara:</span></a></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Asegure de usar el navegador IE11 o superior,
+que la PC cliente y el dispositivo de video estén en el mismo segmento de red y
+que se haya instalado el driver o ActiveX correctamente. También revise que el
+navegador u otro software estén previniendo las ventanas emergentes pop-up. Si
+es así permita las ventanas pop-up para el sitio.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>4. Al ocurrir un vínculo de video, no hay archivo de video o el
+archivo de video descargado es de 0kb:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Primero, asegure que el software tenga
+configurada la función Time Server (mantenga la función activada en Windows y
+que la función NTP esté activada en el dispositivo de video), es recomendado
+configurar el intervalo de video menor para asegurar la sincronización precisa
+entre el software, el dispositivo de video y el servidor de tiempo, además
+mantenga el tiempo consistente entre el software y los controladores. Es
+recomendado configurar la grabación del vínculo de más de 5 segundos, para
+evitar el retardo en ejecutar el comando del vínculo, que puede originar que el
+archivo descargado sea de 0kb.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>5. El módulo de video no opera normalmente en Windows Server
+2008:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>Es necesario
+instalar Desktop Experience en Windows Server 2008 antes de usar el módulo de
+video.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>Paso 1: Ejecute
+“services.msc” para abrir el administrador de servicios.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>Paso 2:
+Seleccione el inicio automático para “Windows Audio” y “Themes”.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>Paso 3: Ejecute
+el administrador de servicios y de clic en [Agregar Funciones], marque la
+casilla de “Desktop Experience” y de clic en [Instalar]. Reinicie el servidor
+después de realizar la instalación.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>6. El video descargado al disco local no puede ser reproducido:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Seleccione un reproductor de video de
+terceros para reproducir el video, de lo contrario no podrá ser reproducido
+normalmente.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>7.&nbsp;Cuando&nbsp;el&nbsp;navegador&nbsp;es&nbsp;Chrome&nbsp;v4.2&nbsp;o&nbsp;superior,&nbsp;el&nbsp;sistema&nbsp;mostrará&nbsp;un&nbsp;mensaje&nbsp;para&nbsp;instalar&nbsp;los&nbsp;controladores&nbsp;aunque&nbsp;ya&nbsp;hayan&nbsp;sido&nbsp;instalados.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>&nbsp;Los&nbsp;controladores&nbsp;NPAPI&nbsp;antiguos&nbsp;están&nbsp;deshabilitados&nbsp;en&nbsp;Chrome&nbsp;v4.2&nbsp;o&nbsp;superior.&nbsp;Debe&nbsp;abrir&nbsp;el&nbsp;navegador&nbsp;e&nbsp;ingresar&nbsp;“chrome://flags/#enable-npapi”en&nbsp;la&nbsp;barra&nbsp;de&nbsp;dirección&nbsp;para&nbsp;habilitar&nbsp;los&nbsp;controladores.
+</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>&nbsp;</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

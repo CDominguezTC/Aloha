@@ -1,0 +1,369 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.2 设备操作</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection30 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707470"></a><a name="_Toc387761908"></a><a
+name="_5.1.2_设备操作"></a><a name="_5.2.2_新增视频设备"></a><a name="_4.1.2_设备操作"></a><span
+lang=EN-US style='font-size:10.5pt'>4.1.2 </span><span style='font-size:10.5pt;
+font-family:幼圆'>设备操作</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>为实现系统与设备的通信、数据获取、配置信息同步，需要对设备和系统参数进行设置。用户可编辑当前系统中存在的所有权限范围内的门禁设备，如果需要添加或者删除设备，只能到设备管理中进行。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备操作包括</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>启用、禁用、同步所有数据、升级固件、重启设备、获取设备参数、获取人员信息、获取事件记录、同步时间、服务器设置、设置后台验证参数、设置设备时区、设置夏令时、修改</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址、修改通信密码、修改</span><span
+lang=EN-US>RS485</span><span style='font-family:幼圆'>地址、修改指纹比对阈值、查看设备中的门禁规则、查询设备容量等。</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=643 height=298
+src="user_help.files/image048.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>编辑</span></b><b><span lang=EN-US>/</span></b><b><span
+style='font-family:幼圆'>删除设备</span></b></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=268 height=254
+src="user_help.files/image049.jpg">&nbsp;&nbsp;&nbsp; </span><span style='position:absolute;z-index:251659264;margin-left:0px;margin-top:0px;
+width:324px;height:220px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=324 height=220 style='vertical-align:top'><span style='position:
+  absolute;z-index:251659264'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>编辑</span></b><span
+    style='font-family:幼圆'>：点击设备名称，或点击</span> <span style='font-family:幼圆'>“操作”下的【编辑】，弹出编辑页面。其中灰色项目不可编辑。门禁控制器类型不允许修改，如果类型错误，需要手动删除该设备后重新添加。设备名称不可重复。</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><b><span style='font-family:幼圆'>删除</span></b><span
+    style='font-family:幼圆'>：选择设备，点击【删除】，弹出删除确认界面，点击【确定】删除该设备。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=320 height=216
+src="user_help.files/image050.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>禁用</span></b><b><span lang=EN-US>/</span></b><b><span
+style='font-family:幼圆'>启用</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>选择设备，点击【禁用</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>启用】，停止</span><span lang=EN-US>/</span><span
+style='font-family:幼圆'>开始使用该设备。当设备与系统通信中断或设备出现问题，设备可能会自动显示为禁用状态。调整网络或设备后，点击【启用】，系统重新连接设备，恢复设备的通信状态。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>同步所有数据</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>将系统中的数据同步到设备中。选择设备，点击【同步所有数据】，点击【同步】按钮同步数据。</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=454 height=292
+src="user_help.files/image051.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings;
+color:#92D050'>?</span></b><b><span style='font-family:幼圆;color:#92D050'>重要提示：同步所有数据的操作，会先删除设备中已有的数据（不包括事件记录），然后重新下载所有的设置信息。进行该操作时尽量保证网络畅通，避免断电等。当设备正常运行后，请慎重使用该操作，建议选择在较少人使用的时段进行操作，以免影响正常使用。</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>升级固件</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>勾选需升级固件的设备，点击【升级固件】，进入设置页面，点击【浏览】选择固件升级文件（文件名为</span><b><span
+lang=EN-US style='color:#92D050'>emfw.cfg</span></b><span style='font-family:
+幼圆'>），点击【确定】开始升级。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：错误的升级方式，可能导致设备无法正常使用，请慎重操作。如有疑问，请与商务代表或售前技术支持联系。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>重启设备</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>用来重启设备。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>获取设备参数</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>用来获取设备中常用的参数。比如升级固件后，可以通过该操作来更新软件中设备的固件版本。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>获取人员信息</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>重新获取设备中当前的人员数量和指纹总数。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>获取事件记录</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>将设备中的事件记录获取到系统中。该操作有</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>个选项：获取新记录、获取所有记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>获取新记录</span></b><span
+style='font-family:幼圆'>：只获取上次获取记录之后新产生的事件记录，重复的记录不会重复写入。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>获取所有记录</span></b><span
+style='font-family:幼圆'>：重新获取当前控制器中所有的事件记录，重复的记录不会重复写入。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>当网络状况良好且系统与设备通信状态正常时，系统会实时地获取设备中的事件记录并保存到数据库中。当通信中断时，设备中的事件记录并没有实时上传至系统中，此时可执行本操作，手动获取设备中的事件记录。系统默认会在每天的</span><span
+lang=EN-US>00:00</span><span style='font-family:幼圆'>自动获取设备中的事件记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：门禁设备最多可存储</span><span
+lang=EN-US>10</span><span style='font-family:幼圆'>万条事件记录，记录超过</span><span
+lang=EN-US>10</span><span style='font-family:幼圆'>万，设备将自动删除最早保存的记录（默认删除</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>万条）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>同步时间</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>同步设备与服务器的时间。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>服务器设置</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>设置设备要连接的服务器的各项参数。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>设置后台验证参数</span></b></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=363 height=316
+src="user_help.files/image052.jpg">&nbsp; </span><span style='position:absolute;z-index:251658240;margin-left:0px;margin-top:0px;
+width:263px;height:314px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=263 height=314 style='vertical-align:top'><span style='position:
+  absolute;z-index:251658240'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>1</span><span style='font-family:幼圆'>）勾选设备（设备必须在线）</span><span
+    lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:
+    幼圆'>【更多】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+    style='font-family:幼圆'>【设置后台验证参数】，弹出</span><b><span style='font-family:
+    幼圆;color:#92D050'>设置后台验证参数</span></b><span style='font-family:幼圆'>窗口；</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><b><span style='font-family:
+    幼圆'>后台验证</span></b><span style='font-family:幼圆'>：启用或禁用后台验证功能。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><b><span style='font-family:
+    幼圆'>控制器离线时</span></b><span style='font-family:幼圆'>：当设备离线时，设备有</span><b><span
+    style='font-family:幼圆;color:#92D050'>标准通行权限</span></b><span
+    style='font-family:幼圆'>或</span><b><span style='font-family:幼圆;color:#92D050'>拒绝用户通行</span></b><span
+    style='font-family:幼圆'>功能。</span><b><span style='font-family:幼圆;color:#92D050'>拒绝用户通行</span></b><span
+    style='font-family:幼圆'>功能，适用于安全级别较高的场所。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>2</span><span style='font-family:幼圆'>）设置完成后，点击【开始】按钮下发后台验证参数设置。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><b><span lang=EN-US
+    style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+    style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：若需使用高级门禁功能，请先开启后台验证功能，并下发后台验证参数设置到设备。</span><a
+    name="_5.1.3_门管理"></a></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=259 height=309
+src="user_help.files/image053.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>设置设备时区</span></b></p>
+
+<p class=MsoListParagraph style='text-indent:0cm'><span style='font-family:
+幼圆'>如果设备支持设置时区，且设备时区跟服务器不在同一时区，需要设置该选项。不支持设置时区的设备，将不会出现该选项。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>设置夏令时</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>根据不同地区的要求，设置设备所需要采用的夏令时规则。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>修改</span></b><b><span lang=EN-US>IP</span></b><b><span
+style='font-family:幼圆'>地址</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>选择设备，点击【修改</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址】，显示修改页面，从设备中实时获取网关和子网掩码（若获取失败，</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址不能修改）。输入新的</span><span
+lang=EN-US>IP</span><span style='font-family:幼圆'>地址、网关、子网掩码。点击【确定】保存设置并退出。该功能与</span><a
+href="29.htm#_5.1.1_设备"><span lang=EN-US>4.1.1 </span><span style='font-family:
+幼圆'>设备</span></a><span style='font-family:幼圆'>中的<b>【修改</b></span><b><span
+lang=EN-US>IP</span></b><b><span style='font-family:幼圆'>地址】</span></b><span
+style='font-family:幼圆'>基本相同。区别在搜索门禁设备时的设备尚未添加到系统中，而当前的<b>【修改</b></span><b><span
+lang=EN-US>IP</span></b><b><span style='font-family:幼圆'>地址】</span></b><span
+style='font-family:幼圆'>是针对已添加过的设备。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>修改密码</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>通信密码不能包含空格，只能为数字或字母。设置通信密码可以提高设备的安全性，建议每台设备都设置通信密码。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_5.3_设备通讯管理"></a><a
+name="_6.3_设备监控"></a><span lang=EN-US style='font-family:Wingdings'>l<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>修改</span></b><b><span lang=EN-US>RS485</span></b><b><span
+style='font-family:幼圆'>地址</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>只有使用</span><span lang=EN-US>RS485</span><span
+style='font-family:幼圆'>通信且没有拨码开关的设备才能修改</span><span lang=EN-US>RS485</span><span
+style='font-family:幼圆'>地址。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>修改指纹比对阈值（</span></b><span style='font-family:幼圆'>请确保门禁控制器支持指纹功能<b>）</b></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=282 height=140
+id="Picture 109" src="user_help.files/image054.jpg">&nbsp;
+</span><span style='position:absolute;z-index:251657216;margin-left:0px;
+margin-top:0px;width:316px;height:116px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=316 height=116 style='vertical-align:top'><span style='position:
+  absolute;z-index:251657216'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span style='font-family:幼圆'>用户可以修改设备中的指纹比对阈值，范围为</span><b><span
+    lang=EN-US style='color:#92D050'>35~70</span></b><span style='font-family:
+    幼圆'>，设备出厂默认值为</span><b><span lang=EN-US style='color:#92D050'>55</span></b><span
+    style='font-family:幼圆'>。新增设备时系统将从设备中读取该值，用户可通过设备列表查看当前指纹比对阈值大小。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=312 height=112
+src="user_help.files/image055.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_Toc387761909"><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>查看设备中的门禁规则</span></b></a></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>查看对应设备中已设置的门禁规则：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;color:windowtext'><img border=0
+width=321 height=310 src="user_help.files/image056.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>查询设备容量</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>当前仅支持统计软件中的容量信息，用户可以确认设备容量是否足够（人员、指纹）。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

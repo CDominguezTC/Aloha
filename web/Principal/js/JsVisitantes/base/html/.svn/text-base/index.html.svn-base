@@ -1,0 +1,9 @@
+<#include "/public/template/base.html">
+<#macro extendMainContent>
+	<input type="hidden" id="systemCode" value="base" />
+</#macro>
+
+<#macro leftContent>
+	<script src="${base}/pers_pers.js.action"></script>
+	<input type="hidden" id="leftMenuXML" value="baseAction!getPageXML.action?xmlPath=${base}/base/baseMenu.xml" style="height: 12px;padding: 0px 0px;margin: 0px" />
+</#macro>

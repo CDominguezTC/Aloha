@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseModule">
+			<field name="id" width="100" columnMinWidth="70" label="主键"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="abbr" width="160" columnMinWidth="70" label="${base_i18n_moduleName}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" convertMethod="com.zk.base.i18n.BaseLanguageUtil#convertModuleI18NNameByCode#abbr"/>
+			<field name="#translateProgress" width="140" columnMinWidth="100" label="${common_progress_finish}/${common_all}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true" convertMethod="com.zk.base.i18n.BaseLanguageUtil#convertModuleProgress"/>
+			<field name="#operate" width="*" columnMinWidth="130" label="${common_relatedOp}" type="ro" align="left" valign="middle" headerMenu="false" sort="na" isShow="true">
+				<value shiro="{#}:BaseModule:edit" text="${common_op_edit}">
+					<param state="true">
+						<![CDATA[<a href="javascript:void(0)" onclick="listLanguageResource((id))">${common_op_edit}</a>]]>
+					</param>
+				</value>
+			</field>
+		</object>
+	</objects>	
+	<toolbars>
+		<toolbar actionName="baseModule">
+			<item shiro="*" id="base_listBaseLanguage.action?type=custom" type="button" img="comm_back.png"
+				text="${common_op_return}" action="backToLanguage"></item>
+			<item id="sep1" type="separator"/>
+			<item shiro="*" id="base_uploadLanguageResource.action^0^0^420^200" type="button" img="comm_import.png"
+				text="${common_op_import}" action="openWindowByOperate"></item>
+			<item id="sep1" type="separator"/>
+			<item shiro="*" id="baseLanguageAction!downloadResource.action" type="button" img="comm_export.png"
+				text="${base_i18n_exportLanguagePack}" action="downLoadRes"></item>
+			<item shiro="*" id="base_uploadContrastLanResource.action^0^0^600^220" type="button" img="comm_edit.png"
+				text="${common_op_contrast}" action="openWindowByOperate"></item> 
+		</toolbar>
+	</toolbars> 
+</page>

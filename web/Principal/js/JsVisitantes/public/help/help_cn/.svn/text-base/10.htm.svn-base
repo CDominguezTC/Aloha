@@ -1,0 +1,95 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 2.1 登录系统</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection10 style='layout-grid:15.6pt'>
+
+<h2 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638105"><span lang=EN-US
+style='font-size:12.0pt'>2.1 </span></a><span style='font-size:12.0pt;
+font-family:幼圆'>登录系统</span></h2>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US
+style='font-size:12.0pt;color:windowtext'><img border=0 width=285 height=236
+src="user_help.files/image008.jpg">&nbsp;</span><span
+style='position:absolute;z-index:251664896;margin-left:0px;margin-top:0px;
+width:338px;height:236px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=338 height=236 style='vertical-align:top'><span style='position:
+  absolute;z-index:251664896'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>1</span><span style='font-family:幼圆'>）在服务器中安装完程序后，其他计算机可通过输入该服务器的</span><span
+    lang=EN-US>IP</span><span style='font-family:幼圆'>地址和端口号访问本系统。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>2</span><span style='font-family:幼圆'>）打开浏览器，在地址栏输入服务器</span><span
+    lang=EN-US>IP</span><span style='font-family:幼圆'>地址和端口号（如：</span><b><span
+    lang=EN-US style='color:#92D050'>http://127.0.0.1:8088/</span></b><span
+    style='font-family:幼圆'>），单击回车，进入登录页面。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>（</span><span lang=EN-US>3</span><span style='font-family:幼圆'>）双击桌面</span><b><span
+    lang=EN-US style='color:#92D050'>ZK BioSecurity 3.0</span></b><b><span
+    style='font-family:幼圆;color:#92D050'>安防管理平台</span></b><span
+    style='font-family:幼圆'>图标，弹出系统登录页面。</span></p>
+    <p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:
+    幼圆'>进入系统时，需要进行身份验证。初次使用本系统，输入用户名</span><b><span lang=EN-US
+    style='color:#92D050'>admin</span></b><span style='font-family:幼圆'>和密码</span><b><span
+    lang=EN-US style='color:#92D050'>admin</span></b><span style='font-family:
+    幼圆'>，单击登录，或者在界面上点击【指纹登录】，然后在指纹仪上按管理员手指，进入系统主页。</span></p>
+    <p class=MsoNormal><span lang=EN-US>&nbsp;</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US style='font-size:12.0pt;color:windowtext'><img
+border=0 width=334 height=232
+src="user_help.files/image009.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：为了确保系统使用安全，登录系统后必须修改默认密码，具体修改方法见下文“重置密码”的描述。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

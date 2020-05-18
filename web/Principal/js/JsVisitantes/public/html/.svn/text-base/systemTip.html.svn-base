@@ -1,0 +1,5 @@
+<#include "/public/template/winTemplate.html">
+<#macro confirmButton></#macro>
+
+
+

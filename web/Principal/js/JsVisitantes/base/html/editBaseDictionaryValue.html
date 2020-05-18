@@ -1,0 +1,113 @@
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$("#${formId}").validate( {
+		debug : true,
+		rules : {
+			"entity.baseDictionary.id":
+			{
+				required : true
+			},
+			"entity.code" : 
+			{
+				required : true,
+				isReordNotExists : true
+			},
+			"entity.dictValue" : {
+				required : true
+			}
+		},
+		submitHandler: function(form) {
+			$("#dictCode").removeAttr("disabled");
+			<@submitHandler callBackFun="refeshEditGrid()"/>
+			
+		}
+	});
+
+	function refeshEditGrid()
+	{
+		var id = dictionaryTree.comboxObj.getActualValue();
+		leftTree.selectItem(id,true,true);
+		//mygrids["dictValueGridBox"].clearAndLoad(mygrids["dictValueGridBox"].path+"&entity.baseDictionary.id="+id+"&sortName=sort&sortOrder=asc","json");
+	}
+});
+
+jQuery.validator.addMethod("isReordNotExists", function(value, element)
+ 	 { 
+		var code = $.trim($("#dictCode").val());
+		var dictId = $("#dictionaryId").val();
+		var isNotExist = true;
+		$.ajax({
+		  	type: "post",  
+		  	async: false, 
+			dataType: "json",  
+			url: "baseDictionaryValueAction!isNotExist.action",  
+			data: {"entity.code":code,r:Math.random(),"entity.baseDictionary.id":dictId},  
+			success: function (data)
+		 	{
+				isNotExist = data;
+		 	}
+		 });
+		return isNotExist;       
+ 	}, "${common_jqMsg_remote}");
+</script>
+
+<form method="post" id="${formId}" action="baseDictionaryValueAction!editValue.action">
+	<input type="hidden" name="entity.id" value="${(entity.id)!}"/>
+	<input type="hidden" id="dictId" name="entity.dictId" value="${(entity.getBaseDictionary().getId())!}"/>
+    <table class="tableStyle">
+		<colgroup>
+		  <col width="35%"/>
+		  <col width="*"/>
+		  </colgroup>
+        <tr><th colspan="9" align="left"></th></tr>
+      	<tr id="trDictId">
+			<th><label>${base_dictionary_category}</label><span class="required">*</span></th>
+			<td>
+				<div>
+					<div id="dictionaryId" objName="entity.baseDictionary.id"  value="${(entity.baseDictionary.id)!}"  type="radio"></div>
+				</div>
+			</td>
+	    </tr>
+        <tr>
+			<th><label>${base_dictionary_keyName}</label><span class="required">*</span></th>
+        	<td>
+        		<input id="dictCode" name="entity.code" type="text" maxlength="20" value="${(entity.code)!}" <#if (entity.id)?exists >disabled="disabled"</#if> /> <span id="info"></span>
+        	</td>
+        </tr>
+        <tr>
+       		<th><label>${base_dictionary_value}</label><span class="required">*</span></th>
+       		<td>
+       			<input id="dictValue" name="entity.dictValue" type="text"  maxlength="100" value="${(entity.dictValue)!}"/>
+       		</td>
+        </tr>
+
+
+        <tr>
+        	<th><label>${common_remark}</label></th>
+        	<td>
+        		<textarea cols="25" rows="3" style="width:152px;" id="dictRemark" name="entity.remark" maxlength="50">${(entity.remark)!}</textarea>
+        	</td>
+        </tr>
+        <tr>
+        	<td colspan="9" align="left" height="10px;"></td>
+        </tr>
+       </table>
+</form>
+
+<script type="text/javascript">
+	var dictId = $('#dictId').val();
+	if (typeof(dictId) != "undefined" && dictId != '')
+	{
+		$('#trDictId').remove();
+	}
+	else
+	{
+		$("#dictionaryId").attr("value",leftTree.getSelectedItemId());
+		var dictionaryTree = loadComboxTree("dictionaryId","baseDictionaryValueAction!getSelect.action");
+	}
+</script>
+
+</#macro>

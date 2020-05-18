@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseDbBackup">
+			<!-- <field name="#checkbox" width="40" columnMinWidth="40"
+				label="headCheckBox" type="ro" align="left" valign="middle"
+				headerMenu="false" sort="na" isShow="true" content="ids" /> -->
+			<field name="id" width="100" columnMinWidth="70" label="ID"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="user.username" width="100" columnMinWidth="70"
+				label="${auth_user_username}" type="ro" align="left" valign="middle" headerMenu="true"
+				sort="server" isShow="true" />
+			<field name="startTime" width="130" columnMinWidth="70" label="${base_db_startTime}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="dbVersion" width="130" columnMinWidth="70" label="${base_db_version}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="isImme" width="160" columnMinWidth="70" label="${base_db_backup}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+				<value name="true"><![CDATA[<img src="(rootPath)/public/images/ico/icon-yes.gif"/>]]></value>
+				<value name="false"><![CDATA[<img src="(rootPath)/public/images/ico/icon-no.gif"/>]]></value>
+			</field>
+			<field name="backupResult" width="150" columnMinWidth="70"
+				label="${base_db_backupStatus}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true">
+				<value name="1"><![CDATA[<img src="(rootPath)/public/images/ico/icon-yes.gif"/>]]></value>
+				<value name="2"><![CDATA[<img src="(rootPath)/public/images/ico/icon-no.gif"/>]]></value>
+				<value name="3"><![CDATA[<font color="#E2891C">${common_op_waitProcess}</font>]]></value>
+			</field>
+			<field name="backupPath" width="180" columnMinWidth="70" label="${base_db_backupPath}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true" />
+			<field name="#operate" width="*" columnMinWidth="70" label="${common_relatedOp}"
+				type="ro" align="left" valign="middle" headerMenu="false" sort="na"
+				isShow="true">
+				<value shiro="base:BaseDbBackup:del" text="${common_op_del}">
+					<param state="true">
+						<![CDATA[<a href="javascript:delById('(rootPath)/baseDbBackupAction!del.action?ids=(id)')">${common_op_del}</a>]]>
+					</param>
+				</value>
+			</field>
+		</object>
+	</objects>
+
+	<searchs>
+		<search actionName="baseDbBackup">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140"
+					inputWidth="140"></item>
+				<item type="input" name="entity.user.username" label="${auth_user_username}" maxlength="30"></item>
+			</items>
+		</search>
+	</searchs>
+
+	<toolbars>
+		<toolbar actionName="baseDbBackup">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+			<!-- <item shiro="base:BaseDbBackup:del" id="baseDbBackupAction!del.action" type="button"
+				img="comm_del.png" imgdis="comm_del.png" text="${common_op_del} " action="manyDel"></item> -->
+			<item shiro="base:BaseDbBackup:immeBackup" id="baseDbBackupAction!immeBackup.action"
+				type="button" img="base_dbBackup.png" imgdis="base_dbBackup.png" text="${base_db_backup}"
+				action="executeOperate"></item>
+			<item shiro="base:BaseDbBackup:planBackup" id="baseDbBackupAction!getStartTime.action^0^0^555^350" type="button"
+				img="base_dbBackupPlan.png" imgdis="base_dbBackupPlan.png" text="${base_db_backupPlan} " action="openWindowByOperate"></item>
+			<!-- 数据库还原在系统托盘，初始化暂时没实现 
+			<item shiro="base:BaseDbBackup:dbRestore" id="base_opRestoreDB.action^0^0^710^365" type="button"
+				img="other.png" imgdis="other.png" text="${base_db_restoreDatabase} " action="openWindowByOperate"></item>
+			<item shiro="base:BaseDbBackup:dbInitialize" id="base_opInitDB.action^0^0^710^365" type="button"
+				img="other.png" imgdis="other.png" text="${base_db_dbInit} " action="openWindowByOperate"></item>
+			-->	
+		</toolbar>
+	</toolbars>
+</page>

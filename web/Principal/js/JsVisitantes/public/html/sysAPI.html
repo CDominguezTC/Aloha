@@ -1,0 +1,90 @@
+<style>
+	.field{
+		border: 1px solid #000;
+		height: 100%;
+		float: left;
+		width:95%;
+	}
+	.field legend{
+		border: 1px solid #000;
+	}
+	.field div{
+		margin-top: 5px;
+		border: 1px solid #000;
+	}
+	.field p{
+		color: green;
+	}
+	.field ul{
+		list-style-type: decimal;
+		list-style-position: inside;
+	}
+	.field ul li{
+		color: red;
+	}
+	.field h6{
+		background-color: #d7e3eb;
+		font-weight: bold;
+		height: 20px;
+		line-height: 20px;
+		padding-left: 5px;
+	}
+</style>
+
+<div id="mainDiv" style="overflow: auto;height: 100%">
+	<table>
+		<tr>
+			<td width="50%" valign="top">
+				<fieldset class="field">
+			    	<legend>日期格式使用</legend>
+			    	<div>说明：(long为有时分秒，如：2013-06-06 9:35:15，short为无时分秒的，如：2013-06-06,页面看不懂的，请直接看示例源码)</div>
+			    	<div>
+						<h6>gird</h6>
+						<p><span><</span>value type="date">shortDate/longDate<span><</span>/value<span>></span></p>
+					</div>
+					<div>
+						<h6>后台</h6>
+						<p>EnvironmentUtil.getSysShortDataFmt()/EnvironmentUtil.getSysLongDataFmt()</p>
+					</div>
+					<div>
+						<h6>页面js</h6>
+						<#noparse>
+						<p>日期格式：${sysShortDateFmt}/${sysLongDateFmt}</p>
+						<p>new Date().format(sysCfg.sysLongDateFmt/sysCfg.sysShortDateFmt);</p>
+						</#noparse>
+						<p>示例sysLongFormat-现在时间：<span id="nowLongDate" style="color: red"></span></p>
+						<p>示例sysShortFormat-现在时间：<span id="nowShortDate" style="color: red"></span></p>
+						<script type="text/javascript">
+							$("#nowLongDate").html(new Date().format(sysCfg.sysLongDateFmt));
+							$("#nowShortDate").html(new Date().format(sysCfg.sysShortDateFmt));
+							window.setInterval(function(){
+								$("#nowLongDate").html(new Date().format(sysCfg.sysLongDateFmt));
+								$("#nowShortDate").html(new Date().format(sysCfg.sysShortDateFmt));
+							},1000);
+						</script>
+					</div>
+					<div>
+						<h6>页面html</h6>
+						<#noparse>
+						<p>格式化显示：${(tempPerson.birthday?date)!}</p>
+						</#noparse>
+					</div>
+					<div>
+						<h6>dhtmlxCalendar时间控件</h6>
+						<p>
+							shortCalendar = createShortDhxCalendar(["hireDate", "birthday"]);<br/>
+							longCalendar = createLongDhxCalendar(["hireDate", "birthday"]);
+						</p>
+						<p>示例dhtmlxShortDate：<input id="dhtmlxShortDate" type="text"/></p>
+						<p>示例dhtmlxLongDate：<input id="dhtmlxLongDate" type="text"/></p>
+						<script type="text/javascript">
+							var shortCalendar = createShortDhxCalendar("dhtmlxShortDate");
+							$("#dhtmlxLongDate").val(new Date().format(sysCfg.sysLongDateFmt));
+							var longCalendar = createLongDhxCalendar("dhtmlxLongDate");
+						</script>
+					</div>
+			    </fieldset>
+			</td>
+		</tr>
+	</table>
+</div>    

@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" lang="${(currentLanguage == 'zh_CN')?string('zh',currentLanguage)}" xml:lang="${(currentLanguage == 'zh_CN')?string('zh',currentLanguage)}" >
+	<head>
+  		<title>${sysName}</title>
+  		<!-- 不从缓存中加载，每次必须加载国际化 -->
+		<meta http-equiv="Pragma" content="no-cache" ></meta>
+		<meta http-equiv="Cache-Control" content="no-cache"></meta>
+		<meta http-equiv="Expires" content="0"></meta>
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge" ></meta>
+		<meta http-equiv="keywords" content="keyword1,keyword2,keyword3"></meta>
+		<meta http-equiv="description" content="this is my page"></meta>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"></meta>
+		<!-- 30分钟自动跳转到登录页面 
+		<meta http-equiv="refresh" content="1800;url=http://www.baidu.com"></meta>
+		 -->
+		<!--解决IE8链接下划线贴得太近-->
+		<meta name="robots" content="NONE,NOARCHIVE" />
+		<#assign leftRTL = "left">
+		<#assign rightRTL = "right">
+		<#if enableRTL?? && enableRTL=="true">
+		<!-- 定义全局对齐方式变量(针对阿拉伯页面) -->
+		<#assign leftRTL = "right">
+		<#assign rightRTL = "left">
+		</#if>
+		<#if expandContent?exists>
+			<@expandContent/>
+		<#else>
+			<#include "/public/template/publicAllStyle.html">
+		</#if>
+		
+		<#global dhxSkin = "dhx_web"><!-- skyblue -->
+		<#assign cookies = request.getCookies()>
+		<#list cookies as cookie>
+			<#if cookie.name = "dhtmlx.skin">
+				<#global dhxSkin = cookie.value><!-- skyblue -->
+			</#if>
+		</#list> 
+		
+		<link rel="stylesheet" type="text/css" href="${base}/public/controls/dhtmlx/skins/${dhxSkin?substring(4)}/dhtmlx.css?un=${sysTimeMillis}"/>
+		<link rel="stylesheet" type="text/css" href="${base}/public/controls/dhtmlx/skins/subMenu/dhtmlx.css?un=${sysTimeMillis}"/>
+        <script src="${base}/public/controls/dhtmlx/codebase/dhtmlx.js"></script>
+		
+		<!-- 封装调用dhtmlxGrid的js 不适用datalist的不需要加载该脚本（上同），需处理--------- -->	
+		<script src="public_commonConfig.js.action"></script>
+		<script src="public_dhtmlxComboxTree.js.action"></script>
+		<script src="public_dhtmlxPaging.js.action"></script>
+		<script src="public_dhtmlxCommon.js.action"></script>
+		<script src="public_commonValidate.js.action"></script>
+		<script src="public_search.js.action?un=${sysTimeMillis}"></script>
+		<script src="public_init.js.action"></script>
+		
+				
+		<#if loadJSAndCSS?exists >
+			<!-- 加载模块中要导入的css和js -->
+			<@loadJSAndCSS/>
+		</#if>
+		<script type="text/javascript">
+			dhtmlx.skin = "${dhxSkin}";
+			dhtmlx.version = "4.0";
+			sysCfg.dhxSkin = "${dhxSkin}";
+		</script>
+		<style type="text/css">
+			.title{
+				background-color: #a4bed4;
+				height: 20px;
+				line-height: 20px;
+				color: #FFF;
+				border-bottom: 2px solid #8ba1b3;
+				font-weight: bold;
+				text-align:left;
+			}
+			<#if baseMainContent?exists>
+				html,body {
+					MIN-WIDTH: 400px !important;
+					MIN-height: 200px !important;
+				}
+			</#if>
+		</style>
+  	</head>
+	<body style="">
+		<#if extendMainContent?exists>
+			<@extendMainContent/>
+		</#if>
+		
+		<#if baseMainContent?exists>
+			<@baseMainContent/>
+		<#else>
+			<#include "/public/template/head.html">
+			<#include "/public/template/left.html">
+			<#include "/public/template/right.html">
+			<script type="text/javascript">
+			
+				isDoIEBrowserPrompt = false;
+				doIEBrowserPrompt();
+				init();//初始化页面。
+				
+			</script>
+		</#if>
+		
+		<#noparse>
+		<!-- 
+		<#include "/public/template/bottom.html">
+		 -->
+		</#noparse>
+		
+		<#if extendHeadCssAndJs?exists >
+			<!-- 执行自定义的脚本 -->
+			<@extendHeadCssAndJs/>
+		</#if>
+	</body>
+
+</html>

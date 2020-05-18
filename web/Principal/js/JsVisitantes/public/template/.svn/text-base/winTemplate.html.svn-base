@@ -1,0 +1,52 @@
+<!--此页面为弹窗模版，主要是对下方的操作按钮进行一个封装使用
+（说明：如果页面是进行弹窗，但没有这种按钮操作，无需继承该模版，
+只需调用createWindow或者openWindowByOperate方法） -->
+<!-- 定义确定按钮文本 -->
+<#if !okButtonText??>
+	<#assign okButtonText = "${common_edit_ok}">
+</#if>
+
+<!-- 定义取消按钮文本 -->
+<#if !closeButtonText??>
+	<#assign closeButtonText = "${common_edit_cancel}">
+</#if>
+<table width="100%" height="100%">
+	<tr valign="top">
+		<td class="content_td">
+			<div class="content_div" style="height: 50px;overflow: auto;display: none">
+				<span></span>
+				<!-- content begin-->
+				<#if winContent?exists>
+					<@winContent/>
+				<#else>
+					<!-- <center>请填充内容</center> -->
+				</#if>
+				<!-- content end-->
+			</div>
+			<script type="text/javascript">
+				$(".dhxwin_active .content_div").height($(".dhxwin_active .content_td").height());
+				$(".dhxwin_active .content_div").show();
+			</script>
+		</td>
+	</tr>
+	<tr valign="middle" height="46px">
+		<td >
+			<!-- editAfter begin-->
+			<div class="bottomDiv bottomDivR">
+				<#if operateButton?exists>
+					<@operateButton/>
+				<#elseif confirmButton?exists>
+						<@confirmButton/>
+						<button class='button-form' onclick="closeWindow()" id="closeButton">${closeButtonText}</button>
+				<#elseif confirmFunction?exists>
+					<button class='button-form' onclick="<@confirmFunction/>" id="confirmButton">${okButtonText}</button>
+					<button class='button-form' onclick="closeWindow()" id="closeButton">${closeButtonText}</button>
+				<#else>
+					<button class='button-form' onclick="confirmFun()" id="confirmButton">${okButtonText}</button>
+					<button class='button-form' onclick="closeWindow()" id="closeButton">${closeButtonText}</button>
+				</#if>
+			</div>
+			<!-- editAfter end-->
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,157 @@
+<#include "/public/template/listTemplate.html">
+<#macro mainContent>
+<@searchContent gridName="gridbox" actionName="baseDictionaryValue" searchConfigXML="BaseDictionary"/>
+<div id="operate" style="clear: both;"></div>
+<!-- 获取操作按钮的js控制 -->
+<script type="text/javascript">
+	createToolbar('${base}/' + pageConfigXML);
+</script>
+<div id="dictContent" style="position: relative;width 100%;height: 100%;overflow: hidden;"></div>
+<div id="dictRight" style="width: 100%;height: 100%;">
+	<div id="gridbox"></div>
+	<div id="gridbox_paging" class="dhxGridBoxPaging"></div>
+</div>
+
+<script type="text/javascript">
+	resizeGird("gridbox");
+/*     var dictId = 0;
+     //加载列表
+    var tree = new dhtmlXTreeObject("winVP", "100%", "100%", 0);
+    tree.setSkin(sysCfg.dhxSkin || "dhx_skyblue");
+    tree.setImagePath(sysCfg.treeImgPath);
+    tree.setDataMode("json")
+    var treeUrl = "baseDictionaryAction!getDictTreeJson.action";
+    tree.setXMLAutoLoading(treeUrl);
+    tree.loadJSON(treeUrl, function(){
+    	if(tree.getItemIdByIndex(0,0) != null)//判断该id是否存在tree中
+		{
+			tree.selectItem(tree.getItemIdByIndex(0,0),false,false);
+			dictId = tree.getItemIdByIndex(0,0);
+		}
+		pathSetAndReloadGrid("gridbox", "entity.baseDictionary.id", dictId < 0 ? 0 : dictId);
+    });
+ */
+    
+    
+    var layoutName = "dictContent";
+	resizeLayout(layoutName);
+	myLayouts[layoutName] = new dhtmlXLayoutObject(layoutName, "2U", sysCfg.dhxSkin);
+	setLayoutResize(myLayouts[layoutName]);
+	myLayouts[layoutName].cells("a").hideHeader();
+	myLayouts[layoutName].cells("b").hideHeader();
+	myLayouts[layoutName].cells("a").setWidth(200);
+	//myLayouts[layoutName].cells("a").setHeight(10);
+	myLayouts[layoutName].cells("b").attachObject("dictRight");
+	setLayoutResize(myLayouts[layoutName]);
+	
+	var leftTree = myLayouts[layoutName].cells("a").attachTree();
+	var dictId = 0;
+	leftTree.setImagePath(sysCfg.treeImgPath);
+	leftTree.enableTreeImages(true);
+	leftTree.enableTreeLines(true);
+	leftTree.enableTextSigns(false);
+	leftTree.setOnLoadingEnd(function(){
+		if(leftTree.getItemIdByIndex(0,0) != null)//判断该id是否存在tree中
+		{
+			leftTree.selectItem(leftTree.getItemIdByIndex(0,0),false,false);
+			dictId = leftTree.getItemIdByIndex(0,0);
+		}
+		//pathSetAndReloadGrid("gridbox", "entity.baseDictionary.id", dictId < 0 ? 0 : dictId);
+   	});
+	leftTree.loadJSON("baseDictionaryAction!getDictTreeJson.action");
+	//点击 字典组列表行事件
+	leftTree.attachEvent("onClick", function(id) {
+		pathSetAndReloadGrid("gridbox", "entity.baseDictionary.id", id < 0 ? 0 : id);
+		
+		return true;
+	});
+    
+	//加载列表
+	loadGrid("base", "baseDictionaryValue", "gridbox",null,null,null,null,"&dictId="+dictId,"BaseDictionary");
+	
+	/* //请求路径
+	function pathSetAndReloadGrid(id)
+	{
+		if(id <= 0)
+		{
+			mygrids["gridbox"].path = mygrids["gridbox"].path.replace(/\&entity.baseDictionary.id=\d+\b/, "");
+		}
+		else if(mygrids["gridbox"].path.indexOf("&entity.baseDictionary.id=") < 0)
+		{
+			mygrids["gridbox"].path += "&entity.baseDictionary.id="+id+"&sortName=sort&sortOrder=asc"
+		}
+		else
+		{
+			mygrids["gridbox"].path = mygrids["gridbox"].path.replace(/\&entity.baseDictionary.id=\d+\b/, "&entity.baseDictionary.id="+id);
+		}
+		reloadGrid("gridbox");
+		dictId = id;
+	} */
+	
+	//上移
+	function upSortDictionary(path)
+	{
+		path = path+"&sortName=sort&sortOrder=asc";
+		$.ajax( {
+			type: "get",
+			async: false,
+			url: path,
+			success: function(textStatus) 
+			{
+				if(textStatus)
+				{
+					var id = leftTree.getSelectedItemId();
+					pathSetAndReloadGrid("gridbox", "entity.baseDictionary.id", id < 0 ? 0 : id);
+				}
+			}
+			});
+		
+	}
+	//下移
+	function downSortDictionary(path)
+	{
+		path = path+"&sortName=sort&sortOrder=asc";
+		$.ajax( {
+			type: "get",
+			async: false,
+			dataType: "json",
+			url: path,
+			success: function(textStatus) 
+			{
+				if(textStatus)
+				{
+					var id = leftTree.getSelectedItemId();
+					pathSetAndReloadGrid("gridbox", "entity.baseDictionary.id", id < 0 ? 0 : id);
+				}
+			}
+			});
+	}
+	
+	function reloadTree()
+	{
+		leftTree.refreshItem(0);
+	}
+	
+
+	//编辑 字典分类
+	function editGroup(path)
+	{
+	   if(leftTree.getSelectedItemId()>0)
+	   {
+		   path = path.replace("(id)",leftTree.getSelectedItemId());
+		   createWindow(path);
+	   }
+	   else
+	   {
+			messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_dictionary_class}"});
+	   }
+	}
+	
+	function refeshGrid()
+	{
+		//var id = tree.getSelectedItemId();
+		//tree.selectItem(id,true,true);
+		reloadGrid("gridbox");
+	}
+</script>
+</#macro>

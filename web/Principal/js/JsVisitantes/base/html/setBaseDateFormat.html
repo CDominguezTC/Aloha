@@ -1,0 +1,230 @@
+<#include "/public/template/setTemplate.html"> 
+<@shiro.hasPermission name="base:BaseDateFormat:edit" text="${common_op_edit}">
+<input type="hidden" id="hasPermission"/>
+</@shiro.hasPermission>
+<#macro setContent>
+<script type="text/javascript">
+	$().ready(function(){
+		$("#${formId}").validate( {
+			debug : true,
+			rules : {
+				"sysDateFmt" : {
+					required : true
+				},
+				"dateSplit" : {
+					required : true
+				},
+				"sysTimeFmt" : {
+					required : true
+				},
+				"timeSplit" : {
+					required : true
+				}
+			}
+		});
+	});
+</script>
+
+<form method="post" id="${formId}" action="baseDateFormatAction!edit.action">
+	<div style="padding: 20px;">
+		<fieldset>
+			<legend>${common_date}</legend>
+			<table class="tableStyle">
+				<colgroup>
+			    	<col width="15%"/>
+			    	<col width="*"/>
+				</colgroup>
+				<tr>
+					<td>
+						${base_datetime_dateExample}
+					</td>
+					<td>
+						<input id="dateCase" value="${sysTime?string(sysDateFmt)}" readonly="readonly" disabled="disabled"/>
+					</td>
+				</tr>
+				<tr><td colspan="2" style="background-color: #FFF"></td></tr>
+				<tr>
+					<td>
+						${base_datetime_dateFormat}<span class="required">*</span>
+					</td>
+					<td>
+						<input type="hidden" id="dhxDateFmt" name="dhxDateFmt" value="${dhxDateFmt!}"/>
+						<select id="sysDateFmt" name="sysDateFmt">
+			            </select>
+						<script type="text/javascript">
+							var sysDateFmtCombo = dhtmlXComboFromSelect("sysDateFmt");
+							//sysDateFmtCombo.enableOptionAutoHeight(true,200);
+							//sysDateFmtCombo.enableOptionAutoWidth(true);
+							function loadDateFormat(dateSplit,value)
+							{
+								var dateFormatArray = ["yyyy-MM-dd","yyyy-M-d","MM-dd-yyyy","M-d-yyyy","dd-MM-yyyy","d-M-yyyy"];
+								//loadSelected("sysDateFmt","${sysDateFmt!}");
+								sysDateFmtCombo.readonly(1);
+								var dateOptions = new Array();
+								var dateOption;
+								for(var i=0;i<dateFormatArray.length;i++)
+								{
+									dateOption = new Array();
+									dateOption.push(dateFormatArray[i].replace(/(-)/g,dateSplit));
+									dateOption.push(dateFormatArray[i].replace(/(-)/g,dateSplit));
+									dateOptions.push(dateOption);
+								}
+								sysDateFmtCombo.addOption(dateOptions);
+								sysDateFmtCombo.setComboValue(value);
+							}
+							var dateSplit= "-";
+							var splitArray = ["-","/","."];
+							for(var i=0;i<splitArray.length;i++){
+								if("${sysDateFmt!}".indexOf(splitArray[i])>0){
+									dateSplit = splitArray[i];
+								}
+							}
+							loadDateFormat(dateSplit,"${sysDateFmt!}");
+							
+							sysDateFmtCombo.attachEvent("onChange", function(){
+								var dateFormats = (sysDateFmtCombo.getSelectedValue()).split(dateSplitCombo.getActualValue());
+								var dhxDateFmt="";
+								for(var n=0;n<dateFormats.length;n++){
+									switch (dateFormats[n]) {
+										case "yyyy":
+											dhxDateFmt+="%Y";
+											break;
+										case "MM":
+											dhxDateFmt+="%m";
+											break;
+										case "M":
+											dhxDateFmt+="%n";
+											break;
+										case "dd":
+											dhxDateFmt+="%d";
+											break;
+										case "d":
+											dhxDateFmt+="%j";
+											break;
+									}
+									dhxDateFmt += dateSplitCombo.getActualValue();
+								}
+								dhxDateFmt = dhxDateFmt.substring(0,dhxDateFmt.length-1);
+								$("#dhxDateFmt").val(dhxDateFmt);
+								$("#dateCase").val(new Date().format(sysDateFmtCombo.getSelectedValue()));
+							});
+						</script>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						${base_datetime_dateSeparator}<span class="required">*</span>
+					</td>
+					<td>
+						<input type="hidden" id="oldDateSplit" value="-"/>
+						<select id="dateSplit" style="width:80px;" name="dateSplit">
+			                <option value="-">-</option>
+			                <option value="/">/</option>
+			                <option value=".">.</option>
+			            </select>
+						<script type="text/javascript">
+							var dateSplitCombo = dhtmlXComboFromSelect("dateSplit");
+							//dateSplitCombo.enableOptionAutoHeight(true,200);
+							//dateSplitCombo.enableOptionAutoHeight(true,100);
+							dateSplitCombo.readonly(1);
+							dateSplitCombo.setComboValue(dateSplit);
+							$("#oldDateSplit").val(dateSplit);
+							dateSplitCombo.attachEvent("onChange", function(){
+								sysDateFmtCombo.clearAll();
+								var reg=new RegExp("\\"+$('#oldDateSplit').val(),"g");
+								var sdateSplit = dateSplitCombo.getSelectedValue();
+								var value = sysDateFmtCombo.getSelectedValue();
+								value = value.replace(reg,sdateSplit);
+								loadDateFormat(sdateSplit,value);
+								$("#oldDateSplit").val(sdateSplit);
+							});
+						</script>
+					</td>
+				</tr>
+			</table>
+		</fieldset>
+		<br/>
+		<fieldset>
+			<legend>${common_time}</legend>
+			<table class="tableStyle">
+				<colgroup>
+			    	<col width="15%"/>
+			    	<col width="*"/>
+				</colgroup>
+				<tr>
+					<td>
+						${base_datetime_timeExample}
+					</td>
+					<td>
+						<input id="timeCase" value="${sysTime?string(sysTimeFmt)}" readonly="readonly" disabled="disabled"/>
+					</td>
+				</tr>
+				<tr><td colspan="2" style="background-color: #FFF"></td></tr>
+				<tr>
+					<td>
+						${base_datetime_timeFormat}<span class="required">*</span>
+					</td>
+					<td>
+						<input type="hidden" id="dhxTimeFmt" name="dhxTimeFmt" value="${dhxTimeFmt!}"/>
+						<select id="sysTimeFmt" name="sysTimeFmt">
+			                <option value="H:mm:ss" selected>H:mm:ss</option>
+			                <option value="HH:mm:ss">HH:mm:ss</option>
+			            </select>
+						<script type="text/javascript">
+							loadSelected("sysTimeFmt","${sysTimeFmt!}");
+							var timeFormatCombo = dhtmlXComboFromSelect("sysTimeFmt");
+							var timeSplit = ":";
+							//timeFormatCombo.enableOptionAutoHeight(true,200);
+							//timeFormatCombo.setOptionHeight(43);
+							timeFormatCombo.readonly(1);
+							timeFormatCombo.attachEvent("onChange", function(){
+								//%Y-%m-%d %H:%i
+								var timeFormats = (timeFormatCombo.getSelectedValue()).split(timeSplit);
+								var dhxTimeFmt="";
+								for(var n=0;n<timeFormats.length;n++){
+									switch (timeFormats[n]) {
+										case "HH":
+											dhxTimeFmt+="%H";
+											break;
+										case "H":
+											dhxTimeFmt+="%h";
+											break;
+										case "mm":
+											dhxTimeFmt+="%i";
+											break;
+										case "ss":
+											dhxTimeFmt+="%s";
+											break;
+									}
+									dhxTimeFmt += timeSplit;
+								}
+								dhxTimeFmt = dhxTimeFmt.substring(0,dhxTimeFmt.length-1);
+								$("#dhxTimeFmt").val(dhxTimeFmt);
+								//给示例时间进行格式化
+								$("#timeCase").val(new Date().format(timeFormatCombo.getSelectedValue()));
+							});
+						</script>
+					</td>
+				</tr>
+				<!-- 
+				<tr>
+					<td>
+						${base_datetime_timeSeparator}<span class="required">*</span>
+					</td>
+					<td>
+						<select id="timeSplit" style="width:80px;height: 25px" disabled="disabled" name="timeSplit">
+			                <option value=":" selected>:</option>
+			            </select>
+						<script type="text/javascript">
+							var size = $("#timeSplit option").length;
+							var timeSplitCombo = dhtmlXComboFromSelect("timeSplit");
+							timeSplitCombo.readonly(1);
+						</script>
+					</td>
+				</tr>
+				 -->
+			</table>
+		</fieldset>
+	</div>
+</form>
+</#macro>

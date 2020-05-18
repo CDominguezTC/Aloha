@@ -1,0 +1,60 @@
+<#assign singleMode = "true">
+<#include "/public/template/opTemplate.html">
+<#macro opContent>
+<style type="text/css">
+	#getTpyeUl li{
+		width: 150px;
+		float: left;
+	}
+</style>
+<form action="processAction!testDealData.action" id="opForm" method="post" >
+	<input type="hidden" name="ids" value=""/>
+	<div style="height: auto;">
+	<ul id="getTpyeUl">
+		<li><input type="radio" name="test" checked="checked"/>${common_dev_getAllTrans}</li>
+		<li><input type="radio" name="test"/>${common_dev_getNewTrans}</li>
+	</ul>
+	</div>
+</form>	
+<script>
+	//请注意最后一句中的fun();这个确定触发的方法名，可自定义
+	function doConfirm(){
+		var ids = getGridCheckboxValue("ids");
+		var clientId = new Date().getTime()  + "_" +  Math.round(Math.random() * 10000);
+		var fromAction = $("#opForm").attr("action");
+		/* fromAction += (fromAction.indexOf("?") > 0 ? "&" : "?") + "clientId=" + clientId; */
+		$("#opForm").attr("action", fromAction);
+		//这里是使用异步
+		$.ajaxSetup( {
+			async : true,
+			dataType : 'json'
+		});
+		//操作处理线程
+		var clientId = new Date().getTime()  + "_" +  Math.round(Math.random() * 10000);
+		$('#opForm').ajaxSubmit({
+			async : true,
+			dataType : 'json',
+			data: {
+				clientId: clientId
+			},
+			success: function(data)
+			{	
+				if (!data) 
+				{
+					alert(data);
+					openMessage(msgType.error);
+				} 
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown)
+			{
+				messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${common_prompt_serverError}"});
+			}
+		});
+		beginProgress("processAction!getProcess.action?clientId=" + clientId, "singleMode");//监控进度线程
+	}
+</script>
+<#assign confirmButtonText = "${common_dev_synchronize}">
+<#assign confirmFunction = "doConfirm()">
+</#macro>
+
+

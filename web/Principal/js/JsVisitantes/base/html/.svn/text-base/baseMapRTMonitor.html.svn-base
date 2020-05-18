@@ -1,0 +1,406 @@
+<div>
+	<div id="id_map_${(tempMap.id)!}"  class="map_div"  style="overflow: auto; width:100%; height: 100%; position: absolute;">
+	<input type="hidden" value="0" id="reloadFlag"><!-- 用于标识右侧的地图图片是否重新加载 -->
+		<#assign doorIds = "">
+		<#list (tempMap.mapPosList) as item>
+			<#if item.entityType == "AccDoor">
+				<div id="item_${item.id}" align="center" style="float: left; position: absolute;left:${(item.leftX)!}px; top:${(item.topY)!}px; width:${(item.width)!}px" 
+					entity_type="${(item.entityType)!}" >
+					<div id="acc_door_${item.id}">
+						<img id="${entityList[item_index].id}_image" value="${entityList[item_index].id}" data="${item.id}" class="can_drag poPupImage ${(item.entityType)!}" onmousedown="return false;"
+							style="width:${(item.width)!}px;cursor: move;" src="${base}/acc/images/doorState/icon/door_default.jpg" >
+						<div class="poPupInfo" style="position: fixed;z-index: 99;visibility: hidden;" align="left">
+							<p class="poPupInfo_title_p">${common_status}</p>
+							<table class="poPupInfo_text_table">
+								<#assign fields = [
+													["${common_dev_entity}", entityList[item_index].id + "_devAlias", entityList[item_index].device.alias], 
+													["${common_dev_sn}", entityList[item_index].id + "_devSn", entityList[item_index].device.sn],
+													["${common_number}", entityList[item_index].id + "_no", entityList[item_index].doorNo],
+													["${acc_door_sensor}", entityList[item_index].id + "_sensor", "${common_paging_loading}"],
+													["${acc_door_relay}", entityList[item_index].id + "_relay", "${common_paging_loading}"],
+													["${common_alarm}", entityList[item_index].id + "_alarm", "${common_paging_loading}"]
+													]>
+								<#list fields as field>
+									<tr>
+										<td>${field[0]}:</td><td id="${field[1]}">${field[2]}</td>
+									</tr>
+								</#list>
+							</table>
+							<div id="${entityList[item_index].id}_opDisplay">
+								<ul class="poPupInfo_op_ul">
+									<@shiro.hasPermission name="acc:AccRTMonitor:openDoor" text="${acc_rtMonitor_openDoor}">
+										<li onclick="remoteOperate('accRTMonitorAction!openDoor.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${acc_eventNo_8}')" title="${acc_eventNo_8}">${acc_eventNo_8}</li>
+									</@shiro.hasPermission>
+									<@shiro.hasPermission name="acc:AccRTMonitor:closeDoor" text="${acc_rtMonitor_closeDoor}">
+										<li onclick="remoteOperate('accRTMonitorAction!closeDoor.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${acc_eventNo_9}')" title="${acc_eventNo_9}">${acc_eventNo_9}</li>
+									</@shiro.hasPermission>
+									<@shiro.hasPermission name="acc:AccRTMonitor:cancelAlarm" text="${acc_eventNo_7}">
+										<li onclick="remoteOperate('accRTMonitorAction!cancelAlarm.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${acc_eventNo_7}')" title="${acc_eventNo_7}">${acc_eventNo_7}</li>
+									</@shiro.hasPermission>
+									<@shiro.hasPermission name="acc:AccRTMonitor:normalOpenDoor" text="${acc_rtMonitor_remoteNormalOpen}">
+										<li onclick="remoteOperate('accRTMonitorAction!normalOpenDoor.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${acc_rtMonitor_remoteNormalOpen}')" title="${acc_rtMonitor_remoteNormalOpen}">${acc_rtMonitor_remoteNormalOpen}</li>
+									</@shiro.hasPermission>
+									<@shiro.hasPermission name="acc:AccRTMonitor:enableNormalOpenDoor" text="${common_rtMonitor_enableIntradayTZ}">
+										<li onclick="remoteOperate('accRTMonitorAction!enableNormalOpenDoor.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${common_rtMonitor_enableIntradayTZ}')" title="${common_rtMonitor_enableIntradayTZ}">${common_rtMonitor_enableIntradayTZ}</li>
+									</@shiro.hasPermission>
+									<@shiro.hasPermission name="acc:AccRTMonitor:disableNormalOpenDoor" text="${common_rtMonitor_disableIntradayTZ}">
+										<li onclick="remoteOperate('accRTMonitorAction!disableNormalOpenDoor.action', '${entityList[item_index].id}', '${entityList[item_index].name}', '${common_rtMonitor_disableIntradayTZ}')" title="${common_rtMonitor_disableIntradayTZ}">${common_rtMonitor_disableIntradayTZ}</li>
+									</@shiro.hasPermission>
+								</ul>
+							</div>
+							<div>
+							  <@shiro.hasPermission name="acc:AccRTMonitor:transactionTodayHappen" text="${acc_doorEventLatestHappen}">
+								  <ul class="poPupInfo_op_ul" style="border-top: none; !important">
+										<li onclick="openWindow('accTransactionAction!getTransactionsTodayLast.action?eventPointType=0&eventPointId=${entityList[item_index].id}^0^0^1000^400^${acc_doorEventLatestHappen}')" title="${acc_doorEventLatestHappen}">${acc_doorEventLatestHappen}</li>
+	                               </ul>
+							   </@shiro.hasPermission>
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;">
+						<p id="${item.id}_name" style="position: absolute;width:200px;margin-left:-80px;text-align: center;" 
+							title="${entityList[item_index].name}">${entityList[item_index].name}</p>
+					</div>
+				</div>
+				<#if item_index == 0>
+					<#assign doorIds = item.entityId>
+				<#else>
+					<#assign doorIds = doorIds + "," + item.entityId>
+				</#if>
+			</#if>
+			<#if item.entityType == "VidChannel">
+				<div id="item_${item.id}" align="center" style="float: left; position: absolute;left:${(item.leftX)!}px; top:${(item.topY)!}px; width:${(item.width)!}px;" 
+					entity_type="${(item.entityType)!}" >
+					<div>
+						<img id="${entityList[item_index].id}_${(item.entityType)!}" value="${entityList[item_index].id}" data="${item.id}" class="can_drag poPupImage ${(item.entityType)!}" onmousedown="return false;"
+							style="width:${(item.width)!}px;cursor: move;" src="${base}/vid/images/vid_map_channel.png"
+							ondblclick="vidPreview(this.getAttribute('value'), '${entityList[item_index].name}');">
+					</div>
+					<div style="position: relative;">
+						<p id="${item.id}_name" style="position: absolute;width:200px;margin-left:-80px;text-align: center;" 
+							title="${entityList[item_index].name}">${entityList[item_index].name}</p>
+					</div>
+				</div>
+			</#if>
+		</#list>
+		<input id="doorIds" type="hidden" value="${doorIds}"/>
+		<img class="map" src="${(tempMap.mapPath)!}" onerror="this.src='/base/images/base_notFoundMapPic.jpg'" 
+			style="width:${(tempMap.width)!}px;height:${(tempMap.height)!}px"/>
+	</div>
+</div>
+<div class="contextMenu displayN" id="del_icon_menu">
+    <ul>
+        <li id="del_icon" class="door_ops"><img src="/public/images/dhtmlxToolbarImgs/comm_del.png" />${common_op_del}</li>
+    </ul>
+</div>
+<script>
+	//右键菜单删除图标--start
+	<@shiro.hasPermission name="acc:BaseMap:delEntity" text="${base_map_delEntity}">
+	$(".poPupImage").contextMenu('del_icon_menu',
+	{
+	    menuStyle: {
+	        width: '65px'
+	    },
+	    bindings:
+	    {
+	        'del_icon': function(obj)
+	        {
+	        	var itemId = $(obj).attr("data");
+	        	var path = "baseMapAction!delEntity.action?logMethod=delEntity&id="+itemId;
+	        	$.get(path, function(result){
+	    			dealRetResult(result,function(){
+	    				$(obj).parent().parent().remove();
+	    				updateDoorIds();
+	    			});
+	    		}, "json");
+	        }
+	    }
+	});
+	</@shiro.hasPermission>
+	//右键菜单删除图标--end
+	
+	var isMove = false ;
+	var obj;
+	$(".poPupImage").mousedown(function (e){
+		isMove = true;
+		$(this).next("div.poPupInfo").mouseout();
+		obj = document.getElementById("item_" + $(this).attr("data").split("_")[0]);
+        var abs_x = e.pageX - parseInt($(obj).css("left"));
+        var abs_y = e.pageY - parseInt($(obj).css("top"));
+        $(document).mousemove(function (e){
+			if (isMove)
+            {
+                $(obj).css({
+                	'left':e.pageX - abs_x < 5 ? 5 : e.pageX - abs_x
+                	, 
+                	'top':e.pageY - abs_y < 5 ? 5 : e.pageY - abs_y
+                });
+            }
+        });
+    }).mouseup(function (){
+    	isMove = false;
+     	$(this).next("div.poPupInfo").mouseover();
+    });
+	
+	$("div[id^='acc_door_']").mouseover(function(){//显示浮动信息
+		if(!isMove)
+		{
+			var offsetTop = $(this).parent().offset().top + $(this).height()/2 - $(document).scrollTop();
+			if($(document.body).height() - offsetTop < $(this).children("div").height())//判断距离底部的距离是否小于提示框的高度
+			{
+				offsetTop = $(this).parent().offset().top + ($(this).children("img").height()/2) - ($(this).children("div").height());
+			}
+			
+			var offsetLeft = $(this).parent().offset().left + $(this).width()/2 - $(document).scrollLeft();
+			if($(window).width() - offsetLeft < $(this).children("div").width())//判断距离底部的距离是否小于提示框的高度
+			{
+				offsetLeft = $(this).parent().offset().left + ($(this).children("img").width()/2) - $(this).children("div").width();
+			}
+			$(this).children(".poPupInfo").css("top", offsetTop);
+			$(this).children(".poPupInfo").css("left", offsetLeft);
+			$(this).children(".poPupInfo").css("visibility","visible");
+			
+		}
+	}).mouseout(function(){//隐藏浮动信息
+		$(this).children(".poPupInfo").css("visibility","hidden");
+	});
+	
+	
+	var doorIds = "";
+	function updateDoorIds()
+	{
+		doorIds = "";
+		$(".AccDoor").each(function(i){
+			var doorId = this.id.split("_")[0];
+			if(i == 0)
+			{
+				doorIds = doorId;
+			}
+			else
+			{
+				doorIds += "," + this.id.split("_")[0];
+			}
+		});
+	}
+	updateDoorIds();
+	
+	var jqAjax;
+	var devStateTimeout;
+	
+	window.clearTimeout(devStateTimeout);
+	var clientId = "map" + new Date().getTime();//一个用户可以开多个页面，该值用来保存当前页面创建时间，及初始化状态的时间。
+	function loadDevStateData()
+	{
+		try
+		{
+			window.clearTimeout(devStateTimeout);
+			if(jqAjax)
+    		{
+    			jqAjax.abort();//中断请求
+    		}
+			if(doorIds == "")
+			{
+				return;
+			}
+			jqAjax = $.ajax({
+			    type: "POST",
+			    url: sysCfg.rootPath + "/accMapAction!getDevStateData.action",
+			    dataType: "json",
+			    data: {
+			    	clientId: clientId,
+			    	doorIds: doorIds
+			    },
+			    async: true,
+			    success: function(data)
+			    {
+					//console.log(rtData);
+					if(data != null)
+					{
+						//console.log(rtData);
+						dealDevStateData(data);//回调函数,获取门磁等状态
+					}
+					devStateTimeout = window.setTimeout("loadDevStateData()" , 1500);
+			    },
+			    error:function (XMLHttpRequest, textStatus, errorThrown)
+			    {
+		 			window.clearTimeout(devStateTimeout);
+		 			devStateTimeout = window.setTimeout("loadDevStateData()" , 1500);
+		 		}
+			});
+		}
+		catch(err) 
+		{
+			console.log("Error name: " + err.name + "");
+			console.log("Error message: " + err.message);
+			window.clearTimeout(devStateTimeout);
+ 			devStateTimeout = window.setTimeout("loadDevStateData()" , 1500);
+		}
+	}
+	
+	//处理设备状态数据
+	function dealDevStateData(data)
+	{
+		var doorStates = data.doorStates;
+		for(var i = 0; i < doorStates.length; i++)
+		{
+			var id = doorStates[i].id;
+			for(var key in doorStates[i])
+			{
+				if(document.getElementById(id + "_" + key))
+				{
+					var $obj = $("#" + id + "_" + key);
+					if($obj.is("img"))
+					{
+						$obj.attr("src", "${base}/acc/images/doorState/icon/door_" + doorStates[i][key] + ".png");
+					}
+					else if($obj.is("td"))
+					{
+						$obj.html(doorStates[i][key]);
+					}
+					else if($obj.is("div"))
+					{
+						$obj.css("display", doorStates[i][key]);
+					}
+				}
+			}
+		}
+	}
+	
+	loadDevStateData();
+	
+	function remoteOperate(itemId, id, name, titleText)
+	{
+		var data = {title: titleText, id: id, opObj: name};
+		
+		//用户验证
+    	verifyLoginPwd(function(data){
+    		function dealRetFun(result)//处理操作结果函数
+    		{
+    			if(result[sysCfg.ret] == sysCfg.success)
+				{
+					closeMessage();
+					$.jBox.close();
+					var text = "<div align='center' style='padding-left: 5px;border: 0px solid #a4bed4;'>" +
+									"<div>" + result[sysCfg.msg] + "</div>" +
+									"<div style='margin-top: 3px;max-height: 250px;overflow: auto;'>" + result[sysCfg.data] + "</div>" +
+								"</div>";
+					messageBox({messageType:"alert",text: text});
+				}
+				else
+				{
+					openMessage(msgType.error);
+				}
+    		}
+    		window.setTimeout(function(){
+	    		if(itemId.indexOf("open") != -1)
+	    		{
+	    			var html = "<div style='padding:10px;margin-left:30px;'>" +
+	    							"<div>${common_target}:&nbsp;&nbsp;" + data.opObj + "</div>" +
+		    						"<form id='openDoorForm' action='" + itemId + "' method='post'>" +
+		    							"${common_open}:&nbsp;&nbsp;<input type='text' name='openInterval' size='8' value='5'/>" +
+		    							"${common_second}<span class='form_note'>(1-254)</span>" + 
+		    						"</form>" +
+								"</div>";
+					$.jBox(html, {
+						title: data.title,
+						loaded: function() {
+							setFocus($("input[name=openInterval]")[0]);
+						},
+						submit: function (v, h, f) {
+						    if (v == "ok")
+						    {
+						    	$("#openDoorForm").submit();
+						        return false;
+						    }
+						}
+					});
+					var alreadySubmit = false;
+					$("#openDoorForm").validate({
+						rules : {
+							"openInterval" : {
+								required : true,
+								range: [1, 254]
+							}
+						},
+					 	submitHandler: function(form)
+					   	{    
+					 		$(".jbox-button-focus").addClass("jbox-button-hover");
+							if(alreadySubmit) 
+							{
+								return;
+							}	
+							alreadySubmit = true;
+							onLoading(function(){
+								$(form).ajaxSubmit({
+									async : true,
+									dataType : 'json',
+									data: {
+					        			ids: data.id
+									},
+									success: function(result)
+									{	
+										dealRetFun(result);
+									}
+								});
+							});
+					   	} 
+					 });
+	    		}
+	    		else
+	    		{
+	    			var html = "<div style='margin-top: -3px'>" +
+	    							"<div>${common_target}:" + data.opObj + "</div>" +
+		    						"<div>" + "${common_prompt_executeOperate}".format(titleText) + "</div>" +
+								"</div>";
+					var alreadySubmit = false;
+					var akeyCode = 0;  //用于获取单击键盘的键值
+					$.jBox.confirm(html, data.title,
+						function (v, h, f) {
+						    if (v == "ok")
+						    {
+						    	$(".jbox-button-focus").addClass("jbox-button-hover");
+						    	if(alreadySubmit) 
+								{
+									return;
+								}	
+								alreadySubmit = true;
+						    	onLoading(function(){
+						        	$.ajax({
+										type: "POST",
+										url: itemId,
+										async : true,
+										data: {
+						        			ids: data.id
+										},
+										success: function(result)
+									    {
+						        			dealRetFun(result);
+										}
+							        });
+					       		});
+						        return false;
+						    }
+						    return true;
+						}
+					);
+					//leo 解决实时监控->远程关门，弹出的提示框，按回车键不会进入下一步(浏览器focus兼容性问题)
+					document.onkeydown = keyDown;
+					function keyDown(e)
+					{
+						akeyCode = e.keyCode;
+						if($(".jbox-button-focus") && akeyCode == '13')
+						{
+							$(".jbox-button-focus").click();
+						} 
+					}
+					$(".jbox-button-focus").css("border", "1px solid #888888");
+					$(".jbox-button-focus").focus();
+	    		}
+    		},10);
+    	}, data);
+	}
+	
+</script>
+<#if rtMonitorJs?exists>
+	<@rtMonitorJs/>
+</#if>

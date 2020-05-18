@@ -1,0 +1,83 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.2.2 Formato Wiegand</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection24 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077021"></a><a name="_Toc26994"></a><a name="_Toc417486918"></a><a
+name="_Toc387761903"><span lang=ES-MX style='font-size:16.0pt;line-height:172%'>3.2.2
+</span></a><span lang=ES-MX style='font-size:16.0pt;line-height:172%'>Formato </span><span
+lang=ES-MX style='font-size:16.0pt;line-height:172%'>Wiegand</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>El formato Wiegand es el formato de tarjeta
+que puede ser identificado por los lectores Wiegand. El software incluye 9
+formatos Wiegand por default. Es posible configurar el formato según las
+necesidades. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%;text-autospace:ideograph-other'><span
+lang=zh-CN><img border=0 width=599 height=223 id="图片 64"
+src="user_help.files/image028.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>El software soporta dos modos para agregar
+formatos Wiegand. Si el modo 1 no cumple sus requerimientos de configuración,
+cambie al modo 2.</span><span lang=ES-MX> Ejemplo del formato </span><span
+lang=ES-MX>Wiegand 37:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=597 height=337 id="图片 67"
+src="user_help.files/image029.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc387761904"><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Especificación del Formato:</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>La letra p indica la posición de paridad, s
+indica el código de sitio, c indica el número de tarjeta, f indica el facility
+code, m indica el código de fabricante, e indica paridad par, O indica paridad
+impar, b indica ambas par e impar y x indica bits de paridad.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>El formato Wiegand 37: los primeros bit de
+paridad (p) “eeeeeeeeeeeeeeeeee”, los siguientes bit “ooooooooooooooooooo”. El
+formato de tarjeta solo puede ser “ p, x, m, f, c, s”, el formato de paridad
+solo puede ser “ x, b, o, e”.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

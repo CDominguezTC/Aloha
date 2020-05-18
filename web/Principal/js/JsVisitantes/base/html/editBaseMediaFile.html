@@ -1,0 +1,285 @@
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+<script type="text/javascript" src="${base}/base/js/ajaxfileupload.js" charset="UTF-8"></script>
+<script type="text/javascript">
+$().ready(function() {
+	jQuery.validator.addMethod("isFileExist", function(value, element){
+		return isFileExist(element.value);
+	}, function(){return "${base_file_typeRemind}";});
+	jQuery.validator.addMethod("repeatName", function(value, element){
+		return repeatNo(element.value);
+	}, function(){return "${base_file_nameRepeat}";});
+	var fullPath = $("#id_soundPath").val();
+	if(fullPath)
+	{
+		if (isFirefox()||isChrome())
+		{
+		 	$("#alert_sound").html("<audio id='myaudio' controls='controls' hidden='true' loop='true' ><source id='mp3source2' name = 'soundname' src='"+fullPath+"' type='audio/mp3' preload='auto' /><source id='mp3source1' name = 'soundname' src='"+fullPath+"' type='audio/x-wav' preload='auto'/><embed id='mp3source3' name = 'soundname' height='100' width='100' src='"+fullPath+"' preload='auto'/></audio>");
+		}
+	}
+	if($("#id_model_pk").val())
+	{
+		var label = document.getElementById("uploadMsg");
+		if(isFirefox())
+		{
+			label.textContent="${base_file_alreadyUploaded}";
+		}
+		else
+		{
+			label.innerText="${base_file_alreadyUploaded}";
+		}
+	}
+	
+	//验证
+	$("#${formId}").validate( {
+		debug: true,
+		rules:
+		{
+			"baseMediaFile.name":
+			{
+				required: true,
+				repeatName: true
+			},
+			"upload":
+			{
+				accept: "mp3|MP3|wav|WAV|mpeg|MPEG"
+			}
+		},
+	submitHandler : function()
+	{
+		if(!(isFirefox()||isChrome()))
+		{
+			$("#myaudio").attr("src","#");
+			$("#myaudio").attr("volume",0);
+			$("#alert_sound").html("<bgsound id='myaudio' src='#' loop='-1'/>");
+		}
+		
+		if($("#id_soundPath").val())
+		{
+		<@submitHandler gridName="listbaseMediaFileGridbox"/>
+		}
+		else
+		{
+			 messageBox({messageType:"alert",title:"${common_prompt_title}",text:"${base_file_typeRemind}"});
+		}
+	}
+	});
+});
+
+function repeatNo(value)
+{
+	var isExist=true;
+	$.ajax({
+	    type: "post",
+	    url: "baseMediaFileAction!isFileNameRepeat.action",
+	   	dataType: "json",
+	   	async :false,
+	    data:
+	    {
+	    	'fileName' : $("#fileName").val(),
+			'fileId' :  $("#id_model_pk").val()
+	    },
+	    success: function (data) 
+        {
+	    	isExist = data;
+        },
+        error: function (XMLHttpRequest, textStatus, errorThrown) 
+        {
+        	alert(errorThrown);
+        }
+	});
+	return isExist;
+}
+
+function isFileExist(value)
+{
+	if($("#id_soundPath").val())
+	{
+		return true;
+	}
+	return false;
+}
+
+function FileUpload()
+{
+	onLoading(function(){
+		$.ajaxFileUpload
+	       (
+	           {
+	               url: 'baseMediaFileAction!saveUploadFile.action', //用于文件上传的服务器端请求地址
+	               secureuri: false, //是否需要安全协议，一般设置为false
+	               fileElementId: 'upload', //文件上传域的ID
+	               dataType: 'json', //返回值类型 一般设置为json
+	               success: function (data, status)  //服务器成功响应处理函数
+	               {
+	               		var label = document.getElementById("uploadMsg"); 
+						var dataObj = eval(data);
+						if(dataObj.ret=="ok")
+						{
+							$("#videoButton").removeAttr("disabled");
+							$(".ts_box").remove();
+							var mymsg = JSON.parse(dataObj.msg);
+							if($("#myaudio").length>0)
+							{
+								$("#videoButton").attr("value","${base_file_play}");
+							 	$("#myaudio").remove();
+							}
+							if (isFirefox()||isChrome())
+							{
+		                 	 	$("#alert_sound").html("<audio id='myaudio' controls='controls' hidden='true' loop='true' ><source id='mp3source2' name = 'soundname' src='"+mymsg.path+"' type='audio/mp3' preload='auto' /><source id='mp3source1' name = 'soundname' src='"+mymsg.path+"' type='audio/x-wav' preload='auto'/><embed id='mp3source3' name = 'soundname' height='100' width='100' src='"+mymsg.path+"' preload='auto'/></audio>");
+							}
+							openMessage(msgType.success);
+							if(isFirefox())
+							{
+								label.textContent="${base_file_alreadyUploaded}";
+							}
+							else
+							{
+								label.innerText="${base_file_alreadyUploaded}";
+							}
+			              	$("#fileName").val(mymsg.name);//文件的别名
+			              	$("#id_soundPath").val(mymsg.path);//文件的路径
+			             	$("#fileSize").val(mymsg.size);//文件大小
+			            	$("#fileSuffix").val(mymsg.suffix);//文件后缀名
+						}
+						else
+						{
+							$("#upload").val("");
+							openMessage(msgType.error,dataObj.msg);
+						}
+						
+	               },
+	               error: function (data, status, e)//服务器响应失败处理函数
+	               {
+	               		if(data.status == 0)
+						{
+							openMessage(msgType.error, "${common_prompt_serverFailed}");
+						}
+						else
+						{
+							openMessage(msgType.error, "${common_prompt_serverError}" + XMLHttpRequest.status);
+						}
+	               }
+	           }
+	       )
+       });
+}
+
+var bgsoundStat = 1;//播放按钮状态
+function audioPlay()
+{
+	var fullPath = $("#id_soundPath").val();
+	if(fullPath){
+	    var myaudio = $("#myaudio")[0];
+	    if(isFirefox()||isChrome())
+	    {
+			if(myaudio.paused)
+			{
+				myaudio.play();
+				$("#videoButton").attr("value","${base_file_stop}");
+				return
+			}
+			myaudio.pause();
+			myaudio.currentTime = 0.0;
+			$("#videoButton").attr("value","${base_file_play}");
+		}
+		else
+		{
+			if(bgsoundStat==1)
+			{//播放
+				var fullPath = $("#id_soundPath").val();
+				$("#alert_sound").html("<bgsound id='myaudio' src='"+fullPath+"' loop='-1'/>");
+				$("#videoButton").attr("value","${base_file_stop}");
+				bgsoundStat =2;
+			}
+			else
+			{//停止
+				$("#myaudio").attr("src","#");
+				$("#myaudio").attr("volume",0);
+				$("#alert_sound").html("<bgsound id='myaudio' src='#' loop='-1'/>");
+				$("#videoButton").attr("value","${base_file_play}");
+				bgsoundStat =1;
+			}
+		}
+	}
+}
+function isFirefox()
+{
+    return (navigator.userAgent.indexOf("Firefox")!=-1);
+}
+
+function isChrome()
+{
+    return (navigator.userAgent.indexOf("Chrome")!=-1);
+}
+function triggerUpload()
+{
+	document.getElementById("upload").click();
+}
+</script>
+<form method="post" onkeydown="if(event.keyCode==13){return false;}"
+	id="${formId}" action="baseMediaFileAction!edit.action" enctype="multipart/form-data" >
+	<div id="baseTab" style="overflow-y: hidden;overflow-x: hidden;height: 160px;">
+		<input type="hidden" name="baseMediaFile.id" id="id_model_pk" value="${(tempBaseMediaFile.id)!}"/>
+		<table class="tableStyle">
+			<tbody>
+				<tr>
+					<th><label>${base_file_upload}</label><span class="required">*</span></th>
+					<td>
+					<div style="position: relative;">
+						<!-- '上传声音文件' -->
+						<label id="uploadMsg">${base_file_notUpload}</label>
+						<input id="uploadFileButton" style="cursor:pointer;z-index:2;position:relative;top:0px;" name="uploadFileButton" type="button" value="${base_file_browse}"/>
+						<input id="upload" name="upload" type="file" accept="audio/mpeg,audio/wav" style="cursor:pointer;filter:Alpha(Opacity=0);width:65px;height:25px;top:0px;left:-65px;z-index:2;position:relative;text-align:left;opacity:0;moz-opacity:0;" onchange="FileUpload();"/>
+						<input id="videoButton" type="button" name="videoButton" value="${base_file_play}" onclick = "audioPlay();" style="cursor:pointer;"/>
+					</div>
+					</td>
+				</tr>
+				<tr>
+					<th><label>${base_file_alias}</label><span class="required">*</span></th>
+					<td>
+						<input id="fileName" type="text" name="baseMediaFile.name" style="width: 170px" maxlength="30" value="${(tempBaseMediaFile.name)!}"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label>${base_file_size}</label></th>
+					<td>
+						<input id="fileSize" type="text" name="baseMediaFile.size" style="width: 170px" maxlength="30" value="${(tempBaseMediaFile.size)!}" readonly="readonly"/>
+					</td>
+				</tr>
+				<tr>
+					<th><label>${base_file_suffix}</label></th>
+					<td>
+						<input id="fileSuffix" type="text" name="baseMediaFile.suffix" style="width: 170px" maxlength="30" value="${(tempBaseMediaFile.suffix)!}" readonly="readonly"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div style="margin-top: 10px;margin-left: 10px;">
+			<span class="warningImage"></span>
+			<span class="warningColor">${base_file_typeAndSizRemind}</span>
+		</div>
+		<input name="baseMediaFile.path" type="hidden" id = "id_soundPath" value="${(tempBaseMediaFile.path)!}"/>
+		<div id ="alert_sound"></div>
+	</div>
+</form>
+<script type="text/javascript">
+if($("#id_model_pk").val() == "" || $("#id_model_pk").val() == undefined)
+{
+	$("#videoButton").attr({disabled:"disabled"});
+}
+	getCurrentWindow().onClose = function(){
+		//关闭窗口时关闭声音
+		if(!(isFirefox()||isChrome()))
+		{
+			$("#myaudio").attr("src","#");
+			$("#myaudio").attr("volume",0);
+			$("#alert_sound").html("<bgsound id='myaudio' src='#' loop='-1'/>");
+		}
+	}
+if($("#id_model_pk").val() == "1" )
+{
+	$("#editFormOK").attr("disabled",true);
+}
+</script>
+</#macro>

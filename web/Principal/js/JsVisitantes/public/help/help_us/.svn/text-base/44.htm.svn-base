@@ -1,0 +1,151 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.3 Access Levels</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection44 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;margin-left:
+0cm'><a name="_Toc427072356"></a><a name="_Toc413852697"><span lang=EN-US>4.2.3
+Access Levels</span></a></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Access levels indicate that one or several
+selected doors can be opened by verification of a combination of multi person
+within certain time zone. The combination of multi person set in Personnel
+Access Level option.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>1. Click [Access Control] &gt; [Access
+Levels] &gt; [Add] to enter the Add Levels editing interface:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=310
+height=156 src="user_help.files/image089.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>2. Set each parameter: Level Name
+(unrepeatable), Time Zone.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>3. Click [OK]</span><span lang=EN-US>, the
+system</span><span lang=EN-US> prompt</span><span lang=EN-US>s</span><span
+lang=EN-US> </span><span lang=EN-US>“</span><span lang=EN-US>Immediately add
+doors to the current Access Control Leve</span><span lang=EN-US>l”</span><span
+lang=EN-US>, click [OK] to add doors, click [Cancel] to return the access
+levels list. The added access level is displayed in the list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%;text-autospace:ideograph-other'><span
+lang=zh-CN><img border=0 width=234 height=113 id="图片 279"
+src="user_help.files/image090.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: </span><span lang=EN-US>Different doors of different panels
+can be selected and added to an access level.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Set By
+Levels</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add/Delete Personnel for Selected Levels:</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-18.0pt'><b><span lang=EN-US>(1)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US>Click [Access Control] &gt; [Access Levels] &gt; [Set By Levels] to
+enter the edit interface, Click a</span><span lang=EN-US>n</span><span
+lang=EN-US> Access level in left list, personnel having right of opening door
+in this access level will be displayed on right list. </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-18.0pt'><b><span lang=EN-US>(2)<span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp; </span></span></b><span
+lang=EN-US>In the left list, click [Add Personnel] under Operations to pop-up
+the Add Personnel box; select personnel (multiple) and click </span><span
+lang=zh-CN><img border=0 width=24 height=17
+src="user_help.files/image091.png"></span><span
+lang=EN-US>&nbsp;to move to the right selected list, then click [OK] to save
+and</span><span lang=EN-US> exit</span><span lang=EN-US>.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-18.0pt'><b><span lang=EN-US
+style='font-size:10.0pt'>(3)<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></b><span lang=EN-US>Click the level to view the personnel in the
+right list. Select personnel and click [Delete Personnel] above the right list,
+then Click [OK] to delete.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><a name="_6.3.2_Set_By"></a><span
+lang=EN-US style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Set By </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Person</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Add selected personnel to selected access
+levels, or delete selected personnel from the access levels.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="OLE_LINK23"></a><a name="OLE_LINK22"><span
+lang=EN-US>Add/Delete levels for Selected Personnel:</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(1) Click [Access Control] &gt; [Access
+Levels] &gt; [Set By</span><span lang=EN-US> Person</span><span lang=EN-US>],
+click Employee to view the levels in the right list.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(2) Click [Add to Levels] under Related
+Operations to pop-up the Add to Levels box, select Level (multiple) and click </span><span
+lang=zh-CN><img border=0 width=24 height=17
+src="user_help.files/image091.png"></span><span
+lang=EN-US>&nbsp;to move it to the right selected list; click [OK] to save and
+complete.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(3) Select Level (multiple) in the right
+list, and click [Delete from levels] above the list, then click [OK] to delete
+the selected levels.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

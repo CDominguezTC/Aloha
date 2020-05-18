@@ -1,0 +1,79 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7.3 Video en Tiempo Real</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection97 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427077094"></a><a name="_Toc24694"></a><a name="_Toc417486991"></a><a
+name="_Toc414032705"><span lang=ES-MX>7.3</span></a><span lang=ES-MX> Video en
+Tiempo Real</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Video] &gt; [Dispositivos de Video]
+&gt; [Video en Tiempo Real], en el lado izquierdo se encuentra la lista de
+dispositivos y canales. De clic en un canal para ver el video en la pantalla.</span></p>
+
+<p class=MsoNormal><span lang=zh-CN style='font-size:12.0pt;font-family:宋体'><img
+border=0 width=597 height=353
+src="user_help.files/image170.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>Vuelva a dar
+clic en el canal para detener el video.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><b><span lang=ES-MX
+style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span lang=ES-MX>Notas:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>1) Un
+dispositivo de video puede permitir a cinco usuarios ver el video
+simultáneamente. Cuando se excede el número de usuarios simultáneos no se
+mostrará el video y la imagen será gris. </span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>2) Si no
+existen controladores de video en el sistema, se mostrará el siguiente mensaje:</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX
+style='font-size:12.0pt;font-family:宋体;color:windowtext'><img border=0
+width=625 height=361 id="图片 227"
+src="user_help.files/image171.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en ”Descargar el control” y se
+descargarán los controladores. Instale los controladores y refresque la página
+para ver la pantalla de monitoreo normalmente. Para prevenir la visualización
+de video de manera anormal, instale los controladores que ofrece BioSecurity.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

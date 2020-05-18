@@ -1,0 +1,120 @@
+<#include "/public/template/editTemplate.html"> 
+<#macro editContent>
+<script type="text/javascript">
+jQuery.validator.addMethod("validCode", function(value, element){
+    var pattenChar = /^[A-Za-z0-9]{1,30}$/;
+    return this.optional(element) || (pattenChar.test(value));
+}, function(){
+    return "${common_prompt_codeMsg}";
+});
+$().ready(function() {
+    // 字母和数字的验证
+    $("#${formId}").validate( {
+        debug : true,
+        rules :
+        {
+            "entity.code":{
+                required:true,
+                validCode: true,
+                rangelength : [ 1, 30 ],
+                overRemote : ["baseAreaAction!isNotExist.action", "${(entity.code)!}"]
+            },
+            "entity.name" : {
+                required : true,
+                validInputStr: true,
+                rangelength : [ 1, 30 ],
+                overRemote : ["baseAreaAction!isNotExist.action", "${(entity.name)!}"]
+            },
+            "entity.remark" : {
+                rangelength : [ 1, 50 ]
+            },
+            <#if !(entity.id)??||(entity.id)!=1>
+            "entity.parentArea.id":{
+                remote : 
+                {
+                    url : "baseAreaAction!isItself.action", //后台处理程序
+                    type : "post", //数据发送方式
+                    dataType : "json" //接受数据格式
+                    <#if (entity.id)??>
+                    ,
+                    data : { //要传递的数据
+                        'id' : '${(entity.id)!}'
+                    }
+                    </#if>
+                }
+            }
+            </#if>
+        },
+        messages:
+        {
+            "entity.parentArea.id":
+            {
+                remote: "${base_area_parentMenuMsg}"
+            }
+        }
+    });
+    loadComboxTree("parentAreaZone","baseAreaAction!getAreaTreeJson.action");
+});
+</script>
+
+<form method="post" id="${formId}"  onkeydown="if(event.keyCode==13){return false;}" action="baseAreaAction!edit.action">
+    <input type="hidden" name="entity.id" value="${(entity.id)!}"/>
+    <table class="tableStyle">
+        <colgroup>
+            <col width="35%" />
+            <col width="*" />
+        </colgroup>
+        <tr class="headPrompt">
+			<td colspan="2">
+				<span class="warningColor">${base_area_note}</span>
+			</td>
+		</tr>
+        <tr><th colspan="9" align="left"></th></tr>
+        <#if !(entity.code)??||(entity.code)!='1'>
+        <tr>
+            <th><label>${base_area_number}</label><span class="required">*</span></th>
+            <td><input type="text" maxlength="30" name="entity.code" value="${(entity.code)!}"/></td>
+        </tr>
+        <#else>
+        <tr>
+            <th><label>${base_area_number}</label></th>
+            <td>
+                <input type="text" maxlength="30" value="${(entity.code)!}" disabled/>
+                <input type="hidden" name="entity.code" value="${(entity.code)!}"/>
+            </td>
+        </tr>
+        </#if>
+        <tr>
+            <th><label>${base_area_name}</label><span class="required">*</span></th>
+            <td><input type="text" name="entity.name" value="${(entity.name)!}" maxlength="30" /></td>
+        </tr>
+        <#if !(entity.code)??||(entity.code)!='1'>
+        <tr>
+            <th><label>${base_area_parentArea}</label></th>
+            <td>
+                <div>
+                    <div id="parentAreaZone" objName="entity.parentArea.id" value="${(entity.parentArea.id)!}" type="radio" filter="${(entity.id)!}"></div>
+                </div>
+            </td>
+        </tr>
+        <#else>
+        <tr style="display: none">
+            <th><label>${base_area_parentArea}</label></th>
+            <td>
+                <div>
+                    <div id="parentAreaZone" objName="entity.parentArea.id" value="${(entity.parentArea.id)!}" type="radio" filter="${(entity.id)!}"></div>
+                </div>
+            </td>
+        </tr>
+        </#if>
+        <tr>
+            <th><span class="required"></span><label>${common_remark}</label></th>
+            <td><input type="text" name="entity.remark"
+                value="${(entity.remark)!}" maxlength="50" /></td>
+        </tr>
+        <tr>
+            <td colspan="9" align="left" height="10px;"></td>
+        </tr>
+    </table>
+</form>
+</#macro>

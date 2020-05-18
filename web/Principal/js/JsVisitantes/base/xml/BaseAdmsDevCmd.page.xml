@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseAdmsDevCmd">
+			<field name="id" width="70" columnMinWidth="40" label="ID"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" isKeyId="true" />
+			<!-- <field name="accDevice.alias" width="110" columnMinWidth="70"
+				label="${common_dev_name}" type="ro" align="left" valign="middle" headerMenu="true"
+				sort="server" isShow="true" />-->
+			<field name="sn" width="110" columnMinWidth="70" label="${common_dev_sn}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="content" width="400" columnMinWidth="70" label="${base_admsDevCmd_content}"
+				type="txt" align="left" valign="middle" headerMenu="true" sort="na"
+				isShow="true" />
+			<field name="isImme" width="140" columnMinWidth="40" label="${base_admsDevCmd_imme}"
+				type="txt" align="left" valign="middle" headerMenu="true" sort="na"
+				isShow="true">
+				<value name="true"><![CDATA[<img src="(rootPath)/public/images/ico/icon-yes.gif"/>]]></value>
+				<value name="false"><![CDATA[<img src="(rootPath)/public/images/ico/icon-no.gif"/>]]></value>
+			</field>
+			<field name="commitTime" width="125" columnMinWidth="70"
+				label="${base_admsDevCmd_submitTime}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="returnTime" width="125" columnMinWidth="70"
+				label="${base_admsDevCmd_returnTime}" type="ro" align="left" valign="middle" headerMenu="true"
+				sort="server" isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="returnValue" width="*" columnMinWidth="70" label="${base_admsDevCmd_returnedValue}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+		</object>
+	</objects>
+	
+	<searchs>
+		<search actionName="baseAdmsDevCmd">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140"
+					inputWidth="140"></item>
+				<!-- <item type="comboTree" label="${common_dev_name}" id="devName" name="admsDevCmd.accDevice.id"
+					path="accDeviceAction!getDevTreeJson.action"></item> -->
+				<item type="input" name="admsDevCmd#sn" label="${common_dev_sn}"></item>
+				<!--<item type="input" name="admsDevCmd.returnValue" label="${base_admsDevCmd_returnedValue}"></item>-->
+				<item type="combo" name="returnedResult" label="${base_admsDevCmd_returnedResult}">
+					<option value="" text="---------" selected="true"></option>
+                    <option value="2" text="${base_admsDevCmd_successed}"></option>
+                    <option value="1" text="${base_admsDevCmd_failed}"></option>
+					<option value="0" text="${base_admsDevCmd_noReturned}"></option>
+					<!-- <option value="1" text="${base_admsDevCmd_hasReturned}"></option> -->
+				</item>
+			</items>
+		</search>
+	</searchs>
+
+	<toolbars>
+		<toolbar actionName="baseAdmsDevCmd">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+			<item shiro="base:BaseAdmsDevCmd:clearData" id="baseAdmsDevCmdAction!clearData.action" type="button"
+				img="comm_del.png" imgdis="comm_del.png" text="${base_admsDevCmd_clearCmd}" action="executeOperate"></item>
+            <item shiro="base:BaseAdmsDevCmd:export" id="admsDevCmdAction!export.do^0^0^550^250" type="button"
+                img="comm_export.png" imgdis="comm_export.png" text="${common_op_export}" action="openWindowForDevCmdExport"></item>
+		</toolbar>
+	</toolbars>
+</page>

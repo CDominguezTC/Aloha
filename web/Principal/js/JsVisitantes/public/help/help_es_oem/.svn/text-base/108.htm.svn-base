@@ -1,0 +1,68 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 8.1.6 Eliminar Eventos</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection108 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077105"></a><a name="_Toc13603"></a><a name="_Toc417487002"></a><a
+name="_Toc414032716"></a><a name="_Toc387761944"><span lang=ES-MX>8.1.6</span></a><span
+lang=ES-MX> Eliminar Eventos</span></h3>
+
+<p class=MsoNormal><span lang=ES-MX>La configuración de limpieza de datos se
+puede establecer. El volumen de datos aumentará conforme el uso del sistema.
+Para ahorrar espacio de almacenamiento en los discos es necesario limpiar
+periódicamente los datos antiguos generados por el sistema.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>De clic en [Gestión Básica] &gt; [Eliminar
+Eventos]:</span></p>
+
+<p class=MsoNormal><b><span lang=zh-CN><img border=0 width=633 height=271
+src="user_help.files/image185.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>El sistema ejecuta la operación de limpieza
+después de dar clic en [OK]. Si no da clic en [OK], el sistema no realizará la
+limpieza de datos.</span></p>
+
+<p class=p0 style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX style='font-family:"Arial,微软雅黑";font-weight:normal'>Nota:
+Para reducir la carga del sistema y no afectar el rendimiento normal, se
+sugiere establecer la hora de limpieza de datos a la 01:00 am.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

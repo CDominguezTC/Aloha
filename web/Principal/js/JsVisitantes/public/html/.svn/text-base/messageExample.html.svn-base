@@ -1,0 +1,40 @@
+<div>页面源码路径：public/html/messageExample.html</div>
+
+<div>
+	<#noparse>
+	<br/><br/>
+	<p>openMessage(msgType, text):msgType为消息类型，可看下面例子，text是提示文本内容，success，errorloading不传则使用默认的</p>
+	<table cellpadding="8px">
+		<tr>
+			<td>openMessage(msgType.success)</td>
+			<td><<a href="javascript:openMessage(msgType.success)">操作成功</a></td>
+		</tr>
+		<tr>
+			<td>openMessage(msgType.error)</td>
+			<td><a href="javascript:openMessage(msgType.error)">操作失败</a></td>
+		</tr>
+		<tr>
+			<td>openMessage(msgType.warning,'初始化数据不能删除')</td>
+			<td><a href="javascript:openMessage(msgType.warning,'初始化数据不能删除')">警告：初始化数据不能删除</a></td>
+		</tr>
+		<tr>
+			<td>openMessage(msgType.info,'初始化数据不能删除')</td>
+			<td><a href="javascript:openMessage(msgType.info,'初始化数据不能删除')">提示信息</a></td>
+		</tr>
+		<tr>
+			<td>openMessage(msgType.loading,'正在加载，请稍后...',3000)</td>
+			<td><a href="javascript:openMessage(msgType.loading,'正在加载，请稍后...',3000)">加载中</a></td>
+		</tr>
+	</table>
+	<br/>
+	<p>dealRetResult(result, callback, gridName):处理ajax的返回结果</p>
+	<div>
+		<ul>
+			<li>result:返回结果的json对象，格式：{"ret":"ok"},或者{"ret":"ok", "msg":"info"}</li>
+			<li>callback:只是成功后的回调函数，失败等其它结果将不做处理</li>
+			<li>gridName:当callback为null时，默认将刷新grid列表，gridName为指定要刷新的grid id</li>
+		</ul>
+	</div>
+	</#noparse>
+</div>
+

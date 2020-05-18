@@ -1,0 +1,143 @@
+<style>
+	#detailsUI li{
+		list-style: square !important;
+		list-style-type: square !important;
+	}
+	.textTitle{
+		font-weight: bold;
+		color: #5078cb;
+		background-color: #ebebeb;
+	}
+	.textColor {
+		color: red;
+	}
+</style>
+<div id="mainDiv" style="overflow: auto;height: 100%">
+	<ul id="detailsUI">
+		<li>
+			<div class="textTitle">
+				属性文件的内容在页面中的使用（appConfig.properties，init.properties）
+			</div>
+			<br />
+			
+			页面用法:<span class="textColor"><#noparse>${application['pers.pinLen']}</#noparse></span>
+			
+			<hr />
+		</li>
+		<li>
+			<div class="textTitle">
+				数据字典在grid中的应用
+			</div>
+			<br />
+			配置文件写法:<span class="textColor"><span><</span>value type="dict">jobTitle<span><</span>/value></span><br/>
+			说明：jobTitle为数据字典类型的code，当数据字典中找不到该值时将直接显示原内容(可参考人员PersEmployee.page.xml中的职务列用法)
+			<hr />
+		</li>
+		<li>
+			<#noparse>
+			<div class="textTitle">
+				国际化用法(目前不使用缺省值)：
+			</div>
+			<br />
+			1.配置文件写法:{pers_listPerson_Badgenumber}
+			<br />
+			如：label="${pers_listPerson_Badgenumber}"
+			<br />
+			<br />
+			2.后台程序写法:String helloWorld = PagerUtil.i18n(request,"${hello_world}");
+			<br />
+			<br />
+			3.html页面写法 ：${common_head_set}
+			<br />
+			<br />
+			4.js写法 ：${common_head_set}和页面写法一样，但加载方式需要改变,js里面一定要写上注释<br/>
+			原:<span><</span><span>script </span> src="public/js/dhtmlxPaging.js"><span><</span>/script><br/>
+			改为：<span><</span><span>script </span> src="public_dhtmlxPaging.js.action"><span><</span>/script>
+			<br />
+			<br />
+			<font color="red">注意:配置和后台中的表达式感叹号后面的内容不需要加引号，但页面必须加，自己看使用的情况是加双引还是单引!命名规则我不定义</font>
+			</#noparse>
+			<hr />
+		</li>
+		<li>
+			<div class="textTitle">
+				引入动态js
+			</div>
+			(解决ajax获取的文本中js文件无法执行的问题)使用includeScript(url,
+			callback)方法，可查看人员编辑页面的用法
+
+			<hr />
+		</li>
+		<li>
+			双列表封装以初步完成，可能由于功能需求不同还需做相应的完善（示例页面：门禁权限组下-按人员设置页面）
+			<br />
+			如果是非弹窗的话，强烈建议不要改gridName(默认是leftGridbox和rightGridbox)，我用于自动调整大小，自定义了的话就不能调整了
+			<br />
+			注意：但页面出现多个操作栏时（Toolbar）对应的add#[operate]persCustomFieldAction!getAllField.action^0^0^900^430
+			这个id里面的[operate]是对应的toolbar对象的id，默认为operate（可不写），当页面出现多个时，必须重命名为当前的对象id
+
+			<hr />
+		</li>
+		<li>
+			<div class="textTitle">
+				表单更改（含弹窗），内容如下(参考人员下的表单示例页面)：
+			</div>
+			<br />
+			<br />
+			(1)标签列使用th....并且文本要用lable包起来，后面的使用td
+			<br />
+			<br />
+			(2)去掉原有的第一行tr，如果有提示的话，在tr上加class="headPrompt"
+			<br />
+			<br />
+			(3)表单中th width
+			120px,不要对其进行其他设置，出现2列属性的表单，th依然不变，td自行定义宽度，不在使用colgroup
+			<br />
+			<br />
+			(4)对于表单中数据量较少的（比如2、3条）最小为420*260
+			<br />
+			<br />
+			(5)input后有提示的width 500 ，没有间距的width 420
+			<br />
+			<br />
+			(5)最底下留2行，防止国际化换行
+			<br />
+			<br />
+			<hr />
+		</li>
+		<li>
+			<div class="textTitle">
+				双列表删除用法（参考门禁权限组-按人员设置界面）
+			</div>
+			<br />
+			<br />
+			(1)配置路径如：del#accEmpAddLevelSetAction!delByIds.action?objId=$(employeeId)^levelSetIds
+			<br />
+			<br />
+			其中objId是可以自定义的，后台用于接收左边列表选中的名称，$(employeeId)里面的employeeId是根据前面搜索配置中定义的隐藏id(必须对应)
+			<br />
+			<br />
+			最后面的levelSetIds是右边的复选框的name
+			<br />
+			<br />
+			<hr />
+		</li>
+		<li>
+			<div class="textTitle">
+				文本框加图片放入div中样式示例
+			</div>
+			<br />
+			<br />
+			<div style="background-color: #cccccc;">
+				<input type="text" name="f1" value="Test Field" />
+				<input type="image" src="public/images/filter.png"
+					style="position: absolute; + margin-top: 1px" />
+			</div>
+			<hr />
+		</li>
+	</ul>
+</div>
+<script type="text/javascript">
+	var height = $(document.body).height()-110;
+	$("#mainDiv").height(height);
+</script>

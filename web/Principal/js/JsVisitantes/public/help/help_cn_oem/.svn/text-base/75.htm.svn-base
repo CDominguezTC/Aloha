@@ -1,0 +1,137 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.3.3 梯控权限组</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection75 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707515"></a><a name="_Toc12326"><span
+lang=EN-US style='font-size:10.5pt'>5.3.3 </span></a><span style='font-size:
+10.5pt;font-family:幼圆'>梯控权限组</span></h3>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【梯控权限组】可以看到已添加的权限组。该界面提供梯控权限组的新增、编辑和删除操作。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=640 height=141
+src="user_help.files/image160.jpg"></span></p>
+
+<p class=MsoNormal align=center style='text-align:center'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【梯控权限组】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】可以看到如下图所示的数据。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=273 height=137
+src="user_help.files/image161.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><b><span
+style='font-family:幼圆'>设置各项参数：</span></b><span style='font-family:幼圆'>权限组名称（不可重复）、选择梯控时间段。</span></p>
+
+<p class=MsoNormal align=left style='margin-bottom:7.8pt;text-align:left'><span
+style='font-family:幼圆'>点击【确定】出现如下界面：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=226 height=105
+src="user_help.files/image162.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【确定】添加楼层，【取消】则返回梯控权限组列表，新增的梯控权限组显示在列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=576 height=303
+src="user_help.files/image163.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：选择梯控权限组中的楼层为多选，可以选择不同控制器中的不同楼层。</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.05pt;text-indent:-21.05pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>按权限组设置</span></b></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控系统】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【按权限组设置】可以看到所有的梯控权限组。点击勾选权限组，可以浏览该权限组里的人员，进行人员添加和删除操作。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=640 height=139
+src="user_help.files/image164.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>）点击【梯控】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【按权限组设置】，单击左侧列表中的某个权限组，右边列表显示该权限组中的人员。</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>2</span><span style='font-family:幼圆'>）点击左侧列表操作下的【添加人员】，弹出添加人员页面，选择人员至右侧列表，点击【确定】完成添加。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=576 height=330
+src="user_help.files/image165.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span style='font-family:幼圆'>（</span><span
+lang=EN-US>3</span><span style='font-family:幼圆'>）选择右侧列表中的人员，点击列表上方的【删除人员】，将该人员从该权限组中删除。</span></p>
+
+<p class=MsoNormal style='margin-top:0cm;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.05pt;text-indent:-21.05pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>按人员设置</span></b></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控系统】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【按人员设置】可以看到所有的人员。点击勾选人员，可以浏览该人员所在的权限组，并进行权限组添加和删除操作。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=576 height=149
+src="user_help.files/image166.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><a name="_Toc13401"></a><a name="_Toc306348206"><span
+style='font-family:幼圆'>（</span></a><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）点击【梯控系统】</span><span lang=EN-US style='font-family:
+Wingdings'>à</span><span style='font-family:幼圆'>【按人员设置】页面，单击左侧列表中的某个人员，右边列表显示该人员所属的权限组。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）点击左侧列表操作下的【添加所属权限组】，弹出编辑页面，选择权限组至右侧列表，点击【确定】完成添加。</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=576 height=299
+src="user_help.files/image167.jpg"></span></p>
+
+<p class=MsoNormal><span style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）选择右侧列表中的权限组，点击列表上方的【删除所属权限组】，将该人员从该组中删除。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

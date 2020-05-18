@@ -1,0 +1,33 @@
+<!-- 加载公共部分js和css begin-->
+
+<link rel="stylesheet" type="text/css" href="${base}/public/css/base.css" />
+<link rel="stylesheet" type="text/css" href="${base}/public/css/whole.css" media="screen" />
+
+<link rel="stylesheet" type="text/css" href="${base}/public/css/css.css" />
+<link rel="stylesheet" type="text/css" href="${base}/public/css/list.css" />
+<link rel="stylesheet" type="text/css" href="${base}/public/css/head.css" />
+<link rel="stylesheet" type="text/css" href="${base}/public/css/dhtmlxGrid.css" />
+
+<script src="${base}/public/controls/jquery/jquery.js"></script>
+<script src="${base}/public/controls/jquery/jquery.form.js"></script>
+<script src="${base}/public/controls/jquery/jquery.validate.js"></script>
+<script src="${base}/public/controls/jquery/jquery.jplayer.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="${base}/public/controls/jquery/jquery.alerts.css"/>
+<script type="text/javascript" src="${base}/public/controls/jquery/jquery.alerts.js"></script>
+<link rel="stylesheet" type="text/css" href="${base}/public/controls/jquery/jquery.mCustomScrollbar.css"/>
+<script type="text/javascript" src="${base}/public/controls/jquery/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="${base}/public/controls/jquery/jquery.hotkeys.js"></script>
+
+<link type="text/css" rel="stylesheet" href="${base}/public/controls/jBox/Skins/Default/jbox.css"/>
+<script type="text/javascript" src="${base}/public/controls/jBox/jquery.jBox-2.3.min.js"></script>
+<script type="text/javascript" src="${base}/public/controls/jBox/i18n/jquery.jBox-zh-CN.js"></script>
+<script src="public_common.js.action"></script>
+
+<script type="text/javascript" src="${base}/public/controls/timer/timer.js"></script>
+<link rel="stylesheet" type="text/css" href="${base}/public/css/ip.css" media="screen" />
+<script type="text/javascript" src="${base}/public/js/ipinput.widget.js"></script>
+<!--  阿拉伯页面扩展样式，放最后才能覆盖样式-->
+<#if enableRTL?? && enableRTL=="true">
+<link rel="stylesheet" type="text/css" href="${base}/public/css/wholeEX.css" media="screen" />
+</#if>
+<!-- 加载公共部分js和css end-->

@@ -1,0 +1,145 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 1. System Instruction</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection2 style='layout-grid:15.6pt'>
+
+<h1><a name="_Toc332110994"></a><a name="_Toc427072314"></a><a
+name="_Toc413852653"></a><a name="_Toc388344219"></a><a name="_Toc3558"><span
+lang=EN-US>1</span></a><span lang=EN-US>.</span><span lang=EN-US> System
+Instruction</span></h1>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Security Management has increasing concerns
+for modern enterprises. This management system helps customers to integrate
+operation of safety procedures on one platform. The system is divided into six
+modules, namely: Personnel, Access, Elevator, Visitor Systems, Video Systems,
+Systems Management. Personnel System, Video System and System Management
+modules are in the public section, respectively, while the access control and
+elevator systems </span><span lang=EN-US>are in </span><span lang=EN-US>use.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:14.2pt;text-indent:-14.2pt'><span lang=EN-US style='font-family:
+Symbol;color:windowtext'><img width=11 height=11
+src="user_help.files/image001.png" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>System Features</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Powerful data processing capacity, allows
+management of data for 30,000 people.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Multilevel management role-based level
+management secures user data confidentiality.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Real-time data acquisition system ensures prompt
+feedbacks of data to the manager.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:14.2pt;text-indent:-14.2pt'><span lang=EN-US style='font-family:
+Symbol;color:windowtext'><img width=11 height=11
+src="user_help.files/image001.png" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Configuration Requirements</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>CPU: </span><span lang=EN-US>Binuclear</span><span
+lang=EN-US> or above.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Memory: </span><span lang=EN-US>4</span><span
+lang=EN-US>G or above.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Hardware: Available space of 10G or above. We
+recommend using NTFS hard disk partition as the software installation
+directory.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Monitor Resolution: 1024*768px or above.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:14.2pt;text-indent:-14.2pt'><span lang=EN-US style='font-family:
+Symbol;color:windowtext'><img width=11 height=11
+src="user_help.files/image001.png" alt="*"><span
+style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Operating System</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Supported Operating Systems: Windows </span><span
+lang=EN-US>7</span><span lang=EN-US>/Windows </span><span lang=EN-US>8</span><span
+lang=EN-US>/Windows </span><span lang=EN-US>8.1</span><span lang=EN-US>/Windows</span><span
+lang=EN-US> Server 2008(32/64)</span><span lang=EN-US>.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Supported Databases: </span><span lang=EN-US>PostgreSQL</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:42.55pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>m<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Recommended browser version: IE </span><span
+lang=EN-US>11+/Firefox 27+/Chrome 33+</span><span lang=EN-US> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-size:12.0pt;
+font-family:Wingdings'>?</span><span lang=EN-US>Note: </span><span lang=EN-US>You
+must use IE 8.0 or newer version for fingerprint registration and matching.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

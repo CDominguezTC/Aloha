@@ -1,0 +1,5 @@
+<!-- <div id="right" style="position: absolute;width: 100%;height: 100%;">-->
+<div id="bottom" style="position: absolute;width: 100%;height: 100%;overflow:visible;min-height: 50px;"> 
+	<!-- 此处换成什么形式调用各自系统内的？还是同意个模板，在调用各自数据。请求必须统一，通过参数来控制数据。 -->
+	<#include "/base/html/baseMonitor.html">
+</div>

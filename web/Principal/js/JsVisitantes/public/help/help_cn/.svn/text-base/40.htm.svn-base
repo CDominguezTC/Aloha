@@ -1,0 +1,114 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.12 电子地图</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection40 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638135"><span lang=EN-US
+style='font-size:10.5pt'>4.1.12 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>电子地图</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>使用电子地图前，用户需要先点击【门禁设备】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【电子地图】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】添加地图。添加成功后，用户可以在地图上添加门，放大、缩小地图（及地图上的门）。用户改变地图或图标的位置后，可通过<b>【保存位置】</b>保存当前的设置，以便再次访问时能看到之前设置的状态。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span style='position:absolute;z-index:251673088;
+left:0px;margin-left:188px;margin-top:20px;width:74px;height:101px'><img
+width=74 height=101
+src="user_help.files/image104.png"></span><span
+lang=EN-US><img border=0 width=332 height=170 id="图片 54"
+src="user_help.files/image105.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>添加、删除地图</span></b><span
+style='font-family:幼圆'>：根据需要添加或删除地图。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>修改地图</span></b><span
+style='font-family:幼圆'>：修改地图名称、更换电子地图或电子地图所属区域等。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>调整电子地图（含门）</span></b><span
+style='font-family:幼圆'>：可以在地图上添加门或摄像头，移除已存在的门（右击门图标，点选“删除”），调整地图及门图标和摄像头的位置（拖曳门图标）、大小（点击放大</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>缩小）、全屏（点击全屏）等。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门操作</span></b><span
+style='font-family:幼圆'>：将鼠标放在门图标上，系统会自动按门状态过滤并显示当前可供使用的操作，用户可远程开</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>关门、取消报警等。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>权限控制</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）新增地图时需要选择该地图所属区域。该区域与用户权限管理中的区域关联，用户只能查看、管理权限范围内的地图。如果用户修改某个地图所属区域，将自动清空该地图上原有的门，用户需重新添加门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）管理员在新增用户时，可以通过分配角色来控制界面上的操作，如“保存门位置”，<span
+style='background:red'>“添加门”，“添加摄像头”</span>等。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）用户在修改地图时，可以只修改地图名称而不修改地图路径，此时需要将</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>修改路径</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的复选框勾掉。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）支持同时向地图上添加多个门，用户添加后需要到地图上按照需要布局门位置，然后保存。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）调整门图标的位置，特别是进行缩小操作时，门图标的上边距和左边距最小值均为</span><span
+lang=EN-US>5px</span><span style='font-family:幼圆'>（像素）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>4</span><span
+style='font-family:幼圆'>）建议添加地图的图片大小不超过</span><span lang=EN-US>1120*380px</span><span
+style='font-family:幼圆'>。不同的客户端访问同一台服务器时，显示效果会因分辨率及浏览器的设置而有所不同。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.5 联动设置</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection46 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707486"></a><a name="_Toc387761924"></a><a
+name="_6.4.2_联动设置"></a><a name="_5.3.2_联动设置"></a><a name="_4.3.2_联动设置"></a><a
+name="_4.2.5_联动设置"></a><span lang=EN-US style='font-size:10.5pt'>4.2.5 </span><span
+style='font-size:10.5pt;font-family:幼圆'>联动设置</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>在门禁系统中的某个输入点触发某个特定事件后，会在指定的输出点产生一个联动动作，控制系统中的验证开门、报警、异常等事件，并显示在监控的相应事件列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【联动】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，显示新增联动设置页面，填写联动名称：</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%'><span
+lang=EN-US style='font-size:12.0pt;line-height:150%;font-family:宋体;color:windowtext'><img
+border=0 width=369 height=147
+src="user_help.files/image111.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>选择设备：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=373 height=146
+src="user_help.files/image112.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3. </span><span style='font-family:幼圆'>选择设备后，出现相应的联动设置页面（系统会先判断该设备是否成功连接并读取到设备扩展参数，若无可用的设备扩展参数，无法进行联动设置。反之，根据该设备的门数量、辅助输入、输出数量，显示联动设置）。</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=268 height=263
+src="user_help.files/image113.jpg">&nbsp;&nbsp;&nbsp; </span><span style='position:absolute;z-index:251648000;margin-left:0px;margin-top:0px;
+width:324px;height:172px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=324 height=172 style='vertical-align:top'><span style='position:
+  absolute;z-index:251648000'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+    margin-bottom:7.8pt;margin-left:0cm;text-align:left'><b><span lang=EN-US
+    style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+    style='font-family:幼圆'>注意事项</span></b><b><span style='font-family:幼圆;
+    color:#92D050'>：联动事件</span></b><span style='font-family:幼圆'>包括</span><b><span
+    style='font-family:幼圆;color:#92D050'>门事件</span></b><span style='font-family:
+    幼圆'>和</span><b><span style='font-family:幼圆;color:#92D050'>辅助输入事件</span></b><span
+    style='font-family:幼圆'>。</span><b><span style='font-family:幼圆;color:#92D050'>门事件</span></b><span
+    style='font-family:幼圆'>自动过滤以下</span><span lang=EN-US>3</span><span
+    style='font-family:幼圆'>类：“</span><b><span style='font-family:幼圆;color:#92D050'>无法连接服务器</span></b><span
+    style='font-family:幼圆'>”、“</span><b><span style='font-family:幼圆;color:#92D050'>恢复连接</span></b><span
+    style='font-family:幼圆'>”、“</span><b><span style='font-family:幼圆;color:#92D050'>设备连接断开</span></b><span
+    style='font-family:幼圆'>”。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=320 height=168
+src="user_help.files/image114.png"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US>4. </span><span
+style='font-family:幼圆'>选择输入点和输出点：</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=268 height=264
+src="user_help.files/image115.jpg">&nbsp;<img border=0
+width=270 height=264 src="user_help.files/image116.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>5. </span><span style='font-family:幼圆'>设置联动动作：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=368 height=138
+src="user_help.files/image117.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>6. </span><span style='font-family:幼圆'>设置视频联动：</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span lang=EN-US><img
+border=0 width=361 height=189
+src="user_help.files/image118.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>7. </span><span style='font-family:幼圆'>设置邮箱地址：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US><img border=0 width=360 height=192
+src="user_help.files/image119.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动名称</span></b><span
+style='font-family:幼圆'>：对当前设置的联动命名，方便记忆。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动触发条件</span></b><span
+style='font-family:幼圆'>：即所选设备的事件类型，除触发联动事件、开启</span><span lang=EN-US>/</span><span
+style='font-family:幼圆'>关闭辅助输出、设备启动外，其他均可作为触发条件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>输入</span></b><b><span
+lang=EN-US>/</span></b><b><span style='font-family:幼圆'>输出点</span></b><span
+style='font-family:幼圆'>：选择设备输入输出点。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>联动动作</span></b><span
+style='font-family:幼圆'>：关闭、打开、常开，默认为关闭。如果打开，需要设置延时时间，或者选择常闭。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>视频联动：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>）弹出视频：设置是否需要在实时监控页面弹出实时预览图，并设置弹出的时长。如果设置了视频联动，必须要在读头设置中绑定摄像头，才可实现视频联动功能。具体方法请参见上文</span><a
+href="32.htm#_4.1.4_读头"><span lang=EN-US>4.1.4 </span><span style='font-family:
+幼圆'>读头</span></a><span style='font-family:幼圆'>中的“</span><b><span
+style='font-family:幼圆;color:#92D050'>绑定</span></b><b><span lang=EN-US
+style='color:#92D050'>/</span></b><b><span style='font-family:幼圆;color:#92D050'>解绑摄像头</span></b><span
+style='font-family:幼圆'>”。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）录像：设置是否需要进行后台录像，并设置后台录像的时长。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>3</span><span
+style='font-family:幼圆'>）拍照：设置是否需要后台抓拍图像。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>延时</span></b><span
+style='font-family:幼圆'>：范围是</span><span lang=EN-US>1~254</span><span
+style='font-family:幼圆'>秒（动作类型为打开时此项有效）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>8. </span><span style='font-family:幼圆'>编辑完成后，点击【确定】保存并退出，新增联动设置显示在联动设置列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>例如</span></b><span
+style='font-family:幼圆'>：触发条件选择“正常刷卡开门”，输入点：门</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>，输出点：门锁</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>，动作类型：打开，延时范围：</span><span lang=EN-US>60</span><span
+style='font-family:幼圆'>秒，则在门</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>有人“正常刷卡开门”后，在门锁</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>联动产生“打开”的动作，门打开维持</span><span lang=EN-US>60</span><span
+style='font-family:幼圆'>秒。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><a name="OLE_LINK11"></a><a name="OLE_LINK15"><b><span
+lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b></a><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：编辑时只能修改联动设置名称和配置项；删除设备时，会一并删除其联动设置记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>如果设备和触发条件相同，已存在输入点为具体的门或者辅助输入的联动设置信息；不允许用户添加（或编辑）输入点为“任意”的联动设置记录。同样，如果设备和触发条件相同，已存在输入点为</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>任意</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的联动设置记录，不允许用户添加（或编辑）输入点为具体的门或者辅助输入的联动设置记录。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>不允许设备存在输入点和输出点相同的联动设置。同一设备允许进行多次符合逻辑的联动设置。允许一次设置多个联动触发条件。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

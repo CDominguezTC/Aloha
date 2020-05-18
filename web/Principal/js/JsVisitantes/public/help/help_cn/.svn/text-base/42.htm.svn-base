@@ -1,0 +1,117 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.1 门禁时间段</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection42 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638137"></a><a name="_Toc387761917"></a><a
+name="_7.1_门禁时间段"></a><a name="_6.1_门禁时间段"></a><span lang=EN-US
+style='font-size:10.5pt'>4.2.1 </span><span style='font-size:10.5pt;font-family:
+幼圆'>门禁时间段</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>设置门的使用时间，指定门禁在有效时间段可用；设置门的常开时间段；设置门禁权限，指定人员只能在指定时间段访问指定门（含门禁权限组和首人常开设置）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统按照门禁时间段的设置控制门禁，最多可定义</span><span
+lang=EN-US>255</span><span style='font-family:幼圆'>个时间段。时间区间格式：</span><span
+lang=EN-US>HH</span><span style='font-family:幼圆'>：</span><span lang=EN-US>MM-HH</span><span
+style='font-family:幼圆'>：</span><span lang=EN-US>MM</span><span
+style='font-family:幼圆'>。初始默认存在一个名称为【</span><b><span lang=EN-US>24</span></b><b><span
+style='font-family:幼圆'>小时通行</span></b><span style='font-family:幼圆'>】的门禁时间段，此时间段不可修改和删除。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增门禁时间段</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【时间段】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，进入时间段新增页面，如下图所示：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=576 height=360
+src="user_help.files/image106.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各参数说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>时间段名称</span></b><span
+style='font-family:幼圆'>：任意字符，最多由</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>个字符组成。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：对当前时间段的解释及主要应用的场合，最多由</span><span
+lang=EN-US>5 0</span><span style='font-family:幼圆'>个字符组成。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>时间区间</span></b><span
+style='font-family:幼圆'>和<b>开始、结束时间</b>：一个门禁时间段包含一周及三个假日类型的最多三个时间区间，设置每个时间区间内的开始、结束时间。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设置方式</span></b><span
+style='font-family:幼圆'>：若时间段为常开，填写第一个时间区间为</span><span lang=EN-US>00:00~23:59</span><span
+style='font-family:幼圆'>，第二个和第三个区间为</span><span lang=EN-US>00:00~00:00</span><span
+style='font-family:幼圆'>；若时间段为常闭，全都为</span><span lang=EN-US>00:00~00:00</span><span
+style='font-family:幼圆'>。如果只使用一个时间区间，只填写第一个时间区间，第二个和第三个时间区间使用默认值；如果使用前两个区间，第三个区间使用默认值；如果使用两个或三个时间区间，保证这些时间区间无时间的交集且不跨天，否则系统提示错误。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>复制星期一的时间至其他工作日</span></b><span
+style='font-family:幼圆'>：可将星期一的设置快速复制到其他工作日。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>（</span><span lang=EN-US>2</span><span
+style='font-family:幼圆'>）设置完成后，点击【确定】保存，时间段显示在列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>门禁时间段维护</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>编辑</span></b><span
+style='font-family:幼圆'>：点击时间段列表中“操作”下的【编辑】按钮，进入时间段修改页面进行修改，完成后点击【确定】保存。</span></p>
+
+<p class=MsoNormal><b><span style='font-family:幼圆'>删除</span></b><span
+style='font-family:幼圆'>：在时间段列表中勾选一个或多个时间段，然后点击【删除】；或直接点击“操作”下的【删除】，进入删除确认界面。点击【确定】，则删除时间段；点击【取消】，则放弃操作。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

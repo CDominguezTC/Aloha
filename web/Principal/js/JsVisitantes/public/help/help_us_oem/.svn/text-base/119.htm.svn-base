@@ -1,0 +1,114 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> Appendix 4 FAQs</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection119 style='layout-grid:15.6pt'>
+
+<h2><a name="_Toc427071791"></a><a name="_Toc414032727"></a><a
+name="_Toc387761956"><span lang=EN-US>Appendix 4 FAQ</span></a><span
+lang=EN-US>s</span></h2>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Q: How to use a card issuer?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>A: Connect the card issuer to PC through USB
+port, and then select individual personnel card issue or batch card issue. Move
+the cursor to the card number input box, and punch the card on the card issuer,
+then the card number will be automatically shown in the input box.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Q: What is the use of role setting?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>A: Role setting has the following uses: 1. To
+set unified level for the same type of users newly added, just directly select
+this role when adding users; 2. When setting system reminder, and determine
+which roles can be viewed.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Q: How to operate if I want to set accounts for all personnel of
+the Company’s Financial Department?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>A: First, create a new role in system setting
+and configure the functions to be used for this role. Then add a user, set user
+information, and select the user’s role, thus adding a new account. For other
+accounts, do the same.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Q: In Windows Server 2003, why the IE browser displayed error
+when access the system, how to solve it?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>A: This problem occurs because that Server
+2003 has [Security Configuration Option] settings. If you want to access the
+system, please configure it as follows: click Start &#8211; Control Panel &#8211; Add or
+Remove Program, select [Add and remove Windows components] in the interface and
+click [Internet Explorer Enhanced Security Configuration] option, cancel the
+tick before it. Then click [Next] to remove it from the system. Open the system
+again the browser will access the system properly.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Q: If backing up or restoring the database fails, the possible
+reason?</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>A:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Backup fails</span><span lang=EN-US>: </span><span lang=EN-US>Please
+check the system environment variables</span><span lang=EN-US>, please go to
+Properties &gt; Advanced to set the </span><span lang=EN-US>environment
+variables</span><span lang=EN-US> as “C:\Program Files\BioSecurity3.0\MainResource\postgresql\bin:”.
+“C:\Program Files” is the system installation path, you can modify by your
+actual situation.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Restore fails</span><span lang=EN-US>: There are several reasons:
+The system version is too high or too low, or the database has been damaged,
+you need to follow the prompts to change the system version or repair the
+system, re-install the database.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

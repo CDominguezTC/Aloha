@@ -1,0 +1,345 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 附录2 门禁事件描述</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection119 style='layout-grid:15.6pt'>
+
+<h2 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638214"></a><a name="_Toc387761954"></a><a
+name="_附录2_门禁事件描述"></a><span style='font-size:12.0pt;font-family:幼圆'>附录</span><span
+lang=EN-US style='font-size:12.0pt'>2 </span><span style='font-size:12.0pt;
+font-family:幼圆'>门禁事件描述</span></h2>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>正常事件</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>正常刷卡开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅卡</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>验证方式下，具有开门权限的人员刷卡且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>正常按指纹开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>或者</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>卡或指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的验证方式下，具有开门权限的人员按指纹且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>卡加指纹开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>卡加指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的验证方式下，具有开门权限的人员刷卡并按指纹且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>出门按钮开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在门有效时间段内使用出门按钮开门时，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>触发出门按钮（被锁定）</span></b><span
+style='font-family:幼圆'>：门的出门按钮状态设置为锁定，使用出门按钮开门时，触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门常开时段内刷卡</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>具有开门权限的人员在常开时间段内（对单个门设置的门常开时段或首人常开设置的开门时段），以及通过远程开门常开的操作，门处于打开状态时刷有效卡触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>常开时间段内按指纹</span></b><span
+style='font-family:幼圆'>：具有开门权限的人员在常开时间段内（对单个门设置的门常开时段或首人常开设置的开门时段），以及通过远程开门常开的操作，门处于打开状态时按指纹触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>首人常开（刷卡）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在“仅卡”的验证方式下，具有首人开门权限的人员在设定的首人常开时间段内，门尚未打开时刷卡且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>首人常开（按指纹）</span></b><span
+style='font-family:幼圆'>：在仅指纹或者卡或指纹的验证方式下，具有首人开门权限的人员在设定的首人常开时间段内，门尚未打开时按指纹且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>首人常开（卡加指纹）</span></b><span
+style='font-family:幼圆'>：在卡加指纹的验证方式下，具有首人开门权限的人员在设定的首人常开时间段内，门尚未打开时刷卡并按指纹且验证通过后触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>常开时间段结束</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>设置的常开时间段到，门自动关闭。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>远程开门常开</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>使用远程开门时选择常开让门处于常开状态，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>取消常开</span></b><span
+style='font-family:幼圆'>：连</span><span style='font-family:幼圆'>刷五下有效卡或者远程关门取消当前门的常开状态，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>禁用当天常开时间段</span></b><span
+style='font-family:幼圆'>：门处于常开状态时，连刷五下有效卡（必须为同一用户）或者使用远程关门中的【禁用当天常开时间段】操作，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>启用当天常开时间段</span></b><span
+style='font-family:幼圆'>：门的当天常开时间段已被禁用时，连刷五下有效卡（必须为同一用户）或者远程开门中的【启用该门当天常开时间段】操作，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人开门（刷卡）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅卡</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的验证方式下，多人组合开门时，最后一张卡验证通过时触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人开门（按指纹）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>或</span><span lang=EN-US>“</span><span style='font-family:
+幼圆'>卡或指纹</span><span lang=EN-US>”</span><span style='font-family:幼圆'>的验证方式下，多人组合开门时，最后一个指纹验证通过时触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人开门（卡加指纹）</span></b><span
+style='font-family:幼圆'>：在</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>卡加指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>的验证方式下，多人组合开门时，最后一次卡加指纹验证通过时触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>紧急状态密码开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>使用在当前门上设置的紧急状态密码（也称为超级密码）开门且验证通过后所触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>常开时间段开门</span></b><span
+style='font-family:幼圆'>：设定的常开时间段的开始时间到，门自动打开触发的正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>触发联动事件</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>系统内设定的联动生效，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>取消报警</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>用户对报警的门取消报警，且操作成功，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>远程开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>用户远程开门且操作成功，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>远程关门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>用户远程关门且操作成功，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>开启辅助输出</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>如果用户在联动设置中设定的输出点选择</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>辅助输出点</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，动作类型选择</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>打开</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，当该联动设置生效时，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>关闭辅助输出</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>如果用户在联动设置中设定的输出点地址选择</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>辅助输出点</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，动作类型选择</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>关闭</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>，当该联动设置生效时，触发该正常事件；或者用户使用【门设置】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【关闭辅助输出】的操作关闭已经开启的辅助输出点，也会触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门已打开</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>门磁检测到门已被正常打开，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门已关闭</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>门磁检测到门已被正常关闭，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>辅助输入点断开</span></b><span
+style='font-family:幼圆'>：辅助输入点断开时，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>辅助输入点短路</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>辅助输入点短路时，触发该正常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备启动</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>设备启动时触发该正常事件（该事件不会出现在实时监控中，只能通过报表中的事件记录查看）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>异常事件</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>刷卡间隔太短</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>两次刷卡之间的间隔时间小于该门设定的刷卡间隔时间时，触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>按指纹间隔太短</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>两次按指纹之间的间隔时间小于该门设定的间隔时间时，触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门非有效时间段（卡）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>验证方式为</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅卡</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>时，具有开门权限的人员，在有效时间段之外的时间刷卡触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门非有效时间段</span></b><b><span
+lang=EN-US>(</span></b><b><span style='font-family:幼圆'>指纹</span></b><b><span
+lang=EN-US>)</span></b><span style='font-family:幼圆'>：具有开门权限的人员，在有效时间段之外的时间按指纹触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门非有效时间段（出门按钮）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>具有开门权限的人员，在有效时间段之外的时间按出门按钮触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>非法时间段</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>具有开门权限的人员，在门禁权限设定的时间段之外的时间刷卡触发的异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>非法访问</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>已注册的卡，尚未在当前门设置门禁权限时，刷卡触发的异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>反潜</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>系统内设定的反潜规则生效时，触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>互锁</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>系统内设定的互锁规则生效时，触发该异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人验证（刷卡）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>多人组合开门时，最后一次验证之前的刷卡验证（无论通过与否），触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人验证（按指纹）</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在</span><span
+lang=EN-US>“</span><span style='font-family:幼圆'>仅指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>或者</span><span lang=EN-US>“</span><span
+style='font-family:幼圆'>卡或指纹</span><span lang=EN-US>”</span><span
+style='font-family:幼圆'>验证方式下，多人组合开门时，最后一次验证之前的指纹验证（无论通过与否），触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>卡未注册</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>当前卡号未在系统内注册时，触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>指纹未注册</span></b><span
+style='font-family:幼圆'>：当前指纹未在系统内登记或者已登记但未同步到设备中，触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门开超时</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>门被打开，超过延时时间后检测门磁，如果门没有关上，触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>卡已过有效期</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>已设置门禁有效时间的人员，不在人员的门禁有效期内刷卡无法验证通过，触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>指纹已过有效期</span></b><span
+style='font-family:幼圆'>：已设置门禁有效时间的人员，不在人员的门禁有效期内按指纹无法验证通过，触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>密码错误</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>使用卡加密码验证方式或者胁迫密码、紧急密码开门时，密码验证错误触发该事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>常开时间段无法关门</span></b><span
+style='font-family:幼圆'>：当前门正处在常开状态，无法通过远程关门中的【远程关门】操作关门时触发的异常事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>验证方式错误</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>人员在设备上的开门方式和当前门设置的验证方式不一致触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>后台验证失败</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>全局反潜验证失败触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>后台验证成功</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>全局反潜验证成功触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>后台验证超时</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>全局反潜验证超过规定时间没有返回，触发的事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>多人验证失败</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>多人组合开门时，验证不通过触发的事件。</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp;
+</span></span><b><span style='font-family:幼圆'>报警事件</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>胁迫密码开门</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>用当前门的胁迫密码开门且验证通过后触发的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>胁迫指纹开门</span></b><span
+style='font-family:幼圆'>：用当前门的胁迫指纹开门且验证通过后触发的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>胁迫开门报警</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>用当前门的胁迫密码或胁迫指纹开门且验证通过后触发的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门被意外打开</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>在正常事件以外的情况下，门磁检测到门被打开，触发该报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门开超时</span></b><span
+style='font-family:幼圆'>：门被打开后，到了关门时间门没有关闭触发的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>防拆报警</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>一体机设备被拆除时的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>无效卡刷卡报警</span></b><span
+style='font-family:幼圆'>：</span><span style='font-family:幼圆'>无效卡连续刷卡</span><span
+lang=EN-US>5</span><span style='font-family:幼圆'>次触发的报警事件。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：用户可自定义每个事件的级别（正常、异常、报警）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;text-indent:18.0pt;line-height:150%'><span lang=EN-US>&nbsp;</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

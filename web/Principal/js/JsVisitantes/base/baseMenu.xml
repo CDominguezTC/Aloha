@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 其xml为门禁左边子菜单配置，结构就不说了，主要讲下下面的id的用法，
+如人事：id="menu^pers" 中的menu是标识该菜单是个主菜单，点击时不会进行页面跳转，
+pers和页面文件夹相同下面的部门才是正要进入的页面。
+id="grid^pers_department_listDepartment.action" 中的grid是标识该菜单是子菜单，
+点击将会跳转到^后面的pers_department_listDepartment.action页面，
+那么不用说"^"就是个分隔符了
+  -->
+<xml-body>
+	<tree id="0">
+		<item shiro="#" id="base_menu^base_listBaseOpLog.action" text="${base_leftMenu_basicManagement}" open="1" im0="base_basicManagement.png" im1="base_basicManagement.png"
+			im2="base_basicManagement.png">
+			<item shiro="@" id="iframe:base_listBaseLanguage.action?type=custom" text="${base_leftMenu_i18n}" im0="base_i18n.png"
+				im1="base_i18n.png" im2="base_i18n.png">
+			</item>
+			<item shiro="base:BaseOpLog:res" id="base_listBaseOpLog.action" text="${base_leftMenu_systemLog}" im0="base_opLog.png" im1="base_opLog.png"
+				im2="base_opLog.png" select="1" defDashboard="true">
+			</item>
+			<item shiro="base:BaseDbBackup:res" id="base_listBaseDbBackup.action?type=public" text="${base_leftMenu_databaseManagement}" im0="base_dbBackup.png" im1="base_dbBackup.png"
+				im2="base_dbBackup.png" defDashboard="true">
+			</item>
+			<item shiro="base:BaseArea:res" id="base_listBaseArea.action" text="${base_leftMenu_locale}" im0="base_area.png" im1="base_area.png"
+				im2="base_area.png" defDashboard="true">
+			</item>
+			<item shiro="base:BaseSysParam:res" id="base_listBaseSysParam.action" text="${base_system_parameter}" im0="base_appOption.png" im1="base_appOption.png"
+				im2="base_appOption.png">
+			</item>
+			<!--  -->
+			<!-- <item shiro="base:BaseDateFormat:res" id="baseDateFormatAction!getDateFormat.action" text="${base_leftMenu_datetimeFormatSetting}" im0="base_dateFormat.png" im1="base_dateFormat.png"
+				im2="base_dateFormat.png">
+			</item> -->
+			
+			<item shiro="base:BaseMail:res" id="base_listBaseMail.action" text="${base_leftMenu_emailManagement}" im0="base_mail.png" im1="base_mail.png" im2="base_mail.png" />
+			<!--<item shiro="base:BaseSMS:res" id="base_listBaseSMS.action?type=public" text="${base_leftMenu_smsManagement}" im0="leftico.png" im1="leftico.png" im2="leftico.png" />-->
+			<item shiro="@" id="base_listBaseDictionary.action?type=custom" text="${base_leftMenu_dictionary}" im0="base_dictionary.png" im1="base_dictionary.png" im2="base_dictionary.png"/>
+			<item shiro="base:BaseDataClean:res" id="baseDataCleanAction!getConfigParam.action" 
+				text="${base_leftMenu_dataClean}" im0="base_dataClean.png" im1="base_dataClean.png" im2="base_dataClean.png">
+			</item>
+			<!-- 报表页头设置
+			<item shiro="base:BaseReport:res" id="baseReportConfigAction!getReportParamPage.action" 
+				text="${base_report_title}" im0="leftico.png" im1="leftico.png" im2="leftico.png">
+			</item>
+			 -->
+			<item shiro="base:BaseMediaFile:res" id="base_listBaseMediaFile.action?type=custom" text="${base_leftMenu_AudioFile}" im0="base_dbBackup.png" im1="base_dbBackup.png"
+				im2="base_dbBackup.png">
+			</item>
+		</item>
+		<item shiro="#" id="auth_menu^auth_listAuthUser.action" text="${auth_leftMenu_authorityManage}" open="1" im0="auth_authorityManage.png" im1="auth_authorityManage.png"
+			im2="auth_authorityManage.png">
+			<item shiro="base:AuthUser:res" id="auth_listAuthUser.action" text="${auth_leftMenu_userManage}" im0="auth_user.png" im1="auth_user.png"
+				im2="auth_user.png" disabled="true" defDashboard="true"/>
+			<item shiro="base:AuthRole:res" id="auth_listAuthRole.action" text="${auth_leftMenu_roleManage}" im0="auth_role.png" im1="auth_role.png"
+				im2="auth_role.png" disabled="true"/>
+			<item shiro="base:AuthGroup:res" id="auth_listAuthGroup.action?type=custom" text="${auth_user_authorityGroup}" im0="auth_group.png" im1="auth_group.png"
+				 im2="auth_group.png" disabled="true"/>
+			<item shiro="@" id="auth_listAuthSystem.action" text="${auth_leftMenu_systemManage}" im0="auth_system.png" im1="auth_system.png"
+				im2="auth_system.png" />
+			<item shiro="@" id="auth_listAuthResource.action" text="${auth_leftMenu_menuManage}" im0="auth_resource.png" im1="auth_resource.png"
+				im2="auth_resource.png" />
+			<item shiro="@" id="auth_listAuthOperate.action" text="${auth_leftMenu_functionManage}" im0="auth_operate.png" im1="auth_operate.png"
+				im2="auth_operate.png" />
+		</item>
+		<item shiro="#" id="adms_menu^adms_listAdmsDevCmd.action" text="${base_leftMenu_adms}" open="1" im0="base_commManage.png">
+			<item shiro="base:BaseAdmsDevCmd:res" id="base_listBaseAdmsDevCmd.action?type=custom" text="${base_leftMenu_admsCmd}" disabled="true"/>
+			<!-- <item shiro="@" id="admsDataManageAction!getAll.action" text="${base_leftMenu_admsDataManage}"/> -->
+			<!-- <item shiro="base:AdmsParamSet:res" id="admsParamSetAction!getParam.action" text="${common_leftMenu_paramSet}" disabled="true"/> -->
+		</item>
+		
+		<!-- <item shiro="#" role="auth_role_selfHelp" id="auth_menu^auth_listAuthUser2.action" text="${auth_leftMenu_authorityManage}" open="1" im0="auth_authorityManage.png" im1="auth_authorityManage.png"
+			im2="auth_authorityManage.png">
+			<item shiro="base:self:res" role="auth_group_selfHelp"  id="auth_listAuthResource2.action" text="${auth_leftMenu_menuManage}" im0="auth_resource.png" im1="auth_resource.png"
+				im2="auth_resource.png">
+				<item shiro="base:self1:res" role="auth_group_selfHelp"  id="auth_listAuthOperate21.action" text="${auth_leftMenu_functionManage}" im0="auth_operate.png" im1="auth_operate.png"
+				im2="auth_operate.png" />
+				<item shiro="base:self2:res" role="auth_group_selfHelp"  id="auth_listAuthOperate22.action" text="${auth_leftMenu_functionManage}" im0="auth_operate.png" im1="auth_operate.png"
+				im2="auth_operate.png" />
+			</item>
+		</item> -->
+	</tree>
+</xml-body>

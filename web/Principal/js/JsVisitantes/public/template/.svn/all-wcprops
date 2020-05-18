@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/aloha/!svn/ver/60/trunk/war/public/template
+END
+right.html
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/aloha/!svn/ver/60/trunk/war/public/template/right.html
+END
+logTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/aloha/!svn/ver/60/trunk/war/public/template/logTemplate.html
+END
+exportTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/aloha/!svn/ver/60/trunk/war/public/template/exportTemplate.html
+END
+editTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/aloha/!svn/ver/60/trunk/war/public/template/editTemplate.html
+END
+setTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/aloha/!svn/ver/60/trunk/war/public/template/setTemplate.html
+END
+infoTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/aloha/!svn/ver/60/trunk/war/public/template/infoTemplate.html
+END
+publicAllStyle.html
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/aloha/!svn/ver/60/trunk/war/public/template/publicAllStyle.html
+END
+winTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/aloha/!svn/ver/60/trunk/war/public/template/winTemplate.html
+END
+left.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/aloha/!svn/ver/60/trunk/war/public/template/left.html
+END
+head.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/aloha/!svn/ver/60/trunk/war/public/template/head.html
+END
+loginTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/aloha/!svn/ver/60/trunk/war/public/template/loginTemplate.html
+END
+bottom.html
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/aloha/!svn/ver/60/trunk/war/public/template/bottom.html
+END
+listTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/aloha/!svn/ver/60/trunk/war/public/template/listTemplate.html
+END
+opTemplate.html
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/aloha/!svn/ver/60/trunk/war/public/template/opTemplate.html
+END
+base.html
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/aloha/!svn/ver/60/trunk/war/public/template/base.html
+END

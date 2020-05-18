@@ -1,0 +1,89 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.3.6 Verificación Multi-Usuario</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection50 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077420"></a><a name="_Toc427077301"></a><a name="_Toc19075"></a><a
+name="_Toc417486944"></a><a name="_Toc413852704"></a><a
+name="_6.4.6_Multi-Person_Opening"></a><span lang=ES-MX>4.3.6 Verificación
+Multi-Usuario</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Establece los niveles para
+el personal en el grupo multi-usuario.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='letter-spacing:
+-.1pt'>Es una combinación de personal en uno o más grupos multi-usuario. Al
+establecer el número de personas en cada grupo, se puede configurar un grupo
+(como la apertura de puerta por la combinación de dos personas en un grupo) o
+múltiples grupos (como la apertura de puerta de cuatro usuarios, incluyendo dos
+personas del grupo 1 y dos personas del grupo 2), y al menos un grupo debe
+contener un número de usuario diferente a 0, y el número total no debe ser
+mayor de 5. Adicionalmente, si el número de usuarios ingresados es mayor que en
+el grupo actual, la verificación multi-usuario será deshabilitada.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Configuración de
+verificación multi-usuario:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(1) De clic en [Control
+de Acceso] &gt; [Verificación Multi-Usuario] &gt; [</span><span lang=ES-MX>Nuevo</span><span
+lang=ES-MX>] </span><span lang=ES-MX>:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=554
+height=294 id="图片 205"
+src="user_help.files/image105.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(2) Seleccione el
+Nombre de Puerta e ingrese el Nombre de Combinación. Seleccione el número de
+usuarios para la verificación multi-usuario de un grupo (el máximo número de
+usuarios para la verificación multi-usuario es 5) y de clic en [OK] para
+completar.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-size:14.0pt;
+font-family:Wingdings'>?</span><span lang=ES-MX>Nota:</span><span lang=ES-MX>
+El intervalo de verificación entre usuarios por default es de</span><span
+lang=ES-MX> 10 segundos. Puede modificar en intervalo si el dispositivo lo
+soporta.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

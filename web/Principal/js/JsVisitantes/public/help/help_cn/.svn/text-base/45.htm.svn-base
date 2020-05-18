@@ -1,0 +1,102 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.4 互锁设置</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection45 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638140"></a><a name="_Toc387761923"><span
+lang=EN-US style='font-size:10.5pt'>4.2.4 </span></a><span style='font-size:
+10.5pt;font-family:幼圆'>互锁设置</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>设置一个门禁设备上的两个或多个门之间的互锁管制：要打开一个门，必须保证其他对应的门都关闭，否则无法开门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>设置互锁前请确保已经连接好门磁，并设置门磁状态为常开或常闭。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【互锁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，进入互锁设置编辑页面：</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=313 height=144
+src="user_help.files/image111.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>选择设备。新增互锁时，在下拉列表中看不到已设置过互锁的设备。删除已设置的互锁信息，对应的设备会重新回到下拉列表中。设备控制的门数不同，互锁设置也不同：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:60.4pt;text-indent:-42.55pt'><span lang=EN-US style='font-size:
+6.5pt;font-family:Wingdings;color:windowtext;position:relative;top:-1.5pt'>&sup2;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:幼圆'>单门控制器无互锁设置</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:60.4pt;text-indent:-42.55pt'><span lang=EN-US style='font-size:
+6.5pt;font-family:Wingdings;color:windowtext;position:relative;top:-1.5pt'>&sup2;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:幼圆'>双门控制器：</span><span lang=EN-US>1-2</span><span
+style='font-family:幼圆'>两门互锁设置</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:60.4pt;text-indent:-42.55pt'><span lang=EN-US style='font-size:
+6.5pt;font-family:Wingdings;color:windowtext;position:relative;top:-1.5pt'>&sup2;<span
+style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+style='font-family:幼圆'>四门控制器：</span><span lang=EN-US>1-2</span><span
+style='font-family:幼圆'>两门互锁、</span><span lang=EN-US>3-4</span><span
+style='font-family:幼圆'>两门互锁、</span><span lang=EN-US>1-2-3</span><span
+style='font-family:幼圆'>三门互锁、</span><span lang=EN-US>1-2-3-4</span><span
+style='font-family:幼圆'>四门互锁、</span><span lang=EN-US>1-2</span><span
+style='font-family:幼圆'>门和</span><span lang=EN-US>3-4</span><span
+style='font-family:幼圆'>门互锁</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3. </span><span style='font-family:幼圆'>选择互锁规则，勾选其中一项，点击【确定】完成设置，新增的互锁设置显示在列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：编辑时不能修改设备，只能修改互锁设置，如果不再需要对该设备设置互锁，需将该条互锁设置记录删除。删除某个设备记录时，会一并删除其互锁设置记录。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

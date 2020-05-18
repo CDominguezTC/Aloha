@@ -1,0 +1,57 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 7. 视频联动</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection96 style='layout-grid:15.6pt'>
+
+<h1 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc387761938"></a><a name="_Toc387761911"></a><a
+name="_Toc426638191"><span lang=X-NONE style='font-size:16.0pt'>7. </span></a><span
+lang=X-NONE style='font-size:16.0pt;font-family:幼圆'>视频联动</span></h1>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统支持门禁及梯控设备的视频联动。可以实现对</span><span
+lang=EN-US>DVR/NVR/IPC</span><span style='font-family:幼圆'>的管理、实时预览、视频录像查询和联动事件发生时自动弹出实时视频等功能。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>使用视频联动功能，用户需要预先在【视频设备】中新增设备，新增完成后，用户在门禁、梯控系统中设置完视频联动，即可使用视频联动功能。具体设置方法可参见上文</span><a
+href="46.htm#_4.3.2_联动设置"><span lang=EN-US>4.3.2 </span><span style='font-family:
+幼圆'>联动设置</span></a><span style='font-family:幼圆'>和</span><a
+href="76.htm#_5.3.4_全局联动"><span lang=EN-US>5.3.4 </span><span style='font-family:
+幼圆'>全局联动</span></a><span style='font-family:幼圆'>。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

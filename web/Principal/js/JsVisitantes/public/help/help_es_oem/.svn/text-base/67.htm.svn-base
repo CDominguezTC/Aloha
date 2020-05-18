@@ -1,0 +1,110 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.3 Pisos</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection67 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077064"></a><a name="_Toc11424"></a><a name="_Toc417486961"><span
+lang=ES-MX>5.1.3 Piso</span></a><span lang=ES-MX>s</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc414032673"></a><a name="_Toc2229"><span
+lang=ES-MX>De clic en [Dispositivos] &gt; [Pisos], seleccione el nombre de un
+piso de la lista y de clic en [Editar]:</span></a></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=zh-CN><img border=0 width=399 height=369
+src="user_help.files/image120.png"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Nombre de Dispositivo</span><span
+lang=ES-MX>: No es editable.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Número de Piso</span><span lang=ES-MX>:
+El sistema los nombrará automáticamente según el número de relevadores.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Nombre de Piso</span><span lang=ES-MX>:
+El formato default es “Nombre de Dispositivo &#8211; Número de Piso”, es editable
+máx. 30 caracteres.</span></p>
+
+<p class=MsoNormal><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Horario de Piso Activo, Horario de Apertura Programada</span><span
+lang=ES-MX>:<b> El valor default es Nulo</b></span><span lang=ES-MX>. Se
+mostrarán los horarios de piso activo agregados por los usuarios para ser
+seleccionados. Al editar un piso, el horario de piso activo debe ser. Para
+cerrar la liberación continua de los pisos se realiza después de especificar el
+horario efectivo. El horario de apertura programada toma efecto solo en el
+periodo efectivo. Se recomienda que el periodo de liberación continua sea
+incluido en el horario de piso activo. </span><span class=tw4winMark><span
+lang=ES-MX>&lt;0}</span></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Duración de Liberación de Botón</span><span lang=ES-MX>: Es el
+tiempo que se libera un botón después de una realizar una verificación válida.
+El valor default es 5 segundos con un rango de 0 a 254 segundos.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Copiar la Configuración a</span><span
+lang=ES-MX>: Incluye dos opciones.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Todos los Pisos del Dispositivo Actual</span><span lang=ES-MX>:
+Aplica la configuración actual a todos los pisos del dispositivo.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Todos los Pisos de Todos los Dispositivos</span><span
+lang=ES-MX>: Aplica la configuración actual a todos los pisos de todos los
+dispositivos del nivel del usuario actual.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,39 @@
+<#include "/public/template/listTemplate.html">
+
+<#macro extendJs>
+	<script type="text/javascript">
+		function openWindowForDevCmdExport(id)
+		{
+			var esbHost = "${application['esb.host']}";
+			
+			openWindowForExport(id);
+			
+			if(esbHost.indexOf("localhost") == -1 && esbHost.indexOf("127.0.0.1") == -1)//本地
+			{
+				window.setTimeout(function(){
+					
+					var actionPath = id.substring(0, id.indexOf("^"));
+					
+					$("form[action='"+ actionPath +"']").attr("action", "http://${application['esb.host']}:${application['esb.port']}/" + actionPath);
+					
+					$("#editFormOK").bind("click", function(){
+						$.ajax({
+							type: "GET",
+							url: "baseAdmsDevCmdAction!checkExportResult.action",
+							dataType:"json",
+							async : true,
+							success: function(result)
+						    {
+								dealRetResult(result, function(){});
+							}
+				        });
+					});
+				}, 500);
+			}
+			
+			window.setTimeout(function(){
+				$("#queryConditions").val($("#queryConditions").val().replace(new RegExp(/(#)/g),"."));//替换#字段值为。
+			}, 500);
+		}
+	</script>
+</#macro>

@@ -1,0 +1,98 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.3.2 All Exception Events</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection81 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072393"><span lang=EN-US>5.3.2</span><span lang=EN-US> </span></a><span
+lang=EN-US>All </span><span lang=EN-US>Exception Events</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Click [Reports] &gt; [</span><span
+lang=EN-US>All </span><span lang=EN-US>Exception Events] to view exception
+events in specified condition. The options are same as those of [All
+Transactions].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=613
+height=230 id="图片 31" src="user_help.files/image141.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Clear All Data</span><span lang=EN-US>:
+Click [Clear All Data] to pop up prompt, click [OK] to clear all exception
+events.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>By </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fl</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>oor</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>View related access
+levels by door. Click [Reports] &gt; [By </span><span lang=EN-US>Fl</span><span
+lang=EN-US>oor], the data list in the left side show all </span><span
+lang=EN-US>fl</span><span lang=EN-US>oors in the system, select a </span><span
+lang=EN-US>fl</span><span lang=EN-US>oor, the personnel having access levels to
+the </span><span lang=EN-US>fl</span><span lang=EN-US>oor will display on the
+right data list.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=613
+height=172 id="图片 34" src="user_help.files/image142.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>By Personnel</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Click [Reports] &gt;
+[By Personnel], the data list in the left side show all doors in the system,
+select a personnel, the personnel having access levels to the door will display
+on the right data list.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=zh-CN><img border=0
+width=613 height=193 id="图片 37"
+src="user_help.files/image143.jpg"></span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:22.0pt;line-height:240%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

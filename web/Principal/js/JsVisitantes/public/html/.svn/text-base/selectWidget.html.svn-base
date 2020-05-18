@@ -1,0 +1,9 @@
+<#include "/public/template/winTemplate.html">
+<#macro winContent>
+	<#include "/public/html/selectWidgetContent.html">
+</#macro> 
+
+<#macro operateButton>
+<input type="button" class="button-form" value="${common_edit_ok}" id="confirmButton" />
+<input type="button" class="button-form" onclick="closeWindow()" value="${common_edit_cancel}"  id="closeButton" />
+</#macro>

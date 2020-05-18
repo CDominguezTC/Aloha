@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是数据列表显示字段配置  -->
+	<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseOpLog">
+			<field name="id" width="80" columnMinWidth="70" label="ID"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="false" isKeyId="true" />
+			<field name="opUsername" width="100" columnMinWidth="70" label="${common_opUser}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true" />
+			<field name="opTime" width="130" columnMinWidth="70" label="${base_opLog_time}"
+				type="ro" align="left" valign="middle" headerMenu="true" sort="server"
+				isShow="true">
+				<value type="date">longDate</value>
+			</field>
+			<field name="opIp" width="105" columnMinWidth="70" label="${base_opLog_ipAddress}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+			</field>
+			<field name="opSys" width="70" columnMinWidth="70" label="${base_opLog_module}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+			</field>
+			<field name="opObject" width="120" columnMinWidth="70" label="${base_opLog_object}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+			</field>
+			<field name="opType" width="120" columnMinWidth="70" label="${base_opLog_type}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+			</field>
+			<field name="content" width="400" columnMinWidth="70" label="${base_opLog_content}"
+				type="ro" headerMenu="true" align="left" valign="middle" sort="server"
+				isShow="true">
+			</field>
+			<field name="opResult" width="*" columnMinWidth="65"
+				label="${base_opLog_result}" type="ro" headerMenu="true" align="left" valign="middle"
+				sort="server" isShow="true">
+				<value name="0"><![CDATA[<img src="(rootPath)/public/images/ico/icon-yes.gif"/>]]></value>
+				<value name="1"><![CDATA[<img src="(rootPath)/public/images/ico/icon-no.gif"/>]]></value>
+			</field>
+		</object>
+	</objects>
+
+	<searchs>
+		<search actionName="baseOpLog">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140" inputWidth="140"></item>
+				<item type="input" name="entity.opUsername" label="${common_opUser}" maxlength="30"></item>
+				<itemGroup> 
+					<item type="date" dateFormat="dhtmlxLongDate" id="beginTime" clickId = "endTime" name="entity.opTime" limit="max" label="${base_opLog_time}&#160;${common_from}" readonly="true" calendarPosition="right" inputWidth="150" maxlength="30"></item> 
+					<item type="date" label="${common_to}" dateFormat="dhtmlxLongDate" id="endTime" clickId="beginTime" name="filter:opTime" limit="min" readonly="true" calendarPosition="right" inputWidth="150" maxlength="30"></item>
+				</itemGroup>
+			</items>
+			<items type="belowSearch">
+			    <item type="input" label="${base_opLog_ipAddress}" name="entity.opIp" maxlength="300"></item>
+				<item type="combo" label="${base_opLog_module}" id="sysName" name="entity.opSys"
+					path="authSystemAction!getSysComboArray.action" childCombo="resName" >
+				</item>
+				<item type="combo" label="${base_opLog_object}" id="resName" name="entity.opObject"
+					path="authSystemAction!getResComboArray.action" childCombo="opName" >
+				</item>
+				<item type="combo" label="${base_opLog_type}" id="opName" name="entity.opType"
+					path="authSystemAction!getOpComboArray.action" >
+				</item>
+				<item type="input" label="${base_opLog_content}" name="entity.content" maxlength="300"></item>
+			</items>
+		</search>
+	</searchs>
+	
+	<toolbars>
+		<toolbar actionName="baseOpLog">
+			<item shiro="*" id="refresh" type="button" img="comm_refresh.png" imgdis="comm_refresh.png"
+				text="${common_op_refresh}" action="reloadGrid"></item>
+			<item shiro="base:BaseOpLog:export" id="baseOpLogAction!export.action^0^0^550^250" type="button" img="comm_export.png" imgdis="comm_export.png"
+				text="${common_op_export}" action="openWindowForExport"></item>
+		</toolbar>
+	</toolbars>
+</page>

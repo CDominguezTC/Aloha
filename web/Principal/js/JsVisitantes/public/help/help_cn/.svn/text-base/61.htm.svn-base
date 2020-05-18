@@ -1,0 +1,59 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.4.3 人员最后访问位置</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection61 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638156"><span lang=EN-US
+style='font-size:10.5pt'>4.4.3 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>人员最后访问位置</span></h3>
+
+<p class=MsoCommentText style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm'><span style='font-size:9.0pt;font-family:幼圆'>查看具有通行权限的人员访问的最后位置。方便用户快速定位人员所在位置。</span></p>
+
+<p class=MsoCommentText style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm'><span style='font-size:9.0pt;font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-size:9.0pt;font-family:Wingdings'>à</span><span
+style='font-size:9.0pt;font-family:幼圆'>【报表】</span><span lang=EN-US
+style='font-size:9.0pt;font-family:Wingdings'>à</span><span style='font-size:
+9.0pt;font-family:幼圆'>【人员最后访问记录】，进入人员最后访问记录查询界面：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=613 height=204
+src="user_help.files/image138.jpg"></span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

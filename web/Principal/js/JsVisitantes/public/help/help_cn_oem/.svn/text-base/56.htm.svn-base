@@ -1,0 +1,128 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.3.4 全局反潜</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection56 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707496"></a><a name="_Toc387761932"><span
+lang=EN-US style='font-size:10.5pt'>4.3.4 </span></a><span style='font-size:
+10.5pt;font-family:幼圆'>全局反潜</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>全局反潜可以跨设备进行反潜设置，功能和反潜相同，只要设置了全局反潜功能就能使用该功能。使用前，必须保证门禁区域和读头定义已设置，且设置反潜的设备要开启后台验证功能。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增</span></b></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left;line-height:150%;
+text-autospace:ideograph-other'><span lang=EN-US><img border=0 width=288
+height=281 src="user_help.files/image132.jpg">&nbsp;&nbsp;
+</span><span style='position:absolute;z-index:251651072;margin-left:0px;
+margin-top:0px;width:321px;height:207px'>
+
+<table cellpadding=0 cellspacing=0>
+ <tr>
+  <td width=321 height=207 style='vertical-align:top'><span style='position:
+  absolute;z-index:251651072'>
+  <table cellpadding=0 cellspacing=0 width="100%">
+   <tr>
+    <td>
+    <div style='padding:3.6pt 7.2pt 3.6pt 7.2pt'>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:
+    幼圆'>点击【门禁】</span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+    style='font-family:幼圆'>【高级门禁】</span><span lang=EN-US style='font-family:
+    Wingdings'>à</span><span style='font-family:幼圆'>【全局反潜】</span><span
+    lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:
+    幼圆'>【新增】，显示新增全局反潜页面；</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:
+    幼圆'>设置全局反潜：规则名称（不可重复）、门禁区域、反潜类型、锁闭时长、重置全局反潜状态、重置反潜的时间；</span></p>
+    <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+    7.8pt;margin-left:0cm'><span lang=EN-US>3. </span><span style='font-family:
+    幼圆'>点击【确定】完成设置并退出，列表中显示新增的全局反潜。</span></p>
+    </div>
+    </td>
+   </tr>
+  </table>
+  </span>&nbsp;</td>
+ </tr>
+</table>
+
+</span><span lang=EN-US><img border=0 width=317 height=203
+src="user_help.files/image133.png"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段定义如下：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>门禁区域</span></b><span
+style='font-family:幼圆'>：选择“门禁区域”下拉列表中的选项，会在“门列表控制门禁区域的进出通行”文本框中显示相应的门信息。同时遵守“同门不得用于控制两个独立的反潜边界”规则。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>反潜类型</span></b><span
+style='font-family:幼圆'>：逻辑反潜，定时反潜，定时逻辑反潜。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>逻辑反潜</span></b><span
+style='font-family:幼圆'>：在反潜区域严格遵守“一进一出”的规则，否则刷卡不会开门。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>定时反潜</span></b><span
+style='font-family:幼圆'>：在规定时间内，用户只能进入反潜区域一次，超过时间后用户的状态被清空，可以重新进入反潜区域。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>定时逻辑反潜</span></b><span
+style='font-family:幼圆'>：用户进入反潜区域必须遵守逻辑反潜的出、入规则，才可以正常开门。定时逻辑反潜只有在异常情况下用到。例如：如果设定了逻辑反潜时间，人员尾随别人出去，则该人员在设定的锁闭时长内，不能刷卡进入，必须过了设定的锁闭时长后，才会重置反潜状态，可以继续通行。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>锁闭时长</span></b><span
+style='font-family:幼圆'>：反潜类型选择定时反潜或定时逻辑反潜，才可以设置锁闭时长。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>重置全局反潜状态</span></b><span
+style='font-family:幼圆'>：清空人员在系统中的反潜状态，恢复初始化状态。只有勾选重置全局反潜状态，才能选择重置反潜的时间。到了重置反潜的时间，系统会自动清空所有人员在门禁区域的反潜状态。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>重置反潜的时间</span></b><span
+style='font-family:幼圆'>：设置重置反潜的时间。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

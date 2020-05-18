@@ -1,0 +1,102 @@
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+	<script type="text/javascript">
+		$().ready(function() {
+			$("#${formId}").validate( {
+				debug : true,
+				rules :
+				{
+					"baseMap.baseArea.id":
+					{
+						required : true
+					},
+					"baseMap.name" :
+					{
+						required : true,
+						validInputStr: true,
+						rangelength : [1, 30],
+						remote : {
+							url : "baseMapAction!mapNameExist.action", //后台处理程序
+							type : "post", //数据发送方式
+							dataType : "json" //接受数据格式
+							<#if (tempBaseMap.name)?exists>
+								,
+								data : { //要传递的数据
+									'mapName' : '${(tempBaseMap.name)!}'
+								}
+							</#if>
+						}
+					},
+					"file":
+					{
+						required : true,
+						accept:"jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG|bmp|BMP"
+					}
+				},
+				messages:
+				{
+					"file":
+					{
+		                required: "${base_map_picType}",//请上传后缀名为jpg的图片
+		                accept: "${base_map_picType}"
+				    }
+				},
+				submitHandler : function()
+				{
+					
+					<@submitHandler callBackFun="createItemCookie(result[sysCfg.data]);reloadTree()"/>
+				}
+			});
+		});
+		$("#id_modify_path").change(function(){
+			var ret = $("#id_modify_path").attr("checked");
+			if(ret=="checked")
+			{
+				$("#id_file").attr("disabled",false);
+				$("#id_file").rules("add", {required: true, accept: "jpg|JPG|jpeg|JPEG|gif|GIF|png|PNG|bmp|BMP"});
+			}
+			else
+			{
+				$("#id_file").attr("disabled",true);
+				$("#id_file").rules("remove");
+			}
+		});
+	</script>
+
+	<form action="baseMapAction!edit.action" method="post" id="${formId}" enctype="multipart/form-data">
+		<input type="hidden" id="map_id" name="baseMap.id" value="${(tempBaseMap.id)!}"/>
+		<input type="hidden" name="baseMap.mapPath" value="${(tempBaseMap.mapPath)!}"/>
+		<input type="hidden" name="baseMap.width" value="${(tempBaseMap.width)!}"/>
+		<input type="hidden" name="baseMap.height" value="${(tempBaseMap.height)!}"/>
+		<table class="tableStyle">
+			<tr>
+				<th><label>${base_map_name}</label><span class="required">*</span></th>
+				<td><input name="baseMap.name" type="text" value="${(tempBaseMap.name)!}"/></td>
+			</tr>
+			<tr>
+				<th><label>${base_area_name}</label><span class="required">*</span></th>
+				<td>
+					<div>
+						<div id="id_area" objName="baseMap.baseArea.id"  value="${(tempBaseMap.baseArea.id)!}"  type="radio"></div>
+					</div>
+					<script type="text/javascript">
+						loadComboxTree("id_area","baseAreaAction!getAreaTreeJson.action");
+					</script>
+				</td>
+			</tr>
+
+			<#if (tempBaseMap.id)?exists>
+				<tr>
+					<th><label>${base_map_modifyPath!}</label></th>
+					<td>
+						<input type="checkbox" id="id_modify_path" name="modify_path" checked="checked">
+					</td>
+				</tr>
+			</#if>
+			<tr id="map_path">
+				<th><label>${base_map_mapPath!}</label><span class="required">*</span></th>
+				<td><div style="width: 240px; overflow: auto;"><input type="file" name="file" onchange="checkImgSize('id_file');"  class="wZBaseFileField" id="id_file" accept="image/*" size="20"/></div></td>
+			</tr>
+		</table>
+	</form>
+</#macro>

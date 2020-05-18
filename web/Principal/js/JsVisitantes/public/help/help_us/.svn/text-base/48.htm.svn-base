@@ -1,0 +1,119 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.3.3 Anti-Passback Settings</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection48 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072360"></a><a name="_Toc413852701"></a><a
+name="_Toc388344260"></a><a name="_Toc28352"><span lang=EN-US>4.3.3 </span></a><a
+name="_Toc270513302"><span lang=EN-US>Anti-Passback Settings</span></a></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Currently anti-passback
+settings support in and out anti-passback. In some special occasions, it is
+required that the card holder who entered from a door by punching must exit
+from a door by punching, with the entry and exit records strictly consistent.
+The user can use this function just by enabling it in the settings. This
+function is normally used in prisons, the army, national defense, scientific
+research, bank vaults, etc.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Add Anti-Passback
+Settings:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. Click [Access Control] &gt; [Anti-Passback]
+&gt; [Add] to show the edit interface:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=401
+height=155 src="user_help.files/image101.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>2. Select device, when
+adding, devices with anti-passback settings cannot be seen in the dropdown
+list. When deleting established anti-passback information, the corresponding
+device will appear in the dropdown list again. The settings vary with the
+number of doors controlled by the device.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Anti-passback settings of a one-door control
+panel: Anti-passback between door readers.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Anti-passback settings of a two-door control
+panel: Anti-passback between readers of door 1, anti-passback between readers
+of door 2, anti-passback between door 1 and door 2.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>&Oslash;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>Anti-passback settings of a four-door control
+panel: Anti-passback of door 1 and door 2, anti-passback of door 3 and door 4,
+anti-passback of door 1/2 and door 3/4, anti-passback of door 1 and door 2/3,
+anti-passback of door 1and door 2/3/4, Anti-passback between readers of door
+1/2/ 3/ 4.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: Door reader mentioned above includes Wiegand reader that
+connected with access controller and inBIO reader. The single and two door
+controller with Wiegand reader include out and in reader. There is only in
+reader for four door control panel. The reader number of 1, 2 (that is RS485
+address or device number, the same below) is for door 1, the reader number of
+3, 4 is for door 2, etc. No need to consider if it is Wiegand reader or inBIO
+reader in setting of anti-passback between doors or between readers, just make
+sure in or out reader and set according to the actual requirement. For the
+reader number, odd number is for in reader, and even number is for out reader.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>3. Select Anti-Passback
+Rule, and tick one item, Click [OK] to complete, and the added anti-passback
+settings will be shown in the list.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: When editing, you cannot modify the device, but can modify
+anti-passback settings. If anti-passback setting is not required for the device
+any more, the anti-passback setting record can be deleted. When deleting a
+device, its anti-passback setting record, if exists, will be deleted.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

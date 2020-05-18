@@ -1,0 +1,190 @@
+
+<div id="top" >
+	<table class="top_box" cellpadding="0" cellspacing="0">
+		<tr valign="top">
+			<td style="width: 240px">
+				<div class="top_logo" id="dashboard_div">
+					<a href="dashboard.action">
+						<#if oem=='Oem'>
+						<img src="${base}/public/images/head/logo_oem.png" border="0"/>
+						<#else>
+						<img src="${base}/public/images/head/logo.png" border="0"/>
+						</#if>
+						<!-- <img src="${base}/public/images/head/logo.png" border="0"/> -->
+					</a>
+				</div>
+			</td>
+			<td nowrap="nowrap">
+				<div class="${((enableRTL!'false') == 'true')?string('top_but','top_but l')}">
+						<@sysMenu></@sysMenu>
+						<!-- <li><a href="#" class="top_but_hov">dashboard</a></li>
+						<li><a href="acc_index.action">Access</a></li>
+						<li><a href="#">Vistor</a></li>
+						<li><a href="#">Elevator</a></li>
+						<li><a href="#">Linkage</a></li>
+						<li><a href="base_index.action">System</a></li> -->
+				</div>
+			</td>
+			<td nowrap="nowrap" class="top_r_box">
+			<div id="topToolDiv" style="text-align:${rightRTL!'right'}">
+				<em r="">${common_head_welcome} ${(user.username)!}</em>
+		<span>
+			<a id="userInfo" onclick="createWindow('${base}/${(personInfoLink)!}^${common_head_personalInfo}')" title="${common_head_personalInfo}" href="javascript:void(0)"><img src="${base}/public/images/head/me.png" name="Image1" border="0"
+					align="top" id="Image1"
+					onmouseover="$(this).attr('src','${base}/public/images/head/me1.png')"
+					onmouseout="$(this).attr('src','${base}/public/images/head/me.png')"/></a>
+<!-- 			<a title="${common_head_set}" href="javascript:createWindow('base_opBasePersonalitySet.action^0^0^360^200^${common_head_set}')"> -->
+<!-- 				<img src="${base}/public/images/head/setting.png" name="Image3" -->
+<!-- 					border="0" align="top" id="Image3" -->
+<!-- 					onmouseover="$(this).attr('src','${base}/public/images/head/setting1.png')" -->
+<!-- 					onmouseout="$(this).attr('src','${base}/public/images/head/setting.png')"/> -->
+<!-- 			</a> -->
+			<a id="base_system_about" title="${base_system_about}" onclick="createWindow('authLicenseAction!getLicenseInfo.action^0^0^650^640^${base_system_about}')" href="#">
+				<img src="${base}/public/images/head/about.png" name="Image2" border="0"
+					align="top" id="Image2"
+					onmouseover="$(this).attr('src','${base}/public/images/head/about1.png')"
+					onmouseout="$(this).attr('src','${base}/public/images/head/about.png')" />
+			</a>
+			<a title="${common_head_help}" target="_blank" href="baseHelpDocumentAction!getHelpDoc.action">
+				<img src="${base}/public/images/head/help.png" name="Image4" border="0"
+					align="top" id="Image4"
+					onmouseover="$(this).attr('src','${base}/public/images/head/help1.png')"
+					onmouseout="$(this).attr('src','${base}/public/images/head/help.png')" />
+			</a>
+			<#if application["system.oem"]?? && application['system.oem']=="false">
+			<a title="${common_head_customerService}" href="${(application['system.language'] == 'zh_CN')?string(customerServiceUrl_zh, customerServiceUrl_en)}" target="_blank">
+				<img src="${base}/public/images/head/customerService.png" name="Image4" border="0"
+					align="top" id="Image4"
+					onmouseover="$(this).attr('src','${base}/public/images/head/customerService1.png')"
+					onmouseout="$(this).attr('src','${base}/public/images/head/customerService.png')" />
+			</a>
+			</#if>
+			<a title="${common_head_logout}" href="javascript:logout()">
+				<img src="${base}/public/images/head/logout.png" name="Image4" border="0"
+					align="top" id="Image4"
+					onmouseover="$(this).attr('src','${base}/public/images/head/logout1.png')"
+					onmouseout="$(this).attr('src','${base}/public/images/head/logout.png')" />
+			</a>
+		</span>
+		</div>
+		<div class="top_r_box_company">
+			<span>${auth_user_companyName}</span>
+			<span>${companyName!}</span>
+		</div>
+			</td>
+		</tr>
+	</table>
+	
+	
+	
+</div>
+<!-- <#if headContent?exists>
+	<@headContent/>
+	
+	<#noparse>
+			//请按照该形式 配置
+			<#macro headContent><#assign selectMenu = "dashboard"></#macro>
+	</#noparse>
+	
+</#if> -->
+
+<script type="text/javascript">
+
+	var width = $(".top_logo").width() + $(".top_but").width() + $(".top_r_box").width();
+	$(window.top.document.body).css("min-width", width + 5);
+	
+	function delCookie(name)//删除cookie
+	{
+		var exp = new Date();
+		exp.setTime(exp.getTime() - (86400 * 1000 * 1));
+		var cval = getCookie(name);
+		if(cval != null)
+		{
+			document.cookie = name + "="+ escape (cval) + ";expires="+exp.toGMTString();
+		}
+	}
+	$(function(){
+		if("${companyName!}"!="" && "${application['system.language']}"=="zh_CN")
+		{
+			$("#topToolDiv").addClass("top_r_box_showcompany");
+		}
+		else
+		{
+			$(".top_r_box_company").css("display","none");
+		}
+	});
+	function logout()
+	{
+		//视频ocx控件隐藏，避免其覆盖弹出框
+		$("iframe[src*='.action']:eq(0)").contents().find(".current").css("visibility", "hidden");
+		messageBox({messageType:"confirm", text:"${common_head_exitPrompt}", callback:function(ret){
+			if(ret){
+				delCookie("LOGIN_USER_NAME");
+				delCookie("LOGIN_PASSWORD");
+				window.location.href="authLoginAction!logout.action";
+				return true;
+			}
+			else
+			{
+				//视频ocx控件显示
+				$("iframe[src*='.action']:eq(0)").contents().find(".current").css("visibility", "visible");
+			}
+		}});
+	}
+	var oem = "${oem}";
+	if(oem == "Oem")
+	{
+	    $(".top_logo a img").attr("src","${base}/public/images/head/logo_oem.png");
+	}
+	
+</script>
+<!-- 
+<div id="top">
+	<div style="height: 66px;float: right;">
+		<img src="public/images/head/left.png"></img>
+	</div>
+	<div style="height: 90px;background: url(public/images/head/logo.png) no-repeat left top;">
+		<div id="logo" class="topLogo${oem}">
+			<div class="logo_biaoti_box">
+				<div class="logo_biaoti">
+					<span>${sysName}</span>
+					<div class="logo_us r">
+						<div class="logo_ustu"></div>
+						<div class="logo_usfone" style="margin-top: 25px;">
+							<strong style="font-size: 12px">${common_head_welcome} ${(user.username)!}</strong>
+							
+							<a href="javascript:createWindow('base_opBasePersonalitySet.action^0^0^350^200^${common_head_set}')">${common_head_set}</a>
+							<a href="baseHelpDocumentAction!getHelpDoc.action" target="_blank" >${common_head_help}</a>
+							<a href="javascript:createWindow('authLicenseAction!getLicenseInfo.action^0^0^427^470^${base_system_about}')">${base_system_about}</a>
+							<a href="javascript:openWindow('${base}/authUserAction!getById.action?id=${(user.id)!}^0^0^470^510^${common_head_personalInfo}')">${common_head_personalInfo}</a>
+							<a href="#" target="_self" onclick="logout()")>${common_head_logout}</a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="logo_an_box">
+				<@sysMenu></@sysMenu>
+			</div>
+		</div>
+	</div>
+</div>
+ -->
+<script type="text/javascript">
+try
+{
+	var loginType = "<@shiro.principal property='loginType'/>"
+	if(loginType == "PERS" || "${application['dashboard.show']!}" == "false")
+	{
+		$("#dashboard_div").html($("#dashboard_div a").html());
+		if($(".top_but .top_but_hov").size() == 0)
+		{
+			window.location.href = $(".top_but li a").get(0).href;
+		}
+	}
+}
+catch(e)
+{
+	//alert(e);
+}
+</script>

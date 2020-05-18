@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 此配置文件是数据列表显示字段配置  -->
+<!-- 配置参数详解请参考人事下的Employee.page.xml -->
+<page>
+	<objects>
+		<object actionName="baseDictionaryValue">
+			<!-- <field name="#checkbox" width="40" columnMinWidth="40" label="headCheckBox" type="ro" align="left" valign="middle" headerMenu="false" sort="na" isShow="true" content="ids"/> -->
+			<field name="id" width="100" columnMinWidth="70" label="主键" type="ro" align="left" valign="middle" headerMenu="true" sort="na" isShow="false" isKeyId="true"/>
+			
+			<field name="code" width="160" columnMinWidth="70" label="${base_dictionary_keyName}" type="ro" align="left" valign="middle" headerMenu="true" sort="na" isShow="true">
+				<!-- <value shiro="base:BaseDictionary:editValue" text="${common_op_edit}">
+					<param state="true"><![CDATA[<a href="javascript:openWindow('(rootPath)/baseDictionaryValueAction!getById.action?id=(id)^0^0^420^300^${common_op_edit}')">(value)</a>]]></param>
+					<param state="false"><![CDATA[(value)]]></param>
+				</value> -->
+			</field>
+			
+			<field name="dictValue" width="140" columnMinWidth="70" label="${base_dictionary_value}" type="ro" align="left" valign="middle" headerMenu="true" sort="na" isShow="true"/>
+						 
+			<field name="baseDictionary.name" width="*" columnMinWidth="70" label="${base_dictionary_category}" type="ro" align="left" valign="middle" headerMenu="true" sort="na" isShow="true"/>
+			
+			<!-- <field name="#operate" width="*" columnMinWidth="70" label="${common_relatedOp}" type="ro" align="left" valign="middle" headerMenu="false" sort="na" isShow="true">
+				<value shiro="base:BaseDictionary:editValue" text="${common_op_edit}">
+					<param state="true"><![CDATA[<a href="javascript:openWindow('(rootPath)/baseDictionaryValueAction!getById.action?id=(id)^0^0^420^300^${common_op_edit}')">${common_op_edit}</a>]]></param>
+				</value>
+				<value shiro="base:BaseDictionary:delValue" text="${common_op_del}">
+					<param state="true"><![CDATA[&nbsp;&nbsp;&nbsp;<a href="javascript:delById('(rootPath)/baseDictionaryValueAction!delValue.action?id=(id)',refeshGrid)">${common_op_del}</a>]]></param>
+				</value>
+				<value shiro="base:BaseDictionary:moveUp" text="${base_dictionary_moveUp}">
+					<param state="true"><![CDATA[&nbsp;&nbsp;&nbsp;<a href="javascript:upSortDictionary('(rootPath)/baseDictionaryValueAction!moveUp.action?id=(id)')">${base_dictionary_moveUp}</a>]]></param>
+				</value>
+				<value shiro="base:BaseDictionary:moveDown" text="${base_dictionary_moveDown}">
+					<param state="true"><![CDATA[&nbsp;&nbsp;&nbsp;<a href="javascript:downSortDictionary('(rootPath)/baseDictionaryValueAction!moveDown.action?id=(id)')">${base_dictionary_moveDown}</a>]]></param>
+				</value>
+			</field> -->
+			
+		</object>
+	</objects>
+	<searchs>
+		<search actionName="baseDictionaryValue">
+			<items type="topSearch">
+				<item type="settings" position="label-left" labelWidth="140" inputWidth="140"/>
+				<item type="input" name="entity.dictValue" label="${base_dictionary_value}" maxlength="100"/>
+			</items>
+		</search>
+	</searchs>
+	<toolbars>
+		<toolbar actionName="baseDictionary">
+			<item shiro="*" id="dictValueGridBox" type="button" img="comm_refresh.png" imgdis="comm_refresh.png" text="${common_op_refresh}" action="reloadGrid"/>
+			<!-- <item shiro="base:BaseDictionary:addValue" id="base_editBaseDictionaryValue.action^0^0^420^300" type="button" img="base_addValue.png" imgdis="base_addValue.png" text="${base_dictionary_addSubclass}" action="openWindowToForm"/> -->
+		</toolbar>
+	</toolbars>
+</page>

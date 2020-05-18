@@ -1,0 +1,182 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.7 实时监控</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection71 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707511"></a><a name="_6.1.7_实时监控"></a><a
+name="_5.1.7实时监控"></a><a name="_5.1.7_实时监控"></a><span lang=EN-US
+style='font-size:10.5pt'>5.1.7 </span><span style='font-size:10.5pt;font-family:
+幼圆'>实时监控</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【梯控设备】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【实时监控】，实时监控系统内的电梯控制器所包含的楼层按键的状态及实时事件，包括正常事件及异常事件（含报警事件）等。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=576 height=301
+src="user_help.files/image149.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>1. </span></b><b><span style='font-family:
+幼圆'>事件监控</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统自动获取监控到的设备的事件记录，包括正常梯控事件和异常梯控事件（含报警事件）。正常梯控事件用绿色表示，报警事件用红色字标示，其他异常事件用橙色表示。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>监控范围</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>系统默认首页显示并监控当前用户权限范围内的控制器的所有楼层，用户可以根据【区域】，【控制器】或【楼层】有针对性的监控一个（或多个）楼层。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>人员照片显示</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>如果实时监控涉及到人员，监控页面会显示人员照片（人员没有登记照片会提示“默认照片”）。人员照片上会显示事件名称、时间、以及人员的姓名。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>2. </span></b><b><span style='font-family:
+幼圆'>远程释放按键</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【远程释放按键】，弹出远程启用按键第一步窗口：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=325 height=327
+src="user_help.files/image150.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>输入用户密码（登录系统时的密码），点击【下一步】按钮，弹出远程释放按键第二步窗口：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=329 height=332
+src="user_help.files/image151.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>选择相应的楼层，点击【下一步】按钮，弹出远程释放按键第三步窗口：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=293 height=293
+src="user_help.files/image152.jpg"></span><span
+lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各功能说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>释放</span></b><span
+style='font-family:幼圆'>：控制所选择的楼层对应按键是否可被按压，用户可以自定义释放按键的时长（系统默认</span><span
+lang=EN-US>15</span><span style='font-family:幼圆'>秒）；也可以选择【启用当天持续释放时间段】，也可以直接将楼层的当前状态设置为持续释放，此时楼层不受任何时间段（如【楼层有效时间段】</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>【楼层持续释放时间段】</span><span
+lang=EN-US>/</span><span style='font-family:幼圆'>【按键保持时长】）的限制（相当于</span><span
+lang=EN-US>24</span><span style='font-family:幼圆'>小时持续释放）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>启用当天持续释放时间段：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>如需将楼层关闭，需要先进行【禁用当天持续释放时间段】，避免因其他的持续释放时间段生效而开楼层，然后使用【远程锁定按键】将楼层按键关闭。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>持续释放按键：</span></b><span
+style='font-family:幼圆'>设为持续释放的楼层不受任何时间段的限制（相当于</span><span lang=EN-US>24</span><span
+style='font-family:幼圆'>小时持续释放），关闭需选择【禁用当天持续释放时间段】。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：如果远程释放按键一直返回失败，请检查设备列表是否有太多当前断开的设备，如果有，请检查网络。</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>选择相应的功能，点击【完成】按钮，完成远程启用按键的操作。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US>3. </span></b><b><span style='font-family:
+幼圆'>远程锁定按键</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击【远程锁定按键】：</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=346 height=348
+src="user_help.files/image153.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>输入用户密码，点击【下一步】按钮：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=349 height=349
+src="user_help.files/image154.jpg"></span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>选择相应的楼层，点击【下一步】按钮：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=315 height=315
+src="user_help.files/image155.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各功能说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>锁定</span></b><span
+style='font-family:幼圆'>：对所选择的楼层控制，锁定远程释放的楼层按键。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>禁用当天持续释放时间段：</span></b><span
+style='font-family:幼圆'>如需开启，需进行【启用当天持续释放时间段】。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></b><b><span
+style='font-family:幼圆'>注意事项</span></b><span style='font-family:幼圆'>：如果远程锁定按键一直返回失败，请检查设备列表是否有太多当前断开的设备，如果有，请检查网络。</span></p>
+
+<p class=MsoNormal align=left style='margin-top:7.8pt;margin-right:0cm;
+margin-bottom:7.8pt;margin-left:0cm;text-align:left'><span style='font-family:
+幼圆'>选择相应的功能，点击【完成】按钮，完成远程锁定按键的操作。</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><a name="_Toc25465"><span
+lang=EN-US>&nbsp;</span></a></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:12.0pt;font-family:"Myriad Pro","sans-serif"'><br
+clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

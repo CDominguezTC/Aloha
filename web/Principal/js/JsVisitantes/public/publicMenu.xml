@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-body>
+	<tree id="0">
+		<item shiro="*" id="develop" text="开发示例">
+			<item shiro="@" id="public_sysDynamic.action" text="开发动态" open="1"></item>
+			<item shiro="@" id="public_messageExample.action" text="消息提示" open="1"></item>
+			<item shiro="@" id="public_sysAPI.action" text="日期格式"></item>
+			<item shiro="@" id="public_formExample.action" text="表单样式及验证" ></item>
+			<item shiro="@" id="public_windowsExample.action" text="弹窗和进度条" ></item>
+			<item shiro="@" id="public_personSelectExample.action" text="选人控件" ></item>
+			<item shiro="@" id="public_dhtmlxLayout.action" text="dhtmlxLayout"></item>
+			<item shiro="@" id="iframe:public_tempTest.action" text="实时监控" ></item>
+			<item shiro="@" id="public_tempTest2.action" text="临时测试页面" ></item>
+		</item>
+	</tree>
+</xml-body>

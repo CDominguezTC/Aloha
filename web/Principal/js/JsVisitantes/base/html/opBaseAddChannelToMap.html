@@ -1,0 +1,67 @@
+<#include "/public/template/editTemplate.html">
+<#macro editContent>
+<script type="text/javascript">
+    var entityTree=null;
+    $().ready(function() {
+        // 字母和数字的验证
+        $("#${formId}").validate( {
+            debug : true,
+            submitHandler : function()
+            {
+                var entityIds = beforeSubmit();
+                if(entityIds == "")
+                {
+                    openMessage(msgType.error);
+                    return false;
+                }
+                $("#id_entity_group").val(entityIds);
+                
+                <@submitHandler callBackFun="reloadSelectItem()"/>
+            }
+        });
+    });
+
+    function getEntityGroup(divId)
+    {
+        entityTree = new dhtmlXTreeObject(divId, "100%", "100%", 0);
+        entityTree.setSkin(sysCfg.dhxSkin);
+        entityTree.setImagePath(sysCfg.treeImgPath);
+        entityTree.enableCheckBoxes(1);
+        entityTree.enableThreeStateCheckboxes(true);
+        entityTree.enableSmartXMLParsing(true);
+        entityTree.setDataMode("json");
+        entityTree.loadJSON("${(processAction)!}");
+        
+        entityTree.attachEvent("onCheck", function(id){
+            if(entityTree.getAllChecked() == "" || entityTree.getAllChecked() == "_")
+            {
+                $("#editFormOK").attr({disabled:"true"});
+            }
+            else
+            {   
+                $("#editFormOK").removeAttr("disabled");
+            }
+        });
+        $("#editFormOK").attr({disabled:"true"});
+    }
+
+    function beforeSubmit()
+    {
+        return entityTree.getAllChecked();
+    }
+</script>
+
+<form enctype="multipart/form-data" id="${formId}" action="baseMapAction!addEntity.action?logMethod=${logMethod!}"
+    onkeydown="if(event.keyCode==13){return false;}" method="post">
+    <input type="hidden" value="${(mapId)!}" name="mapId" id="id_mapId">
+    <input type="hidden" value="${(entityType)!}" name="entityType" id="id_entityType">
+    <input type="hidden" value="${(width)!}" name="width" id="id_width">
+    <input type="hidden" name="entityGroup" class="wZBaseCharField" id="id_entity_group">
+    <div>
+        <div id="entity" style="overflow:auto;background-color:white;width:99.5%;height:310px"></div>
+        <script>
+            getEntityGroup('entity');
+        </script>
+    </div>
+</form>
+</#macro>

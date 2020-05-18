@@ -1,0 +1,101 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.2 Reader</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection66 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427071738"><span lang=EN-US>5.1.</span></a><span lang=EN-US>2</span><span
+lang=EN-US> </span><span lang=EN-US>Reader</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Each elevator device has a reader, the reader
+information can be set.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Click [Elevator Device] &gt; [Reader], select
+a reader name in the reader list:</span></p>
+
+<p class=MsoNormal><span lang=zh-CN><img border=0 width=334 height=224
+src="user_help.files/image118.jpg">&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Device Name</span><span lang=EN-US>:
+It is not editable.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Name</span><span lang=EN-US>: The
+default format is “Device Name - Reader”, it is editable within 30 characters.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Operate Interval</span><span
+lang=EN-US>: The interval </span><span lang=EN-US>between</span><span
+lang=EN-US> two verifications. The default value is 2 seconds, the range is
+0~254 seconds.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Verification</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif"'>
+</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Mode</span><span lang=EN-US>: The default setting is “Card or
+Fingerprint”. The Wiegand reader supports ”Only Card”, “Only Password”, “Card
+or Password”, “Card and Paasword”, “Card or FIngerprint”. The RS485 reader
+supports “Card or FIngerprint”. Make sure the reader has a keyboard when the
+verification mode is “Card and Password”.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm;text-indent:0cm'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>The above Settings are Copied </span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>to</span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif"'>: </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:0cm;text-indent:0cm'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>All Readers of All Devices</span><span
+lang=EN-US>: </span><span lang=EN-US>A</span><span lang=EN-US>pply</span><span
+lang=EN-US> the above settings</span><span lang=EN-US> to all </span><span
+lang=EN-US>reader</span><span lang=EN-US>s within the current user’s level.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Click [OK] to save and exit.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

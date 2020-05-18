@@ -1,0 +1,278 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.3 Puertas</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection30 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077027"></a><a name="_Toc23466"></a><a name="_Toc417486924"></a><a
+name="_4.1.3_门管理"></a><span lang=ES-MX>4.1.3</span><span lang=ES-MX> </span><span
+lang=ES-MX>Puertas</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_6.3.1_门管理"></a><span lang=ES-MX>1. De clic en
+[Dispositivos de Acceso] &gt; [Dispositivos] &gt; [Puertas] para acceder a la
+interfaz de gestión de puertas (de clic en el “Nombre de &Aacute;rea” y el sistema
+filtrará automáticamente mostrando solo los dispositivos del área
+seleccionada).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=605
+height=150 id="图片 103"
+src="user_help.files/image041.jpg"></span></b><span
+lang=zh-CN style='font-size:12.0pt;line-height:150%'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Configuración de Parámetros de Puertas:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Seleccione la puerta
+que será modificada y de clic en el nombre de la puerta o en botón de [Editar]
+debajo de operaciones para mostrar la interfaz de Editar:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=605
+height=380 id="图片 106"
+src="user_help.files/image042.jpg"></span></b><span
+lang=zh-CN>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Nombre del Dispositivo</span><span
+lang=ES-MX>: No es editable en esta interfaz.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Número de Puerta</span><span lang=ES-MX>: El </span><span
+lang=ES-MX>sistema nombra las puertas automáticamente según la cantidad de
+puertas del dispositivo. Este número será relacionado con el número de puerta
+del equipo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: En la configuración de a</span><span lang=ES-MX>nti-passback y
+esclusamiento hace referencia al número de puerta en vez del número en el
+nombre de la puerta y no necesariamente están relacionados.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Nombre de Puerta</span><span
+lang=ES-MX>: Está compuesto: </span><span lang=ES-MX>“nombre de la
+puerta-número de puerta”</span><span lang=ES-MX>. El campo permite al usuario
+modificar el nombre hasta un máximo de 30 caracteres.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Horario Activo, Horario de Apertura
+Programada</span><span lang=ES-MX>: Por default se asigna el horario de 24
+horas. El Horario de Apertura Programada debe establecerse dentro del Horario
+Activo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Cuando una puerta se encuentra en estado normalmente abierto y
+un usuario con nivel de acceso para la puerta realiza la verificación correcta
+en 5 ocasiones consecutivas (con intervalo de 5 segundos) puede liberar el
+estado de normalmente abierto y cerrar la puerta. La próxima verificación será
+una verificación normal y esta función solo será efectiva durante el horario de
+puerta activa. Otros intervalos de normalmente abierto y/o primer apertura
+normalmente abierta configurados el mismo día perderán efecto.<br>
+</span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Apertura de Puerta</span><span lang=ES-MX>: Retardo de tiempo
+para la apertura de la puerta después de una verificación. La unidad son
+segundos con un rango de 0 a 254 y un tiempo por default de 5 segundos. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Intervalo de Operación</span><span lang=ES-MX>: Intervalo entre
+dos verificaciones. La unidad son segundos con un rango de 0 a 254 y un tiempo
+por default de 2 segundos. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Duración de Anti-Passback</span><span
+lang=ES-MX>: Solo una entrada es permitida con un lector en esta duración. La
+unidad son minutos con un rango de 0 a 120 y un tiempo por default de 0
+minutos. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Sensor de Puerta</span><span
+lang=ES-MX>: Ninguno (sin sensor de puerta), Normalmente Abierto, Normalmente
+Cerrado. El default es ninguno. Al seleccionar normalmente abierto o
+normalmente cerrado, debe establecer el tiempo sensor de puerta y si desea
+cerrar al detectar la puerta, siendo el tiempo por default de 15 segundos y
+cerrar al detectar puerta deshabilitado.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Retardo de Sensor de Puerta</span><span
+lang=ES-MX>: Es el tiempo de detección después de que la puerta es abierta.
+Cuando la puerta no está en un periodo de normalmente abierto y la puerta es
+abierta, el dispositivo comenzará a contar el tiempo y activará una alarma si
+retardo de tiempo ha expirado y detendrá la alarma al cerrar la puerta. El
+retardo de sensor de puerta es de 15s con un rango de 1 a 254 segundos. El
+retardo sensor de puerta debe ser mayor que la duración de apertura de puerta.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Cerrar al Detectar Puerta</span><span
+lang=ES-MX>: Bloquea la cerradura al detectar la puerta cerrada.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='color:#92D050'>Modo
+de Verificación</span><span lang=ES-MX>: Seleccione el modo de verificación que
+incluye tarjeta, huella, contrase&ntilde;a y combinaciones, siendo por default tarjeta
+o huella. Si selecciona tarjeta y contrase&ntilde;a, asegure que la puerta esté
+equipada con un lector con teclado.</span></p>
+
+<p class=p0 style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050;font-weight:normal'>Formato Wiegand</span><span lang=ES-MX
+style='font-family:"Arial,微软雅黑"'>:</span><span lang=ES-MX
+style='font-family:"Arial,微软雅黑";font-weight:normal'> Seleccione
+el formato de tarjeta </span><span lang=ES-MX style='font-family:"Arial,微软雅黑";
+font-weight:normal'>Wiegand que puede ser identificado por el lector Wiegand de
+la puerta. Si el formato es diferente con respecto al formato configurado la
+puerta no podrá ser abierta. El software incluye 9 formatos, siendo por default
+el automático que realiza la comparación automática. (Excepto para el formato
+de tarjeta con a, b o c).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Estado de REX</span><span lang=ES-MX>: Cerrado indica que la
+cerradura será bloqueada después de presionar el botón de salida. Abierto (por
+default) indica que la cerradura será desbloqueada después de presionar el
+botón de salida.<br>
+</span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Retardo de REX</span><span lang=ES-MX>: Indica el retardo de
+tiempo de alarma para la detección de la puerta después de que el botón de
+salida es bloqueado.</span><span lang=ES-MX> Cuando la puerta es abierta
+forzadamente, el sistema detecta el estado de la puerta después de un periodo
+de tiempo. El valor default es 10s y el rango es de 1 a 254 segundos.</span><span
+lang=ES-MX> El botón de salida tiene que estar bloqueado antes de configurar
+esta opción.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Duración de la Entrada</span><span lang=ES-MX>:</span><span
+lang=ES-MX> Basado en el tiempo de duración de la apertura de la cerradura, el
+retardo de sensor de puerta y el retardo de salida</span><span lang=ES-MX>, la
+duración de la entrada es el límite de tiempo extra. Para usar esta función, es
+necesario marcar la opción [Apertura Extendida] al agregar o editar personal.
+Puede usar esta función para extender el tiempo para personas con alguna
+discapacidad física.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Retardo de Apertura de Puerta</span><span lang=ES-MX>: Periodo
+de tiempo para completar la verificación para abrir la puerta. El rango es de 1
+a 60 segundos.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Tiempo de Retardo de Intervalo</span><span lang=ES-MX>: Periodo
+de tiempo durante la verificación entre 2 usuarios ya sea con tarjeta o con
+huella digital. El rango es de 1 a 60 segundos. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Contrase&ntilde;a de Coacción / Contrase&ntilde;a de
+Emergencia</span><span lang=ES-MX>: En caso de coacción, utilice una contrase&ntilde;a
+para abrir la puerta, generando una alerta en el software. En caso de
+emergencia, utilice una contrase&ntilde;a (llamada Super Contrase&ntilde;a) para abrir la
+puerta, siendo efectiva en cualquier horario y cualquier modo de verificación,
+normalmente usado por el administrador.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Contrase&ntilde;a de coacción (con tarjeta): La contrase&ntilde;a
+no debe exceder de 6 dígitos. Cuando se configura el modo de verificación de
+Solo Tarjeta deberá presionar primero el botón ESC en el teclado seguido de la
+contrase&ntilde;a y el botón [OK] y finalmente presentar la tarjeta. La puerta se
+abrirá normalmente y se generará una alerta en el software. Cuando se usa la
+verificación Tarjeta + Contrase&ntilde;a, primero presente la tarjeta seguido de la
+contrase&ntilde;a y el botón [OK] (igual que una apertura normal en una verificación
+tarjeta + contrase&ntilde;a). La puerta se abrirá y genera la alerta.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Contrase&ntilde;a de Emergencia: La contrase&ntilde;a debe ser
+de 8 dígitos. Presione la tecla [ESC] antes de introducir la contrase&ntilde;a seguida
+de la tecla [OK] para ejecutar.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Cuando se utiliza la
+contrase&ntilde;a de coacción o emergencia, el intervalo para introducir cada número
+no debe exceder de 10 segundos y las dos contrase&ntilde;as no deben ser iguales.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Desactivar Alarmas</span><span
+lang=ES-MX>: marque la casilla para desactivar las notificaciones de alarma en
+la interfaz de monitoreo en tiempo real.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Copiar esta configuración a</span><span
+lang=ES-MX>: Se muestran dos opciones:</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Todas las puertas de este dispositivo: Copia los
+parámetros a las puertas del dispositivo actual.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt'><span lang=ES-MX
+style='font-family:Wingdings'>&sup2;<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Todas las puertas de todos los dispositivos:
+Copia los parámetros a todos los dispositivos del nivel del usuario actual.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;text-autospace:none'><span lang=ES-MX>2. Después de editar los
+parámetros, de clic en [OK] para guardar y salir. </span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 5.1.3 楼层设置</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection67 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426707507"><span lang=EN-US
+style='font-size:10.5pt'>5.1.3 </span></a><span style='font-size:10.5pt;
+font-family:幼圆'>楼层设置</span></h3>
+
+<p class=MsoNormal><span style='font-family:幼圆'>在【梯控设备】</span><span lang=EN-US
+style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【楼层】里点击单个楼层的楼层编号，显示编辑页面：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left'><span lang=EN-US><img
+border=0 width=284 height=264
+src="user_help.files/image145.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下：</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>设备名称：</span></b><span
+style='font-family:幼圆'>为不可编辑项（需要在新增设备中进行编辑）。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>楼层编号：</span></b><span
+style='font-family:幼圆'>系统根据设备的继电器数量自动编号。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>楼层名称</span></b><span
+style='font-family:幼圆'>：默认为“设备名称</span><span lang=EN-US>-</span><span
+style='font-family:幼圆'>楼层编号”，可根据需要进行修，。最大可填入</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>个任意字符。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>楼层有效时间段</span></b><span
+style='font-family:幼圆'>、<b>楼层</b><b>持续释放时间段</b>：默认均为空，初始化后的和用户新增的梯控时间段将会在此显示，供用户选择。在编辑楼层时，楼层有效时间段为必填项，只有设置楼层有效时间段后，才能持续释放关楼层按键。楼层持续释放时间段必须在楼层有效时间段内才有效，建议设置楼层持续释放时间段设置包含于楼层有效时间段。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>按键保持时长</span></b><span
+style='font-family:幼圆'>：用来控制刷卡或者按指纹后，在该时长的范围内，可以按电梯的楼层按键。默认为</span><span
+lang=EN-US>5</span><span style='font-family:幼圆'>秒，范围是</span><span lang=EN-US>0-254</span><span
+style='font-family:幼圆'>。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>以上设置复制到</span></b><span
+style='font-family:幼圆'>有两个选项：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>将该设置应用于当前设备所有楼层</span></b><span
+style='font-family:幼圆'>：应用于当前设备的所有楼层。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>将该设置应用于所有设备所有楼层</span></b><span
+style='font-family:幼圆'>：应用于当前用户权限范围内的所有设备的所有楼层。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

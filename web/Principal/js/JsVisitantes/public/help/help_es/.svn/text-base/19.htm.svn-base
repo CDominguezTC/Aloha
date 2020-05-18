@@ -1,0 +1,447 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.2 Personal</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection19 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077389"></a><a name="_Toc427077270"></a><a name="_Toc1950"><span
+lang=ES-MX>3.1.2 </span></a><span lang=ES-MX>Person</span><span lang=ES-MX>al</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Al usar éste módulo de gestión, el usuario
+debe registrar personal en el Sistema o importar la información de personal de
+un documento o software de terceros a este sistema. Para más detalles, consulte
+</span><a href="116.htm#_附录1_常用操作"><span lang=ES-MX>Anexo 1 Operaciones Comunes</span></a><span
+lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>Las funciones principales de gestión de
+personal incluyen Agregar, Editar, Borrar y Ajustar Departamento.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><a
+name="_5.2.1_新增人员"></a><a name="_4.2.1_新增人员"></a><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Agregar Personal</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>1. De clic en [Personal] &gt; [Personal] &gt;
+[</span><span lang=ES-MX>Usuarios</span><span lang=ES-MX>] &gt; [</span><span
+lang=ES-MX>Nuevo</span><span lang=ES-MX>]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=638 height=450 id="图片 25"
+src="user_help.files/image015.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="OLE_LINK42"></a><a name="OLE_LINK41"><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>ID de
+Usuario.</span></a><span lang=ES-MX>: Debe ser único y de máximo 9 caracteres
+de longitud. El rango válido es de 1 a 79999999 y puede ser configurado según
+sea necesario. El ID de Usuario por default solo incluye números pero también
+pudiera incluir letras</span><span lang=ES-MX style='letter-spacing:-.3pt'>.</span><span
+lang=ES-MX> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:14.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Notas:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>(1) Cuando ingrese el ID de Usuario confirme
+que el dispositivo soporta la longitud máxima de números y la inclusión de
+letras en el ID.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX>(2) Cuando modifique la longitud máxima o la
+inclusión de letras de en el ID de Usuario, ingrese a </span><span lang=ES-MX>Personal
+&gt; Parámetros para configurar.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Departamento</span><span lang=ES-MX style='color:windowtext'>:</span><span
+lang=ES-MX> Seleccione en el menú desplegable y de clic en [OK]. Si no ha
+agregado departamentos anteriormente sólo podrá seleccionar el departamento
+predeterminado [General].</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Nombre/Apellido</span><span lang=ES-MX>: La longitud máxima es
+de 50 caracteres para cada campo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Contrase&ntilde;a</span><span lang=ES-MX>:
+Establece la contrase&ntilde;a del personal. Sólo admite 6 dígitos. Si la contrase&ntilde;a
+excede la longitud especificada, el sistema truncará automáticamente. No puede
+ser igual a otras o la contrase&ntilde;a de coacción.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Número de Tarjeta</span><span
+lang=ES-MX>: La longitud máxima es de 10, y no pueda ser duplicada.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Fecha de Empleo:
+Ingrese la fecha en que el empleado fue contratado</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Código de Reservación</span><span lang=ES-MX>:</span><b><span
+lang=ES-MX> </span></b><span lang=ES-MX>La longitud máxima es de 6. La
+contrase&ntilde;a por default es </span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>123456</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Foto Personal</span><span lang=ES-MX>:
+Puede usar la vista previa, soportando formatos de imagen comunes como</span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif"'> </span><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>jpg,
+jpeg,</span><b><span lang=ES-MX style='color:#92D050'> </span></b><span
+lang=ES-MX style='font-family:"Myriad Pro","sans-serif";color:#92D050'>bmp,
+png, gif</span><span lang=ES-MX> etc. La resolución óptima es de 120×140
+pixeles.</span><span lang=ES-MX> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-indent:.3pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'> </span></span><span
+lang=ES-MX>Examinar: De clic en [Examinar] para seleccionar una imagen local
+para subir.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-indent:.3pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'> </span></span><span
+lang=ES-MX>Capturar: Puede capturar una foto si existe una cámara conectada a
+la PC.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Registro de Huellas</span><span
+lang=ES-MX>: Registre la huella de acceso o coacción del personal. Al registrar
+la huella de coacción y verificarla se envía una se&ntilde;al de alarma al Sistema.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>Como registrar las huellas digitales:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>1) De clic en [Registrar].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>2) Seleccione una huella y pulse la huella en
+el lector USB tres veces. Si el registro fue exitoso se mostrará el mensaje “</span><span
+lang=ES-MX style='color:#92D050'>Huella registrada exitosamente</span><span
+lang=ES-MX>”.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>3) De clic en [OK] para finalizar el
+registro.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体'><img
+border=0 width=292 height=300 id="图片 26"
+src="user_help.files/image016.jpg"></span><span
+lang=ES-MX style='font-size:12.0pt;font-family:宋体;color:windowtext'>&nbsp; </span><span
+lang=ES-MX>&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang=EN-US style='font-size:
+12.0pt;font-family:宋体'><img border=0 width=292 height=302 id="图片 27"
+src="user_help.files/image017.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>De clic en una
+huella registrada para borrarla. Si requiere registrar una huella de coacción,
+de clic en la casilla de huella de coacción antes de seleccionar la huella y
+registre normalmente.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=ES-MX style='font-size:
+12.0pt;font-family:Wingdings'>?</span></b><span lang=ES-MX>Nota: </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Si se duplican las huellas se mostrará el
+mensaje “Huella duplicada”.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Si el driver del lector USB no está instalado,
+de clic en “Descargar Driver” y el Sistema le pedirá descargar e instalar el
+driver</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=ES-MX style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX>Después de instalar el driver, si la huella de
+registrar está en gris (deshabilitada) en IE pero está habilitada en otros
+navegadores (Firefox, Chrome, etc.)</span><span lang=ES-MX> es necesario
+cambiar la configuración de IE</span><span lang=ES-MX>: </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=ES-MX>1) En IE de clic en </span><span lang=ES-MX>[Herramientas] </span><span
+lang=ES-MX style='font-family:Wingdings'>à</span><span lang=ES-MX> [Opciones de
+Internet] </span><span lang=ES-MX style='font-family:Wingdings'>à</span><span
+lang=ES-MX> </span><span lang=ES-MX>[Seguridad] </span><span lang=ES-MX
+style='font-family:Wingdings'>à</span><span lang=ES-MX> </span><span
+lang=ES-MX>[Sitios Seguros] y agregar </span><a href="http://localhost/"><span
+lang=ES-MX>http://localhost</span></a><span lang=ES-MX> a la lista de sitios
+seguros y después reiniciar IE.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=ES-MX>2) En IE de clic en</span><span lang=ES-MX> [Herramientas] </span><span
+lang=ES-MX style='font-family:Wingdings'>à</span><span lang=ES-MX> [Opciones de
+Internet]</span><span lang=ES-MX>&shy;</span><span lang=ES-MX> </span><span
+lang=ES-MX style='font-family:Wingdings'>à</span><span lang=ES-MX>[Avanzado] </span><span
+lang=ES-MX style='font-family:Wingdings'>à</span><span lang=ES-MX>[Reset] para
+abrir una ventana de dialogo para restablecer los ajustes de IE, de clic en
+[Reset] para confirmar; después reinicie IE. Este paso es solo necesario si el
+paso 1 no fue exitoso.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=ES-MX>3) Si los ajustes anteriores no funcionan</span><span lang=ES-MX>,
+ejecute las siguientes operaciones (tome IE11 como ejemplo): de clic en
+[Herramientas] </span><span lang=ES-MX style='font-family:Wingdings'>à</span><span
+lang=ES-MX> [Opciones de Internet] </span><span lang=ES-MX style='font-family:
+Wingdings'>à</span><span lang=ES-MX>[Avanzado] </span><span lang=ES-MX
+style='font-family:Wingdings'>à</span><span lang=ES-MX>[Seguridad], habilite la
+opción de [Permitir el software ejecutar aún si la firma…], y remueva la
+casilla entes [Revisar revocación de certificado del servidor] y luego reinicie
+IE.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=ES-MX>4) Si el navegador es anterior a IE8, la interfaz de registro de
+huellas será diferente:</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=305 height=302 id="Picture 12"
+src="user_help.files/image018.jpg"></span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;color:windowtext'>&nbsp;</span><span
+lang=EN-US style='font-size:12.0pt;font-family:宋体;color:windowtext'><img
+border=0 width=305 height=303 id="Picture 13"
+src="user_help.files/image019.jpg"></span></p>
+
+<p class=MsoNormal><span lang=ES-MX style='font-size:12.0pt;font-family:宋体;
+color:windowtext'>&nbsp;</span></p>
+
+<p class=MsoNormal><span lang=ES-MX>2. Configure los parámetros de control de
+acceso del personal. De clic en [Control de Acceso]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=593 height=173 id="图片 40"
+src="user_help.files/image020.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Superusuario</span><span lang=ES-MX>:
+Un superusuario no está restringido por las normativas de horarios,
+anti-passback y en&nbsp; esclusamiento tiene muy alta prioridad de apertura de
+puerta</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Tipo de Usuario</span><span
+lang=ES-MX>: Seleccione administrador o usuario normal según sea el caso.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Apertura Extendida</span><span
+lang=ES-MX>:</span><span lang=ES-MX> Extiende el tiempo normal de apertura de
+puerta. Es apto para personas con capacidades diferentes o especiales</span><span
+lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Deshabilitado</span><span lang=ES-MX>:
+Deshabilita temporalmente el nivel de acceso del usuario.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Vigencia</span><span lang=ES-MX>:
+Establece la validez temporal de un nivel de acceso. Las puertas se pueden
+configurar para ser abiertas durante un periodo de tiempo específico. Si no se
+configura, el tiempo de validez es permanente.</span><span lang=ES-MX> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>El ID de una persona,
+se encuentre activo o no, debe ser único. Al verificar, el sistema buscará el
+ID automáticamente en la librería de salida.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>La lista de información
+de personal, por default, se muestra como una tabla. Si selecciona pantalla
+gráfica se mostrarán fotos y números. Coloque el cursor en una foto y se
+mostrará la información sobre el personal. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota</span><span style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(1) No todos los
+dispositivos soportan la función “Deshabilitado”. Cuando un usuario agregue un
+dispositivo, el sistema notificará al usuario si el dispositivo actual soporta
+esta función. Si el usuario requiere usar esta función, actualice el
+dispositivo que no soporta esta función. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(2) No todos los
+dispositivos soportan la función de “Vigencia” de establecer la hora, fecha,
+minuto y segundo. Algunos dispositivos solo permiten a los usuarios establecer
+el a&ntilde;o, mes y día de la vigencia. Cuando un usuario agregue un dispositivo, el
+sistema notificará al usuario si el dispositivo actual soporta esta función. Si
+el usuario requiere usar esta función, actualice el dispositivo que no soporta
+esta función.</span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=ES-MX>3. Configure
+los parámetros de control de elevador del personal. De clic en [Elevador]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=580
+height=170 id="图片 43"
+src="user_help.files/image021.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Superusuario</span><span lang=ES-MX>:
+Un superusuario no está restringido por las normativas de horarios,
+anti-passback y en&nbsp; esclusamiento tiene muy alta prioridad de control
+elevador</span><span lang=ES-MX>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Vigencia</span><span lang=ES-MX
+style='font-family:"Myriad Pro","sans-serif"'>:</span><span lang=ES-MX>
+Establece la validez temporal de un nivel de acceso de elevador. Los botones de
+los pisos se pueden configurar para estar habilitados durante un periodo de
+tiempo específico. Si no se configura, el tiempo de validez es permanente.</span><span
+lang=ES-MX> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-size:12.0pt;
+font-family:Wingdings'>?</span><span lang=ES-MX>Nota: Los niveles de elevador
+deben configurarse previamente.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>4.</span><span
+lang=ES-MX> De clic</span><span lang=ES-MX> en [Detalles] para ingresar
+información adicional del personal y activar el envío de notificaciones por
+eventos relacionados con el usuario.</span></p>
+
+<p class=MsoCommentText><span lang=zh-CN><img border=0 width=576 height=147
+id="图片 49" src="user_help.files/image022.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Descripción de los campos a continuación:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Email</span><span lang=ES-MX style='color:windowtext'>: Ingrese
+el correo electrónico del personal. La longitud máxima es de 30 caracteres. Los
+caracteres “-”, ”_” y ”.” son soportados.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Notificación de Correo</span><span lang=ES-MX style='color:windowtext'>:
+Después de marcar esta opción, el sistema enviará correos a esta persona cada
+vez que realice un evento de acceso o elevador. Si no se ha configurado el
+servidor de correo, la ventana de configuración de correo emergerá. Consulte </span><a
+href="107.htm#_8.1.5_Correo_Electrónico"><span lang=ES-MX>8.1.5 Correo
+Electrónico </span></a><span lang=ES-MX style='color:windowtext'>para más
+información.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='color:windowtext'>5. Después de
+completar la información, de clic en [OK] para guardar y salir. El personal se
+mostrará en la lista de usuarios.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Borrar Personal</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc387761895"></a><a name="_4.2.2_人员信息维护"></a><a
+name="_5.2.2_人员维护"></a><span lang=ES-MX>De clic</span><span lang=ES-MX> en
+[Personal] &gt; [</span><span lang=ES-MX>Usuarios</span><span lang=ES-MX>]</span><span
+lang=ES-MX>, seleccione un usuario, de clic en [Borrar] </span><span
+lang=ES-MX>y luego en</span><span lang=ES-MX> [OK] para borrar.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=ES-MX style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span
+lang=ES-MX>Nota: Al borrar un usuario toda la información de esa persona será
+eliminada.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=ES-MX
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Cambiar de Departamento</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>1) De clic en </span><span lang=ES-MX>[Personal]
+&gt; [</span><span lang=ES-MX>Usuarios</span><span lang=ES-MX>]</span><span
+lang=ES-MX>, seleccione un usuario y de clic en [Cambiar Departamento]<a
+name="_Toc387761896">:</a></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=277
+height=239 id="图片 52"
+src="user_help.files/image023.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>2) Seleccione el “Nuevo Departamento” .</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=ES-MX>3) De clic en “OK” para guardar y salir.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

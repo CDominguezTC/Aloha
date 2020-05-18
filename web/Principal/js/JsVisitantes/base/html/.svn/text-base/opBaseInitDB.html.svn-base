@@ -1,0 +1,346 @@
+<#include "/public/template/editTemplate.html"> <#macro editContent>
+<form method="post" onkeydown="if(event.keyCode==13){return false;}"
+	id="${formId}" enctype="multipart/form-data">
+	<input type="hidden" id="id_model_pk" name="pk" value="">
+	<input type="hidden" id="id_model_info" app_label="dbapp" model_name="DbBackup">
+		
+	<!-- title -->
+	<div class="form_help">
+
+		<div id="id_help_text">
+			鍒濆鍖栨暟鎹簱鏄皢鏁版嵁鎭㈠鍒扮郴缁熷垵濮嬪寲鐘舵�!
+		</div>
+
+		<div id="id_help" style="text-align: right;">
+
+			<a href="javascript:void(0);"
+				ref="/media/help/zh-cn/dbapp/DbBackup#OpInitDB"></a>
+
+
+
+		</div>
+		<div class="clear"></div>
+	</div>
+	<!-- help_panel -->
+
+
+	<div
+		style="margin-left: 10px; margin-right: 5px !important; width: 305px; display: block;"
+		id="init_model_class_tree" class="div_box floatL displayN treeview">
+		<h1 style="margin: 0px 0px 5px 5px; margin: 0px 0px 2px 5px\9;">
+			&nbsp;
+		</h1>
+		<div id="show_deptment">
+			<div class="filetree" style="overflow: auto; height: 323px;">
+				<li class="expandable lastExpandable">
+					<div class="hitarea expandable-hitarea lastExpandable-hitarea "></div>
+					<p class="t" style="float: left;">
+						鍏ㄩ儴
+					</p>
+					<ul class="treeview">
+						<li class="expandable">
+							<div class="hitarea expandable-hitarea "></div>
+							<p class="t">
+								浜轰簨
+							</p>
+							<ul>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.PersLeaveLog">
+										浜哄憳绂昏亴
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.PersDepartment">
+										閮ㄩ棬
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.PersPersonChange">
+										浜哄憳璋冨姩
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.PersIssueCard">
+										浜哄憳鍙戝崱
+									</p>
+								</li>
+								<li class="last">
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.PersPerson">
+										浜哄憳
+									</p>
+								</li>
+							</ul>
+						</li>
+						<li class="expandable">
+							<div class="hitarea expandable-hitarea "></div>
+							<p class="t">
+								闂ㄧ
+							</p>
+							<ul>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="acc.AccTimeSeg__acc.AccHoliday__acc.AccLevelSet">
+										闂ㄧ鏉冮檺
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="acc.AccWiegandFmt__acc.AccInterlock__acc.AccAntiBack__acc.AccLinkage__acc.AccFirstOpen__acc.AccCombOpenDoor__acc.AccCombOpenComb__pers.AccCombOpenPerson">
+										闂ㄨ缃�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="acc.AccRTMonitor">
+										浜嬩欢璁板綍
+									</p>
+								</li>
+								<li class="last">
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="acc.AccMap">
+										鐢靛瓙鍦板浘
+									</p>
+								</li>
+							</ul>
+						</li>
+						<li class="expandable">
+							<div class="hitarea expandable-hitarea "></div>
+							<p class="t">
+								绯荤粺
+							</p>
+							<ul>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="worktable.InstantMsg">
+										鍏憡鍙戝竷
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="worktable.MsgType">
+										鍏憡绫诲埆
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="auth.User">
+										鐢ㄦ埛
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="worktable.GroupMsg">
+										绯荤粺鎻愰啋璁剧疆
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="auth.Group">
+										瑙掕壊
+									</p>
+								</li>
+								<li class="last">
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="base.LogEntry">
+										鏃ュ織璁板綍
+									</p>
+								</li>
+							</ul>
+						</li>
+						<li class="expandable" style="display: none">
+							<div class="hitarea expandable-hitarea "></div>
+							<p class="t">
+								鑰冨嫟
+							</p>
+							<ul>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.LeaveClass">
+										鍋囩被
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.attCalcLog__att.AttException__att.attRecAbnormite__att.attShifts">
+										鑰冨嫟璁＄畻涓庢姤琛�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.CheckExact">
+										琛ョ鍗�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.Holiday">
+										鑰冨嫟鑺傚亣鏃�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.USER_OF_RUN__att.USER_TEMP_SCH">
+										鍛樺伐鎺掔彮
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.Transaction">
+										鍘熷璁板綍琛�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.EmpSpecDay">
+										璇峰亣
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.NUM_RUN__att.NUM_RUN_DEIL">
+										鐝
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.SchClass">
+										鑰冨嫟鏃舵
+									</p>
+								</li>
+								<li class="last">
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="att.SetUserAtt">
+										璋冧紤
+									</p>
+								</li>
+							</ul>
+						</li>
+						<li class="expandable lastExpandable">
+							<div class="hitarea expandable-hitarea lastExpandable-hitarea "></div>
+							<p class="t">
+								璁惧
+							</p>
+							<ul>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.DevCmd">
+										鏈嶅姟鍣ㄤ笅鍙戝懡浠�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.OperateCmd">
+										閫氫俊鍛戒护璇︽儏
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.Device">
+										璁惧
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="pers.Area">
+										鍖哄煙璁剧疆
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.DSTime">
+										澶忎护鏃�
+									</p>
+								</li>
+								<li>
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.DevLog">
+										璁惧閫氳鏃ュ織
+									</p>
+								</li>
+								<li class="last">
+									<p class="t">
+										<input type="checkbox" class="displayN" name="KK"
+											value="iclock.DevCmdBak">
+										澶辫触鍛戒护鏌ヨ
+									</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</div>
+		</div>
+	</div>
+	<!--operation_panel-->
+
+	<table cellpadding="3"
+		style="margin: 0px 10px 0px 10px; position: relative;"
+		class="tbl_data_edit">
+		<tbody>
+			<tr id="pre_addition_fields">
+				<th></th>
+				<td>
+					<table>
+						<tbody>
+							<tr>
+								<td>
+								</td>
+								<td>
+									<div id="id_op_for_model" data="True"></div>
+									<div id="id_store_select_emp">
+										<table id="id_tbl"></table>
+									</div>
+								</td>
+							</tr>
+							<tr class="displayN">
+								<th></th>
+								<td>
+									<input type="checkbox" name="sync_to_branch"
+										class="wZBaseBooleanField" id="id_sync_to_branch">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+			<!-- form -->
+		</tbody>
+	</table>
+</form>
+</#macro>

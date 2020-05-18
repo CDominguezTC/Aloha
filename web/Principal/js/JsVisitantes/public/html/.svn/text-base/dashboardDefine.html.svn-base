@@ -1,0 +1,273 @@
+<#include "/public/template/winTemplate.html">
+<script type="text/javascript">
+	var sysCode = "${Parameters.sysCode}";
+    var maxCount = "${Parameters.maxCount}";
+
+    getCurrentWindow().onClose = function()
+    {
+	    //$("body").removeClass("dhxwins_vp_dhx_web");
+	    $("body").css("overflow", "auto");
+    }
+
+    unMenuLoadTree(sysCode, "unSelectedTree");
+    var unSelectedTree;
+    function unMenuLoadTree(sysCode, treeId)
+    {
+	    unSelectedTree = new dhtmlXTreeObject(treeId, "100%", "100%", 0);
+	    unSelectedTree.setImagePath(sysCfg.treeImgPath);
+	    unSelectedTree.enableTreeImages("false");
+	    unSelectedTree.enableTreeLines("false");
+	    unSelectedTree.enableTextSigns(false);
+	    unSelectedTree.enableCheckBoxes(true);
+	    unSelectedTree.enableThreeStateCheckboxes(false);
+	    unSelectedTree.setCustomSortFunction(sortFunc);
+	    attachClickToCheck(unSelectedTree);
+	    unSelectedTree.loadJSON("authUserDashboardAction!getUnSelectedResLists.action?sysCode=" + sysCode);
+
+    }
+
+    menuLoadTree(sysCode, "selectedTree");
+    var selectedTree;
+    function menuLoadTree(sysCode, treeId)
+    {
+	    selectedTree = new dhtmlXTreeObject(treeId, "100%", "100%", 0);
+	    selectedTree.setImagePath(sysCfg.treeImgPath);
+	    selectedTree.enableTreeImages("false");
+	    selectedTree.enableTreeLines("false");
+	    selectedTree.enableTextSigns(false);
+	    selectedTree.enableCheckBoxes(true);
+	    selectedTree.enableThreeStateCheckboxes(false);
+	    selectedTree.setCustomSortFunction(sortFunc);
+	    //tree.enableDragAndDrop(true);
+	    attachClickToCheck(selectedTree);
+	    selectedTree.attachEvent("onClick", function(id)
+	    {
+		    return true;
+	    });
+	    //var xmlString = '<?xml version="1.0" encoding="UTF-8"?><tree id="0">' + subMenuXMLString + '</tree>';
+	    //console.log(xmlString);
+	    //tree.loadXMLString(xmlString);
+	    selectedTree.loadJSON("authUserDashboardAction!getSelectedResLists.action?sysCode=" + sysCode, showSelectedCount);
+    }
+
+    function moveItem(selected)
+    {
+	    if (selected)
+	    {
+	    	var checkedItems = unSelectedTree.getAllChecked().split(",");
+	    	
+		    if (getSelectedCount() >= maxCount)
+		    {
+			    messageBox({
+			        messageType : "alert",
+			        text : "${base_dashboard_limitedNumber}".format(maxCount)
+			    });
+			    return;
+		    }
+		    //能够移到的数量
+		    var checkedLength = checkedItems.length > (maxCount - getSelectedCount()) ? (maxCount - getSelectedCount()) : checkedItems.length;
+		    for (var i = 0; i < checkedLength; i++)
+		    {
+			    unSelectedTree.moveItem(checkedItems[i], 'item_child', 0, selectedTree);
+		    }
+		    for (var i = 0; i < checkedItems.length; i++)
+		    {
+			    selectedTree.setCheck(checkedItems[i], false);
+		    }
+	    }
+	    else
+	    {
+		    var checkedItems = selectedTree.getAllChecked().split(",");
+		    
+		    for (var i = 0; i < checkedItems.length; i++)
+		    {
+			    selectedTree.moveItem(checkedItems[i], 'item_child', 0, unSelectedTree);
+		    }
+		    for (var i = 0; i < checkedItems.length; i++)
+		    {
+			    unSelectedTree.setCheck(checkedItems[i], false);
+		    }
+	    }
+	    showSelectedCount();
+	    unSelectedTree.sortTree(0, "DES", 1);
+	    selectedTree.sortTree(0, "DES", 1);
+
+    }
+
+    function sortFunc(a,b){
+    	return ((a<b)?1:-1);
+    }
+    
+    function sortTree(tree)
+    {
+    	var sortArray=new Array();
+        var temp;
+        sortArray=id_list.split(":");
+        for(var i=0;i<sortArray.length;i++)
+        {
+            for(var j=0;j<i;j++)
+            {
+               
+                if(parseInt(sortArray[j])> parseInt(sortArray[i]))
+                {
+                    temp=sortArray[j];
+                    sortArray[j]=sortArray[i];
+                    sortArray[i]=temp;
+                }
+            }
+        }
+    }
+    
+    function showSelectedCount()
+    {
+	    var selectedCount = 0;
+	    if (selectedTree.getAllChildless() != "")
+	    {
+		    selectedCount = getSelectedCount();
+		    $("#confirmButton").attr("disabled", false);
+	    }
+	    else
+	    {
+	    	$("#confirmButton").attr("disabled", true);
+	    }
+	    $("#selectedCount").html(selectedCount);
+    }
+
+    function getSelectedCount()
+    {
+    	if(selectedTree.getAllChildless() == "")
+    	{
+    		return 0;
+    	}
+	    return selectedTree.getAllChildless().split(",").length;
+    }
+
+    function moveAllItem(selected)
+    {
+	    if (selected)
+	    {
+		    if (getSelectedCount() >= maxCount)
+		    {
+			    messageBox({
+			        messageType : "alert",
+			        text : "${base_dashboard_limitedNumber}".format(maxCount)
+			    });
+			    return;
+		    }
+		    moveAllItem(false);
+		    var checkedItems = unSelectedTree.getAllChildless().split(",");
+		    var count = checkedItems.length > maxCount ? maxCount : checkedItems.length;//全选最多的个数
+		    
+		    //先移除已经选中的
+		    for (var i = 0; i < checkedItems.length; i++)
+		    {
+			    unSelectedTree.setCheck(checkedItems[i], false);
+		    }
+		  	//选中前面count个
+		    for (var i = 0; i < count; i++)
+		    {
+			    unSelectedTree.setCheck(checkedItems[i], true);
+		    }
+	    }
+	    else
+	    {
+		    var checkedItems = selectedTree.getAllChildless().split(",");
+		    for (var i = 0; i < checkedItems.length; i++)
+		    {
+			    selectedTree.setCheck(checkedItems[i], true);
+		    }
+	    }
+	    moveItem(selected);
+    }
+
+    function fun()
+    {
+	    onLoading(function()
+	    {
+		    $.ajax({
+		        type : "POST",
+		        url : "authUserDashboardAction!edit.action",
+		        data : {
+		            ids : selectedTree.getAllChildless(),
+		            sysCode : sysCode
+		        },
+		        dataType : "json",
+		        async : true,
+		        success : function(result)
+		        {
+			        window.setTimeout(function()
+			        {
+				        dealRetResult(result, function()
+				        {
+					        closeWindow();
+					        initDashboardData(sysCode);
+				        });
+			        }, 500);
+		        }
+		    });
+	    });
+
+    }
+</script>
+<#macro winContent>
+<div>
+	<table style="width: 100%">
+		<tr>
+			<td width="48%">
+				<div style="width: 270px; overflow: hidden;">
+					<div style="padding: 2px 0px">${common_alternative}</div>
+					<div style="height: 400px; overflow: auto;" class="info_border">
+						<div id="unSelectedTree"></div>
+					</div>
+				</div>
+			</td>
+			<td width="2%" align="center" valign="middle"
+				style="padding-left: 2px;">
+				<div id="idButtonDiv" class="otherGrid dhxform_obj_dhx_web"
+					style="text-align: center; width: 100%; padding-top: 15px">
+					<div style="height: 25px;" class="multiSelectDiv" id="gridAddAll">
+						<div dir="ltr" tabindex="0" role="link" class="dhxform_btn"
+							style="width: 32px">
+							<div class="dhxform_btn_txt" onclick="moveAllItem(true)"
+								style="margin: 0px auto; float: none">&nbsp;&gt;&gt;&nbsp;</div>
+						</div>
+					</div>
+					<div style="height: 25px;" class="radioSelectDiv" id="gridAdd">
+						<div dir="ltr" tabindex="0" role="link" class="dhxform_btn"
+							style="width: 32px">
+							<div class="dhxform_btn_txt" onclick="moveItem(true)"
+								style="margin: 0px auto; float: none">&nbsp;&gt;&nbsp;</div>
+						</div>
+					</div>
+					<div style="height: 25px;" class="radioSelectDiv" id="gridRemove">
+						<div dir="ltr" tabindex="0" role="link" class="dhxform_btn"
+							style="width: 32px">
+							<div class="dhxform_btn_txt" onclick="moveItem(false)"
+								style="margin: 0px auto; float: none">&nbsp;&lt;&nbsp;</div>
+						</div>
+					</div>
+					<div style="height: 25px;" class="multiSelectDiv"
+						id="gridRemoveAll">
+						<div dir="ltr" tabindex="0" role="link" class="dhxform_btn"
+							style="width: 32px">
+							<div class="dhxform_btn_txt" onclick="moveAllItem(false)"
+								style="margin: 0px auto; float: none">&nbsp;&lt;&lt;&nbsp;</div>
+						</div>
+					</div>
+				</div>
+			</td>
+			<td width="48%">
+				<div style="width: 270px; overflow: hidden;">
+					<div style="padding: 2px 0px">
+						${common_selected}(<em id="selectedCount">0</em>)<span class="alertMsg"> [${common_max} ${Parameters.maxCount}]</span>
+					</div>
+					<div style="height: 400px; overflow: auto;" class="info_border">
+						<div id="selectedTree"></div>
+					</div>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+</#macro> <#macro confirmFunction>fun()</#macro>

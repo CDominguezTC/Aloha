@@ -1,0 +1,453 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 3.1.2 Personnel</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection20 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427072332"></a><a name="_Toc387761891"></a><a name="_4.2_人员管理"></a><span
+lang=EN-US>3.1.2 </span><span lang=EN-US>Personnel</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>When using this management program, the user
+shall register personnel in the system, or import personnel information from
+other software or document into this system. For details, see </span><a
+href="117.htm#_附录1_常用操作"><span lang=EN-US>Appendix 1 Common Operation</span></a><span
+lang=EN-US>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Main functions of </span><span lang=EN-US>Personnel</span><span
+lang=EN-US> Management include Add</span><span lang=EN-US>, Edit, Delete
+personnel and Adjust </span><span lang=EN-US>Department.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><a
+name="_5.2.1_新增人员"></a><a name="_4.2.1_新增人员"></a><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Add </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Personnel</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>1. Click [Personnel] &gt; [</span><span
+lang=EN-US>Person</span><span lang=EN-US>] &gt; [</span><span lang=EN-US>New</span><span
+lang=EN-US>]:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=641 height=452 id="Picture 10"
+src="user_help.files/image015.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="OLE_LINK42"></a><a name="OLE_LINK41"><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Personnel
+</span></a><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>ID</span><span lang=EN-US>: It must be unique.</span><span
+lang=EN-US> </span><span lang=EN-US>9 characters at max.</span><span
+lang=EN-US> </span><span lang=EN-US>length, </span><span lang=EN-US>the valid
+range is 1-79999999, </span><span lang=EN-US>it can be configured based on
+actual conditions. The Personnel No. contains only numbers by default but may
+also include letters</span><span lang=EN-US style='letter-spacing:-.3pt'>.</span><span
+lang=EN-US> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Notes:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(1) When configuring a personnel number,
+check whether the current device supports the maximum length and letter
+inclusion of the personnel number.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>(2) When modifying the maximum length or
+letter inclusion of a personnel number, please enter into</span><span
+lang=EN-US> Personnel &gt; Parameters to set.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Department</span><span lang=EN-US style='color:windowtext'>:</span><span
+lang=EN-US> Select from the pull-down menu and click [OK]. If the department
+was not set previously, you can only select the default [Company Name]
+department.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Name/Last Name</span><span lang=EN-US>: The max length is 50.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Password</span><span lang=EN-US>: Set
+personnel password. </span><span lang=EN-US>O</span><span lang=EN-US>nly
+supports 6-digit passwords. If password exceeds the specified length, the
+system will truncate it automatically. </span><span lang=EN-US>It can’t be same
+with others and duress password.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Card number</span><span lang=EN-US>: </span><span lang=EN-US>The
+max length is 10, and it can’t be duplicated.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>Employment Date: Input
+the actual date of employee begin to work.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Password</span><span lang=EN-US>: Set
+personnel password. </span><span lang=EN-US>O</span><span lang=EN-US>nly
+supports 6-digit passwords. If password exceeds the specified length, the
+system will truncate it automatically. </span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Reservation Code</span><span lang=EN-US>:</span><b><span
+lang=EN-US> </span></b><span lang=EN-US>The max length is 6</span><span
+lang=EN-US>, </span><span lang=EN-US>the </span><span lang=EN-US>initial
+password is </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>123456</span><span lang=EN-US>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Personal Photo</span><span lang=EN-US>:
+The picture preview function is provided, supporting common picture formats,
+such as</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif"'> </span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>jpg,
+jpeg,</span><b><span lang=EN-US style='color:#92D050'> </span></b><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>bmp,
+png, gif</span><span lang=EN-US> etc. The best size is 120×140 pixels.</span><span
+lang=EN-US> </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-indent:.3pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'> </span></span><span
+lang=EN-US>Browse: Click [Browse] to select a local photo to upload.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:1.0cm;text-indent:.3pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'> </span></span><span
+lang=EN-US>Capture: Taking photo by camera is allowed when the server is connected
+with a camera.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Register Fingerprint</span><span
+lang=EN-US>: Enroll the Personnel Fingerprint or Duress Fingerprint. To trigger
+the alarm and send the signal to the system, press the Duress Fingerprint,</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>How to register fingerprint:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1) Click [Register].</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2) Select a fingerprint, press in the sensor
+by three times, ”</span><span lang=EN-US style='color:#92D050'>Fingerprint
+registered Successfully</span><span lang=EN-US>” will be prompted.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>3) Click [OK] to finish registration.</span></p>
+
+<p class=MsoNormal><span lang=EN-US style='font-size:12.0pt;font-family:宋体;
+color:windowtext'><img border=0 width=292 height=302 id="Picture 11"
+src="user_help.files/image016.jpg">&nbsp; </span><span
+lang=EN-US>&nbsp;&nbsp;&nbsp;&nbsp;</span><span lang=EN-US style='font-size:
+12.0pt;font-family:宋体;color:windowtext'><img border=0 width=293 height=302
+id="Picture 12" src="user_help.files/image017.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>Click a fingerprint
+to delete. If you need to register a duress fingerprint, check the Duress
+Fingerprint box.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=EN-US style='font-size:
+12.0pt;font-family:Wingdings'>?</span></b><span lang=EN-US>Note: </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>If fingerprints are duplicated, ”</span><span
+lang=EN-US style='color:windowtext'>Don’t repeat the fingerprint entry” will be
+prompted</span><span lang=EN-US>.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>If the fingerprint</span><span lang=EN-US> </span><span
+lang=EN-US>sensor driver</span><span lang=EN-US> is not installed</span><span
+lang=EN-US>, click “Install drive” and the system will prompt to download and
+install </span><span lang=EN-US>driver.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:21.3pt;text-indent:-21.0pt;vertical-align:middle'><span
+lang=EN-US style='font-family:Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US>After the fingerprint sensor driver is
+installed, if fingerprint register button is grey in IE browser while it is
+normal in other browsers (such as Firefox, Google)</span><span lang=EN-US>,</span><span
+lang=EN-US> </span><span lang=EN-US>y</span><span lang=EN-US>ou may change the
+settings of IE browser, as follows: </span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=EN-US>1) </span><span lang=EN-US>In IE browser, click [Tools] </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US> [Internet
+Options] </span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=EN-US>[Security] </span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=EN-US>[Credible Sites], add</span><a href="http://localhost/"><span
+lang=EN-US> http://localhost</span></a><span lang=EN-US> to the credible sites,
+then restart the IE browser.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=EN-US>2) </span><span lang=EN-US>In IE browser, click [Tools] </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US> [Internet
+Options]</span><span lang=EN-US>&shy;</span><span lang=EN-US> </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US>[Advanced] </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US>[Reset] to
+pop up a dialog of Reset Internet Explorer Settings, click [Reset] to confirm;
+then restart the IE browser (this step can be used when step1 has no effect).</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=EN-US>3) </span><span lang=EN-US>If above settings are all invalid, please
+execute following operations (take IE11 browser as an example): click [Tools] </span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span lang=EN-US> [Internet
+Options] </span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=EN-US>[Advanced] </span><span lang=EN-US style='font-family:Wingdings'>à</span><span
+lang=EN-US>[Security], check the option of [Allow software to run or install
+even if the signature is ...], and remove the tick before [Check for server
+certificate revocation], then restart IE.</span></p>
+
+<p class=MsoListParagraph style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+7.8pt;margin-left:30.6pt;text-indent:-9.35pt;vertical-align:middle'><span
+lang=EN-US>4) If the browser is below IE8, the fingerprint registration page
+will be different:</span></p>
+
+<p class=MsoNormal><span lang=EN-US><img border=0 width=302 height=302
+id="Picture 13" src="user_help.files/image018.jpg">&nbsp;&nbsp;
+</span><span lang=EN-US style='font-size:12.0pt;font-family:宋体;color:windowtext'><img
+border=0 width=305 height=302 id="Picture 14"
+src="user_help.files/image019.jpg"></span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>2. Set the
+Access Control parameters for the personnel. Click [Access Control]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=576 height=167
+src="user_help.files/image020.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Superuser</span><span lang=EN-US>: </span><span
+lang=EN-US>In access controller operation, a super user is not restricted by
+the regulations on time zones, anti-passback and interlock and has extremely
+high door-opening priority. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Device Operation Authority</span><span
+lang=EN-US>: </span><span lang=EN-US>Select </span><span lang=EN-US>administrator
+to get its levels.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Delay Passage</span><span lang=EN-US>:</span><span
+lang=EN-US> </span><span lang=EN-US>Extend the waiting time when the movement
+of persons. Suitable for people with disabilities or other special needs
+populations.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Disabled</span><span lang=EN-US>:
+Temporarily disable the personnel’s access level.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Set Valid Time</span><span lang=EN-US>:
+Set Temporary access level. Doors can be set to open only within certain
+effective period of time. If not checked, the time to open the door is always
+active.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-size:12.0pt;
+font-family:Wingdings'>?</span><span lang=EN-US style='font-size:12.0pt'> </span><span
+lang=EN-US>Note: The number of a person, whether departed or in service, must
+be unique. The system, when verifying, will automatically search the number in
+the departure library.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>The Personnel
+Information List, by default, is displayed as a table. If Graphic Display is
+selected, photos and numbers will be shown. Put the cursor on a photo, details
+about the personnel will be shown.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note</span><span style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>(1) Not all the devices
+support the </span><span lang=EN-US>“Disabled”</span><span lang=EN-US>
+function. When a user adds a device, the system will notify the user whether
+the current device support this function. If the user needs to use this
+function, upgrade the device that originally does not support the function. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>(2) Not all the devices
+support the</span><span lang=EN-US> ”Set Valid Time”</span><span lang=EN-US>
+function of setting the hour, minute, and second. Some devices only allow users
+to set the year, month, and day of the active time. When a user adds a device,
+the system will notify the user whether the current device support this
+function. If the user needs to use this function, upgrade the device that
+originally does not support the function. </span></p>
+
+<p class=MsoNormal style='margin-bottom:7.8pt'><span lang=EN-US>3. Set the
+Elevator Control parameters for the personnel. Click [Elevator Control]:</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=576
+height=170 src="user_help.files/image021.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Superuser</span><span lang=EN-US>: </span><span
+lang=EN-US>In elevator controller operation, a super user is not restricted by
+the regulations on time zones, holidays and has extremely high door-opening
+priority.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Set Valid Time</span><span lang=EN-US
+style='font-family:"Myriad Pro","sans-serif"'>:</span><span lang=EN-US> Set Temporary
+elevator level. Floor buttons can be set to be pressed only within the
+effective period of time. If not checked, the time to press the floor button is
+always active.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-size:12.0pt;
+font-family:Wingdings'>?</span><span lang=EN-US>Note: The Elevator level must
+be set in advance.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>4.</span><span
+lang=EN-US> </span><span lang=EN-US>Click [Personnel Detail] to enter the
+detail information and edit interface, complete personnel detail info. </span></p>
+
+<p class=MsoCommentText><span lang=zh-CN><img border=0 width=576 height=136
+src="user_help.files/image022.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Fields are as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Email</span><span lang=EN-US style='color:windowtext'>: Set the
+available email address of the personnel, the max length is 30. The “-”,”_” and
+”.” are supported. If the Event Notification is checked, the Email is required.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Event Notification</span><span lang=EN-US style='color:windowtext'>:
+After checking this menu, the system will send email to this person once an
+access or an elevator event occurs. If there is no setting to email sending server,
+the Email Parameter Settings window will pop up. please refer to </span><a
+href="108.htm#_8.1.5_E-mail_Management"><span lang=EN-US>8.1.5 Email
+Manangement</span></a><span lang=EN-US style='color:windowtext'> for the
+setting information.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='color:windowtext'>5. After filling in
+the information, click [OK] to save and exit, the person will be displayed in
+the added list.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Delete</span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'> </span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Personnel</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><a name="_Toc387761895"></a><a name="_4.2.2_人员信息维护"></a><a
+name="_5.2.2_人员维护"></a><span lang=EN-US>Click</span><span lang=EN-US>
+[Personnel] &gt; [</span><span lang=EN-US>Person</span><span lang=EN-US>]</span><span
+lang=EN-US>, select a person, click [Delete] </span><span lang=EN-US>&gt;</span><span
+lang=EN-US> [OK] to delete.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><b><span lang=EN-US style='font-size:14.0pt;font-family:Wingdings'>?</span></b><span
+lang=EN-US>Note: Delete a person, all information about the person will be
+deleted.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt;vertical-align:middle'><span lang=EN-US
+style='font-family:Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;
+</span></span><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Adjust Department</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1) Click </span><span lang=EN-US>[Personnel]
+&gt; [</span><span lang=EN-US>Person</span><span lang=EN-US>]</span><span
+lang=EN-US>, select a person, click [Adjust Department]<a name="_Toc387761896">:</a></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0 width=277
+height=237 src="user_help.files/image023.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN>2) Select “To new Department”
+.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm;line-height:150%'><span lang=zh-CN>3) Click “OK” to save and
+exit.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:16.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

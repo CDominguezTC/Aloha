@@ -1,0 +1,146 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.1 Horarios</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection41 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077411"></a><a name="_Toc427077292"></a><a name="_Toc31701"></a><a
+name="_Toc417486935"></a><a name="_Toc451"></a><a name="_Toc388344254"></a><a
+name="_Toc413852695"><span lang=ES-MX>4.2.1 </span></a><span lang=ES-MX>Horarios</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Los horarios pueden
+habilitar o deshabilitar el uso de lectores durante tiempos específicos.
+También pueden establecer periodos de apertura normalmente abierto o para
+definir los niveles de acceso para que los usuarios tengan acceso en periodos
+de tiempo y puertas específicas (incluyendo primer apertura normalmente
+abierto).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>El sistema controla el
+acceso de acuerdo a los horarios (máx. 255 horarios). El formato de cada
+intervalo para un horario es: HH: MM. Por default, el sistema cuenta con un
+horario de control de acceso llamado [24 horas]. Este horario no puede ser
+modificado o borrado. Es posible agregar nuevos horarios que puedan ser
+modificados o borrados.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>1. Agregar Horario</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(1) De clic en [Control
+de Acceso] &gt; [Horarios] &gt; [</span><span lang=ES-MX>Nuevo</span><span
+lang=ES-MX>] para acceder a la interfaz de horario:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;line-height:150%'><b><span lang=zh-CN><img border=0 width=578
+height=362 src="user_help.files/image088.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Descripción de los campos:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Nombre de Horario</span><span
+lang=ES-MX>: Cualquier caracter, hasta 30 caracteres.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Notas</span><span lang=ES-MX>:
+Descripción detallada del horario actual, incluyendo la explicación y
+aplicación del horario. El campo es de 50 caracteres.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Intervalos, Tiempo Inicial y Final</span><span
+lang=ES-MX>: Un horario puede incluir hasta 3 intervalos para cada día de la
+semana y 3 intervalos para cada uno de los días festivos. Configure la hora
+inicial y final de cada intervalo.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Configuración</span><span lang=ES-MX>: Si el intervalo es normalmente
+abierto, solo ingrese 00:00-23:59 como el intervalo 1 y 00:00-00:00 como el
+intervalo 2/3. Si el intervalo es normalmente cerrado: todos son 00:00-00:00.
+Si solo se usa un intervalo, el usuario solo necesita ingresar el campo del
+intervalo 1y el intervalo 2/3 mantiene el valor default. De igual manera, si
+solo se usan los primeros dos intervalos, el tercer intervalo se mantiene con
+el valor default. Cuando se usan dos o tres intervalos el usuario requiere
+asegurar que los intervalos no tienen intersección de tiempo y que el tiempo no
+abarque días, de lo contrario se mostrará un error.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050;letter-spacing:-.2pt'>Tipo de Día
+Festivo</span><span lang=ES-MX style='letter-spacing:-.2pt'>: Los tres tipos de
+días festivos no están relacionados con los días de la semana. Si una fecha se
+establece a un día festivo, los tres intervalos del día festivo se usarán para
+acceso. El tipo de día festivo es opcional. Si no ingresa ninguno el sistema
+usará el valor default.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050;letter-spacing:-.2pt'>Copiar el Lunes</span><span
+lang=ES-MX style='letter-spacing:-.2pt'>:</span><span lang=ES-MX> Puede copiar
+rápidamente el horario del lunes a los demás días de la semana</span><span
+lang=ES-MX style='letter-spacing:-.2pt'>.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>(2) Después de
+configurar, de clic en [OK] para guardar, y el horario se mostrará en la lista.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>2. Mantenimiento de los
+Horarios</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Editar</span><span lang=ES-MX>: De
+clic en [Editar] para acceder a la interfaz de editar. De clic en [OK] para
+guardar los cambios.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Borrar</span><span lang=ES-MX>: De
+clic en [Borrar] y luego clic en [OK] para borrar, o de clic en [Cancelar] para
+cancelar la operación. Un horario en uso no puede ser eliminado. Puede borrar
+múltiples horarios seleccionando las casillas y dando clic en [Borrar] arriba
+de la lista y [OK] para borrar o clic en [Cancelar] para cancelar.</span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

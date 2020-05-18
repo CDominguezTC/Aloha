@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!-- 此配置文件是ISSOnline_server的ip和port配置  -->
+<services>
+	<service>
+		<ISSOnline_serverIp>127.0.0.1</ISSOnline_serverIp>
+		<ISSOnline_serverPort>24008</ISSOnline_serverPort>
+	</service>
+</services>

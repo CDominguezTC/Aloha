@@ -1,0 +1,121 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.2.2 门禁节假日</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection43 style='layout-grid:15.6pt'>
+
+<h3 style='margin-top:12.0pt;margin-right:0cm;margin-bottom:12.0pt;margin-left:
+0cm;line-height:normal'><a name="_Toc426638138"></a><a name="_Toc387761918"></a><a
+name="_6.2_门禁节假日"></a><span lang=EN-US style='font-size:10.5pt'>4.2.2 </span><span
+style='font-size:10.5pt;font-family:幼圆'>门禁节假日</span></h3>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>节假日的门禁时间可能与平时的门禁时间不同，为了简便操作，系统支持对节假日单独设置门禁时间。门禁节假日管理包括新增、修改、删除门禁节假日。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>新增</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>1. </span><span style='font-family:幼圆'>点击【门禁】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【节假日】</span><span
+lang=EN-US style='font-family:Wingdings'>à</span><span style='font-family:幼圆'>【新增】，进入新增门禁节假日页面：</span></p>
+
+<p class=MsoNormal align=left style='text-align:left;line-height:150%'><span
+lang=EN-US><img border=0 width=343 height=236
+src="user_help.files/image107.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>各字段说明如下</span></b><span
+style='font-family:幼圆'>：</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>节假日名称</span></b><span
+style='font-family:幼圆'>：任意字符，最多由</span><span lang=EN-US>30</span><span
+style='font-family:幼圆'>个字符组成。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>节假日类型</span></b><span
+style='font-family:幼圆'>：假日类型</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>、</span><span lang=EN-US>2</span><span style='font-family:
+幼圆'>、</span><span lang=EN-US>3</span><span style='font-family:幼圆'>，每个假日类型最多包含</span><span
+lang=EN-US>32</span><span style='font-family:幼圆'>个节假日。新增的节假日记录包含于三个假日类型中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>开始、结束日期</span></b><span
+style='font-family:幼圆'>：日期格式：</span><span lang=EN-US>2010-1-1</span><span
+style='font-family:幼圆'>，开始日期不能大于结束日期，开始日期的年份不能小于当前年，节假日日期不能跨年。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>按年循环</span></b><span
+style='font-family:幼圆'>：指节假日跨年是否需要修改，默认为</span><span style='font-family:幼圆'>“</span><span
+style='font-family:幼圆'>否”。如元旦为每年的</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>月</span><span lang=EN-US>1</span><span style='font-family:
+幼圆'>日，设置为“是”，母亲节为每年</span><span lang=EN-US>5</span><span style='font-family:
+幼圆'>月的第</span><span lang=EN-US>2</span><span style='font-family:幼圆'>个周日，日期不确定，设置为“否”。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><b><span style='font-family:幼圆'>例如</span></b><span
+style='font-family:幼圆'>：“元旦”设置日期为</span><span lang=EN-US>2010</span><span
+style='font-family:幼圆'>年</span><span lang=EN-US>1</span><span style='font-family:
+幼圆'>月</span><span lang=EN-US>1</span><span style='font-family:幼圆'>日，假日类型</span><span
+lang=EN-US>1</span><span style='font-family:幼圆'>；在</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>月</span><span lang=EN-US>1</span><span style='font-family:
+幼圆'>日不按照当日的“星期五”进行门禁时间控制，按照假日类型</span><span lang=EN-US>1</span><span
+style='font-family:幼圆'>进行门禁时间控制。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>2. </span><span style='font-family:幼圆'>编辑完成，点击【确定】保存，并显示在节假日列表中。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>修改</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击节假日名称或“操作”下的【编辑】，进入编辑页面，修改后点击【确定】保存。</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings'>l<span style='font:7.0pt "Times New Roman"'>&nbsp;&nbsp; </span></span><b><span
+style='font-family:幼圆'>删除</span></b></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span style='font-family:幼圆'>点击节假日列表中“操作”下的【删除】按钮，或勾选一个或多个节假日，点击列表上方的【删除】按钮，【确定】则删除选中的节假日，【取消】则取消操作。不能删除正在使用中的门禁节假日。</span></p>
+
+</div>
+
+<b><span lang=EN-US style='font-size:10.5pt;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span></b>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

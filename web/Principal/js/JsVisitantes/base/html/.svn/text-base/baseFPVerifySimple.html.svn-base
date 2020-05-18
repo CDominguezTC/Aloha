@@ -1,0 +1,364 @@
+<div style="position: relative; background-color: rgb(107, 165, 215); left: -2px; top: -7px; width: 455px; height: 450px;background: url('${base}/base/images/base_fpVerify.jpg');">
+	<div id="showSeachingDiv" style="padding-left: 70px; padding-top: 140px; width: 112px; height: 145px; diaplay: block;"></div>
+	<div id="showCollInfoDiv" style="position: absolute; text-align: center; left: 2px; top: 15px; width: 448px; height: 20px; background-attachment: rgb(70, 130, 180); diaplay: block;"></div>
+	<input type="hidden" id="whetherModify" name="whetherModify" alt="" value="111" />
+</div>
+<script type="text/javascript">
+//验证标记--是否已经进行验证 true:正在进行验证;false:否
+var verifyFlag = false;
+//模式:1--1:1,2--1:N
+var model = "2";
+//XDomainRequest对象实例
+var xDomainRequest = null;
+
+/**
+ * ajax调用错误处理
+ * @author wenxin
+ * @create 2013-06-01 19:44:31 pm
+ */
+function errorMsg()
+{
+	messageBox({messageType: "alert", title: "${common_prompt_title}", text: "${base_fp_connectPrompt}"});
+}
+/**
+ * 获取指纹模板回调函数--getFPTemplateForSimple()的回调函数
+ * @author wenxin
+ * @create 2013-06-04 17:50:31 pm
+ */
+function getTemplateCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	var obj = jQuery.parseJSON(resultData);
+	
+	var fpTemplate = "";
+	//是否成功返回 true:失败时返回；false:成功时返回
+	var successFlag = false;
+	//返回码
+	var ret = "";
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+		if(obj.data != undefined && ret == 0)
+		{
+			fpTemplate = obj.data.template;
+		}
+	}
+	if(ret == 0)
+	{
+		verifyFlag = false;
+		//指纹比对
+		fpComparison(fpTemplate);
+	}
+	else if(ret == -2003)
+	{
+		//${base_fp_pressFingerAgain}:请重按手指
+		//显示框--采集提示
+		collectTips(null, "${base_fp_pressFingerAgain}", "verifyForSimple");
+	}
+}
+/**
+ *  getImage接口的回调函数-captureAndGetImage()的回调函数
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ */
+function getImageCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	resultData = resultData.replace(/[\n\t]/g, "");
+	resultData = resultData.replace(/[\n]/g, "");
+	var base64FPImg = "";
+	//指纹采集次数
+	var collCount = 0;
+	//是否成功返回 true:失败时返回；false:成功时返回
+	var successFlag = false;
+	//返回码
+	var ret = "";
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+		if(ret == 0 && obj.data != undefined)
+		{
+			collCount = obj.data.enroll_index;
+			base64FPImg = obj.data.jpg_base64;
+		}
+	}
+	if(collCount != 3)
+	{
+		//定时器
+		timer = setTimeout("captureAndGetImage()", 1000);
+	}
+	else
+	{
+		//将定时器的递归调用关闭
+		clearTimeout(verifyTimer);
+		//将定时器的递归调用关闭 -- 此处需再考虑一下
+		clearTimeout(timer);
+		//显示指纹图像
+		showImage(null, base64FPImg, "verifySimple");
+		//获取指纹模板
+		getFPTemplateForSimple();
+	}
+}
+/**
+ * 查动态库连接回调函数
+ * @author wenxin
+ * @create 2013-05-15 17:12:21 pm
+ * @param xDomainRequest:xdr 对象
+ */
+function getDLLConnectCallBack(xDomainRequest)
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	//返回码
+	var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时
+	if(ret == 0)
+	{
+		//${base_fp_connectFail}:连接指纹采集器失败
+		collectTips(null, "${base_fp_connectFail}", "verifyForSimple");
+	}
+	else
+	{
+		//${base_fp_loadFail}:加载ZKFinger10失败
+		collectTips(null, "${base_fp_loadFail}", "verifyForSimple");
+	}
+}
+/**
+ * beginCapture接口的回调函数--beginFPRegister()的回调函数
+ * @author wenxin
+ * @create 2013-06-01 10:18:31 am
+ */
+function beginCaptureCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	//转化为json对象
+	var obj = jQuery.parseJSON(resultData);
+	//返回码
+	var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时
+	if(ret == 0)
+	{
+		verifyFlag = true;
+		//检查采集、显示图像
+		captureAndGetImage();
+	}
+	else if(ret == -2001)
+	{
+		//${base_fp_connectFail}:连接指纹采集器失败
+		//显示框--采集提示
+		collectTips(null, "${base_fp_connectFail}", "verifyForSimple");
+	}
+	else if(ret == -2002)
+	{
+		//${base_fp_loadFail}:加载ZKFinger10失败
+		//显示框--采集提示
+		//collectTips(null, "${base_fp_loadFail}", "verifyForSimple");
+		getWebServerInfoForSimple(null, null, "1");
+	}
+	else if(ret == -2005)
+	{
+		//取消采集
+		cancelRegister();
+		//开始采集
+		beginFPRegister(2);
+	}
+}
+/**
+ * 取消采集，当采集中断时
+ * 和baseFPRegister.html中的cancelRegister函数功能形同，但是实现方式不一样
+ * @author wenxin
+ * @create 2013-06-05 19:07:31 pm
+ */
+function cancelRegister()
+{
+	//正在进行验证，还没有关闭指纹采集
+	if(verifyFlag)
+	{
+		//取消采集
+		cancelCaptureForSimple();
+	}
+}
+/**
+ * 取消采集回调函数--cancelRegister()的回调函数
+ * @author wenxin
+ * @create 2013-06-04 17:50:31 pm
+ */
+function cancelCaptureCallBack()
+{
+	//获取接口返回值
+	var resultData = xDomainRequest.responseText;
+	var obj = jQuery.parseJSON(resultData);
+	//返回码
+	var ret = null;
+	if(obj != null && obj.ret != undefined)
+	{
+		ret = obj.ret;
+	}
+	//接口调用成功返回时,ret == -2005--表示当前还没有采集，但是取消采集
+	if(ret == 0 || ret == -2005)
+	{
+		verifyFlag = false;
+	}
+}
+/**
+ * 关闭比对页面
+ * @author wenxin
+ * @create 2013-06-21 14:57:11 pm
+ */
+function closeVerify()
+{
+	//正在进行验证，还没有关闭指纹采集
+	if(verifyFlag)
+	{
+		//取消采集
+		cancelRegister();
+	}
+	//将定时器的递归调用关闭
+	clearTimeout(timer);
+	closeWindow();
+}
+/**
+ * 指纹比对
+ * @author wenxin
+ * @create 2013-06-24 17:41:21 pm
+ * @param fpTemplate 指纹模板
+ */
+function fpComparison(fpTemplate)
+{
+	if(model == "1")
+	{
+		if($("#persNumText").val() != "${pers_person_pin}")
+		{
+			$("#pin").val($("#persNumText").val());
+		}
+	}
+	$("#verifyModel").val(model);
+	$("#verifyTemplate").val(fpTemplate);
+	//表单提交
+	formSubmit("fpVerifyForm");
+}
+/**
+ * 清空
+ * @author wenxin
+ * @create 2013-09-05 16:57:11 pm
+ */
+function clearImageData()
+{
+	//清空指纹图像
+	clearFPImage(null, "verifyForSimple");
+	//显示框--采集提示
+	collectTips(null, "${base_fp_verifyInfo}", "verifyForSimple");
+}
+/**
+ * 表单提交回调函数
+ * @author wenxin
+ * @create 2013-06-26 16:57:11 pm
+ */
+function callBackFormSubmit(msg)
+{ 
+	setTimeout($("#showSeachingDiv").hide(), 1000);
+	
+	if(msg.ret == "ok")//成功
+	{
+		collectTips(globalContext, "${base_fp_verifySuccess}", "verification");
+		setTimeout("closeVerify()", 1000);
+		setTimeout(_callBackFunction("dashboard.action"), 1000);
+	}
+	else if(msg.msg == "disabled")
+	{
+		collectTips(globalContext, "${auth_login_disabled}", "verification");
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_login_disabled}");
+		$(".errorTip").show();
+	}else if(msg.msg == "notExist")
+	{
+		collectTips(globalContext, "${base_fp_verifyFail}", "verification");
+		setTimeout("clearImageData()", 1000);
+		beginCapture(globalContext);
+	}
+	
+	/*
+	if(msg == "error")
+  	{
+  		//${base_fp_verifyFail}:验证失败
+		//显示框--采集提示
+		collectTips(null, "${base_fp_verifyFail}", "verifyForSimple");
+		//清空
+		setTimeout("clearImageData()", 1000);
+		//开始采集
+		beginFPRegister(2);
+  	}
+	else if(msg == "")
+	{
+		//${base_fp_verifySuccess}:验证通过
+		//显示框--采集提示
+		collectTips(null, "${base_fp_verifySuccess}", "verifyForSimple");
+		var head = location.href;
+  		head = head.substring(0, head.lastIndexOf("/"));
+  		var url = head + "/baseLanguageAction!loadLanguageResource.action";
+  		window.location.href = url;
+	}
+	else if(msg == "disabled")
+  	{
+  		//显示框--采集提示
+		collectTips(null, "${auth_login_disabled}", "verifyForSimple");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_login_disabled}");
+		$(".errorTip").show();
+  	}
+	else if(msg == "trialOver")
+  	{
+  		//显示框--采集提示
+		collectTips(null, "${auth_license_noLicense}", "verifyForSimple");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+		$(".errorTip").html("${auth_license_noLicense}");
+		$(".errorTip").show();
+  	}
+  	else
+  	{
+  		//${base_fp_verifySuccess}:验证通过
+		//显示框--采集提示
+		collectTips(null, "${base_fp_verifySuccess}", "verifyForSimple");
+		//关闭验证页面
+		setTimeout("closeVerify()", 1000);
+	    //延时进行登录
+		setTimeout(_callBackFunction(msg), 1000);
+  	}
+	*/
+}
+/**
+ * 页面加载时，初始化数据
+ * @author wenxin
+ * @create 2013-07-09 15:18:31 pm
+ */
+function dataInit()
+{
+	//${base_fp_verifyInfo}:请水平按压手指验证
+	//显示框--采集提示
+	collectTips(null, "${base_fp_verifyInfo}", "verifyForSimple");
+	
+	//开始采集
+	beginFPRegister(2);
+	//定时器
+	verifyTimer = setTimeout("closeVerify()", 5000);
+}
+//初始化数据
+dataInit();
+</script>

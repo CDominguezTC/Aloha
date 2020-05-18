@@ -1,0 +1,79 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.11 Monitoreo de Alarmas</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection38 style='layout-grid:15.6pt'>
+
+<h3><a name="_Toc427077035"></a><a name="_Toc17833"></a><a name="_Toc417486932"></a><a
+name="_Toc413852692"></a><a name="_Toc409765244"><span lang=ES-MX>4.1.11
+Monitoreo de Alarma</span></a><span lang=ES-MX>s</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=ES-MX>Monitorea los eventos
+de alarma de las puertas. Si una puerta envía una alarma y no se confirma, la
+página siempre mostrará los eventos de alarma. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><b><span lang=zh-CN><img border=0
+width=631 height=82 id="图片 160"
+src="user_help.files/image083.jpg"></span></b></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: La descripción del tipo de alarma se mostrará sólo cuando es
+compatible con la versión del firmware del dispositivo, de lo contrario sólo se
+mostrará &quot;alarma” sin mayor detalle.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Detener Alarma</span><span lang=ES-MX>: Seleccione la puerta en
+estado de alarma y de clic en [Detener Alarma]</span><span lang=ES-MX>. El
+sistema enviará un correo electrónico al monitorista de alarmas configurado en
+el sistema (el correo electrónico debe ser configurado en </span><a
+href="51.htm#_4.3.7_Parámetros"><span lang=ES-MX>4.3.7 Parámetros</span></a><span
+lang=ES-MX>)</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=ES-MX style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=ES-MX>Nota: Cuando una puerta tiene múltiples estados de alarma<span
+style='letter-spacing:-.2pt'>, solo mostrará la descripción de un tipo de
+alarma el orden descendente de gravedad. El orden se realiza así: alarma de tamper
+&gt; alarma de coacción (contrase&ntilde;a + huella digital) &gt; alarma de coacción
+con huella o contrase&ntilde;a &gt; apertura de puerta inesperada &gt; alarma de
+puerta mantenida abierta &gt; alarma de dispositivo desconectado.</span></span></p>
+
+</div>
+
+<span lang=ES-MX style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

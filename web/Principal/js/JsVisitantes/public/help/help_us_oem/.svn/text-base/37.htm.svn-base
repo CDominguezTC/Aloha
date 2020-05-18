@@ -1,0 +1,584 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta name="Generator" content="Word2Chm Addin (v1.4.7.5)">
+<link rel="stylesheet" href="Word2Chm.css" type="text/css">
+<script src="Word2Chm.vbs" type="Text/VBScript"></script>
+<script src="Word2Chm.js" type="Text/JavaScript"></script>
+<title> 4.1.10 Real-Time Monitoring</title>
+</head>
+<body onLoad="javascript:jsMain();"><div id="NavHeader" style="position:fixed;top:10px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+<div class=WordSection37 style='layout-grid:15.6pt'>
+
+<h3><a name="_4.1.10 Real-Time Monitoring"></a><a name="_Toc427071709"></a><a
+name="_Toc413852691"></a><a name="_Toc409765243"><span lang=EN-US>4.1.10 </span></a><span
+lang=EN-US>Real-Time Monitoring</span></h3>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Click [Access Device] &gt; [Real-Time
+Monitoring], monitor the statuses and real-time events of doors under the
+access control panels in the system in real-time, including normal events and
+abnormal events (including alarm events). Real-Time Monitoring interface is
+shown as follows:</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=634 height=200 id="图片 314"
+src="user_help.files/image055.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>Different Icons represent statuses as
+follows:</span></p>
+
+<table class=MsoNormalTable border=1 cellspacing=0 cellpadding=0
+ style='margin-left:5.45pt;border-collapse:collapse;border:none'>
+ <tr style='height:29.3pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border:solid #92D050 1.0pt;
+  border-left:none;padding:0cm 5.4pt 0cm 5.4pt;height:29.3pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Icons</span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border:solid #92D050 1.0pt;border-left:
+  none;padding:0cm 5.4pt 0cm 5.4pt;height:29.3pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Status</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border:solid #92D050 1.0pt;border-left:
+  none;padding:0cm 5.4pt 0cm 5.4pt;height:29.3pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Icons</span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border-top:solid #92D050 1.0pt;
+  border-left:none;border-bottom:solid #92D050 1.0pt;border-right:none;
+  padding:0cm 5.4pt 0cm 5.4pt;height:29.3pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Status</span></p>
+  </td>
+ </tr>
+ <tr style='height:35.4pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=22 height=30 id="图片 313"
+  src="user_help.files/image056.jpg"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Device banned</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 312"
+  src="user_help.files/image057.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_offline.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:35.4pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door Offline</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 311"
+  src="user_help.files/image058.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_nosensor.png">/<img border=0 width=30
+  height=30 id="图片 310" src="user_help.files/image059.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_old.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door sensor unset, Relay closed
+  /Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN style='line-height:
+  150%'><img border=0 width=30 height=30 id="图片 309"
+  src="user_help.files/image060.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_unlocked.png">/</span><span
+  lang=zh-CN><img border=0 width=30 height=30 id="图片 308"
+  src="user_help.files/image059.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_nosensor_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door sensor unset, Relay
+  opened/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 307"
+  src="user_help.files/image061.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_closed.png">/<img border=0 width=30
+  height=30 id="图片 306" src="user_help.files/image062.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_closed_old.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Online status Door closed, Relay
+  closed/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 305"
+  src="user_help.files/image063.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_closed_unlocked.png">/<img border=0
+  width=30 height=30 id="图片 304"
+  src="user_help.files/image062.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_closed_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Online status Door closed, Relay
+  opened/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 303"
+  src="user_help.files/image064.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_opened.png">/<img border=0 width=30
+  height=30 id="图片 302" src="user_help.files/image065.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_opened_old.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Online status Door opened, Relay
+  closed/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 301"
+  src="user_help.files/image066.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_opened_unlocked.png">/<img border=0
+  width=30 height=30 id="图片 300"
+  src="user_help.files/image065.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_opened_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Online status Door opened, Relay
+  opened/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 299"
+  src="user_help.files/image067.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_opened.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>Door opened alarming, Relay closed</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 298"
+  src="user_help.files/image068.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_opened_unlocked.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>Door opened alarming, Relay opened</span></p>
+  </td>
+ </tr>
+ <tr style='height:54.65pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:54.65pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 297"
+  src="user_help.files/image069.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_timeout.png">/<img border=0
+  width=30 height=30 id="图片 296"
+  src="user_help.files/image070.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_open_timeout_old.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:54.65pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door opening timeout, Relay closed
+  /Without relay status</span><span lang=EN-US>, Door Sensor Opened</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:54.65pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 295"
+  src="user_help.files/image071.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_timeout_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 294"
+  src="user_help.files/image070.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_open_timeout_old.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:54.65pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door opening timeout, Relay
+  opened/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:43.0pt'>
+  <td width=79 style='width:59.35pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=EN-US><img border=0
+  width=30 height=30 id="图片 247"
+  src="user_help.files/image072.png"></span></p>
+  </td>
+  <td width=242 colspan=2 style='width:181.45pt;border-top:none;border-left:
+  none;border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal><span lang=EN-US>Door opening timeout</span><span
+  lang=EN-US>,</span><span lang=EN-US> Relay closed</span><span lang=EN-US>/ </span><span
+  lang=EN-US>Door Sensor Closed</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=EN-US><img border=0
+  width=30 height=30 id="图片 248"
+  src="user_help.files/image073.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:43.0pt'>
+  <p class=MsoNormal><span lang=EN-US>Door opening timeout</span><span
+  lang=EN-US>,</span><span lang=EN-US> Relay </span><span lang=EN-US>opened</span><span
+  lang=EN-US>/ </span><span lang=EN-US>Door Sensor Closed</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 293"
+  src="user_help.files/image074.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_closed.png">/<img border=0
+  width=30 height=30 id="图片 292"
+  src="user_help.files/image075.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door closed alarming, Relay
+  closed/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 291"
+  src="user_help.files/image076.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_closed_unlocked.png">/<img
+  border=0 width=30 height=30 id="图片 290"
+  src="user_help.files/image075.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door closed alarming, Relay
+  opened/Without relay status</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+ </tr>
+ <tr style='height:48.2pt'>
+  <td width=80 colspan=2 style='width:59.8pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm;line-height:150%'><span lang=zh-CN><img border=0
+  width=30 height=30 id="图片 289"
+  src="user_help.files/image077.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_nosensor_unlocked.png"></span></p>
+  </td>
+  <td width=241 style='width:181.0pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door sensor unset, Door alarming,
+  Relay closed</span></p>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=EN-US>&nbsp;</span></p>
+  </td>
+  <td width=95 style='width:71.15pt;border-top:none;border-left:none;
+  border-bottom:solid #92D050 1.0pt;border-right:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:
+  7.8pt;margin-left:0cm'><span lang=zh-CN><img border=0 width=30 height=30
+  id="图片 288" src="user_help.files/image078.png"
+  alt="说明: D:\门禁梯控视频图标素材\doorState\door_alarm_nosensor.png"></span></p>
+  </td>
+  <td width=234 style='width:175.35pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:48.2pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US>Door sensor unset, Door alarming,
+  Relay opened</span></p>
+  </td>
+ </tr>
+ <tr style='height:30.9pt'>
+  <td width=650 colspan=5 style='width:487.3pt;border:none;border-bottom:solid #92D050 1.0pt;
+  padding:0cm 5.4pt 0cm 5.4pt;height:30.9pt'>
+  <p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:
+  6.0pt;margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:
+  Wingdings'>?</span><span lang=EN-US>Note: Without relay status, indicates
+  that the current firmware does not support detect relay status function.</span></p>
+  </td>
+ </tr>
+ <tr height=0>
+  <td width=79 style='border:none'></td>
+  <td width=1 style='border:none'></td>
+  <td width=241 style='border:none'></td>
+  <td width=95 style='border:none'></td>
+  <td width=234 style='border:none'></td>
+ </tr>
+</table>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>1. Door</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.0pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Monitoring
+All</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>By default the home page displays all doors
+of the panels within the user's level. User may monitor one (or several) door
+by setting the Area, Access Control or Door.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Remote Opening/Closing</span><span lang=EN-US>: controls one
+door or all doors. To control a single door, right click mouse, and click
+[Remote Opening/ Closing] in the pop-up dialog box. To control all doors,
+directly click [Remote Opening/ Closing] behind Current All.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>In remote opening, User can define the
+duration of a door being open (The default is 15s).You can select [Enable
+Intraday Passage Mode Time Zone] to enable the intraday door passage mode time
+zones, or set the door to Normal Open, then the door is not limited by any time
+zones (open for 24 hours).</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>To close a door, select [Disable Intraday
+Passage Mode Time Zone] first to avoid enabling other normal open time zones to
+open the door, and then select [Remote Closing].</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: If [Remote Opening /Closing] always fails, check whether many
+devices are disconnected. If any, check the network.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Cancel the alarm</span><span lang=EN-US>: Once an alarming door
+is displayed on the interface, the alarm sound will ring. Alarm cancellation is
+involved in control on single door and all doors. To control a single door, </span><span
+lang=EN-US>put the mouse on the door icon, will come out a menu, then click [</span><span
+lang=EN-US>Remote Opening/ Closing</span><span lang=EN-US>] which in the menu. </span><span
+lang=EN-US>To control all doors, directly click [Remote Opening/ Closing]
+behind Current All.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-size:12.0pt;font-family:Wingdings'>?</span><span
+lang=EN-US>Note: If [Cancel the alarm] fails, check whether many devices are
+disconnected. If any, check the network. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Remote Normally Open</span><span lang=EN-US>: Set the device as
+normal open by remote. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US style='font-family:
+"Myriad Pro","sans-serif";color:#92D050'>Personnel photo display</span><span
+lang=EN-US>: </span><span lang=EN-US>If Real-Time Monitoring is involved in a
+person, the monitor displays the personal photo (if no photo is registered,
+display default photo). The event name, time and name are displaye</span><span
+lang=EN-US>d.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Play Audio</span><span lang=EN-US>: After checking this option,
+it plays a sound once the current page occurs an alarming even.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.3pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Quick
+Management of Doors</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=EN-US>Move the cursor to a door’s icon, you can
+also do the above operations. In addition, you can query the latest events from
+the door. </span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=223 height=259 id="图片 287"
+src="user_help.files/image079.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Query the latest events from the door</span><span lang=zh-CN>:
+Click to quickly view latest events happened on the door.</span></p>
+
+<p class=MsoNormal style='margin-top:1.55pt;margin-right:0cm;margin-bottom:
+1.55pt;margin-left:0cm'><span lang=EN-US style='font-family:"Myriad Pro","sans-serif";
+color:#92D050'>Issue&nbsp;card&nbsp;to&nbsp;person</span><span lang=EN-US>:&nbsp;If&nbsp;you&nbsp;swap&nbsp;an&nbsp;unregistered&nbsp;card,&nbsp;in&nbsp;real-time&nbsp;monitoring&nbsp;interface,&nbsp;will&nbsp;turn&nbsp;up&nbsp;a&nbsp;record&nbsp;
+&nbsp;with&nbsp;a&nbsp;card&nbsp;number.&nbsp;Right&nbsp;click&nbsp;that&nbsp;card&nbsp;number&nbsp;will&nbsp;show&nbsp;you&nbsp;a&nbsp;menu,&nbsp;click&nbsp;“Issue&nbsp;card&nbsp;to&nbsp;person”,&nbsp;you&nbsp;can</span></p>
+
+<p class=MsoNormal style='margin-top:1.55pt;margin-right:0cm;margin-bottom:
+1.55pt;margin-left:0cm'><span lang=EN-US>assign&nbsp;that&nbsp;card&nbsp;to&nbsp;one&nbsp;person.
+</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:21.3pt;text-indent:-21.0pt'><span lang=EN-US style='font-family:
+Wingdings;color:#92D050'>l<span style='font:7.0pt "Times New Roman"'>&nbsp; </span></span><span
+lang=EN-US style='font-family:"Myriad Pro","sans-serif";color:#92D050'>Event
+monitoring</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm;vertical-align:middle'><span lang=EN-US>System automatically
+acquires monitored device event records (by default, display </span><span
+lang=EN-US>2</span><span lang=EN-US>00 records), including normal and abnormal
+access control events (including alarm events). Normal events appear in green,
+alarm events appear in red, other abnormal events appear in orange.</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>2. Auxiliary Input</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='letter-spacing:-.1pt'>Real-time
+monitor the current auxiliary input events.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=576 height=165
+src="user_help.files/image080.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>3. Auxiliary Output</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US style='letter-spacing:-.1pt'>You can perform
+Remote open, Remote Close, Remote Normally Open.</span></p>
+
+<p class=MsoNormal style='margin-top:7.8pt;margin-right:0cm;margin-bottom:7.8pt;
+margin-left:0cm'><span lang=zh-CN><img border=0 width=576 height=159
+src="user_help.files/image081.jpg"></span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>4. Elevator</span></p>
+
+<p class=MsoNormal style='margin-top:6.0pt;margin-right:0cm;margin-bottom:6.0pt;
+margin-left:0cm'><span lang=EN-US>About the real-time monitoring of elevator,
+please refer to </span><a href="71.htm#_5.1.7_Real-Time_Monitoring"><span
+lang=EN-US>5.1.7 Real-Time Monitoring</span></a><span lang=EN-US>.</span></p>
+
+</div>
+
+<span lang=EN-US style='font-size:14.0pt;line-height:172%;font-family:"Myriad Pro","sans-serif";
+color:black'><br clear=all style='page-break-before:auto'>
+</span>
+
+<div id="NavFooter" style="position:fixed;bottom:0px;right:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="*" valign="middle">&nbsp;</td>
+      <td width="60" valign="middle" align="right">
+        <a href="###" onclick="vbscript:NextPage(-1)" title="上一页"><img src="left.gif" border="0"></a> 
+        <a href="###" onclick="vbscript:NextPage(1)" title="下一页"><img src="right.gif" border="0"></a>
+      </td>
+    </tr>
+  </table>
+</div>      
+</body>
+</html>

@@ -1,0 +1,170 @@
+.index_box {
+	max-width: 1000px;
+	min-width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 1%;
+}
+
+.index_box .index_in_box {
+	
+	border: 1px solid #c6c8ca;
+	height:180px;
+	/* margin-right: 80px; */
+	/* clear:both; */
+	min-width: 200px;
+	padding: 10px;
+	margin: auto 10px;
+	margin-top: 80px;
+	width: auto;
+}
+
+.index_box .min_box {
+	width: 33.3%;
+	float: left;
+}
+
+.index_box .max_box {
+	width: 66.7%;
+	float: left;
+}
+
+
+.index_pers_img,.index_acc_img,.index_vid_img,.index_vis_img,.index_ele_img,.index_base_img,.index_pat_img,.index_hotel_img {
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 100px;
+	width: 120px;
+	margin-right: auto;
+	margin-left: auto;
+	font-size: 14px;
+	font-weight: normal;
+	text-align: center;
+	margin-top: -50px;
+}
+
+.index_pers_img {
+	background-image: url(../images/dashboard/pers.png);
+}
+.index_acc_img {
+	background-image: url(../images/dashboard/acc.png);
+}
+.index_vid_img {
+	background-image: url(../images/dashboard/vid.png);
+}
+.index_vis_img {
+	background-image: url(../images/dashboard/vis.png);
+}
+.index_ele_img {
+	background-image: url(../images/dashboard/ele.png);
+}
+.index_base_img {
+	background-image: url(../images/dashboard/base.png);
+}
+.index_pat_img {
+	background-image: url(../images/dashboard/pat.png);
+}
+.index_hotel_img {
+	background-image: url(../images/dashboard/hotel.png);
+}
+
+.index_pers_img a:link,.index_pers_img a:visited,.index_pers_img a:active,
+.index_acc_img a:link,.index_acc_img a:visited,.index_acc_img a:active,
+.index_vid_img a:link,.index_vid_img a:visited,.index_vid_img a:active,
+.index_vis_img a:link,.index_vis_img a:visited,.index_vis_img a:active,
+.index_ele_img a:link,.index_ele_img a:visited,.index_ele_img a:active,
+.index_base_img a:link,.index_base_img a:visited,.index_base_img a:active,
+.index_pat_img a:link,.index_pat_img a:visited,.index_pat_img a:active,
+.index_hotel_img a:link,.index_hotel_img a:visited,.index_hotel_img a:active {
+	font-size: 15px;
+	font-weight: bold;
+	display: block;
+	padding-top: 80px;
+	color: #3C85C8;
+}
+
+.index_pers_img a:hover,.index_acc_img a:hover,.index_vid_img a:hover,.index_vis_img a:hover,.index_ele_img a:hover,.index_base_img a:hover,
+.index_pat_img a:hove,.index_hotel_img a:hoverr{
+	color: #474b4f;
+} 
+.index_pers_img:hover {
+    background-image: url(../images/dashboard/pers_over.png);
+}
+.index_acc_img:hover {
+    background-image: url(../images/dashboard/acc_over.png);
+}
+.index_vid_img:hover {
+    background-image: url(../images/dashboard/vid_over.png);
+}
+.index_vis_img:hover {
+    background-image: url(../images/dashboard/vis_over.png);
+}
+.index_ele_img:hover {
+    background-image: url(../images/dashboard/ele_over.png);
+}
+.index_base_img:hover {
+    background-image: url(../images/dashboard/base_over.png);
+}
+.index_pat_img:hover {
+    background-image: url(../images/dashboard/pat_over.png);
+}
+.index_hotel_img:hover {
+    background-image: url(../images/dashboard/hotel_over.png);
+}
+
+
+
+/* .index_box li {
+	float: left;
+	width: 160px;
+	margin-left:5px;
+	overflow: hidden;
+} */
+
+.index_box .box_ul_zh_CN li {
+	float: left;
+	width: 138px;
+	margin-left:4px;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+}
+
+.index_box .box_ul_en_US li {
+	float: left;
+	width: 197px;
+	margin-left:4px;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
+}
+
+.index_tab_link {
+	margin: 5px;
+	width: 32%;
+	padding-top: 5px;
+	text-align: left;
+}
+.index_tab1_link {
+	width: 100%;
+	height: 120px;
+	padding-top: 5px;
+	text-align: left;
+	float: left;
+	overflow:auto;
+	height: 
+}
+
+.index_box a:link,.index_box a:visited,.index_box a:active  {
+	text-decoration: none;
+}
+
+.index_tab_link a:link,.index_tab_link a:visited,.index_tab_link a:active,.index_tab1_link a:link,.index_tab1_link a:visited,.index_tab1_link a:active   {
+	font-size: 15px;
+	/* display: block; */
+	line-height: 24px;
+	text-align: left;
+}
+.index_tab_link a:hover,.index_tab1_link a:hover {
+	text-decoration: underline;
+}

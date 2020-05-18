@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sysMenu>
+	<item shiro="*" id="dashboard.action" text="${common_head_dashboard}" img="ico1.png" isShow="true" select="1"></item>
+	<!-- 
+	<item shiro="pers:sys" id="zkeco_pers.action" text="${pers_leftMenu_pers}" img="ico6.png" isShow="true"></item>
+	<item shiro="acc:sys" id="acc_index.action" text="${acc_module}" img="ico2.png" isShow="true"></item>
+	<item shiro="att:sys" id="att_index.action" text="${att_module}" img="ico3.png" isShow="true"></item>
+	<item shiro="vid:sys" id="vid_index.action" text="${common_head_vid}" img="ico4.png" isShow="true"></item>
+	
+	<item shiro="ele:sys" id="ele_index.action" text="${common_head_ele}" img="ico5.png" isShow="true" ></item>
+	<item shiro="hotel:sys" id="hotel_index.action" text="${hotel_module}" img="hotel.png" isShow="true"></item>
+	
+	<item shiro="park:sys" id="park_index.action" text="${park_module}" img="ico7.png" isShow="true"></item>
+  	<item shiro="att:sys" id="zkeco_att.action" text="${att_module}" img="ico3.png" isShow="true"></item>
+  	<item shiro="pos:sys" id="zkeco_pos.action" text="${pos_module}" img="ico10.png" isShow="true"></item>
+  	
+    <item shiro="vis:sys" id="vis_index.action" text="${vis_module}" img="ico6.png" isShow="true"></item>
+	<item shiro="base:sys" id="base_index.action" text="${common_head_system}" img="ico8.png" isShow="true"></item>
+	-->
+</sysMenu>

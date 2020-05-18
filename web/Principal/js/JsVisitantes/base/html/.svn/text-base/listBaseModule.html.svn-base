@@ -1,0 +1,52 @@
+<#include "/public/template/base.html">
+<#macro loadJSAndCSS>
+<script charset="utf-8" type="text/javascript" src="${base}/pers/js/ajaxfileupload.js"></script>
+</#macro>
+<#macro baseMainContent>
+<div id="listbox" style="height: 100%;width: 100%;">
+	<div class="searchTopBox">
+		${base_i18n_currentEditLanguage}:
+		<input type="hidden" id="editLangId" valule="${editLangId}"/>
+		<input  value="${languageMap.get(editLangCode).i18nName}" disabled="disabled" type="text"  />
+		&nbsp;&nbsp;&nbsp;&nbsp;${base_i18n_referenceLanguage!}:
+		<select name="referenceLanguage" id="referenceLanguage" class="selectTd">
+		<#assign referenceLanguage=''>
+		<#if Session.referenceLanguage??>
+		<#assign referenceLanguage = Session.referenceLanguage>
+		</#if>
+			<#if languageMap?exists>
+			<#list languageMap?keys as languageKey>
+			<#if languageMap.get(languageKey).buildInFlag==true>
+			<!--  <option value="${languageKey}"<#if languageKey==referenceLanguage>selected</#if>>${languageMap.get(languageKey).i18nName}</option> -->
+			</#if>
+			</#list>
+		</#if>
+		</select>
+		&nbsp;&nbsp;&nbsp;&nbsp;<font color="#E57A14">${base_i18n_onlyTranslatedCanUsed}</font>
+	</div>
+	<div id="operate" style="clear: both;"></div>
+	<!-- èŽ·å�–æ“�ä½œæŒ‰é’®çš„jsæŽ§åˆ¶ -->
+	<script type="text/javascript">
+		createToolbar('baseAction!getPageXML.action?xmlPath=${base}/base/xml/BaseModule.page.xml&actionName=baseModule');
+	</script>
+	<div id="gridbox" class='dhxGridBox'></div>
+	<div id="gridbox_paging" class="dhxGridBoxPaging"></div>
+</div>
+<script>
+	var gridName = "gridbox";
+	/* åŠ è½½grid */
+	resizeGird(gridName);
+	loadGrid("base", "baseModule");
+	function listLanguageResource(moduleId){
+		var referenceLanguage = document.getElementById("referenceLanguage").value;
+		var path = "baseLanguageResourceAction!loadModuleLangResource.action?moduleId="+moduleId+"&referenceLanguage="+ referenceLanguage;
+		location.href=path;
+	}
+	function backToLanguage(path){
+		location.href=path;
+	}
+	function downLoadRes(path){
+		location.href=path;
+	}
+</script>
+</#macro>
