@@ -462,23 +462,23 @@ public class ServletAlohaTiempos extends HttpServlet {
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Combo Cargado");
                             break;
-                        case "ReadPU":
+                        case "PermisosAsignados":
                             String usr = request.getParameter("user");
-                            Resultado = controladorPer.ReadPU(request, response, usr);
+                            Resultado = controladorPer.permisosAsignados(request, response, usr);
                             PrintWriter pw2 = response.getWriter();
                             pw2.write(Resultado);
                             System.out.println(pw2.checkError() ? "Error al cargar la lista" : "Lista Cargada");
                             break;
-                        case "ReadPNoU":
+                        case "PermisosNoAsignados":
                             String user = request.getParameter("user");
-                            Resultado = controladorPer.ReadPNoU(request, response, user);
+                            Resultado = controladorPer.permisosNoAsignados(request, response, user);
                             PrintWriter pw3 = response.getWriter();
                             pw3.write(Resultado);
                             System.out.println(pw3.checkError() ? "Error al cargar la lista" : "Lista Cargada");
                             break;
-                        case "ReadTodosP":
+                        case "ListarPermisos":
                             //String user = request.getParameter ("user");
-                            Resultado = controladorPer.ReadTodosP(request, response);
+                            Resultado = controladorPer.listarPermisosAll(request, response);
                             PrintWriter pw4 = response.getWriter();
                             pw4.write(Resultado);
                             System.out.println(pw4.checkError() ? "Error al cargar la lista" : "Lista Cargada");
