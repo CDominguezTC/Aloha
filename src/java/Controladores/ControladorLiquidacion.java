@@ -7,7 +7,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import Modelo.ModeloGrupoTurnos;
 import Modelo.ModeloGrupoTurnos_Turnos;
 import Modelo.ModeloLiquidacion;
@@ -37,7 +37,7 @@ public class ControladorLiquidacion
 {
     Tools tools = new Tools(); 
     private long TotalHorasTeoricof;
-    public List<ModeloLiquidacion> liquidacion(List<ModeloPersonas> modeloEmpleados, Date FechaInicial, Date FechaFinal) 
+    public List<ModeloLiquidacion> liquidacion(List<ModeloPersona> modeloEmpleados, Date FechaInicial, Date FechaFinal) 
     {
         //Cambio CADD 25-05-2018 Generamos el modelo de entradas y salidas
         List<ModeloLiquidacion> modeloLiquidaciones = new ArrayList<ModeloLiquidacion>();
@@ -173,7 +173,7 @@ public class ControladorLiquidacion
         return modeloLiquidaciones;  
     }
 
-    private List<ModeloLiquidacion> getModeloLiquidacion(List<ModeloPersonas> modeloEmpleados, Date FechaInicial, Date FechaFinal) 
+    private List<ModeloLiquidacion> getModeloLiquidacion(List<ModeloPersona> modeloEmpleados, Date FechaInicial, Date FechaFinal) 
     {
         ModeloGrupoTurnos modeloGrupoTurnos = new ModeloGrupoTurnos();
         ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
@@ -191,7 +191,7 @@ public class ControladorLiquidacion
         con = conexionBdMysql.abrirConexion();
         try 
         {
-            for (ModeloPersonas modeloEmpleado : modeloEmpleados)
+            for (ModeloPersona modeloEmpleado : modeloEmpleados)
             {
                 SQL = con.prepareStatement("SELECT id ,id_empleado, fecha_marcacion,estado_marcacion,nombre_dispositivo,observacion "
                         + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ? AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");

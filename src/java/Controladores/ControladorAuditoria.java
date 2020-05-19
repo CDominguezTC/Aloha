@@ -54,7 +54,7 @@ public class ControladorAuditoria {
             ModeloUsuario modU = new ModeloUsuario();
 
             String fecha = tl.formatoFechaHora();
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             int idusua = controladorU.idUsuario(usua);
 
             modU = controladorU.getModelo(idusua);
@@ -124,7 +124,7 @@ public class ControladorAuditoria {
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
         try {
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");
@@ -154,7 +154,7 @@ public class ControladorAuditoria {
 
         LinkedList<ModeloAuditoria> modeloAud = new LinkedList<ModeloAuditoria>();
         ModeloUsuario modU = new ModeloUsuario();
-        ControladorUsuarios controladorU = new ControladorUsuarios();
+        ControladorUsuario controladorU = new ControladorUsuario();
         con = conexion.abrirConexion();
         Date date = null;
         Timestamp timestamp = null;

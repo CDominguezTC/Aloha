@@ -12,7 +12,7 @@ package Modelo;
 public class ModeloConsumo {
 
     int id;
-    ModeloPersonas modeloPersonas;
+    ModeloPersona modeloPersonas;
     ModeloCargo modeloCargos;
     String Fechaconsumo;
     String diaconsumo;
@@ -20,7 +20,7 @@ public class ModeloConsumo {
     public ModeloConsumo() {
     }
 
-    public ModeloConsumo(int id, ModeloPersonas modeloPersonas, ModeloCargo modeloCargos, String Fechaconsumo, String diaconsumo) {
+    public ModeloConsumo(int id, ModeloPersona modeloPersonas, ModeloCargo modeloCargos, String Fechaconsumo, String diaconsumo) {
         this.id = id;
         this.modeloPersonas = modeloPersonas;
         this.modeloCargos = modeloCargos;
@@ -36,11 +36,11 @@ public class ModeloConsumo {
         this.id = id;
     }
 
-    public ModeloPersonas getModeloPersonas() {
+    public ModeloPersona getModeloPersonas() {
         return modeloPersonas;
     }
 
-    public void setModeloPersonas(ModeloPersonas modeloPersonas) {
+    public void setModeloPersonas(ModeloPersona modeloPersonas) {
         this.modeloPersonas = modeloPersonas;
     }
 

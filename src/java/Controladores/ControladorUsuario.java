@@ -26,7 +26,7 @@ import javax.servlet.http.HttpSession;
  * @author Julian A Aristizabal
  * @version: 07/05/2020
  */
-public class ControladorUsuarios {
+public class ControladorUsuario {
 
     String resultado = "";
     Connection con;
@@ -77,7 +77,7 @@ public class ControladorUsuarios {
                         + "nombre, "
                         + "login, "
                         + "password)"
-                        + " VALUE = (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
+                        + " VALUES (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
                 SQL.setString(1, modeloUsuario.getNombre());
                 SQL.setString(2, modeloUsuario.getLogin());
                 String pw = tl.encriptar(modeloUsuario.getPassword());

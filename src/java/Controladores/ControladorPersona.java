@@ -6,7 +6,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
@@ -25,7 +25,7 @@ import sun.nio.cs.ext.GB18030;
  * @author: Carlos A Dominguez D
  * @version: 07/05/2020
  */
-public class ControladorPersonas {
+public class ControladorPersona {
 
     String resultado = "";
     Connection con;
@@ -68,7 +68,7 @@ public class ControladorPersonas {
     public String Delete(HttpServletRequest request) {
         if (!"".equals(request.getParameter("id"))) {
             String idtmp = request.getParameter("id");
-            ModeloPersonas modelo = new ModeloPersonas();
+            ModeloPersona modelo = new ModeloPersona();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
             try {
                 con = conexion.abrirConexion();
@@ -120,9 +120,9 @@ public class ControladorPersonas {
      * @return ModeloEmpresa
      * @version: 07/05/2020
      */
-    ModeloPersonas getModelo(int Id) {
+    ModeloPersona getModelo(int Id) {
         String resultado = null;
-        ModeloPersonas modelo = new ModeloPersonas();
+        ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT "
@@ -171,9 +171,9 @@ public class ControladorPersonas {
      * @return ModeloEmpresa
      * @version: 07/05/2020
      */
-    public ModeloPersonas GetPersonaCedula(HttpServletRequest request, HttpServletResponse response) {
+    public ModeloPersona GetPersonaCedula(HttpServletRequest request, HttpServletResponse response) {
         String resultado = null;
-        ModeloPersonas modelo = new ModeloPersonas();
+        ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT "
@@ -223,7 +223,7 @@ public class ControladorPersonas {
      */
     private String InsertCasino(HttpServletRequest request) {
         if ("".equals(request.getParameter("id"))) {
-            ModeloPersonas modelo = new ModeloPersonas();
+            ModeloPersona modelo = new ModeloPersona();
             modelo.setId(0);
             modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
             modelo.setIdentificacion(request.getParameter("cedula"));
@@ -280,7 +280,7 @@ public class ControladorPersonas {
                 resultado = "-3";
             }
         } else {
-            ModeloPersonas modelo = new ModeloPersonas();
+            ModeloPersona modelo = new ModeloPersona();
             modelo.setId(Integer.parseInt(request.getParameter("id")));
             modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
             modelo.setIdentificacion(request.getParameter("cedula"));
@@ -349,7 +349,7 @@ public class ControladorPersonas {
         String cedula = request.getParameter("cedula");
         String out = null;
         try {
-            LinkedList<ModeloPersonas> listaPersonas = new LinkedList<ModeloPersonas>();
+            LinkedList<ModeloPersona> listaPersonas = new LinkedList<ModeloPersona>();
             listaPersonas = Read(cedula);
             out = "";
             out += "<thead>";
@@ -364,7 +364,7 @@ public class ControladorPersonas {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
-            for (ModeloPersonas modeloPersonas : listaPersonas) {
+            for (ModeloPersona modeloPersonas : listaPersonas) {
                 out += "<tr>";
                 out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
                 out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
@@ -442,8 +442,8 @@ public class ControladorPersonas {
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloPersonas> Read(String cedula) {
-        LinkedList<ModeloPersonas> listaModeloPersonas = new LinkedList<ModeloPersonas>();
+    private LinkedList<ModeloPersona> Read(String cedula) {
+        LinkedList<ModeloPersona> listaModeloPersonas = new LinkedList<ModeloPersona>();
         con = conexion.abrirConexion();
         try {
             if (cedula == null) {
@@ -479,7 +479,7 @@ public class ControladorPersonas {
 
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloPersonas modelo = new ModeloPersonas();
+                ModeloPersona modelo = new ModeloPersona();
                 modelo.setId(res.getInt("id"));
                 modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
@@ -524,7 +524,7 @@ public class ControladorPersonas {
 
     public String SearchCasino(HttpServletRequest request) {
         String cedula = request.getParameter("cedula");
-        ModeloPersonas modelo = new ModeloPersonas();
+        ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT "

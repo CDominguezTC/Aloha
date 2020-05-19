@@ -34,7 +34,7 @@ public class ControladorPermisos {
         String out = null;
         try {
 
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");

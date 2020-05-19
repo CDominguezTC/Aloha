@@ -25,12 +25,12 @@ import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
-import Controladores.ControladorPersonas;
+import Controladores.ControladorPersona;
 import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
-import Controladores.ControladorUsuarios;
+import Controladores.ControladorUsuario;
 import Herramienta.Herramienta;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import Tools.Tools;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -178,7 +178,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                         case "ValidarUsr":
                             String usr = request.getParameter("login");
                             try {
-                                ControladorUsuarios controladorU = new ControladorUsuarios();
+                                ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.validoLogin(usr);
                                 
                                 if (!"false".equals(resul)) {
@@ -196,7 +196,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             String psw = request.getParameter("passw");
                             String idusr = request.getParameter("idus");
                             try {
-                                ControladorUsuarios controladorU = new ControladorUsuarios();
+                                ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.validoPassword(idusr, psw);
                                 
                                 if (!"false".equals(resul)) {
@@ -214,7 +214,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             String pasw = request.getParameter("passwo");
                             String idusur = request.getParameter("idusu");
                             try {
-                                ControladorUsuarios controladorU = new ControladorUsuarios();
+                                ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.actualizoPassword(idusur, pasw);
                                 
                                 if (!"false".equals(resul)) {
@@ -231,7 +231,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             String usu = request.getParameter("usuario");
                             String npass = request.getParameter("npass");
                             try {
-                                ControladorUsuarios controladorU = new ControladorUsuarios();
+                                ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.actualizoPasswordUser(usu, npass);
                                 
                                 if (!"false".equals(resul)) {
@@ -493,7 +493,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "UsuariosJSP":
-                    ControladorUsuarios controladorU = new ControladorUsuarios();
+                    ControladorUsuario controladorU = new ControladorUsuario();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
@@ -511,7 +511,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
                     break;
                 case "PersonasJSP":
-                    ControladorPersonas controladorPersonas = new ControladorPersonas();
+                    ControladorPersona controladorPersonas = new ControladorPersona();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
@@ -662,8 +662,8 @@ public class ServletAlohaTiempos extends HttpServlet {
 //                    Accion = "Plano";
 //                    break;
                 case "BuscarPersona":
-                    ModeloPersonas modeloPersonas = new ModeloPersonas();
-                    ControladorPersonas controladorPersonas1 = new ControladorPersonas();
+                    ModeloPersona modeloPersonas = new ModeloPersona();
+                    ControladorPersona controladorPersonas1 = new ControladorPersona();
                     modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
                     request.setAttribute("id", modeloPersonas.getId());
                     request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());

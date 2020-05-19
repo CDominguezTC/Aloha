@@ -1,7 +1,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import Modelo.ModeloIdentificacion;
 import java.util.List;
 import java.sql.Connection;
@@ -144,7 +144,7 @@ public class ControladorIdentificacion {
         return resulDelete;
     }
 
-    public boolean Delete(ModeloPersonas modeloEmpleados) {
+    public boolean Delete(ModeloPersona modeloEmpleados) {
         boolean resulDelete = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
@@ -162,9 +162,9 @@ public class ControladorIdentificacion {
         return resulDelete;
     }
 
-    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
+    public List<ModeloPersona> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
         PreparedStatement SQL = null;
-        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        List<ModeloPersona> modeloEmpleados = new ArrayList<ModeloPersona>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
@@ -194,7 +194,7 @@ public class ControladorIdentificacion {
 
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloPersonas modeloEmpleado = new ModeloPersonas();
+                ModeloPersona modeloEmpleado = new ModeloPersona();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modeloEmpleado.setIdentificacion(res.getString("identificacion"));
