@@ -126,7 +126,7 @@ public class ControladorArea {
                             + "nombre = ? "
                             + "WHERE id = ? ");
                     SQL.setString(1, modeloArea.getCodigo());
-                    SQL.setString(2, modeloArea.getNombre());                    
+                    SQL.setString(2, modeloArea.getNombre());
                     SQL.setInt(3, modeloArea.getId());
                 }
 
@@ -177,7 +177,7 @@ public class ControladorArea {
      * @return String
      * @version: 15/05/2020
      */
-    public ModeloArea getModelo(Integer Id) throws SQLException {
+    public ModeloArea getModelo(Integer Id) {
         ModeloArea modeloArea = new ModeloArea();
         con = conexion.abrirConexion();
         try {
@@ -189,12 +189,16 @@ public class ControladorArea {
                     + "WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloArea.setId(res.getInt("id"));
                 modeloArea.setCodigo(res.getString("codigo"));
                 modeloArea.setNombre(res.getString("nombre"));
                 modeloArea.setEstado(res.getString("estado"));
-            }
+
+            } else {
+                modeloArea.setId(0);
+            }            
             res.close();
             SQL.close();
             con.close();
@@ -210,7 +214,7 @@ public class ControladorArea {
      * @param estado
      * @return LinkedList
      * @throws java.sql.SQLException
-     * @author: Carlos Arturo Dominguez Diaz     
+     * @author: Carlos Arturo Dominguez Diaz
      * @version: 15/05/2020
      */
     public LinkedList<ModeloArea> Read(String estado) throws SQLException {

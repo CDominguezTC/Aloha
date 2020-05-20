@@ -248,14 +248,18 @@ public class ControladorGrupoTurnos {
                     + "`id`, "
                     + "`codigo`, "
                     + "`descripcion` "
-                    + "FROM `grupohorario`"
+                    + "FROM `grupo_horario`"
                     + " WHERE id = ?;");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modelo.setId(res.getInt("Id"));
                 modelo.setCodigo(res.getString("codigo"));
                 modelo.setDescripcion(res.getString("descripcion"));
+
+            } else {
+                modelo.setId(0);
             }
             res.close();
             SQL.close();

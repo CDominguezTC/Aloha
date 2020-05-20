@@ -544,16 +544,20 @@ function storeDataToHtml()
 	{
 		//将手指标记数据保存到页面
 		$("#fingerId").val("["+fingerIdArray.toString()+"]");
+		$("#IdTemplate").val("["+fingerIdArray.toString()+"]");
 	}
 	//没有指纹模板数据
 	if(templateDataArray.length == 0)
 	{
 		$("#fingerTemplate10").val(" ");
+		$("#IdTemplate_10").val(" ");
+                
 	}
 	else
 	{
 		//将指纹模板数据保存到页面
 		$("#fingerTemplate10").val("["+templateDataArray.toString()+"]");
+		$("#IdTemplate_10").val("["+templateDataArray.toString()+"]");
 	}
 }
 /**
@@ -584,8 +588,10 @@ function showFPCount(text)
  */
 function getDataFromPage() 
 {
-    var fingerId = $("#fingerId").val();
-    var fingerTemplate = $("#fingerTemplate10").val();
+    //var fingerId = $("#fingerId").val();
+    //var fingerTemplate = $("#fingerTemplate10").val();
+    var fingerId = $("#IdTemplate").val();
+    var fingerTemplate = $("#IdTemplate_10").val();
     //如果有数据
     if($.trim(fingerId) != "")
     {
@@ -1297,7 +1303,7 @@ function getFPTemplate(paramArray, flag)
 					if(templateDataArray.length > 0)
 					{
 						//发送请求，进行后台指纹比对
-						compareRet = fpComparision(fpTemplate, templateDataArray, paramArray[3]);
+						//compareRet = fpComparision(fpTemplate, templateDataArray, paramArray[3]);
 					}
 					if($.trim(compareRet) == "dllNotExist")
 					{

@@ -7,7 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloEmpresa;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import Modelo.ModeloMarcaciones;
 import Tools.Tools;
 import java.util.List;
@@ -112,10 +112,10 @@ public class ControladorMarcaciones {
         return modeloMarcaciones;
     }
 
-    public List<ModeloPersonas> Read(String Clave) {
+    public List<ModeloPersona> Read(String Clave) {
         String forSql = "%" + Clave + "%";
         PreparedStatement SQL = null;
-        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        List<ModeloPersona> modeloEmpleados = new ArrayList<ModeloPersona>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
@@ -137,7 +137,7 @@ public class ControladorMarcaciones {
             }
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloPersonas modeloEmpleado = new ModeloPersonas();
+                ModeloPersona modeloEmpleado = new ModeloPersona();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modeloEmpleado.setIdentificacion(res.getString("identificacion"));
@@ -163,7 +163,7 @@ public class ControladorMarcaciones {
         return modeloEmpleados;
     }
 
-    public boolean Delete(ModeloPersonas modeloEmpleados) {
+    public boolean Delete(ModeloPersona modeloEmpleados) {
         boolean resulDelete = false;
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
@@ -181,9 +181,9 @@ public class ControladorMarcaciones {
         return resulDelete;
     }
 
-    public List<ModeloPersonas> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
+    public List<ModeloPersona> Read(String IdDepen, String IdCentroCos, String IdEmpresa) {
         PreparedStatement SQL = null;
-        List<ModeloPersonas> modeloEmpleados = new ArrayList<ModeloPersonas>();
+        List<ModeloPersona> modeloEmpleados = new ArrayList<ModeloPersona>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
@@ -213,7 +213,7 @@ public class ControladorMarcaciones {
 
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloPersonas modeloEmpleado = new ModeloPersonas();
+                ModeloPersona modeloEmpleado = new ModeloPersona();
                 modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modeloEmpleado.setIdentificacion(res.getString("identificacion"));
@@ -240,8 +240,8 @@ public class ControladorMarcaciones {
 
     }
 
-    public ModeloPersonas SearchId(String idPersona) {
-        ModeloPersonas modeloEmpleados = new ModeloPersonas();
+    public ModeloPersona SearchId(String idPersona) {
+        ModeloPersona modeloEmpleados = new ModeloPersona();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();

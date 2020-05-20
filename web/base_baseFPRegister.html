@@ -2,640 +2,645 @@
 <!DOCTYPE html>
 <canvas id="canvas" width="450" height="450" style="background:rgb(223, 232, 246)"></canvas>
 <input type="hidden" id="whetherModify" name="whetherModify" alt="" value="111" />
-<div id="duressFingerDiv" style="position: absolute; left: 310px; top: 300px; width: 140px; height: 23px; diaplay: block;">
-	<input type="checkbox" id="duressFinger" name="checkboxName">&nbsp;Huella de Coaccion</input><!-- Huella de Coacción:???? -->
-</div>
+<!--div id="duressFingerDiv" style="position: absolute; left: 310px; top: 300px; width: 140px; height: 23px; diaplay: block;">
+    <input type="checkbox" id="duressFinger" name="checkboxName">&nbsp;Huella de Coaccion</input><!-- Huella de Coacción:???? -->
+</div-->
 <div style="position: absolute; left: 310px; top: 325px; width: 70px; height: 28px;">
-	<button type="button" id="submitButtonId" name="makeSureName" onclick="submitEvent()" class="button-form">
-		OK
-	</button>
-	<!-- OK:?? -->
+    <button type="button" id="submitButtonId" name="makeSureName" onclick="submitEvent()" class="button-form">
+        Confirmar
+    </button>
+    <!-- OK:?? -->
 </div>
 <div style="position: absolute; left: 310px; top: 365px; width: 70px; height: 28px; ">
-	<button class="button-form" type="button" id="closeButton" name="closeButton" onclick="cancelEvent('Desea guardar los cambios realizados?', 'Huellas:');">
-		Cancelar
-	</button>
-	<!-- Cancelar:?? -->
+    <!--button class="button-form" type="button" id="closeButton" name="closeButton" onclick="cancelEvent('Desea guardar los cambios realizados?', 'Huellas:');">
+        Cancelar
+    </button-->
+    <!--button class="button-form" type="button" id="closeButton" name="closeButton" onclick="closeWindow();">
+        Cerrar
+    </button-->
+    <!-- Cancelar:?? -->
 </div>
 <script type="text/javascript">
 //??????????
-var x = 28;
+    var x = 28;
 //??????????
-var y = 346;
+    var y = 346;
 //??????????
-var fingerList = [];
+    var fingerList = [];
 //?????????????--???,????????????????
-var lastFPIdNum = null;
+    var lastFPIdNum = null;
 //??2d??
-var globalContext = null;
+    var globalContext = null;
 //?????????
-var fingerBorderColor = "rgb(0,0,0)";
+    var fingerBorderColor = "rgb(0,0,0)";
 //???????????
 //var arcBgColor = "rgb(243, 245,240)";
 //?????
-var bgColor = "rgb(223, 232, 246)";
+    var bgColor = "rgb(223, 232, 246)";
 //?????????--????
-var strokeStyle = "stroke";
+    var strokeStyle = "stroke";
 //?????????--????
-var fillStyle = "fill";
+    var fillStyle = "fill";
 //???? ???
-var fillFingerColor="rgb(71,75,79)";
+    var fillFingerColor = "rgb(71,75,79)";
 //?????????(???????)
-var fpModifyFlag = false;
+    var fpModifyFlag = false;
+    /**
+     * ??? -- ?context?????????
+     * @author wenxin
+     * @create 2013-05-15 10:11:21 am
+     * @param x, y ???????
+     * @param width, height ????????
+     */
+    CanvasRenderingContext2D.prototype.oval = function (x, y, width, height)
+    {
+        var k = (width / 0.75) / 2, w = width / 2, h = height / 2;
+        this.strokeStyle = bgColor;
+        this.beginPath();
 
-/**
- * ??? -- ?context?????????
- * @author wenxin
- * @create 2013-05-15 10:11:21 am
- * @param x, y ???????
- * @param width, height ????????
- */
-CanvasRenderingContext2D.prototype.oval = function  (x, y, width, height) 
-{
-    var k = (width/0.75)/2,w = width/2,h = height/2;
-    this.strokeStyle = bgColor;
-	this.beginPath();
-	
-	this.moveTo(x, y-h);
-	this.bezierCurveTo(x+k, y-h, x+k, y+h, x, y+h);
-	this.bezierCurveTo(x-k, y+h, x-k, y-h, x, y-h);
-	this.closePath();
-	this.stroke();
-	return this;
-}
-/**
- * ???????,????
- * @author wenxin
- * @create 2013-05-15 17:12:21 pm
- * @param Huellas:???
- */
-function submitEvent()
-{
-	storeDataToHtml();
-	showFPCount('Huellas:');
-	var StringImgHuella0 = $("#captureImgHuella0").val();
-	var StringImgHuella1 = $("#captureImgHuella1").val();
-	var StringImgHuella2 = $("#captureImgHuella2").val();
-	var StringImgHuella3 = $("#captureImgHuella3").val();
-	var StringImgHuella4 = $("#captureImgHuella4").val();
-	var StringImgHuella5 = $("#captureImgHuella5").val();
-	var StringImgHuella6 = $("#captureImgHuella6").val();
-	var StringImgHuella7 = $("#captureImgHuella7").val();
-	var StringImgHuella8 = $("#captureImgHuella8").val();
-	var StringImgHuella9 = $("#captureImgHuella9").val();		
-	ImageBase64 = StringImgHuella0 + ";" + StringImgHuella1 + ";" + StringImgHuella2 + ";" + StringImgHuella3 + ";" + StringImgHuella4 + ";" + StringImgHuella5 + ";" + StringImgHuella6 + ";" + StringImgHuella7 + ";" + StringImgHuella8 + ";" + StringImgHuella9;
-	
-	ImageBase64 = 
-	$("#captureImgHuella0").val() + ";"
-	+ $("#captureImgHuella1").val() + ";"
-	+ $("#captureImgHuella2").val() + ";"
-	+ $("#captureImgHuella3").val() + ";"
-	+ $("#captureImgHuella4").val() + ";"
-	+ $("#captureImgHuella5").val() + ";"
-	+ $("#captureImgHuella6").val() + ";"
-	+ $("#captureImgHuella7").val() + ";"
-	+ $("#captureImgHuella8").val() + ";"
-	+ $("#captureImgHuella9").val();	
-	
-	var template = $("#fingerTemplate10").val();
-	var fingerid = $("#fingerId").val();
-	var id = $("#id").val();
-	var IdPersona = $("#IdPersona").val();
-	var Documento = $("#Documento").val();
-	SendImageToServerAloha("TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "huellas" + "&Documento=" + Documento + "&Imagen=" + ImageBase64 + "&Templates=" + template + "&FingerIds=" + fingerid + "&id=" + id + "&IdPersona=" + IdPersona);
-	
-	//var xx = ""+base64FPImg;
-	Documento = $("#Documento").val();
-	HuellaViva = "HuellaViva_" + Documento;
-	Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "fotos" + "&Documento=" + HuellaViva + "&Imagen=" + StringImgHuella6;  
-	SendImageToServerAloha(Data);
-	
-	
-	closeWindow();
-}
- /**
- * ??????????
- * @author wenxin
- * @create 2013-05-15 17:12:21 pm
- * @param Huellas:???
- */
-function getDLLConnectCallBack(result)
-{
-	 if(globalContext == null)
-	 {
-		 globalContext = document.getElementById("canvas").getContext("2d");
-	 }
-	//???
-	var ret = null;
-	ret = result.ret;
-	//?????????
-	if(ret == 0)
-	{
-		//No se detectó el lector USB.:?????????
-		collectTips(globalContext, "No se detecto el lector USB.", "html5");
-	}
-	else
-	{
-		//Fallo al leer la librería dinámica.:??ZKFinger10??
-		collectTips(globalContext, "Fallo al leer la librería dinámica.", "html5");
-	}
-}
-/**
- * ????
- * @author wenxin
- * @create 2013-05-13 10:18:31 am
- * @param context 2d?????
- */
-function fpCollection(context) 
-{
-	$.ajax( {
-		type : "GET",
-		url : issOnlineUrl+"/beginCapture?type=1&random="+getRandomNum(),
-		dataType : "json",
-		async: true,
-		success : function(result) 
-		{
-			//???
-			var ret = null;
-			ret = result.ret;
-			//?????????
-			if(ret == 0)
-			{
-				//???????????
-				checkCollCount();
-			}
-			else if(ret == -2001)
-			{
-				//No se detectó el lector USB.:?????????
-				//???--????
-				collectTips(globalContext, "No se detecto el lector USB.", "html5");
-			}
-			else if(ret == -2002)
-			{
-				getWebServerInfo(null, null, "1");
-			}
-			else if(ret == -2005)
-			{
-				//????
-				cancelRegister();
-				//?????,????(?????????)
-				renderAfterColl(globalContext, fpIdNum, bgColor, false);
-				//Seleccione una huella:?????
-				//???--????
-				collectTips(globalContext, "Seleccione una huella", "html5");
-			}
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) 
-		{
-			messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
-	    }
-	});
-}
-/**
- * ??????
- * @author wenxin
- * @create 2013-05-22 09:24:31 am
- * @param collCount ????
- */
-function checkCollCount()
-{
-	var base64FPImg = "";
-	//???
-	var ret = null;
-	$.ajax( {
-		type : "GET",
-		url : issOnlineUrl+"/getImage?random="+getRandomNum(),
-		dataType : "json",
-		async: false,
-		success : function(result) 
-		{
-			//alert(objToStr(data));
-			//??????
-			var collCount = 0;
-			ret = result.ret;
-			if(ret == 0)
-			{
-				collCount = result.data.enroll_index;
-				base64FPImg = result.data.jpg_base64;
-				var ImgFinger = result.data.bmp_base64;
-				//var imgSrc = "data:image/bmp;base64,"+base64FPImg;
-				
-				//$("#captureImgHuella").val(imgSrc + "," + fpIdNum);
-				//messageBox({messageType: "alert", title: "Mensaje", text: base64FPImg});
-				if(fpIdNum == 0)
-				{
-					$("#captureImgHuella0").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 1)
-				{
-					$("#captureImgHuella1").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 2)
-				{
-					$("#captureImgHuella2").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 3)
-				{
-					$("#captureImgHuella3").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 4)
-				{
-					$("#captureImgHuella4").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 5)
-				{
-					$("#captureImgHuella5").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 6)
-				{
-					$("#captureImgHuella6").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 7)
-				{
-					$("#captureImgHuella7").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 8)
-				{
-					$("#captureImgHuella8").val(base64FPImg + "," + fpIdNum);
-				}
-				if(fpIdNum == 9)
-				{
-					$("#captureImgHuella9").val(base64FPImg + "," + fpIdNum);
-				}
-			}
-			//if(collCount != 3)
-			if(collCount != 3)
-			{
-				//?????????,???????????????
-				if(collCount == 1 || collCount == 2)
-				{
-					//Veces restantes::????????:
-					var text = "Veces restantes:"+(FINGERPRINT_NUMBER - collCount);
-					//???--????
-					collectTips(globalContext, text, "html5");
-					//???
-					drawProgressBar(globalContext, collCount);
-					//??????
-					showImage(globalContext, base64FPImg, "html5");
-					//????
-					setTimeout("clearImageData()", 1000);
-				}
-				//???
-				timer = setTimeout("checkCollCount()", 1000);
-			}
-			else
-			{
-				//??????
-				showImage(globalContext, base64FPImg, "html5");
-				//????
-				setTimeout("clearImageData()", 1000);
-				//?????????
-				var paramArray = new Array();
-				paramArray[0] = "Registro exitoso.";//base_fp_registerSuccess:??????
-				paramArray[1] = "Registro fallido, intente de nuevo.";//base_fp_pressFingerAgain:?????
-				paramArray[2] = "No repita la huella digital.";//base_fp_repeatCollection:?????????!
-				paramArray[3] = "Instale el driver del lector USB o reinicie el servicio.";//base_fp_connectPrompt:???????
-				//???
-				drawProgressBar(globalContext, collCount);
-				//??????
-				if(!getFPTemplate(paramArray, "register"))
-				{
-					drawProgressBar(globalContext, 0);//?????
-				}
-				
-				//????????,?????
-				if(duressFingerFlag)
-				{
-					$("#duressFinger").attr("checked", false);
-				}
-				$("#duressFinger").attr("disabled", false);
-				$("#submitButtonId").attr("disabled", false);
-				collectFlag = false;
-				fpIdNum = -1;
-				return collCount;
-			}
-		},
-		error : function(XMLHttpRequest, textStatus, errorThrown) 
-		{
-			messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
-	    }
-	});
-	
-}
-/**
- * ??setTimeout
- * source code from network
- * @author wenxin
- * @create 2013-05-22 11:10:31 am
- * @param callback ????
- * @param timeout ????
- * @param param ?????????
- */
-/*var _sto = setTimeout; 
-window.setTimeout = function(callback,timeout,param) 
-{ 
-	var args = Array.prototype.slice.call(arguments,2); 
-	var _cb = function() 
-	{ 
-		callback.apply(null,args); 
-	} 
-	_sto(_cb,timeout); 
-}*/
-/**
- * ????,??????
- * @author wenxin
- * @create 2013-05-27 17:46:31 pm
- */
-function cancelRegister()
-{
-	//??????????
-	if(collectFlag)
-	{
-		//???????????
-		clearTimeout(timer);
-		//????
-		$.ajax( {
-			type : "GET",
-			url : issOnlineUrl+"/cancelCapture?random="+getRandomNum(),
-			dataType : "json",
-			async: false,
-			success : function(result) 
-			{
-				//????????,?????
-				if(duressFingerFlag)
-				{
-					$("#duressFinger").attr("checked", false);
-				}
-				if(fpModifyFlag)
-				{
-					$("#submitButtonId").attr("disabled", false);
-				}
-				$("#duressFinger").attr("disabled", false);
-				if(fpIdNum != null)
-				{
-					//?????????
-					
-					renderAfterColl(globalContext, lastFPIdNum, bgColor, false);
-				}
-				collectFlag = false;
-			},
-			error : function(XMLHttpRequest, textStatus, errorThrown) 
-			{
-				messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
-		    }
-		});
-	}
-}
-/**
- * ??
- * @author wenxin
- * @create 2013-05-13 10:18:31 am
- * @param context 2d?????
- * @param x, y ?????????????,??????????????????????????
- * @param color ????????????
- */
-function draw(context, x, y, color) 
-{
-	var coordArray = new Array();
-	//???????,???json???? 
-	var coordJson = initCoordJson();
-	for(var i=0; i<coordJson.length; i++)
-	{
-		//???????
-		drawHandAndArc(context, coordArray, color, coordJson[i].coord.x, coordJson[i].coord.y, coordJson[i].num);
+        this.moveTo(x, y - h);
+        this.bezierCurveTo(x + k, y - h, x + k, y + h, x, y + h);
+        this.bezierCurveTo(x - k, y + h, x - k, y - h, x, y - h);
+        this.closePath();
+        this.stroke();
+        return this;
+    }
+
+    /**
+     * ???????,????
+     * @author wenxin
+     * @create 2013-05-15 17:12:21 pm
+     * @param Huellas:???
+     */
+    function submitEvent()
+    {
+        storeDataToHtml();
+        showFPCount('Huellas:');
+        var StringImgHuella0 = $("#captureImgHuella0").val();
+        var StringImgHuella1 = $("#captureImgHuella1").val();
+        var StringImgHuella2 = $("#captureImgHuella2").val();
+        var StringImgHuella3 = $("#captureImgHuella3").val();
+        var StringImgHuella4 = $("#captureImgHuella4").val();
+        var StringImgHuella5 = $("#captureImgHuella5").val();
+        var StringImgHuella6 = $("#captureImgHuella6").val();
+        var StringImgHuella7 = $("#captureImgHuella7").val();
+        var StringImgHuella8 = $("#captureImgHuella8").val();
+        var StringImgHuella9 = $("#captureImgHuella9").val();
+        ImageBase64 = StringImgHuella0 + ";" + StringImgHuella1 + ";" + StringImgHuella2 + ";" + StringImgHuella3 + ";" + StringImgHuella4 + ";" + StringImgHuella5 + ";" + StringImgHuella6 + ";" + StringImgHuella7 + ";" + StringImgHuella8 + ";" + StringImgHuella9;
+
+        ImageBase64 =
+                $("#captureImgHuella0").val() + ";"
+                + $("#captureImgHuella1").val() + ";"
+                + $("#captureImgHuella2").val() + ";"
+                + $("#captureImgHuella3").val() + ";"
+                + $("#captureImgHuella4").val() + ";"
+                + $("#captureImgHuella5").val() + ";"
+                + $("#captureImgHuella6").val() + ";"
+                + $("#captureImgHuella7").val() + ";"
+                + $("#captureImgHuella8").val() + ";"
+                + $("#captureImgHuella9").val();
+
+        var template = $("#fingerTemplate10").val();
+        var fingerid = $("#fingerId").val();
+        var id = $("#id").val();
+        var IdPersona = $("#IdPersona").val();
+        var Documento = $("#Documento").val();
+        //SendImageToServerAloha("TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "huellas" + "&Documento=" + Documento + "&Imagen=" + ImageBase64 + "&Templates=" + template + "&FingerIds=" + fingerid + "&id=" + id + "&IdPersona=" + IdPersona);
+
+        //var xx = ""+base64FPImg;
+        Documento = $("#Documento").val();
+        HuellaViva = "HuellaViva_" + Documento;
+        Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen=" + "fotos" + "&Documento=" + HuellaViva + "&Imagen=" + StringImgHuella6;
+        //SendImageToServerAloha(Data);
+
+
+        closeWindow();
+    }
+    /**
+     * ??????????
+     * @author wenxin
+     * @create 2013-05-15 17:12:21 pm
+     * @param Huellas:???
+     */
+    function getDLLConnectCallBack(result)
+    {
+        if (globalContext == null)
+        {
+            globalContext = document.getElementById("canvas").getContext("2d");
+        }
+        //???
+        var ret = null;
+        ret = result.ret;
+        //?????????
+        if (ret == 0)
+        {
+            //No se detectó el lector USB.:?????????
+            collectTips(globalContext, "No se detecto el lector USB.", "html5");
+        } else
+        {
+            //Fallo al leer la librería dinámica.:??ZKFinger10??
+            collectTips(globalContext, "Fallo al leer la librería dinámica.", "html5");
+        }
+    }
+    /**
+     * ????
+     * @author wenxin
+     * @create 2013-05-13 10:18:31 am
+     * @param context 2d?????
+     */
+    function fpCollection(context)
+    {
+        $.ajax({
+            type: "GET",
+            url: issOnlineUrl + "/beginCapture?type=1&random=" + getRandomNum(),
+            dataType: "json",
+            async: true,
+            success: function (result)
+            {
+                //???
+                var ret = null;
+                ret = result.ret;
+                //?????????
+                if (ret == 0)
+                {
+                    //???????????
+                    checkCollCount();
+                } else if (ret == -2001)
+                {
+                    //No se detectó el lector USB.:?????????
+                    //???--????
+                    collectTips(globalContext, "No se detecto el lector USB.", "html5");
+                } else if (ret == -2002)
+                {
+                    getWebServerInfo(null, null, "1");
+                } else if (ret == -2005)
+                {
+                    //????
+                    cancelRegister();
+                    //?????,????(?????????)
+                    renderAfterColl(globalContext, fpIdNum, bgColor, false);
+                    //Seleccione una huella:?????
+                    //???--????
+                    collectTips(globalContext, "Seleccione una huella", "html5");
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown)
+            {
+                messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
+            }
+        });
+    }
+    /**
+     * ??????
+     * @author wenxin
+     * @create 2013-05-22 09:24:31 am
+     * @param collCount ????
+     */
+    function checkCollCount()
+    {
+        var base64FPImg = "";
+        //???
+        var ret = null;
+        $.ajax({
+            type: "GET",
+            url: issOnlineUrl + "/getImage?random=" + getRandomNum(),
+            dataType: "json",
+            async: false,
+            success: function (result)
+            {
+                //alert(objToStr(data));
+                //??????
+                var collCount = 0;
+                ret = result.ret;
+                if (ret == 0)
+                {
+                    collCount = result.data.enroll_index;
+                    base64FPImg = result.data.jpg_base64;
+                    var ImgFinger = result.data.bmp_base64;
+                    //var imgSrc = "data:image/bmp;base64,"+base64FPImg;
+
+                    //$("#captureImgHuella").val(imgSrc + "," + fpIdNum);
+                    //messageBox({messageType: "alert", title: "Mensaje", text: base64FPImg});
+                    if (fpIdNum == 0)
+                    {
+                        $("#captureImgHuella0").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_0").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 1)
+                    {
+                        $("#captureImgHuella1").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_1").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 2)
+                    {
+                        $("#captureImgHuella2").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_2").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 3)
+                    {
+                        $("#captureImgHuella3").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_3").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 4)
+                    {
+                        $("#captureImgHuella4").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_4").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 5)
+                    {
+                        $("#captureImgHuella5").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_5").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 6)
+                    {
+                        $("#captureImgHuella6").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_6").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 7)
+                    {
+                        $("#captureImgHuella7").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_7").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 8)
+                    {
+                        $("#captureImgHuella8").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_8").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                    if (fpIdNum == 9)
+                    {
+                        $("#captureImgHuella9").val(base64FPImg + "," + fpIdNum);
+                        $("#IdHuella_9").val("data:image/png;base64," + base64FPImg + "," + fpIdNum);
+                    }
+                }
+                //if(collCount != 3)
+                if (collCount != 3)
+                {
+                    //?????????,???????????????
+                    if (collCount == 1 || collCount == 2)
+                    {
+                        //Veces restantes::????????:
+                        var text = "Veces restantes:" + (FINGERPRINT_NUMBER - collCount);
+                        //???--????
+                        collectTips(globalContext, text, "html5");
+                        //???
+                        drawProgressBar(globalContext, collCount);
+                        //??????
+                        showImage(globalContext, base64FPImg, "html5");
+                        //????
+                        setTimeout("clearImageData()", 1000);
+                    }
+                    //???
+                    timer = setTimeout("checkCollCount()", 1000);
+                } else
+                {
+                    //??????
+                    showImage(globalContext, base64FPImg, "html5");
+                    //????
+                    setTimeout("clearImageData()", 1000);
+                    //?????????
+                    var paramArray = new Array();
+                    paramArray[0] = "Registro exitoso.";//base_fp_registerSuccess:??????
+                    paramArray[1] = "Registro fallido, intente de nuevo.";//base_fp_pressFingerAgain:?????
+                    paramArray[2] = "No repita la huella digital.";//base_fp_repeatCollection:?????????!
+                    paramArray[3] = "Instale el driver del lector USB o reinicie el servicio.";//base_fp_connectPrompt:???????
+                    //???
+                    drawProgressBar(globalContext, collCount);
+                    //??????
+                    if (!getFPTemplate(paramArray, "register"))
+                    {
+                        drawProgressBar(globalContext, 0);//?????
+                    }
+
+                    //????????,?????
+                    if (duressFingerFlag)
+                    {
+                        $("#duressFinger").attr("checked", false);
+                    }
+                    $("#duressFinger").attr("disabled", false);
+                    $("#submitButtonId").attr("disabled", false);
+                    collectFlag = false;
+                    fpIdNum = -1;
+                    return collCount;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown)
+            {
+                messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
+            }
+        });
+
+    }
+    /**
+     * ??setTimeout
+     * source code from network
+     * @author wenxin
+     * @create 2013-05-22 11:10:31 am
+     * @param callback ????
+     * @param timeout ????
+     * @param param ?????????
+     */
+    /*var _sto = setTimeout; 
+     window.setTimeout = function(callback,timeout,param) 
+     { 
+     var args = Array.prototype.slice.call(arguments,2); 
+     var _cb = function() 
+     { 
+     callback.apply(null,args); 
+     } 
+     _sto(_cb,timeout); 
+     }*/
+    /**
+     * ????,??????
+     * @author wenxin
+     * @create 2013-05-27 17:46:31 pm
+     */
+    function cancelRegister()
+    {
+        //??????????
+        if (collectFlag)
+        {
+            //???????????
+            clearTimeout(timer);
+            //????
+            $.ajax({
+                type: "GET",
+                url: issOnlineUrl + "/cancelCapture?random=" + getRandomNum(),
+                dataType: "json",
+                async: false,
+                success: function (result)
+                {
+                    //????????,?????
+                    if (duressFingerFlag)
+                    {
+                        $("#duressFinger").attr("checked", false);
+                    }
+                    if (fpModifyFlag)
+                    {
+                        $("#submitButtonId").attr("disabled", false);
+                    }
+                    $("#duressFinger").attr("disabled", false);
+                    if (fpIdNum != null)
+                    {
+                        //?????????
+
+                        renderAfterColl(globalContext, lastFPIdNum, bgColor, false);
+                    }
+                    collectFlag = false;
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    messageBox({messageType: "alert", title: "Mensaje", text: "Instale el driver del lector USB o reinicie el servicio."});
+                }
+            });
+        }
+    }
+    /**
+     * ??
+     * @author wenxin
+     * @create 2013-05-13 10:18:31 am
+     * @param context 2d?????
+     * @param x, y ?????????????,??????????????????????????
+     * @param color ????????????
+     */
+    function draw(context, x, y, color)
+    {
+        var coordArray = new Array();
+        //???????,???json???? 
+        var coordJson = initCoordJson();
+        for (var i = 0; i < coordJson.length; i++)
+        {
+            //???????
+            drawHandAndArc(context, coordArray, color, coordJson[i].coord.x, coordJson[i].coord.y, coordJson[i].num);
 // 		drawHandAndArc(context, coordArray, color, coordJson[i].coord.x, coordJson[i].coord.y, i);
-		coordArray = null;
-		coordArray = new Array();
-	}
-	//?????????
-	var paramArray = new Array();
-	paramArray[0] = "Seleccione una huella";
-	paramArray[1] = "No se detecto el lector USB.";
-	paramArray[2] = "Fallo al leer la librería dinámica.";
-	paramArray[3] = "Seleccione una huella";
-	
-	//???????
-	checkFPReader(context, paramArray, "html5");
-	
-	//???
-	drawProgressBar(context, 0);
-	//???????
-	$("#submitButtonId").attr("disabled", true);
-}
-/**
- * ???????
- * @author wenxin
- * @create 2013-06-17 10:18:31 am
- * @param context 2d?????
- * @param coordArray ????
- * @param x, y ?????????????,??????????????????????????
- * @param color ????????????
- * @param num ????????
- */
-function drawHandAndArc(context, coordArray, color, x, y, num)
-{
-	//?????
-	coordArray = initCoordArray(coordArray, x, y, num);
-	var drawObj = null;
-	//????
-	if(num < 10)
-	{
-		drawObj = "finger"+num;
-		drawObj = new renderFinger(context, coordArray);
-		drawObj.drawFinger(strokeStyle, color);
-		//????,????
-		renderInit(context, num, "html5");
-		//????????????,??????
-		fingerList.push(drawObj);
-	}
-	//??????
-	else if(num < 12)
-	{
-		new renderHand(context, coordArray).drawHand(color);
-	}
-	//????
-	showImage(context, "/base/images/base_fpVerify_clearImage.png", "clearForRegister");
-	//????
-	//else if(num == 12)
-	//{
-	//	new FillArc(context, coordArray).drawArc(arcBgColor);
-	//}
-}
-/**
- * ??
- * @author wenxin
- * @create 2013-05-13 10:18:31 am
- * @param x, y ????????
- */
-function redraw(x, y) 
-{
-	var canvas = document.getElementById("canvas");
-	if (canvas.getContext) 
-	{
-		var context = canvas.getContext("2d");
-		
-		//?????????
-		var isInFingerArea = false;
-		//?????????????
-		for ( var i = 0; i < fingerList.length; i++)
-		{
-			var finger = fingerList[i];
-			finger.drawFinger(strokeStyle, fingerBorderColor);
-			if (context.isPointInPath(x, y))
-			{
-				isInFingerArea = true;
-				break;
-			}
-		}
-		
-		outerloop:
-		for ( var i = 0; i < fingerList.length; i++) 
-		{
-			if(collectFlag)
-			{
-				//???????????,?????(?????,???)
-				if(fpIdNum == i)
-				{
-					//?????,????(?????????)
-					renderAfterColl(globalContext, fpIdNum, bgColor, false);
-				}
-			}
-			var finger = fingerList[i];
-			finger.drawFinger(strokeStyle, fingerBorderColor);
-			//currentContext = context;
-			if (context.isPointInPath(x, y)) 
-			{
-				globalContext = context;
-				//????????????????????,????????????
-				var iaSameFinger = false;
-				if(fpIdNum == i && collectFlag)
-				{
-					iaSameFinger = true;
-				}
-				var fingerId;
-				//????????????
-				var isCollected = false;
-				isCollected = isContains(fingerIdArray, i);
-				fpIdNum = i;
-				if(!isCollected)
-				{
-					//?????????????
-					lastFPIdNum = fpIdNum;
-				}
-				//???????
-				if(isCollected)
-				{
-					//????
-					cancelRegister();
-					messageBox({
-						messageType : "confirm",
-						text : "Eliminar las huellas seleccionadas?",//¿Eliminar las huellas seleccionadas?:???????????
-						callback : function(result){
-							delFPData(result, context, "html5");
-							collectTips(globalContext, "Seleccione una huella", "html5");
-							//???
-							drawProgressBar(globalContext, 0);
-						}
-					});
-					break outerloop;
-				}
-				else
-				{
-					//??????????????,?????????
-					if(iaSameFinger)
-					{
-						//????
-						cancelRegister();
-						//??????????????
-						collectTips(globalContext, "Seleccione una huella", "html5");
-						//????????????
-						drawProgressBar(context, 0);
-						fpIdNum = -1;
-					}
-					else
-					{
-						//????
-						cancelRegister();
-						context.fillStyle = fillFingerColor;
-						context.fill();
-						//globalContext = context;
-						collectFlag = true;//????,??????,????
-						$("#duressFinger").attr("disabled", true);
-						$("#submitButtonId").attr("disabled", true);
-						//Veces restantes::????????:
-						var text = "Veces restantes:"+FINGERPRINT_NUMBER;
-						//???
-						drawProgressBar(globalContext, 0);
-						//???--????
-						collectTips(globalContext, text, "html5");
-						//????
-						fpCollection(context);
-					}
-				}
-			} 
-			else 
-			{
-				context.fillStyle = bgColor;
-				context.fill(); 
-				renderInit(context, i, "html5");
-				if(collectFlag)
-				{
-					if(fpIdNum == i && !isInFingerArea)
-					{
-						context.fillStyle = fillFingerColor;
-						context.fill();
-					}
-				}
-			}
-		}
-	}
-}
-/**
- * ??
- * @author wenxin
- * @create 2013-09-05 16:57:11 pm
- */
-function clearImageData()
-{
-	//??????
-	clearFPImage(globalContext, "register");
-}
-/**
- * ?????,?????
- * @author wenxin
- * @create 2013-07-09 15:18:31 pm
- */
-function dataInit()
-{
-	if(!duressFingerShowFlag)
-	{
-		$("#duressFingerDiv").hide();
-	}
-	var canvas = document.getElementById("canvas");
-	var context = canvas.getContext("2d");
-	
-	fpIdNum = null;
-	//?????????
-	getDataFromPage();
-	//??
-	draw(context, x, y, fingerBorderColor);
-	//jquery?ie???cors????
-	jQuery.support.cors = true;
-	//????
-	canvas.onmousedown = function(event){
-		//event.which == 1--????
-		if(event.which == 1)
-		{
-			var pageInfo = canvas.getBoundingClientRect();
-			var x = event.clientX - pageInfo.left;
-			var y = event.clientY - pageInfo.top;
-	
-			duressFingerFlag = $("#duressFinger").attr("checked");
-			//??
-			redraw(x, y);
-		}
-	}
-}
+            coordArray = null;
+            coordArray = new Array();
+        }
+        //?????????
+        var paramArray = new Array();
+        paramArray[0] = "Seleccione una huella";
+        paramArray[1] = "No se detecto el lector USB.";
+        paramArray[2] = "Fallo al leer la librería dinámica.";
+        paramArray[3] = "Seleccione una huella";
+
+        //???????
+        checkFPReader(context, paramArray, "html5");
+
+        //???
+        drawProgressBar(context, 0);
+        //???????
+        $("#submitButtonId").attr("disabled", true);
+    }
+    /**
+     * ???????
+     * @author wenxin
+     * @create 2013-06-17 10:18:31 am
+     * @param context 2d?????
+     * @param coordArray ????
+     * @param x, y ?????????????,??????????????????????????
+     * @param color ????????????
+     * @param num ????????
+     */
+    function drawHandAndArc(context, coordArray, color, x, y, num)
+    {
+        //?????
+        coordArray = initCoordArray(coordArray, x, y, num);
+        var drawObj = null;
+        //????
+        if (num < 10)
+        {
+            drawObj = "finger" + num;
+            drawObj = new renderFinger(context, coordArray);
+            drawObj.drawFinger(strokeStyle, color);
+            //????,????
+            renderInit(context, num, "html5");
+            //????????????,??????
+            fingerList.push(drawObj);
+        }
+        //??????
+        else if (num < 12)
+        {
+            new renderHand(context, coordArray).drawHand(color);
+        }
+        //????
+        showImage(context, "/base/images/base_fpVerify_clearImage.png", "clearForRegister");
+        //????
+        //else if(num == 12)
+        //{
+        //	new FillArc(context, coordArray).drawArc(arcBgColor);
+        //}
+    }
+    /**
+     * ??
+     * @author wenxin
+     * @create 2013-05-13 10:18:31 am
+     * @param x, y ????????
+     */
+    function redraw(x, y)
+    {
+        var canvas = document.getElementById("canvas");
+        if (canvas.getContext)
+        {
+            var context = canvas.getContext("2d");
+
+            //?????????
+            var isInFingerArea = false;
+            //?????????????
+            for (var i = 0; i < fingerList.length; i++)
+            {
+                var finger = fingerList[i];
+                finger.drawFinger(strokeStyle, fingerBorderColor);
+                if (context.isPointInPath(x, y))
+                {
+                    isInFingerArea = true;
+                    break;
+                }
+            }
+
+            outerloop:
+                    for (var i = 0; i < fingerList.length; i++)
+            {
+                if (collectFlag)
+                {
+                    //???????????,?????(?????,???)
+                    if (fpIdNum == i)
+                    {
+                        //?????,????(?????????)
+                        renderAfterColl(globalContext, fpIdNum, bgColor, false);
+                    }
+                }
+                var finger = fingerList[i];
+                finger.drawFinger(strokeStyle, fingerBorderColor);
+                //currentContext = context;
+                if (context.isPointInPath(x, y))
+                {
+                    globalContext = context;
+                    //????????????????????,????????????
+                    var iaSameFinger = false;
+                    if (fpIdNum == i && collectFlag)
+                    {
+                        iaSameFinger = true;
+                    }
+                    var fingerId;
+                    //????????????
+                    var isCollected = false;
+                    isCollected = isContains(fingerIdArray, i);
+                    fpIdNum = i;
+                    if (!isCollected)
+                    {
+                        //?????????????
+                        lastFPIdNum = fpIdNum;
+                    }
+                    //???????
+                    if (isCollected)
+                    {
+                        //????
+                        cancelRegister();
+                        messageBox({
+                            messageType: "confirm",
+                            text: "Eliminar las huellas seleccionadas?", //¿Eliminar las huellas seleccionadas?:???????????
+                            callback: function (result) {
+                                delFPData(result, context, "html5");
+                                collectTips(globalContext, "Seleccione una huella", "html5");
+                                //???
+                                drawProgressBar(globalContext, 0);
+                            }
+                        });
+                        break outerloop;
+                    } else
+                    {
+                        //??????????????,?????????
+                        if (iaSameFinger)
+                        {
+                            //????
+                            cancelRegister();
+                            //??????????????
+                            collectTips(globalContext, "Seleccione una huella", "html5");
+                            //????????????
+                            drawProgressBar(context, 0);
+                            fpIdNum = -1;
+                        } else
+                        {
+                            //????
+                            cancelRegister();
+                            context.fillStyle = fillFingerColor;
+                            context.fill();
+                            //globalContext = context;
+                            collectFlag = true;//????,??????,????
+                            $("#duressFinger").attr("disabled", true);
+                            $("#submitButtonId").attr("disabled", true);
+                            //Veces restantes::????????:
+                            var text = "Veces restantes:" + FINGERPRINT_NUMBER;
+                            //???
+                            drawProgressBar(globalContext, 0);
+                            //???--????
+                            collectTips(globalContext, text, "html5");
+                            //????
+                            fpCollection(context);
+                        }
+                    }
+                } else
+                {
+                    context.fillStyle = bgColor;
+                    context.fill();
+                    renderInit(context, i, "html5");
+                    if (collectFlag)
+                    {
+                        if (fpIdNum == i && !isInFingerArea)
+                        {
+                            context.fillStyle = fillFingerColor;
+                            context.fill();
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /**
+     * ??
+     * @author wenxin
+     * @create 2013-09-05 16:57:11 pm
+     */
+    function clearImageData()
+    {
+        //??????
+        clearFPImage(globalContext, "register");
+    }
+    /**
+     * ?????,?????
+     * @author wenxin
+     * @create 2013-07-09 15:18:31 pm
+     */
+    function dataInit()
+    {
+        if (!duressFingerShowFlag)
+        {
+            $("#duressFingerDiv").hide();
+        }
+        var canvas = document.getElementById("canvas");
+        var context = canvas.getContext("2d");
+
+        fpIdNum = null;
+        //?????????
+        getDataFromPage();
+        //??
+        draw(context, x, y, fingerBorderColor);
+        //jquery?ie???cors????
+        jQuery.support.cors = true;
+        //????
+        canvas.onmousedown = function (event) {
+            //event.which == 1--????
+            if (event.which == 1)
+            {
+                var pageInfo = canvas.getBoundingClientRect();
+                var x = event.clientX - pageInfo.left;
+                var y = event.clientY - pageInfo.top;
+
+                duressFingerFlag = $("#duressFinger").attr("checked");
+                //??
+                redraw(x, y);
+            }
+        }
+    }
 //?????
-dataInit();
+    dataInit();
 </script>

@@ -55,7 +55,8 @@
 			var imgData = canvas.toDataURL("image/jpeg");
 			var base64String = new Array();
 			base64String = imgData.split(",");
-			//alert(base64String[1]);
+			$("#IdFirmaBase64").val(imgData);
+                        //alert($("#IdFirmaBase64").val());
 
 			Documento = $("#Documento").val();
 
@@ -63,7 +64,7 @@
 			Data = "TipoDeProceso=" + "GuardarImagen" + "&TipoImagen="
 					+ "fotos" + "&Documento=" + "Firma_" + FIRMA + "&Imagen="
 					+ base64String[1];
-			SendImageToServerAloha(Data);
+			//SendImageToServerAloha(Data);
 
 			closeWindow();
 		}

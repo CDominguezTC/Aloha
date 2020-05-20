@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="Controladores.ControladorCentro_costo"%>
-<%@page import="Modelo.ModeloPersonas"%>
+<%@page import="Modelo.ModeloPersona"%>
 <%@page import="Controladores.ControladorGrupo_consumo"%>
 <%@page import="Modelo.ModeloGrupo_consumo"%>
 <%@page import="Controladores.ControladorCentro_costo"%>
@@ -300,7 +300,7 @@
                                                     <div class="profile_img">
                                                         <div id="crop-avatar">
                                                             <!-- Img Captura Foto-Huella -->
-                                                            <img id="IdImagen"class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="245" width="245">
+                                                            <img id="IdImagen"class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="200" width="200">
                                                         </div>
                                                     </div>
 
@@ -313,12 +313,43 @@
                                                     <!-- Botones -->
                                                     <div class="ln_solid"></div>
                                                     <div class="form-group">
-                                                        <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-2">
+                                                        <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-2">                                                            
                                                             <button class="btn btn-primary btn-sm" type="button" onclick="openCamera();" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
                                                             <button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button> 
                                                             <button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
                                                         </div>
                                                     </div>
+                                                    <!--
+                                                    DIv Ocualto para los datos que son de tipo multiemdia
+                                                    Foto
+                                                    Huella
+                                                    Firma 
+                                                    CADD 19-05-2020
+                                                    -->
+                                                    <div style="display: none">
+                                                        <div>
+                                                            <input id="IdHuella_0" value="" name="Huella_0">
+                                                            <input id="IdHuella_1" value="" name="Huella_1">
+                                                            <input id="IdHuella_2" value="" name="Huella_2">
+                                                            <input id="IdHuella_3" value="" name="Huella_3">
+                                                            <input id="IdHuella_4" value="" name="Huella_4">
+                                                            <input id="IdHuella_5" value="" name="Huella_5">
+                                                            <input id="IdHuella_6" value="" name="Huella_6">
+                                                            <input id="IdHuella_7" value="" name="Huella_7">
+                                                            <input id="IdHuella_8" value="" name="Huella_8">
+                                                            <input id="IdHuella_9" value="" name="Huella_9">
+                                                        </div>
+
+                                                        <div>
+                                                            <input id="IdTemplate" value="" name="Template">                                                        
+                                                            <input id="IdTemplate_10" value="" name="Template_10">                                                        
+                                                        </div>
+                                                        <div>
+                                                            <input id="IdSRCImagen" value="" name="SRCImagen">                                                        
+                                                            <input id="IdFirmaBase64" value="" name="FirmaBase64">   
+                                                        </div>
+                                                    </div>
+
                                                     <!-- /Botones -->
 
                                                 </div>

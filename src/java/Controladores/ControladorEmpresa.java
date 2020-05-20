@@ -146,7 +146,7 @@ public class ControladorEmpresa {
                             + "telefono = ?, "
                             + "ext = ?, "
                             + "ciudad = ?, "
-                            + "observacion = ? "                            
+                            + "observacion = ? "
                             + " WHERE id = ? ");
                     SQL.setString(1, modeloEmpresa.getNombre());
                     SQL.setString(2, modeloEmpresa.getNit());
@@ -156,7 +156,7 @@ public class ControladorEmpresa {
                     SQL.setString(6, modeloEmpresa.getTelefono());
                     SQL.setString(7, modeloEmpresa.getExt());
                     SQL.setString(8, modeloEmpresa.getCiudad());
-                    SQL.setString(9, modeloEmpresa.getObservacion());                    
+                    SQL.setString(9, modeloEmpresa.getObservacion());
                     SQL.setInt(10, modeloEmpresa.getId());
                 }
 
@@ -386,7 +386,8 @@ public class ControladorEmpresa {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloEmpresa.setId(res.getInt("id"));
                 modeloEmpresa.setNombre(res.getString("nombre"));
                 modeloEmpresa.setNit(res.getString("nit"));
@@ -398,6 +399,8 @@ public class ControladorEmpresa {
                 modeloEmpresa.setCiudad(res.getString("ciudad"));
                 modeloEmpresa.setObservacion(res.getString("observacion"));
                 modeloEmpresa.setEstado(res.getString("estado"));
+            } else {
+                modeloEmpresa.setId(0);
             }
             res.close();
             SQL.close();

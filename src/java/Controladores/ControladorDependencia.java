@@ -122,7 +122,7 @@ public class ControladorDependencia {
                             + "nombre = ? "
                             + "WHERE id = ? ");
                     SQL.setString(1, modeloDependencia.getCodigo());
-                    SQL.setString(2, modeloDependencia.getNombre());                    
+                    SQL.setString(2, modeloDependencia.getNombre());
                     SQL.setInt(3, modeloDependencia.getId());
                 }
 
@@ -170,7 +170,7 @@ public class ControladorDependencia {
      * @return String
      * @version: 15/05/2020
      */
-    public ModeloDependencia getModelo(Integer Id) throws SQLException {
+    public ModeloDependencia getModelo(Integer Id) {
         ModeloDependencia modeloDependencia = new ModeloDependencia();
         con = conexion.abrirConexion();
         try {
@@ -182,11 +182,14 @@ public class ControladorDependencia {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloDependencia.setId(res.getInt("id"));
                 modeloDependencia.setCodigo(res.getString("codigo"));
                 modeloDependencia.setNombre(res.getString("nombre"));
                 modeloDependencia.setEstado(res.getString("estado"));
+            } else {
+                modeloDependencia.setId(0);
             }
             res.close();
             SQL.close();

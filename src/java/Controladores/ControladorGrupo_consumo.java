@@ -74,7 +74,7 @@ public class ControladorGrupo_consumo {
                         + " VALUE (?,?,?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloGrupo_consumo.getCodigo());
                 SQL.setString(2, modeloGrupo_consumo.getNombre());
-                SQL.setString(3, modeloGrupo_consumo.getEstado());
+                SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -187,11 +187,14 @@ public class ControladorGrupo_consumo {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloGrupo_consumo.setId(res.getInt("id"));
                 modeloGrupo_consumo.setCodigo(res.getString("codigo"));
                 modeloGrupo_consumo.setNombre(res.getString("nombre"));
                 modeloGrupo_consumo.setEstado(res.getString("estado"));
+            } else {
+                modeloGrupo_consumo.setId(0);
             }
             res.close();
             SQL.close();

@@ -30,7 +30,7 @@ import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuarios;
 import Herramienta.Herramienta;
-import Modelo.ModeloPersonas;
+import Modelo.ModeloPersona;
 import Tools.Tools;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -515,7 +515,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorPersonas.Insert(request);
+                            Resultado = controladorPersonas.Insert(request, response);
                             break;
                         case "Search":
                             Resultado = controladorPersonas.Search(request);
@@ -662,13 +662,13 @@ public class ServletAlohaTiempos extends HttpServlet {
 //                    Accion = "Plano";
 //                    break;
                 case "BuscarPersona":
-                    ModeloPersonas modeloPersonas = new ModeloPersonas();
+                    ModeloPersona modeloPersonas = new ModeloPersona();
                     ControladorPersonas controladorPersonas1 = new ControladorPersonas();
                     modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
                     request.setAttribute("id", modeloPersonas.getId());
                     request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
                     request.setAttribute("cedula", modeloPersonas.getIdentificacion());
-                    request.setAttribute("observacion", modeloPersonas.getObservaciones());
+                    request.setAttribute("observacion", modeloPersonas.getObservacion());
                     RequestDispatcher rd;
                     rd = request.getRequestDispatcher("RegistroCargos.jsp");
                     rd.forward(request, response);
