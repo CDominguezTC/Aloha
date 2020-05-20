@@ -24,6 +24,7 @@ public class ControladorImagen {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+
     String user;
 
     public String Insert(String[] Huellas, String Foto, String firma, ModeloPersona modelo) {
@@ -127,5 +128,40 @@ public class ControladorImagen {
             resultado = "-3";
         }
         return resultado;
+    }
+
+    public LinkedList<ModeloImagen> getListaModelo(Integer id) {
+        ControladorPersona controladorPersona = new ControladorPersona();
+        LinkedList<ModeloImagen> listaModeloImagens = new LinkedList<ModeloImagen>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT "
+                    + "`id`,"
+                    + "`id_persona`,"
+                    + "`tipo_imagen`,"
+                    + "`numero_imagen`,"
+                    + "`imagen`,"
+                    + "`estado` "
+                    + "FROM `imagen` "
+                    + "WHERE `id_persona` = ? ;");
+            SQL.setInt(1, id);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloImagen modeloImagen = new ModeloImagen();
+                modeloImagen.setId(res.getInt("id"));
+                modeloImagen.setModelo_persona(controladorPersona.getModelo(id));
+                modeloImagen.setTipo_imagen(res.getString("tipo_imagen"));
+                modeloImagen.setNumero_imagen(res.getInt("numero_imagen"));
+                modeloImagen.setImagen(res.getString("imagen"));
+                modeloImagen.setEstado(res.getString("estado"));
+                listaModeloImagens.add(modeloImagen);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listaModeloImagens;
     }
 }

@@ -326,7 +326,7 @@
                                                     Firma 
                                                     CADD 19-05-2020
                                                     -->
-                                                    <div style="display: none">
+                                                    <div>
                                                         <div>
                                                             <input id="IdHuella_0" value="" name="Huella_0">
                                                             <input id="IdHuella_1" value="" name="Huella_1">

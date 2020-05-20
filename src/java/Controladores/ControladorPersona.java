@@ -47,6 +47,7 @@ public class ControladorPersona {
     ControladorCargo controladorCargo = new ControladorCargo();
     ControladorGrupo_consumo controladorGrupo_consumo = new ControladorGrupo_consumo();
     ControladorImagen controladorImagen = new ControladorImagen();
+    ControladorTemplate controladorTemplate = new ControladorTemplate();
     Herramienta herramienta = new Herramienta();
     int i;
 
@@ -79,7 +80,7 @@ public class ControladorPersona {
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete(HttpServletRequest request) {
+    public String Delete(HttpServletRequest request, HttpServletResponse response) {
         if (!"".equals(request.getParameter("id"))) {
             ModeloPersona modeloPersona = new ModeloPersona();
             modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
@@ -327,123 +328,12 @@ public class ControladorPersona {
                 String Foto = request.getParameter("foto");
                 String firma = request.getParameter("firma");
                 resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i));             
+                resultado = controladorTemplate.Insert(Template,IdTemplate,getModelo(i));             
             }
         } else {
             modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
             resultado = UpdateCasino(modeloPersona);
         }
-
-//        if ("".equals(request.getParameter("id"))) {
-//            ModeloPersona modelo = new ModeloPersona();
-//            modelo.setId(0);
-//            modelo.setTipo_identificacion(request.getParameter("tipodoc"));
-//            modelo.setIdentificacion(request.getParameter("cedula"));
-//            modelo.setNombres(request.getParameter("nombre"));
-//            modelo.setApellidos(request.getParameter("apellido"));
-//            modelo.setModelo_empresa_trabaja(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
-//            modelo.setModelo_centro_costo(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
-//            modelo.setConsumo_casino(request.getParameter("consumo"));
-//            modelo.setModelo_grupo_consumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
-//            modelo.setObservacion(request.getParameter("observacion"));
-//
-//            try {
-//                con = conexion.abrirConexion();
-//                try {
-//                    SQL = con.prepareStatement("INSERT INTO `persona`("
-//                            + "`tipoIdentificacion`,"
-//                            + "`identificacion`,"
-//                            + "`nombres`,"
-//                            + "`apellidos`,"
-//                            + "`Id_EmpresaTrabaja`,"
-//                            + "`centroCostoId`,"
-//                            + "`observaciones`,"
-//                            + "`consumocasino`,"
-//                            + "`grupoConsumo`)"
-//                            + " VALUE (?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
-//                    SQL.setString(1, modelo.getTipoIdentificacion());
-//                    SQL.setString(2, modelo.getIdentificacion());
-//                    SQL.setString(3, modelo.getNombres());
-//                    SQL.setString(4, modelo.getApellidos());
-//                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
-//                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
-//                    SQL.setString(7, modelo.getObservaciones());
-//                    SQL.setString(8, modelo.getConsumocasino());
-//                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
-//                    if (SQL.executeUpdate() > 0) {
-//                        ControladorAuditoria auditoria = new ControladorAuditoria();
-//                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-//                            if (generatedKeys.next()) {
-//                                int i = (int) generatedKeys.getLong(1);
-//                                auditoria.Insert("insertar", "persona", request.getParameter("nombreU"), i, "Se inserto el registro personacasino.");
-//                            }
-//                        }
-//                        resultado = "1";
-//                        SQL.close();
-//                        con.close();
-//                    }
-//                } catch (SQLException e) {
-//                    System.out.println(e);
-//                    resultado = "-2";
-//                    SQL.close();
-//                    con.close();
-//                }
-//            } catch (SQLException e) {
-//                System.out.println(e);
-//                resultado = "-3";
-//            }
-//        } else {
-//            ModeloPersona modelo = new ModeloPersona();
-//            modelo.setId(0);
-//            modelo.setTipo_identificacion(request.getParameter("tipodoc"));
-//            modelo.setIdentificacion(request.getParameter("cedula"));
-//            modelo.setNombres(request.getParameter("nombre"));
-//            modelo.setApellidos(request.getParameter("apellido"));
-//            modelo.setModelo_empresa_trabaja(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
-//            modelo.setModelo_centro_costo(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
-//            modelo.setConsumo_casino(request.getParameter("consumo"));
-//            modelo.setModelo_grupo_consumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
-//            modelo.setObservacion(request.getParameter("observacion"));
-//
-//            try {
-//                con = conexion.abrirConexion();
-//                try {
-//                    SQL = con.prepareStatement("UPDATE `persona`  SET "
-//                            + "`tipoIdentificacion` = ?,"
-//                            + "`identificacion` = ?,"
-//                            + "`nombres` = ?,"
-//                            + "`apellidos` = ?,"
-//                            + "`Id_EmpresaTrabaja` = ?,"
-//                            + "`centroCostoId` = ?,"
-//                            + "`observaciones` = ?,"
-//                            + "`consumocasino` = ?,"
-//                            + "`grupoConsumo` = ?"
-//                            + " WHERE `Id` = ?;");
-//                    SQL.setString(1, modelo.getTipoIdentificacion());
-//                    SQL.setString(2, modelo.getIdentificacion());
-//                    SQL.setString(3, modelo.getNombres());
-//                    SQL.setString(4, modelo.getApellidos());
-//                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
-//                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
-//                    SQL.setString(7, modelo.getObservaciones());
-//                    SQL.setString(8, modelo.getConsumocasino());
-//                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
-//                    SQL.setInt(10, modelo.getId());
-//                    if (SQL.executeUpdate() > 0) {
-//                        resultado = "1";
-//                        SQL.close();
-//                        con.close();
-//                    }
-//                } catch (SQLException e) {
-//                    System.out.println(e);
-//                    resultado = "-2";
-//                    SQL.close();
-//                    con.close();
-//                }
-//            } catch (SQLException e) {
-//                System.out.println(e);
-//                resultado = "-3";
-//            }
-//        }
         return resultado;
     }
 
@@ -500,6 +390,13 @@ public class ControladorPersona {
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
+                //Campos de Imagenes y templates
+                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
+                    for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
+                        
+                    }
+                }
+                
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
@@ -592,6 +489,10 @@ public class ControladorPersona {
                 modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
                 modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
                 modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+                //estos son los datos multimedia pendient por implmentar 
+                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
+                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));                
+                
                 listaModeloPersonas.add(modelo);
             }
             res.close();

@@ -4,14 +4,14 @@
     Author     : Frankie
 --%>
 
-<%@page import="Controladores.ControladorCargos"%>
-<%@page import="Modelo.ModeloCargos"%>
-<%@page import="Modelo.ModeloPersonas"%>
-<%@page import="Controladores.ControladorGrupoConsumo"%>
-<%@page import="Modelo.ModeloGrupoConsumo"%>
-<%@page import="Controladores.ControladorCentroCosto"%>
-<%@page import="Modelo.ModeloCentroCosto"%>
-<%@page import="Controladores.ControladorEmpresas"%>
+<%@page import="Controladores.ControladorCargo"%>
+<%@page import="Modelo.ModeloCargo"%>
+<%@page import="Modelo.ModeloPersona"%>
+<%@page import="Controladores.ControladorGrupo_consumo"%>
+<%@page import="Modelo.ModeloGrupo_consumo"%>
+<%@page import="Controladores.ControladorCentro_costo"%>
+<%@page import="Modelo.ModeloCentro_costo"%>
+<%@page import="Controladores.ControladorEmpresa"%>
 <%@page import="Modelo.ModeloEmpresa"%>
 <%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -126,16 +126,16 @@
                                                                             <label for="tipo_id">Servicio</label>
                                                                             <select id="IdConsume" class="form-control" name="Consume">
                                                                                 <option value="0" selected disabled>Seleccione</option>   
-                                                                                <%
-                                                                                    LinkedList<ModeloCargos> modeloCargos;
-                                                                                    ControladorCargos controladorCargos = new ControladorCargos();
-                                                                                    modeloCargos = controladorCargos.getModelo();
-                                                                                    for (ModeloCargos modelo : modeloCargos) {
+                                                                                <%--
+                                                                                    LinkedList<ModeloCargo> modeloCargos;
+                                                                                    ControladorCargo controladorCargos = new ControladorCargo();
+                                                                                    //modeloCargos = controladorCargos.getModelo("1");
+                                                                                    for (ModeloCargo modelo : modeloCargos) {
                                                                                 %>
-                                                                                <option value="<%=modelo.getId()%>"><%=modelo.getTipoCargo()%></option>
+                                                                                <option value="<%=modelo.getId()%>"><%=modelo.getNombre()%></option>
                                                                                 <%
                                                                                     }
-                                                                                %>                                                                                
+                                                                                --%>                                                                                
                                                                             </select>
                                                                         </div>
                                                                     </td>

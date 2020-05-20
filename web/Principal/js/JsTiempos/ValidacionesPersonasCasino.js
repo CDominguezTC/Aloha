@@ -374,126 +374,32 @@ $(function () {
         $('#IdGrupoConsumoOld').val('');
         $('#IdObservacion').val('');
         $('#IdObservacionOld').val('');
+        
+        $('#IdHuella_0').val('');
+        $('#IdHuella_1').val('');
+        $('#IdHuella_2').val('');
+        $('#IdHuella_3').val('');
+        $('#IdHuella_4').val('');
+        $('#IdHuella_5').val('');
+        $('#IdHuella_6').val('');
+        $('#IdHuella_7').val('');
+        $('#IdHuella_8').val('');
+        $('#IdHuella_9').val('');
+        
+        $('#IdTemplate').val('');
+        $('#IdTemplate_10').val('');
+        
+        $('#IdSRCImagen').val('');
+        $('#IdFirmaBase64').val('');
+        
+        $('#IdImagen').src('Principal/images/user.png');
     }
 
     $('#IdAgregar').click(function (e) {
 
         LimpiarCampos();
     });
-//    $('#IdEnviarHuella').click(function (e) {
-//
-//        var NamUs = document.getElementById('usering').innerHTML
-//            var Frm = "PersonasJSP";
-//            var Id = $('#Id').val();
-//            var Huella = $('#IdHuella_6').val();            
-//            var Accion = "Upload";
-//            var Modulo = "Casino";
-//            var data = {
-//                frm: Frm,
-//                id: Id,                
-//                huella: Huella,                
-//                accion: Accion,                
-//                modulo: Modulo
-//            };
-//            enableGif();
-//            $.ajax({
-//                type: "POST",
-//                url: "prueba",
-//                data: data,
-//                success: function (resul, textStatus, jqXHR) {
-//
-//                    Swal.fire({
-//                        icon: 'success',
-//                        title: 'Guardado',
-//                        text: 'Registro Guardado Satisfactoriamente.'
-//                    });
-//                    if (Id != "") {
-//                        //console.log("Ingreso a id no null " + Id + "!");
-//                        auditoriaReg("actualizar");
-//                    }
-//                    disableGif();
-//                    //alert(resul);
-//                    LimpiarCampos();
-//                    LoadTabla();
-//                },
-//                error: function (jqXHR, textStatus, errorThrown) {
-//                    disableGif();
-//                    if (jqXHR.status === 0) {
-//                        alert('Not connect: Verify Network.');
-//                    } else if (jqXHR.status === 404) {
-//                        alert('Requested page not found [404]');
-//                    } else if (jqXHR.status === 500) {
-//                        alert('Internal Server Error [500].');
-//                    } else if (textStatus === 'parsererror') {
-//                        alert('Requested JSON parse failed.');
-//                    } else if (textStatus === 'timeout') {
-//                        alert('Time out error.');
-//                    } else if (textStatus === 'abort') {
-//                        alert('Ajax request aborted.');
-//                    } else {
-//                        alert('Uncaught Error: ' + jqXHR.responseText);
-//                    }
-//                }
-//            });
-//    });
-//    $('#IdEnviarFoto').click(function (e) {
-//
-//        var NamUs = document.getElementById('usering').innerHTML
-//            var Frm = "PersonasJSP";
-//            var Id = $('#Id').val();
-//            var Huella = $('#IdHuella_6').val();            
-//            var Foto = $('#IdSRCImagen').val();   
-//            var Accion = "Upload";
-//            var Modulo = "Casino";
-//            var data = {
-//                frm: Frm,
-//                id: Id,                
-//                huella: Huella,                
-//                foto: Foto,                
-//                accion: Accion,                
-//                modulo: Modulo
-//            };
-//            enableGif();
-//            $.ajax({
-//                type: "POST",
-//                url: "prueba",
-//                data: data,
-//                success: function (resul, textStatus, jqXHR) {
-//
-//                    Swal.fire({
-//                        icon: 'success',
-//                        title: 'Guardado',
-//                        text: 'Registro Guardado Satisfactoriamente.'
-//                    });
-//                    if (Id != "") {
-//                        //console.log("Ingreso a id no null " + Id + "!");
-//                        auditoriaReg("actualizar");
-//                    }
-//                    disableGif();
-//                    //alert(resul);
-//                    LimpiarCampos();
-//                    LoadTabla();
-//                },
-//                error: function (jqXHR, textStatus, errorThrown) {
-//                    disableGif();
-//                    if (jqXHR.status === 0) {
-//                        alert('Not connect: Verify Network.');
-//                    } else if (jqXHR.status === 404) {
-//                        alert('Requested page not found [404]');
-//                    } else if (jqXHR.status === 500) {
-//                        alert('Internal Server Error [500].');
-//                    } else if (textStatus === 'parsererror') {
-//                        alert('Requested JSON parse failed.');
-//                    } else if (textStatus === 'timeout') {
-//                        alert('Time out error.');
-//                    } else if (textStatus === 'abort') {
-//                        alert('Ajax request aborted.');
-//                    } else {
-//                        alert('Uncaught Error: ' + jqXHR.responseText);
-//                    }
-//                }
-//            });
-//    });
+
     $('#IdGuardar').click(function (e) {
 
         if (ValidaCampo() === true) {
