@@ -54,7 +54,7 @@ public class ControladorAuditoria {
             ModeloUsuario modU = new ModeloUsuario();
 
             String fecha = tl.formatoFechaHora();
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             int idusua = controladorU.idUsuario(usua);
 
             modU = controladorU.getModelo(idusua);
@@ -124,7 +124,7 @@ public class ControladorAuditoria {
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
         try {
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");
@@ -154,20 +154,29 @@ public class ControladorAuditoria {
 
         LinkedList<ModeloAuditoria> modeloAud = new LinkedList<ModeloAuditoria>();
         ModeloUsuario modU = new ModeloUsuario();
-        ControladorUsuarios controladorU = new ControladorUsuarios();
+        ControladorUsuario controladorU = new ControladorUsuario();
         con = conexion.abrirConexion();
         Date date = null;
         Timestamp timestamp = null;
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             if ("".equals(usr)) {
-                SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria");
+                SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion " +
+                                            "FROM auditoria a " +
+                                            "INNER JOIN usuario u ON u.id = a.id_usuario " +
+                                            "WHERE u.estado = 'S'");
 
             } else {
                 if ("todos".equals(usr)) {
-                    SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria WHERE fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
+                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion "
+                            + "FROM auditoria a "
+                            + "INNER JOIN usuario u ON u.id = a.id_usuario "
+                            + "WHERE u.estado = 'S' AND a.fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
                 } else {
-                    SQL = con.prepareStatement("SELECT id, operacion, tabla, fecha, id_usuario, registro_modificado, observacion FROM auditoria WHERE id_usuario = " + usr + " AND fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
+                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion "
+                            + "FROM auditoria a "
+                            + "INNER JOIN usuario u ON u.id = a.id_usuario "
+                            + "WHERE u.estado = 'S' AND a.id_usuario = " + usr + " AND a.fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
                 }
             }
 

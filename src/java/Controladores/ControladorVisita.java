@@ -36,10 +36,10 @@ public class ControladorVisita {
     String user;
     ControladorPersona controladorPersona = new ControladorPersona();
     ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
-    ControladorPersona controladorPersona = new ControladorPersona();
+    //ControladorPersona controladorPersona = new ControladorPersona();
     ControladorArea controladorArea = new ControladorArea();
     ControladorVehiculo controladorVehiculo = new ControladorVehiculo();
-    ControladorUsuario controladorUsuario = new ControladorUsuario();
+    //ControladorUsuario controladorUsuario = new ControladorUsuario();
     ControladorUsuario controladorUsuario = new ControladorUsuario();
 
     /**

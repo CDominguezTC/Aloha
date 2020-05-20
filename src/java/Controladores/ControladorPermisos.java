@@ -34,7 +34,7 @@ public class ControladorPermisos {
         String out = null;
         try {
 
-            ControladorUsuarios controladorU = new ControladorUsuarios();
+            ControladorUsuario controladorU = new ControladorUsuario();
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = controladorU.Read("S");
             response.setContentType("text/html;charset=UTF-8");
@@ -58,7 +58,7 @@ public class ControladorPermisos {
         return out;
     }
 
-    public String ReadPU(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
+    public String permisosAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
 
         String out = null;
         try {
@@ -86,7 +86,7 @@ public class ControladorPermisos {
         return out;
     }
 
-    public String ReadPNoU(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
+    public String permisosNoAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
 
         String out = null;
         try {
@@ -114,7 +114,7 @@ public class ControladorPermisos {
         return out;
     }
 
-    public String ReadTodosP(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String listarPermisosAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String out = null;
         try {

@@ -54,11 +54,8 @@ $(function(){
 
   function cargarPermisosU(strUser){
 
-
-    //var namUs = document.getElementById('usering').innerHTML;
-    //alert(namUs);
     var Frm = "PermisosJSP";
-    var Accion = "ReadPU";
+    var Accion = "PermisosAsignados";
     var data = {
         frm: Frm,
         user: strUser,
@@ -102,7 +99,7 @@ $(function(){
     //var namUs = document.getElementById('usering').innerHTML;
     //alert(namUs);
     var Frm = "PermisosJSP";
-    var Accion = "ReadPNoU";
+    var Accion = "PermisosNoAsignados";
     var data = {
         frm: Frm,
         user: strUser,
@@ -146,7 +143,7 @@ $(function(){
     //var namUs = document.getElementById('usering').innerHTML;
     //alert(namUs);
     var Frm = "PermisosJSP";
-    var Accion = "ReadTodosP";
+    var Accion = "ListarPermisos";
     var data = {
         frm: Frm,
         accion: Accion
