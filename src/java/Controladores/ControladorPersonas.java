@@ -48,7 +48,7 @@ public class ControladorPersonas {
     ControladorGrupo_consumo controladorGrupo_consumo = new ControladorGrupo_consumo();
     ControladorImagen controladorImagen = new ControladorImagen();
     Herramienta herramienta = new Herramienta();
-    //int i;
+    int i;
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd
@@ -326,7 +326,7 @@ public class ControladorPersonas {
                 String Template = request.getParameter("templates10");
                 String Foto = request.getParameter("foto");
                 String firma = request.getParameter("firma");
-                //resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i));             
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i));             
             }
         } else {
             modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
@@ -747,7 +747,7 @@ public class ControladorPersonas {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
-                            int i = (int) generatedKeys.getLong(1);
+                            i = (int) generatedKeys.getLong(1);
                             auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
                         resultado = "1";
