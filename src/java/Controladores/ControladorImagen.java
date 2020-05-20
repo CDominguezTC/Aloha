@@ -26,11 +26,11 @@ public class ControladorImagen {
     ConexionBdMysql conexion = new ConexionBdMysql();
     String user;
 
-    public String Insert(String[] Huellas, String Foto, String firma, ModeloPersona modelo) {        
+    public String Insert(String[] Huellas, String Foto, String firma, ModeloPersona modelo) {
         LinkedList<ModeloImagen> listamodeloImagenes = new LinkedList<ModeloImagen>();
         listamodeloImagenes = Generar_lista_imagenes(Huellas, Foto, firma, modelo);
         for (ModeloImagen modeloImagen : listamodeloImagenes) {
-            if (modeloImagen.getId() == 0) {
+            if (modeloImagen.getId() == null) {
                 resultado = Insert(modeloImagen);
             }
         }
@@ -51,36 +51,39 @@ public class ControladorImagen {
      */
     private LinkedList<ModeloImagen> Generar_lista_imagenes(String[] Huellas, String Foto, String Firma, ModeloPersona modeloPersona) {
         LinkedList<ModeloImagen> listaModeloImagenes = new LinkedList<>();
-        ModeloImagen modeloImagen = new ModeloImagen();
+
         //PROCESAMOS LAS HUELLAS 
         for (String huellas : Huellas) {
             if (!"".equals(huellas)) {
-                modeloImagen.setModelo_persona(modeloPersona);
-                modeloImagen.setTipo_imagen("Huella");
+                ModeloImagen modeloImagenHuella = new ModeloImagen();
+                modeloImagenHuella.setModelo_persona(modeloPersona);
+                modeloImagenHuella.setTipo_imagen("Huella");
                 String[] parteshuella = huellas.split(",");
-                modeloImagen.setImagen(parteshuella[0] + parteshuella[1]);
-                modeloImagen.setNumero_imagen(Integer.parseInt(parteshuella[2]));
-                modeloImagen.setEstado("S");
-                listaModeloImagenes.add(modeloImagen);
+                modeloImagenHuella.setImagen(parteshuella[0] + parteshuella[1]);
+                modeloImagenHuella.setNumero_imagen(Integer.parseInt(parteshuella[2]));
+                modeloImagenHuella.setEstado("S");
+                listaModeloImagenes.add(modeloImagenHuella);
             }
         }
         //PROCESAMOS LA FOTO 
         if (!"".equals(Foto)) {
-            modeloImagen.setModelo_persona(modeloPersona);
-            modeloImagen.setTipo_imagen("Foto");
-            modeloImagen.setImagen(Foto);
-            modeloImagen.setNumero_imagen(20);
-            modeloImagen.setEstado("S");
-            listaModeloImagenes.add(modeloImagen);
+            ModeloImagen modeloImagenFoto = new ModeloImagen();
+            modeloImagenFoto.setModelo_persona(modeloPersona);
+            modeloImagenFoto.setTipo_imagen("Foto");
+            modeloImagenFoto.setImagen(Foto);
+            modeloImagenFoto.setNumero_imagen(20);
+            modeloImagenFoto.setEstado("S");
+            listaModeloImagenes.add(modeloImagenFoto);
         }
         //PROCESAMOS LA FIRMA
         if (!"".equals(Firma)) {
-            modeloImagen.setModelo_persona(modeloPersona);
-            modeloImagen.setTipo_imagen("Firma");
-            modeloImagen.setImagen(Firma);
-            modeloImagen.setNumero_imagen(30);
-            modeloImagen.setEstado("S");
-            listaModeloImagenes.add(modeloImagen);
+            ModeloImagen modeloImagenFirma = new ModeloImagen();
+            modeloImagenFirma.setModelo_persona(modeloPersona);
+            modeloImagenFirma.setTipo_imagen("Firma");
+            modeloImagenFirma.setImagen(Firma);
+            modeloImagenFirma.setNumero_imagen(30);
+            modeloImagenFirma.setEstado("S");
+            listaModeloImagenes.add(modeloImagenFirma);
         }
         return listaModeloImagenes;
     }
@@ -90,7 +93,7 @@ public class ControladorImagen {
             con = conexion.abrirConexion();
             try {
                 SQL = con.prepareStatement("INSERT INTO `imagen`("
-                        + "`id_persona`,"                        
+                        + "`id_persona`,"
                         + "`tipo_imagen`,"
                         + "`numero_imagen`,"
                         + "`imagen`,"
@@ -100,21 +103,21 @@ public class ControladorImagen {
                 SQL.setString(2, modeloImagen.getTipo_imagen());
                 SQL.setInt(3, modeloImagen.getNumero_imagen());
                 SQL.setString(4, modeloImagen.getImagen());
-                SQL.setString(5, modeloImagen.getEstado());                
+                SQL.setString(5, modeloImagen.getEstado());
                 if (SQL.executeUpdate() > 0) {
-                    ControladorAuditoria auditoria = new ControladorAuditoria();
-                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                        if (generatedKeys.next()) {
-                            int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-                        }
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
+//                    ControladorAuditoria auditoria = new ControladorAuditoria();
+//                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+//                        if (generatedKeys.next()) {
+//                            int i = (int) generatedKeys.getLong(1);
+//                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+//                        }
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+//                    }
                 }
             } catch (SQLException e) {
-                System.out.println("Controladores.ControladorImagen.Insert() " + e );
+                System.out.println("Controladores.ControladorImagen.Insert() " + e);
                 resultado = "-2";
                 SQL.close();
                 con.close();

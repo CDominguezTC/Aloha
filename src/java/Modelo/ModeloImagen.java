@@ -5,6 +5,8 @@
  */
 package Modelo;
 
+import java.sql.Blob;
+
 /**
  *
  * @author Carlos A Dominguez D
@@ -31,7 +33,7 @@ public class ModeloImagen {
         this.imagen = imagen;
         this.estado = estado;
     }
-
+ 
     public Integer getId() {
         return id;
     }
@@ -79,7 +81,7 @@ public class ModeloImagen {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
-
+    
     public String getEstado() {
         return estado;
     }
