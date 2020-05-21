@@ -270,13 +270,14 @@ public class ControladorUsuario {
         if (request.getParameter("estado") != null) {
             estado = "N";
         }
+        StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-
-            out = "";
+                        
+            out += "";
             out += "<thead>";
             out += "<tr>";
             out += "<th>Nombre</th>";
@@ -286,6 +287,34 @@ public class ControladorUsuario {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
+            outsb.append(out);
+            for (ModeloUsuario modeloUsua : listmoUsr) {
+                                
+                outsb.append("<tr>");
+                outsb.append("<td>").append(modeloUsua.getNombre()).append("</td>");
+                outsb.append("<td>").append(modeloUsua.getLogin()).append("</td>");
+                outsb.append("<td>").append(modeloUsua.getPassword()).append("</td>");
+                outsb.append("<td class=\"text-center\">");
+                
+                // Boton Editar
+                outsb.append("<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"");
+                outsb.append("data-id=\"").append(modeloUsua.getId()).append("\"");
+                outsb.append("data-nombre=\"").append(modeloUsua.getNombre()).append("\"");
+                outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
+                outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
+                outsb.append("type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>");
+
+                //Boton Eliminar
+                outsb.append("<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"");
+                outsb.append("data-id=\"").append(modeloUsua.getId()).append("\"");
+                outsb.append("data-nombre=\"").append(modeloUsua.getNombre()).append("\"");
+                outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
+                outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
+                outsb.append("type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>");
+                outsb.append("</td>");
+                outsb.append("</tr>");
+            }
+            /*
             for (ModeloUsuario modeloUsua : listmoUsr) {
 
                 out += "<tr>";
@@ -311,13 +340,16 @@ public class ControladorUsuario {
                 out += "</tr>";
             }
             out += "</tbody>";
+            */            
+            outsb.append("</tbody>");
+            
 
         } catch (Exception e) {
 
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
 
-        return out;
+        return outsb.toString();
     }
 
     /**

@@ -28,10 +28,20 @@ public class ControladorPermisos {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
-
+    
+    /**
+     * Permite listar en un select los usuarios activos
+     *
+     * @author Julian A Aristizabal
+     * @param request
+     * @param response
+     * @return String
+     * @version: 21/05/2020
+     */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
 
             ControladorUsuario controladorU = new ControladorUsuario();
@@ -41,11 +51,11 @@ public class ControladorPermisos {
 
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
+            outsb.append(out);
             for (ModeloUsuario modeloUsua : listmoUsr) {
 
-                //out += "<tr>";
-                //<option value="1">JULIAN A. ARISTIZABAL</option>
-                out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
+                //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloUsua.getId()).append("\"> ").append(modeloUsua.getNombre()).append("</option>");
 
             }
             //out += "</select>";
@@ -55,12 +65,23 @@ public class ControladorPermisos {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
 
-        return out;
+        return outsb.toString();
     }
-
+    
+    /**
+     * Permite listar en un select los permisos asignados al usuario consultado
+     *
+     * @author Julian A Aristizabal
+     * @param request
+     * @param response
+     * @param usr
+     * @return String
+     * @version: 21/05/2020
+     */
     public String permisosAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
 
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloPermisos> listmoPer;
@@ -69,11 +90,11 @@ public class ControladorPermisos {
 
             out = "";
             //out += "<option value=\"\" disabled selected>Seleccione</option>";
+            outsb.append(out);
             for (ModeloPermisos modeloPer : listmoPer) {
 
-                //out += "<tr>";
-                //<option value="1">JULIAN A. ARISTIZABAL</option>
-                out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                //out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloPer.getId()).append("\"> ").append(modeloPer.getNombre()).append("</option>");
 
             }
             //out += "</select>";
@@ -83,12 +104,23 @@ public class ControladorPermisos {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
 
-        return out;
+        return outsb.toString();
     }
-
+    
+    /**
+     * Permite listar en un select los permisos no asignados al usuario consultado
+     *
+     * @author Julian A Aristizabal
+     * @param request
+     * @param response
+     * @param usr
+     * @return String
+     * @version: 21/05/2020
+     */
     public String permisosNoAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
 
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloPermisos> listmoPer;
@@ -97,11 +129,11 @@ public class ControladorPermisos {
 
             out = "";
             //out += "<option value=\"\" disabled selected>Seleccione</option>";
+            outsb.append(out);
             for (ModeloPermisos modeloPer : listmoPer) {
 
-                //out += "<tr>";
-                //<option value="1">JULIAN A. ARISTIZABAL</option>
-                out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                //out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloPer.getId()).append("\"> ").append(modeloPer.getNombre()).append("</option>");
 
             }
             //out += "</select>";
@@ -111,12 +143,22 @@ public class ControladorPermisos {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
 
-        return out;
+        return outsb.toString();
     }
-
+    
+    /**
+     * Permite listar en un select todos los permisos almacenados en la tabla
+     *
+     * @author Julian A Aristizabal
+     * @param request
+     * @param response
+     * @return String
+     * @version: 21/05/2020
+     */
     public String listarPermisosAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloPermisos> listmoPer;
@@ -125,11 +167,11 @@ public class ControladorPermisos {
 
             out = "";
             //out += "<option value=\"\" disabled selected>Seleccione</option>";
+            outsb.append(out);
             for (ModeloPermisos modeloPer : listmoPer) {
 
-                //out += "<tr>";
-                //<option value="1">JULIAN A. ARISTIZABAL</option>
-                out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                //out += "<option value=\"" + modeloPer.getId() + "\"> " + modeloPer.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloPer.getId()).append("\"> ").append(modeloPer.getNombre()).append("</option>");
 
             }
             //out += "</select>";
@@ -139,9 +181,17 @@ public class ControladorPermisos {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
 
-        return out;
+        return outsb.toString();
     }
-
+    
+    /**
+     * Permite listar la información de la tabla permiso que estan asignados
+     *
+     * @author Julian A Aristizabal
+     * @param usua
+     * @return LinkedList
+     * @version: 21/05/2020
+     */
     public LinkedList<ModeloPermisos> readPermisosAsig(String usua) {
 
         LinkedList<ModeloPermisos> modeloPer = new LinkedList<ModeloPermisos>();
@@ -172,7 +222,15 @@ public class ControladorPermisos {
         }
         return modeloPer;
     }
-
+    
+    /**
+     * Permite listar la información de la tabla permiso que no estan asignados
+     *
+     * @author Julian A Aristizabal
+     * @param usua
+     * @return LinkedList
+     * @version: 21/05/2020
+     */
     public LinkedList<ModeloPermisos> readPermisosNoAsig(String usua) {
 
         LinkedList<ModeloPermisos> modeloPer = new LinkedList<ModeloPermisos>();
@@ -201,7 +259,14 @@ public class ControladorPermisos {
         }
         return modeloPer;
     }
-
+    
+    /**
+     * Permite listar toda la información de la tabla permiso
+     *
+     * @author Julian A Aristizabal
+     * @return LinkedList
+     * @version: 21/05/2020
+     */
     public LinkedList<ModeloPermisos> readTodosP() {
 
         LinkedList<ModeloPermisos> modeloPer = new LinkedList<ModeloPermisos>();
@@ -229,7 +294,16 @@ public class ControladorPermisos {
         }
         return modeloPer;
     }
-
+    
+    /**
+     * Permite insertar los permisos configurados en la tabla permiso_x_usuario
+     *
+     * @author Julian A Aristizabal
+     * @param items[]
+     * @param usr
+     * @return String
+     * @version: 21/05/2020
+     */
     public String insertarPermisos(String[] items, String usr) {
 
         resultado = "false";
@@ -277,7 +351,15 @@ public class ControladorPermisos {
 
         return resultado;
     }
-
+    
+    /**
+     * Permite borrar los permisos en permiso_x_usuario del usuario seleccionado
+     *
+     * @author Julian A Aristizabal
+     * @param user
+     * @return boolean
+     * @version: 21/05/2020
+     */
     private boolean eliminoPermisos(String user) {
 
         con = conexion.abrirConexion();
@@ -303,7 +385,15 @@ public class ControladorPermisos {
 
         return false;
     }
-
+    
+    /**
+     * Permite seleccionar el id del permiso a insertar
+     *
+     * @author Julian A Aristizabal
+     * @param permiso
+     * @return int
+     * @version: 21/05/2020
+     */
     private int idPermiso(String permiso) {
 
         con = conexion.abrirConexion();
