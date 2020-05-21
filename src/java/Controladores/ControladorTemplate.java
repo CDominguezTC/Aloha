@@ -33,15 +33,20 @@ public class ControladorTemplate {
      * @param Template
      * @param IdTemplate
      * @param modelo
+     * @param opcion
      * @return
      */
-    public String Insert(String Template, String IdTemplate, ModeloPersona modelo) {
-        LinkedList<ModeloTemplate> listamodeloTemplate = new LinkedList<ModeloTemplate>();
+    public String Insert(String Template, String IdTemplate, ModeloPersona modelo, String opcion) {
+        LinkedList<ModeloTemplate> listamodeloTemplate = new LinkedList<>();
         listamodeloTemplate = Generar_lista_template(Template, IdTemplate, modelo);
-        for (ModeloTemplate modeloTemplate : listamodeloTemplate) {
-            if (modeloTemplate.getId() == null) {
-                resultado = Insert(modeloTemplate);
+        if (!listamodeloTemplate.isEmpty()) {
+            if ("Insert".equals(opcion)) {
+                resultado = Insert(listamodeloTemplate);
             }
+            if ("Update".equals(opcion)) {
+                resultado = Update(listamodeloTemplate);
+            }
+
         }
         return resultado;
     }
@@ -59,58 +64,52 @@ public class ControladorTemplate {
         String[] idtemplate = (IdTemplate.replace("[", "").replace("]", "")).split(",");
         String[] template = (Template.replace("[", "").replace("]", "")).split(",");
         for (int i = 0; i < idtemplate.length; i++) {
-            ModeloTemplate modeloTemplate = new ModeloTemplate();
-            modeloTemplate.setModelo_persona(modelo);
-            modeloTemplate.setNumero_plantilla(idtemplate[i]);
-            modeloTemplate.setPlantilla(template[i]);
-            modeloTemplate.setTipo_plantilla("Huella");
-            modeloTemplate.setEstado("S");
-            listaModeloTemplates.add(modeloTemplate);
+            if (!"".equals(idtemplate[i])) {
+                ModeloTemplate modeloTemplate = new ModeloTemplate();
+                modeloTemplate.setModelo_persona(modelo);
+                modeloTemplate.setNumero_plantilla(idtemplate[i]);
+                modeloTemplate.setPlantilla(template[i]);
+                modeloTemplate.setTipo_plantilla("Huella");
+                modeloTemplate.setEstado("S");
+                listaModeloTemplates.add(modeloTemplate);
+            }
         }
         return listaModeloTemplates;
     }
 
-    private String Insert(ModeloTemplate modeloTemplate) {
+    private String Insert(LinkedList<ModeloTemplate> listamodeloTemplate) {
         try {
             con = conexion.abrirConexion();
-            try {
-                SQL = con.prepareStatement("INSERT INTO `template`("
-                        + "`id_persona`,"
-                        + "`tipo_plantilla`,"
-                        + "`numero_plantilla`,"
-                        + "`plantilla`,"
-                        + "`estado`) "
-                        + "VALUE (?,?,?,?,?);");
-                SQL.setInt(1, modeloTemplate.getModelo_persona().getId());
-                SQL.setString(2, modeloTemplate.getTipo_plantilla());
-                SQL.setString(3, modeloTemplate.getNumero_plantilla());
-                SQL.setString(4, modeloTemplate.getPlantilla());
-                SQL.setString(5, modeloTemplate.getEstado());
-                if (SQL.executeUpdate() > 0) {
-//                    ControladorAuditoria auditoria = new ControladorAuditoria();
-//                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-//                        if (generatedKeys.next()) {
-//                            int i = (int) generatedKeys.getLong(1);
-//                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-//                        }
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-//                    }
+            for (ModeloTemplate modeloTemplate : listamodeloTemplate) {
+                try {
+                    SQL = con.prepareStatement("INSERT INTO `template`("
+                            + "`id_persona`,"
+                            + "`tipo_plantilla`,"
+                            + "`numero_plantilla`,"
+                            + "`plantilla`,"
+                            + "`estado`) "
+                            + "VALUE (?,?,?,?,?);");
+                    SQL.setInt(1, modeloTemplate.getModelo_persona().getId());
+                    SQL.setString(2, modeloTemplate.getTipo_plantilla());
+                    SQL.setString(3, modeloTemplate.getNumero_plantilla());
+                    SQL.setString(4, modeloTemplate.getPlantilla());
+                    SQL.setString(5, modeloTemplate.getEstado());
+                    if (SQL.executeUpdate() > 0) {
+                        resultado = "1";
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Controladores.ControladorImagen.Insert() " + e);
+                    resultado = "-2";
                 }
-            } catch (SQLException e) {
-                System.out.println("Controladores.ControladorImagen.Insert() " + e);
-                resultado = "-2";
-                SQL.close();
-                con.close();
             }
-        } catch (SQLException e) {
-            System.out.println("Controladores.ControladorImagen.Insert() " + e);
-            resultado = "-3";
+            SQL.close();
+            con.close();
+            return resultado;
+        } catch (SQLException ex) {
+            System.out.println("Controladores.ControladorImagen.Insert() " + ex);
         }
         return resultado;
     }
-
 
     public LinkedList<ModeloTemplate> getModelo(Integer id) {
         ControladorPersona controladorPersona = new ControladorPersona();
@@ -145,6 +144,40 @@ public class ControladorTemplate {
             System.out.println(e);
         }
         return listaModeloTemplates;
+    }
+
+    private String Update(LinkedList<ModeloTemplate> listaModeloTemplates) {
+        resultado = Delete(listaModeloTemplates);
+        if ("1".equals(resultado)) {
+            resultado = Insert(listaModeloTemplates);
+        }
+        return resultado;
+    }
+
+    private String Delete(LinkedList<ModeloTemplate> listaModeloTemplates) {
+        try {
+            con = conexion.abrirConexion();
+            for (ModeloTemplate modeloTemplate : listaModeloTemplates) {
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `template` "
+                            + "WHERE `id_persona` = ?;");
+                    SQL.setInt(1, modeloTemplate.getModelo_persona().getId());
+                    if (SQL.executeUpdate() > 0) {
+                        resultado = "1";
+                    }
+                    resultado = "1";
+                } catch (SQLException e) {
+                    System.out.println("Controladores.ControladorTemplate.Delete() " + e);
+                    resultado = "-2";
+                    SQL.close();
+                    con.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Controladores.ControladorTemplate.Delete() " + e);
+            resultado = "-3";
+        }
+        return resultado;
     }
 
 }

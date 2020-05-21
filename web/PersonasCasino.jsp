@@ -326,7 +326,8 @@
                                                     Firma 
                                                     CADD 19-05-2020
                                                     -->
-                                                    <div>
+                                                    <div style="display: none">
+                                                    <!--div-->                                                    
                                                         <div>
                                                             <input id="IdHuella_0" value="" name="Huella_0">
                                                             <input id="IdHuella_1" value="" name="Huella_1">
@@ -381,13 +382,13 @@
                                             <table id="datatable" class="table table-striped table-bordered">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>                                                        
-                                                        <th></th>
-                                                        <th></th>
-                                                        <th></th>
+                                                        <th>Cedula</th>            
+                                                        <th>Nombre</th>
+                                                        <th>Empresa</th>
+                                                        <th>CentroCosto</th>
+                                                        <th>GrupoConsumo</th>
+                                                        <th>Casino</th>
+                                                        <th>Opcion</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

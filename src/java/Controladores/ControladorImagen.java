@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,14 +29,18 @@ public class ControladorImagen {
 
     String user;
 
-    public String Insert(String[] Huellas, String Foto, String firma, ModeloPersona modelo) {
-        LinkedList<ModeloImagen> listamodeloImagenes = new LinkedList<ModeloImagen>();
+    public String Insert(String[] Huellas, String Foto, String firma, ModeloPersona modelo, String opcion) {
+        LinkedList<ModeloImagen> listamodeloImagenes = new LinkedList<>();
         listamodeloImagenes = Generar_lista_imagenes(Huellas, Foto, firma, modelo);
-        for (ModeloImagen modeloImagen : listamodeloImagenes) {
-            if (modeloImagen.getId() == null) {
-                resultado = Insert(modeloImagen);
+        if (!listamodeloImagenes.isEmpty()) {
+            if ("Insert".equals(opcion)) {
+                resultado = Insert(listamodeloImagenes);
+            }
+            if ("Update".equals(opcion)) {
+                resultado = Update(listamodeloImagenes);
             }
         }
+
         return resultado;
     }
 
@@ -60,7 +66,7 @@ public class ControladorImagen {
                 modeloImagenHuella.setModelo_persona(modeloPersona);
                 modeloImagenHuella.setTipo_imagen("Huella");
                 String[] parteshuella = huellas.split(",");
-                modeloImagenHuella.setImagen(parteshuella[0] + parteshuella[1]);
+                modeloImagenHuella.setImagen(parteshuella[0] + "," + parteshuella[1]);
                 modeloImagenHuella.setNumero_imagen(Integer.parseInt(parteshuella[2]));
                 modeloImagenHuella.setEstado("S");
                 listaModeloImagenes.add(modeloImagenHuella);
@@ -87,47 +93,6 @@ public class ControladorImagen {
             listaModeloImagenes.add(modeloImagenFirma);
         }
         return listaModeloImagenes;
-    }
-
-    private String Insert(ModeloImagen modeloImagen) {
-        try {
-            con = conexion.abrirConexion();
-            try {
-                SQL = con.prepareStatement("INSERT INTO `imagen`("
-                        + "`id_persona`,"
-                        + "`tipo_imagen`,"
-                        + "`numero_imagen`,"
-                        + "`imagen`,"
-                        + "`estado`) "
-                        + "VALUE (?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
-                SQL.setInt(1, modeloImagen.getModelo_persona().getId());
-                SQL.setString(2, modeloImagen.getTipo_imagen());
-                SQL.setInt(3, modeloImagen.getNumero_imagen());
-                SQL.setString(4, modeloImagen.getImagen());
-                SQL.setString(5, modeloImagen.getEstado());
-                if (SQL.executeUpdate() > 0) {
-//                    ControladorAuditoria auditoria = new ControladorAuditoria();
-//                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-//                        if (generatedKeys.next()) {
-//                            int i = (int) generatedKeys.getLong(1);
-//                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-//                        }
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
-//                    }
-                }
-            } catch (SQLException e) {
-                System.out.println("Controladores.ControladorImagen.Insert() " + e);
-                resultado = "-2";
-                SQL.close();
-                con.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Controladores.ControladorImagen.Insert() " + e);
-            resultado = "-3";
-        }
-        return resultado;
     }
 
     public LinkedList<ModeloImagen> getListaModelo(Integer id) {
@@ -163,5 +128,74 @@ public class ControladorImagen {
             System.out.println(e);
         }
         return listaModeloImagens;
+    }
+
+    private String Insert(LinkedList<ModeloImagen> listamodeloImagenes) {
+        try {
+            con = conexion.abrirConexion();
+            for (ModeloImagen modeloImagen : listamodeloImagenes) {
+                try {
+                    SQL = con.prepareStatement("INSERT INTO `imagen`("
+                            + "`id_persona`,"
+                            + "`tipo_imagen`,"
+                            + "`numero_imagen`,"
+                            + "`imagen`,"
+                            + "`estado`) "
+                            + "VALUE (?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
+                    SQL.setInt(1, modeloImagen.getModelo_persona().getId());
+                    SQL.setString(2, modeloImagen.getTipo_imagen());
+                    SQL.setInt(3, modeloImagen.getNumero_imagen());
+                    SQL.setString(4, modeloImagen.getImagen());
+                    SQL.setString(5, modeloImagen.getEstado());
+                    if (SQL.executeUpdate() > 0) {
+                        resultado = "1";
+                    }
+                } catch (SQLException e) {
+                    System.out.println("Controladores.ControladorImagen.Insert() " + e);
+                    resultado = "-2";
+                }
+            }
+            SQL.close();
+            con.close();
+            return resultado;
+        } catch (SQLException ex) {
+            System.out.println("Controladores.ControladorImagen.Insert() " + ex);
+        }
+        return resultado;
+    }
+
+    private String Update(LinkedList<ModeloImagen> listamodeloImagenes) {
+        resultado = Delete(listamodeloImagenes);
+        if ("1".equals(resultado)) {
+            resultado = Insert(listamodeloImagenes);
+
+        }
+        return resultado;
+    }
+
+    private String Delete(LinkedList<ModeloImagen> listamodeloImagenes) {
+        try {
+            con = conexion.abrirConexion();
+            for (ModeloImagen modeloImagen : listamodeloImagenes) {
+                try {
+                    SQL = con.prepareStatement("DELETE FROM `imagen` "
+                            + "WHERE `id_persona` = ? ;");
+                    SQL.setInt(1, modeloImagen.getModelo_persona().getId());
+                    if (SQL.executeUpdate() > 0) {
+                        resultado = "1";
+                    }
+                    resultado = "1";
+                } catch (SQLException e) {
+                    System.out.println("Controladores.ControladorImagen.Delete() " + e);
+                    resultado = "-2";
+                }
+            }
+            SQL.close();
+            con.close();
+            return resultado;
+        } catch (SQLException ex) {
+            System.out.println("Controladores.ControladorImagen.Insert() " + ex);
+        }
+        return resultado;
     }
 }

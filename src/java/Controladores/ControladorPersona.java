@@ -9,6 +9,7 @@ import Conexiones.ConexionBdMysql;
 import Herramienta.Herramienta;
 import Modelo.ModeloImagen;
 import Modelo.ModeloPersona;
+import Modelo.ModeloTemplate;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
@@ -243,8 +244,10 @@ public class ControladorPersona {
                     + "id_empresa_trabaja, "
                     + "id_grupo_consumo"
                     + " FROM persona"
-                    + " WHERE identificacion = ? ");
+                    + " WHERE identificacion = ? AND "
+                    + "estado = ?");
             SQL.setString(1, request.getParameter("cedula"));
+            SQL.setString(2, "S");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 modelo.setId(res.getInt("id"));
@@ -327,12 +330,30 @@ public class ControladorPersona {
                 String Template = request.getParameter("templates10");
                 String Foto = request.getParameter("foto");
                 String firma = request.getParameter("firma");
-                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i));             
-                resultado = controladorTemplate.Insert(Template,IdTemplate,getModelo(i));             
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Insert");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Insert");
             }
         } else {
             modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
             resultado = UpdateCasino(modeloPersona);
+            if ("1".equals(resultado)) {
+                String[] Huellas = {request.getParameter("huella0"),
+                    request.getParameter("huella1"),
+                    request.getParameter("huella2"),
+                    request.getParameter("huella3"),
+                    request.getParameter("huella4"),
+                    request.getParameter("huella5"),
+                    request.getParameter("huella6"),
+                    request.getParameter("huella7"),
+                    request.getParameter("huella8"),
+                    request.getParameter("huella9")};
+                String IdTemplate = request.getParameter("idtemplates");
+                String Template = request.getParameter("templates10");
+                String Foto = request.getParameter("foto");
+                String firma = request.getParameter("firma");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i),"Update");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Update");
+            }
         }
         return resultado;
     }
@@ -390,13 +411,70 @@ public class ControladorPersona {
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
-                //Campos de Imagenes y templates
+                //Campos de Imagenes
                 if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
                     for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
-                        
+                        if (modeloImagen.getNumero_imagen() == 0) {
+                            out += "data-huella_0=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 1) {
+                            out += "data-huella_1=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 2) {
+                            out += "data-huella_2=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 3) {
+                            out += "data-huella_3=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 4) {
+                            out += "data-huella_4=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 5) {
+                            out += "data-huella_5=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 6) {
+                            out += "data-huella_6=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 7) {
+                            out += "data-huella_7=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 8) {
+                            out += "data-huella_8=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 9) {
+                            out += "data-huella_9=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        //Campos de Imagenes foto
+                        if (modeloImagen.getNumero_imagen() == 20) {
+                            out += "data-foto=\"" + modeloImagen.getImagen() + "\"";
+                        }
+                        //Campos de Imagenes firma                
+                        if (modeloImagen.getNumero_imagen() == 30) {
+                            out += "data-firma=\"" + modeloImagen.getImagen() + "\"";
+                        }
                     }
                 }
-                
+                //Campos de templates
+                String IdTemplates = "";
+                String Templates_10 = "";
+                int c = 0;
+                if (modeloPersonas.getLista_Modelo_Template() != null) {
+                    for (ModeloTemplate modeloTemplate : modeloPersonas.getLista_Modelo_Template()) {
+                        if (c == 0) {
+                            IdTemplates = modeloTemplate.getNumero_plantilla();
+                            Templates_10 = modeloTemplate.getPlantilla();
+                            c++;
+                        } else {
+                            IdTemplates = IdTemplates + "," + modeloTemplate.getNumero_plantilla();
+                            Templates_10 = Templates_10 + "," + modeloTemplate.getPlantilla();
+                            c++;
+                        }
+                    }
+                    IdTemplates = "[" + IdTemplates + "]";
+                    Templates_10 = "[" + Templates_10 + "]";
+                }
+                out += "data-idtemplate=\"[" + IdTemplates + "]\"";
+                out += "data-template10=\"" + Templates_10 + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
@@ -491,8 +569,8 @@ public class ControladorPersona {
                 modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
                 //estos son los datos multimedia pendient por implmentar 
                 modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
-                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));                
-                
+                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
+
                 listaModeloPersonas.add(modelo);
             }
             res.close();
@@ -547,11 +625,12 @@ public class ControladorPersona {
                     + "id_centro_costo, "
                     + "id_cargo, "
                     + "id_empresa_trabaja, "
-                    + "id_grupo_consumo"
-                    + " FROM persona"
-                    + " WHERE identificacion = ? ");
+                    + "id_grupo_consumo "
+                    + "FROM persona "
+                    + "WHERE identificacion = ? AND "
+                    + "estado = ?");
             SQL.setString(1, cedula);
-
+            SQL.setString(2, "S");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
 
@@ -585,6 +664,9 @@ public class ControladorPersona {
                 modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
                 modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
                 modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+                //estos son los datos multimedia pendient por implmentar 
+                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
+                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
             }
             res.close();
             SQL.close();
@@ -709,8 +791,10 @@ public class ControladorPersona {
                     SQL.setInt(7, modeloPersona.getModelo_centro_costo().getId());
                     SQL.setInt(8, modeloPersona.getModelo_empresa_trabaja().getId());
                     SQL.setInt(9, modeloPersona.getModelo_grupo_consumo().getId());
+                    SQL.setInt(10, modeloPersona.getId());                    
                 }
                 if (SQL.executeUpdate() > 0) {
+                    i = modeloPersona.getId();
                     resultado = "1";
                     SQL.close();
                     con.close();
