@@ -515,7 +515,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorPersonas.Insert(request);
+                            Resultado = controladorPersonas.Insert(request, response);
                             break;
                         case "Search":
                             Resultado = controladorPersonas.Search(request);
@@ -525,7 +525,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             Accion = "Plano";
                             break;
                         case "Delete":
-                            Resultado = controladorPersonas.Delete(request);
+                            Resultado = controladorPersonas.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorPersonas.Read(request, response);
@@ -661,19 +661,19 @@ public class ServletAlohaTiempos extends HttpServlet {
 //                    controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
 //                    Accion = "Plano";
 //                    break;
-                case "BuscarPersona":
-                    ModeloPersona modeloPersonas = new ModeloPersona();
-                    ControladorPersona controladorPersonas1 = new ControladorPersona();
-                    modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
-                    request.setAttribute("id", modeloPersonas.getId());
-                    request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
-                    request.setAttribute("cedula", modeloPersonas.getIdentificacion());
-                    request.setAttribute("observacion", modeloPersonas.getObservaciones());
-                    RequestDispatcher rd;
-                    rd = request.getRequestDispatcher("RegistroCargos.jsp");
-                    rd.forward(request, response);
-                    Accion = "Plano";
-                    break;
+//                case "BuscarPersona":
+//                    ModeloPersona modeloPersonas = new ModeloPersona();                    
+//                    ControladorPersona controladorPersonas1 = new ControladorPersona();
+//                    modeloPersonas = controladorPersonas1.GetPersonaCedula(request, response);
+//                    request.setAttribute("id", modeloPersonas.getId());
+//                    request.setAttribute("nombre", modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos());
+//                    request.setAttribute("cedula", modeloPersonas.getIdentificacion());
+//                    request.setAttribute("observacion", modeloPersonas.getObservacion());
+//                    RequestDispatcher rd;
+//                    rd = request.getRequestDispatcher("RegistroCargos.jsp");
+//                    rd.forward(request, response);
+//                    Accion = "Plano";
+//                    break;
                 case "UtilidadesJSP":
                     //ControladorCargos controladorCargos = new ControladorCargo ();
                     Accion = request.getParameter("accion");

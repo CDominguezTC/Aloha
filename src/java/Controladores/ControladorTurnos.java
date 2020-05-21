@@ -587,12 +587,13 @@ public class ControladorTurnos {
                     + "descuenta_break, "
                     + "turno_extra, "
                     + "turno_noche "
-                    + "FROM turnotiempos "
+                    + "FROM turno_tiempo "
                     + "WHERE id = ? "
                     + "ORDER BY descripcion");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloTurnos.setId(res.getInt("id"));
                 modeloTurnos.setCodigo(res.getString("codigo"));
                 modeloTurnos.setDescripcion(res.getString("descripcion"));
@@ -625,7 +626,10 @@ public class ControladorTurnos {
                 modeloTurnos.setTurno_noche(res.getString("turno_noche"));
                 modeloTurnos.setTurno_extra(res.getString("turno_extra"));
                 modeloTurnos.setDescuentaBreak(res.getString("descuenta_break"));
+            } else {
+                modeloTurnos.setId(0);
             }
+
             res.close();
             SQL.close();
             con.close();

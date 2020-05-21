@@ -121,10 +121,10 @@ public class ControladorCiudad {
                 } else {
                     SQL = con.prepareStatement("UPDATE ciudad SET "
                             + "codigo = ?, "
-                            + "nombre = ? "                            
+                            + "nombre = ? "
                             + " WHERE id = ? ");
                     SQL.setString(1, modeloCiudad.getCodigo());
-                    SQL.setString(2, modeloCiudad.getNombre());                    
+                    SQL.setString(2, modeloCiudad.getNombre());
                     SQL.setInt(3, modeloCiudad.getId());
                 }
 
@@ -264,7 +264,7 @@ public class ControladorCiudad {
      * @return String
      * @version: 14/05/2020
      */
-    public ModeloCiudad getModelo(Integer Id) throws SQLException {
+    public ModeloCiudad getModelo(Integer Id) {
         ModeloCiudad modeloCiudad = new ModeloCiudad();
         con = conexion.abrirConexion();
         try {
@@ -276,11 +276,14 @@ public class ControladorCiudad {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloCiudad.setId(res.getInt("id"));
                 modeloCiudad.setCodigo(res.getString("codigo"));
                 modeloCiudad.setNombre(res.getString("nombre"));
                 modeloCiudad.setEstado(res.getString("estado"));
+            } else {
+                modeloCiudad.setId(0);
             }
             res.close();
             SQL.close();

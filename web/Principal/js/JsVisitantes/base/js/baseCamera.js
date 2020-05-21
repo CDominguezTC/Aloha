@@ -137,11 +137,13 @@ function saveCapture(type, previewWidth, previewHeight)
         img.src = imgData;
         $("#preview").append(img);
         var base64String = imgData.substr(22); //取得base64字串
+        
+        $("#IdSRCImagen").val(imgData);
+        
         $("#capturePhoto").val(base64String);
         $("#capturePhoto1").val(base64String);
 
-        var strin = img.src;
-        alert(strin);
+        
         
         document.getElementById("IdImagen").src =img.src;
 

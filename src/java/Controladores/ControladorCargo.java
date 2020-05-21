@@ -169,7 +169,7 @@ public class ControladorCargo {
      * @return String
      * @version: 15/05/2020
      */
-    public ModeloCargo getModelo(Integer Id) throws SQLException {
+    public ModeloCargo getModelo(Integer Id) {
         ModeloCargo modeloCargo = new ModeloCargo();
         con = conexion.abrirConexion();
         try {
@@ -181,11 +181,14 @@ public class ControladorCargo {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloCargo.setId(res.getInt("id"));
                 modeloCargo.setCodigo(res.getString("codigo"));
                 modeloCargo.setNombre(res.getString("nombre"));
                 modeloCargo.setEstado(res.getString("estado"));
+            } else {
+                modeloCargo.setId(0);
             }
             res.close();
             SQL.close();
@@ -213,7 +216,7 @@ public class ControladorCargo {
                     + "nombre, "
                     + "estado "
                     + "FROM cargo "
-                    + "WHERE estado = ?" );
+                    + "WHERE estado = ?");
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
@@ -261,14 +264,14 @@ public class ControladorCargo {
             out += "<tbody>";
             for (ModeloCargo modeloCargos : listmoCargos) {
                 out += "<tr>";
-                out += "<td>" + modeloCargos.getCodigo()+ "</td>";
-                out += "<td>" + modeloCargos.getNombre()+ "</td>";
+                out += "<td>" + modeloCargos.getCodigo() + "</td>";
+                out += "<td>" + modeloCargos.getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
                 out += "data-id=\"" + modeloCargos.getId() + "\"";
-                out += "data-codigo=\"" + modeloCargos.getCodigo()+ "\"";
-                out += "data-nombre=\"" + modeloCargos.getNombre()+ "\"";
+                out += "data-codigo=\"" + modeloCargos.getCodigo() + "\"";
+                out += "data-nombre=\"" + modeloCargos.getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";

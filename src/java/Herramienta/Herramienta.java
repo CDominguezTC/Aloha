@@ -98,4 +98,17 @@ public class Herramienta {
         return sDate;
     }
 
+    /**
+     * Validamos si el string esta null
+     *
+     * @param string
+     * @return
+     */
+    public String validaString(String string) {
+        if (string == null) {
+            string = "0";
+        }
+        return string;
+    }
+
 }

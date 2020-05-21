@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>Servlet.LoginServlet</servlet-class>
+        <servlet-class>Servlet.LoginServlet</servlet-class>        
     </servlet>
     <servlet-mapping>
         <servlet-name>ServletAlohaTiempos</servlet-name>

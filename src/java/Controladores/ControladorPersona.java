@@ -6,7 +6,10 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Herramienta.Herramienta;
+import Modelo.ModeloImagen;
 import Modelo.ModeloPersona;
+import Modelo.ModeloTemplate;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.sql.Connection;
@@ -14,8 +17,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.StringTokenizer;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import sun.nio.cs.ext.GB18030;
 
 /**
@@ -31,10 +36,21 @@ public class ControladorPersona {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
-    ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
-    ControladorCentro_costo controladorCentroCosto = new ControladorCentro_costo();
-    ControladorGrupo_consumo controladorGrupoConsumo = new ControladorGrupo_consumo();
-    ControladorCargo controladorCargos = new ControladorCargo();
+    String user;
+    ControladorDependencia controladorDependencia = new ControladorDependencia();
+    ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
+    ControladorGrupoTurnos controladorGrupo_horario = new ControladorGrupoTurnos();
+    ControladorTurnos controladorTurno_tiempo = new ControladorTurnos();
+    ControladorDepartamento controladorDepartamento = new ControladorDepartamento();
+    ControladorArea controladorArea = new ControladorArea();
+    ControladorCiudad controladorCiudad = new ControladorCiudad();
+    ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
+    ControladorCargo controladorCargo = new ControladorCargo();
+    ControladorGrupo_consumo controladorGrupo_consumo = new ControladorGrupo_consumo();
+    ControladorImagen controladorImagen = new ControladorImagen();
+    ControladorTemplate controladorTemplate = new ControladorTemplate();
+    Herramienta herramienta = new Herramienta();
+    int i;
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd
@@ -45,11 +61,11 @@ public class ControladorPersona {
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert(HttpServletRequest request) {
+    public String Insert(HttpServletRequest request, HttpServletResponse response) {
         String Modulo = request.getParameter("modulo");
         switch (Modulo) {
             case "Casino":
-                resultado = InsertCasino(request);
+                resultado = InsertCasino(request, response);
                 break;
         }
         return resultado;
@@ -65,30 +81,12 @@ public class ControladorPersona {
      * @return String
      * @version: 07/05/2020
      */
-    public String Delete(HttpServletRequest request) {
+    public String Delete(HttpServletRequest request, HttpServletResponse response) {
         if (!"".equals(request.getParameter("id"))) {
-            String idtmp = request.getParameter("id");
-            ModeloPersona modelo = new ModeloPersona();
-            modelo.setId(Integer.parseInt(request.getParameter("id")));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("DELETE FROM `persona` "
-                            + "WHERE `Id` = ?;");
-                    SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "2";
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-4";
-                }
-                SQL.close();
-                con.close();
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
-            }
+            ModeloPersona modeloPersona = new ModeloPersona();
+            modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
+            modeloPersona.setEstado("N");
+            resultado = UpdateCasino(modeloPersona);
         }
         return resultado;
     }
@@ -125,32 +123,71 @@ public class ControladorPersona {
         ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`tipoIdentificacion`,"
-                    + "`identificacion`,"
-                    + "`nombres`,"
-                    + "`apellidos`,"
-                    + "`Id_EmpresaTrabaja`,"
-                    + "`centroCostoId`,"
-                    + "`observaciones`,"
-                    + "`consumocasino`,"
-                    + "`grupoConsumo`"
-                    + "FROM `persona`"
-                    + "WHERE id = ?;");
+            SQL = con.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo"
+                    + " FROM persona"
+                    + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 modelo.setId(res.getInt("id"));
-                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
                 modelo.setNombres(res.getString("nombres"));
                 modelo.setApellidos(res.getString("apellidos"));
-                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
-                modelo.setObservaciones(res.getString("observaciones"));
-                modelo.setConsumocasino(res.getString("consumocasino"));
-                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(res.getString("id_empresa_trabaja"))));
+                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
             }
             res.close();
             SQL.close();
@@ -176,32 +213,73 @@ public class ControladorPersona {
         ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`tipoIdentificacion`,"
-                    + "`identificacion`,"
-                    + "`nombres`,"
-                    + "`apellidos`,"
-                    + "`Id_EmpresaTrabaja`,"
-                    + "`centroCostoId`,"
-                    + "`observaciones`,"
-                    + "`consumocasino`,"
-                    + "`grupoConsumo`"
-                    + "FROM `persona`"
-                    + " WHERE identificacion = ?;");
+            SQL = con.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo"
+                    + " FROM persona"
+                    + " WHERE identificacion = ? AND "
+                    + "estado = ?");
             SQL.setString(1, request.getParameter("cedula"));
+            SQL.setString(2, "S");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 modelo.setId(res.getInt("id"));
-                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setTipo_identificacion(res.getString("tipoIdentificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
                 modelo.setNombres(res.getString("nombres"));
                 modelo.setApellidos(res.getString("apellidos"));
-                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
-                modelo.setObservaciones(res.getString("observaciones"));
-                modelo.setConsumocasino(res.getString("consumocasino"));
-                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+                modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(res.getString("id_empresa_trabaja"))));
+                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
             }
             res.close();
             SQL.close();
@@ -221,115 +299,60 @@ public class ControladorPersona {
      * @return String
      * @version: 07/05/2020
      */
-    private String InsertCasino(HttpServletRequest request) {
+    private String InsertCasino(HttpServletRequest request, HttpServletResponse response) {
+
+        ModeloPersona modeloPersona = new ModeloPersona();
+        modeloPersona.setTipo_identificacion(request.getParameter("tipodoc"));
+        modeloPersona.setIdentificacion(request.getParameter("cedula"));
+        modeloPersona.setNombres(request.getParameter("nombre"));
+        modeloPersona.setApellidos(request.getParameter("apellido"));
+        modeloPersona.setObservacion(request.getParameter("observacion"));
+        modeloPersona.setConsumo_casino(request.getParameter("consumo"));
+        modeloPersona.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
+        modeloPersona.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(request.getParameter("empresa"))));
+        modeloPersona.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
         if ("".equals(request.getParameter("id"))) {
-            ModeloPersona modelo = new ModeloPersona();
-            modelo.setId(0);
-            modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
-            modelo.setIdentificacion(request.getParameter("cedula"));
-            modelo.setNombres(request.getParameter("nombre"));
-            modelo.setApellidos(request.getParameter("apellido"));
-            modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
-            modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
-            modelo.setConsumocasino(request.getParameter("consumo"));
-            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
-            modelo.setObservaciones(request.getParameter("observacion"));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("INSERT INTO `persona`("
-                            + "`tipoIdentificacion`,"
-                            + "`identificacion`,"
-                            + "`nombres`,"
-                            + "`apellidos`,"
-                            + "`Id_EmpresaTrabaja`,"
-                            + "`centroCostoId`,"
-                            + "`observaciones`,"
-                            + "`consumocasino`,"
-                            + "`grupoConsumo`)"
-                            + " VALUE (?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
-                    SQL.setString(1, modelo.getTipoIdentificacion());
-                    SQL.setString(2, modelo.getIdentificacion());
-                    SQL.setString(3, modelo.getNombres());
-                    SQL.setString(4, modelo.getApellidos());
-                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
-                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
-                    SQL.setString(7, modelo.getObservaciones());
-                    SQL.setString(8, modelo.getConsumocasino());
-                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
-                    if (SQL.executeUpdate() > 0) {
-                        ControladorAuditoria auditoria = new ControladorAuditoria();
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int) generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "persona", request.getParameter("nombreU"), i, "Se inserto el registro personacasino.");
-                            }
-                        }
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
+            resultado = InsertCasino(modeloPersona);
+            if ("1".equals(resultado)) {
+                String[] Huellas = {request.getParameter("huella0"),
+                    request.getParameter("huella1"),
+                    request.getParameter("huella2"),
+                    request.getParameter("huella3"),
+                    request.getParameter("huella4"),
+                    request.getParameter("huella5"),
+                    request.getParameter("huella6"),
+                    request.getParameter("huella7"),
+                    request.getParameter("huella8"),
+                    request.getParameter("huella9")};
+                String IdTemplate = request.getParameter("idtemplates");
+                String Template = request.getParameter("templates10");
+                String Foto = request.getParameter("foto");
+                String firma = request.getParameter("firma");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Insert");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Insert");
             }
         } else {
-            ModeloPersona modelo = new ModeloPersona();
-            modelo.setId(Integer.parseInt(request.getParameter("id")));
-            modelo.setTipoIdentificacion(request.getParameter("tipodoc"));
-            modelo.setIdentificacion(request.getParameter("cedula"));
-            modelo.setNombres(request.getParameter("nombre"));
-            modelo.setApellidos(request.getParameter("apellido"));
-            modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(request.getParameter("empresa"))));
-            modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
-            modelo.setConsumocasino(request.getParameter("consumo"));
-            modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
-            modelo.setObservaciones(request.getParameter("observacion"));
-
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("UPDATE `persona`  SET "
-                            + "`tipoIdentificacion` = ?,"
-                            + "`identificacion` = ?,"
-                            + "`nombres` = ?,"
-                            + "`apellidos` = ?,"
-                            + "`Id_EmpresaTrabaja` = ?,"
-                            + "`centroCostoId` = ?,"
-                            + "`observaciones` = ?,"
-                            + "`consumocasino` = ?,"
-                            + "`grupoConsumo` = ?"
-                            + " WHERE `Id` = ?;");
-                    SQL.setString(1, modelo.getTipoIdentificacion());
-                    SQL.setString(2, modelo.getIdentificacion());
-                    SQL.setString(3, modelo.getNombres());
-                    SQL.setString(4, modelo.getApellidos());
-                    SQL.setInt(5, modelo.getModeloEmpresa().getId());
-                    SQL.setInt(6, modelo.getModeloCentroCosto().getId());
-                    SQL.setString(7, modelo.getObservaciones());
-                    SQL.setString(8, modelo.getConsumocasino());
-                    SQL.setInt(9, modelo.getModeloGrupoConsumo().getId());
-                    SQL.setInt(10, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
+            modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = UpdateCasino(modeloPersona);
+            if ("1".equals(resultado)) {
+                String[] Huellas = {request.getParameter("huella0"),
+                    request.getParameter("huella1"),
+                    request.getParameter("huella2"),
+                    request.getParameter("huella3"),
+                    request.getParameter("huella4"),
+                    request.getParameter("huella5"),
+                    request.getParameter("huella6"),
+                    request.getParameter("huella7"),
+                    request.getParameter("huella8"),
+                    request.getParameter("huella9")};
+                String IdTemplate = request.getParameter("idtemplates");
+                String Template = request.getParameter("templates10");
+                String Foto = request.getParameter("foto");
+                String firma = request.getParameter("firma");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i),"Update");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Update");
             }
         }
         return resultado;
@@ -346,11 +369,10 @@ public class ControladorPersona {
      * @version: 07/05/2020
      */
     private String ReadCasino(HttpServletRequest request, HttpServletResponse response) {
-        String cedula = request.getParameter("cedula");
         String out = null;
         try {
             LinkedList<ModeloPersona> listaPersonas = new LinkedList<ModeloPersona>();
-            listaPersonas = Read(cedula);
+            listaPersonas = Read("S");
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -368,10 +390,10 @@ public class ControladorPersona {
                 out += "<tr>";
                 out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
                 out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
-                out += "<td>" + modeloPersonas.getModeloEmpresa().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModeloCentroCosto().getNombre()+ "</td>";
-                out += "<td>" + modeloPersonas.getModeloGrupoConsumo().getNombre()+ "</td>";
-                if ("1".equals(modeloPersonas.getCalienteSiNo())) {
+                out += "<td>" + modeloPersonas.getModelo_empresa_trabaja().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_grupo_consumo().getNombre() + "</td>";
+                if ("1".equals(modeloPersonas.getConsumo_casino())) {
                     out += "<td>No</td>";
                 } else {
                     out += "<td>Si</td>";
@@ -380,51 +402,84 @@ public class ControladorPersona {
                 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
                 out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
                 out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
                 out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
+                out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
+                out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
+                //Campos de Imagenes
+                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
+                    for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
+                        if (modeloImagen.getNumero_imagen() == 0) {
+                            out += "data-huella_0=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 1) {
+                            out += "data-huella_1=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 2) {
+                            out += "data-huella_2=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 3) {
+                            out += "data-huella_3=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 4) {
+                            out += "data-huella_4=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 5) {
+                            out += "data-huella_5=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 6) {
+                            out += "data-huella_6=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 7) {
+                            out += "data-huella_7=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 8) {
+                            out += "data-huella_8=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        if (modeloImagen.getNumero_imagen() == 9) {
+                            out += "data-huella_9=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+                        }
+                        //Campos de Imagenes foto
+                        if (modeloImagen.getNumero_imagen() == 20) {
+                            out += "data-foto=\"" + modeloImagen.getImagen() + "\"";
+                        }
+                        //Campos de Imagenes firma                
+                        if (modeloImagen.getNumero_imagen() == 30) {
+                            out += "data-firma=\"" + modeloImagen.getImagen() + "\"";
+                        }
+                    }
+                }
+                //Campos de templates
+                String IdTemplates = "";
+                String Templates_10 = "";
+                int c = 0;
+                if (modeloPersonas.getLista_Modelo_Template() != null) {
+                    for (ModeloTemplate modeloTemplate : modeloPersonas.getLista_Modelo_Template()) {
+                        if (c == 0) {
+                            IdTemplates = modeloTemplate.getNumero_plantilla();
+                            Templates_10 = modeloTemplate.getPlantilla();
+                            c++;
+                        } else {
+                            IdTemplates = IdTemplates + "," + modeloTemplate.getNumero_plantilla();
+                            Templates_10 = Templates_10 + "," + modeloTemplate.getPlantilla();
+                            c++;
+                        }
+                    }
+                    IdTemplates = "[" + IdTemplates + "]";
+                    Templates_10 = "[" + Templates_10 + "]";
+                }
+                out += "data-idtemplate=\"[" + IdTemplates + "]\"";
+                out += "data-template10=\"" + Templates_10 + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipoIdentificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModeloEmpresa().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModeloCentroCosto().getId() + "\"";
-                out += "data-grupoconsumo=\"" + modeloPersonas.getModeloGrupoConsumo().getId() + "\"";
-                out += "data-consume=\"" + modeloPersonas.getConsumocasino() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservaciones() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
                 out += "</td>";
                 out += "</tr>";
             }
@@ -442,55 +497,79 @@ public class ControladorPersona {
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloPersona> Read(String cedula) {
+    private LinkedList<ModeloPersona> Read(String estado) {
         LinkedList<ModeloPersona> listaModeloPersonas = new LinkedList<ModeloPersona>();
         con = conexion.abrirConexion();
         try {
-            if (cedula == null) {
-                SQL = con.prepareStatement("SELECT "
-                        + "`id`,"
-                        + "`tipoIdentificacion`,"
-                        + "`identificacion`,"
-                        + "`nombres`,"
-                        + "`apellidos`,"
-                        + "`Id_EmpresaTrabaja`,"
-                        + "`centroCostoId`,"
-                        + "`observaciones`,"
-                        + "`consumocasino`,"
-                        + "`grupoConsumo`"
-                        + "FROM `persona`;");
-            }
-            if (cedula != null) {
-                SQL = con.prepareStatement("SELECT "
-                        + "`id`,"
-                        + "`tipoIdentificacion`,"
-                        + "`identificacion`,"
-                        + "`nombres`,"
-                        + "`apellidos`,"
-                        + "`Id_EmpresaTrabaja`,"
-                        + "`centroCostoId`,"
-                        + "`observaciones`,"
-                        + "`consumocasino`,"
-                        + "`grupoConsumo`"
-                        + "FROM `persona`"
-                        + "WHERE `identificacion` = ? ;");
-                SQL.setString(1, cedula);
-            }
-
+            SQL = con.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo "
+                    + " FROM persona "
+                    + "WHERE `estado` = ? ;");
+            SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloPersona modelo = new ModeloPersona();
                 modelo.setId(res.getInt("id"));
-                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
                 modelo.setNombres(res.getString("nombres"));
                 modelo.setApellidos(res.getString("apellidos"));
-                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
-                modelo.setObservaciones(res.getString("observaciones"));
-                modelo.setConsumocasino(res.getString("consumocasino"));
-                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
-                //modelo.setListModeloCargoses (controladorCargos.getListModelo (modelo.getId ()));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
+                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+                //estos son los datos multimedia pendient por implmentar 
+                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
+                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
 
                 listaModeloPersonas.add(modelo);
             }
@@ -513,48 +592,81 @@ public class ControladorPersona {
      * @version: 08/05/2020
      */
     public String Search(HttpServletRequest request) {
-        String Modulo = request.getParameter("modulo");
-        switch (Modulo) {
-            case "Casino":
-                resultado = SearchCasino(request);
-                break;
-        }
-        return resultado;
-    }
-
-    public String SearchCasino(HttpServletRequest request) {
         String cedula = request.getParameter("cedula");
         ModeloPersona modelo = new ModeloPersona();
         con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "`id`,"
-                    + "`tipoIdentificacion`,"
-                    + "`identificacion`,"
-                    + "`nombres`,"
-                    + "`apellidos`,"
-                    + "`Id_EmpresaTrabaja`,"
-                    + "`centroCostoId`,"
-                    + "`observaciones`,"
-                    + "`consumocasino`,"
-                    + "`grupoConsumo`"
-                    + "FROM `persona`"
-                    + "WHERE `identificacion` = ? ;");
+            SQL = con.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo "
+                    + "FROM persona "
+                    + "WHERE identificacion = ? AND "
+                    + "estado = ?");
             SQL.setString(1, cedula);
-
+            SQL.setString(2, "S");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
 
                 modelo.setId(res.getInt("id"));
-                modelo.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
                 modelo.setNombres(res.getString("nombres"));
                 modelo.setApellidos(res.getString("apellidos"));
-                modelo.setModeloEmpresa(controladorEmpresas.getModelo(Integer.parseInt(res.getString("Id_EmpresaTrabaja"))));
-                modelo.setModeloCentroCosto(controladorCentroCosto.getModelo(Integer.parseInt(res.getString("centroCostoId"))));
-                modelo.setObservaciones(res.getString("observaciones"));
-                modelo.setConsumocasino(res.getString("consumocasino"));
-                modelo.setModeloGrupoConsumo(controladorGrupoConsumo.getModelo(Integer.parseInt(res.getString("grupoConsumo"))));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
+                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+                //estos son los datos multimedia pendient por implmentar 
+                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
+                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
             }
             res.close();
             SQL.close();
@@ -564,5 +676,140 @@ public class ControladorPersona {
         }
         resultado = new Gson().toJson(modelo);
         return resultado;
+    }
+
+    private String InsertCasino(ModeloPersona modeloPersona) {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("INSERT INTO persona("
+                        + "tipo_identificacion, "
+                        + "identificacion, "
+                        + "nombres, "
+                        + "apellidos, "
+                        + "email, "
+                        + "direccion, "
+                        + "telefono, "
+                        + "rh, "
+                        + "tipo_persona, "
+                        + "recibe_visitas, "
+                        + "nombre_eps, "
+                        + "nombre_arl, "
+                        + "acceso_restringido, "
+                        + "observacion, "
+                        + "consumo_casino, "
+                        + "tarjeta_acceso, "
+                        + "codigo_nomina, "
+                        + "estado, "
+                        + "id_centro_costo, "
+                        + "id_empresa_trabaja, "
+                        + "id_grupo_consumo)"
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
+                SQL.setString(1, modeloPersona.getTipo_identificacion());
+                SQL.setString(2, modeloPersona.getIdentificacion());
+                SQL.setString(3, modeloPersona.getNombres());
+                SQL.setString(4, modeloPersona.getApellidos());
+                SQL.setString(5, modeloPersona.getEmail());
+                SQL.setString(6, modeloPersona.getDireccion());
+                SQL.setString(7, modeloPersona.getTelefono());
+                SQL.setString(8, modeloPersona.getRh());
+                SQL.setString(9, modeloPersona.getTipo_persona());
+                SQL.setString(10, modeloPersona.getRecibe_visitas());
+                SQL.setString(11, modeloPersona.getNombre_eps());
+                SQL.setString(12, modeloPersona.getNombre_arl());
+                SQL.setString(13, modeloPersona.getAcceso_restringido());
+                SQL.setString(14, modeloPersona.getObservacion());
+                SQL.setString(15, modeloPersona.getConsumo_casino());
+                SQL.setString(16, modeloPersona.getTarjeta_acceso());
+                SQL.setString(17, modeloPersona.getCodigo_nomina());
+                SQL.setString(18, "S");
+                SQL.setInt(19, modeloPersona.getModelo_centro_costo().getId());
+                SQL.setInt(20, modeloPersona.getModelo_empresa_trabaja().getId());
+                SQL.setInt(21, modeloPersona.getModelo_grupo_consumo().getId());
+                if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en Controladorpersona" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en Controladorpersona" + e);
+            resultado = "-3";
+        }
+        return resultado;
+
+    }
+
+    /**
+     * Actualiza los datos en la base de datos de la tabla:persona
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 19/05/2020
+     */
+    public String UpdateCasino(ModeloPersona modeloPersona) {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                if ("N".equals(modeloPersona.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE persona SET "
+                            + " estado = ? "
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloPersona.getEstado());
+                    SQL.setInt(2, modeloPersona.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE persona SET "
+                            + "tipo_identificacion = ?, "
+                            + "identificacion = ?, "
+                            + "nombres = ?, "
+                            + "apellidos = ?, "
+                            + "observacion = ?, "
+                            + "consumo_casino = ?, "
+                            + "id_centro_costo = ?, "
+                            + "id_empresa_trabaja = ?, "
+                            + "id_grupo_consumo = ? "
+                            + "WHERE id = ? ");
+                    SQL.setString(1, modeloPersona.getTipo_identificacion());
+                    SQL.setString(2, modeloPersona.getIdentificacion());
+                    SQL.setString(3, modeloPersona.getNombres());
+                    SQL.setString(4, modeloPersona.getApellidos());
+                    SQL.setString(5, modeloPersona.getObservacion());
+                    SQL.setString(6, modeloPersona.getConsumo_casino());
+                    SQL.setInt(7, modeloPersona.getModelo_centro_costo().getId());
+                    SQL.setInt(8, modeloPersona.getModelo_empresa_trabaja().getId());
+                    SQL.setInt(9, modeloPersona.getModelo_grupo_consumo().getId());
+                    SQL.setInt(10, modeloPersona.getId());                    
+                }
+                if (SQL.executeUpdate() > 0) {
+                    i = modeloPersona.getId();
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Controladores.ControladorPersonas.UpdateCasino() " + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Controladores.ControladorPersonas.UpdateCasino() " + e);
+            resultado = "-3";
+        }
+        return resultado;
+
     }
 }

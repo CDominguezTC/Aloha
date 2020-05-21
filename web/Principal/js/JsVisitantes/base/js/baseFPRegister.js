@@ -544,16 +544,20 @@ function storeDataToHtml()
 	{
 		//将手指标记数据保存到页面
 		$("#fingerId").val("["+fingerIdArray.toString()+"]");
+		$("#IdTemplate").val("["+fingerIdArray.toString()+"]");
 	}
 	//没有指纹模板数据
 	if(templateDataArray.length == 0)
 	{
 		$("#fingerTemplate10").val(" ");
+		$("#IdTemplate_10").val(" ");
+                
 	}
 	else
 	{
 		//将指纹模板数据保存到页面
 		$("#fingerTemplate10").val("["+templateDataArray.toString()+"]");
+		$("#IdTemplate_10").val("["+templateDataArray.toString()+"]");
 	}
 }
 /**
@@ -584,8 +588,10 @@ function showFPCount(text)
  */
 function getDataFromPage() 
 {
-    var fingerId = $("#fingerId").val();
-    var fingerTemplate = $("#fingerTemplate10").val();
+    //var fingerId = $("#fingerId").val();
+    //var fingerTemplate = $("#fingerTemplate10").val();
+    var fingerId = $("#IdTemplate").val();
+    var fingerTemplate = $("#IdTemplate_10").val();
     //如果有数据
     if($.trim(fingerId) != "")
     {
@@ -633,6 +639,48 @@ var delFPData = function(result, context, browserFlag)
 				{
 					//fingerIdArray.remove(i);
 					//templateDataArray.remove(i);
+                                        //CADD
+                                        if (fpIdNum === 0)
+                                        {
+                                            $("#IdHuella_0").val('');
+                                        }
+                                        if (fpIdNum === 1)
+                                        {
+                                            $("#IdHuella_1").val('');
+                                        }
+                                        if (fpIdNum === 2)
+                                        {
+                                            $("#IdHuella_2").val('');
+                                        }
+                                        if (fpIdNum === 3)
+                                        {
+                                            $("#IdHuella_3").val('');
+                                        }
+                                        if (fpIdNum === 4)
+                                        {
+                                            $("#IdHuella_4").val('');
+                                        }
+                                        if (fpIdNum === 5)
+                                        {
+                                            $("#IdHuella_5").val('');
+                                        }
+                                        if (fpIdNum === 6)
+                                        {
+                                            $("#IdHuella_6").val('');
+                                        }
+                                        if (fpIdNum === 7)
+                                        {
+                                            $("#IdHuella_7").val('');
+                                        }
+                                        if (fpIdNum === 8)
+                                        {
+                                            $("#IdHuella_8").val('');
+                                        }
+                                        if (fpIdNum === 9)
+                                        {
+                                            $("#IdHuella_9").val('');
+                                        }                                        
+                                        //CADD
 					removeItem(fingerIdArray, i);
 					removeItem(templateDataArray, i);
 				}
@@ -1297,7 +1345,7 @@ function getFPTemplate(paramArray, flag)
 					if(templateDataArray.length > 0)
 					{
 						//发送请求，进行后台指纹比对
-						compareRet = fpComparision(fpTemplate, templateDataArray, paramArray[3]);
+						//compareRet = fpComparision(fpTemplate, templateDataArray, paramArray[3]);
 					}
 					if($.trim(compareRet) == "dllNotExist")
 					{

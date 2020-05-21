@@ -5,220 +5,6 @@ $(function () {
 
 $(function () {
 
-
-
-    /*
-     Tomar una fotografÃ­a y guardarla en un archivo v3
-     @date 2018-10-22
-     @author parzibyte
-     @web parzibyte.me/blog
-     */
-    const tieneSoporteUserMedia = () =>
-        !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia)
-    const _getUserMedia = (...arguments) =>
-        (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) || navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments);
-// Declaramos elementos del DOM
-    const $video = document.querySelector("#video"),
-            $canvas = document.querySelector("#canvas"),
-            $estado = document.querySelector("#estado"),
-            $boton = document.querySelector("#boton"),
-            $listaDeDispositivos = document.querySelector("#listaDeDispositivos");
-    const limpiarSelect = () => {
-        for (let x = $listaDeDispositivos.options.length - 1; x >= 0; x--)
-            $listaDeDispositivos.remove(x);
-    };
-    const obtenerDispositivos = () => navigator
-                .mediaDevices
-                .enumerateDevices();
-// La funciÃ³n que es llamada despuÃ©s de que ya se dieron los permisos
-// Lo que hace es llenar el select con los dispositivos obtenidos
-    const llenarSelectConDispositivosDisponibles = () => {
-
-        limpiarSelect();
-        obtenerDispositivos()
-                .then(dispositivos => {
-                    const dispositivosDeVideo = [];
-                    dispositivos.forEach(dispositivo => {
-                        const tipo = dispositivo.kind;
-                        if (tipo === "videoinput") {
-                            dispositivosDeVideo.push(dispositivo);
-                        }
-                    });
-                    // Vemos si encontramos algÃºn dispositivo, y en caso de que si, entonces llamamos a la funciÃ³n
-                    if (dispositivosDeVideo.length > 0) {
-                        // Llenar el select
-                        dispositivosDeVideo.forEach(dispositivo => {
-                            const option = document.createElement('option');
-                            option.value = dispositivo.deviceId;
-                            option.text = dispositivo.label;
-                            $listaDeDispositivos.appendChild(option);
-                        });
-                    }
-                });
-    }
-
-    (function () {
-// Comenzamos viendo si tiene soporte, si no, nos detenemos
-        if (!tieneSoporteUserMedia()) {
-            alert("Lo siento. Tu navegador no soporta esta caracterÃ­stica");
-            $estado.innerHTML = "Parece que tu navegador no soporta esta caracterÃ­stica. Intenta actualizarlo.";
-            return;
-        }
-//AquÃ­ guardaremos el stream globalmente
-        let stream;
-        // Comenzamos pidiendo los dispositivos
-        obtenerDispositivos()
-                .then(dispositivos => {
-                    // Vamos a filtrarlos y guardar aquÃ­ los de vÃ­deo
-                    const dispositivosDeVideo = [];
-                    // Recorrer y filtrar
-                    dispositivos.forEach(function (dispositivo) {
-                        const tipo = dispositivo.kind;
-                        if (tipo === "videoinput") {
-                            dispositivosDeVideo.push(dispositivo);
-                        }
-                    });
-                    // Vemos si encontramos algÃºn dispositivo, y en caso de que si, entonces llamamos a la funciÃ³n
-                    // y le pasamos el id de dispositivo
-                    if (dispositivosDeVideo.length > 0) {
-                        // Mostrar stream con el ID del primer dispositivo, luego el usuario puede cambiar
-                        mostrarStream(dispositivosDeVideo[0].deviceId);
-                    }
-                });
-        const mostrarStream = idDeDispositivo => {
-            _getUserMedia({
-                video: {
-                    // Justo aquÃ­ indicamos cuÃ¡l dispositivo usar
-                    deviceId: idDeDispositivo,
-                }
-            },
-                    (streamObtenido) => {
-                // AquÃ­ ya tenemos permisos, ahora sÃ­ llenamos el select,
-                // pues si no, no nos darÃ­a el nombre de los dispositivos
-                llenarSelectConDispositivosDisponibles();
-                // Escuchar cuando seleccionen otra opciÃ³n y entonces llamar a esta funciÃ³n
-                $listaDeDispositivos.onchange = () => {
-                    // Detener el stream
-                    if (stream) {
-                        stream.getTracks().forEach(function (track) {
-                            track.stop();
-                        });
-                    }
-                    // Mostrar el nuevo stream con el dispositivo seleccionado
-                    mostrarStream($listaDeDispositivos.value);
-                }
-
-                // Simple asignaciÃ³n
-                stream = streamObtenido;
-                // Mandamos el stream de la cÃ¡mara al elemento de vÃ­deo
-                $video.srcObject = stream;
-                $video.play();
-                //Escuchar el click del botÃ³n para tomar la foto
-                //Escuchar el click del botÃ³n para tomar la foto
-//                $boton.addEventListener("click", function () {
-//
-//                    //Pausar reproducciÃ³n
-//                    $video.pause();
-//
-//                    //Obtener contexto del canvas y dibujar sobre Ã©l
-//                    let contexto = $canvas.getContext("2d");
-//                    $canvas.width = $video.videoWidth;
-//                    $canvas.height = $video.videoHeight;
-//                    contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-//
-//                    var foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-//                    alert(foto);
-//
-//                    var data = {
-//                        foto: foto                        
-//                    };
-//                    alert(data);
-//                    $.ajax({
-//                        type: "GET",
-//                        url: "prueba",
-//                        data: data,
-//                        success: function (resul, textStatus, jqXHR)
-//                        {
-//                            alert(resul);
-//                        },
-//                        error: function (jqXHR, textStatus, errorThrown) {
-//                            disableGif();
-//                            if (jqXHR.status === 0) {
-//                                alert('Not connect: Verify Network.');
-//                            } else if (jqXHR.status === 404) {
-//                                alert('Requested page not found [404]');
-//                            } else if (jqXHR.status === 500) {
-//                                alert('Internal Server Error [500].');
-//                            } else if (textStatus === 'parsererror') {
-//                                alert('Requested JSON parse failed.');
-//                            } else if (textStatus === 'timeout') {
-//                                alert('Time out error.');
-//                            } else if (textStatus === 'abort') {
-//                                alert('Ajax request aborted.');
-//                            } else {
-//                                alert('Uncaught Error: ' + jqXHR.responseText);
-//                            }
-//                        }
-//                    });
-//
-//
-//
-//
-//
-//                    //Reanudar reproducciÃ³n
-//                    $video.play();
-//                });
-            }, (error) => {
-                console.log("Permiso denegado o error: ", error);
-                $estado.innerHTML = "No se puede acceder a la cÃ¡mara, o no diste permiso.";
-            });
-        }
-    })();
-
-
-    $('#IdTomarFoto').click(function (e) {
-        $video.pause();
-        //Obtener contexto del canvas y dibujar sobre Ã©l
-        var contexto = $canvas.getContext("2d");
-        $canvas.width = $video.videoWidth;
-        $canvas.height = $video.videoHeight;
-        contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-        var  foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-        
-        var data = {
-            foto: foto
-        };        
-        $.ajax({
-            type: "POST",
-            url: "prueba",
-            data: data,
-            success: function (resul, textStatus, jqXHR)
-            {
-                alert(resul);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                disableGif();
-                if (jqXHR.status === 0) {
-                    alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                    alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                    alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                    alert('Ajax request aborted.');
-                } else {
-                    alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-            }
-        });
-        $video.play();
-    });
-
-
     $(document).ready(function () {
         LoadTabla();
         validacionBtn();
@@ -244,17 +30,105 @@ $(function () {
                 success: function (resul, textStatus, jqXHR)
                 {
                     disableGif();
-                    if (resul.id !== 0) {
+
+                    if (Object.keys(resul).length !== 0) {
                         $('#Id').val(resul.id);
-                        $('#IdTipoDoc').val(resul.tipoIdentificacion);
+                        $('#IdTipoDoc').val(resul.tipo_identificacion);
                         $('#IdCedula').val(resul.identificacion);
                         $('#IdNombre').val(resul.nombres);
                         $('#IdApellido').val(resul.apellidos);
-                        $('#IdEmpresa').val(resul.modeloEmpresa.id);
-                        $('#IdCentroCosto').val(resul.modeloCentroCosto.id);
-                        $('#IdConsume').val(resul.consumocasino);
-                        $('#IdGrupoConsumo').val(resul.modeloGrupoConsumo.id);
-                        $('#IdObservacion').val(resul.observaciones);
+                        $('#IdEmpresa').val(resul.Modelo_empresa_trabaja.id);
+                        $('#IdCentroCosto').val(resul.Modelo_centro_costo.id);
+                        $('#IdConsume').val(resul.consumo_casino);
+                        $('#IdGrupoConsumo').val(resul.Modelo_grupo_consumo.id);
+                        $('#IdObservacion').val(resul.observacion);
+                        //Imagenes
+                        var imagenes = resul.Lista_Modelo_Imagenes;
+                        if (Object.keys(imagenes).length !== 0)
+                        {
+                            for (var i = 0; i < imagenes.length; i++)
+                            {
+                                var imagen = imagenes[i];
+                                if (imagen.numero_imagen === 0)
+                                {
+                                    $('#IdHuella_0').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 1)
+                                {
+                                    $('#IdHuella_1').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 2)
+                                {
+                                    $('#IdHuella_2').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 3)
+                                {
+                                    $('#IdHuella_3').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 4)
+                                {
+                                    $('#IdHuella_4').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 5)
+                                {
+                                    $('#IdHuella_5').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 6)
+                                {
+                                    $('#IdHuella_6').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 7)
+                                {
+                                    $('#IdHuella_7').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 8)
+                                {
+                                    $('#IdHuella_8').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 9)
+                                {
+                                    $('#IdHuella_9').val(imagen.imagen + "," + imagen.numero_imagen);
+                                }
+                                if (imagen.numero_imagen === 20)
+                                {
+                                    $('#IdSRCImagen').val(imagen.imagen);
+                                    var img = document.createElement('img');
+                                    img.src = imagen.imagen;
+                                    document.getElementById("IdImagen").src = img.src;
+                                }
+                                if (imagen.numero_imagen === 30)
+                                {
+                                    $('#IdFirmaBase64').val(imagen.imagen);
+                                }
+                            }
+                        }
+                        //Template
+                        var idtemplates;
+                        var templat10;
+                        var c = 0;
+                        var lista_template = resul.Lista_Modelo_Template;
+                        if (Object.keys(lista_template).length !== 0)
+                        {
+                            for (var i = 0; i < lista_template.length; i++)
+                            {
+                                var template = lista_template[i];
+                                if (c === 0) {
+                                    idtemplates = template.numero_plantilla;
+                                    templat10 = template.plantilla;
+                                    c++;
+                                } else
+                                {
+                                    idtemplates = idtemplates + "," + template.numero_plantilla;
+                                    templat10 = templat10 + "," + template.plantilla;
+                                    c++;
+                                }
+
+                            }
+                            idtemplates = "[" + idtemplates + "]";
+                            templat10 = "[" + templat10 + "]";
+                            $('#IdTemplate').val(idtemplates);
+                            $('#IdTemplate_10').val(templat10);
+                        }
                     } else
                     {
                         $('#Id').val('');
@@ -308,6 +182,24 @@ $(function () {
         $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
         $('#IdObservacionOld').val($(this).data('observacion'));
         $('#IdObservacion').val($(this).data('observacion'));
+        //datos de imagnes foto
+        $('#IdSRCImagen').val($(this).data('foto'));
+        //datos de imagnes firma
+        $('#IdFirmaBase64').val($(this).data('firma'));
+        //datos de imagnes huellas
+        $('#IdHuella_0').val($(this).data('huella_0'));
+        $('#IdHuella_1').val($(this).data('huella_1'));
+        $('#IdHuella_2').val($(this).data('huella_2'));
+        $('#IdHuella_3').val($(this).data('huella_3'));
+        $('#IdHuella_4').val($(this).data('huella_4'));
+        $('#IdHuella_5').val($(this).data('huella_5'));
+        $('#IdHuella_6').val($(this).data('huella_6'));
+        $('#IdHuella_7').val($(this).data('huella_7'));
+        $('#IdHuella_8').val($(this).data('huella_8'));
+        $('#IdHuella_9').val($(this).data('huella_9'));
+        //datos de templates
+        $('#IdTemplate').val("[" + $(this).data('idtemplate') + "]");
+        $('#IdTemplate_10').val($(this).data('template10'));
     });
     $(document).on('click', '.SetFormularioId', function () {
         $('#Id').val($(this).data('id'));
@@ -547,17 +439,32 @@ $(function () {
     function ValidaCampo() {
 
         var res = false;
-        if ($('#IdCedula').val() !== "")
+        if ($('#IdTipoDoc').val() !== null)
         {
-            if ($('#IdNombre').val() !== "")
+            if ($('#IdEmpresa').val() !== "0")
             {
-                if ($('#IdApellido').val() !== "")
+                if ($('#IdCentroCosto').val() !== "0")
                 {
-                    if ($('#IdConsume').val() !== "0")
+                    if ($('#IdGrupoConsumo').val() !== "0")
                     {
-                        if ($('#IdGrupoConsumo').val() !== "0")
+                        if ($('#IdConsume').val() !== null)
                         {
-                            res = true;
+                            if ($('#IdCedula').val() !== "")
+                            {
+                                if ($('#IdNombre').val() !== "")
+                                {
+                                    if ($('#IdApellido').val() !== "")
+                                    {
+                                        if ($('#IdConsume').val() !== "0")
+                                        {
+                                            if ($('#IdGrupoConsumo').val() !== "0")
+                                            {
+                                                res = true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -587,12 +494,32 @@ $(function () {
         $('#IdGrupoConsumoOld').val('');
         $('#IdObservacion').val('');
         $('#IdObservacionOld').val('');
+
+        $('#IdHuella_0').val('');
+        $('#IdHuella_1').val('');
+        $('#IdHuella_2').val('');
+        $('#IdHuella_3').val('');
+        $('#IdHuella_4').val('');
+        $('#IdHuella_5').val('');
+        $('#IdHuella_6').val('');
+        $('#IdHuella_7').val('');
+        $('#IdHuella_8').val('');
+        $('#IdHuella_9').val('');
+
+        $('#IdTemplate').val('');
+        $('#IdTemplate_10').val('');
+
+        $('#IdSRCImagen').val('');
+        $('#IdFirmaBase64').val('');
+
+        $('#IdImagen').src('Principal/images/user.png');
     }
 
     $('#IdAgregar').click(function (e) {
 
         LimpiarCampos();
     });
+
     $('#IdGuardar').click(function (e) {
 
         if (ValidaCampo() === true) {
@@ -609,6 +536,21 @@ $(function () {
             var Consumo = $('#IdConsume').val();
             var GrupoConsumo = $('#IdGrupoConsumo').val();
             var Observacion = $('#IdObservacion').val();
+            //Datos multimedia
+            var Huella_0 = $('#IdHuella_0').val();
+            var Huella_1 = $('#IdHuella_1').val();
+            var Huella_2 = $('#IdHuella_2').val();
+            var Huella_3 = $('#IdHuella_3').val();
+            var Huella_4 = $('#IdHuella_4').val();
+            var Huella_5 = $('#IdHuella_5').val();
+            var Huella_6 = $('#IdHuella_6').val();
+            var Huella_7 = $('#IdHuella_7').val();
+            var Huella_8 = $('#IdHuella_8').val();
+            var Huella_9 = $('#IdHuella_9').val();
+            var Templates_10 = $('#IdTemplate_10').val();
+            var IdTemplates = $('#IdTemplate').val();
+            var Foto = $('#IdSRCImagen').val();
+            var Firma = $('#IdFirmaBase64').val();
             var Accion = "Upload";
             var Modulo = "Casino";
             var data = {
@@ -623,6 +565,20 @@ $(function () {
                 consumo: Consumo,
                 grupoconsumo: GrupoConsumo,
                 observacion: Observacion,
+                huella0: Huella_0,
+                huella1: Huella_1,
+                huella2: Huella_2,
+                huella3: Huella_3,
+                huella4: Huella_4,
+                huella5: Huella_5,
+                huella6: Huella_6,
+                huella7: Huella_7,
+                huella8: Huella_8,
+                huella9: Huella_9,
+                templates10: Templates_10,
+                idtemplates: IdTemplates,
+                foto: Foto,
+                firma: Firma,
                 accion: Accion,
                 nombreU: NamUs,
                 modulo: Modulo
@@ -948,7 +904,8 @@ $(function () {
             url: "ServletAlohaTiempos",
             data: data,
             success: function (resul, textStatus, jqXHR) {
-
+                disableGif();
+                LoadTabla();
                 //console.log("Auditoria realizada");
                 /*Swal.fire({
                  icon: 'success',
@@ -1056,38 +1013,38 @@ $(function () {
             {
                 disableGif();
                 $('#datatable').html(resul);
-//                $('#datatable').dataTable({
-//                    responsive: true,
-//                    language: {
-//                        "decimal": "",
-//                        "emptyTable": "No hay información",
-//                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-//                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-//                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-//                        "infoPostFix": "",
-//                        "thousands": ",",
-//                        "lengthMenu": "Mostrar _MENU_ Entradas",
-//                        "loadingRecords": "Cargando...",
-//                        "processing": "Procesando...",
-//                        "search": "Buscar:",
-//                        "zeroRecords": "Sin resultados encontrados",
-//                        "paginate": {
-//                            "first": "Primero",
-//                            "last": "Ultimo",
-//                            "next": "Siguiente",
-//                            "previous": "Anterior"
-//                        }
-//                    }
-//                    , "autoWidth": false
-//                    , "destroy": true
-//                    , "info": true
-//                    , "JQueryUI": true
-//                    , "ordering": true
-//                    , "paging": true
-//                    , "scrollY": "500px"
-//                    , "scrollCollapse": true
-//
-//                });
+                $('#datatable').dataTable({
+                    responsive: true,
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                    , "autoWidth": false
+                    , "destroy": true
+                    , "info": true
+                    , "JQueryUI": true
+                    , "ordering": true
+                    , "paging": true
+                    , "scrollY": "500px"
+                    , "scrollCollapse": true
+
+                });
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 disableGif();

@@ -41,7 +41,6 @@ public class ControladorCentro_costo {
      * @return String
      * @version: 07/05/2020
      */
-    
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         ModeloCentro_costo modeloCentro_costo = new ModeloCentro_costo();
@@ -51,7 +50,7 @@ public class ControladorCentro_costo {
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
-            resultado = Insert(modeloCentro_costo);            
+            resultado = Insert(modeloCentro_costo);
         } else {
             modeloCentro_costo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloCentro_costo);
@@ -80,13 +79,13 @@ public class ControladorCentro_costo {
                 SQL.setString(2, modeloCentro_costo.getNombre());
                 SQL.setString(3, "S");
                 if (SQL.executeUpdate() > 0) {
-                      ControladorAuditoria auditoria = new ControladorAuditoria();
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int) generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-                            }
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
+                    }
                     resultado = "1";
                     SQL.close();
                     con.close();
@@ -190,11 +189,15 @@ public class ControladorCentro_costo {
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
-            while (res.next()) {
+            if (res.next()) {
+                res.first();
                 modeloCentro_costo.setId(res.getInt("id"));
                 modeloCentro_costo.setCodigo(res.getString("codigo"));
                 modeloCentro_costo.setNombre(res.getString("nombre"));
                 modeloCentro_costo.setEstado(res.getString("estado"));
+
+            } else {
+                modeloCentro_costo.setId(0);
             }
             res.close();
             SQL.close();
