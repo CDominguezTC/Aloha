@@ -22,6 +22,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import sun.misc.BASE64Decoder;
+import org.xvolks.jnative.JNative;
+import org.xvolks.jnative.Type;
 
 /**
  *
@@ -435,38 +437,25 @@ public class ControladorVisita {
         return out;
     }
 
-    public boolean GuardarImagen(String FotoBase64, String Documento) throws IOException {
+    public static String CompararTemplates(String Template_Vivo, String Template_Bd) throws Exception {
+        JNative commNative;
+        String ret;
+        StringBuffer regTemplateBuf;
+        StringBuffer verTemplateBuf;
+        commNative = null;
+        ret = "";
+        regTemplateBuf = new StringBuffer();
+        verTemplateBuf = new StringBuffer();
+        regTemplateBuf.append(Template_Vivo.replace("\"", ""));
+        verTemplateBuf.append(Template_Bd);
+        commNative = new JNative("matchdll", "process");
+        commNative.setRetVal(Type.INT);
+        commNative.setParameter(0, Type.STRING, regTemplateBuf.toString());
+        commNative.setParameter(1, Type.STRING, verTemplateBuf.toString());
+        commNative.invoke();
+        ret = commNative.getRetVal();
 
-        BufferedImage image = null;
-        byte[] imageByte = null;
-
-        BASE64Decoder decoder = new BASE64Decoder();
-
-        imageByte = decoder.decodeBuffer(FotoBase64);
-
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-        try {
-            image = ImageIO.read(bis);
-            bis.close();
-            String Barra = "92";
-            int d = Integer.parseInt(Barra);
-            char x = (char) (d);
-            String RutaCompleta = null;
-
-            RutaCompleta = "RUTA " + Documento + ".bmp";
-
-            System.out.println(RutaCompleta);
-
-            // write the image to a file
-            File outputfile = new File(RutaCompleta);
-            ImageIO.write(image, "bmp", outputfile);
-
-        } catch (Exception e) {
-            System.out.println(e);
-            bis.close();
-        }
-
-        return true;
+        return ret;
     }
 
 }

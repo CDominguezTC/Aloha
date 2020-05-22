@@ -29,22 +29,24 @@ $(function () {
                 modulo: Modulo,
                 accion: Accion
             };
-            enableGif();
+            // enableGif();
             $.ajax({
                 type: "POST",
                 url: "ServletAlohaTiempos",
                 data: data,
                 success: function (resul, textStatus, jqXHR)
                 {
-                    disableGif();
+                    // disableGif();
                     if (resul.id !== 0) {
                         //$('#Id').val(resul.id);
                         $('#IdTipoDoc').val(resul.tipoIdentificacion);
                         $('#IdDocumento').val(resul.identificacion);
                         $('#IdNombre').val(resul.nombres + ' ' + resul.apellidos);
-                        /*$('#IdApellido').val(resul.apellidos);
-                         $('#IdEmpresa').val(resul.modeloEmpresa.id);
-                         $('#IdCentroCosto').val(resul.modeloCentroCosto.id);
+                        
+                         $('#id_empresa_visitante').val(resul.Modelo_empresa_trabaja.id);
+                         $('#id_empresa_ssocial').val(resul.Modelo_empresa_seguridad_social.id);
+                        MostrarImagen(); 
+                         /*$('#IdCentroCosto').val(resul.modeloCentroCosto.id);
                          $('#IdConsume').val(resul.consumocasino);
                          $('#IdGrupoConsumo').val(resul.modeloGrupoConsumo.id);
                          $('#IdObservacion').val(resul.observaciones); */
@@ -61,7 +63,7 @@ $(function () {
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
+                    //   disableGif();
                     if (jqXHR.status === 0) {
                         alert('Not connect: Verify Network.');
                     } else if (jqXHR.status === 404) {
@@ -82,18 +84,28 @@ $(function () {
         });
     });
 
-    function enableGif() {
-
-        window.onload = document.getElementById("espera").style = "display: block";
-        window.onload = document.getElementById("Principal").style = "display: none";
+    function MostrarImagen()
+    {
+        //var contenedor = document.createElementById('FotoPersona');
+        var img = document.createElement('img');
+        img.setAttribute("src", "Principal/images/1130679787.bmp");
+        //img.setAttribute("width", "100");
+        //img.setAttribute("height", "100");
+        document.getElementById('FotoPersona').src = img.src
     }
 
-    function disableGif() {
-
-        window.onload = document.getElementById("espera").style = "display: none";
-        window.onload = document.getElementById("Principal").style = "display: enable";
-    }
-
+    /*function enableGif() {
+     
+     window.onload = document.getElementById("espera").style = "display: block";
+     window.onload = document.getElementById("Principal").style = "display: none";
+     }
+     
+     function disableGif() {
+     
+     window.onload = document.getElementById("espera").style = "display: none";
+     window.onload = document.getElementById("Principal").style = "display: enable";
+     }
+     */
 
 });
 
