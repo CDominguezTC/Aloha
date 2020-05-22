@@ -391,11 +391,7 @@ input {
     color:expression(this.type=="text"? red:"style");
     }
 */
-.tableStyle input[type="text"],input[type="password"],input[type=null] {
-	height: 22px;
-	line-height: 22px;
-	width: 142px;
-}
+
 .tableStyle select{
 	height: 24px;
 	line-height: 24px;

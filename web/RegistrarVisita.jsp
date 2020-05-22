@@ -4,6 +4,9 @@
     Author     : Frankie
 --%>
 
+<%@page import="Controladores.ControladorEmpresa"%>
+<%@page import="Modelo.ModeloEmpresa"%>
+<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +14,7 @@
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesVisita.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesEnumeracion.js" ></script> 
         <!-- Kit FontAwesome para Botones (Mientras) -->
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <style>
@@ -82,105 +86,133 @@
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>
-                                            <div class="x_content">
 
-                                                <form id="empleados_form"> 
+                                            <div align="center" id="espera" style="display: none">
+                                                <img src="Principal/images/loading_dash.gif">                                                            
+                                            </div>
+                                            <div id="Principal">
 
-                                                    <div class="row">
+                                                <div class="x_content">
 
-                                                        <!--div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_id">Tipo Documento</label>
-                                                            <select id="tipo_id" class="form-control" required>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1">CEDULA DE CIUDADANIA</option>
-                                                            </select>
-                                                        </div -->
+                                                    <form id="empleados_form"> 
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="Documento">Documento</label>
-                                                            <input type="text" class="form-control" id="IdDocumento" name="Documento" min="0" required>
-                                                        </div>
+                                                        <div class="row">
 
-                                                        <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                                                            <label for="Nombre">Nombre</label>
-                                                            <input type="text" class="form-control" id="IdNombre" required="required">
-                                                        </div>
+                                                            <!--div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="tipo_id">Tipo Documento</label>
+                                                                <select id="tipo_id" class="form-control" required>
+                                                                    <option value="" disabled selected>Seleccione</option>
+                                                                    <option value="1">CEDULA DE CIUDADANIA</option>
+                                                                </select>
+                                                            </div -->
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_persona">Tipo de Persona</label>
-                                                            <select id="tipo_persona" class="form-control" required disabled>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
-                                                        </div>
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="Documento">Documento</label>
+                                                                <input type="text" class="form-control" id="IdDocumento" name="Documento" min="0" required>
+                                                            </div>
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_visitante">Tipo de Visita</label>
-                                                            <select id="tipo_visitante" class="form-control" required>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1">GENERAL</option>
-                                                            </select>
-                                                        </div>
+                                                            <div class="col-md-8 col-sm-12 col-xs-12 form-group">
+                                                                <label for="Nombre">Nombre</label>
+                                                                <input type="text" class="form-control" id="IdNombre" required="required">
+                                                            </div>
 
-                                                        <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="NroTarjeta">Nro Tarjeta</label>
-                                                            <input type="number" class="form-control" id="IdNroTarjeta" name="NroTarjeta" min="0" required>
-                                                        </div>
 
-                                                        <!-- div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_trabajo">Tipo de Trabajo</label>
-                                                            <select id="tipo_trabajo" class="form-control" required>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
-                                                        </div -->
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="id_empresa_visitante">Empresa Visitante</label>
+                                                                <select id="id_empresa_visitante" class="form-control" required disabled>
+                                                                    <option value="0" selected>Seleccione</option>
+                                                                    <%
+                                                                        LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
+                                                                        ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
+                                                                        linkedListModeloEmpresas = controladorEmpresas.Read("S");
+                                                                        for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
+                                                                    %>  
+                                                                    <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
 
-                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_empresav">Empresa Visitante</label>
-                                                            <select id="tipo_empresav" class="form-control" required disabled>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
-                                                        </div>
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="id_empresa_ssocial">Empresa S-Social</label>
+                                                                <select id="id_empresa_ssocial" class="form-control" required disabled>
+                                                                    <%
+                                                                        //LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
+                                                                        //ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
+                                                                        //linkedListModeloEmpresas = controladorEmpresas.Read("S");
+                                                                        for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
+                                                                    %>  
+                                                                    <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
+                                                                    <%
+                                                                        }
+                                                                    %>
+                                                                </select>
+                                                            </div>
 
-                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                            <label for="tipo_empresas">Empresa S-Social</label>
-                                                            <select id="tipo_empresas" class="form-control" required disabled>
-                                                                <option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option>
-                                                            </select>
-                                                        </div>
 
-                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                            <label for="obs_visitante">Observ. Visitante</label>
-                                                            <textarea id="obs_visitante" class="form-control" required>
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="tipo_persona">Tipo de Persona</label>
+                                                                <select id="tipo_persona" class="form-control" required>
+                                                                    <option value="" disabled selected>Seleccione</option>
+                                                                    <option value="1"></option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="tipo_visitante">Tipo de Visita</label>
+                                                                <select id="tipo_visitante" class="form-control" required>
+                                                                    <option value="" disabled selected>Seleccione</option>
+                                                                    <option value="1">GENERAL</option>
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="NroTarjeta">Nro Tarjeta</label>
+                                                                <input type="number" class="form-control" id="IdNroTarjeta" name="NroTarjeta" min="0" required>
+                                                            </div>
+
+                                                            <!-- div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="tipo_trabajo">Tipo de Trabajo</label>
+                                                                <select id="tipo_trabajo" class="form-control" required>
+                                                                    <option value="" disabled selected>Seleccione</option>
+                                                                    <option value="1"></option>
+                                                                </select>
+                                                            </div -->
+
+
+
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="obs_visitante">Observ. Visitante</label>
+                                                                <textarea id="obs_visitante" class="form-control" required>
                                                                 <!--option value="" disabled selected>Seleccione</option>
                                                                 <option value="1"></option-->
-                                                            </textarea>
-                                                        </div>
+                                                                </textarea>
+                                                            </div>
 
-                                                        <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                            <label for="obs_ingreso">Observ. Ingreso</label>
-                                                            <textarea id="obs_ingreso" class="form-control" required>
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                <label for="obs_ingreso">Observ. Ingreso</label>
+                                                                <textarea id="obs_ingreso" class="form-control" required>
                                                                 <!--option value="" disabled selected>Seleccione</option>
                                                                 <option value="1"></option-->
-                                                            </textarea>
+                                                                </textarea>
+                                                            </div>
+
                                                         </div>
+                                                    </form>
 
+                                                    <!-- Botones -->
+                                                    <div class="ln_solid"></div>
+                                                    <div class="form-group">
+                                                        <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
+                                                            <button class="btn btn-primary btn-sm" type="button" id="IdRegistro" name="Registro"><i class="fa fa-plus"></i> Nuevo Registro</button>
+                                                            <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Grabar Visita</button> 
+                                                            <button class="btn btn-warning btn-sm" type="button" id="IdImprimir" name="Imprimir"><i class="fa fa-print"></i> Imprimir</button> 
+                                                        </div>
                                                     </div>
-                                                </form>
+                                                    <!-- /Botones -->
 
-                                                <!-- Botones -->
-                                                <div class="ln_solid"></div>
-                                                <div class="form-group">
-                                                    <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-3">
-                                                        <button class="btn btn-primary btn-sm" type="button" id="IdRegistro" name="Registro"><i class="fa fa-plus"></i> Nuevo Registro</button>
-                                                        <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Grabar Visita</button> 
-                                                        <button class="btn btn-warning btn-sm" type="button" id="IdImprimir" name="Imprimir"><i class="fa fa-print"></i> Imprimir</button> 
-                                                    </div>
                                                 </div>
-                                                <!-- /Botones -->
-
                                             </div>
                                         </div>
                                     </div>
@@ -207,7 +239,7 @@
                                                 <div class="profile_img">
                                                     <div id="crop-avatar">
                                                         <!-- Img Captura Foto-Huella -->
-                                                        <img class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="245" width="245">
+                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="245" width="245">
                                                     </div>
                                                 </div>
 
