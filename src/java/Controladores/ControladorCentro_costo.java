@@ -263,38 +263,46 @@ public class ControladorCentro_costo {
         try {
             LinkedList<ModeloCentro_costo> ListaModeloCentro_costo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombe</th>";
-            out += "<th>Opciones</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloCentro_costo modeloCentro_costo : ListaModeloCentro_costo) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloCentro_costo modeloCentro_costo : ListaModeloCentro_costo) {
+                    out += "<option value=\"" + modeloCentro_costo.getId() + "\"> " + modeloCentro_costo.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloCentro_costo.getCodigo() + "</td>";
-                out += "<td>" + modeloCentro_costo.getNombre() + "</td>";
-                out += "<td class=\"text-center\">";
-// Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
-                out += "data-codigo=\"" + modeloCentro_costo.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloCentro_costo.getNombre() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-//Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombe</th>";
+                out += "<th>Opciones</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloCentro_costo modeloCentro_costo : ListaModeloCentro_costo) {
+                    out += "<tr>";
+                    out += "<td>" + modeloCentro_costo.getCodigo() + "</td>";
+                    out += "<td>" + modeloCentro_costo.getNombre() + "</td>";
+                    out += "<td class=\"text-center\">";
+// Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
+                    out += "data-codigo=\"" + modeloCentro_costo.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloCentro_costo.getNombre() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+//Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en la generacion Html en Controladorcentro_costo" + e);
         }
         return out;
     }
-
 }

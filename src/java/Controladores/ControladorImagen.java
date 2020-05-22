@@ -8,6 +8,7 @@ package Controladores;
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloImagen;
 import Modelo.ModeloPersona;
+import com.google.gson.Gson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,6 +16,8 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -196,6 +199,14 @@ public class ControladorImagen {
         } catch (SQLException ex) {
             System.out.println("Controladores.ControladorImagen.Insert() " + ex);
         }
+        return resultado;
+    }
+
+    public String Search(HttpServletRequest request, HttpServletResponse response) {
+        String IdPersona = request.getParameter("idpersona");
+        LinkedList<ModeloImagen> listaModeloImagens = new LinkedList<>();
+        listaModeloImagens = getListaModelo(Integer.parseInt(IdPersona));
+        resultado = new Gson().toJson(listaModeloImagens);
         return resultado;
     }
 }

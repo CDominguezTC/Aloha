@@ -126,34 +126,14 @@
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="empresa">Empresa</label>
                                                                     <select id="IdEmpresa" class="form-control" >
-                                                                        <option value="0" selected>Seleccione</option>
-                                                                        <%
-                                                                            LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
-                                                                            ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
-                                                                            linkedListModeloEmpresas = controladorEmpresas.Read("S");
-                                                                            for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
-                                                                        %>  
-                                                                        <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
-                                                                        <%
-                                                                            }
-                                                                        %>
+                                                                        <option value="0" selected>Seleccione</option>                                                                       
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdCentroCostoOld" name="CentroCostoOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="centro_costo">Centro Costo</label>
                                                                     <select id="IdCentroCosto" class="form-control" >
-                                                                        <option value="0" selected>Seleccione</option>
-                                                                        <%
-                                                                            LinkedList<ModeloCentro_costo> linkedListModeloCentroCosto;
-                                                                            ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
-                                                                            linkedListModeloCentroCosto = controladorCentro_costo.Read("S");
-                                                                            for (ModeloCentro_costo modeloCentroCosto : linkedListModeloCentroCosto) {
-                                                                        %>  
-                                                                        <option value=<%=modeloCentroCosto.getId()%>><%=modeloCentroCosto.getNombre()%></option>
-                                                                        <%
-                                                                            }
-                                                                        %>
+                                                                        <option value="0" selected>Seleccione</option>                                                                        
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdConsumeOld" name="ConsumeOld">
@@ -169,17 +149,7 @@
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Grupo Consumo</label>
                                                                     <select id="IdGrupoConsumo" class="form-control" >
-                                                                        <option value="0" selected>Seleccione</option>
-                                                                        <%
-                                                                            LinkedList<ModeloGrupo_consumo> linkedListModeloGrupoConsumo;
-                                                                            ControladorGrupo_consumo controladorGrupoConsumo = new ControladorGrupo_consumo();
-                                                                            linkedListModeloGrupoConsumo = controladorGrupoConsumo.Read("S");
-                                                                            for (ModeloGrupo_consumo modeloGrupoConsumo : linkedListModeloGrupoConsumo) {
-                                                                        %>  
-                                                                        <option value=<%=modeloGrupoConsumo.getId()%>><%=modeloGrupoConsumo.getNombre()%></option>
-                                                                        <%
-                                                                            }
-                                                                        %>
+                                                                        <option value="0" selected>Seleccione</option>                                                                       
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
@@ -188,10 +158,6 @@
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>
                                                             </div>
-
-
-
-
                                                             <div class="modal fade" id="ModalGt4001" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
@@ -313,10 +279,10 @@
                                                     <!-- Botones -->
                                                     <div class="ln_solid"></div>
                                                     <div class="form-group">
-                                                        <div class="col-md-11 col-sm-11 col-xs-12 col-md-offset-2">                                                            
+                                                        <div class="col-md-7 col-sm-7 col-xs-12 col-md-offset-4">                                                            
                                                             <button class="btn btn-primary btn-sm" type="button" onclick="openCamera();" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
-                                                            <button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button> 
-                                                            <button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
+                                                            <!--button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button--> 
+                                                            <!--button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button-->                                                             
                                                         </div>
                                                     </div>
                                                     <!--
@@ -325,9 +291,9 @@
                                                     Huella
                                                     Firma 
                                                     CADD 19-05-2020
-                                                    -->
-                                                    <div style="display: none">
-                                                    <!--div-->                                                    
+                                                    -->                                                    
+                                                    <!--div  -->
+                                                    <div style="display: none">                                                    
                                                         <div>
                                                             <input id="IdHuella_0" value="" name="Huella_0">
                                                             <input id="IdHuella_1" value="" name="Huella_1">

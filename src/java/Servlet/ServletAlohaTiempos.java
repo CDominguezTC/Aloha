@@ -21,11 +21,13 @@ import Controladores.ControladorGrupo_consumo;
 import Controladores.ControladorGrupoTurnos;
 import Controladores.ControladorGrupoTurnos_Turnos;
 import Controladores.ControladorHorario_consumo;
+import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
 import Controladores.ControladorPersona;
+import Controladores.ControladorTemplate;
 import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuario;
@@ -532,6 +534,32 @@ public class ServletAlohaTiempos extends HttpServlet {
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+                    break;
+                case "ImagenesJSP":
+                    ControladorImagen controladorImagen = new ControladorImagen();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Search":
+                            Resultado = controladorImagen.Search(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
+                            break;
+                    }
+                    break;
+                case "TemplateJSP":
+                    ControladorTemplate controladorTemplate = new ControladorTemplate();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Search":
+                            Resultado = controladorTemplate.Search(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
                             break;
                     }
                     break;
