@@ -15,6 +15,7 @@ import Controladores.ControladorCentro_costo;
 import Controladores.ControladorDependencia;
 import Controladores.ControladorDispositivos;
 import Controladores.ControladorEmpresa;
+import Controladores.ControladorEnumeracion;
 import Controladores.ControladorFestivo;
 import Controladores.ControladorFunciones;
 import Controladores.ControladorGrupo_consumo;
@@ -150,7 +151,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             }
                             break;
                     }
-                    
+
                     break;
                 case "Permisos":
                     Accion = request.getParameter("accion");
@@ -160,88 +161,88 @@ public class ServletAlohaTiempos extends HttpServlet {
                 case "Password":
                     Accion = request.getParameter("accion");
                     switch (Accion) {
-                        
+
                         case "Descifrar":
                             String passw = request.getParameter("pass");
                             try {
                                 tl = new Tools();
                                 String con = tl.desencriptar(passw);
-                                
+
                                 if (!"".equals(con)) {
                                     Resultado = con;
                                 } else {
                                     Resultado = "false";
                                 }
-                                
+
                             } catch (Exception e) {
                             }
                             break;
-                            
+
                         case "ValidarUsr":
                             String usr = request.getParameter("login");
                             try {
                                 ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.validoLogin(usr);
-                                
+
                                 if (!"false".equals(resul)) {
                                     Resultado = resul;
                                 } else {
                                     Resultado = "false";
                                 }
-                                
+
                             } catch (Exception e) {
                             }
-                            
+
                             break;
-                            
+
                         case "ValidarPw":
                             String psw = request.getParameter("passw");
                             String idusr = request.getParameter("idus");
                             try {
                                 ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.validoPassword(idusr, psw);
-                                
+
                                 if (!"false".equals(resul)) {
                                     Resultado = resul;
                                 } else {
                                     Resultado = "false";
                                 }
-                                
+
                             } catch (Exception e) {
                             }
-                            
+
                             break;
-                            
+
                         case "CambiarPw":
                             String pasw = request.getParameter("passwo");
                             String idusur = request.getParameter("idusu");
                             try {
                                 ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.actualizoPassword(idusur, pasw);
-                                
+
                                 if (!"false".equals(resul)) {
                                     Resultado = resul;
                                 } else {
                                     Resultado = "false";
                                 }
-                                
+
                             } catch (Exception e) {
                             }
                             break;
-                            
+
                         case "CambiarPwUs":
                             String usu = request.getParameter("usuario");
                             String npass = request.getParameter("npass");
                             try {
                                 ControladorUsuario controladorU = new ControladorUsuario();
                                 String resul = controladorU.actualizoPasswordUser(usu, npass);
-                                
+
                                 if (!"false".equals(resul)) {
                                     Resultado = resul;
                                 } else {
                                     Resultado = "false";
                                 }
-                                
+
                             } catch (Exception e) {
                             }
                             break;
@@ -264,7 +265,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "EmpresaJSP":
                     ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
@@ -283,7 +284,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "HorarioConsumoJSP":
                     ControladorHorario_consumo controladorHorarioConsumo = new ControladorHorario_consumo();
@@ -302,7 +303,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "CiudadJSP":
                     ControladorCiudad controladorCiudades = new ControladorCiudad();
@@ -321,9 +322,9 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
-                    
+
                 case "TurnosJSP":
                     ControladorTurnos controladorTurnos = new ControladorTurnos();
                     Accion = request.getParameter("accion");
@@ -341,9 +342,9 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
-                    
+
                 case "CargosJSP":
                     ControladorCargo controladorCargo = new ControladorCargo();
                     Accion = request.getParameter("accion");
@@ -361,9 +362,9 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
-                    
+
                 case "CentroCostoJSP":
                     ControladorCentro_costo controladorCentroCosto = new ControladorCentro_costo();
                     Accion = request.getParameter("accion");
@@ -423,7 +424,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorTipoConsumo.Insert(request,response);
+                            Resultado = controladorTipoConsumo.Insert(request, response);
                             break;
                         case "Delete":
                             Resultado = controladorTipoConsumo.Delete(request, response);
@@ -568,7 +569,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorDispositvos.Insert(request,response);
+                            Resultado = controladorDispositvos.Insert(request, response);
                             break;
                         case "Delete":
                             Resultado = controladorDispositvos.Delete(request, response);
@@ -598,7 +599,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "GrupoTurnosJSP":
                     ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
@@ -617,7 +618,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "FuncionesJSP":
                     ControladorFunciones controladorFunciones = new ControladorFunciones();
@@ -636,7 +637,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "PeriodosJSP":
                     ControladorPeriodos controladorPeriodos = new ControladorPeriodos();
@@ -655,7 +656,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "CargosHoteleriaJSP":
                     ControladorCargo_hoteleria controladorCargos = new ControladorCargo_hoteleria();
@@ -677,7 +678,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
                     break;
                 case "GenerarLiquidacionCasino":
                     ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
@@ -707,7 +708,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     String usua = request.getParameter("usr");
                     switch (Accion) {
-                        
+
                         case "UserActivo":
                             Tools tool = new Tools();
                             Resultado = tool.editarUserAct(request, response, usua);
@@ -716,7 +717,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             * pw.write (Resultado);
                             * System.out.println (pw.checkError () ? "Error al
                             * cargar la lista" : "UserActivo Cargado");
-                            */
+                             */
                             //Resultado = controladorCargos.Insert (request);
                             break;
                     }
@@ -726,7 +727,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     //String usua = request.getParameter ("usr");
                     switch (Accion) {
-                        
+
                         case "Insert":
                             //Tools tool = new Tools ();
                             String operacion = request.getParameter("operacion");
@@ -740,7 +741,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             * pw.write (Resultado);
                             * System.out.println (pw.checkError () ? "Error al
                             * cargar la lista" : "UserActivo Cargado");
-                            */
+                             */
                             //Resultado = controladorCargos.Insert (request);
                             break;
                         case "Read":
@@ -777,7 +778,26 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-                    
+
+                    break;
+                case "EnumeracionJSP":
+                    ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = controladorEnumeracion.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = controladorEnumeracion.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = controladorEnumeracion.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+
                     break;
             }
             if (!"Plano".equals(Accion)) {

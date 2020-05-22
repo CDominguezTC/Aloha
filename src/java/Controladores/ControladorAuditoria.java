@@ -222,12 +222,13 @@ public class ControladorAuditoria {
     public String readTabla(HttpServletRequest request, HttpServletResponse response, String usr, String fini, String ffin) throws ServletException, IOException {
 
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloAuditoria> listmoAu;
             listmoAu = Read(usr, fini, ffin);
             response.setContentType("text/html;charset=UTF-8");
-
+            
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -240,7 +241,20 @@ public class ControladorAuditoria {
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
+            outsb.append(out);
             for (ModeloAuditoria modeloA : listmoAu) {
+                
+                outsb.append("<tr>");
+                outsb.append("<td>").append(modeloA.getOperacion()).append("</td>");
+                outsb.append("<td>").append(modeloA.getTabla()).append("</td>");
+                outsb.append("<td>").append(modeloA.getFecha()).append("</td>");
+                outsb.append("<td>").append(modeloA.getUsuario().getNombre()).append("</td>");
+                outsb.append("<td>").append(modeloA.getRegistro_modificado()).append("</td>");
+                outsb.append("<td>").append(modeloA.getObservacion()).append("</td>");
+                outsb.append("</tr>");
+            }
+            outsb.append("</tbody>");
+            /*for (ModeloAuditoria modeloA : listmoAu) {
                 out += "<tr>";
                 out += "<td>" + modeloA.getOperacion() + "</td>";
                 out += "<td>" + modeloA.getTabla() + "</td>";
@@ -251,11 +265,13 @@ public class ControladorAuditoria {
                 out += "</tr>";
             }
             out += "</tbody>";
+            */
+            
 
         } catch (Exception e) {
 
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
-        return out;
+        return outsb.toString();
     }
 }
