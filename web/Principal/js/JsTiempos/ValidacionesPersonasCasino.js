@@ -7,8 +7,136 @@ $(function () {
 
     $(document).ready(function () {
         LoadTabla();
+        LoadEmpresas();
+        LoadCentroCosto();
+        LoadGrupoConsumo();
         validacionBtn();
+
     });
+    // cargamos las empresas al select 
+    function LoadEmpresas() {
+        var Frm = "EmpresaJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdEmpresa').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos los centros de costos al select 
+    function LoadCentroCosto() {
+        var Frm = "CentroCostoJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdCentroCosto').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos los grupo consumo al select     
+    function LoadGrupoConsumo() {
+        var Frm = "GrupoConsumoJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdGrupoConsumo').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+
     $(document).ready(function () {
 
         $("#IdCedula").blur(function () {
@@ -30,7 +158,6 @@ $(function () {
                 success: function (resul, textStatus, jqXHR)
                 {
                     disableGif();
-
                     if (Object.keys(resul).length !== 0) {
                         $('#Id').val(resul.id);
                         $('#IdTipoDoc').val(resul.tipo_identificacion);
@@ -138,7 +265,23 @@ $(function () {
                         $('#IdCentroCosto').val('0');
                         $('#IdConsume').val('0');
                         $('#IdGrupoConsumo').val('0');
-                        $('#IdObservacion').val('');
+                        $('#IdHuella_0').val('');
+                        $('#IdHuella_1').val('');
+                        $('#IdHuella_2').val('');
+                        $('#IdHuella_3').val('');
+                        $('#IdHuella_4').val('');
+                        $('#IdHuella_5').val('');
+                        $('#IdHuella_6').val('');
+                        $('#IdHuella_7').val('');
+                        $('#IdHuella_8').val('');
+                        $('#IdTemplate').val('');
+                        $('#IdTemplate_10').val('');
+                        $('#IdSRCImagen').val('');
+                        $('#IdFirmaBase64').val('');
+                        var img = document.createElement('img');
+                        img.src = "Principal/images/user.png";
+                        document.getElementById("IdImagen").src = img.src;
+
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -162,7 +305,9 @@ $(function () {
             });
         });
     });
+
     $(document).on('click', '.SetFormulario', function () {
+        //LimpiarCampos();
         $('#Id').val($(this).data('id'));
         $('#IdTipoDocOld').val($(this).data('tipodoc'));
         $('#IdTipoDoc').val($(this).data('tipodoc'));
@@ -182,25 +327,206 @@ $(function () {
         $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
         $('#IdObservacionOld').val($(this).data('observacion'));
         $('#IdObservacion').val($(this).data('observacion'));
+        //Cargamos las Imagenes (Huellas, Foto y firma) y Templates de las personas selecionada
+        LoadImagenes($(this).data('id'));
+        LoadTemplate($(this).data('id'));
+
         //datos de imagnes foto
-        $('#IdSRCImagen').val($(this).data('foto'));
-        //datos de imagnes firma
-        $('#IdFirmaBase64').val($(this).data('firma'));
-        //datos de imagnes huellas
-        $('#IdHuella_0').val($(this).data('huella_0'));
-        $('#IdHuella_1').val($(this).data('huella_1'));
-        $('#IdHuella_2').val($(this).data('huella_2'));
-        $('#IdHuella_3').val($(this).data('huella_3'));
-        $('#IdHuella_4').val($(this).data('huella_4'));
-        $('#IdHuella_5').val($(this).data('huella_5'));
-        $('#IdHuella_6').val($(this).data('huella_6'));
-        $('#IdHuella_7').val($(this).data('huella_7'));
-        $('#IdHuella_8').val($(this).data('huella_8'));
-        $('#IdHuella_9').val($(this).data('huella_9'));
-        //datos de templates
-        $('#IdTemplate').val("[" + $(this).data('idtemplate') + "]");
-        $('#IdTemplate_10').val($(this).data('template10'));
+//        $('#IdSRCImagen').val($(this).data('foto'));
+//        var f = $(this).data('foto');
+//        var img = document.createElement('img');
+//        img.src = f;
+//        document.getElementById("IdImagen").src = img.src;
+//        //datos de imagnes firma
+//        $('#IdFirmaBase64').val($(this).data('firma'));
+//        //datos de imagnes huellas
+//        $('#IdHuella_0').val($(this).data('huella_0'));
+//        $('#IdHuella_1').val($(this).data('huella_1'));
+//        $('#IdHuella_2').val($(this).data('huella_2'));
+//        $('#IdHuella_3').val($(this).data('huella_3'));
+//        $('#IdHuella_4').val($(this).data('huella_4'));
+//        $('#IdHuella_5').val($(this).data('huella_5'));
+//        $('#IdHuella_6').val($(this).data('huella_6'));
+//        $('#IdHuella_7').val($(this).data('huella_7'));
+//        $('#IdHuella_8').val($(this).data('huella_8'));
+//        $('#IdHuella_9').val($(this).data('huella_9'));
+//        //datos de templates
+//        $('#IdTemplate').val("[" + $(this).data('idtemplate') + "]");
+//        $('#IdTemplate_10').val($(this).data('template10'));
     });
+
+    function LoadImagenes(Id_Persona) {
+        if (Id_Persona > 0) {
+            var Frm = "ImagenesJSP";
+            var IdPersonas = Id_Persona;
+            var Accion = "Search";
+            var data = {
+                frm: Frm,
+                accion: Accion,
+                idpersona: IdPersonas,
+            };
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function (resul, textStatus, jqXHR) {
+                    AsiganmosValoresImagenes(resul);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        }
+    }
+
+    //Cargamos los Templates de id Seleccionado
+    function LoadTemplate(Id_Persona) {
+        if (Id_Persona > 0) {
+            var Frm = "TemplateJSP";
+            var IdPersonas = Id_Persona;
+            var Accion = "Search";
+            var data = {
+                frm: Frm,
+                accion: Accion,
+                idpersona: IdPersonas,
+            };
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                data: data,
+                success: function (resul, textStatus, jqXHR) {
+                    AsiganmosValoresTemplates(resul);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    disableGif();
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+        }
+    }
+
+    function AsiganmosValoresImagenes(resul)
+    {
+        var imagenes = resul;
+        if (Object.keys(resul).length !== 0)
+        {
+            for (var i = 0; i < imagenes.length; i++)
+            {
+                var imagen = imagenes[i];
+                if (imagen.numero_imagen === 0)
+                {
+                    $('#IdHuella_0').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 1)
+                {
+                    $('#IdHuella_1').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 2)
+                {
+                    $('#IdHuella_2').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 3)
+                {
+                    $('#IdHuella_3').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 4)
+                {
+                    $('#IdHuella_4').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 5)
+                {
+                    $('#IdHuella_5').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 6)
+                {
+                    $('#IdHuella_6').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 7)
+                {
+                    $('#IdHuella_7').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 8)
+                {
+                    $('#IdHuella_8').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 9)
+                {
+                    $('#IdHuella_9').val(imagen.imagen + "," + imagen.numero_imagen);
+                }
+                if (imagen.numero_imagen === 20)
+                {
+                    $('#IdSRCImagen').val(imagen.imagen);
+                    var img = document.createElement('img');
+                    img.src = imagen.imagen;
+                    document.getElementById("IdImagen").src = img.src;
+                }
+                if (imagen.numero_imagen === 30)
+                {
+                    $('#IdFirmaBase64').val(imagen.imagen);
+                }
+            }
+        }
+    }
+    function AsiganmosValoresTemplates(resul)
+    {
+        var idtemplates;
+        var templat10;
+        var c = 0;
+        var lista_template = resul;
+        if (Object.keys(lista_template).length !== 0)
+        {
+            for (var i = 0; i < lista_template.length; i++)
+            {
+                var template = lista_template[i];
+                if (c === 0) {
+                    idtemplates = template.numero_plantilla;
+                    templat10 = template.plantilla;
+                    c++;
+                } else
+                {
+                    idtemplates = idtemplates + "," + template.numero_plantilla;
+                    templat10 = templat10 + "," + template.plantilla;
+                    c++;
+                }
+
+            }
+            idtemplates = "[" + idtemplates + "]";
+            templat10 = "[" + templat10 + "]";
+            $('#IdTemplate').val(idtemplates);
+            $('#IdTemplate_10').val(templat10);
+        }
+    }
+
+
     $(document).on('click', '.SetFormularioId', function () {
         $('#Id').val($(this).data('id'));
         if ($(this).data('idhoteleria') !== 0)
@@ -221,8 +547,8 @@ $(function () {
             $('#IdValorAdicional').val('25000');
         }
     });
-    function validacionBtn() {
 
+    function validacionBtn() {
         //alert("validacionBtn");
         var usuariof = "";
         $.ajax({
@@ -282,7 +608,6 @@ $(function () {
     }
 
     function editoBotonG(usuariof, page) {
-
         var Frm = "Permisos";
         var User = usuariof;
         //alert("User guardar: " + traigoUserAc());
@@ -333,7 +658,6 @@ $(function () {
     }
 
     function editoBotonE(usuariof, page) {
-
         var Frm = "Permisos";
         var User = usuariof;
         //var Accion = "Empresa.Editar";
@@ -385,7 +709,6 @@ $(function () {
     }
 
     function editoBotonB(usuariof, page) {
-
         var Frm = "Permisos";
         var User = usuariof;
         //var Accion = "Empresa.Borrar";
@@ -437,7 +760,6 @@ $(function () {
     }
 
     function ValidaCampo() {
-
         var res = false;
         if ($('#IdTipoDoc').val() !== null)
         {
@@ -474,7 +796,6 @@ $(function () {
     }
 
     function  LimpiarCampos() {
-
         $('#Id').val('');
         $('#IdTipoDoc').val(0);
         $('#IdTipoDocOld').val('');
@@ -510,20 +831,18 @@ $(function () {
         $('#IdTemplate_10').val('');
 
         $('#IdSRCImagen').val('');
-        $('#IdFirmaBase64').val('');
-
-        $('#IdImagen').src('Principal/images/user.png');
+        var img = document.createElement('img');
+        img.src = "Principal/images/user.png";
+        document.getElementById("IdImagen").src = img.src;
+        $('#IdImagen').append(img)
     }
 
     $('#IdAgregar').click(function (e) {
-
         LimpiarCampos();
     });
 
     $('#IdGuardar').click(function (e) {
-
         if (ValidaCampo() === true) {
-
             var NamUs = document.getElementById('usering').innerHTML
             var Frm = "PersonasJSP";
             var Id = $('#Id').val();
@@ -633,8 +952,8 @@ $(function () {
             //alert("Favor de completar todos los campos");
         }
     });
-    $('#IdIniServicio').click(function (e) {
 
+    $('#IdIniServicio').click(function (e) {
         var Frm = "CargosJSP";
         var Id = $('#Id').val();
         var IdHoteleria = $('#IdHoteleria').val();
@@ -692,8 +1011,8 @@ $(function () {
             }
         });
     });
-    $('#IdFinServicio').click(function (e) {
 
+    $('#IdFinServicio').click(function (e) {
         var Frm = "CargosJSP";
         var Id = $('#Id').val();
         var IdHoteleria = $('#IdHoteleria').val();
@@ -743,6 +1062,7 @@ $(function () {
             }
         });
     });
+
     $(document).on('click', '.SetEliminar', function () {
 
         $('#Id').val($(this).data('id'));
@@ -805,8 +1125,8 @@ $(function () {
             }
         });
     });
-    function auditoriaReg(modo) {
 
+    function auditoriaReg(modo) {
         var Observacion = "";
         var NamUs = document.getElementById('usering').innerHTML
         var Id = $('#Id').val();
@@ -993,6 +1313,7 @@ $(function () {
             //alert("Favor de completar todos los campos");
         }
     });
+
     function LoadTabla() {
 
         var Frm = "PersonasJSP";

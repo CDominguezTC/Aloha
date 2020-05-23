@@ -8,11 +8,14 @@ package Controladores;
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloPersona;
 import Modelo.ModeloTemplate;
+import com.google.gson.Gson;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -177,6 +180,14 @@ public class ControladorTemplate {
             System.out.println("Controladores.ControladorTemplate.Delete() " + e);
             resultado = "-3";
         }
+        return resultado;
+    }
+
+    public String Search(HttpServletRequest request, HttpServletResponse response) {
+        String IdPersona = request.getParameter("idpersona");
+        LinkedList<ModeloTemplate> listaModeloTemplates = new LinkedList<>();
+        listaModeloTemplates = getModelo(Integer.parseInt(IdPersona));
+        resultado = new Gson().toJson(listaModeloTemplates);
         return resultado;
     }
 

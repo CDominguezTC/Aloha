@@ -299,59 +299,67 @@ public class ControladorEmpresa {
             LinkedList<ModeloEmpresa> listmodelo;
             listmodelo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Nit</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Direccion</th>";
-            out += "<th>Contacto</th>";
-            out += "<th>Telefono</th>";
-            out += "<th>extension</th>";
-            out += "<th>Email</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloEmpresa modelo : listmodelo) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloEmpresa modeloEmpresa : listmodelo) {
+                    out += "<option value=\"" + modeloEmpresa.getId() + "\"> " + modeloEmpresa.getNombre()+ "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNit() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNombre() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getDireccion() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getContacto() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getTelefono() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getExt() + "</td>";
-                out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getEmail() + "</td>";
-                out += "<td WIDTH = \"10\" HEIGHT=\"0\" class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modelo.getId() + "\"";
-                out += "data-nit=\"" + modelo.getNit() + "\"";
-                out += "data-nombre=\"" + modelo.getNombre() + "\"";
-                out += "data-direccion=\"" + modelo.getDireccion() + "\"";
-                out += "data-contacto=\"" + modelo.getContacto() + "\"";
-                out += "data-telefono=\"" + modelo.getTelefono() + "\"";
-                out += "data-extension=\"" + modelo.getExt() + "\"";
-                out += "data-email=\"" + modelo.getEmail() + "\"";
-                out += "data-observacion=\"" + modelo.getObservacion() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i></button>";
-                //Boton Eliminar                
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modelo.getId() + "\"";
-                out += "data-nit=\"" + modelo.getNit() + "\"";
-                out += "data-nombre=\"" + modelo.getNombre() + "\"";
-                out += "data-direccion=\"" + modelo.getDireccion() + "\"";
-                out += "data-contacto=\"" + modelo.getContacto() + "\"";
-                out += "data-telefono=\"" + modelo.getTelefono() + "\"";
-                out += "data-extension=\"" + modelo.getExt() + "\"";
-                out += "data-email=\"" + modelo.getEmail() + "\"";
-                out += "data-observacion=\"" + modelo.getObservacion() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
-                out += "</td>";
+                out += "<th>Nit</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Direccion</th>";
+                out += "<th>Contacto</th>";
+                out += "<th>Telefono</th>";
+                out += "<th>extension</th>";
+                out += "<th>Email</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloEmpresa modelo : listmodelo) {
+                    out += "<tr>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNit() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNombre() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getDireccion() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getContacto() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getTelefono() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getExt() + "</td>";
+                    out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getEmail() + "</td>";
+                    out += "<td WIDTH = \"10\" HEIGHT=\"0\" class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                    out += "data-id=\"" + modelo.getId() + "\"";
+                    out += "data-nit=\"" + modelo.getNit() + "\"";
+                    out += "data-nombre=\"" + modelo.getNombre() + "\"";
+                    out += "data-direccion=\"" + modelo.getDireccion() + "\"";
+                    out += "data-contacto=\"" + modelo.getContacto() + "\"";
+                    out += "data-telefono=\"" + modelo.getTelefono() + "\"";
+                    out += "data-extension=\"" + modelo.getExt() + "\"";
+                    out += "data-email=\"" + modelo.getEmail() + "\"";
+                    out += "data-observacion=\"" + modelo.getObservacion() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i></button>";
+                    //Boton Eliminar                
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modelo.getId() + "\"";
+                    out += "data-nit=\"" + modelo.getNit() + "\"";
+                    out += "data-nombre=\"" + modelo.getNombre() + "\"";
+                    out += "data-direccion=\"" + modelo.getDireccion() + "\"";
+                    out += "data-contacto=\"" + modelo.getContacto() + "\"";
+                    out += "data-telefono=\"" + modelo.getTelefono() + "\"";
+                    out += "data-extension=\"" + modelo.getExt() + "\"";
+                    out += "data-email=\"" + modelo.getEmail() + "\"";
+                    out += "data-observacion=\"" + modelo.getObservacion() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
 
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
