@@ -103,20 +103,14 @@ public class ControladorConsumo_hoteleria {
                 SQL.setString(7, herramienta.getNombreDia(modeloConsumo_hoteleria.getFecha_consumo()));
                 SQL.setString(8, modeloConsumo_hoteleria.getEstado());
                 if (SQL.executeUpdate() > 0) {
-                    
-                    // Fallas en el controlador de Auditoria este error me sale 
-                    //en todos los formularios, el error se presenta al momento 
-                    //de instanciar el controlador 
-                    
-//                    ControladorAuditoria auditoria = new ControladorAuditoria();
-//                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-//                        if (generatedKeys.next()) {
-//                            int i = (int) generatedKeys.getLong(1);
-//                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-//                        }
-//                        resultado = "1";
-//                    }
-                    resultado = "1";
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                        resultado = "1";
+                    }
                 }
             }
             SQL.close();
