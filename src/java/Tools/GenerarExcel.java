@@ -133,11 +133,11 @@ public class GenerarExcel {
             generatedFullFileName = path + reportName + "_" + dateWithFormat + EXCEL_SUFFIX;
             generatedFileName = GENERATED_PATH + reportName + "_" + dateWithFormat + EXCEL_SUFFIX;
 
-            datosXLSFile = new File(generatedFullFileName);
-
-            if (datosXLSFile.exists()) {
-                datosXLSFile = new File(generatedFullFileName);
-            }
+//            datosXLSFile = new File(generatedFullFileName);
+//
+//            if (datosXLSFile.exists()) {
+//                datosXLSFile = new File(generatedFullFileName);
+//            }
 
             try {
                 if (EXCEL_SUFFIX.endsWith("x")) {
@@ -155,7 +155,8 @@ public class GenerarExcel {
             }
             //Se crea la hoja de datos "hoja1"
             createSheet(DATA_SHEET, records, wb);
-            FileOutputStream fileOut = new FileOutputStream(datosXLSFile);
+            FileOutputStream fileOut = new FileOutputStream(generatedFileName);
+            //FileOutputStream fileOut = new FileOutputStream("tmp2020");
             wb.write(fileOut);
             fileOut.close();
         } catch (Exception e) {

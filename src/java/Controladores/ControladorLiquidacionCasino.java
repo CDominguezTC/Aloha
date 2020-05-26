@@ -28,10 +28,11 @@ public class ControladorLiquidacionCasino {
      * @param GenerarLiquidacionCasino
      * @version: 07/05/2020
      */
-    public void Select(String GenerarLiquidacionCasino, HttpServletRequest request, HttpServletResponse response) {
-        switch (GenerarLiquidacionCasino) {
+    public void Select(String GenerarLiquidacion, HttpServletRequest request, HttpServletResponse response) {
+        String SQLReporte;
+        switch (GenerarLiquidacion) {
             case "GenerarLiquidacionCasino":
-                String SQLReporte = "SELECT p.identificacion AS \"IDENTIFICACION \", CONCAT(p.nombres, \" \", p.apellidos) AS "
+                SQLReporte = "SELECT p.identificacion AS \"IDENTIFICACION \", CONCAT(p.nombres, \" \", p.apellidos) AS "
                         + "\"PERSONA \", e.nombre AS \"EMPRESA \", cc.codigoInterno AS \"CODIGO CC \", cc.nombre AS \"NOMBRE CC \","
                         + " gc.nombre AS \"GRUPO CONSUMO \", h.nombre AS \"CONSUMO \", c.Fechaconsumo AS \"FECHA CONSUMO \", \" \" AS "
                         + "\"VALOR CONSUMO \", \" \" AS \"% DESCUENTO \", \" \" AS \"SUB TOTAL \", \" \" AS \"% IMPUESTO \", \" \" AS "
@@ -42,6 +43,42 @@ public class ControladorLiquidacionCasino {
                         + "WHERE c.Fechaconsumo >= '" + request.getParameter("FechaIni") + "' AND c.Fechaconsumo <= '" + request.getParameter("FechaFin") + " 23:59:59' order by c.Fechaconsumo";
                 try {
                     String UrlArchivo = "C:\\Zred\\AlohaFiles\\LIQUIDACION_CASINO.xls";//request.getParameter("PlantillaUrl");                
+                    String newQuery = SQLReporte;
+                    //ControladorExcel controladorExcel = new ControladorExcel();
+                    GenerarExcel generarExcel = new GenerarExcel();
+                    String archivo = generarExcel.GenerarExcel(UrlArchivo, newQuery);
+                    downloadFile(response, archivo);
+
+                } //Logger.getLogger(.class.getName()).log(Level.SEVERE, null, ex);
+                catch (Exception ex) {
+                    //Logger.getLogger(ServletSunchemical.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "GenerarLiquidacionHoteleria":
+                SQLReporte = "SELECT h.`id`, "
+                        
+                        + "p.`identificacion` AS No_Cedula, "
+                        + "p.`id` AS IDPersona, CONCAT(p.`nombres`,\" \","                        
+                        + "p.`apellidos`) AS Nombre, "
+                        + "h.`cargo_persona` AS Cargo, "
+                        + "h.`id_centro_costo`, "
+                        + "c.`nombre` AS Nombre_Centro_Costo, "
+                        + "h.`id_cargo_hoteleria`, "
+                        + "g.`tipo_cargo` AS Nombre_Cargo_Hoteleria, "
+                        + "h.`cargo_hoteleria_valor` AS Valor_Cargo, "
+                        + "h.`fecha_consumo` AS Fecha_Cargo, "
+                        + "h.`dia_consumo` AS Dia_Cargo "
+                        + "FROM `consumo_hoteleria` h "
+                        + "JOIN `persona` p ON (h.`id_persona` = p.`id`) "
+                        + "JOIN `centro_costo` c ON (h.`id_centro_costo` = c.`id`) "
+                        + "JOIN `cargo_hoteleria` g ON (h.`id_cargo_hoteleria` = g.`id`) "
+                        + "WHERE h.fecha_consumo >= '" + request.getParameter("FechaIni") + "' "
+                        + "AND h.fecha_consumo <= '" + request.getParameter("FechaFin") + " 23:59:59' "
+                        + "AND h.`estado` = 'S' "
+                        + "ORDER BY h.fecha_consumo;";
+                try {
+                    //String UrlArchivo = "C:\\Zred\\AlohaFiles\\LIQUIDACION_CASINO.xls";//request.getParameter("PlantillaUrl");                
+                    String UrlArchivo = "Aloha\\AlohaFiles\\LIQUIDACION_HOTELERIA.xls";//request.getParameter("PlantillaUrl");                
                     String newQuery = SQLReporte;
                     //ControladorExcel controladorExcel = new ControladorExcel();
                     GenerarExcel generarExcel = new GenerarExcel();

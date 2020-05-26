@@ -12,6 +12,7 @@ import Controladores.ControladorCargo;
 import Controladores.ControladorCargo_hoteleria;
 import Controladores.ControladorCiudad;
 import Controladores.ControladorCentro_costo;
+import Controladores.ControladorConsumo_hoteleria;
 import Controladores.ControladorDependencia;
 import Controladores.ControladorDispositivos;
 import Controladores.ControladorEmpresa;
@@ -128,6 +129,7 @@ public class ServletAlohaTiempos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
         try {
             response.setContentType("text/html;charset=UTF-8");
             String Formulario = request.getParameter("frm");
@@ -355,7 +357,8 @@ public class ServletAlohaTiempos extends HttpServlet {
                         case "Delete":
                             Resultado = controladorCargo.Delete(request, response);
                             break;
-                        case "ReadTiempos":
+                        //case "ReadTiempos":
+                        case "Read":
                             Resultado = controladorCargo.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
@@ -680,16 +683,35 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
 
                     break;
+                case "ConsumoHoteleriaJSP":
+                    ControladorConsumo_hoteleria controladorConsumoHoteleria = new ControladorConsumo_hoteleria();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = controladorConsumoHoteleria.Insert(request, response);
+                            break;
+                        case "Read":
+                            Resultado = controladorConsumoHoteleria.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+                    break;
+                case "GenerarLiquidacionHoteleria":
+                    //ControladorLiquidacionH controladorLiquidacionCasino = new ControladorLiquidacionCasino();
+                    controladorLiquidacionCasino.Select("GenerarLiquidacionHoteleria", request, response);
+                    Accion = "Plano";
+                    break;
                 case "GenerarLiquidacionCasino":
-                    ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
+                    //ControladorLiquidacionCasino controladorLiquidacionCasino = new ControladorLiquidacionCasino();
                     controladorLiquidacionCasino.Select("GenerarLiquidacionCasino", request, response);
                     Accion = "Plano";
                     break;
-//                case "GenerarLiquidacionHoteleria":
-//                    ControladorCargo controladorCargoH = new ControladorCargo();
-//                    controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
-//                    Accion = "Plano";
-//                    break;
+               
+                    //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
+                    //Accion = "Plano";
+                    //break;
 //                case "BuscarPersona":
 //                    ModeloPersona modeloPersonas = new ModeloPersona();                    
 //                    ControladorPersona controladorPersonas1 = new ControladorPersona();

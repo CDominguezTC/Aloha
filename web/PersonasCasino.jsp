@@ -136,6 +136,13 @@
                                                                         <option value="0" selected>Seleccione</option>                                                                        
                                                                     </select>
                                                                 </div>
+                                                                <input type="hidden" id="IdCargoOld" name="GrupoConsumoOld">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                    <label for="tipo_id">Cargo Persona</label>
+                                                                    <select id="IdCargo" class="form-control" >
+                                                                        <option value="0" selected>Seleccione</option>                                                                       
+                                                                    </select>
+                                                                </div>
                                                                 <input type="hidden" id="IdConsumeOld" name="ConsumeOld">
                                                                 <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Consume Casino</label>
@@ -151,9 +158,9 @@
                                                                     <select id="IdGrupoConsumo" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>                                                                       
                                                                     </select>
-                                                                </div>
+                                                                </div>                                                                
                                                                 <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
-                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>
