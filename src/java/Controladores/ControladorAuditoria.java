@@ -123,6 +123,7 @@ public class ControladorAuditoria {
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
+        StringBuilder outsb = new StringBuilder();
         try {
             ControladorUsuario controladorU = new ControladorUsuario();
             LinkedList<ModeloUsuario> listmoUsr;
@@ -131,13 +132,15 @@ public class ControladorAuditoria {
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
             out += "<option value=\"todos\">Todos</option>";
+            outsb.append(out);            
             for (ModeloUsuario modeloUsua : listmoUsr) {
-                out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
+                //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloUsua.getId()).append("\"> ").append(modeloUsua.getNombre()).append("</option>");
             }
         } catch (Exception e) {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
-        return out;
+        return outsb.toString();
     }
 
     /**
