@@ -322,12 +322,12 @@
              $('#myDatepicker').datetimepicker();
         
              $('#myDatepicker2').datetimepicker({
-                format: 'hh:mm:ss A'
+                format: 'HH:mm'
                 
              });
         
              $('#myDatepicker3').datetimepicker({
-                format: 'hh:mm:ss A'
+                format: 'HH:mm'
              });
            
          </script>

@@ -71,7 +71,7 @@ public class ControladorArea {
                         + "codigo, "
                         + "nombre, "
                         + "estado)"
-                        + " VALUE (?,?,?)");
+                        + " VALUE (?,?,?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloArea.getCodigo());
                 SQL.setString(2, modeloArea.getNombre());
                 SQL.setString(3, "S");
