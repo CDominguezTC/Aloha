@@ -173,7 +173,7 @@ public class ControladorAutoriza_consumo {
         {
             int cantidadconsumo = modeloAutoriza_consumo.getModelo_persona_que_autoriza().getCantidad_consumo();
             int nuevoconsumo = cantidadconsumo - modeloAutoriza_consumo.getCantidad_autorizada();
-            ModeloPersona modeloPersona = modeloAutoriza_consumo.getModelo_persona_autorizada();
+            ModeloPersona modeloPersona = modeloAutoriza_consumo.getModelo_persona_que_autoriza();
             modeloPersona.setCantidad_consumo(nuevoconsumo);
             controladorPersona.UpdateCasino(modeloPersona);
         }

@@ -38,7 +38,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="x_panel">
                             <div class="x_title">
-                                <!-- h2>Configuración</h2-->
+                                <h2>Configuración</h2>
                                 <ul class="nav navbar-right panel_toolbox">
                                     <li><a></a>
                                     </li>
@@ -130,19 +130,18 @@
                                                                                 </span>
                                                                             </div>
                                                                         </div>
-                                                                    </div>  
-                                                                    <div class="col-md-6 col-sm-12 ">
-                                                                        <div class="checkbox">
-                                                                            <label>
-                                                                                <input type="checkbox" value="" id="IdTurnoNocturno"> Turno Nocturno
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6 col-sm-12 float-left">
-                                                                        <div class="checkbox">
-                                                                            <label>
-                                                                                <input type="checkbox" value="" id="IdTurnoExtra"> Turno Extra
-                                                                            </label>
+                                                                    </div> 
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                            <div id="Turnos" class="btn-group" data-toggle="buttons">
+
+                                                                                <input type="checkbox" value="" id="IdTurnoNocturno" class="flat"> Turno Nocturno  
+                                                                                <label style="visibility:hidden">---</label>
+                                                                                <input type="checkbox" value="" id="IdTurnoExtra"  class="flat"> Turno Extra
+
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -170,13 +169,7 @@
                                                             </div>
                                                             <div class="x_content">
                                                                 <div class="row">
-                                                                    <div class="col-md-6 col-sm-12 ">
-                                                                        <div class="checkbox">
-                                                                            <label>
-                                                                                <input type="checkbox" value="" id="IdDescuentoBreack"> Descuenta Break
-                                                                            </label>
-                                                                        </div>
-                                                                    </div>
+
                                                                     <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                         <label for="Placa">Hora Inicio Break</label>
                                                                         <div class="form-group">
@@ -210,6 +203,19 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
+
+                                                                    <div class="form-group">
+                                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                                                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                                                            <div id="Break" class="btn-group" data-toggle="buttons">
+
+                                                                                <label for="" style="visibility:hidden">---</label>  
+                                                                                <input type="checkbox" value="" id="IdDescuentoBreack" class="flat"> Descuenta Break
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
                                                                 </div>
                                                                 <div class="ln_solid"></div>
                                                             </div>

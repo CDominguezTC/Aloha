@@ -20,7 +20,22 @@
     <head>        
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesRegistroCargosHoteleria.js" ></script>       
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesRegistroCargosHoteleria.js" ></script>     
+        
+        <style>
+  
+            #Idbuscar{
+                display: block;
+                width: 100%;
+            }
+
+            #IdGuardar{
+                display: block;
+                width: 20%;
+            }
+
+        </style>
+      
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -71,10 +86,17 @@
                                                         <div id="Principal">
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id" value="">
-                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
-                                                                    <input type="text" class="form-control" id="IdCedula" value="" name="cedula">
-                                                                </div>                                                                                                                 
+                                                                    <input type="number" class="form-control" id="IdCedula" value="" name="cedula" min="0">
+                                                                </div>        
+                                                                
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                    <label for="" style="visibility:hidden">---</label>
+                                                                    <button class="btn btn-primary btn-md" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
+                                                                </div> 
+                                                                
+                                                                
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">                                                                    
                                                                     <input type="hidden" class="form-control" id="Idfrmm" value="" name="frm">
                                                                 </div>                                                                                                                 
@@ -87,7 +109,7 @@
                                                         <div class="form-group"> 
                                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                                                 <!--button class="btn btn-primary btn-sm" type="submit" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button-->
-                                                                <button class="btn btn-primary btn-sm" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
+                                                                <!--<button class="btn btn-primary btn-sm" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>-->
                                                             </div>
                                                         </div>
                                                         <br>
@@ -133,9 +155,10 @@
                                                                 </tbody>
                                                             </table>                                                                                                                                    
                                                         </div>
+                                                        <div class="ln_solid"></div>
                                                         <div class="form-group"> 
                                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                                                <button class="btn btn-primary btn-sm" type="button" id="IdGuardar" name="frm" value="Aplicar"><i class="fa fa-search"></i>Guardar</button>
+                                                                <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="frm" value="Aplicar"><i class="fa fa-save"></i> Guardar</button>
                                                             </div>
                                                         </div>
                                                     </form>                                 

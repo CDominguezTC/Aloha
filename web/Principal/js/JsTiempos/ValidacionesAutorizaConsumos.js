@@ -53,7 +53,8 @@ $(function () {
                 $('#IdNombreEmpleadoAutoriza').val($(this).data('nombre') + " " + $(this).data('apellido'));
                 $('#IdCC').val($(this).data('centrocosto'));
                 $('#IdCentroCosto').val($(this).data('centrocostonombre'));
-                cantidadconsumo = $(this).data('cantidadconsumo');                
+                cantidadconsumo = $(this).data('cantidadconsumo');
+                alert(cantidadconsumo);
             }
             if (tipopersona === 'EMPLEADO') {
                 $('#IdEmpleadoAutoriza').val($(this).data('id'));
@@ -379,6 +380,21 @@ $(function () {
         return res;
     }
 
+    function LimpiarCampos()
+    {
+        $('#IdTipoPersona').val('0');
+        $('#IdEmpleadoAutoriza').val('');
+        $('#IdEmpleadoAutorizado').val('');
+        $('#IdCC').val('')
+        $('#IdFechaInicial').val('');
+        $('#IdFechaFinal').val('');
+        $('#IdTipoConsumo').val('0');
+        $('#IdMotivo').val('');
+        $('#IdCantidad').val('');
+        tipopersona = "NULL";
+        cantidadconsumo = 0;
+    }
+
     $('#IdGuardar').click(function (e)
     {
         if (ValidaCampo() === true)
@@ -431,7 +447,7 @@ $(function () {
                                 disableGif();
                                 //alert(resul);
                                 LimpiarCampos();
-                                LoadTabla();
+                                //LoadTabla();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 disableGif();
@@ -503,56 +519,6 @@ $(function () {
                 }
 
             }
-
-
-//            var Frm = "CargosJSP";
-//            var Id = $('#Id').val();
-//            var Codigo = $('#IdCodigo').val();
-//            var Nombre = $('#IdNombre').val();
-//            var Accion = "Upload";
-//            var data = {
-//                frm: Frm,
-//                id: Id,
-//                codigo: Codigo,
-//                nombre: Nombre,
-//                accion: Accion
-//            };
-//            enableGif();
-//            $.ajax({
-//                type: "POST",
-//                url: "ServletAlohaTiempos",
-//                data: data,
-//                success: function (resul, textStatus, jqXHR)
-//                {
-//                    Swal.fire({
-//                        icon: 'success',
-//                        title: 'Guardado',
-//                        text: 'Registro Guardado Satisfactoriamente.'
-//                    });
-//                    disableGif();
-//                    //alert(resul);
-//                    LimpiarCampos();
-//                    LoadTabla();
-//                },
-//                error: function (jqXHR, textStatus, errorThrown) {
-//                    disableGif();
-//                    if (jqXHR.status === 0) {
-//                        alert('Not connect: Verify Network.');
-//                    } else if (jqXHR.status === 404) {
-//                        alert('Requested page not found [404]');
-//                    } else if (jqXHR.status === 500) {
-//                        alert('Internal Server Error [500].');
-//                    } else if (textStatus === 'parsererror') {
-//                        alert('Requested JSON parse failed.');
-//                    } else if (textStatus === 'timeout') {
-//                        alert('Time out error.');
-//                    } else if (textStatus === 'abort') {
-//                        alert('Ajax request aborted.');
-//                    } else {
-//                        alert('Uncaught Error: ' + jqXHR.responseText);
-//                    }
-//                }
-//            });
         } else
         {
             Swal.fire({
