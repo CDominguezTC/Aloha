@@ -155,4 +155,17 @@ public class Herramienta {
         return diaMarcacion;
     }
 
+    
+    /**
+     * Permite obtener la fecha del sistema en el momento de la consulta
+     * @return
+     */
+
+    public String getDateToday() {
+     String fecha;
+        Calendar c = Calendar.getInstance();
+        fecha = Integer.toString(c.get(Calendar.YEAR)) +"-"+ Integer.toString(c.get(Calendar.MONTH))+"-"+Integer.toString(c.get(Calendar.DATE));
+        return fecha;
+    }
+
 }

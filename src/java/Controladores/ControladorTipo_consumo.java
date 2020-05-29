@@ -260,35 +260,43 @@ public class ControladorTipo_consumo {
             LinkedList<ModeloTipo_consumo> listmoTipoConsumo;
             listmoTipoConsumo = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Nomnre</th>";
-            out += "<th>Cantidad</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloTipo_consumo modeloTipoConsumo : listmoTipoConsumo) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloTipo_consumo modeloTipo_consumo : listmoTipoConsumo) {
+                    out += "<option value=\"" + modeloTipo_consumo.getId() + "\"> " + modeloTipo_consumo.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloTipoConsumo.getNombre() + "</td>";
-                out += "<td>" + modeloTipoConsumo.getCantidad() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
-                out += "data-nombre=\"" + modeloTipoConsumo.getNombre() + "\"";
-                out += "data-cantidad=\"" + modeloTipoConsumo.getCantidad() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Nomnre</th>";
+                out += "<th>Cantidad</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloTipo_consumo modeloTipoConsumo : listmoTipoConsumo) {
+                    out += "<tr>";
+                    out += "<td>" + modeloTipoConsumo.getNombre() + "</td>";
+                    out += "<td>" + modeloTipoConsumo.getCantidad() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
+                    out += "data-nombre=\"" + modeloTipoConsumo.getNombre() + "\"";
+                    out += "data-cantidad=\"" + modeloTipoConsumo.getCantidad() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloTipoConsumo.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }

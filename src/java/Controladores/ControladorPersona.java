@@ -139,6 +139,7 @@ public class ControladorPersona {
                     + "acceso_restringido, "
                     + "observacion, "
                     + "consumo_casino, "
+                    + "cantidad_consumo, "
                     + "tarjeta_acceso, "
                     + "codigo_nomina, "
                     + "estado, "
@@ -174,6 +175,7 @@ public class ControladorPersona {
                 modelo.setAcceso_restringido(res.getString("acceso_restringido"));
                 modelo.setObservacion(res.getString("observacion"));
                 modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
                 modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
                 modelo.setCodigo_nomina(res.getString("codigo_nomina"));
                 modelo.setEstado(res.getString("estado"));
@@ -229,6 +231,7 @@ public class ControladorPersona {
                     + "acceso_restringido, "
                     + "observacion, "
                     + "consumo_casino, "
+                    + "cantidad_consumo, "
                     + "tarjeta_acceso, "
                     + "codigo_nomina, "
                     + "estado, "
@@ -266,6 +269,7 @@ public class ControladorPersona {
                 modelo.setAcceso_restringido(res.getString("acceso_restringido"));
                 modelo.setObservacion(res.getString("observacion"));
                 modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
                 modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
                 modelo.setCodigo_nomina(res.getString("codigo_nomina"));
                 modelo.setEstado(res.getString("estado"));
@@ -308,6 +312,8 @@ public class ControladorPersona {
         modeloPersona.setApellidos(request.getParameter("apellido"));
         modeloPersona.setObservacion(request.getParameter("observacion"));
         modeloPersona.setConsumo_casino(request.getParameter("consumo"));
+        modeloPersona.setCantidad_consumo(Integer.parseInt(herramienta.validaString(request.getParameter("cantidad_consumo"))));
+        modeloPersona.setTipo_persona(request.getParameter("tipopersona"));
         modeloPersona.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
         modeloPersona.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(request.getParameter("empresa"))));
         modeloPersona.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(request.getParameter("cargo"))));
@@ -352,7 +358,7 @@ public class ControladorPersona {
                 String Template = request.getParameter("templates10");
                 String Foto = request.getParameter("foto");
                 String firma = request.getParameter("firma");
-                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i),"Update");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Update");
                 resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Update");
             }
         }
@@ -408,6 +414,7 @@ public class ControladorPersona {
                 out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
                 out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
                 out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                out += "data-cantidadconsumo=\"" + modeloPersonas.getCantidad_consumo() + "\"";
                 out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
                 out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
@@ -499,7 +506,7 @@ public class ControladorPersona {
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloPersona> Read(String estado) {
+    public LinkedList<ModeloPersona> Read(String estado) {
         LinkedList<ModeloPersona> listaModeloPersonas = new LinkedList<ModeloPersona>();
         con = conexion.abrirConexion();
         try {
@@ -519,6 +526,7 @@ public class ControladorPersona {
                     + "acceso_restringido, "
                     + "observacion, "
                     + "consumo_casino, "
+                    + "cantidad_consumo, "
                     + "tarjeta_acceso, "
                     + "codigo_nomina, "
                     + "estado, "
@@ -534,8 +542,10 @@ public class ControladorPersona {
                     + "id_empresa_trabaja, "
                     + "id_grupo_consumo "
                     + " FROM persona "
-                    + "WHERE `estado` = ? ;");
+                    + "WHERE `estado` = ? AND"
+                    + "`tipo_persona` = ?;");
             SQL.setString(1, estado);
+            SQL.setString(2, "EMPLEADO");
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloPersona modelo = new ModeloPersona();
@@ -555,6 +565,7 @@ public class ControladorPersona {
                 modelo.setAcceso_restringido(res.getString("acceso_restringido"));
                 modelo.setObservacion(res.getString("observacion"));
                 modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
                 modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
                 modelo.setCodigo_nomina(res.getString("codigo_nomina"));
                 modelo.setEstado(res.getString("estado"));
@@ -614,6 +625,7 @@ public class ControladorPersona {
                     + "acceso_restringido, "
                     + "observacion, "
                     + "consumo_casino, "
+                    + "cantidad_consumo, "
                     + "tarjeta_acceso, "
                     + "codigo_nomina, "
                     + "estado, "
@@ -652,6 +664,7 @@ public class ControladorPersona {
                 modelo.setAcceso_restringido(res.getString("acceso_restringido"));
                 modelo.setObservacion(res.getString("observacion"));
                 modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
                 modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
                 modelo.setCodigo_nomina(res.getString("codigo_nomina"));
                 modelo.setEstado(res.getString("estado"));
@@ -700,6 +713,7 @@ public class ControladorPersona {
                         + "acceso_restringido, "
                         + "observacion, "
                         + "consumo_casino, "
+                        + "cantidad_consumo, "
                         + "tarjeta_acceso, "
                         + "codigo_nomina, "
                         + "estado, "
@@ -723,13 +737,14 @@ public class ControladorPersona {
                 SQL.setString(13, modeloPersona.getAcceso_restringido());
                 SQL.setString(14, modeloPersona.getObservacion());
                 SQL.setString(15, modeloPersona.getConsumo_casino());
-                SQL.setString(16, modeloPersona.getTarjeta_acceso());
-                SQL.setString(17, modeloPersona.getCodigo_nomina());
-                SQL.setString(18, "S");
-                SQL.setInt(19, modeloPersona.getModelo_centro_costo().getId());
-                SQL.setInt(20, modeloPersona.getModelo_empresa_trabaja().getId());
-                SQL.setInt(21, modeloPersona.getModelo_grupo_consumo().getId());
-                SQL.setInt(22, modeloPersona.getModelo_cargo().getId());
+                SQL.setInt(16, modeloPersona.getCantidad_consumo());
+                SQL.setString(17, modeloPersona.getTarjeta_acceso());
+                SQL.setString(18, modeloPersona.getCodigo_nomina());
+                SQL.setString(19, "S");
+                SQL.setInt(20, modeloPersona.getModelo_centro_costo().getId());
+                SQL.setInt(21, modeloPersona.getModelo_empresa_trabaja().getId());
+                SQL.setInt(22, modeloPersona.getModelo_grupo_consumo().getId());
+                SQL.setInt(23, modeloPersona.getModelo_cargo().getId());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -782,6 +797,7 @@ public class ControladorPersona {
                             + "apellidos = ?, "
                             + "observacion = ?, "
                             + "consumo_casino = ?, "
+                            + "cantidad_consumo = ?, "
                             + "id_centro_costo = ?, "
                             + "id_empresa_trabaja = ?, "
                             + "id_grupo_consumo = ?, "
@@ -793,11 +809,12 @@ public class ControladorPersona {
                     SQL.setString(4, modeloPersona.getApellidos());
                     SQL.setString(5, modeloPersona.getObservacion());
                     SQL.setString(6, modeloPersona.getConsumo_casino());
-                    SQL.setInt(7, modeloPersona.getModelo_centro_costo().getId());
-                    SQL.setInt(8, modeloPersona.getModelo_empresa_trabaja().getId());
-                    SQL.setInt(9, modeloPersona.getModelo_grupo_consumo().getId());
-                    SQL.setInt(10, modeloPersona.getModelo_cargo().getId());
-                    SQL.setInt(11, modeloPersona.getId());                    
+                    SQL.setInt(7, modeloPersona.getCantidad_consumo());
+                    SQL.setInt(8, modeloPersona.getModelo_centro_costo().getId());
+                    SQL.setInt(9, modeloPersona.getModelo_empresa_trabaja().getId());
+                    SQL.setInt(10, modeloPersona.getModelo_grupo_consumo().getId());
+                    SQL.setInt(11, modeloPersona.getModelo_cargo().getId());
+                    SQL.setInt(12, modeloPersona.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
                     i = modeloPersona.getId();

@@ -8,6 +8,7 @@ package Servlet;
 import Controladores.ControladorArea;
 import Controladores.ControladorAsociacion_grupo_consumo_horario_consumo;
 import Controladores.ControladorAuditoria;
+import Controladores.ControladorAutoriza_consumo;
 import Controladores.ControladorCargo;
 import Controladores.ControladorCargo_hoteleria;
 import Controladores.ControladorCiudad;
@@ -35,6 +36,7 @@ import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuario;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersona;
+import Modelo.ModeloUsuario;
 import Tools.Tools;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -147,9 +149,15 @@ public class ServletAlohaTiempos extends HttpServlet {
                             Resultado = controladorIni.autenticacion(request);
                             if ("true".equals(Resultado)) {
                                 String usuario = request.getParameter("user");
+                                //Instancio del controlador y el modelo de usuarios
+                                ControladorUsuario controladorUsuario = new ControladorUsuario();
+                                ModeloUsuario modeloUsuario = new ModeloUsuario();
+                                modeloUsuario = controladorUsuario.getModelo(controladorUsuario.idUsuario(usuario));
                                 //String pw = request.getParameter("pass");
                                 HttpSession session = request.getSession();
                                 session.setAttribute("usuario", usuario);
+                                // agrego el modelo al session
+                                session.setAttribute("modelousuario", modeloUsuario);
                             }
                             break;
                     }
@@ -541,6 +549,28 @@ public class ServletAlohaTiempos extends HttpServlet {
                             break;
                     }
                     break;
+                case "AutorizacionConsumoJSP":
+                    ControladorAutoriza_consumo controladorAutoriza_consumo = new ControladorAutoriza_consumo();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = controladorAutoriza_consumo.Insert(request, response);
+                            break;
+                        case "ReadPersonaAutoriza":
+                            Resultado = controladorAutoriza_consumo.ReadPersonaAutoriza(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "ReadPersonaAutorizada":
+                            Resultado = controladorAutoriza_consumo.ReadPersonaAutorizado(request, response);
+                            PrintWriter pww = response.getWriter();
+                            pww.write(Resultado);
+                            System.out.println(pww.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+
+                    }
+                    break;
                 case "ImagenesJSP":
                     ControladorImagen controladorImagen = new ControladorImagen();
                     Accion = request.getParameter("accion");
@@ -708,10 +738,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     controladorLiquidacionCasino.Select("GenerarLiquidacionCasino", request, response);
                     Accion = "Plano";
                     break;
-               
-                    //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
-                    //Accion = "Plano";
-                    //break;
+
+                //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
+                //Accion = "Plano";
+                //break;
 //                case "BuscarPersona":
 //                    ModeloPersona modeloPersonas = new ModeloPersona();                    
 //                    ControladorPersona controladorPersonas1 = new ControladorPersona();

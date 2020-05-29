@@ -187,7 +187,7 @@ public class ControladorHorario_consumo {
                     SQL.setString(11, modeloHorario_consumo.getSabado());
                     SQL.setString(12, modeloHorario_consumo.getDomingo());
                     SQL.setString(13, modeloHorario_consumo.getFestivo());
-                    SQL.setInt(14, modeloHorario_consumo.getModelo_tipo_consumo().getId());                    
+                    SQL.setInt(14, modeloHorario_consumo.getModelo_tipo_consumo().getId());
                     SQL.setInt(15, modeloHorario_consumo.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
@@ -370,70 +370,79 @@ public class ControladorHorario_consumo {
             LinkedList<ModeloHorario_consumo> listmoHorarioConsumos;
             listmoHorarioConsumos = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Hora Inicio</th>";
-            out += "<th>Hora Fin</th>";
-            out += "<th>No Consumos</th>";
-            out += "<th>TipoConsumo</th>";
-            out += "<th>L</th>";
-            out += "<th>M</th>";
-            out += "<th>Mx</th>";
-            out += "<th>J</th>";
-            out += "<th>V</th>";
-            out += "<th>S</th>";
-            out += "<th>D</th>";
-            out += "<th>F</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloHorario_consumo modelo : listmoHorarioConsumos) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloHorario_consumo modeloHorario_consumo : listmoHorarioConsumos) {
+                    out += "<option value=\"" + modeloHorario_consumo.getId() + "\"> " + modeloHorario_consumo.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modelo.getCodigo() + "</td>";
-                out += "<td>" + modelo.getNombre() + "</td>";
-                out += "<td>" + modelo.getHora_inicio() + "</td>";
-                out += "<td>" + modelo.getHora_fin() + "</td>";
-                out += "<td>" + modelo.getCantidad_consumo() + "</td>";
-                out += "<td>" + modelo.getModelo_tipo_consumo().getNombre() + "</td>";
-                out += "<td>" + modelo.getLunes() + "</td>";
-                out += "<td>" + modelo.getMartes() + "</td>";
-                out += "<td>" + modelo.getMiercoles() + "</td>";
-                out += "<td>" + modelo.getJueves() + "</td>";
-                out += "<td>" + modelo.getViernes() + "</td>";
-                out += "<td>" + modelo.getSabado() + "</td>";
-                out += "<td>" + modelo.getDomingo() + "</td>";
-                out += "<td>" + modelo.getFestivo() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modelo.getId() + "\"";
-                out += "data-codigo=\"" + modelo.getCodigo() + "\"";
-                out += "data-nombre=\"" + modelo.getNombre() + "\"";
-                out += "data-horaincio=\"" + modelo.getHora_inicio() + "\"";
-                out += "data-horafin=\"" + modelo.getHora_fin() + "\"";
-                out += "data-cantidadconsumos=\"" + modelo.getCantidad_consumo() + "\"";
-                out += "data-lunes=\"" + modelo.getLunes() + "\"";
-                out += "data-martes=\"" + modelo.getMartes() + "\"";
-                out += "data-miercoles=\"" + modelo.getMiercoles() + "\"";
-                out += "data-jueves=\"" + modelo.getJueves() + "\"";
-                out += "data-viernes=\"" + modelo.getViernes() + "\"";
-                out += "data-sabado=\"" + modelo.getSabado() + "\"";
-                out += "data-domingo=\"" + modelo.getDomingo() + "\"";
-                out += "data-festivo=\"" + modelo.getFestivo() + "\"";
-                out += "data-tipoconsumo=\"" + modelo.getModelo_tipo_consumo().getId() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modelo.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Hora Inicio</th>";
+                out += "<th>Hora Fin</th>";
+                out += "<th>No Consumos</th>";
+                out += "<th>TipoConsumo</th>";
+                out += "<th>L</th>";
+                out += "<th>M</th>";
+                out += "<th>Mx</th>";
+                out += "<th>J</th>";
+                out += "<th>V</th>";
+                out += "<th>S</th>";
+                out += "<th>D</th>";
+                out += "<th>F</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloHorario_consumo modelo : listmoHorarioConsumos) {
+                    out += "<tr>";
+                    out += "<td>" + modelo.getCodigo() + "</td>";
+                    out += "<td>" + modelo.getNombre() + "</td>";
+                    out += "<td>" + modelo.getHora_inicio() + "</td>";
+                    out += "<td>" + modelo.getHora_fin() + "</td>";
+                    out += "<td>" + modelo.getCantidad_consumo() + "</td>";
+                    out += "<td>" + modelo.getModelo_tipo_consumo().getNombre() + "</td>";
+                    out += "<td>" + modelo.getLunes() + "</td>";
+                    out += "<td>" + modelo.getMartes() + "</td>";
+                    out += "<td>" + modelo.getMiercoles() + "</td>";
+                    out += "<td>" + modelo.getJueves() + "</td>";
+                    out += "<td>" + modelo.getViernes() + "</td>";
+                    out += "<td>" + modelo.getSabado() + "</td>";
+                    out += "<td>" + modelo.getDomingo() + "</td>";
+                    out += "<td>" + modelo.getFestivo() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                    out += "data-id=\"" + modelo.getId() + "\"";
+                    out += "data-codigo=\"" + modelo.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modelo.getNombre() + "\"";
+                    out += "data-horaincio=\"" + modelo.getHora_inicio() + "\"";
+                    out += "data-horafin=\"" + modelo.getHora_fin() + "\"";
+                    out += "data-cantidadconsumos=\"" + modelo.getCantidad_consumo() + "\"";
+                    out += "data-lunes=\"" + modelo.getLunes() + "\"";
+                    out += "data-martes=\"" + modelo.getMartes() + "\"";
+                    out += "data-miercoles=\"" + modelo.getMiercoles() + "\"";
+                    out += "data-jueves=\"" + modelo.getJueves() + "\"";
+                    out += "data-viernes=\"" + modelo.getViernes() + "\"";
+                    out += "data-sabado=\"" + modelo.getSabado() + "\"";
+                    out += "data-domingo=\"" + modelo.getDomingo() + "\"";
+                    out += "data-festivo=\"" + modelo.getFestivo() + "\"";
+                    out += "data-tipoconsumo=\"" + modelo.getModelo_tipo_consumo().getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modelo.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (SQLException e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
