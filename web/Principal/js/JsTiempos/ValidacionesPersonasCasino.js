@@ -919,6 +919,7 @@ $(function () {
             var IdTemplates = $('#IdTemplate').val();
             var Foto = $('#IdSRCImagen').val();
             var Firma = $('#IdFirmaBase64').val();
+            var Tipo_Persona = "EMPLEADO";
             var Accion = "Upload";
             var Modulo = "Casino";
             var data = {
@@ -948,6 +949,7 @@ $(function () {
                 idtemplates: IdTemplates,
                 foto: Foto,
                 firma: Firma,
+                tipopersona: Tipo_Persona,
                 accion: Accion,
                 nombreU: NamUs,
                 modulo: Modulo

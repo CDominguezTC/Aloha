@@ -33,6 +33,7 @@ public class ModeloPersona {
     String acceso_restringido;
     String observacion;
     String consumo_casino;
+    Integer cantidad_consumo;
     String tarjeta_acceso;
     String codigo_nomina;
     String estado;
@@ -47,15 +48,15 @@ public class ModeloPersona {
     ModeloCargo Modelo_cargo;
     ModeloEmpresa Modelo_empresa_trabaja;
     ModeloGrupo_consumo Modelo_grupo_consumo;
-    
+
     //datos para imagenes, huellas y template
     LinkedList<ModeloImagen> Lista_Modelo_Imagenes;
-    LinkedList<ModeloTemplate> Lista_Modelo_Template;    
+    LinkedList<ModeloTemplate> Lista_Modelo_Template;
 
     public ModeloPersona() {
     }
 
-    public ModeloPersona(Integer id, String tipo_identificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String telefono, String rh, String tipo_persona, String recibe_visitas, String nombre_eps, String nombre_arl, String acceso_restringido, String observacion, String consumo_casino, String tarjeta_acceso, String codigo_nomina, String estado, ModeloDependencia Modelo_dependencia, ModeloEmpresa Modelo_empresa_seguridad_social, ModeloGrupoTurnos Modelo_grupo_horario, ModeloTurnos Modelo_turno, ModeloDepartamento Modelo_departamento, ModeloArea Modelo_area, ModeloCiudad Modelo_ciudad, ModeloCentro_costo Modelo_centro_costo, ModeloCargo Modelo_cargo, ModeloEmpresa Modelo_empresa_trabaja, ModeloGrupo_consumo Modelo_grupo_consumo, LinkedList<ModeloImagen> Lista_Modelo_Imagenes, LinkedList<ModeloTemplate> Lista_Modelo_Template) {
+    public ModeloPersona(Integer id, String tipo_identificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String telefono, String rh, String tipo_persona, String recibe_visitas, String nombre_eps, String nombre_arl, String acceso_restringido, String observacion, String consumo_casino, Integer cantidad_consumo, String tarjeta_acceso, String codigo_nomina, String estado, ModeloDependencia Modelo_dependencia, ModeloEmpresa Modelo_empresa_seguridad_social, ModeloGrupoTurnos Modelo_grupo_horario, ModeloTurnos Modelo_turno, ModeloDepartamento Modelo_departamento, ModeloArea Modelo_area, ModeloCiudad Modelo_ciudad, ModeloCentro_costo Modelo_centro_costo, ModeloCargo Modelo_cargo, ModeloEmpresa Modelo_empresa_trabaja, ModeloGrupo_consumo Modelo_grupo_consumo, LinkedList<ModeloImagen> Lista_Modelo_Imagenes, LinkedList<ModeloTemplate> Lista_Modelo_Template) {
         this.id = id;
         this.tipo_identificacion = tipo_identificacion;
         this.identificacion = identificacion;
@@ -72,6 +73,7 @@ public class ModeloPersona {
         this.acceso_restringido = acceso_restringido;
         this.observacion = observacion;
         this.consumo_casino = consumo_casino;
+        this.cantidad_consumo = cantidad_consumo;
         this.tarjeta_acceso = tarjeta_acceso;
         this.codigo_nomina = codigo_nomina;
         this.estado = estado;
@@ -218,6 +220,14 @@ public class ModeloPersona {
         this.consumo_casino = consumo_casino;
     }
 
+    public Integer getCantidad_consumo() {
+        return cantidad_consumo;
+    }
+
+    public void setCantidad_consumo(Integer cantidad_consumo) {
+        this.cantidad_consumo = cantidad_consumo;
+    }
+
     public String getTarjeta_acceso() {
         return tarjeta_acceso;
     }
@@ -345,6 +355,4 @@ public class ModeloPersona {
     public void setLista_Modelo_Template(LinkedList<ModeloTemplate> Lista_Modelo_Template) {
         this.Lista_Modelo_Template = Lista_Modelo_Template;
     }
-    
-    
-   }
+}

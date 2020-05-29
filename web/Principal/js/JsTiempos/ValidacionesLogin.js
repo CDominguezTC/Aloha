@@ -242,6 +242,11 @@ $(function () {
     $('#idcargostiempos').click(function (e) {
         validoPermiso("Cargos.Abrir", "Cargos.jsp");
     });
+    
+    //Jsp Autoriza Consumos 
+    $('#idautorizaconsumo').click(function (e) {
+        validoPermiso("AutorizaConsumos.Abrir", "AutorizaConsumos.jsp");
+    });
 
     $('#idcambiarpw').click(function (e) {
 
