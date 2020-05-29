@@ -106,6 +106,10 @@
                                                                 </select>
                                                             </div -->
 
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group" style="display: none">
+                                                                <input type="text" class="form-control" id="Id" name="Id" min="0">
+                                                            </div>
+
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="Documento">Documento</label>
                                                                 <input type="text" class="form-control" id="IdDocumento" name="Documento" min="0" required>
@@ -119,51 +123,26 @@
 
                                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                 <label for="id_empresa_visitante">Empresa Visitante</label>
-                                                                <select id="id_empresa_visitante" class="form-control" required disabled>
-                                                                    <option value="0" selected>Seleccione</option>
-                                                                    <%
-                                                                        LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
-                                                                        ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
-                                                                        linkedListModeloEmpresas = controladorEmpresas.Read("S");
-                                                                        for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
-                                                                    %>  
-                                                                    <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
-                                                                    <%
-                                                                        }
-                                                                    %>
-                                                                </select>
+                                                                <input type="text" id="id_empresa_visitante" class="form-control" required disabled>
+                                                                <!--option value="0" selected>Seleccione</option-->                                                                                                
                                                             </div>
 
                                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                 <label for="id_empresa_ssocial">Empresa S-Social</label>
-                                                                <select id="id_empresa_ssocial" class="form-control" required disabled>
-                                                                    <%
-                                                                        //LinkedList<ModeloEmpresa> linkedListModeloEmpresas;
-                                                                        //ControladorEmpresa controladorEmpresas = new ControladorEmpresa();
-                                                                        //linkedListModeloEmpresas = controladorEmpresas.Read("S");
-                                                                        for (ModeloEmpresa modeloEmpresa : linkedListModeloEmpresas) {
-                                                                    %>  
-                                                                    <option value=<%=modeloEmpresa.getId()%>><%=modeloEmpresa.getNombre()%></option>
-                                                                    <%
-                                                                        }
-                                                                    %>
-                                                                </select>
+                                                                <input type="text" id="id_empresa_ssocial" class="form-control" required disabled>                                                                    
+
                                                             </div>
 
 
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="tipo_persona">Tipo de Persona</label>
-                                                                <select id="tipo_persona" class="form-control" required>
-                                                                    <option value="" disabled selected>Seleccione</option>
-                                                                    <option value="1"></option>
-                                                                </select>
+                                                                <input id="tipo_persona" class="form-control" required disabled>
                                                             </div>
 
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="tipo_visitante">Tipo de Visita</label>
                                                                 <select id="tipo_visitante" class="form-control" required>
                                                                     <option value="" disabled selected>Seleccione</option>
-                                                                    <option value="1">GENERAL</option>
                                                                 </select>
                                                             </div>
 
@@ -184,17 +163,13 @@
 
                                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                 <label for="obs_visitante">Observ. Visitante</label>
-                                                                <textarea id="obs_visitante" class="form-control" required>
-                                                                <!--option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option-->
+                                                                <textarea readonly id="obs_visitante" class="form-control" required>
                                                                 </textarea>
                                                             </div>
 
                                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                 <label for="obs_ingreso">Observ. Ingreso</label>
                                                                 <textarea id="obs_ingreso" class="form-control" required>
-                                                                <!--option value="" disabled selected>Seleccione</option>
-                                                                <option value="1"></option-->
                                                                 </textarea>
                                                             </div>
 
@@ -239,7 +214,7 @@
                                                 <div class="profile_img">
                                                     <div id="crop-avatar">
                                                         <!-- Img Captura Foto-Huella -->
-                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="245" width="245">
+                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="200" width="200">
                                                     </div>
                                                 </div>
 
@@ -258,6 +233,33 @@
                                                         <button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button> 
                                                     </div>
                                                 </div>
+
+                                                <div style="display: none">
+                                                    <!--div-->                                                    
+                                                    <div>
+                                                        <input id="IdHuella_0" value="" name="Huella_0">
+                                                        <input id="IdHuella_1" value="" name="Huella_1">
+                                                        <input id="IdHuella_2" value="" name="Huella_2">
+                                                        <input id="IdHuella_3" value="" name="Huella_3">
+                                                        <input id="IdHuella_4" value="" name="Huella_4">
+                                                        <input id="IdHuella_5" value="" name="Huella_5">
+                                                        <input id="IdHuella_6" value="" name="Huella_6">
+                                                        <input id="IdHuella_7" value="" name="Huella_7">
+                                                        <input id="IdHuella_8" value="" name="Huella_8">
+                                                        <input id="IdHuella_9" value="" name="Huella_9">
+                                                    </div>
+
+                                                    <div>
+                                                        <input id="IdTemplate" value="" name="Template">                                                        
+                                                        <input id="IdTemplate_10" value="" name="Template_10">                                                        
+                                                    </div>
+                                                    <div>
+                                                        <input id="IdSRCImagen" value="" name="SRCImagen">                                                        
+                                                        <input id="IdFirmaBase64" value="" name="FirmaBase64">   
+                                                    </div>
+                                                </div>
+
+
                                                 <!-- /Botones -->
 
                                             </div>

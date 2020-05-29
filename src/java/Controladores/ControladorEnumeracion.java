@@ -44,12 +44,13 @@ public class ControladorEnumeracion {
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
-        modeloEnumeracion.setModelo_enumeracion(getModelo(Integer.parseInt(request.getParameter("Modelo_enumeracion"))));
+        modeloEnumeracion.setModelo_enumeracion(getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("id_enumeracion")))));
         modeloEnumeracion.setCampo(request.getParameter("campo"));
         modeloEnumeracion.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
+            modeloEnumeracion.setEstado("S");
             resultado = Insert(modeloEnumeracion);
         } else {
             modeloEnumeracion.setId(Integer.parseInt(request.getParameter("id")));
@@ -78,6 +79,7 @@ public class ControladorEnumeracion {
                 SQL.setInt(1, modeloEnumeracion.getModelo_enumeracion().getId());
                 SQL.setString(2, modeloEnumeracion.getCampo());
                 SQL.setString(3, modeloEnumeracion.getEstado());
+                System.out.println(modeloEnumeracion);
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -128,8 +130,7 @@ public class ControladorEnumeracion {
                             + " WHERE id = ? ");
                     SQL.setInt(1, modeloEnumeracion.getModelo_enumeracion().getId());
                     SQL.setString(2, modeloEnumeracion.getCampo());
-                    SQL.setString(3, modeloEnumeracion.getEstado());
-                    SQL.setInt(4, modeloEnumeracion.getId());
+                    SQL.setInt(3, modeloEnumeracion.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
@@ -266,7 +267,7 @@ public class ControladorEnumeracion {
             String parametro = request.getParameter("evento");
             if ("Select".equals(parametro)) {
                 out = "";
-                out += "<option value=\"0\" selected>Seleccione</option>";
+                //out += "<option value=\"0\" selected>Seleccione</option>";
                 for (ModeloEnumeracion modeloEnumeracion : ListaModeloEnumeracion) {
                     out += "<option value=\"" + modeloEnumeracion.getId() + "\"> " + modeloEnumeracion.getCampo() + "</option>";
                 }
@@ -287,12 +288,14 @@ public class ControladorEnumeracion {
                     out += "<td class=\"text-center\">";
 // Boton Editar
                     out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getCampo() + "\"";
+                    out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
+                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
                     out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getCampo() + "\"";
+                    out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
+                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";
                     out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                     out += "</td>";

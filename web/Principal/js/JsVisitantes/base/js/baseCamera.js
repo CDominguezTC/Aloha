@@ -99,7 +99,7 @@ function createHtml(type, containerWidth, containerHeight)
             containerWidth = 187;
         }
 //		html = "<div id='initTip'><span class='warningImage'></span><a class='example-image-link warningColor' href='"+createGif('Simple')+"' data-lightbox='example-2' style='padding-top:1px;text-decoration:underline;color:#E57A14'>"+"${common_camera_authorizedCamera}"+"</a></div>";
-        html = "<div id='initTip'><span class='warningImage'></span><p class='example-image-link warningColor' data-lightbox='example-2' style='padding-top:1px;color:#E57A14'>" + "${common_camera_authorizedCamera}" + "</p></div>";
+        html = "<div id='initTip'><span class='warningImage'></span><p class='example-image-link warningColor' data-lightbox='example-2' style='padding-top:1px;color:#E57A14'>" + "Debe Autorizar Camara" + "</p></div>";
         html += '<video id="video" height="' + containerHeight + 'px" width="' + containerWidth + 'px" autoplay></video> ';
     }
 
@@ -192,7 +192,7 @@ function myFlash_DoFSCommand(command, args)
         }
     } else
     {
-        openMessage(msgType.warning, "${common_camera_authorizedCamera}".replace("<br/>", ""));
+        openMessage(msgType.warning, "Debe Autorizar Camara".replace("<br/>", ""));
     }
 }
 
@@ -256,7 +256,7 @@ function startWebcam(previewWidth, previewHeight, captureButton, browseType, e) 
             case "PermissionDeniedError":
             case "PermissionDismissedError":
                 hyperlink = true;
-                message = "${common_camera_authorizedCamera}";
+                message = "Debe Autorizar Camara";
                 break;
             case "SourceUnavailableError":
             case "MediaDeviceFailedDueToShutdown":
@@ -344,7 +344,7 @@ function createCamera(container, containerWidth, containerHeight, captureButton,
             saveCapture(type, previewWidth, previewHeight);
         } else
         {
-            openMessage(msgType.warning, "${common_camera_authorizedCamera}".replace("<br/>", ""));
+            openMessage(msgType.warning, "Debe Autorizar Camara".replace("<br/>", ""));
         }
     });
     if (type === "html5")

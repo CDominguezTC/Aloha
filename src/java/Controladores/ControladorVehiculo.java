@@ -311,7 +311,7 @@ public class ControladorVehiculo {
                 out += "<td>" + modeloVehiculo.getColor_vehiculo() + "</td>";
                 out += "<td>" + modeloVehiculo.getMarca_vehiculo() + "</td>";
                 out += "<td>" + modeloVehiculo.getTipo_vehiculo() + "</td>";
-                out += "<td>" + modeloVehiculo.getModelo_persona_responsable().getString() + "</td>";
+                out += "<td>" + modeloVehiculo.getModelo_persona_responsable().getNombres() + " " + modeloVehiculo.getModelo_persona_responsable().getApellidos() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
@@ -320,7 +320,7 @@ public class ControladorVehiculo {
                 out += "data-color_vehiculo=\"" + modeloVehiculo.getColor_vehiculo() + "\"";
                 out += "data-marca_vehiculo=\"" + modeloVehiculo.getMarca_vehiculo() + "\"";
                 out += "data-tipo_vehiculo=\"" + modeloVehiculo.getTipo_vehiculo() + "\"";
-                out += "data-id_persona_responsable=\"" + modeloVehiculo.getModelo_persona_responsable().getString() + "\"";
+                out += "data-id_persona_responsable=\"" + modeloVehiculo.getModelo_persona_responsable().getNombres() + " " + modeloVehiculo.getModelo_persona_responsable().getApellidos() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
@@ -329,7 +329,7 @@ public class ControladorVehiculo {
                 out += "data-color_vehiculo=\"" + modeloVehiculo.getColor_vehiculo() + "\"";
                 out += "data-marca_vehiculo=\"" + modeloVehiculo.getMarca_vehiculo() + "\"";
                 out += "data-tipo_vehiculo=\"" + modeloVehiculo.getTipo_vehiculo() + "\"";
-                out += "data-id_persona_responsable=\"" + modeloVehiculo.getModelo_persona_responsable().getString() + "\"";
+                out += "data-id_persona_responsable=\"" + modeloVehiculo.getModelo_persona_responsable().getNombres() + " " + modeloVehiculo.getModelo_persona_responsable().getApellidos() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";

@@ -200,7 +200,7 @@ function createWindow(paramStr, html, confirmFun)
     newWin = dhxWins.createWindow(id, params[1]?params[1] : 0, params[2]?params[2] : 0, params[3]?params[3] : 750, params[4] ? params[4] : 300);
     newWin.setText(params[5]? params[5] : title);
     //添加“正在加载中……”功能
-	var loadingHtml = "<div id='progressWin" + id + "' style='float: left;position: absolute;z-index: 999999999;height:100%; width:100%; background:#F4F7FF;text-align:center;'><img src='public/controls/dhtmlx/dhtmlxLayout/codebase/imgs/dhxlayout_dhx_web/dhxlayout_progress.gif' style='margin-top:"+ (params[4]/2-60) +"px'/></div>";
+	var loadingHtml = "<div id='progressWin" + id + "' style='float: left;position: absolute;z-index: 999999999;height:100%; width:100%; background:#F4F7FF;text-align:center;'><img src=Principal/images/loading_dash.gif style='margin-top:"+ (params[4]/2-60) +"px'/></div>";
 	newWin.attachHTMLString(loadingHtml);
 	if(!params[1] && !params[2])
 	{

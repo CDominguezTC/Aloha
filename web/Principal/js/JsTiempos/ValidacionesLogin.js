@@ -69,7 +69,25 @@ $(function () {
         validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
 
     });
+    
+     //Enumeracion
+    $('#idenumeracion').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Enumeracion.Abrir", "Enumeracion.jsp");
+    });
 
+    //Agrupacion Vencimientos
+    $('#idagrupacion_vencimiento').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Agrupacion_Vencimiento.Abrir", "Agrupacion_Vencimiento.jsp");
+    });
+    
+    //Agrupacion Vencimientos
+    $('#idvencimiento').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Vencimiento.Abrir", "Vencimiento.jsp");
+    });
+    
 
     $('#idempre').click(function (e) {
 

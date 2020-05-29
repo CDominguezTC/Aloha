@@ -27,8 +27,9 @@ public class ModeloVisita {
     String observacion;
     ModeloUsuario Modelo_usuario_ingreso;
     ModeloUsuario Modelo_usuario_salida;
+    String estado;
 
-    public ModeloVisita(Integer id, ModeloPersona Modelo_persona_visitante, ModeloEmpresa Modelo_empresa_visitante, ModeloPersona Modelo_persona_visitada, ModeloArea Modelo_area_visitada, String tipo_visita, String numero_tarjeta, Date fecha_hora_entrada, Date fecha_hora_salida, String estado_visita, ModeloVehiculo Modelo_vehiculo, String observacion, ModeloUsuario Modelo_usuario_ingreso, ModeloUsuario Modelo_usuario_salida) {
+    public ModeloVisita(Integer id, ModeloPersona Modelo_persona_visitante, ModeloEmpresa Modelo_empresa_visitante, ModeloPersona Modelo_persona_visitada, ModeloArea Modelo_area_visitada, String tipo_visita, String numero_tarjeta, Date fecha_hora_entrada, Date fecha_hora_salida, String estado_visita, ModeloVehiculo Modelo_vehiculo, String observacion, ModeloUsuario Modelo_usuario_ingreso, ModeloUsuario Modelo_usuario_salida, String estado) {
         this.id = id;
         this.Modelo_persona_visitante = Modelo_persona_visitante;
         this.Modelo_empresa_visitante = Modelo_empresa_visitante;
@@ -43,6 +44,7 @@ public class ModeloVisita {
         this.observacion = observacion;
         this.Modelo_usuario_ingreso = Modelo_usuario_ingreso;
         this.Modelo_usuario_salida = Modelo_usuario_salida;
+        this.estado = estado;
     }
 
     public ModeloVisita() {
@@ -160,7 +162,13 @@ public class ModeloVisita {
         this.Modelo_usuario_salida = Modelo_usuario_salida;
     }
 
-    
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     
 }

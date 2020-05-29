@@ -7,6 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloVisita;
+import com.google.gson.Gson;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -61,8 +62,8 @@ public class ControladorVisita {
         modeloVisita.setModelo_area_visitada(controladorArea.getModelo(Integer.parseInt(request.getParameter("Modelo_area_visitada"))));
         modeloVisita.setTipo_visita(request.getParameter("tipo_visita"));
         modeloVisita.setNumero_tarjeta(request.getParameter("numero_tarjeta"));
-        modeloVisita.setFecha_hora_entrada(request.getParameter("fecha_hora_entrada"));
-        modeloVisita.setFecha_hora_salida(request.getParameter("fecha_hora_salida"));
+//        modeloVisita.setFecha_hora_entrada(request.getParameter("fecha_hora_entrada"));
+//        modeloVisita.setFecha_hora_salida(request.getParameter("fecha_hora_salida"));
         modeloVisita.setEstado_visita(request.getParameter("estado_visita"));
         modeloVisita.setModelo_vehiculo(controladorVehiculo.getModelo(Integer.parseInt(request.getParameter("Modelo_vehiculo"))));
         modeloVisita.setObservacion(request.getParameter("observacion"));
@@ -160,7 +161,7 @@ public class ControladorVisita {
                     SQL = con.prepareStatement("UPDATE visita SET "
                             + " estado = ? "
                             + " WHERE id = ? ");
-                    SQL.setInt(1, modeloVisita.getEstado());
+                    SQL.setString(1, modeloVisita.getEstado());
                     SQL.setInt(2, modeloVisita.getId());
                 } else {
                     SQL = con.prepareStatement("UPDATE visita SET "
@@ -381,51 +382,51 @@ public class ControladorVisita {
             out += "<tbody>";
             for (ModeloVisita modeloVisita : ListaModeloVisita) {
                 out += "<tr>";
-                out += "<td>" + modeloVisita.getModelo_persona_visitante().getString() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_empresa_visitante().getString() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_persona_visitada().getString() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_area_visitada().getString() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_empresa_visitante().getNombre() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_area_visitada().getNombre() + "</td>";
                 out += "<td>" + modeloVisita.getTipo_visita() + "</td>";
                 out += "<td>" + modeloVisita.getNumero_tarjeta() + "</td>";
                 out += "<td>" + modeloVisita.getFecha_hora_entrada() + "</td>";
                 out += "<td>" + modeloVisita.getFecha_hora_salida() + "</td>";
                 out += "<td>" + modeloVisita.getEstado_visita() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_vehiculo().getString() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_vehiculo().getPlaca_vehiculo() + "</td>";
                 out += "<td>" + modeloVisita.getObservacion() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_usuario_ingreso().getString() + "</td>";
-                out += "<td>" + modeloVisita.getModelo_usuario_salida().getString() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_usuario_ingreso().getNombre() + "</td>";
+                out += "<td>" + modeloVisita.getModelo_usuario_salida().getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getString() + "\"";
-                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getString() + "\"";
-                out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getString() + "\"";
-                out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getString() + "\"";
+                out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
+                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre()+ "\"";
+                out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
+                out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getNombre() + "\"";
                 out += "data-tipo_visita=\"" + modeloVisita.getTipo_visita() + "\"";
                 out += "data-numero_tarjeta=\"" + modeloVisita.getNumero_tarjeta() + "\"";
                 out += "data-fecha_hora_entrada=\"" + modeloVisita.getFecha_hora_entrada() + "\"";
                 out += "data-fecha_hora_salida=\"" + modeloVisita.getFecha_hora_salida() + "\"";
                 out += "data-estado_visita=\"" + modeloVisita.getEstado_visita() + "\"";
-                out += "data-id_vehiculo=\"" + modeloVisita.getModelo_vehiculo().getString() + "\"";
+                out += "data-id_vehiculo=\"" + modeloVisita.getModelo_vehiculo().getPlaca_vehiculo() + "\"";
                 out += "data-observacion=\"" + modeloVisita.getObservacion() + "\"";
-                out += "data-id_usuario_ingreso=\"" + modeloVisita.getModelo_usuario_ingreso().getString() + "\"";
-                out += "data-id_usuario_salida=\"" + modeloVisita.getModelo_usuario_salida().getString() + "\"";
+                out += "data-id_usuario_ingreso=\"" + modeloVisita.getModelo_usuario_ingreso().getNombre() + "\"";
+                out += "data-id_usuario_salida=\"" + modeloVisita.getModelo_usuario_salida().getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getString() + "\"";
-                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getString() + "\"";
-                out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getString() + "\"";
-                out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getString() + "\"";
+                out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
+                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre()+ "\"";
+                out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
+                out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getNombre() + "\"";
                 out += "data-tipo_visita=\"" + modeloVisita.getTipo_visita() + "\"";
                 out += "data-numero_tarjeta=\"" + modeloVisita.getNumero_tarjeta() + "\"";
                 out += "data-fecha_hora_entrada=\"" + modeloVisita.getFecha_hora_entrada() + "\"";
                 out += "data-fecha_hora_salida=\"" + modeloVisita.getFecha_hora_salida() + "\"";
                 out += "data-estado_visita=\"" + modeloVisita.getEstado_visita() + "\"";
-                out += "data-id_vehiculo=\"" + modeloVisita.getModelo_vehiculo().getString() + "\"";
+                out += "data-id_vehiculo=\"" + modeloVisita.getModelo_vehiculo().getPlaca_vehiculo() + "\"";
                 out += "data-observacion=\"" + modeloVisita.getObservacion() + "\"";
-                out += "data-id_usuario_ingreso=\"" + modeloVisita.getModelo_usuario_ingreso().getString() + "\"";
-                out += "data-id_usuario_salida=\"" + modeloVisita.getModelo_usuario_salida().getString() + "\"";
+                out += "data-id_usuario_ingreso=\"" + modeloVisita.getModelo_usuario_ingreso().getNombre() + "\"";
+                out += "data-id_usuario_salida=\"" + modeloVisita.getModelo_usuario_salida().getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
                 out += "</tr>";
@@ -436,6 +437,21 @@ public class ControladorVisita {
         }
         return out;
     }
+    
+    public String valida_tipo_visita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+        Integer Id_persona = Integer.valueOf(request.getParameter("id_persona"));
+        String Tipo_Visita = request.getParameter("tipo_visita");
+        
+        
+        
+        
+        
+        
+        
+        resultado = new Gson().toJson(resultado);
+        return resultado;
+    }
+    
 
     public static String CompararTemplates(String Template_Vivo, String Template_Bd) throws Exception {
         JNative commNative;

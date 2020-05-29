@@ -7,6 +7,7 @@ package Servlet;
 
 import Controladores.ControladorArea;
 import Controladores.ControladorAsociacion_grupo_consumo_horario_consumo;
+import Controladores.ControladorAsociacion_grupo_vencimiento;
 import Controladores.ControladorAuditoria;
 import Controladores.ControladorCargo;
 import Controladores.ControladorCargo_hoteleria;
@@ -32,6 +33,7 @@ import Controladores.ControladorTemplate;
 import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuario;
+import Controladores.ControladorVencimiento;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersona;
 import Tools.Tools;
@@ -792,6 +794,44 @@ public class ServletAlohaTiempos extends HttpServlet {
                             break;
                         case "Read":
                             Resultado = controladorEnumeracion.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+
+                    break;
+                case "Asociacion_Grupo_VencimientoJSP":
+                    ControladorAsociacion_grupo_vencimiento asociacion_grupo_vencimiento = new ControladorAsociacion_grupo_vencimiento();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = asociacion_grupo_vencimiento.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = asociacion_grupo_vencimiento.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = asociacion_grupo_vencimiento.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+
+                    break;
+                case "VencimientoJSP":
+                    ControladorVencimiento vencimiento = new ControladorVencimiento();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = vencimiento.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = vencimiento.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = vencimiento.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
