@@ -124,13 +124,11 @@ public class ControladorCentro_costo {
                 } else {
                     SQL = con.prepareStatement("UPDATE centro_costo SET "
                             + "codigo = ?, "
-                            + "nombre = ?, "
-                            + "estado = ?"
+                            + "nombre = ?"                            
                             + " WHERE id = ? ");
                     SQL.setString(1, modeloCentro_costo.getCodigo());
-                    SQL.setString(2, modeloCentro_costo.getNombre());
-                    SQL.setString(3, modeloCentro_costo.getEstado());
-                    SQL.setInt(4, modeloCentro_costo.getId());
+                    SQL.setString(2, modeloCentro_costo.getNombre());                    
+                    SQL.setInt(3, modeloCentro_costo.getId());
                 }
 
                 if (SQL.executeUpdate() > 0) {

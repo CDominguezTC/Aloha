@@ -310,6 +310,7 @@ public class ControladorPersona {
         modeloPersona.setConsumo_casino(request.getParameter("consumo"));
         modeloPersona.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
         modeloPersona.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(request.getParameter("empresa"))));
+        modeloPersona.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(request.getParameter("cargo"))));
         modeloPersona.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
@@ -407,6 +408,7 @@ public class ControladorPersona {
                 out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
                 out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
                 out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
                 out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
@@ -703,8 +705,9 @@ public class ControladorPersona {
                         + "estado, "
                         + "id_centro_costo, "
                         + "id_empresa_trabaja, "
-                        + "id_grupo_consumo)"
-                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
+                        + "id_grupo_consumo, "
+                        + "id_cargo) "
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloPersona.getTipo_identificacion());
                 SQL.setString(2, modeloPersona.getIdentificacion());
                 SQL.setString(3, modeloPersona.getNombres());
@@ -726,6 +729,7 @@ public class ControladorPersona {
                 SQL.setInt(19, modeloPersona.getModelo_centro_costo().getId());
                 SQL.setInt(20, modeloPersona.getModelo_empresa_trabaja().getId());
                 SQL.setInt(21, modeloPersona.getModelo_grupo_consumo().getId());
+                SQL.setInt(22, modeloPersona.getModelo_cargo().getId());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -780,7 +784,8 @@ public class ControladorPersona {
                             + "consumo_casino = ?, "
                             + "id_centro_costo = ?, "
                             + "id_empresa_trabaja = ?, "
-                            + "id_grupo_consumo = ? "
+                            + "id_grupo_consumo = ?, "
+                            + "id_cargo = ? "
                             + "WHERE id = ? ");
                     SQL.setString(1, modeloPersona.getTipo_identificacion());
                     SQL.setString(2, modeloPersona.getIdentificacion());
@@ -791,7 +796,8 @@ public class ControladorPersona {
                     SQL.setInt(7, modeloPersona.getModelo_centro_costo().getId());
                     SQL.setInt(8, modeloPersona.getModelo_empresa_trabaja().getId());
                     SQL.setInt(9, modeloPersona.getModelo_grupo_consumo().getId());
-                    SQL.setInt(10, modeloPersona.getId());                    
+                    SQL.setInt(10, modeloPersona.getModelo_cargo().getId());
+                    SQL.setInt(11, modeloPersona.getId());                    
                 }
                 if (SQL.executeUpdate() > 0) {
                     i = modeloPersona.getId();

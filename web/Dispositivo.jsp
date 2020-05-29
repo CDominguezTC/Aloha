@@ -4,10 +4,6 @@
     Author     : Frankie
 --%>
 
-<%@page import="Controladores.ControladorGrupoConsumo"%>
-<%@page import="Modelo.ModeloGrupoConsumo"%>
-<%@page import="Modelo.ModeloEmpresa"%>
-<%@page import="java.util.LinkedList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

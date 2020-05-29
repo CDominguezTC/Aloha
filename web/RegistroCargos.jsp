@@ -20,8 +20,22 @@
     <head>        
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCargos.js" ></script-->        
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCargos.js" ></script>          
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesRegistroCargosHoteleria.js" ></script>     
+        
+        <style>
+  
+            #Idbuscar{
+                display: block;
+                width: 100%;
+            }
+
+            #IdGuardar{
+                display: block;
+                width: 20%;
+            }
+
+        </style>
+      
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -33,20 +47,7 @@
                     <div class="title_left">
                         <h3>Registro Hoteleria</h3>
                     </div>
-
-                    <!-- <div class="title_right">
-                       <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-                         <div class="input-group">
-                           <input type="text" class="form-control" placeholder="Buscar...">
-                           <span class="input-group-btn">
-                             <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                           </span>
-                         </div>
-                       </div>
-                     </div>-->
-
                 </div>
-
                 <!-- Primera Sección-->
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
@@ -85,10 +86,17 @@
                                                         <div id="Principal">
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id" value="">
-                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-8 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
-                                                                    <input type="text" class="form-control" id="IdCedula" value="" name="cedula">
-                                                                </div>                                                                                                                 
+                                                                    <input type="number" class="form-control" id="IdCedula" value="" name="cedula" min="0">
+                                                                </div>        
+                                                                
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                    <label for="" style="visibility:hidden">---</label>
+                                                                    <button class="btn btn-primary btn-md" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
+                                                                </div> 
+                                                                
+                                                                
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">                                                                    
                                                                     <input type="hidden" class="form-control" id="Idfrmm" value="" name="frm">
                                                                 </div>                                                                                                                 
@@ -101,56 +109,56 @@
                                                         <div class="form-group"> 
                                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
                                                                 <!--button class="btn btn-primary btn-sm" type="submit" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button-->
-                                                                <button class="btn btn-primary btn-sm" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>
+                                                                <!--<button class="btn btn-primary btn-sm" type="button" id="Idbuscar" name="frmm" value="BuscarPersona"><i class="fa fa-search"></i> Buscar</button>-->
                                                             </div>
                                                         </div>
                                                         <br>
                                                         <div>
-                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="nombre">Nombre</label>
                                                                 <input type="text" class="form-control" id="IdHNombre" value="" name="nombre" disabled="">
                                                             </div>
-                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="apellido">Apellido</label>
                                                                 <input type="text" class="form-control" id="IdHApellido" value="" name="apellido" disabled="">
-                                                            </div>                                                                                               
+                                                            </div>    
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="Fecha">Fecha Solicitud</label>
+                                                                <div class="form-group">
+                                                                    <div class='input-group date' id='myDatepicker3'>
+                                                                        <input type="text" class="form-control" id="IdFecha" name="fecha"/>
+                                                                        <span class="input-group-addon">
+                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                         <div>
                                                             <h3  style=" color: #006699; font-family: sans-serif; text-align: center; font-weight: bolder;">
                                                                 Listado de Servicios Hoteleria
                                                             </h3>
-                                                            <table class="table" id="Tabla"> 
-                                                                <tr>
-                                                                    <td><input type="checkbox" class="custom-control-input" id="IdSelect" name="Select" value="Select"><br></td>                                                                                                
-                                                                    <td><div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                                                            <label for="tipo_id">Servicio</label>
-                                                                            <select id="IdConsume" class="form-control" name="Consume">
-                                                                                <option value="0" selected disabled>Seleccione</option>   
-                                                                                <%--
-                                                                                    LinkedList<ModeloCargo> modeloCargos;
-                                                                                    ControladorCargo controladorCargos = new ControladorCargo();
-                                                                                    //modeloCargos = controladorCargos.getModelo("1");
-                                                                                    for (ModeloCargo modelo : modeloCargos) {
-                                                                                %>
-                                                                                <option value="<%=modelo.getId()%>"><%=modelo.getNombre()%></option>
-                                                                                <%
-                                                                                    }
-                                                                                --%>                                                                                
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>                                                         
-                                                            </table>
-                                                            <div class="text-center">                        
-                                                                <div class="col-lg-12" style="text-align: center">
-                                                                    <div class="btn btn-default" style="float: left" id="IdbtnDelete"> Eliminar Items</div>
-                                                                    <div class="btn btn-success" style="float: right" id="IdbtnNuevo"> Nuevo Item</div>
-                                                                </div>                        
-                                                            </div>                    
+                                                            <table id="datatable"class="table table-striped jambo_table bulk_action">
+                                                                <thead>
+                                                                    <tr class="headings">
+                                                                        <th>Selecione</th>            
+                                                                        <th>Servicio</th>
+                                                                        <th>Valor</th>                                                                        
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>                                                                                                      
+                                                                        <td></td>                                                        
+                                                                        <td></td>                                                        
+                                                                        <td></td>                                                        
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>                                                                                                                                    
                                                         </div>
+                                                        <div class="ln_solid"></div>
                                                         <div class="form-group"> 
                                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                                                <button class="btn btn-primary btn-sm" type="button" id="IdAplicarAccion" name="frm" value="AplicarCargos"><i class="fa fa-search"></i>Aplicar Cargos</button>
+                                                                <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="frm" value="Aplicar"><i class="fa fa-save"></i> Guardar</button>
                                                             </div>
                                                         </div>
                                                     </form>                                 
@@ -173,6 +181,13 @@
         <!-- Footer -->        
         <%@include file="Principal/Script.html" %>  
         <script>
+
+            $('#myDatepicker').datetimepicker();
+
+            $('#myDatepicker3').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
+            });
 
         </script>
     </body>

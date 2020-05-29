@@ -219,7 +219,8 @@ public class ControladorCargo_hoteleria {
                     + "valor_cargo, "
                     + "estado "
                     + "FROM cargo_hoteleria "
-                    + "WHERE estado = ? ");
+                    + "WHERE estado = ? "
+                    + "ORDER BY `tipo_cargo` ");
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
@@ -254,41 +255,52 @@ public class ControladorCargo_hoteleria {
         if (request.getParameter("estado") != null) {
             estado = "N";
         }
-        try {            
+        try {
             LinkedList<ModeloCargo_hoteleria> ListaModeloCargo_hoteleria = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Cargo</th>";
-            out += "<th>Valor</th>";
-            out += "<th>Opciones</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloCargo_hoteleria modeloCargo_hoteleria : ListaModeloCargo_hoteleria) {
-                out += "<tr>";                
-                out += "<td>" + modeloCargo_hoteleria.getTipo_cargo() + "</td>";
-                out += "<td>" + modeloCargo_hoteleria.getValor_cargo() + "</td>";
-                out += "<td class=\"text-center\">";
-// Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
-                out += "data-cargo=\"" + modeloCargo_hoteleria.getTipo_cargo() + "\"";
-                out += "data-valor=\"" + modeloCargo_hoteleria.getValor_cargo() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-//Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloCargo_hoteleria modeloCargo_hoteleria : ListaModeloCargo_hoteleria) {
+                    out += "<option value=\"" + modeloCargo_hoteleria.getId() + "\"> " + modeloCargo_hoteleria.getTipo_cargo()+ "</option>";
+                }
+            } else {                
+                response.setContentType("text/html;charset=UTF-8");
+                out = "";
+                out += "<thead>";
+                out += "<tr>";
+                out += "<th>Cargo</th>";
+                out += "<th>Valor</th>";
+                out += "<th>Opciones</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloCargo_hoteleria modeloCargo_hoteleria : ListaModeloCargo_hoteleria) {
+                    out += "<tr>";
+                    out += "<td>" + modeloCargo_hoteleria.getTipo_cargo() + "</td>";
+                    out += "<td>" + modeloCargo_hoteleria.getValor_cargo() + "</td>";
+                    out += "<td class=\"text-center\">";
+// Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
+                    out += "data-cargo=\"" + modeloCargo_hoteleria.getTipo_cargo() + "\"";
+                    out += "data-valor=\"" + modeloCargo_hoteleria.getValor_cargo() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+//Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en la generacion Html en Controladorcargo_hoteleria" + e);
         }
         return out;
+
     }
 
 }

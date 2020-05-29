@@ -24,7 +24,7 @@
                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <img src="Principal/images/Logo-CapaAgua.png" alt="AlohaCasino"  class="Img-CapaAgua" width="500" height="500">
-                        <div class="example" id="Text-CapaAgua" style="font-family: bauhaus;">ALOHA CASINO</div>              
+                        <div class="example" id="Text-CapaAgua" style="font-family: bauhaus;">ALOHA TCSAS</div>              
                     </div>
                 </div>
                 

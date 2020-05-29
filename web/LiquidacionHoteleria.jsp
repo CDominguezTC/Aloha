@@ -8,12 +8,8 @@
 <!DOCTYPE html>
 <html>
     <head>        
-        <%@include file="Principal/Head.html" %>    
-        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>        
-        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionCasino.js" ></script-->  
-        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesCargos.js" ></script-->
-        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <!--script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionCasino.js" ></script-->         
+        <%@include file="Principal/Head.html" %>            
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>  
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -89,7 +85,7 @@
                                         <!-- Botones -->
                                         <div class="ln_solid"></div>
                                         <div class="col-lg-12" style="text-align: center">
-                                            <button type="submit" class="btn btn-primary" id="IdGenerarPlano" name="frm" value="GenerarLiquidacionHoteleria" >Generar Liquidacion</button>                                                                                
+                                            <button type="submit" class="btn btn-primary" id="IdGenerarPlano" name="frm" value="GenerarLiquidacionHoteleria" >Generar Liquidacion</button>                                            
                                         </div>
                                         <!-- /Botones -->
                                     </div>

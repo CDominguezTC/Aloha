@@ -376,7 +376,7 @@ $(function ()
     function LoadTabla()
     {
         var Frm = "CargosJSP";
-        var Accion = "ReadTiempos";
+        var Accion = "Read";
         var data = {
             frm: Frm,
             accion: Accion

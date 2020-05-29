@@ -9,7 +9,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -77,8 +79,7 @@ public class Herramienta {
         Date date = null;
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            date = formatter.parse(FechaString);
-            System.out.println(date);
+            date = formatter.parse(FechaString);            
         } catch (ParseException ex) {
             Logger.getLogger(Herramienta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -109,6 +110,49 @@ public class Herramienta {
             string = "0";
         }
         return string;
+    }
+
+
+    /**
+     * Permite definir el dia que paso el evento 
+     *
+     * @autor Carlos A Dominguez diaz
+     * @version 23/05/2020
+     * @param fecha 
+     * @return
+     */
+    public String getNombreDia(String fecha) {
+        Date FechaEvento = getStringDate(fecha);
+        String diaMarcacion = null;
+        if (FechaEvento != null) {
+            GregorianCalendar cal = new GregorianCalendar();
+            cal.setTime(FechaEvento);
+            int numdia = cal.get(Calendar.DAY_OF_WEEK);
+            switch (numdia) {
+                case 1:
+                    diaMarcacion = "Domingo";
+                    break;
+                case 2:
+                    diaMarcacion = "Lunes";
+                    break;
+                case 3:
+                    diaMarcacion = "Martes";
+                    break;
+                case 4:
+                    diaMarcacion = "Miercoles";
+                    break;
+                case 5:
+                    diaMarcacion = "Jueves";
+                    break;
+                case 6:
+                    diaMarcacion = "Viernes";
+                    break;
+                case 7:
+                    diaMarcacion = "Sabado";
+                    break;
+            }
+        }
+        return diaMarcacion;
     }
 
 }

@@ -253,34 +253,44 @@ public class ControladorCargo {
         try {
             LinkedList<ModeloCargo> listmoCargos;
             listmoCargos = Read(estado);
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloCargo modeloCargos : listmoCargos) {
+            response.setContentType("text/html;charset=UTF-8");
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloCargo modeloCargo : listmoCargos) {
+                    out += "<option value=\"" + modeloCargo.getId() + "\"> " + modeloCargo.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloCargos.getCodigo() + "</td>";
-                out += "<td>" + modeloCargos.getNombre() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloCargos.getId() + "\"";
-                out += "data-codigo=\"" + modeloCargos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloCargos.getNombre() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloCargos.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloCargo modeloCargos : listmoCargos) {
+                    out += "<tr>";
+                    out += "<td>" + modeloCargos.getCodigo() + "</td>";
+                    out += "<td>" + modeloCargos.getNombre() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                    out += "data-id=\"" + modeloCargos.getId() + "\"";
+                    out += "data-codigo=\"" + modeloCargos.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloCargos.getNombre() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloCargos.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
 //            PrintWriter pw = response.getWriter();
 //            pw.write(out);
 //            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");

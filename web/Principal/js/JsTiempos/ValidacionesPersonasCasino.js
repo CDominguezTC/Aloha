@@ -7,12 +7,54 @@ $(function () {
 
     $(document).ready(function () {
         LoadTabla();
+        LoadCargo();
         LoadEmpresas();
         LoadCentroCosto();
         LoadGrupoConsumo();
         validacionBtn();
 
     });
+    // cargamos los cargos al select 
+    function LoadCargo() {
+        var Frm = "CargosJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdCargo').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
     // cargamos las empresas al select 
     function LoadEmpresas() {
         var Frm = "EmpresaJSP";
@@ -319,6 +361,7 @@ $(function () {
         $('#IdApellido').val($(this).data('apellido'));
         $('#IdEmpresaOld').val($(this).data('empresa'));
         $('#IdEmpresa').val($(this).data('empresa'));
+        $('#IdCargo').val($(this).data('cargo'));
         $('#IdCentroCostoOld').val($(this).data('centrocosto'));
         $('#IdCentroCosto').val($(this).data('centrocosto'));
         $('#IdConsumeOld').val($(this).data('consume'));
@@ -765,23 +808,26 @@ $(function () {
         {
             if ($('#IdEmpresa').val() !== "0")
             {
-                if ($('#IdCentroCosto').val() !== "0")
+                if ($('#IdCargo').val() !== "0")
                 {
-                    if ($('#IdGrupoConsumo').val() !== "0")
+                    if ($('#IdCentroCosto').val() !== "0")
                     {
-                        if ($('#IdConsume').val() !== null)
+                        if ($('#IdGrupoConsumo').val() !== "0")
                         {
-                            if ($('#IdCedula').val() !== "")
+                            if ($('#IdConsume').val() !== null)
                             {
-                                if ($('#IdNombre').val() !== "")
+                                if ($('#IdCedula').val() !== "")
                                 {
-                                    if ($('#IdApellido').val() !== "")
+                                    if ($('#IdNombre').val() !== "")
                                     {
-                                        if ($('#IdConsume').val() !== "0")
+                                        if ($('#IdApellido').val() !== "")
                                         {
-                                            if ($('#IdGrupoConsumo').val() !== "0")
+                                            if ($('#IdConsume').val() !== "0")
                                             {
-                                                res = true;
+                                                if ($('#IdGrupoConsumo').val() !== "0")
+                                                {
+                                                    res = true;
+                                                }
                                             }
                                         }
                                     }
@@ -807,6 +853,8 @@ $(function () {
         $('#IdApellidoOld').val('');
         $('#IdEmpresa').val(0);
         $('#IdEmpresaOld').val('');
+        $('#IdCargo').val(0);
+        $('#IdCargoOld').val('');
         $('#IdCentroCosto').val(0);
         $('#IdCentroCostoOld').val('');
         $('#IdConsume').val(0);
@@ -851,6 +899,7 @@ $(function () {
             var Nombre = $('#IdNombre').val();
             var Apellido = $('#IdApellido').val();
             var Empresa = $('#IdEmpresa').val();
+            var Cargo = $('#IdCargo').val();
             var CentroCosto = $('#IdCentroCosto').val();
             var Consumo = $('#IdConsume').val();
             var GrupoConsumo = $('#IdGrupoConsumo').val();
@@ -880,6 +929,7 @@ $(function () {
                 nombre: Nombre,
                 apellido: Apellido,
                 empresa: Empresa,
+                cargo: Cargo,
                 centrocosto: CentroCosto,
                 consumo: Consumo,
                 grupoconsumo: GrupoConsumo,
