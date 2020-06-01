@@ -20,8 +20,8 @@
         <%@include file="Principal/Head.html" %> 
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPersonasCasino.js" ></script>       
-        <!-- Kit FontAwesome para Botones (Mientras) -->
-        <script type="text/javascript" src="Principal/js/fontawesome/newjavascript.js"></script>
+        <!-- Kit FontAwesome para Botones (Mientras)
+        <script type="text/javascript" src="Principal/js/fontawesome/newjavascript.js"></script> -->
         <style>
 
             .center {
@@ -40,6 +40,20 @@
                 -moz-user-select: none;
                 -ms-user-select: none;
                 user-select: none;
+            }
+            
+            #IdImagen{
+                
+                max-height: 300px;
+                max-width: 300px;
+                width: 270px;
+                height: 270px;
+                
+            }
+            
+            #IdFoto{
+                display: block;
+                width: 180px;
             }
 
         </style>
@@ -273,20 +287,22 @@
                                                     <div class="profile_img">
                                                         <div id="crop-avatar">
                                                             <!-- Img Captura Foto-Huella -->
-                                                            <img id="IdImagen"class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="200" width="200">
+                                                            <br><br>
+                                                            <img id="IdImagen"class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella">
                                                         </div>
                                                     </div>
 
                                                     <!-- Ignorar -->
                                                     <label for="Invisible1" id="Invisible" style="visibility:hidden">-</label>
-                                                    </br>
-
+                                                    <br>
+                                                    <label for="Invisible1" id="Invisible" style="visibility:hidden">-</label>
+                                                    <br>
                                                     <!-- /Ignorar -->
 
                                                     <!-- Botones -->
                                                     <div class="ln_solid"></div>
                                                     <div class="form-group">
-                                                        <div class="col-md-7 col-sm-7 col-xs-12 col-md-offset-4">                                                            
+                                                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">                                                            
                                                             <button class="btn btn-primary btn-sm" type="button" onclick="openCamera();" id="IdFoto" name="Foto"><i class="fa fa-camera"></i>  Foto</button>
                                                             <!--button class="btn btn-success btn-sm" type="button" onclick="openCapturadorHuella();" id="IdHuella" name="Huella"><i class="fas fa-fingerprint"></i>  Huella</button--> 
                                                             <!--button class="btn btn-warning btn-sm" type="button" onclick="openCapturadorFirma();"  id="IdFirma" name="Firma"><i class="fas fa-signature"></i>  Firma</button-->                                                             

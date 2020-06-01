@@ -36,6 +36,16 @@
                 -ms-user-select: none;
                 user-select: none;
             }
+            
+            #FotoPersona{
+                
+                max-height: 270px;
+                max-width: 270px;
+                width: 245px;
+                height: 245px;
+                
+            }
+            
 
         </style>
 
@@ -121,18 +131,16 @@
                                                             </div>
 
 
-                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="id_empresa_visitante">Empresa Visitante</label>
                                                                 <input type="text" id="id_empresa_visitante" class="form-control" required disabled>
                                                                 <!--option value="0" selected>Seleccione</option-->                                                                                                
                                                             </div>
 
-                                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="id_empresa_ssocial">Empresa S-Social</label>
                                                                 <input type="text" id="id_empresa_ssocial" class="form-control" required disabled>                                                                    
-
                                                             </div>
-
 
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="tipo_persona">Tipo de Persona</label>
@@ -150,6 +158,15 @@
                                                                 <label for="NroTarjeta">Nro Tarjeta</label>
                                                                 <input type="number" class="form-control" id="IdNroTarjeta" name="NroTarjeta" min="0" required>
                                                             </div>
+                                                            
+                                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <label for="Modal">Modal</label>
+                                                                <!-- Se activa el Modal-->
+                                                                <select class="form-control" id="myselect">
+                                                                    <option>Seleccione</option>
+                                                                    <option value="Nuevo">Nuevo</option>
+                                                                </select>
+                                                            </div>
 
                                                             <!-- div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="tipo_trabajo">Tipo de Trabajo</label>
@@ -158,8 +175,6 @@
                                                                     <option value="1"></option>
                                                                 </select>
                                                             </div -->
-
-
 
                                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                                 <label for="obs_visitante">Observ. Visitante</label>
@@ -171,6 +186,48 @@
                                                                 <label for="obs_ingreso">Observ. Ingreso</label>
                                                                 <textarea id="obs_ingreso" class="form-control" required>
                                                                 </textarea>
+                                                            </div>
+                                                            
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            <h4 class="modal-title" id="myModalLabel">Formulario</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+
+                                                                            <div class="row">
+                                                                                
+                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                    <label for="cedula">Cedula</label>
+                                                                                    <input type="number" class="form-control" id="" min="0" required>
+                                                                                </div>
+
+                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                    <label for="nombre">Nombre</label>
+                                                                                    <input type="text" class="form-control" id="" required="required">
+                                                                                </div>
+
+                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                    <label for="apellido">Apellido</label>
+                                                                                    <input type="text" class="form-control" id="" required="required">
+                                                                                </div>
+
+                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                                                    <label for="codigo">Código</label>
+                                                                                    <input type="number" class="form-control" id="" name="codigo" min="0" required>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
+                                                                            <button type="button" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
 
                                                         </div>
@@ -214,14 +271,14 @@
                                                 <div class="profile_img">
                                                     <div id="crop-avatar">
                                                         <!-- Img Captura Foto-Huella -->
-                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella"  height="200" width="200">
+                                                         <br>
+                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella">
                                                     </div>
                                                 </div>
 
                                                 <!-- Ignorar -->
                                                 <label for="Invisible1" id="Invisible" style="visibility:hidden">-</label>
-                                                </br>
-
+                                                <br>
                                                 <!-- /Ignorar -->
 
                                                 <!-- Botones -->
@@ -397,6 +454,19 @@
 
 
         <%@include file="Principal/Script.html" %>  
-        <%@include file="Principal/js/JsVisitantes/fotohuellafrima.html" %>  
+        <%@include file="Principal/js/JsVisitantes/fotohuellafrima.html" %> 
+        
+        <script>       
+
+        $('#myselect').change(function() {
+            var opval = $(this).val();
+            if(opval=="Nuevo"){
+                $('#myModal').modal("show");
+            }
+        });
+
+        </script>
+        
+        
     </body>
 </html>
