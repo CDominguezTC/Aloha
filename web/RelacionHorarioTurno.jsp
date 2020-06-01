@@ -146,7 +146,7 @@
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                 <button class="btn btn-danger btn-sm" type="button" id="IdEliminarVarios" name="EliminarVarios"><i class="fa fa-trash"></i> Eliminar Seleccionados</button>
-                                                <button class="btn btn-info btn-sm" type="button" id="IdGetModal" name="ClonarVarios" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-trash"></i> Clonar Seleccionados</button>
+                                                <button class="btn btn-info btn-sm" type="button" id="IdGetModal" name="ClonarVarios" data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-copy"></i> Clonar Seleccionados</button>
                                             </div>                                            
                                             <div class="row">
                                             </div> 
