@@ -23,13 +23,30 @@ $(function () {
         if ($('#IdTipoPersona').val())
         {
             tipopersona = $('#IdTipoPersona').val();
-            cantidadconsumo = 0;
-            $('#IdEmpleadoAutoriza').val('');
-            $('#IdNombreEmpleadoAutoriza').val('');
-            $('#IdCC').val('');
-            $('#IdCentroCosto').val('');
-            $('#IdEmpleadoAutorizado').val('');
-            $('#IdNombreEmpleadoAutorizado').val('');
+            if (tipopersona === 'VISITANTE')
+            {
+                cantidadconsumo = 0;
+                $("#IdCantidad").prop("disabled", false);
+                $("#IdCantidad").val('');
+                $('#IdEmpleadoAutoriza').val('');
+                $('#IdNombreEmpleadoAutoriza').val('');
+                $('#IdCC').val('');
+                $('#IdCentroCosto').val('');
+                $('#IdEmpleadoAutorizado').val('');
+                $('#IdNombreEmpleadoAutorizado').val('');
+            }
+            if (tipopersona === 'EMPLEADO')
+            {
+                cantidadconsumo = 1;
+                $("#IdCantidad").val(cantidadconsumo);
+                $("#IdCantidad").prop("disabled", true);
+                $('#IdEmpleadoAutoriza').val('');
+                $('#IdNombreEmpleadoAutoriza').val('');
+                $('#IdCC').val('');
+                $('#IdCentroCosto').val('');
+                $('#IdEmpleadoAutorizado').val('');
+                $('#IdNombreEmpleadoAutorizado').val('');
+            }
         }
     });
 
@@ -37,6 +54,7 @@ $(function () {
         LoadTablaPersonasAutoriza();
         LoadTablaPersonasAutorizada();
         LoadhorarioConsumo();
+        LoadTabla();
     });
 
     $(document).on('click', '.SetFormularioAutoriza', function () {
@@ -54,7 +72,7 @@ $(function () {
                 $('#IdCC').val($(this).data('centrocosto'));
                 $('#IdCentroCosto').val($(this).data('centrocostonombre'));
                 cantidadconsumo = $(this).data('cantidadconsumo');
-                alert(cantidadconsumo);
+                //alert(cantidadconsumo);
             }
             if (tipopersona === 'EMPLEADO') {
                 $('#IdEmpleadoAutoriza').val($(this).data('id'));
@@ -345,6 +363,76 @@ $(function () {
             }
         });
     }
+    function LoadTabla()
+    {
+        var Frm = "AutorizacionConsumoJSP";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#datatable').html(resul);
+                $('#datatable').dataTable({
+                    responsive: true,
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                    , "autoWidth": true
+                    , "destroy": true
+                    , "info": true
+                    , "JQueryUI": true
+                    , "ordering": true
+                    , "paging": true
+                    , "scrollY": "500px"
+                    , "scrollCollapse": true
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
 
     function ValidaCampo()
     {
@@ -361,7 +449,7 @@ $(function () {
                         {
                             if ($('#IdFechaFinal').val() !== "")
                             {
-                                if ($('#IdTipoConsumo').val() !== "")
+                                if ($('#IdTipoConsumo').val() !== "0")
                                 {
                                     if ($('#IdMotivo').val() !== "")
                                     {
@@ -382,17 +470,22 @@ $(function () {
 
     function LimpiarCampos()
     {
-        $('#IdTipoPersona').val('0');
-        $('#IdEmpleadoAutoriza').val('');
         $('#IdEmpleadoAutorizado').val('');
+        $('#IdNombreEmpleadoAutorizado').val('');
+        $('#IdEmpleadoAutoriza').val('');
+        $('#IdNombreEmpleadoAutoriza').val('');
+        $('#IdTipoPersona').val('0');
         $('#IdCC').val('')
         $('#IdFechaInicial').val('');
         $('#IdFechaFinal').val('');
         $('#IdTipoConsumo').val('0');
         $('#IdMotivo').val('');
         $('#IdCantidad').val('');
+        $("#IdCantidad").prop("disabled", false);
         tipopersona = "NULL";
         cantidadconsumo = 0;
+        LoadTablaPersonasAutoriza();
+        LoadTablaPersonasAutorizada();
     }
 
     $('#IdGuardar').click(function (e)
@@ -433,21 +526,32 @@ $(function () {
             {
                 if (tipopersona === 'VISITANTE') {
                     if (cantidadconsumo >= $('#IdCantidad').val()) {
+                        enableGif();
                         $.ajax({
                             type: "POST",
                             url: "ServletAlohaTiempos",
                             data: data,
                             success: function (resul, textStatus, jqXHR)
                             {
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Guardado',
-                                    text: 'Registro Guardado Satisfactoriamente.'
-                                });
+                                var sms = resul.split(",");
+                                var tipo = sms[0];
+                                if (tipo === "Error") {
+                                    Swal.fire({
+                                        icon: 'error',
+                                        title: 'Error',
+                                        text: sms[1]
+                                    });
+                                } else
+                                {
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Guardado',
+                                        text: resul
+                                    });
+                                    LimpiarCampos();
+                                }
                                 disableGif();
-                                //alert(resul);
-                                LimpiarCampos();
-                                //LoadTabla();
+                                LoadTabla();
                             },
                             error: function (jqXHR, textStatus, errorThrown) {
                                 disableGif();
@@ -480,6 +584,7 @@ $(function () {
                 } else
                 {
                     if (tipopersona === 'EMPLEADO') {
+                        enableGif();
                         $.ajax({
                             type: "POST",
                             url: "ServletAlohaTiempos",
@@ -517,7 +622,6 @@ $(function () {
                         });
                     }
                 }
-
             }
         } else
         {

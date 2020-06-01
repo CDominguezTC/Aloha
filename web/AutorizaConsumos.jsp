@@ -150,14 +150,15 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <table id="IdTablaPersonaAutoriza" class="table table-responsive table-bordered">
+                                                        <table id="IdTablaPersonaAutoriza" class="table table-responsive table-bordered">                                                          
                                                             <!--thead>
                                                                 <tr>
                                                                     <th>Cedula</th>
                                                                     <th>Nombre</th>
                                                                     <th>Empresa</th>
-                                                                    <th>Centro de Costo</th>                                                                    
+                                                                    <th>CentroCosto</th>
                                                                     <th>Opcion</th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -165,9 +166,8 @@
                                                                     <td></td>                                     
                                                                     <td></td>                                     
                                                                     <td></td>                                     
-                                                                    <td></td>                                                                                                         
-                                                                    <td class="text-center">                                                                                                                                    
-                                                                    </td>                                                    
+                                                                    <td></td>                                     
+                                                                    <td></td>   
                                                                 </tr>
                                                             </tbody-->
                                                         </table>                                                        
@@ -187,14 +187,15 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <table id="IdTablaPersonaAutorizada" class="table table-responsive table-bordered">
+                                                        <table id="IdTablaPersonaAutorizada" class="table table-responsive table-bordered">                                                            
                                                             <!--thead>
                                                                 <tr>
                                                                     <th>Cedula</th>
                                                                     <th>Nombre</th>
                                                                     <th>Empresa</th>
-                                                                    <th>Centro de Costo</th>                                                                    
+                                                                    <th>CentroCosto</th>
                                                                     <th>Opcion</th>
+
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -202,9 +203,8 @@
                                                                     <td></td>                                     
                                                                     <td></td>                                     
                                                                     <td></td>                                     
-                                                                    <td></td>                                                                                                         
-                                                                    <td class="text-center">                                                                                                                                         
-                                                                    </td>                                                    
+                                                                    <td></td>                                     
+                                                                    <td></td>   
                                                                 </tr>
                                                             </tbody-->
                                                         </table>
@@ -266,20 +266,16 @@
                                             <thead>
                                                 <tr>
                                                     <th>Tipo Persona</th>
-                                                    <th>Empleado que Autoriza</th>
-                                                    <th>Persona Autorizada</th>
+                                                    <th>Autrizador</th>
+                                                    <th>Autorizado</th>
                                                     <th>Centro Costo</th>
-                                                    <th>Fecha Inical</th>
-                                                    <th>Fecha Final</th>
-                                                    <th>Tipo Consumo</th>
-                                                    <th>Cantidad Consumo</th>
-                                                    <th>Motivo</th>                                                    
+                                                    <th>Consumo</th>
+                                                    <th>Fecha Autorizacion</th>
+                                                    <th>Cantidad Autrorizada</th>                                          
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>                                                    
-                                                    <td></td>                                     
-                                                    <td></td>                                     
                                                     <td></td>                                     
                                                     <td></td>                                     
                                                     <td></td>                                     

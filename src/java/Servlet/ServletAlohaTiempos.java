@@ -570,6 +570,12 @@ public class ServletAlohaTiempos extends HttpServlet {
                             pww.write(Resultado);
                             System.out.println(pww.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
+                        case "Read":
+                            Resultado = controladorAutoriza_consumo.Read(request, response);
+                            PrintWriter pwww = response.getWriter();
+                            pwww.write(Resultado);
+                            System.out.println(pwww.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
 
                     }
                     break;
