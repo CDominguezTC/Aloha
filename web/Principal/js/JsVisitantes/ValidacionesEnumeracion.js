@@ -38,6 +38,7 @@ $(function ()
         document.getElementById("id_enumeracion").disabled = false;
         document.getElementById("IdNombre").disabled = false;
         document.getElementById("IdGuardar").disabled = false;
+        window.scroll(0, 0);
 
     });
 

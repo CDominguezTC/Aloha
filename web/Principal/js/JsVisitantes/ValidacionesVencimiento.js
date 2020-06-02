@@ -15,21 +15,36 @@ $(function ()
 
     });
 
+    $(document).ready(function () {
+        LoadTablaPersona();
+    });
+
     $(document).on('click', '.SetFormulario', function () {
         $('#Id').val($(this).data('id'));
         $('#id_persona').val($(this).data('id_persona'));
         $('#id_personaOld').val($(this).data('id_persona') + " - " + $('#id_persona').find('option:selected').text());
+        $('#nombre_persona').val($(this).data('nombre_persona'));
         $('#id_vencimiento').val($(this).data('id_enumeracion_vencimiento'));
         $('#id_vencimientoOld').val($(this).data('id_enumeracion_vencimiento') + " - " + $('#id_enumeracion_vencimiento').find('option:selected').text());
         $('#fecha_vencimiento').val($(this).data('fecha_vencimiento'));
         $('#fecha_vencimientoOld').val($(this).data('fecha_vencimiento'));
 
-        document.getElementById("id_persona").disabled = false;
+        document.getElementById("nombre_persona").disabled = false;
         document.getElementById("id_vencimiento").disabled = false;
         document.getElementById("fecha_vencimiento").disabled = false;
         document.getElementById("IdGuardar").disabled = false;
+        window.scroll(0, 0);
 
     });
+
+    $(document).on('click', '.SetFormularioPersona', function () {
+
+        $('#id_persona').val($(this).data('id'));
+        $('#nombre_persona').val($(this).data('nombre_persona'));
+        $('#BusquedaPersona').modal('hide');
+
+    });
+
 
     function validacionBtn() {
 
@@ -168,6 +183,8 @@ $(function ()
 
                     //alert("Entro if editar");
                     //$("#IdModificar").attr("disabled", "disabled");
+                    document.getElementById("visiblemodalpersona").disabled = true;
+                    document.getElementById("nombre_persona").disabled = true;
                     $(".SetFormulario").addClass("disabled").prop("disabled", true);
                     //evt.preventDefault();
                 }
@@ -285,7 +302,7 @@ $(function ()
                     }
                     disableGif();
                     //alert(resul);
-                    LimpiarCampos();
+                    Cancelar();
                     LoadTabla();
 
 
@@ -553,7 +570,78 @@ $(function ()
         });
     }
 
-
+    function LoadTablaPersona()
+    {
+        var Frm = "VencimientoJSP";
+        var Accion = "ReadPersona";
+        var data = {
+            frm: Frm,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdTablaPersona').html(resul);
+                $('#IdTablaPersona').dataTable({
+                    responsive: true,
+                    language: {
+                        "decimal": "",
+                        "emptyTable": "No hay información",
+                        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                        "infoPostFix": "",
+                        "thousands": ",",
+                        "lengthMenu": "Mostrar _MENU_ Entradas",
+                        "loadingRecords": "Cargando...",
+                        "processing": "Procesando...",
+                        "search": "Buscar:",
+                        "zeroRecords": "Sin resultados encontrados",
+                        "paginate": {
+                            "first": "Primero",
+                            "last": "Ultimo",
+                            "next": "Siguiente",
+                            "previous": "Anterior"
+                        }
+                    }
+                    , "autoWidth": true
+                    , "destroy": true
+                    , "info": true
+                    , "JQueryUI": true
+                    , "ordering": true
+                    , "paging": true
+                    , "scrollY": "500px"
+                    , "scrollCollapse": true
+                    , "pageLength": 5
+                    , "iDisplayLength": 5
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
 
     function ValidaCampo()
     {
@@ -586,7 +674,8 @@ $(function ()
         $('#fecha_vencimiento').val('');
         $('#fecha_vencimientoOld').val('');
 
-        document.getElementById("id_persona").disabled = false;
+        document.getElementById("visiblemodalpersona").disabled = false;
+        document.getElementById("nombre_persona").disabled = false;
         document.getElementById("id_vencimiento").disabled = false;
         document.getElementById("fecha_vencimiento").disabled = false;
         document.getElementById("IdGuardar").disabled = false;
@@ -596,13 +685,16 @@ $(function ()
     {
         $('#Id').val('');
         $('#id_persona').val('');
+        $('#nombre_persona').val('');
         $('#id_personaOld').val('');
         $('#id_vencimiento').val('');
         $('#id_vencimientoOld').val('');
         $('#fecha_vencimiento').val('');
         $('#fecha_vencimientoOld').val('');
 
-        document.getElementById("id_persona").disabled = true;
+
+        document.getElementById("visiblemodalpersona").disabled = true;
+        document.getElementById("nombre_persona").disabled = true;
         document.getElementById("id_vencimiento").disabled = true;
         document.getElementById("fecha_vencimiento").disabled = true;
         document.getElementById("IdGuardar").disabled = true;

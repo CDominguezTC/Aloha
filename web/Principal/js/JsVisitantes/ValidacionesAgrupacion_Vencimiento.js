@@ -25,6 +25,7 @@ $(function ()
         document.getElementById("id_grupo").disabled = false;
         document.getElementById("id_vencimiento").disabled = false;
         document.getElementById("IdGuardar").disabled = false;
+        window.scroll(0, 0);
 
     });
 

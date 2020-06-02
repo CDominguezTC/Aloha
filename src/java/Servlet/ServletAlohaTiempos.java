@@ -36,6 +36,7 @@ import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
 import Controladores.ControladorUsuario;
 import Controladores.ControladorVencimiento;
+import Controladores.ControladorVisita;
 import Herramienta.Herramienta;
 import Modelo.ModeloPersona;
 import Modelo.ModeloUsuario;
@@ -741,10 +742,9 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = "Plano";
                     break;
 
-                    //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
-                    //Accion = "Plano";
-                    //break;
-
+                //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
+                //Accion = "Plano";
+                //break;
                 //controladorCargoH.Select("GenerarLiquidacionHoteleria", request, response);
                 //Accion = "Plano";
                 //break;
@@ -838,6 +838,24 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
 
                     break;
+                case "Registro_VisitaJSP":
+                    ControladorVisita visita = new ControladorVisita();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = visita.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = visita.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = visita.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+                    break;
                 case "EnumeracionJSP":
                     ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
                     Accion = request.getParameter("accion");
@@ -855,7 +873,6 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
-
                     break;
                 case "Asociacion_Grupo_VencimientoJSP":
                     ControladorAsociacion_grupo_vencimiento asociacion_grupo_vencimiento = new ControladorAsociacion_grupo_vencimiento();
@@ -878,7 +895,9 @@ public class ServletAlohaTiempos extends HttpServlet {
                     break;
                 case "VencimientoJSP":
                     ControladorVencimiento vencimiento = new ControladorVencimiento();
+                    //ControladorVisita visita = new ControladorVisita();
                     Accion = request.getParameter("accion");
+                    PrintWriter pw = null;
                     switch (Accion) {
                         case "Upload":
                             Resultado = vencimiento.Insert(request, response);
@@ -888,7 +907,13 @@ public class ServletAlohaTiempos extends HttpServlet {
                             break;
                         case "Read":
                             Resultado = vencimiento.Read(request, response);
-                            PrintWriter pw = response.getWriter();
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "ReadPersona":
+                            Resultado = vencimiento.Read_Persona(request, response);
+                            pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
