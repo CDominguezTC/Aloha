@@ -40,6 +40,9 @@ public class Herramienta {
             case "2":
                 resp = "Registro Eliminado";
                 break;
+            case "3":
+                resp = "Error,  La persona no puede autorizar esa cantidad de consumos";
+                break;
             case "-1":
                 resp = "El registro ya existe";
                 break;
@@ -79,7 +82,7 @@ public class Herramienta {
         Date date = null;
         try {
             DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            date = formatter.parse(FechaString);            
+            date = formatter.parse(FechaString);
         } catch (ParseException ex) {
             Logger.getLogger(Herramienta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -112,13 +115,12 @@ public class Herramienta {
         return string;
     }
 
-
     /**
-     * Permite definir el dia que paso el evento 
+     * Permite definir el dia que paso el evento
      *
      * @autor Carlos A Dominguez diaz
      * @version 23/05/2020
-     * @param fecha 
+     * @param fecha
      * @return
      */
     public String getNombreDia(String fecha) {
@@ -154,16 +156,29 @@ public class Herramienta {
         }
         return diaMarcacion;
     }
-   
+
     /**
      * Permite obtener la fecha del sistema en el momento de la consulta
+     *
      * @return
      */
-
     public String getDateToday() {
-     String fecha;
+        String fecha;
         Calendar c = Calendar.getInstance();
-        fecha = Integer.toString(c.get(Calendar.YEAR)) +"-"+ Integer.toString(c.get(Calendar.MONTH))+"-"+Integer.toString(c.get(Calendar.DATE));
+        fecha = Integer.toString(c.get(Calendar.YEAR)) + "-" + Integer.toString(c.get(Calendar.MONTH)) + "-" + Integer.toString(c.get(Calendar.DATE));
         return fecha;
+    }
+
+    public String getDateString(Date dia) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getCalendarString(Calendar fechacalendar) {
+        String fechastring = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        if (fechacalendar != null) {
+            fechastring = sdf.format(fechacalendar.getTime());
+        }
+        return fechastring;
     }
 }

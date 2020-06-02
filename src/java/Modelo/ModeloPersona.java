@@ -355,4 +355,8 @@ public class ModeloPersona {
     public void setLista_Modelo_Template(LinkedList<ModeloTemplate> Lista_Modelo_Template) {
         this.Lista_Modelo_Template = Lista_Modelo_Template;
     }
+
+    public String getNombresApellido() {
+        return nombres +" "+ apellidos;
+    }
 }
