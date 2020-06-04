@@ -7,6 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Herramienta.Herramienta;
+import Modelo.ModeloPersona;
 import Modelo.ModeloVencimiento;
 import java.io.IOException;
 import java.sql.Connection;
@@ -45,8 +46,8 @@ public class ControladorVencimiento {
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         ModeloVencimiento modeloVencimiento = new ModeloVencimiento();
-        modeloVencimiento.setModelo_persona(controladorPersona.getModelo(Integer.parseInt(request.getParameter("Modelo_persona"))));
-        modeloVencimiento.setModelo_enumeracion_vencimiento(controladorEnumeracion.getModelo(Integer.parseInt(request.getParameter("Modelo_enumeracion_vencimiento"))));
+        modeloVencimiento.setModelo_persona(controladorPersona.getModelo(Integer.parseInt(request.getParameter("id_persona"))));
+        modeloVencimiento.setModelo_enumeracion_vencimiento(controladorEnumeracion.getModelo(Integer.parseInt(request.getParameter("id_vencimiento"))));
         modeloVencimiento.setFecha_vencimiento(request.getParameter("fecha_vencimiento"));
         modeloVencimiento.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
@@ -271,6 +272,7 @@ public class ControladorVencimiento {
             out = "";
             out += "<thead>";
             out += "<tr>";
+            out += "<th>Identificacion</th>";
             out += "<th>Persona</th>";
             out += "<th>Item</th>";
             out += "<th>Vencimiento</th>";
@@ -280,20 +282,25 @@ public class ControladorVencimiento {
             out += "<tbody>";
             for (ModeloVencimiento modeloVencimiento : ListaModeloVencimiento) {
                 out += "<tr>";
+                out += "<td>" + modeloVencimiento.getModelo_persona().getIdentificacion() + "</td>";
                 out += "<td>" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "</td>";
                 out += "<td>" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
                 out += "<td>" + modeloVencimiento.getFecha_vencimiento() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
-                out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
-                out += "data-id_enumeracion_vencimiento=\"" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "\"";
+                out += "data-id=\"" + modeloVencimiento.getId() + "\"";
+                out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
+                out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
+                out += "data-id_enumeracion_vencimiento=\"" + modeloVencimiento.getModelo_enumeracion_vencimiento().getId() + "\"";
                 out += "data-fecha_vencimiento=\"" + modeloVencimiento.getFecha_vencimiento() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
-                out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
-                out += "data-id_enumeracion_vencimiento=\"" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "\"";
+                out += "data-id=\"" + modeloVencimiento.getId() + "\"";
+                out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
+                out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
+                out += "data-id_enumeracion_vencimiento=\"" + modeloVencimiento.getModelo_enumeracion_vencimiento().getId() + "\"";
                 out += "data-fecha_vencimiento=\"" + modeloVencimiento.getFecha_vencimiento() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";
@@ -302,6 +309,55 @@ public class ControladorVencimiento {
             out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en la generacion Html en Controladorvencimiento" + e);
+        }
+        return out;
+    }
+    
+    
+    /**
+     * Permite cargar las persona que son tipo empleao en un tabla
+     *
+     * @param request
+     * @param response
+     * @return
+     */
+    public String Read_Persona(HttpServletRequest request, HttpServletResponse response) {
+        String out = null;
+        LinkedList<ModeloPersona> listaModelo_Personas = new LinkedList<>();
+        ControladorVisita controladorVisita = new ControladorVisita();
+        listaModelo_Personas = controladorVisita.Read_Lista_Persona("S", "Persona");
+        try {
+            out = "";
+            out += "<thead>";
+            out += "<tr>";
+            out += "<th>Identificacion</th>";
+            out += "<th>Nombres</th>";
+            out += "<th>Empresa</th>";
+            out += "<th>Area</th>";
+            out += "<th>Opcion</th>";
+            out += "</tr>";
+            out += "</thead>";
+            out += "<tbody>";
+            for (ModeloPersona modeloPersona : listaModelo_Personas) {
+                out += "<tr>";
+                out += "<td>" + modeloPersona.getIdentificacion() + "</td>";
+                out += "<td>" + modeloPersona.getNombres() + " " + modeloPersona.getApellidos() + "</td>";
+                out += "<td>" + modeloPersona.getModelo_empresa_trabaja().getNombre() + "</td>";
+                out += "<td>" + modeloPersona.getModelo_area().getNombre() + "</td>";
+                out += "<td class=\"text-center\">";
+                // Boton Editar
+                out += "<button class=\"SetFormularioPersona btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "data-id=\"" + modeloPersona.getId() + "\"";
+                out += "data-nombre_persona=\"" + modeloPersona.getNombres() + " " + modeloPersona.getApellidos() + "\"";
+                out += "data-empresa=\"" + modeloPersona.getModelo_empresa_trabaja().getId() + "\"";
+                out += "data-area=\"" + modeloPersona.getModelo_area().getId() + "\"";
+                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-clipboard\"></i> </button>";
+                out += "</td>";
+                out += "</tr>";
+            }
+            out += "</tbody>";
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
     }

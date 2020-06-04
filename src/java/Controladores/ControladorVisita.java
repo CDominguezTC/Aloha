@@ -6,6 +6,8 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Herramienta.Herramienta;
+import Modelo.ModeloPersona;
 import Modelo.ModeloVisita;
 import com.google.gson.Gson;
 import java.awt.image.BufferedImage;
@@ -39,11 +41,15 @@ public class ControladorVisita {
     String user;
     ControladorPersona controladorPersona = new ControladorPersona();
     ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
-    //ControladorPersona controladorPersona = new ControladorPersona();
     ControladorArea controladorArea = new ControladorArea();
     ControladorVehiculo controladorVehiculo = new ControladorVehiculo();
-    //ControladorUsuario controladorUsuario = new ControladorUsuario();
     ControladorUsuario controladorUsuario = new ControladorUsuario();
+    ControladorDependencia controladorDependencia = new ControladorDependencia();
+    ControladorCiudad controladorCiudad = new ControladorCiudad();
+    ControladorCargo controladorCargo = new ControladorCargo();
+    ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
+    ControladorGrupo_consumo controladorGrupo_consumo = new ControladorGrupo_consumo();
+    Herramienta herramienta = new Herramienta();
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -399,7 +405,7 @@ public class ControladorVisita {
 // Boton Editar
                 out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
-                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre()+ "\"";
+                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre() + "\"";
                 out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
                 out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getNombre() + "\"";
                 out += "data-tipo_visita=\"" + modeloVisita.getTipo_visita() + "\"";
@@ -415,7 +421,7 @@ public class ControladorVisita {
 //Boton Eliminar
                 out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
-                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre()+ "\"";
+                out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre() + "\"";
                 out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
                 out += "data-id_area_visitada=\"" + modeloVisita.getModelo_area_visitada().getNombre() + "\"";
                 out += "data-tipo_visita=\"" + modeloVisita.getTipo_visita() + "\"";
@@ -437,21 +443,14 @@ public class ControladorVisita {
         }
         return out;
     }
-    
-    public String valida_tipo_visita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+
+    public String valida_tipo_visita(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Integer Id_persona = Integer.valueOf(request.getParameter("id_persona"));
         String Tipo_Visita = request.getParameter("tipo_visita");
-        
-        
-        
-        
-        
-        
-        
+
         resultado = new Gson().toJson(resultado);
         return resultado;
     }
-    
 
     public static String CompararTemplates(String Template_Vivo, String Template_Bd) throws Exception {
         JNative commNative;
@@ -472,6 +471,112 @@ public class ControladorVisita {
         ret = commNative.getRetVal();
 
         return ret;
+    }
+
+    /**
+     * Permite listar la información de la tabla de las Personas Metodo Private
+     *
+     * @author: Diego Fernando Guzman
+     * @return LinkedList
+     * @version: 29/05/2020
+     */
+    public LinkedList<ModeloPersona> Read_Lista_Persona(String estado, String Where) {
+        LinkedList<ModeloPersona> listaModeloPersonas = new LinkedList<ModeloPersona>();
+        con = conexion.abrirConexion();
+
+        String SqlWhere = "";
+        switch (Where) {
+            case "Persona":
+                SqlWhere = "";
+                break;
+            case "Empleado":
+                SqlWhere = "";
+                break;
+        }
+
+        try {
+            SQL = con.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "cantidad_consumo, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo "
+                    + " FROM persona "
+                    + "WHERE estado = ? "
+                    + SqlWhere);
+            SQL.setString(1, estado);
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloPersona modelo = new ModeloPersona();
+                modelo.setId(res.getInt("id"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
+                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+//                //Datos de Imagenes y templates
+//                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
+//                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
+
+                listaModeloPersonas.add(modelo);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return listaModeloPersonas;
     }
 
 }

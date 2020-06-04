@@ -60,12 +60,27 @@
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
                                             <input type="hidden" id="id_personaOld" name="id_personaOld">
+
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <input type="hidden" id="id_persona" name="id_persona">
+                                                <label for="id_persona">Persona </label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='visiblemodalpersona' data-toggle="modal" data-target=".bs-persona-modal-lg">
+                                                        <input type='text' class="form-control" id="nombre_persona" name="nombre_persona" style="text-align:center;" required/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-search"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>                                                
+                                            </div>
+
+
+                                            <!--div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="id_persona">Persona</label>
                                                 <select id="id_persona" class="form-control" required>
                                                     <option value="" disabled selected>Seleccione</option>
                                                 </select>
-                                            </div>
+                                            </div-->
                                             <input type="hidden" id="id_vencimientoOld" name="id_vencimientoOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="id_vencimiento">Campo Vencimiento</label>
@@ -86,6 +101,27 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!--Inincio de Modals-->
+                                        <div id="BusquedaPersona" class="modal fade bs-persona-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="myModalLabel"><b>Persona</b></h4>
+                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <table id="IdTablaPersona" class="table table-responsive table-bordered">
+                                                        </table>                                                        
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                         <!-- Formulario Configuración -->      
                                         <!-- Botones -->
                                         <div class="ln_solid"></div>
@@ -135,7 +171,8 @@
                                         <!-- Tabla -->
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
-                                                <tr>                                                    
+                                                <tr>
+                                                    <th>Identificacion</th>                                                    
                                                     <th>Persona</th>
                                                     <th>Item</th>
                                                     <th>Vencimiento</th>
@@ -144,6 +181,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr>                         
+                                                    <td></td>
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
