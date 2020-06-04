@@ -12,8 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -165,7 +169,7 @@ public class Herramienta {
     public String getDateToday() {
         String fecha;
         Calendar c = Calendar.getInstance();
-        fecha = Integer.toString(c.get(Calendar.YEAR)) + "-" + Integer.toString(c.get(Calendar.MONTH)) + "-" + Integer.toString(c.get(Calendar.DATE));
+        fecha = Integer.toString(c.get(Calendar.YEAR)) + "-" + Integer.toString(c.get(Calendar.MONTH) + 1) + "-" + Integer.toString(c.get(Calendar.DATE));
         return fecha;
     }
 
@@ -180,5 +184,24 @@ public class Herramienta {
             fechastring = sdf.format(fechacalendar.getTime());
         }
         return fechastring;
+    }
+
+    public String getNumColor(String tipo) {
+        int numero = 0;
+        String res = null;
+        Set<Integer> alreadyUsedNumbers = new HashSet<>();
+        while (alreadyUsedNumbers.size() < 3) {
+            numero = (int) (Math.random() * 255 + 1);
+            if (!alreadyUsedNumbers.contains(numero)) {
+                if (alreadyUsedNumbers.isEmpty()) {
+                    res = "rgba(" + String.valueOf(numero);
+                } else {
+                    res = res + "," + String.valueOf(numero);
+                }
+                alreadyUsedNumbers.add(numero);
+            }
+        }
+        res = res + ","+tipo+")";
+        return res;
     }
 }

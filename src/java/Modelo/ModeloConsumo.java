@@ -14,16 +14,22 @@ public class ModeloConsumo {
     int id;
     ModeloPersona modeloPersonas;
     ModeloCargo modeloCargos;
+    ModeloCentro_costo modeloCentro_costo;
+    ModeloGrupo_consumo modeloGrupo_consumo;
+    ModeloHorario_consumo modeloHorario_consumo;
     String Fechaconsumo;
     String diaconsumo;
 
     public ModeloConsumo() {
     }
 
-    public ModeloConsumo(int id, ModeloPersona modeloPersonas, ModeloCargo modeloCargos, String Fechaconsumo, String diaconsumo) {
+    public ModeloConsumo(int id, ModeloPersona modeloPersonas, ModeloCargo modeloCargos, ModeloCentro_costo modeloCentro_costo, ModeloGrupo_consumo modeloGrupo_consumo, ModeloHorario_consumo modeloHorario_consumo, String Fechaconsumo, String diaconsumo) {
         this.id = id;
         this.modeloPersonas = modeloPersonas;
         this.modeloCargos = modeloCargos;
+        this.modeloCentro_costo = modeloCentro_costo;
+        this.modeloGrupo_consumo = modeloGrupo_consumo;
+        this.modeloHorario_consumo = modeloHorario_consumo;
         this.Fechaconsumo = Fechaconsumo;
         this.diaconsumo = diaconsumo;
     }
@@ -52,6 +58,30 @@ public class ModeloConsumo {
         this.modeloCargos = modeloCargos;
     }
 
+    public ModeloCentro_costo getModeloCentro_costo() {
+        return modeloCentro_costo;
+    }
+
+    public void setModeloCentro_costo(ModeloCentro_costo modeloCentro_costo) {
+        this.modeloCentro_costo = modeloCentro_costo;
+    }
+
+    public ModeloGrupo_consumo getModeloGrupo_consumo() {
+        return modeloGrupo_consumo;
+    }
+
+    public void setModeloGrupo_consumo(ModeloGrupo_consumo modeloGrupo_consumo) {
+        this.modeloGrupo_consumo = modeloGrupo_consumo;
+    }
+
+    public ModeloHorario_consumo getModeloHorario_consumo() {
+        return modeloHorario_consumo;
+    }
+
+    public void setModeloHorario_consumo(ModeloHorario_consumo modeloHorario_consumo) {
+        this.modeloHorario_consumo = modeloHorario_consumo;
+    }
+
     public String getFechaconsumo() {
         return Fechaconsumo;
     }
@@ -67,5 +97,6 @@ public class ModeloConsumo {
     public void setDiaconsumo(String diaconsumo) {
         this.diaconsumo = diaconsumo;
     }
-
+    
+    
 }

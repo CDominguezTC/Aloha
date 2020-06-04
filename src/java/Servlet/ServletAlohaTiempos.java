@@ -14,6 +14,7 @@ import Controladores.ControladorCargo;
 import Controladores.ControladorCargo_hoteleria;
 import Controladores.ControladorCiudad;
 import Controladores.ControladorCentro_costo;
+import Controladores.ControladorConsumo;
 import Controladores.ControladorConsumo_hoteleria;
 import Controladores.ControladorDependencia;
 import Controladores.ControladorDispositivos;
@@ -734,6 +735,40 @@ public class ServletAlohaTiempos extends HttpServlet {
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
+                    }
+                    break;
+                case "ConsumoJSP":
+                    ControladorConsumo controladorConsumo = new ControladorConsumo();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "GetDatoSemana":
+                            Resultado = controladorConsumo.GetDatoSemana(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
+                            break;                       
+                        case "GetDatoConsumo":
+                            Resultado = controladorConsumo.GetDatoConsumo(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
+                            break;                       
+                        case "GetDatoCentroCosto":
+                            Resultado = controladorConsumo.GetDatoCentroCosto(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
+                            break;                       
+                        case "GetDatoGrupoConsumo":
+                            Resultado = controladorConsumo.GetDatoGrupoConsumo(request, response);
+                            response.setContentType("application/json");
+                            response.setCharacterEncoding("UTF-8");
+                            response.getWriter().write(Resultado);
+                            Accion = "Plano";
+                            break;                       
                     }
                     break;
                 case "GenerarLiquidacionHoteleria":

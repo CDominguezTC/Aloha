@@ -537,6 +537,12 @@ $(function () {
                     $('#IdFirmaBase64').val(imagen.imagen);
                 }
             }
+        } else
+        {
+            var img = document.createElement('img');
+            img.src = "Principal/images/user.png";
+            document.getElementById("IdImagen").src = img.src;
+            $('#IdImagen').append(img)
         }
     }
     function AsiganmosValoresTemplates(resul)
