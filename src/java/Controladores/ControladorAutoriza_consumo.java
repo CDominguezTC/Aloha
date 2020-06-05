@@ -190,6 +190,7 @@ public class ControladorAutoriza_consumo {
                 modeloAutoriza_consumo.setModelo_horario_consumo(controladorHorario_consumo.getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("tipoconsumo")))));
                 modeloAutoriza_consumo.setMotivo(request.getParameter("motivo"));
                 modeloAutoriza_consumo.setCantidad_autorizada(Integer.parseInt(herramienta.validaString(request.getParameter("cantidad"))));
+                modeloAutoriza_consumo.setCantidad_consumida(0);
                 modeloAutoriza_consumo.setFecha_registro(herramienta.getDateToday());
                 modeloAutoriza_consumo.setModelo_usuario((ModeloUsuario) session.getAttribute("modelousuario"));
                 CantidadConsumos += modeloAutoriza_consumo.getCantidad_autorizada();
@@ -211,6 +212,7 @@ public class ControladorAutoriza_consumo {
                         modeloAutoriza_consumo.setModelo_horario_consumo(controladorHorario_consumo.getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("tipoconsumo")))));
                         modeloAutoriza_consumo.setMotivo(request.getParameter("motivo"));
                         modeloAutoriza_consumo.setCantidad_autorizada(Integer.parseInt(herramienta.validaString(request.getParameter("cantidad"))));
+                        modeloAutoriza_consumo.setCantidad_consumida(0);
                         modeloAutoriza_consumo.setFecha_registro(herramienta.getDateToday());
                         modeloAutoriza_consumo.setModelo_usuario((ModeloUsuario) session.getAttribute("modelousuario"));
                         CantidadConsumos += modeloAutoriza_consumo.getCantidad_autorizada();
@@ -228,6 +230,7 @@ public class ControladorAutoriza_consumo {
                         modeloAutoriza_consumo.setModelo_horario_consumo(controladorHorario_consumo.getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("tipoconsumo")))));
                         modeloAutoriza_consumo.setMotivo(request.getParameter("motivo"));
                         modeloAutoriza_consumo.setCantidad_autorizada(Integer.parseInt(herramienta.validaString(request.getParameter("cantidad"))));
+                        modeloAutoriza_consumo.setCantidad_consumida(0);
                         modeloAutoriza_consumo.setFecha_registro(herramienta.getDateToday());
                         modeloAutoriza_consumo.setModelo_usuario((ModeloUsuario) session.getAttribute("modelousuario"));
                         CantidadConsumos += modeloAutoriza_consumo.getCantidad_autorizada();
@@ -272,10 +275,11 @@ public class ControladorAutoriza_consumo {
                             + "`id_horario_consumo`,"
                             + "`motivo`,"
                             + "`cantidad_autorizada`,"
+                            + "`cantidad_consumida`,"
                             + "`fecha_registro`,"
                             + "`id_usuario`,"
                             + "`estado`) "
-                            + "VALUE (?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
+                            + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modeloAutoriza_consumo.getTipo_persona());
                     SQL.setInt(2, modeloAutoriza_consumo.getModelo_persona_que_autoriza().getId());
                     SQL.setInt(3, modeloAutoriza_consumo.getModelo_persona_autorizada().getId());
@@ -284,9 +288,10 @@ public class ControladorAutoriza_consumo {
                     SQL.setInt(6, modeloAutoriza_consumo.getModelo_horario_consumo().getId());
                     SQL.setString(7, modeloAutoriza_consumo.getMotivo());
                     SQL.setInt(8, modeloAutoriza_consumo.getCantidad_autorizada());
-                    SQL.setString(9, modeloAutoriza_consumo.getFecha_registro());
-                    SQL.setInt(10, modeloAutoriza_consumo.getModelo_usuario().getId());
-                    SQL.setString(11, "S");
+                    SQL.setInt(9, modeloAutoriza_consumo.getCantidad_consumida());
+                    SQL.setString(10, modeloAutoriza_consumo.getFecha_registro());
+                    SQL.setInt(11, modeloAutoriza_consumo.getModelo_usuario().getId());                    
+                    SQL.setString(12, "S");
                     if (SQL.executeUpdate() > 0) {
                         ControladorAuditoria auditoria = new ControladorAuditoria();
                         try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {

@@ -721,7 +721,7 @@ public class ControladorPersona {
                         + "id_empresa_trabaja, "
                         + "id_grupo_consumo, "
                         + "id_cargo) "
-                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloPersona.getTipo_identificacion());
                 SQL.setString(2, modeloPersona.getIdentificacion());
                 SQL.setString(3, modeloPersona.getNombres());
