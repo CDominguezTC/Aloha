@@ -73,26 +73,30 @@ public class ControladorUsuario {
         try {
             con = conexion.abrirConexion();
             try {
-                SQL = con.prepareStatement("INSERT INTO usuario("
-                        + "nombre, "
-                        + "login, "
-                        + "password)"
-                        + " VALUES (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
-                SQL.setString(1, modeloUsuario.getNombre());
-                SQL.setString(2, modeloUsuario.getLogin());
-                String pw = tl.encriptar(modeloUsuario.getPassword());
-                SQL.setString(3, pw);
-                if (SQL.executeUpdate() > 0) {
-                    ControladorAuditoria auditoria = new ControladorAuditoria();
-                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                            if (generatedKeys.next()) {
-                                int i = (int) generatedKeys.getLong(1);
-                                auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                if(!loginRepetido(modeloUsuario.getLogin())){
+                    SQL = con.prepareStatement("INSERT INTO usuario("
+                            + "nombre, "
+                            + "login, "
+                            + "password)"
+                            + " VALUES (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
+                    SQL.setString(1, modeloUsuario.getNombre());
+                    SQL.setString(2, modeloUsuario.getLogin());
+                    String pw = tl.encriptar(modeloUsuario.getPassword());
+                    SQL.setString(3, pw);
+                    if (SQL.executeUpdate() > 0) {
+                        ControladorAuditoria auditoria = new ControladorAuditoria();
+                            try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                                if (generatedKeys.next()) {
+                                    int i = (int) generatedKeys.getLong(1);
+                                    auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                                }
                             }
-                        }
-                    resultado = "1";
-                    SQL.close();
-                    con.close();
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                    }
+                }else{
+                    resultado = "-1";
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Insert en Controladorusuario" + e);
@@ -524,7 +528,6 @@ public class ControladorUsuario {
      *
      * @author Julian A Aristizabal
      * @param name
-     * @param pw
      * @return Integer
      * @version: 07/05/2020
      */
@@ -550,5 +553,36 @@ public class ControladorUsuario {
         }
 
         return idU;
+    }
+    
+    /**
+     * Valida si el login ya existe en la bd
+     *
+     * @author Julian A Aristizabal
+     * @param login
+     * @return Integer
+     * @version: 07/05/2020
+     */
+    public boolean loginRepetido(String login) {
+
+        boolean resp = false;
+        con = conexion.abrirConexion();
+        try {
+
+            SQL = con.prepareStatement("SELECT id FROM usuario WHERE login = ?");
+            SQL.setString(1, login);
+            ResultSet res = SQL.executeQuery();
+            if (res.absolute(1)) {
+                resp = true;
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+
+            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+        }
+
+        return resp;
     }
 }

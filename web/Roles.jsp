@@ -10,6 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesRoles.js"></script> 
     </head>
 
     <body class="nav-md">
@@ -134,7 +135,7 @@
                                                                 type="button" id="IdModificar" name="Modificar">Editar</button>
                                                         <button class="SetEliminar btn btn-dark btn-md" 
                                                                 data-nombre=""                                                               
-                                                                type="button" id="IdEliminar" name="Eliminar"></button>
+                                                                type="button" id="IdEliminar" name="Eliminar">Eliminar</button>
                                                     </td>                                                    
                                                 </tr>
                                             </tbody>

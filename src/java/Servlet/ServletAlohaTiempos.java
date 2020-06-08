@@ -32,6 +32,7 @@ import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
 import Controladores.ControladorPersona;
+import Controladores.ControladorRol;
 import Controladores.ControladorTemplate;
 import Controladores.ControladorTipo_consumo;
 import Controladores.ControladorTurnos;
@@ -507,6 +508,24 @@ public class ServletAlohaTiempos extends HttpServlet {
                             //String players = request.getParameter("elements");
                             //String[] s = players.split(",");
                             Resultado = controladorPer.insertarPermisos(myJsonData, idUsr);
+                            break;
+                    }
+                    break;
+                case "RolesJSP":
+                    ControladorRol controladorRol = new ControladorRol();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = controladorRol.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = controladorRol.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = controladorRol.Read(request, response);
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
                     break;
