@@ -84,13 +84,13 @@ public class ControladorRol {
                     }
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Insert en Controladorrol" + e);
+                System.out.println("Error en la consulta SQL Insert en Controlador rol: " + e.getMessage());
                 resultado = "-2";
                 SQL.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Insert en Controladorrol" + e);
+            System.out.println("Error en la consulta SQL Insert en Controlador rol: " + e.getMessage());
             resultado = "-3";
         }
         return resultado;
@@ -127,13 +127,13 @@ public class ControladorRol {
                     con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Update en Controladorrol" + e);
+                System.out.println("Error en la consulta SQL Update en Controlador rol: " + e.getMessage());
                 resultado = "-2";
                 SQL.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Update en Controladorrol" + e);
+            System.out.println("Error en la consulta SQL Update en Controlador rol: " + e.getMessage());
             resultado = "-3";
         }
         return resultado;
@@ -185,7 +185,7 @@ public class ControladorRol {
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorrol" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controlador rol: " + e.getMessage());
         }
         return modeloRol;
     }
@@ -220,7 +220,7 @@ public class ControladorRol {
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorrol" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controlador rol: " + e.getMessage());
         }
         return ListaModeloRol;
     }
