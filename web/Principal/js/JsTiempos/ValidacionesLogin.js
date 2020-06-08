@@ -62,6 +62,12 @@ $(function () {
         });
     }
 
+     //Roles
+    $('#idroles').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Roles.Abrir", "Roles.jsp");
+    });
+    
     //Registrar Visita
     $('#idregisvisita').click(function (e) {
 

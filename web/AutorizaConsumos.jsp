@@ -65,7 +65,7 @@
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
                                             <input type="hidden" id="IdCodigoOld" name="CodigoOld">
-                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="codigo">Tipo Persona</label>
                                                 <select id="IdTipoPersona" name="TipoPersona" class="form-control" required onchange>
                                                     <option value="0" disabled selected="true">Seleccione</option>                                                          
@@ -84,7 +84,12 @@
                                                         </span>
                                                     </div>
                                                 </div>                                                
-                                            </div>     
+                                            </div>  
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <input type="hidden" id="IdCC" name="CC">
+                                                <label for="centrocosto">Centro de Costos</label>
+                                                <input type="text" class="form-control" id="IdCentroCosto" name="CentroCosto" required="required">
+                                            </div> 
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <input type="hidden" id="IdEmpleadoAutorizado" name="EmpleadoAutorizado">
                                                 <label for="empleadoautorizado">Persona Autorizada</label>
@@ -96,12 +101,7 @@
                                                         </span>
                                                     </div>
                                                 </div> 
-                                            </div>                                            
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <input type="hidden" id="IdCC" name="CC">
-                                                <label for="centrocosto">Centro de Costos</label>
-                                                <input type="text" class="form-control" id="IdCentroCosto" name="CentroCosto" required="required">
-                                            </div>                                            
+                                            </div>                                                                                     
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="fechainicial">Fecha Inicial</label>                                                
                                                 <div class="form-group">
@@ -124,17 +124,17 @@
                                                     </div>
                                                 </div>
                                             </div>                                            
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="tipoconsumo">Tipo Consumo</label>
                                                 <select id="IdTipoConsumo" class="form-control" required>
                                                     <option value="0" disabled selected>Seleccione</option>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="motivo">Motivo</label>
                                                 <input type="text" class="form-control" id="IdMotivo" name="Motivo" required="required">
                                             </div>
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                 <label for="cantidad">Cantidad</label>
                                                 <input type="number" class="form-control" id="IdCantidad" name="Cantidad" required="required">
                                             </div>
