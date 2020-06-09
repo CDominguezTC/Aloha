@@ -62,19 +62,27 @@
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
                                             <input type="hidden" id="IdNombreOld" name="NombreOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Nombre">Nombre</label>
                                                 <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
                                             <input type="hidden" id="IdLogOld" name="LogOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Login">Login</label>
                                                 <input type="text" class="form-control" id="IdLogin" name="Login" required="required">
                                             </div>
                                             <input type="hidden" id="IdPasswordOld" name="PasswordOld">
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="Password">Contraseña</label>
                                                 <input type="password" class="form-control" id="IdPassword" name="Password" required="required">
+                                            </div>
+                                            <input type="hidden" id="IdRolOld" name="RolOld">
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="Rol">Rol</label>
+                                                <select id="IdRol" class="form-control" required>
+                                                    <option value="" disabled selected>Seleccione</option>
+                                                    <option value="1">Administrador</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <!-- Formulario Configuración -->      
@@ -140,19 +148,19 @@
                                                     <!--td></td-->                                     
                                                     <td></td>                                     
                                                     <td></td> 
-                                                    <td></td> 
+                                                    <td></td>
                                                     <td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
                                                                 data-nombre=""
                                                                 data-login="" 
-                                                                data-password="" 
+                                                                data-password=""
                                                                 type="button" id="IdModificar" name="Modificar">Editar</button>
                                                         <button class="SetEliminar btn btn-dark btn-md" 
                                                                 data-id=""
                                                                 data-nombre=""
                                                                 data-login="" 
-                                                                data-password=""                                                                
+                                                                data-password="" 
                                                                 type="button" id="IdEliminar" name="Eliminar"></button>
                                                     </td>                                                    
                                                 </tr>
