@@ -7,11 +7,11 @@ $(function(){
 
 
   $(document).ready(function() {
-      cargarComboUsr();
+      cargarComboRol();
 
   });
 
-  function cargarComboUsr(){
+  function cargarComboRol(){
 
       var Frm = "PermisosJSP";
       var Accion = "Read";
@@ -28,7 +28,7 @@ $(function(){
           success: function(resul, textStatus, jqXHR)
           {
               disableGif();
-              $('#IdUsuarios').html(resul);
+              $('#IdRoles').html(resul);
 
           },
           error: function(jqXHR, textStatus, errorThrown) {
@@ -58,7 +58,7 @@ $(function(){
     var Accion = "PermisosAsignados";
     var data = {
         frm: Frm,
-        user: strUser,
+        rolU: strUser,
         accion: Accion
     };
     enableGif();
@@ -102,7 +102,7 @@ $(function(){
     var Accion = "PermisosNoAsignados";
     var data = {
         frm: Frm,
-        user: strUser,
+        rolU: strUser,
         accion: Accion
     };
     enableGif();
@@ -183,7 +183,7 @@ $(function(){
 
   $('#IdPermisos').click(function(e){
 
-    var e = document.getElementById('IdUsuarios');
+    var e = document.getElementById('IdRoles');
     var strUser = e.options[e.selectedIndex].value;
     //alert(strUser);
     if(strUser != ""){
@@ -286,7 +286,7 @@ $(function(){
 
   $('#IdPasoUno').click(function(e){
 
-  $("#IdPermisosNoAsig option:selected").each(function () {
+    $("#IdPermisosNoAsig option:selected").each(function () {
 
       var sele = document.getElementById('IdPermisosAsig');
       var $this = $(this);
@@ -299,7 +299,7 @@ $(function(){
         //console.log(selText);
         $this.remove();
       }
-  });
+    });
     /*var e = document.getElementById('IdPermisosNoAsig');
     //var strUser = e.options[e.selectedIndex].value;
     var strU = e.options[e.selectedIndex].text;

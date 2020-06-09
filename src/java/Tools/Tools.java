@@ -230,8 +230,9 @@ public class Tools {
         try {
             String consulta = "SELECT pe.nombre "
                     + "FROM permiso pe "
-                    + "INNER JOIN permiso_x_usuario pu ON pe.id = pu.id_permiso "
-                    + "INNER JOIN usuario us ON us.id = pu.id_usuario "
+                    + "INNER JOIN permiso_x_rol r ON pe.id = r.id_permiso "
+                    + "INNER JOIN rol rl ON rl.id = r.id_rol "
+                    + "INNER JOIN usuario us ON rl.id = us.id_rol "
                     + "WHERE us.login = ? AND pe.nombre = ?";
             SQL = con.prepareStatement(consulta);
 

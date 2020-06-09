@@ -66,17 +66,17 @@ public class ControladorRol {
             con = conexion.abrirConexion();
             try {
                 SQL = con.prepareStatement("INSERT INTO rol("
-                        + "nombre, "
-                        + "estado)"
-                        + " VALUE (?,?)", SQL.RETURN_GENERATED_KEYS);
+                        + "nombre) "
+                        //+ "estado)"
+                        + "VALUES (?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloRol.getNombre());
-                SQL.setString(2, modeloRol.getEstado());
+                //SQL.setString(2, modeloRol.getEstado());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "rol", user, i, "Se inserto el registro.");
                         }
                         resultado = "1";
                         SQL.close();

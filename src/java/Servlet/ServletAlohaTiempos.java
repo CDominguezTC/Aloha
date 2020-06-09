@@ -482,15 +482,15 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Combo Cargado");
                             break;
                         case "PermisosAsignados":
-                            String usr = request.getParameter("user");
-                            Resultado = controladorPer.permisosAsignados(request, response, usr);
+                            String rol = request.getParameter("rolU");
+                            Resultado = controladorPer.permisosAsignados(request, response, rol);
                             PrintWriter pw2 = response.getWriter();
                             pw2.write(Resultado);
                             System.out.println(pw2.checkError() ? "Error al cargar la lista" : "Lista Cargada");
                             break;
                         case "PermisosNoAsignados":
-                            String user = request.getParameter("user");
-                            Resultado = controladorPer.permisosNoAsignados(request, response, user);
+                            String rolU = request.getParameter("rolU");
+                            Resultado = controladorPer.permisosNoAsignados(request, response, rolU);
                             PrintWriter pw3 = response.getWriter();
                             pw3.write(Resultado);
                             System.out.println(pw3.checkError() ? "Error al cargar la lista" : "Lista Cargada");

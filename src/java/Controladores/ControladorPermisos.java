@@ -7,6 +7,7 @@ package Controladores;
 
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloPermisos;
+import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
 import java.io.IOException;
 import java.sql.Connection;
@@ -44,18 +45,18 @@ public class ControladorPermisos {
         StringBuilder outsb = new StringBuilder();
         try {
 
-            ControladorUsuario controladorU = new ControladorUsuario();
-            LinkedList<ModeloUsuario> listmoUsr;
-            listmoUsr = controladorU.Read("S");
+            ControladorRol controladorRol = new ControladorRol();
+            LinkedList<ModeloRol> listRol;
+            listRol = controladorRol.Read("S");
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
             outsb.append(out);
-            for (ModeloUsuario modeloUsua : listmoUsr) {
+            for (ModeloRol modeloRol : listRol) {
 
                 //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
-                outsb.append("<option value=\"").append(modeloUsua.getId()).append("\"> ").append(modeloUsua.getNombre()).append("</option>");
+                outsb.append("<option value=\"").append(modeloRol.getId()).append("\"> ").append(modeloRol.getNombre()).append("</option>");
 
             }
             //out += "</select>";
@@ -74,18 +75,18 @@ public class ControladorPermisos {
      * @author Julian A Aristizabal
      * @param request
      * @param response
-     * @param usr
+     * @param rol
      * @return String
      * @version: 21/05/2020
      */
-    public String permisosAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
+    public String permisosAsignados(HttpServletRequest request, HttpServletResponse response, String rol) throws ServletException, IOException {
 
         String out = null;
         StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloPermisos> listmoPer;
-            listmoPer = readPermisosAsig(usr);
+            listmoPer = readPermisosAsig(rol);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
@@ -117,14 +118,14 @@ public class ControladorPermisos {
      * @return String
      * @version: 21/05/2020
      */
-    public String permisosNoAsignados(HttpServletRequest request, HttpServletResponse response, String usr) throws ServletException, IOException {
+    public String permisosNoAsignados(HttpServletRequest request, HttpServletResponse response, String rol) throws ServletException, IOException {
 
         String out = null;
         StringBuilder outsb = new StringBuilder();
         try {
 
             LinkedList<ModeloPermisos> listmoPer;
-            listmoPer = readPermisosNoAsig(usr);
+            listmoPer = readPermisosNoAsig(rol);
             response.setContentType("text/html;charset=UTF-8");
 
             out = "";
@@ -192,18 +193,18 @@ public class ControladorPermisos {
      * @return LinkedList
      * @version: 21/05/2020
      */
-    public LinkedList<ModeloPermisos> readPermisosAsig(String usua) {
+    public LinkedList<ModeloPermisos> readPermisosAsig(String rol) {
 
         LinkedList<ModeloPermisos> modeloPer = new LinkedList<ModeloPermisos>();
         con = conexion.abrirConexion();
         try {
 
             SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permiso p "
-                    + "INNER JOIN permiso_x_usuario pu ON p.id = pu.id_permiso "
-                    + "INNER JOIN usuario us ON us.id = pu.id_usuario "
-                    + "WHERE us.id = ?");
+                    + "INNER JOIN permiso_x_rol pr ON p.id = pr.id_permiso "
+                    + "INNER JOIN rol r ON r.id = pr.id_rol "
+                    + "WHERE r.id = ?");
 
-            SQL.setString(1, usua);
+            SQL.setString(1, rol);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
 
@@ -227,20 +228,20 @@ public class ControladorPermisos {
      * Permite listar la información de la tabla permiso que no estan asignados
      *
      * @author Julian A Aristizabal
-     * @param usua
+     * @param rol
      * @return LinkedList
      * @version: 21/05/2020
      */
-    public LinkedList<ModeloPermisos> readPermisosNoAsig(String usua) {
+    public LinkedList<ModeloPermisos> readPermisosNoAsig(String rol) {
 
         LinkedList<ModeloPermisos> modeloPer = new LinkedList<ModeloPermisos>();
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permiso p WHERE p.id NOT IN (SELECT pu.id_permiso FROM permiso_x_usuario pu INNER JOIN usuario us ON us.Id = pu.id_usuario "
-                    + "INNER JOIN permiso p ON p.id = pu.id_permiso WHERE us.id = ?)");
+            SQL = con.prepareStatement("SELECT p.id, p.nombre FROM permiso p WHERE p.id NOT IN (SELECT pr.id_permiso FROM permiso_x_rol pr INNER JOIN rol r ON r.id = pr.id_rol "
+                    + "INNER JOIN permiso p ON p.id = pr.id_permiso WHERE r.id = ?)");
 
-            SQL.setString(1, usua);
+            SQL.setString(1, rol);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
 
@@ -273,7 +274,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("SELECT id, nombre from permiso ORDER BY id");
+            SQL = con.prepareStatement("SELECT id, nombre FROM permiso ORDER BY id");
 
             //SQL.setString(1, usua);
             ResultSet res = SQL.executeQuery();

@@ -209,7 +209,7 @@ $(function(){
               //alert(resul);
               LimpiarCampos();
               LoadTabla();
-              validacionBtn();
+              //validacionBtn();
           },
           error: function(jqXHR, textStatus, errorThrown) {
               disableGif();
