@@ -19,30 +19,32 @@ public class ModeloUsuario {
     private String nombre;
     private String login;
     private String password;
+    private ModeloRol rol;
     private String estado;
 
     public ModeloUsuario() {
     }
 
-    public ModeloUsuario(int id, String nombre, String login, String password, String estado) {
+    public ModeloUsuario(Integer id, String nombre, String login, String password, ModeloRol rol, String estado) {
         this.id = id;
         this.nombre = nombre;
         this.login = login;
         this.password = password;
+        this.rol = rol;
         this.estado = estado;
     }
 
     /**
      * @return the id
      */
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -89,6 +91,20 @@ public class ModeloUsuario {
     }
 
     /**
+     * @return the rol
+     */
+    public ModeloRol getRol() {
+        return rol;
+    }
+
+    /**
+     * @param rol the rol to set
+     */
+    public void setRol(ModeloRol rol) {
+        this.rol = rol;
+    }
+
+    /**
      * @return the estado
      */
     public String getEstado() {
@@ -101,6 +117,8 @@ public class ModeloUsuario {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+
     
     
 

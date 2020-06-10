@@ -9,6 +9,7 @@ $(function(){
   $(document).ready(function() {
       LoadTabla();
       validacionBtn();
+      cargarComboRol();
   });
 
   function LoadTabla(){
@@ -84,6 +85,47 @@ $(function(){
       });
   }
 
+  function cargarComboRol(){
+
+      var Frm = "PermisosJSP";
+      var Accion = "Read";
+      var data = {
+          frm: Frm,
+          accion: Accion
+      };
+      enableGif();
+      $.ajax({
+          type: "POST",
+          url: "ServletAlohaTiempos",
+          dataType: 'html',
+          data: data,
+          success: function(resul, textStatus, jqXHR)
+          {
+              disableGif();
+              $('#IdRol').html(resul);
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              disableGif();
+              if (jqXHR.status === 0) {
+                  alert('Not connect: Verify Network.');
+              } else if (jqXHR.status === 404) {
+                  alert('Requested page not found [404]');
+              } else if (jqXHR.status === 500) {
+                  alert('Internal Server Error [500].');
+              } else if (textStatus === 'parsererror') {
+                  alert('Requested JSON parse failed.');
+              } else if (textStatus === 'timeout') {
+                  alert('Time out error.');
+              } else if (textStatus === 'abort') {
+                  alert('Ajax request aborted.');
+              } else {
+                  alert('Uncaught Error: ' + jqXHR.responseText);
+              }
+          }
+      });
+  }
+
   $(document).on('click', '.SetFormulario', function() {
 
     var idu = $(this).data('id');
@@ -95,6 +137,8 @@ $(function(){
       $('#IdNombreOld').val($(this).data('nombre'));
       $('#IdLogin').val($(this).data('login'));
       $('#IdLogOld').val($(this).data('login'));
+      $('#IdRol').val($(this).data('rol'));
+      $('#IdRolOld').val($(this).data('nrol'));
 
       var Frm = "Password";
       var Pw = $(this).data('password');
@@ -408,11 +452,14 @@ $(function(){
   });
 
   $("#IdCancelar").click(function(e) {
+
     $('#Id').val('');
     $('#IdNombre').val('');
     $('#IdLogin').val('');
     $('#IdLogOld').val('');
     $('#IdPassword').val('');
+    $('#IdRol').val('');
+    $('#IdRolOld').val('');
     document.getElementById('IdPassword').disabled = false;
   });
 
@@ -577,6 +624,7 @@ $(function(){
       var Nombre = $('#IdNombre').val();
       var Login = $('#IdLogin').val();
       var Password = $('#IdPassword').val();
+      var Rol = $('#IdRol').val();
       var Accion = "Upload";
       var data = {
           frm: Frm,
@@ -584,6 +632,7 @@ $(function(){
           nombre: Nombre,
           login: Login,
           password: Password,
+          rol: Rol,
           nombreU: NamUs,
           accion: Accion
       };
@@ -650,6 +699,8 @@ $(function(){
     var NombreOld = $('#IdNombreOld').val();
     var Login = $('#IdLogin').val();
     var LoginOld = $('#IdLogOld').val();
+    var Rol = $("#IdRol option:selected").text();
+    var RolOld = $('#IdRolOld').val();
     var Accion = "Insert";
     var Operacion;
 
@@ -661,6 +712,10 @@ $(function(){
       if(Login != LoginOld){
         Observacion += "Login: "+ LoginOld + " > " + Login;
       }
+
+      if(Rol != RolOld){
+        Observacion += "Rol: "+ RolOld + " > " + Rol;
+      }
       Operacion = "actualizar";
     }else if (modo === "eliminar") {
       Observacion = "Se elimino el registro."
@@ -671,7 +726,7 @@ $(function(){
     var data = {
         frm: Frm,
         operacion: Operacion,
-        tabla: "usuarios",
+        tabla: "rol",
         usua: NamUs,
         observacion: Observacion,
         id: Id,
@@ -684,7 +739,7 @@ $(function(){
         data: data,
         success: function(resul, textStatus, jqXHR){
 
-          //console.log("Auditoria realizada");
+          console.log("Auditoria realizada");
             /*Swal.fire({
                 icon: 'success',
                 title: 'Guardado',
@@ -732,8 +787,7 @@ $(function(){
   }
 
   function LimpiarCampos(){
-
-
+    
     $('#Id').val('');
     $('#IdNombre').val('');
     $('#IdNombreOld').val('');
@@ -741,7 +795,9 @@ $(function(){
     $('#IdLogOld').val('');
     $('#IdPassword').val('');
     $('#IdPasswordOld').val('');
-    
+    $('#IdRol').val('');
+    $('#IdRolOld').val('');
+
     document.getElementById('IdPassword').disabled = false;
     document.getElementById("IdNombre").focus();
   }

@@ -140,6 +140,7 @@
                                                     <th>Nombre</th>
                                                     <th>Login</th>
                                                     <th>Contraseña</th>
+                                                    <th>Rol</th>
                                                     <th>Opciones</th>   
                                                 </tr>
                                             </thead>
@@ -148,6 +149,7 @@
                                                     <!--td></td-->                                     
                                                     <td></td>                                     
                                                     <td></td> 
+                                                    <td></td>
                                                     <td></td>
                                                     <td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 

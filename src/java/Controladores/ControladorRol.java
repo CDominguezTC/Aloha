@@ -206,7 +206,7 @@ public class ControladorRol {
                     + "nombre, "
                     + "estado"
                     + " FROM rol"
-                    + " WHERE estado = ? ");
+                    + " WHERE estado = ? ORDER BY nombre");
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {

@@ -6,6 +6,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
 import Tools.Tools;
 import java.io.IOException;
@@ -45,10 +46,15 @@ public class ControladorUsuario {
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
 
         ModeloUsuario modeloUsuario = new ModeloUsuario();
+        ModeloRol modeloRol = new ModeloRol();
+        ControladorRol controladorRol = new ControladorRol();
+        
         modeloUsuario.setNombre(request.getParameter("nombre"));
         modeloUsuario.setLogin(request.getParameter("login"));
         modeloUsuario.setPassword(request.getParameter("password"));
-        modeloUsuario.setEstado(request.getParameter("estado"));
+        modeloUsuario.setEstado("S");
+        modeloRol = controladorRol.getModelo(Integer.parseInt(request.getParameter("rol")));        
+        modeloUsuario.setRol(modeloRol);
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
@@ -77,12 +83,14 @@ public class ControladorUsuario {
                     SQL = con.prepareStatement("INSERT INTO usuario("
                             + "nombre, "
                             + "login, "
-                            + "password)"
-                            + " VALUES (?,?,?)", SQL.RETURN_GENERATED_KEYS);                
+                            + "password, "
+                            + "id_rol)"
+                            + " VALUES (?,?,?,?)", SQL.RETURN_GENERATED_KEYS);                
                     SQL.setString(1, modeloUsuario.getNombre());
                     SQL.setString(2, modeloUsuario.getLogin());
                     String pw = tl.encriptar(modeloUsuario.getPassword());
                     SQL.setString(3, pw);
+                    SQL.setInt(4, modeloUsuario.getRol().getId());
                     if (SQL.executeUpdate() > 0) {
                         ControladorAuditoria auditoria = new ControladorAuditoria();
                             try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -136,6 +144,7 @@ public class ControladorUsuario {
                             + "nombre = ?, "
                             + "login = ?, "
                             + "password = ?, "
+                            + "id_rol = ?, "
                             + "estado = ?"
                             + " WHERE id = ? ");
                     //SQL.setInt(1, modeloUsuario.getId());
@@ -144,8 +153,9 @@ public class ControladorUsuario {
                     String pw = tl.encriptar(modeloUsuario.getPassword());
                     SQL.setString(3, pw);
                     //SQL.setString(4, modeloUsuario.getPassword());
-                    SQL.setString(4, modeloUsuario.getEstado());
-                    SQL.setInt(5, modeloUsuario.getId());
+                    SQL.setInt(4, modeloUsuario.getRol().getId());
+                    SQL.setString(5, modeloUsuario.getEstado());
+                    SQL.setInt(6, modeloUsuario.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
@@ -229,13 +239,17 @@ public class ControladorUsuario {
      * @version: 15/5/2020
      */
     public LinkedList<ModeloUsuario> Read(String estado) throws SQLException {
+        
         LinkedList<ModeloUsuario> ListaModeloUsuario = new LinkedList<ModeloUsuario>();
+        ModeloRol modeloRol = new ModeloRol();
+        ControladorRol controladorRol = new ControladorRol();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id, "
                     + "nombre, "
                     + "login, "
                     + "password, "
+                    + "id_rol, "
                     + "estado"
                     + " FROM usuario "
                     + "WHERE estado = ?");
@@ -247,6 +261,8 @@ public class ControladorUsuario {
                 modeloUsuario.setNombre(res.getString("nombre"));
                 modeloUsuario.setLogin(res.getString("login"));
                 modeloUsuario.setPassword(res.getString("password"));
+                modeloRol = controladorRol.getModelo(res.getInt("id_rol"));
+                modeloUsuario.setRol(modeloRol);
                 modeloUsuario.setEstado(res.getString("estado"));
                 ListaModeloUsuario.add(modeloUsuario);
             }
@@ -254,7 +270,7 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorusuario" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controlador usuario" + e.getMessage());
         }
         return ListaModeloUsuario;
     }
@@ -287,6 +303,7 @@ public class ControladorUsuario {
             out += "<th>Nombre</th>";
             out += "<th>Login</th>";
             out += "<th>Password</th>";
+            out += "<th>Rol</th>";
             out += "<th>Opcion</th>";
             out += "</tr>";
             out += "</thead>";
@@ -298,6 +315,7 @@ public class ControladorUsuario {
                 outsb.append("<td>").append(modeloUsua.getNombre()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getLogin()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getPassword()).append("</td>");
+                outsb.append("<td>").append(modeloUsua.getRol().getNombre()).append("</td>");
                 outsb.append("<td class=\"text-center\">");
                 
                 // Boton Editar
@@ -306,6 +324,8 @@ public class ControladorUsuario {
                 outsb.append("data-nombre=\"").append(modeloUsua.getNombre()).append("\"");
                 outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
                 outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
+                outsb.append("data-rol=\"").append(modeloUsua.getRol().getId()).append("\"");
+                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombre()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>");
 
                 //Boton Eliminar
@@ -314,6 +334,8 @@ public class ControladorUsuario {
                 outsb.append("data-nombre=\"").append(modeloUsua.getNombre()).append("\"");
                 outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
                 outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
+                outsb.append("data-rol=\"").append(modeloUsua.getRol().getId()).append("\"");
+                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombre()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>");
                 outsb.append("</td>");
                 outsb.append("</tr>");
