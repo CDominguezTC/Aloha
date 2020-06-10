@@ -284,13 +284,13 @@ public class ControladorCentro_costo {
                     out += "<td>" + modeloCentro_costo.getNombre() + "</td>";
                     out += "<td class=\"text-center\">";
 // Boton Editar
-                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                     out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
                     out += "data-codigo=\"" + modeloCentro_costo.getCodigo() + "\"";
                     out += "data-nombre=\"" + modeloCentro_costo.getNombre() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                     out += "data-id=\"" + modeloCentro_costo.getId() + "\"";
                     out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                     out += "</td>";

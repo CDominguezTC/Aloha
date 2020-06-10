@@ -282,13 +282,13 @@ public class ControladorCargo_hoteleria {
                     out += "<td>" + modeloCargo_hoteleria.getValor_cargo() + "</td>";
                     out += "<td class=\"text-center\">";
 // Boton Editar
-                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                     out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
                     out += "data-cargo=\"" + modeloCargo_hoteleria.getTipo_cargo() + "\"";
                     out += "data-valor=\"" + modeloCargo_hoteleria.getValor_cargo() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                     out += "data-id=\"" + modeloCargo_hoteleria.getId() + "\"";
                     out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                     out += "</td>";

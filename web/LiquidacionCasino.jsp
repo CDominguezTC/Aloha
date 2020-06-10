@@ -51,7 +51,6 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <br/>
                                 <!-- Formulario Configuración -->
                                 <form class="form-horizontal form-label-left input_mask" action="ServletAlohaTiempos" method="POST" name="LiquidacionCasinoJSP" id="IdComprasJSP" >                                                            
                                     <div align="center" id="espera" style="display: none">
@@ -96,7 +95,6 @@
                             </div>
                         </div>
                         <!-- /Primera Sección-->
-                        <br/><br/><br/><br/><br/>
                     </div>
                 </div>
             </div>
@@ -104,7 +102,6 @@
         <!-- /Contenido -->
         <!-- Footer -->
         <footer>
-            <br/>
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->

@@ -34,12 +34,13 @@
                                      <h3>Consumos Registrados <small>en las ultimas semanas</small></h3>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="chart-container">                                    
-                                    <canvas id="IdBarras" width="350" height="200"></canvas>
+                                    <canvas id="IdBarras" width="380" height="100"></canvas>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                             <div class="ln_solid"></div>
                         </div>
                     </div>
 

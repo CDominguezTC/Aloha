@@ -407,7 +407,7 @@ public class ControladorPersona {
                 }
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
                 out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
                 out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
@@ -486,7 +486,7 @@ public class ControladorPersona {
 //                out += "data-template10=\"" + Templates_10 + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
                 out += "</td>";

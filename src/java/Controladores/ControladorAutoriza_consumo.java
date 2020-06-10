@@ -76,7 +76,7 @@ public class ControladorAutoriza_consumo {
                 out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormularioAutoriza btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormularioAutoriza btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
                 out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
                 out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
@@ -126,7 +126,7 @@ public class ControladorAutoriza_consumo {
                 out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormularioAutorizado btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormularioAutorizado btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloPersonas.getId() + "\"";
                 out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
                 out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";

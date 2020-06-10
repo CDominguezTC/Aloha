@@ -50,7 +50,6 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <br/>
                                 <!-- Formulario Configuración -->
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div align="center" id="espera" style="display: none">
@@ -157,7 +156,6 @@
         <!-- /Contenido -->
         <!-- Footer -->
         <footer>
-            <br/>
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->

@@ -288,7 +288,7 @@ public class ControladorVencimiento {
                 out += "<td>" + modeloVencimiento.getFecha_vencimiento() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloVencimiento.getId() + "\"";
                 out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
                 out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
@@ -296,7 +296,7 @@ public class ControladorVencimiento {
                 out += "data-fecha_vencimiento=\"" + modeloVencimiento.getFecha_vencimiento() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloVencimiento.getId() + "\"";
                 out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
                 out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";

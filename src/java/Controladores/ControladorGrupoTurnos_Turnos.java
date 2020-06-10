@@ -256,18 +256,18 @@ public class ControladorGrupoTurnos_Turnos {
                 out += "<td class=\"text-center\">" + modeloGrupoTurnos_Turnos.getDia_Semana() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloGrupoTurnos_Turnos.getId() + "\"";
                 out += "data-idgrupoturnos=\"" + modeloGrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId() + "\"";
                 out += "data-idturnos=\"" + modeloGrupoTurnos_Turnos.getIdModelo_Turnos().getId() + "\"";
                 out += "data-dia=\"" + modeloGrupoTurnos_Turnos.getDia_Semana() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloGrupoTurnos_Turnos.getId() + "\"";
                 out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-trash\"></i> </button>";
                 //Boton Clonar
-                out += "<button class=\"SetFormulario btn btn-info btn-xs\"title=\"Clonar\"";
+                out += "<button class=\"SetFormulario btn btn-info btn-sm\"title=\"Clonar\"";
                 out += "data-id=\"\"";
                 out += "data-idgrupoturnos=\"" + modeloGrupoTurnos_Turnos.getIdModelo_Grupo_Turnos().getId() + "\"";
                 out += "data-idturnos=\"" + modeloGrupoTurnos_Turnos.getIdModelo_Turnos().getId() + "\"";

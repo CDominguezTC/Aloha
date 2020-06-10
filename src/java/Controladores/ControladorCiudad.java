@@ -237,13 +237,13 @@ public class ControladorCiudad {
                 out += "<td>" + modeloCiudad.getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloCiudad.getId() + "\"";
                 out += "data-codigo=\"" + modeloCiudad.getCodigo() + "\"";
                 out += "data-nombre=\"" + modeloCiudad.getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloCiudad.getId() + "\"";
                 out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                 out += "</td>";

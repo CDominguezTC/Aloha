@@ -223,7 +223,7 @@ public class ControladorPeriodos {
                 out += "<td>" + modeloPeriodos.getObservacion() + "</td>";
                 out += "<td class=\"text-center\">";
                 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloPeriodos.getId() + "\"";
                 out += "data-codigo=\"" + modeloPeriodos.getCodigo() + "\"";
                 out += "data-nombre=\"" + modeloPeriodos.getNombre() + "\"";
@@ -232,7 +232,7 @@ public class ControladorPeriodos {
                 out += "data-observacion=\"" + modeloPeriodos.getObservacion() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloPeriodos.getId() + "\"";
                 out += "data-codigo=\"" + modeloPeriodos.getCodigo() + "\"";
                 out += "data-nombre=\"" + modeloPeriodos.getNombre() + "\"";
