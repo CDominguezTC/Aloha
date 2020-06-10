@@ -275,13 +275,13 @@ public class ControladorAsociacion_grupo_vencimiento {
                 out += "<td>" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloAsociacion_grupo_vencimientio.getId() + "\"";
                 out += "data-id_enumeracion_grupo=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_grupo().getId() + "\"";
                 out += "data-id_enumeracion_vencimiento=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloAsociacion_grupo_vencimientio.getId() + "\"";
                 out += "data-id_enumeracion_grupo=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_grupo().getId() + "\"";
                 out += "data-id_enumeracion_vencimiento=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId()+ "\"";

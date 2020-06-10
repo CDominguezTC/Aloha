@@ -314,7 +314,7 @@ public class ControladorVehiculo {
                 out += "<td>" + modeloVehiculo.getModelo_persona_responsable().getNombres() + " " + modeloVehiculo.getModelo_persona_responsable().getApellidos() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                 out += "data-id=\"" + modeloVehiculo.getId() + "\"";
                 out += "data-placa_vehiculo=\"" + modeloVehiculo.getPlaca_vehiculo() + "\"";
                 out += "data-color_vehiculo=\"" + modeloVehiculo.getColor_vehiculo() + "\"";
@@ -323,7 +323,7 @@ public class ControladorVehiculo {
                 out += "data-id_persona_responsable=\"" + modeloVehiculo.getModelo_persona_responsable().getNombres() + " " + modeloVehiculo.getModelo_persona_responsable().getApellidos() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloVehiculo.getId() + "\"";
                 out += "data-placa_vehiculo=\"" + modeloVehiculo.getPlaca_vehiculo() + "\"";
                 out += "data-color_vehiculo=\"" + modeloVehiculo.getColor_vehiculo() + "\"";

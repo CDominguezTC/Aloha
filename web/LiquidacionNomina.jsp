@@ -52,7 +52,6 @@
                     <div class="clearfix"></div>
                   </div>
                   <div class="x_content">
-                    <br/>
                     <!-- Formulario Filtros -->
                     <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
 

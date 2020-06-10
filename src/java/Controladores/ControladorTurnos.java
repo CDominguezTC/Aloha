@@ -395,7 +395,7 @@ public class ControladorTurnos {
                     out += "<td>" + modeloTurnos.getTolerancia_antes_salir() + "</td>";
                     out += "<td class=\"text-center\">";
                     // Boton Editar
-                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                     out += "data-id=\"" + modeloTurnos.getId() + "\"";
                     out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
                     out += "data-nombre=\"" + modeloTurnos.getDescripcion() + "\"";
@@ -418,11 +418,11 @@ public class ControladorTurnos {
                     out += "data-horainicionocturno=\"" + modeloTurnos.getHora_inicio_nocturno() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
                     //Boton Eliminar
-                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                     out += "data-id=\"" + modeloTurnos.getId() + "\"";
                     out += "type=\"button\"><i id=\"IdClonar\" name=\"Clonar\" class=\"fa fa-trash\"></i> </button>";
                     //Boton Clonar
-                    out += "<button class=\"SetFormulario btn btn-info btn-xs\"title=\"Clonar\"";
+                    out += "<button class=\"SetFormulario btn btn-info btn-sm\"title=\"Clonar\"";
                     out += "data-id=\"\"";
                     out += "data-codigo=\"" + modeloTurnos.getCodigo() + "\"";
                     out += "data-nombre=\"Turno Clonado\"";

@@ -34,17 +34,18 @@
                                      <h3>Consumos Registrados <small>en las ultimas semanas</small></h3>
                                 </div>
                             </div>
-                            <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
                                 <div class="chart-container">                                    
-                                    <canvas id="IdBarras" width="350" height="200"></canvas>
+                                    <canvas id="IdBarras" width="380" height="100"></canvas>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
+                             <div class="ln_solid"></div>
                         </div>
                     </div>
-
                 </div>
-                <br />
+            
+                <br/>
 
                 <div class="row">
                     <div class="col-md-4 col-sm-4 col-xs-12 ">
@@ -65,7 +66,8 @@
                             <div class="x_content">
                                 <div class="chart-container" style="position: relative; height:10; width:20">                                    
                                     <canvas id="IdBarrasHorizotales"width="10" height="5"></canvas>
-                                </div>                            
+                                </div>
+                                <div class="ln_solid"></div>
                             </div>
                         </div>
                     </div>
@@ -87,6 +89,7 @@
                             <div class="x_content">
                                 <div class="chart-container" style="position: relative; height:10; width:20">                                    
                                     <canvas id="IdDoughnut"width="10" height="5"></canvas>
+                                     <div class="ln_solid"></div>
                                 </div>                            
                             </div>
                         </div>
@@ -110,6 +113,7 @@
                                 <div class="x_content">
                                     <div class="chart-container" style="position: relative; height:10; width:20">                                    
                                         <canvas id="IdPie" width="10" height="5"></canvas>
+                                        <div class="ln_solid"></div>
                                     </div>                            
                                 </div>
                             </div>

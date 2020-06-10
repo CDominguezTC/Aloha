@@ -147,7 +147,6 @@
                             </div>
                         </div>
                         <!-- /Segunda Sección--> 
-                        <br><br><br><br><br>
                     </div>
                 </div>
             </div>
@@ -155,7 +154,6 @@
         <!-- /Contenido -->
         <!-- Footer -->
         <footer>
-            <br/>
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->

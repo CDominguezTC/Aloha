@@ -287,13 +287,13 @@ public class ControladorEnumeracion {
                     out += "<td>" + modeloEnumeracion.getCampo() + "</td>";
                     out += "<td class=\"text-center\">";
 // Boton Editar
-                    out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
                     out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
                     out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                    out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
                     out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
                     out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";

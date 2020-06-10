@@ -49,8 +49,7 @@
                                 </ul>
                                 <div class="clearfix"></div>
                             </div>
-                            <div class="x_content">
-                                <br/>
+                            <div class="x_content">                           
                                 <!-- Formulario Registro -->
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div align="center" id="espera" style="display: none">

@@ -314,7 +314,6 @@
         
         <!-- Footer -->
         <footer>
-            <br/>
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->
