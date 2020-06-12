@@ -27,40 +27,40 @@ $(function(){
           data: data,
           success: function(resul, textStatus, jqXHR)
           {
-              disableGif();
-              $('#datatable').html(resul);
-              $('#datatable').dataTable({
-                  responsive: true,
-                  language: {
-                      "decimal": "",
-                      "emptyTable": "No hay información",
-                      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-                      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-                      "infoPostFix": "",
-                      "thousands": ",",
-                      "lengthMenu": "Mostrar _MENU_ Entradas",
-                      "loadingRecords": "Cargando...",
-                      "processing": "Procesando...",
-                      "search": "Buscar:",
-                      "zeroRecords": "Sin resultados encontrados",
-                      "paginate": {
-                          "first": "Primero",
-                          "last": "Ultimo",
-                          "next": "Siguiente",
-                          "previous": "Anterior"
-                      }
-                  }
-                  , "autoWidth": false
-                  , "destroy": true
-                  , "info": true
-                  , "JQueryUI": true
-                  , "ordering": true
-                  , "paging": true
-                  , "scrollY": "500px"
-                  , "scrollCollapse": true
+            disableGif();
+            $('#datatable').html(resul);
+            $('#datatable').dataTable({
+                responsive: true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+                , "autoWidth": false
+                , "destroy": true
+                , "info": true
+                , "JQueryUI": true
+                , "ordering": true
+                , "paging": true
+                , "scrollY": "500px"
+                , "scrollCollapse": true
 
-              });
+            });
 
           },
           error: function(jqXHR, textStatus, errorThrown) {

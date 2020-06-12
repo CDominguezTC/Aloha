@@ -323,7 +323,7 @@ public class ControladorPermisos {
                     //System.out.println(items[i]);
                     int idp = idPermiso(items[i].replaceAll("\\s", ""));
 
-                    SQL = con.prepareStatement("INSERT INTO permiso_x_usuario (id_permiso, id_usuario) VALUES (?,?)");
+                    SQL = con.prepareStatement("INSERT INTO permiso_x_rol (id_permiso, id_rol) VALUES (?,?)");
                     SQL.setInt(1, idp);
                     SQL.setInt(2, Integer.parseInt(usr));
 
@@ -366,7 +366,7 @@ public class ControladorPermisos {
         con = conexion.abrirConexion();
         try {
 
-            SQL = con.prepareStatement("DELETE FROM permiso_x_usuario WHERE id_usuario = ?");
+            SQL = con.prepareStatement("DELETE FROM permiso_x_rol WHERE id_rol = ?");
             SQL.setString(1, user);
             if (SQL.executeUpdate() > 0) {
 

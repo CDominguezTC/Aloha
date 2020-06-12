@@ -194,7 +194,7 @@ $(function(){
       Swal.fire({
           icon: 'warning',
           title: 'Alerta',
-          text: 'Por favor seleccione un usuario.',
+          text: 'Por favor seleccione un rol.',
           showConfirmButton: false,
           timer: 3000
       });
@@ -312,7 +312,7 @@ $(function(){
   $('#IdGuardar').click(function(e){
 
 
-    var e = document.getElementById('IdUsuarios');
+    var e = document.getElementById('IdRoles');
     var strUser = e.options[e.selectedIndex].value;
     //alert(can);
     if(strUser != ""){
@@ -392,7 +392,7 @@ $(function(){
           }
         });
       }else{
-        var usuario = $("#IdUsuarios option:selected").text();
+        var usuario = $("#IdRoles option:selected").text();
         Swal.fire({
 
           title: '¿Desea borrar todos los permisos de: ' + usuario +'?',
@@ -430,7 +430,7 @@ $(function(){
                   Swal.fire({
                       icon: 'success',
                       title: 'Se eliminaron los permisos.',
-                      text: 'Por favor cierre sesion e ingrese de nuevo.'
+                      text: 'Por favor cierre Sesion e ingrese de nuevo.'
                   });
                   auditoriaReg("Se eliminaron los permisos.");
                   disableGif();
@@ -473,7 +473,7 @@ $(function(){
       Swal.fire({
           icon: 'warning',
           title: 'Por favor',
-          text: 'Seleccione un usuario.',
+          text: 'Seleccione un rol.',
           showConfirmButton: false,
           timer: 3000
       });
@@ -486,7 +486,7 @@ $(function(){
 
     var Observacion = estado;
     var NamUs = document.getElementById('usering').innerHTML
-    var e = document.getElementById('IdUsuarios');
+    var e = document.getElementById('IdRoles');
     var strUser = e.options[e.selectedIndex].value;
     var Id = strUser;
 

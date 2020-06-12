@@ -726,7 +726,7 @@ $(function(){
     var data = {
         frm: Frm,
         operacion: Operacion,
-        tabla: "rol",
+        tabla: "usuario",
         usua: NamUs,
         observacion: Observacion,
         id: Id,
@@ -787,7 +787,7 @@ $(function(){
   }
 
   function LimpiarCampos(){
-    
+
     $('#Id').val('');
     $('#IdNombre').val('');
     $('#IdNombreOld').val('');
