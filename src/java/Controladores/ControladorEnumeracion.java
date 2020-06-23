@@ -27,11 +27,15 @@ public class ControladorEnumeracion {
 
     String resultado = "";
     Connection con;
-    PreparedStatement SQL = null;
+    //PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     String user;
     //ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
     Herramienta herramienta = new Herramienta();
+
+    public void EnviarConexion(Connection connection) {
+        con = connection;
+    }
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -43,6 +47,9 @@ public class ControladorEnumeracion {
      * @version: 21/05/2020
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        
+        con = conexion.abrirConexion();
+        
         ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
         modeloEnumeracion.setModelo_enumeracion(getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("id_enumeracion")))));
         modeloEnumeracion.setCampo(request.getParameter("campo"));
@@ -56,6 +63,9 @@ public class ControladorEnumeracion {
             modeloEnumeracion.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloEnumeracion);
         }
+        
+        con.close();
+        
         return resultado;
     }
 
@@ -69,7 +79,8 @@ public class ControladorEnumeracion {
      */
     public String Insert(ModeloEnumeracion modeloEnumeracion) throws SQLException {
         try {
-            con = conexion.abrirConexion();
+            //con = conexion.abrirConexion();
+            PreparedStatement SQL = null;
             try {
                 SQL = con.prepareStatement("INSERT INTO enumeracion("
                         + "id_enumeracion, "
@@ -89,14 +100,14 @@ public class ControladorEnumeracion {
                         }
                         resultado = "1";
                         SQL.close();
-                        con.close();
+                        //con.close();
                     }
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Insert en Controladorenumeracion" + e);
                 resultado = "-2";
                 SQL.close();
-                con.close();
+                //con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Insert en Controladorenumeracion" + e);
@@ -115,7 +126,8 @@ public class ControladorEnumeracion {
      */
     public String Update(ModeloEnumeracion modeloEnumeracion) throws SQLException {
         try {
-            con = conexion.abrirConexion();
+            //con = conexion.abrirConexion();
+            PreparedStatement SQL = null;
             try {
                 if ("N".equals(modeloEnumeracion.getEstado())) {
                     SQL = con.prepareStatement("UPDATE enumeracion SET "
@@ -135,13 +147,13 @@ public class ControladorEnumeracion {
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
-                    con.close();
+                    //con.close();
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Update en Controladorenumeracion" + e);
                 resultado = "-2";
                 SQL.close();
-                con.close();
+                //con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Update en Controladorenumeracion" + e);
@@ -159,12 +171,18 @@ public class ControladorEnumeracion {
      * @version: 21/05/2020
      */
     public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        
+        con = conexion.abrirConexion();
+        
         if (!"".equals(request.getParameter("id"))) {
             ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
             modeloEnumeracion.setId(Integer.parseInt(request.getParameter("id")));
             modeloEnumeracion.setEstado("N");
             resultado = Update(modeloEnumeracion);
         }
+        
+        con.close();
+        
         return resultado;
     }
 
@@ -178,7 +196,8 @@ public class ControladorEnumeracion {
      */
     public ModeloEnumeracion getModelo(Integer Id) {
         ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
-        con = conexion.abrirConexion();
+        //con = conexion.abrirConexion();
+        PreparedStatement SQL = null;
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "id_enumeracion, "
@@ -196,9 +215,9 @@ public class ControladorEnumeracion {
             }
             res.close();
             SQL.close();
-            con.close();
+            //con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorenumeracion" + e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladorenumeracion " + e);
         }
         return modeloEnumeracion;
     }
@@ -213,7 +232,8 @@ public class ControladorEnumeracion {
      */
     public LinkedList<ModeloEnumeracion> Read(String estado, String id_enumeracion) throws SQLException {
         LinkedList<ModeloEnumeracion> ListaModeloEnumeracion = new LinkedList<ModeloEnumeracion>();
-        con = conexion.abrirConexion();
+        //con = conexion.abrirConexion();
+        PreparedStatement SQL = null;
         String Where = "";
         if (!"0".contentEquals(id_enumeracion)) {
             Where = "and id_enumeracion = " + id_enumeracion;
@@ -238,7 +258,7 @@ public class ControladorEnumeracion {
             }
             res.close();
             SQL.close();
-            con.close();
+            //con.close();
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorenumeracion" + e);
         }
@@ -254,7 +274,10 @@ public class ControladorEnumeracion {
      * @return String
      * @version: 21/05/2020
      */
-    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        
+        con = conexion.abrirConexion();
+        
         String out = null;
         String estado = "S";
         if (request.getParameter("estado") != null) {
@@ -288,14 +311,14 @@ public class ControladorEnumeracion {
                     out += "<td class=\"text-center\">";
 // Boton Editar
                     out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                    out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
-                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
+                    out += "data-id=\"" + modeloEnumeracion.getId() + "\"";
+                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId() + "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";
                     out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
                     out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                    out += "data-id=\"" + modeloEnumeracion.getId()+ "\"";
-                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId()+ "\"";
+                    out += "data-id=\"" + modeloEnumeracion.getId() + "\"";
+                    out += "data-id_enumeracion=\"" + modeloEnumeracion.getModelo_enumeracion().getId() + "\"";
                     out += "data-campo=\"" + modeloEnumeracion.getCampo() + "\"";
                     out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
                     out += "</td>";
@@ -306,6 +329,9 @@ public class ControladorEnumeracion {
         } catch (Exception e) {
             System.out.println("Error en la generacion Html en Controladorenumeracion" + e);
         }
+        
+        con.close();
+        
         return out;
     }
 

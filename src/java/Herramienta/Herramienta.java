@@ -204,4 +204,24 @@ public class Herramienta {
         res = res + ","+tipo+")";
         return res;
     }
+    /**
+     * Permite convertir un String en fecha (Date).
+     * @param fecha Cadena de fecha dd/MM/yyyy
+     * @return Objeto Date
+     * @autor Diego Fernando GUzman
+     * @version 02/06/2020
+     */
+    public static Date ParseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
 }

@@ -213,16 +213,21 @@ public class ControladorAsociacion_grupo_vencimiento {
      * @return LinkedList<ModeloAsociacion_grupo_vencimientio>
      * @version: 21/05/2020
      */
-    public LinkedList<ModeloAsociacion_grupo_vencimientio> Read(String estado) throws SQLException {
+    public LinkedList<ModeloAsociacion_grupo_vencimientio> Read(String estado, String id_enumeracion) throws SQLException {
         LinkedList<ModeloAsociacion_grupo_vencimientio> ListaModeloAsociacion_grupo_vencimientio = new LinkedList<ModeloAsociacion_grupo_vencimientio>();
         con = conexion.abrirConexion();
+        String Where = "";
+        if (!"0".contentEquals(id_enumeracion)) {
+            Where = "and id_enumeracion_grupo = " + id_enumeracion;
+        }
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "id_enumeracion_grupo, "
                     + "id_enumeracion_vencimiento, "
                     + "estado"
                     + " FROM asociacion_grupo_vencimientio"
-                    + " WHERE estado = ? ");
+                    + " WHERE estado = ? "
+                    + Where);
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
@@ -258,7 +263,7 @@ public class ControladorAsociacion_grupo_vencimiento {
             estado = "N";
         }
         try {
-            LinkedList<ModeloAsociacion_grupo_vencimientio> ListaModeloAsociacion_grupo_vencimientio = Read(estado);
+            LinkedList<ModeloAsociacion_grupo_vencimientio> ListaModeloAsociacion_grupo_vencimientio = Read(estado, "0");
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<thead>";
@@ -275,13 +280,13 @@ public class ControladorAsociacion_grupo_vencimiento {
                 out += "<td>" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id=\"" + modeloAsociacion_grupo_vencimientio.getId() + "\"";
                 out += "data-id_enumeracion_grupo=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_grupo().getId() + "\"";
                 out += "data-id_enumeracion_vencimiento=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloAsociacion_grupo_vencimientio.getId() + "\"";
                 out += "data-id_enumeracion_grupo=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_grupo().getId() + "\"";
                 out += "data-id_enumeracion_vencimiento=\"" + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId()+ "\"";

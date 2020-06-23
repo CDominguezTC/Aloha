@@ -50,6 +50,7 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
+                                <br/>
                                 <!-- Formulario Configuración -->
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div align="center" id="espera" style="display: none">
@@ -71,6 +72,25 @@
                                                         </span>
                                                     </div>
                                                 </div>                                                
+                                            </div>
+
+                                            <div id="BusquedaPersona" class="modal fade bs-persona-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel"><b>Persona</b></h4>
+                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table id="IdTablaPersona" class="table table-responsive table-bordered">
+                                                            </table>                                                        
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                                        
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
 
@@ -102,24 +122,7 @@
                                         </div>
 
                                         <!--Inincio de Modals-->
-                                        <div id="BusquedaPersona" class="modal fade bs-persona-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel"><b>Persona</b></h4>
-                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <table id="IdTablaPersona" class="table table-responsive table-bordered">
-                                                        </table>                                                        
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
 
                                         <!-- Formulario Configuración -->      
                                         <!-- Botones -->
@@ -196,6 +199,7 @@
                             </div>
                         </div>
                         <!-- /Segunda Sección-->
+                        <br/><br/><br/><br/><br/>
                     </div>
                 </div>
             </div>
@@ -203,6 +207,7 @@
         <!-- /Contenido -->
         <!-- Footer -->
         <footer>
+            <br/>
             <div class="clearfix"></div>
         </footer>
         <!-- Footer -->

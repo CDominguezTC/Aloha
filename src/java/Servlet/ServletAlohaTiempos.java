@@ -29,6 +29,7 @@ import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
+import Controladores.ControladorParametro_tabla;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
 import Controladores.ControladorPersona;
@@ -43,9 +44,11 @@ import Herramienta.Herramienta;
 import Modelo.ModeloPersona;
 import Modelo.ModeloUsuario;
 import Tools.Tools;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -767,28 +770,28 @@ public class ServletAlohaTiempos extends HttpServlet {
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().write(Resultado);
                             Accion = "Plano";
-                            break;                       
+                            break;
                         case "GetDatoConsumo":
                             Resultado = controladorConsumo.GetDatoConsumo(request, response);
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().write(Resultado);
                             Accion = "Plano";
-                            break;                       
+                            break;
                         case "GetDatoCentroCosto":
                             Resultado = controladorConsumo.GetDatoCentroCosto(request, response);
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().write(Resultado);
                             Accion = "Plano";
-                            break;                       
+                            break;
                         case "GetDatoGrupoConsumo":
                             Resultado = controladorConsumo.GetDatoGrupoConsumo(request, response);
                             response.setContentType("application/json");
                             response.setCharacterEncoding("UTF-8");
                             response.getWriter().write(Resultado);
                             Accion = "Plano";
-                            break;                       
+                            break;
                     }
                     break;
                 case "GenerarLiquidacionHoteleria":
@@ -914,6 +917,42 @@ public class ServletAlohaTiempos extends HttpServlet {
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
+                        case "Valida_Tipo_Visita":
+                            Resultado = visita.Valida_Tipo_Visita(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "Modal_Visita":
+                            Resultado = visita.Campos_Visita(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "buscar":
+//                            int numPagina = Integer.parseInt(request.getParameter("page"));
+//                            int numRegistros = Integer.parseInt(request.getParameter("rows"));
+//                            int numPaginaInicio = numPagina * numRegistros - numRegistros;
+//                            int numPaginaFin = numPagina * numRegistros;
+//                            LinkedList<ModeloPersona> lstPersona = visita.buscar(numPaginaInicio, numPaginaFin);
+//                            Gson gson = new Gson();
+//                            
+//                            ResultadoJson resultadoJson = new ResultadoJson();
+//                            resultadoJson.setLstLista(lstPersona);
+//                            resultadoJson.setNumPaginado(numPagina);
+//                            resultadoJson.setNumRegistros(lstPersona.size());
+//                            resultadoJson.setNumPaginadaciones((int) Math.floorDiv(resultadoJson.getNumRegistros() / numRegistros, numPagina));
+//                            int iRes = resultadoJson.getNumRegistros() % numRegistros;
+//                            if(iRes > 0)
+//                            {
+//                                int iNu = resultadoJson.getNumPaginadaciones();
+//                                resultadoJson.setNumPaginadaciones(iNu+1);                                
+//                            }
+//                            pw = response.getWriter();
+//                            pw.print(gson.toJson(resultadoJson));
+//                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Personas grulla");
+//                            pw.close();
+                            break;
                     }
                     break;
                 case "EnumeracionJSP":
@@ -973,6 +1012,24 @@ public class ServletAlohaTiempos extends HttpServlet {
                             break;
                         case "ReadPersona":
                             Resultado = vencimiento.Read_Persona(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                    }
+                case "ParametroTablaJSP":
+                    ControladorParametro_tabla parametro_tabla = new ControladorParametro_tabla();
+                    //ControladorVisita visita = new ControladorVisita();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Upload":
+                            Resultado = parametro_tabla.Insert(request, response);
+                            break;
+                        case "Delete":
+                            Resultado = parametro_tabla.Delete(request, response);
+                            break;
+                        case "Read":
+                            Resultado = parametro_tabla.Read(request, response);
                             pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");

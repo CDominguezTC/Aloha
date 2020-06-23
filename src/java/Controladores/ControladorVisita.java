@@ -6,25 +6,26 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Herramienta.Fabricar_Vista_Modelo;
 import Herramienta.Herramienta;
+import Modelo.ModeloAsociacion_grupo_vencimientio;
 import Modelo.ModeloPersona;
+import Modelo.ModeloVencimiento;
 import Modelo.ModeloVisita;
 import com.google.gson.Gson;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
-import javax.imageio.ImageIO;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import sun.misc.BASE64Decoder;
 import org.xvolks.jnative.JNative;
 import org.xvolks.jnative.Type;
 
@@ -50,6 +51,9 @@ public class ControladorVisita {
     ControladorCentro_costo controladorCentro_costo = new ControladorCentro_costo();
     ControladorGrupo_consumo controladorGrupo_consumo = new ControladorGrupo_consumo();
     Herramienta herramienta = new Herramienta();
+    ControladorAsociacion_grupo_vencimiento controladorAsociacion_grupo_vencimiento = new ControladorAsociacion_grupo_vencimiento();
+    ControladorVencimiento controladorVencimiento = new ControladorVencimiento();
+    ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -403,7 +407,7 @@ public class ControladorVisita {
                 out += "<td>" + modeloVisita.getModelo_usuario_salida().getNombre() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
                 out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre() + "\"";
                 out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
@@ -419,7 +423,7 @@ public class ControladorVisita {
                 out += "data-id_usuario_salida=\"" + modeloVisita.getModelo_usuario_salida().getNombre() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id_persona_visitante=\"" + modeloVisita.getModelo_persona_visitante().getNombres() + " " + modeloVisita.getModelo_persona_visitante().getApellidos() + "\"";
                 out += "data-id_empresa_visitante=\"" + modeloVisita.getModelo_empresa_visitante().getNombre() + "\"";
                 out += "data-id_persona_visitada=\"" + modeloVisita.getModelo_persona_visitada().getNombres() + " " + modeloVisita.getModelo_persona_visitada().getApellidos() + "\"";
@@ -578,5 +582,158 @@ public class ControladorVisita {
         }
         return listaModeloPersonas;
     }
+
+    /**
+     * llena un modelo que viene con datos de un request para ser Eliminado
+     *
+     * @author: Diego Fernando Guzman
+     * @param request
+     * @return String
+     * @version: 11/05/2020
+     */
+    public String Valida_Tipo_Visita(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        Integer tipo_visita = Integer.parseInt(request.getParameter("tipo_visita"));
+        Integer id_persona = Integer.parseInt(request.getParameter("id_persona"));
+        LinkedList<ModeloAsociacion_grupo_vencimientio> ListaModeloAsociacion_grupo_vencimientio = null;
+        ListaModeloAsociacion_grupo_vencimientio = controladorAsociacion_grupo_vencimiento.Read("S", tipo_visita.toString());
+        ModeloVencimiento modeloVencimiento = null;
+        String Tiene_Vencido = "No";
+
+        String out = "";
+        out += "<thead>";
+        out += "<tr>";
+        out += "<th align=\"center\">Campo Vencido</th>";
+        out += "<th align=\"center\">Fecha</th>";
+        out += "</tr>";
+        out += "</thead>";
+        out += "<tbody>";
+
+        for (ModeloAsociacion_grupo_vencimientio modeloAsociacion_grupo_vencimientio : ListaModeloAsociacion_grupo_vencimientio) {
+            String Where = "id_enumeracion_vencimiento = " + modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId() + ""
+                    + " and id_persona = " + id_persona;
+
+            modeloVencimiento = getModeloVencimiento(Where);
+            Date FechaVencimiento = null;
+            long Today = (new Date()).getTime();
+            if (modeloVencimiento.getId() != null) {
+                if (modeloVencimiento.getFecha_vencimiento() != null) {
+                    FechaVencimiento = herramienta.ParseFecha(modeloVencimiento.getFecha_vencimiento());
+                    if (FechaVencimiento.getTime() <= Today) {
+                        Tiene_Vencido = "Si";
+                        out += "<tr>";
+                        out += "<td>" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
+                        out += "<td> <font color=\"red\">" + modeloVencimiento.getFecha_vencimiento() + "</td>";
+                        out += "</tr>";
+                        System.out.println("Fecha Vencida");
+                    }
+                } else {
+                    Tiene_Vencido = "Si";
+                    out += "<tr>";
+                    out += "<td>" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
+                    out += "<td> <font color=\"red\">" + "SIN FECHA" + "</td>";
+                    out += "</tr>";
+                }
+            } else {
+                modeloVencimiento.setModelo_persona(controladorPersona.getModelo(id_persona));
+                modeloVencimiento.setModelo_enumeracion_vencimiento(controladorEnumeracion.getModelo(modeloAsociacion_grupo_vencimientio.getModelo_enumeracion_vencimiento().getId()));
+                modeloVencimiento.setEstado("S");
+                controladorVencimiento.SendRequest(request);
+                controladorVencimiento.Insert(modeloVencimiento);
+                Tiene_Vencido = "Si";
+                out += "<tr>";
+                out += "<td>" + modeloVencimiento.getModelo_enumeracion_vencimiento().getCampo() + "</td>";
+                out += "<td> <font color=\"red\">" + "SIN FECHA" + "</td>";
+                out += "</tr>";
+                System.out.println("Sin Fecha");
+            }
+        }
+        out += "</tbody>";
+        resultado = Tiene_Vencido + "," +out.replace(",", "");
+        return resultado;
+    }
+
+    /**
+     * Retorna un modelo de la tabla vencimiento dependiendo de un ID
+     *
+     * @author: Diego Fernando Guzman
+     * @param request
+     * @return String
+     * @version: 28/05/2020
+     */
+    public ModeloVencimiento getModeloVencimiento(String Where) {
+        ModeloVencimiento modeloVencimiento = new ModeloVencimiento();
+        con = conexion.abrirConexion();
+
+        try {
+            SQL = con.prepareStatement("SELECT id,"
+                    + "id_persona, "
+                    + "id_enumeracion_vencimiento, "
+                    + "fecha_vencimiento, "
+                    + "estado"
+                    + " FROM vencimiento"
+                    + " WHERE " + Where);
+
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                modeloVencimiento.setId(res.getInt("id"));
+                modeloVencimiento.setModelo_persona(controladorPersona.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_persona")))));
+                modeloVencimiento.setModelo_enumeracion_vencimiento(controladorEnumeracion.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_enumeracion_vencimiento")))));
+                modeloVencimiento.setFecha_vencimiento(res.getString("fecha_vencimiento"));
+                modeloVencimiento.setEstado(res.getString("estado"));
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL GetModelo en Controladorvencimiento" + e);
+        }
+ 
+        return modeloVencimiento;
+    }
+    
+    public String Campos_Visita(HttpServletRequest request, HttpServletResponse response)
+    {
+        String out = "";
+        Fabricar_Vista_Modelo fabricar_Vista_Modelo = new Fabricar_Vista_Modelo();
+        try {        
+            out = fabricar_Vista_Modelo.Crear_Tabla_Modelo("48", "58");
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorVisita.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return out;
+    }
+    
+    
+    public LinkedList<ModeloPersona> buscar(int numPaginaInicio, int numPaginaFin)
+    {
+        LinkedList<ModeloPersona> lstPersona = new LinkedList<ModeloPersona>();        
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT id,"
+                    + "nombres, "
+                    + "apellidos "                    
+                    + " FROM persona"
+                    + " limit ?, ? ");
+            SQL.setInt(1, numPaginaInicio);
+            SQL.setInt(2, numPaginaFin);
+            
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloPersona modeloPersona = new ModeloPersona();
+                modeloPersona.setId(res.getInt("id"));
+                modeloPersona.setNombres(res.getString("nombres"));
+                modeloPersona.setApellidos(res.getString("apellidos"));
+                lstPersona.add(modeloPersona);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL GetModelo en Controladorvisita" + e);
+        }        
+        return lstPersona;                                
+    }
+    
 
 }

@@ -68,12 +68,10 @@ $(function () {
         validoPermiso("Roles.Abrir", "Roles.jsp");
     });
     
-    //Registrar Visita
+        //Registrar Visita----------------------------------
     $('#idregisvisita').click(function (e) {
-
         //alert("HolaEmpresa");
         validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
-
     });
     
      //Enumeracion
@@ -88,13 +86,17 @@ $(function () {
         validoPermiso("Agrupacion_Vencimiento.Abrir", "Agrupacion_Vencimiento.jsp");
     });
     
-    //Agrupacion Vencimientos
+    $('#idparametrotabla').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("ParametroTabla.Abrir", "ParametroTabla.jsp");
+    });
+        
+    //Agrupacion Vencimientos--------------------------------------
     $('#idvencimiento').click(function (e) {
         //alert("HolaEmpresa");
         validoPermiso("Vencimiento.Abrir", "Vencimiento.jsp");
     });
     
-
     $('#idempre').click(function (e) {
 
         //alert("HolaEmpresa");

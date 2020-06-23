@@ -35,6 +35,12 @@ public class ControladorVencimiento {
     ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
     Herramienta herramienta = new Herramienta();
 
+    public String SendRequest(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        user = (String) session.getAttribute("usuario");
+        return user;
+    }
+
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
      * vencimiento
@@ -49,10 +55,9 @@ public class ControladorVencimiento {
         modeloVencimiento.setModelo_persona(controladorPersona.getModelo(Integer.parseInt(request.getParameter("id_persona"))));
         modeloVencimiento.setModelo_enumeracion_vencimiento(controladorEnumeracion.getModelo(Integer.parseInt(request.getParameter("id_vencimiento"))));
         modeloVencimiento.setFecha_vencimiento(request.getParameter("fecha_vencimiento"));
-        modeloVencimiento.setEstado(request.getParameter("estado"));
+        modeloVencimiento.setEstado("S");
         if ("".equals(request.getParameter("id"))) {
-            HttpSession session = request.getSession();
-            modeloVencimiento.setEstado("S");
+            HttpSession session = request.getSession();            
             user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloVencimiento);
         } else {
@@ -95,6 +100,7 @@ public class ControladorVencimiento {
                         SQL.close();
                         con.close();
                     }
+
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Insert en Controladorvencimiento" + e);
@@ -131,7 +137,8 @@ public class ControladorVencimiento {
                     SQL = con.prepareStatement("UPDATE vencimiento SET "
                             + "id_persona = ?, "
                             + "id_enumeracion_vencimiento = ?, "
-                            + "fecha_vencimiento = ?"
+                            + "fecha_vencimiento = ?,"
+                            + " estado = ?"
                             + " WHERE id = ? ");
                     SQL.setInt(1, modeloVencimiento.getModelo_persona().getId());
                     SQL.setInt(2, modeloVencimiento.getModelo_enumeracion_vencimiento().getId());
@@ -288,7 +295,7 @@ public class ControladorVencimiento {
                 out += "<td>" + modeloVencimiento.getFecha_vencimiento() + "</td>";
                 out += "<td class=\"text-center\">";
 // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                out += "<button class=\"SetFormulario btn btn-warning btn-xs\"title=\"Editar\"";
                 out += "data-id=\"" + modeloVencimiento.getId() + "\"";
                 out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
                 out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
@@ -296,7 +303,7 @@ public class ControladorVencimiento {
                 out += "data-fecha_vencimiento=\"" + modeloVencimiento.getFecha_vencimiento() + "\"";
                 out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
 //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                out += "<button class=\"SetEliminar btn btn-danger btn-xs\"title=\"Eliminar\"";
                 out += "data-id=\"" + modeloVencimiento.getId() + "\"";
                 out += "data-id_persona=\"" + modeloVencimiento.getModelo_persona().getId() + "\"";
                 out += "data-nombre_persona=\"" + modeloVencimiento.getModelo_persona().getNombres() + " " + modeloVencimiento.getModelo_persona().getApellidos() + "\"";
@@ -312,8 +319,7 @@ public class ControladorVencimiento {
         }
         return out;
     }
-    
-    
+
     /**
      * Permite cargar las persona que son tipo empleao en un tabla
      *

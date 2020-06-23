@@ -12,9 +12,23 @@
 <html>
     <head>
         <%@include file="Principal/Head.html" %> 
-        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesVisita.js" ></script> 
-        <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesEnumeracion.js" ></script> 
+
+
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js"></script>
+        <script type="text/javascript" src="Principal/js/JsVisitantes/ValidacionesVisita.js"></script>    
+        
+        <!-- script type="text/javascript" src="Principal/js/JsVisitantes/jquery.jqGrid-4.4.3/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="Principal/js/JsVisitantes/jquery.jqGrid-4.4.3/js/i18n/grid.locale-es.js"></script>
+        <script type="text/javascript" src="Principal/js/JsVisitantes/jquery.jqGrid-4.4.3/js/jquery.jqGrid.min.js"></script>        
+        <link rel="stylesheet" type="text/css" media="screen" href="Principal/js/JsVisitantes/jquery.jqGrid-4.4.3/css/ui.jqgrid.css" -->
+        
+    
+
+
+
+
+        
+
         <!-- Kit FontAwesome para Botones (Mientras) -->
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <style>
@@ -36,16 +50,16 @@
                 -ms-user-select: none;
                 user-select: none;
             }
-            
-            #FotoPersona{
-                
+
+            #IdImagen{
+
                 max-height: 270px;
                 max-width: 270px;
                 width: 245px;
                 height: 245px;
-                
+
             }
-            
+
 
         </style>
 
@@ -53,6 +67,10 @@
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
 
+        <script type="text/javascript" >
+
+
+        </script> 
 
         <!-- Contenido -->
         <div class="right_col" role="main">
@@ -104,7 +122,7 @@
 
                                                 <div class="x_content">
 
-                                                    <form id="empleados_form"> 
+                                                    <form id="empleados_form1"> 
 
                                                         <div class="row">
 
@@ -149,16 +167,18 @@
 
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="tipo_visitante">Tipo de Visita</label>
+
                                                                 <select id="tipo_visitante" class="form-control" required>
                                                                     <option value="" disabled selected>Seleccione</option>
                                                                 </select>
+
                                                             </div>
 
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="NroTarjeta">Nro Tarjeta</label>
                                                                 <input type="number" class="form-control" id="IdNroTarjeta" name="NroTarjeta" min="0" required>
                                                             </div>
-                                                            
+
                                                             <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                 <label for="Modal">Modal</label>
                                                                 <!-- Se activa el Modal-->
@@ -187,48 +207,21 @@
                                                                 <textarea id="obs_ingreso" class="form-control" required>
                                                                 </textarea>
                                                             </div>
-                                                            
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                                                                <div class="modal-dialog" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                                            <h4 class="modal-title" id="myModalLabel">Formulario</h4>
-                                                                        </div>
-                                                                        <div class="modal-body">
 
-                                                                            <div class="row">
-                                                                                
-                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                                                    <label for="cedula">Cedula</label>
-                                                                                    <input type="number" class="form-control" id="" min="0" required>
-                                                                                </div>
 
-                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                                                    <label for="nombre">Nombre</label>
-                                                                                    <input type="text" class="form-control" id="" required="required">
-                                                                                </div>
-
-                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                                                    <label for="apellido">Apellido</label>
-                                                                                    <input type="text" class="form-control" id="" required="required">
-                                                                                </div>
-
-                                                                                <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                                                    <label for="codigo">Código</label>
-                                                                                    <input type="number" class="form-control" id="" name="codigo" min="0" required>
-                                                                                </div>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-                                                                            <button type="button" class="btn btn-success"><i class="fa fa-save"></i> Guardar</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                            <!------------------------------------------------------------------>
+                                                            <div>
+                                                                <table id="list2"></table>
+                                                                <div id="pager2"></div>
                                                             </div>
+                                                            <!------------------------------------------------------------------>
+
+                                                            <div id="Modal_Automatico_Persona">
+
+                                                            </div>
+
+
+
 
                                                         </div>
                                                     </form>
@@ -271,8 +264,8 @@
                                                 <div class="profile_img">
                                                     <div id="crop-avatar">
                                                         <!-- Img Captura Foto-Huella -->
-                                                         <br>
-                                                        <img id="FotoPersona" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella">
+                                                        <br>
+                                                        <img id="IdImagen" class="img-responsive avatar-view center" src="Principal/images/user.png" alt="Foto-Huella" title="Captura Foto - Huella">
                                                     </div>
                                                 </div>
 
@@ -280,6 +273,28 @@
                                                 <label for="Invisible1" id="Invisible" style="visibility:hidden">-</label>
                                                 <br>
                                                 <!-- /Ignorar -->
+
+
+                                                <!--Inincio de Modals-->
+                                                <div class='input-group date' id='visiblemodalvencimientos' data-toggle="modal" data-target=".bs-vencimiento-modal-lg"></div>
+                                                <div id="Vencimientos" class="modal fade bs-vencimiento-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h4 class="modal-title" id="myModalLabelVencimientos"><b>Vencimientos</b></h4>
+                                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <table id="IdTablaVencimientos" class="table table-responsive table-bordered">
+                                                                </table>                                                        
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>                                                        
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                                 <!-- Botones -->
                                                 <div class="ln_solid"></div>
@@ -342,7 +357,7 @@
                                             </div>
                                             <div class="x_content">
 
-                                                <form id="empleados_form"> 
+                                                <form id="empleados_form2"> 
 
                                                     <div class="row">
 
@@ -395,7 +410,7 @@
                                             </div>
                                             <div class="x_content">
 
-                                                <form id="empleados_form"> 
+                                                <form id="empleados_form3"> 
                                                     <div class="row">
 
                                                         <div class="col-md-12 col-sm-12 col-xs-12 form-group">
@@ -427,6 +442,8 @@
                                     <div class="clearfix"></div> 
                                 </div>
 
+
+
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="Equipos-tab">
                                 </div>
 
@@ -455,18 +472,24 @@
 
         <%@include file="Principal/Script.html" %>  
         <%@include file="Principal/js/JsVisitantes/fotohuellafrima.html" %> 
-        
-        <script>       
 
-        $('#myselect').change(function() {
-            var opval = $(this).val();
-            if(opval=="Nuevo"){
-                $('#myModal').modal("show");
-            }
-        });
+        <script>
+
+            //    $('#myselect').change(function () {
+            //        var opval = $(this).val();
+            //        if (opval == "Nuevo") {
+            //            $('#myModal').modal("show");
+            //        }
+            //    });
+
+
+            $('#myDatepicker').datetimepicker({
+                format: 'YYYY-MM-DD',
+                locale: 'es'
+            });
 
         </script>
-        
-        
+
+
     </body>
 </html>
