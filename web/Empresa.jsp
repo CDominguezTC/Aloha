@@ -10,7 +10,8 @@
     <head>        
         <%@include file="Principal/Head.html" %>   
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesEmpresas.js"></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesEmpresas.js"></script>         
+
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -156,7 +157,7 @@
                                                     <th>Telefono</th>
                                                     <th>extension</th>
                                                     <th>Email</th>
-                                                    <th>Opcion</th>
+                                                    <!--th>Opcion</th-->
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -167,8 +168,8 @@
                                                     <td></td>
                                                     <td></td>                                                    
                                                     <td></td>
-                                                    <td></td>
-                                                    <td class="text-center">
+                                                    <td></td>                                                    
+                                                    <!--td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
                                                                 data-nit=""
@@ -191,7 +192,7 @@
                                                                 data-email=""
                                                                 data-observacion=""                                                              
                                                                 type="button" id="IdEliminar" name="Eliminar"></button>
-                                                    </td>                                                    
+                                                    </td-->                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
