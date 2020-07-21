@@ -45,11 +45,12 @@ public class ModeloTurnos {
     String hora_inicio_nocturno;
     String turno_noche;
     String turno_extra;
+    String estado;
 
     public ModeloTurnos() {
     }
 
-    public ModeloTurnos(int id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String descuentaBreak, String hora_inicioBreak, String hora_finBreak, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_breack, String limite_turno, String gener_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche, String turno_extra) {
+    public ModeloTurnos(int id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String descuentaBreak, String hora_inicioBreak, String hora_finBreak, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_breack, String limite_turno, String gener_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche, String turno_extra, String estado) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
@@ -82,6 +83,7 @@ public class ModeloTurnos {
         this.hora_inicio_nocturno = hora_inicio_nocturno;
         this.turno_noche = turno_noche;
         this.turno_extra = turno_extra;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -338,6 +340,14 @@ public class ModeloTurnos {
 
     public void setTurno_extra(String turno_extra) {
         this.turno_extra = turno_extra;
+    }
+        
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
 }

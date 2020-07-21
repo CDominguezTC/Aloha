@@ -3,38 +3,56 @@ $(function ()
     var turnonocturnos = "N";
     var turnoextra = "N";
     var turnodescuento = "N";
+    
     $(document).ready(function () {
         LoadTabla();
-//        validacionBtn();
+
+        //validacionBtn();
+    });
+    
+    /*$('#IdTurnoNocturno').change(function() {
+      //alert($(this).prop('checked'))
+      if($(this).is(':checked')){
+        
+            turnonocturnos = "S";            
+        } else{
+        
+            turnonocturnos = "N";            
+        }
     });
 
-    $('#IdTurnoNocturno').click(function () {
-        if ($(this).prop('checked') === true)
-        {
+    $('#IdTurnoNocturno').click(function() {
+
+        //if ($(this).prop('checked') === true)
+        if($(this).is(':checked')){
+        
             turnonocturnos = "S";
+            console.log("S");
+            alert('It has been checked!');
         } else
         {
             turnonocturnos = "N";
+            console.log("N");
         }
     });
     $('#IdTurnoExtra').click(function () {
-        if ($(this).prop('checked') === true)
-        {
-            turnoextra = "S";
-        } else
-        {
-            turnoextra = "N";
-        }
+        if($(this).is(':checked')){
+        
+            turnoextra = "S";            
+        } else{
+        
+            turnoextra = "N";            
+        }       
     });
     $('#IdDescuentoBreack').click(function () {
-        if ($(this).prop('checked') === true)
-        {
-            turnodescuento = "S";
-        } else
-        {
-            turnodescuento = "N";
-        }
-    });
+        if($(this).is(':checked')){
+        
+            turnodescuento = "S";            
+        } else{
+        
+            turnodescuento = "N";            
+        }          
+    });*/
 
     $(document).on('click', '.SetFormulario', function () {
         $('#IdTurnoNocturno').prop("checked", false);
@@ -55,17 +73,17 @@ $(function ()
         if ($(this).data('turnonocturno') === "S")
         {
             $('#IdTurnoNocturno').prop("checked", true);
-            turnonocturnos = "S";
+            //turnonocturnos = "S";
         }
         if ($(this).data('turnoextra') === "S")
         {
             $('#IdTurnoExtra').prop("checked", true);
-            turnoextra = "S";
+            //turnoextra = "S";
         }
         if ($(this).data('descuentobreak') === "S")
         {
             $('#IdDescuentoBreack').prop("checked", true);
-            turnodescuento = "S";
+            //turnodescuento = "S";
         }
 
         $('#IdHoraInicioBreack').val($(this).data('horainiciobreak'));
@@ -79,6 +97,8 @@ $(function ()
         $('#IdAproximacionDS').val($(this).data('aproximacionds'));
         $('#IdHoraInicioDiurno').val($(this).data('horainiciodiurno'));
         $('#IdHoraInicioNocturno').val($(this).data('horainicionocturno'));
+        
+        document.getElementById('Principal').scrollIntoView();
     });
 
     function validacionBtn() {
@@ -332,17 +352,28 @@ $(function ()
         $('#IdTurnoNocturno').prop("checked", false);
         $('#IdTurnoExtra').prop("checked", false);
         $('#IdDescuentoBreack').prop("checked", false);
+
+        document.getElementById("IdCodigo").focus();
     }
 
-    $('#IdAgregar').click(function (e)
-    {
+    $('#IdAgregar').click(function (e){
+        
         LimpiarCampos();
     });
 
-    $('#IdGuardar').click(function (e)
-    {
-        if (ValidaCampo() === true)
-        {
+    /*$('#IdGuardar').click(function (e){
+        if($('#IdTurnoNocturno').is(':checked')){
+            console.log("S");
+            //turnoextra = "S";            
+        }else{
+            console.log("N");
+        }
+
+    });*/
+    $('#IdGuardar').click(function (e){
+    
+        if (ValidaCampo() === true){
+
             var Frm = "TurnosJSP";
             var Id = $('#Id').val();
             var Codigo = $('#IdCodigo').val();
@@ -361,6 +392,23 @@ $(function ()
             var AproximacionDS = $('#IdAproximacionDS').val();
             var HoraInicioDiurno = $('#IdHoraInicioDiurno').val();
             var HoraInicioNocturno = $('#IdHoraInicioNocturno').val();
+            
+            if($('#IdTurnoNocturno').is(':checked')){                
+                turnonocturnos = "S";            
+            }else{
+                turnonocturnos = "N";
+            }
+            if($('#IdTurnoExtra').is(':checked')){                
+                turnoextra = "S";            
+            }else{
+                turnoextra = "N";
+            }
+            if($('#IdDescuentoBreack').is(':checked')){                
+                turnodescuento = "S";            
+            }else{
+                turnodescuento = "N";
+            }
+
             var Accion = "Upload";
             var data = {
                 frm: Frm,
@@ -501,13 +549,6 @@ $(function ()
     });
 
 
-//        else
-//        {
-//            alert("Favor de completar todos los campos");
-//        }
-
-    //});
-
     $("#IdEliminar").click(function (e) {
         if (ValidaCampo() === true)
         {
@@ -596,7 +637,7 @@ $(function ()
                         "decimal": "",
                         "emptyTable": "No hay información",
                         "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-                        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                        "infoEmpty": "Mostrando 0 a 0 de 0 Entradas",
                         "infoFiltered": "(Filtrado de _MAX_ total entradas)",
                         "infoPostFix": "",
                         "thousands": ",",

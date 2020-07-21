@@ -136,9 +136,9 @@
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                                             <div id="Turnos" class="btn-group" data-toggle="buttons">
 
-                                                                                <input type="checkbox" value="" id="IdTurnoNocturno" class="flat"> Turno Nocturno  
+                                                                                <input type="checkbox" value="" id="IdTurnoNocturno"> Turno Nocturno  
                                                                                 <label style="visibility:hidden">---</label>
-                                                                                <input type="checkbox" value="" id="IdTurnoExtra"  class="flat"> Turno Extra
+                                                                                <input type="checkbox" value="" id="IdTurnoExtra"> Turno Extra
 
                                                                             </div>
                                                                         </div>
@@ -209,7 +209,8 @@
                                                                             <div id="Break" class="btn-group" data-toggle="buttons">
 
                                                                                 <label for="" style="visibility:hidden">---</label>  
-                                                                                <input type="checkbox" value="" id="IdDescuentoBreack" class="flat"> Descuenta Break
+                                                                                <input type="checkbox" value="" id="IdDescuentoBreack"> Descuenta Break
+                                                                                <!--input type="checkbox" value="" id="IdDescuentoBreack" class="flat"> Descuenta Break <-->
 
                                                                             </div>
                                                                         </div>

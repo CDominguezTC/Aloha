@@ -123,7 +123,7 @@ public class ControladorEmpresa {
                     con.close();
                 }
             } catch (Exception e) {
-                System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
+                System.out.println("Error cerrando conexion en Controladorempresa: " + e.getMessage());
                 //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }

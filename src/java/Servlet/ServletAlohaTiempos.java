@@ -348,10 +348,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorTurnos.Insert(request);
+                            Resultado = controladorTurnos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorTurnos.Delete(request);
+                            Resultado = controladorTurnos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorTurnos.Read(request, response);
