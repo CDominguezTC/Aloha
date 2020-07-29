@@ -51,6 +51,9 @@ public class ControladorTipo_consumo {
         } else {
             modeloTipo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloTipo_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -163,6 +166,10 @@ public class ControladorTipo_consumo {
             modeloTipo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             modeloTipo_consumo.setEstado("N");
             resultado = Update(modeloTipo_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "2";
+            }
+
         }
         return resultado;
     }

@@ -11,19 +11,21 @@ package Modelo;
  */
 public class ModeloGrupoTurnos_Turnos {
 
-    int id;
-    ModeloGrupoTurnos IdModelo_Grupo_Turnos;
-    ModeloTurnos IdModelo_Turnos;
+    int id;    
     String dia_Semana;
+    String estado;
+    ModeloGrupo_horario IdModelo_Grupo_Turnos;
+    ModeloTurno_tiempo IdModelo_Turnos;
 
     public ModeloGrupoTurnos_Turnos() {
     }
 
-    public ModeloGrupoTurnos_Turnos(int id, ModeloGrupoTurnos IdModelo_Grupo_Turnos, ModeloTurnos IdModeloTurnos, String dia_Semana) {
+    public ModeloGrupoTurnos_Turnos(int id, String dia_Semana, String estado, ModeloGrupo_horario IdModelo_Grupo_Turnos, ModeloTurno_tiempo IdModelo_Turnos) {
         this.id = id;
-        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
-        this.IdModelo_Turnos = IdModeloTurnos;
         this.dia_Semana = dia_Semana;
+        this.estado = estado;
+        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
+        this.IdModelo_Turnos = IdModelo_Turnos;
     }
 
     public int getId() {
@@ -34,22 +36,6 @@ public class ModeloGrupoTurnos_Turnos {
         this.id = id;
     }
 
-    public ModeloGrupoTurnos getIdModelo_Grupo_Turnos() {
-        return IdModelo_Grupo_Turnos;
-    }
-
-    public void setIdModelo_Grupo_Turnos(ModeloGrupoTurnos IdModelo_Grupo_Turnos) {
-        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
-    }
-
-    public ModeloTurnos getIdModelo_Turnos() {
-        return IdModelo_Turnos;
-    }
-
-    public void setIdModelo_Turnos(ModeloTurnos IdModeloTurnos) {
-        this.IdModelo_Turnos = IdModeloTurnos;
-    }
-
     public String getDia_Semana() {
         return dia_Semana;
     }
@@ -57,6 +43,28 @@ public class ModeloGrupoTurnos_Turnos {
     public void setDia_Semana(String dia_Semana) {
         this.dia_Semana = dia_Semana;
     }
-    
-    
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public ModeloGrupo_horario getIdModelo_Grupo_Turnos() {
+        return IdModelo_Grupo_Turnos;
+    }
+
+    public void setIdModelo_Grupo_Turnos(ModeloGrupo_horario IdModelo_Grupo_Turnos) {
+        this.IdModelo_Grupo_Turnos = IdModelo_Grupo_Turnos;
+    }
+
+    public ModeloTurno_tiempo getIdModelo_Turnos() {
+        return IdModelo_Turnos;
+    }
+
+    public void setIdModelo_Turnos(ModeloTurno_tiempo IdModelo_Turnos) {
+        this.IdModelo_Turnos = IdModelo_Turnos;
+    }        
 }

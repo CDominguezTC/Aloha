@@ -271,7 +271,7 @@ $(function(){
       botonEnviar.disabled === true;*/
   }
 
-  function LoadTabla(){
+  /*function LoadTabla(){
 
     var Frm = "EmpresaJSP";
     var Accion = "Read";
@@ -308,7 +308,7 @@ $(function(){
               className: "center",
               defaultContent: '<a href="#" class="editar">Editar</a> / <a href="#" class="editor_remove">Borrar</a>'
             }  */         
-          ],              
+         /* ],              
           language: {
             "decimal": "",
             "emptyTable": "No hay información",
@@ -374,7 +374,7 @@ $(function(){
         destroy: true
     });
   }*/
-  /*function LoadTabla(){
+  function LoadTabla(){
 
       var Frm = "EmpresaJSP";
       var Accion = "Read";
@@ -445,7 +445,7 @@ $(function(){
           }
       });
       validacionBtn();
-  }*/
+  }
 
   function traigoUserAc(){
 

@@ -53,6 +53,9 @@ public class ControladorCargo_hoteleria {
         } else {
             modeloCargo_hoteleria.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloCargo_hoteleria);
+            if ("1".equals(resultado)) {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -162,18 +165,20 @@ public class ControladorCargo_hoteleria {
             modeloCargo_hoteleria.setId(Integer.parseInt(request.getParameter("id")));
             modeloCargo_hoteleria.setEstado("N");
             resultado = Update(modeloCargo_hoteleria);
-        }
-        return resultado;
-    }
+            if ("1".equals(resultado)) {
+                resultado = "2";
 
-    /**
-     * Retorna un modelo de la tabla cargo_hoteleria dependiendo de un ID
-     *
-     * @author: Carlos Arturo Dominguez Diaz
-     * @param request
-     * @return String
-     * @version: 15/05/2020
-     */
+            }
+            return resultado;
+        }
+        /**
+         * Retorna un modelo de la tabla cargo_hoteleria dependiendo de un ID
+         *
+         * @author: Carlos Arturo Dominguez Diaz
+         * @param request
+         * @return String
+         * @version: 15/05/2020
+         */
     public ModeloCargo_hoteleria getModelo(Integer Id) throws SQLException {
         ModeloCargo_hoteleria modeloCargo_hoteleria = new ModeloCargo_hoteleria();
         con = conexion.abrirConexion();
@@ -263,9 +268,9 @@ public class ControladorCargo_hoteleria {
                 out = "";
                 out += "<option value=\"0\" selected>Seleccione</option>";
                 for (ModeloCargo_hoteleria modeloCargo_hoteleria : ListaModeloCargo_hoteleria) {
-                    out += "<option value=\"" + modeloCargo_hoteleria.getId() + "\"> " + modeloCargo_hoteleria.getTipo_cargo()+ "</option>";
+                    out += "<option value=\"" + modeloCargo_hoteleria.getId() + "\"> " + modeloCargo_hoteleria.getTipo_cargo() + "</option>";
                 }
-            } else {                
+            } else {
                 response.setContentType("text/html;charset=UTF-8");
                 out = "";
                 out += "<thead>";

@@ -51,7 +51,7 @@ public class Pool {
     public void leerOpciones(){
         
         try {
-            file = new File("C://Zred//ConBDMySql.ini");
+            file = new File("Aloha//ConBDMySql.ini");
             BufferedReader filein = null;
             if (file != null) {
                 try {

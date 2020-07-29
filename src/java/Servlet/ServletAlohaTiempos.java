@@ -21,10 +21,11 @@ import Controladores.ControladorDispositivos;
 import Controladores.ControladorEmpresa;
 import Controladores.ControladorEnumeracion;
 import Controladores.ControladorFestivo;
-import Controladores.ControladorFunciones;
-import Controladores.ControladorGrupo_consumo;
-import Controladores.ControladorGrupoTurnos;
+import Controladores.ControladorFuncion;
 import Controladores.ControladorGrupoTurnos_Turnos;
+import Controladores.ControladorGrupo_consumo;
+import Controladores.ControladorGrupo_horario;
+//import Controladores.ControladorGrupoTurnos_Turnos;
 import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
@@ -666,18 +667,18 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
 
                     break;
-                case "GrupoTurnosJSP":
-                    ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
+                case "GrupoHorarioJSP":
+                    ControladorGrupo_horario controladorGrupo_horario = new ControladorGrupo_horario();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorGrupoTurnos.Insert(request);
+                            Resultado = controladorGrupo_horario.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorGrupoTurnos.Delete(request);
+                            Resultado = controladorGrupo_horario.Delete(request, response);
                             break;
                         case "Read":
-                            Resultado = controladorGrupoTurnos.Read(request, response);
+                            Resultado = controladorGrupo_horario.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
@@ -686,14 +687,14 @@ public class ServletAlohaTiempos extends HttpServlet {
 
                     break;
                 case "FuncionesJSP":
-                    ControladorFunciones controladorFunciones = new ControladorFunciones();
+                    ControladorFuncion controladorFunciones = new ControladorFuncion();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorFunciones.Insert(request);
+                            Resultado = controladorFunciones.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorFunciones.Delete(request);
+                            Resultado = controladorFunciones.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorFunciones.Read(request, response);
@@ -709,10 +710,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorPeriodos.Insert(request);
+                            Resultado = controladorPeriodos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorPeriodos.Delete(request);
+                            Resultado = controladorPeriodos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorPeriodos.ReadPeriodos(request, response);
@@ -887,10 +888,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorGrupoTurnos_Turnos.Insert(request);
+                            Resultado = controladorGrupoTurnos_Turnos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorGrupoTurnos_Turnos.Delete(request);
+                            Resultado = controladorGrupoTurnos_Turnos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorGrupoTurnos_Turnos.Read(request, response);

@@ -1,36 +1,35 @@
 <%-- 
-    Document   : Empresa
-    Created on : 07-nov-2019, 15:47:19
-    Author     : Carlos A Dominguez D
+    Document   : Dependencias
+    Created on : 13/12/2019, 10:47:52 AM
+    Author     : Frankie
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>        
-        <%@include file="Principal/Head.html" %>   
+        <%@include file="Principal/Head.html" %>        
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesEmpresas.js"></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesGrupoHorario.js" ></script> 
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
-        <!-- Contenidos -->
+        <!-- Contenido -->
         <div class="right_col" role="main">
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Empresa</h3>
+                        <h3>Grupo Turnos</h3>
                     </div>
-
                     <div class="title_right">
-                        <!--div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
-                            <div class="input-group">
+                        <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
+                            <!--div class="input-group">
                                 <input type="text" class="form-control" placeholder="Buscar...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
                                 </span>
-                            </div>
-                        </div-->
+                            </div-->
+                        </div>
                     </div>
                 </div>
                 <!-- Primera Sección-->
@@ -51,56 +50,24 @@
                                 <div class="clearfix"></div>
                             </div>
                             <div class="x_content">
-                                <br/>
-                                <!-- Formulario Registro -->
+                                <!-- Formulario Configuración -->
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
                                     <div align="center" id="espera" style="display: none">
                                         <img src="Principal/images/loading_dash.gif">
                                     </div>
-                                    <div class="Principal" id="Principal">
+                                    <div id="Principal">
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
-                                            <input type="hidden" id="IdNitOld" name="NitOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Nit">Nit</label>
-                                                <input type="number" class="form-control" id="IdNit" name="Nit" min="0" required>
+                                                <label for="codigo">Código</label>
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" required="required">
                                             </div>
-                                            <input type="hidden" id="IdNombreOld" name="NombreOld">
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Nombre">Nombre</label>
-                                                <input type="text" class="form-control" id="IdNombre"  name="Nombre" required="required">
-                                            </div>
-                                            <input type="hidden" id="IdDirOld" name="DirOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Direccion">Dirección</label>
-                                                <input type="text" class="form-control" id="IdDireccion" name="Direccion" required="required">
-                                            </div>
-                                            <input type="hidden" id="IdContactoOld" name="ContactoOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Contacto">Contacto</label>
-                                                <input type="text" class="form-control" id="IdContacto" name="Contacto" required>
-                                            </div>
-                                            <input type="hidden" id="IdTelefonoOld" name="TelefonoOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Telefono">Telefono</label>
-                                                <input type="tel" class="form-control" id="IdTelefono" name="Telefono" placeholder="Ej: 4458714" required>
-                                            </div>
-                                            <input type="hidden" id="IdExtensionOld" name="ExtensionOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Extension">Extensión</label>
-                                                <input type="number" class="form-control" id="IdExtension" name="Extension" min="0" required>
-                                            </div>
-                                            <input type="hidden" id="IdEmailOld" name="EmailOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Email">Email</label>
-                                                <input type="email" class="form-control" id="IdEmail" name="Email" required>
-                                            </div>  
-                                            <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
-                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                                <label for="Observacion">Observación</label>
-                                                <textarea class="form-control col-md-7 col-xs-12" id="IdObservacion" name="Observacion" required="required" style="height:90px;"></textarea>
+                                                <label for="nombre">Nombre</label>
+                                                <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
                                         </div>
+                                        <!-- Formulario Configuración -->      
                                         <!-- Botones -->
                                         <div class="ln_solid"></div>
                                         <div class="form-group">
@@ -147,56 +114,35 @@
                                     </div>
                                     <div class="x_content">
                                         <!-- Tabla -->
-                                        <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+                                        <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
-                                                <tr>                                                    
-                                                    <th>Nit</th>
-                                                    <th>Nombre</th>
-                                                    <th>Direccion</th>
-                                                    <th>Contacto</th>
-                                                    <th>Telefono</th>
-                                                    <th>extension</th>
-                                                    <th>Email</th>
-                                                    <th>Opcion</th>
+                                                <tr>
+                                                    <th>Código</th>
+                                                    <th>Descripción</th>
+                                                    <th>Opciones</th>   
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>                                                                                        
+                                                <tr>                                                    
                                                     <td></td>                                     
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>                                                    
-                                                    <td></td>
-                                                    <td></td>
+                                                    <td></td>                                     
                                                     <td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
-                                                                data-nit=""
-                                                                data-nombre=""
-                                                                data-direccion=""
-                                                                data-telefono=""
-                                                                data-contacto=""
-                                                                data-extension=""
-                                                                data-email=""
-                                                                data-observacion=""
-                                                                type="button" id="IdModificar" name="Modificar"></button>
+                                                                data-codigo=""
+                                                                data-nombre=""                                                                
+                                                                type="button" id="IdModificar" name="Modificar">Editar</button>
                                                         <button class="SetEliminar btn btn-dark btn-md" 
                                                                 data-id=""
-                                                                data-nit=""
-                                                                data-nombre=""
-                                                                data-direccion=""
-                                                                data-telefono=""
-                                                                data-contacto=""
-                                                                data-extension=""
-                                                                data-email=""
-                                                                data-observacion=""                                                              
+                                                                data-codigo=""
+                                                                data-nombre=""                                                                
                                                                 type="button" id="IdEliminar" name="Eliminar"></button>
                                                     </td>                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
                                         <!-- /Tabla -->
+                                        <br/><br/>
                                     </div>
                                 </div>
                             </div>
@@ -213,6 +159,6 @@
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
-        
     </body>
 </html>
+

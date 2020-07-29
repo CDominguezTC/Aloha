@@ -1,7 +1,6 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Conexiones.Pool;
 import Modelo.ModeloEmpresa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,8 +10,7 @@ import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import javax.swing.JOptionPane;
 
 /**
  * Esta clase permite controlar los eventos de Empresas
@@ -70,10 +68,8 @@ public class ControladorEmpresa {
      */
     public String Insert(ModeloEmpresa modeloEmpresa) throws SQLException {
         try {
-            Pool metodospool = new Pool();
-            //con = conexion.abrirConexion();
+            con = conexion.abrirConexion();
             try {
-                con = metodospool.dataSource.getConnection();
                 SQL = con.prepareStatement("INSERT INTO empresa("
                         + "nombre, "
                         + "nit, "
@@ -106,26 +102,17 @@ public class ControladorEmpresa {
                     }
                     resultado = "1";
                     SQL.close();
-                    //con.close();
+                    con.close();
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Insert en Controladorempresa" + e);
                 resultado = "-2";
                 SQL.close();
-                //con.close();
+                con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Insert en Controladorempresa" + e);
             resultado = "-3";
-        }finally{
-            try {
-                if(con != null){
-                    con.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Error cerrando conexion en Controladorempresa: " + e.getMessage());
-                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
         }
         return resultado;
     }
@@ -139,10 +126,8 @@ public class ControladorEmpresa {
      * @version: 15/05/2020
      */
     public String Update(ModeloEmpresa modeloEmpresa) throws SQLException {
-        Pool metodospool = new Pool();
         try {
-            //con = conexion.abrirConexion();
-            con = metodospool.dataSource.getConnection();
+            con = conexion.abrirConexion();
             try {
 
                 if ("N".equals(modeloEmpresa.getEstado())) {
@@ -178,26 +163,17 @@ public class ControladorEmpresa {
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
-                    //con.close();
+                    con.close();
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Update en Controladorempresa" + e);
                 resultado = "-2";
                 SQL.close();
-                //con.close();
+                con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Update en Controladorempresa" + e);
             resultado = "-3";
-        }finally{
-            try {
-                if(con != null){
-                    con.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
-                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
         }
         return resultado;
     }
@@ -211,15 +187,9 @@ public class ControladorEmpresa {
      * @version: 15/05/2020
      */
     public LinkedList<ModeloEmpresa> Read(String estado) throws SQLException {
-        long ini, fin;
-        ini = System.currentTimeMillis();
-        
         LinkedList<ModeloEmpresa> ListaModeloEmpresa = new LinkedList<ModeloEmpresa>();
-        
-        Pool metodospool = new Pool();
-        //con = conexion.abrirConexion();
+        con = conexion.abrirConexion();
         try {
-            con = metodospool.dataSource.getConnection();
             SQL = con.prepareStatement("SELECT id,"
                     + "nombre, "
                     + "nit, "
@@ -230,9 +200,9 @@ public class ControladorEmpresa {
                     + "ext, "
                     + "ciudad, "
                     + "observacion, "
-                    + "estado "
-                    + "FROM empresa "
-                    + "WHERE estado = ?");
+                    + "estado"
+                    + " FROM empresa"
+                    + " WHERE estado = ?");
             SQL.setString(1, estado);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
@@ -252,21 +222,10 @@ public class ControladorEmpresa {
             }
             res.close();
             SQL.close();
-            //con.close();
+            con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
-        }finally{
-            try {
-                if(con != null){
-                    con.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
-                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
+            System.out.println("Error en la consulta SQL GetModelo en Controladorempresa" + e);
         }
-        fin = System.currentTimeMillis();
-        System.out.println("Read modelo: " + ((fin - ini) / 1000) + " seg");
         return ListaModeloEmpresa;
     }
 
@@ -331,41 +290,24 @@ public class ControladorEmpresa {
      * @version: 07/05/2020
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) {
-        
-        long ini = 0, fin;
-        String resgson = "";        
         String out = null;
         String estado = "S";
-        StringBuilder outsb = new StringBuilder();
-        
         if (request.getParameter("estado") != null) {
             estado = "N";
         }
         try {
             LinkedList<ModeloEmpresa> listmodelo;
             listmodelo = Read(estado);
-            ini = System.currentTimeMillis();
             response.setContentType("text/html;charset=UTF-8");
             String parametro = request.getParameter("evento");
-                                    
             if ("Select".equals(parametro)) {
-                
-                outsb.append("");
-                outsb.append("<option value=\"0\" selected>Seleccione</option>");
-                for (ModeloEmpresa modeloEmpresa : listmodelo) {
-                    outsb.append("<option value=\"").append(modeloEmpresa.getId()).append("\"> ").append(modeloEmpresa.getNombre()).append("</option>");
-                }
-                /*out = "";
+                out = "";
                 out += "<option value=\"0\" selected>Seleccione</option>";
                 for (ModeloEmpresa modeloEmpresa : listmodelo) {
                     out += "<option value=\"" + modeloEmpresa.getId() + "\"> " + modeloEmpresa.getNombre()+ "</option>";
-                }*/
-                
+                }
             } else {
-                
-                Gson gson = new GsonBuilder().serializeNulls().create();
-                resgson = gson.toJson(listmodelo);
-                /*out = "";
+                out = "";
                 out += "<thead>";
                 out += "<tr>";
                 out += "<th>Nit</th>";
@@ -379,39 +321,8 @@ public class ControladorEmpresa {
                 out += "</tr>";
                 out += "</thead>";
                 out += "<tbody>";
-                outsb.append(out);
-                
                 for (ModeloEmpresa modelo : listmodelo) {
-                    
-                    outsb.append("<tr>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getNit()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getNombre()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getDireccion()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getContacto()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getTelefono()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getExt()).append("</td>");
-                    outsb.append("<td WIDTH = \"0\" HEIGHT=\"0\">").append(modelo.getEmail()).append("</td>");
-                    outsb.append("<td WIDTH = \"10\" HEIGHT=\"0\" class=\"text-center\">");
-                    
-                    outsb.append("<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"");
-                    outsb.append("data-id=\"").append(modelo.getId()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getNit()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getNombre()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getDireccion()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getContacto()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getTelefono()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getExt()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getEmail()).append("\"");
-                    outsb.append("data-id=\"").append(modelo.getObservacion()).append("\"");
-                    outsb.append("type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i></button>");
-                    
-                    outsb.append("<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"");
-                    outsb.append("data-id=\"").append(modelo.getId()).append("\"");
-                    outsb.append("type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>");
-                    outsb.append("</td>");
-                    outsb.append("</tr>");
-                    
-                    /*out += "<tr>";
+                    out += "<tr>";
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNit() + "</td>";
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getNombre() + "</td>";
                     out += "<td WIDTH = \"0\" HEIGHT=\"0\">" + modelo.getDireccion() + "</td>";
@@ -446,21 +357,14 @@ public class ControladorEmpresa {
                     out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
                     out += "</td>";
                     out += "</tr>";
-                    
                 }
-                //out += "</tbody>";
-                outsb.append("</tbody>");*/
+                out += "</tbody>";
             }
         } catch (Exception e) {
 
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
-        fin = System.currentTimeMillis();
-        System.out.println("Read list: " + ((fin - ini) / 1000) + " seg");
-        
-        return resgson;
-        //return outsb.toString();
-        //return out;
+        return out;
     }
 
     /**
@@ -473,10 +377,8 @@ public class ControladorEmpresa {
      */
     public ModeloEmpresa getModelo(Integer Id) {
         ModeloEmpresa modeloEmpresa = new ModeloEmpresa();
-        //con = conexion.abrirConexion();
-        Pool metodospool = new Pool();
+        con = conexion.abrirConexion();
         try {
-            con = metodospool.dataSource.getConnection();
             SQL = con.prepareStatement("SELECT id,"
                     + "nombre, "
                     + "nit, "
@@ -513,15 +415,6 @@ public class ControladorEmpresa {
             con.close();
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorempresa" + e);
-        }finally{
-            try {
-                if(con != null){
-                    con.close();
-                }
-            } catch (Exception e) {
-                System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
-                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
         }
         return modeloEmpresa;
     }

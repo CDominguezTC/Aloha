@@ -76,10 +76,10 @@ public class ControladorUsuario {
      */
     public String Insert(ModeloUsuario modeloUsuario) throws SQLException {
         Tools tl = new Tools();
-        try {
-            con = conexion.abrirConexion();
+        try {            
             try {
                 if(!loginRepetido(modeloUsuario.getLogin())){
+                    con = conexion.abrirConexion();
                     SQL = con.prepareStatement("INSERT INTO usuario("
                             + "nombre, "
                             + "login, "

@@ -9,8 +9,8 @@
 <html>
     <head>        
         <%@include file="Principal/Head.html" %>      
-         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPeriodos.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesPeriodos.js" ></script>
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
@@ -56,70 +56,70 @@
                                     <div align="center" id="espera" style="display: none">
                                         <img src="Principal/images/loading_dash.gif">
                                     </div>
-                                    
-                                    <div id="Principal">    
-                                    <input type="hidden" id="Id" name="Id">
-                                                                     
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <label for="Codigo">Código</label>
-                                            <input type="number" class="form-control" id="IdCodigo" name="Codigo" min="0" required>
-                                        </div>
 
-                                        <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                            <label for="Nombre">Nombre</label>
-                                            <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
-                                        </div>
-                                    </div>
-                                    <div class='col-md-6 col-sm-6 col-xs-12'>
-                                        <label for="FechaInicio">Fecha Inicio</label>
-                                        <div class="form-group">
-                                            <div class='input-group date' id='myDatepicker2'>
-                                                <input type="text" class="form-control" id="IdFechaInicio" name="FechaInicio"/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                    <div id="Principal">    
+                                        <input type="hidden" id="Id" name="Id">
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                <label for="Codigo">Código</label>
+                                                <input type="number" class="form-control" id="IdCodigo" name="Codigo" min="0" required>
+                                            </div>
+
+                                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                                <label for="Nombre">Nombre</label>
+                                                <input type="text" class="form-control" id="IdNombre" name="Nombre" required="required">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class='col-md-6 col-sm-6 col-xs-12'>
-                                        <label for="FechaFin">Fecha Fin</label>
-                                        <div class="form-group">
-                                            <div class='input-group date' id='myDatepicker3'>
-                                                <input type='text' class="form-control" id="IdFechaFin" name="FechaFin"/>
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
+                                        <div class='col-md-6 col-sm-6 col-xs-12'>
+                                            <label for="FechaInicio">Fecha Inicio</label>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='myDatepicker2'>
+                                                    <input type="text" class="form-control" id="IdFechaInicio" name="FechaInicio"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="item form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Observacion">Observación</label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea class="form-control col-md-7 col-xs-12" id="IdObservacion" name="Observacion" style="height:100px;" required="required"></textarea>
+                                        <div class='col-md-6 col-sm-6 col-xs-12'>
+                                            <label for="FechaFin">Fecha Fin</label>
+                                            <div class="form-group">
+                                                <div class='input-group date' id='myDatepicker3'>
+                                                    <input type='text' class="form-control" id="IdFechaFin" name="FechaFin"/>
+                                                    <span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- Botones -->
-                                    <div class="ln_solid"></div>
-                                    <div class="row">
-                                        <div class="form-group">
-                                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
-                                                <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
-                                                <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
-                                                <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
-                                                <br/><br/>
-                                                <div class="row">
-                                                    <div class="form-group">
-                                                        <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-1">
-                                                            <!--button class="btn btn-warning btn-sm" type="button"><i class="fa fa-edit"></i> Editar</button-->
-                                                            <!--button class="btn btn-dark btn-sm" type="button" disabled><i class="fa fa-trash"></i> Eliminar</button-->
+                                        <div class="item form-group">
+                                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Observacion">Observación</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <textarea class="form-control col-md-7 col-xs-12" id="IdObservacion" name="Observacion" style="height:100px;" required="required"></textarea>
+                                            </div>
+                                        </div>
+                                        <!-- Botones -->
+                                        <div class="ln_solid"></div>
+                                        <div class="row">
+                                            <div class="form-group">
+                                                <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
+                                                    <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
+                                                    <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
+                                                    <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
+                                                    <br/><br/>
+                                                    <div class="row">
+                                                        <div class="form-group">
+                                                            <div class="col-md-8 col-sm-8 col-xs-12 col-md-offset-1">
+                                                                <!--button class="btn btn-warning btn-sm" type="button"><i class="fa fa-edit"></i> Editar</button-->
+                                                                <!--button class="btn btn-dark btn-sm" type="button" disabled><i class="fa fa-trash"></i> Eliminar</button-->
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div>         
+                                                    </div>         
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>  
-                                    <!-- /Botones -->
+                                        </div>  
+                                        <!-- /Botones -->
                                     </div>
                                 </form>
                                 <!-- /Formulario Registro -->
@@ -149,7 +149,6 @@
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
                                                 <tr>
-                                                    <th>InterCod</th>
                                                     <th>Código</th>
                                                     <th>Nombre</th>
                                                     <th>Fecha Inicio</th>
@@ -160,30 +159,29 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                <td></td>
-                                                <td></td>  
-                                                <td></td>                                     
-                                                <td></td>                                     
-                                                <td></td>
-                                                <td></td>
-                                                <td class="text-center">
-                                                    <button class="SetFormulario btn btn-warning btn-md" 
-                                                            data-id=""
-                                                            data-codigo=""
-                                                            data-nombre=""
-                                                            data-fechaInicio=""
-                                                            data-fechaFin=""
-                                                            data-observacion=""
-                                                            type="button" id="IdModificar" name="Modificar"></button>
-                                                    <button class="SetEliminar btn btn-dark btn-md" 
-                                                            data-id=""
-                                                            data-codigo=""
-                                                            data-nombre=""
-                                                            data-fechaFnicio=""
-                                                            data-fechaFin=""
-                                                            data-observacion=""                                                              
-                                                            type="button" id="IdEliminar" name="Eliminar"></button>
-                                                </td>                                                    
+                                                    <td></td>  
+                                                    <td></td>                                     
+                                                    <td></td>                                     
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td class="text-center">
+                                                        <button class="SetFormulario btn btn-warning btn-md" 
+                                                                data-id=""
+                                                                data-codigo=""
+                                                                data-nombre=""
+                                                                data-fechaInicio=""
+                                                                data-fechaFin=""
+                                                                data-observacion=""
+                                                                type="button" id="IdModificar" name="Modificar"></button>
+                                                        <button class="SetEliminar btn btn-dark btn-md" 
+                                                                data-id=""
+                                                                data-codigo=""
+                                                                data-nombre=""
+                                                                data-fechaFnicio=""
+                                                                data-fechaFin=""
+                                                                data-observacion=""                                                              
+                                                                type="button" id="IdEliminar" name="Eliminar"></button>
+                                                    </td>                                                    
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -200,36 +198,30 @@
         <!-- /Contenido -->
         <!-- Footer -->
         <footer>
-          <div class="clearfix"></div>
+            <div class="clearfix"></div>
         </footer>
         <!-- Footer -->
         <%@include file="Principal/Script.html" %>  
         <!-- Inicializamos Datetimepicker -->
         <script>
-            
-        $('#myDatepicker').datetimepicker();
 
-        $('#myDatepicker2').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(),
-            locale: 'es'
-            
-        });
+            $('#myDatepicker').datetimepicker();
 
-        $('#myDatepicker3').datetimepicker({
-            format: 'YYYY-MM-DD',
-            minDate: new Date(),
-            locale: 'es',
-            useCurrent: false 
-        });
-        
-        $("#myDatepicker2").on("dp.change", function (e) {
-            $('#myDatepicker3').data("DateTimePicker").minDate(e.date);
-        });
-        $("#myDatepicker3").on("dp.change", function (e) {
-            $('#myDatepicker2').data("DateTimePicker").maxDate(e.date);
-        });
-                        
+            $('#myDatepicker2').datetimepicker({
+                format: 'YYYY-MM-DD'
+            });
+
+            $('#myDatepicker3').datetimepicker({
+                format: 'YYYY-MM-DD'                
+            });
+
+            $("#myDatepicker2").on("dp.change", function (e) {
+                $('#myDatepicker3').data("DateTimePicker").minDate(e.date);
+            });
+            $("#myDatepicker3").on("dp.change", function (e) {
+                $('#myDatepicker2').data("DateTimePicker").maxDate(e.date);
+            });
+
         </script>
     </body>
 </html>
