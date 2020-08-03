@@ -61,6 +61,12 @@ $(function () {
             }
         });
     }
+    
+     //LogErrores
+    $('#idlog').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("LogErrores.Abrir", "LogErrores.jsp");
+    });
 
      //Roles
     $('#idroles').click(function (e) {
