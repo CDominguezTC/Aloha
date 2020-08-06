@@ -29,6 +29,7 @@ import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
+import Controladores.ControladorLog_error;
 import Controladores.ControladorParametro_tabla;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
@@ -64,6 +65,7 @@ import javax.servlet.http.HttpSession;
  */
 public class ServletAlohaTiempos extends HttpServlet {
 
+    HttpSession session;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -112,7 +114,7 @@ public class ServletAlohaTiempos extends HttpServlet {
         String Resultado = "";
         String Accion = null;
         String respuesta = "";
-        HttpSession session = request.getSession(false);
+        session = request.getSession(false);
         if (session != null) {
             //String name = (String)session.getAttribute("name");  
             respuesta = "true";
@@ -167,6 +169,25 @@ public class ServletAlohaTiempos extends HttpServlet {
                                 // agrego el modelo al session
                                 session.setAttribute("modelousuario", modeloUsuario);
                             }
+                            break;
+                    }
+
+                    break;
+                case "LogErrorJSP":
+                    ControladorLog_error log = new ControladorLog_error();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Read":
+                            try {
+                                Resultado = log.Read();
+                            } catch (Exception e) {
+                                ControladorLog_error error = new ControladorLog_error();
+                                error.insertarError((String) session.getAttribute("usuario"), e.getMessage());
+                            }
+                            
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
 

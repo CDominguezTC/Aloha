@@ -27,6 +27,7 @@ public class ControladorEmpresa {
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     String user;
+    ControladorLog_error log;
 
     /**
      * Dato que viene de la vista, valida si inserta o actualiza en la tabla
@@ -79,7 +80,7 @@ public class ControladorEmpresa {
                         + "nit, "
                         + "direccion, "
                         + "contacto, "
-                        + "email, "
+                        + "email5, "
                         + "telefono, "
                         + "ext, "
                         + "ciudad, "
@@ -109,7 +110,8 @@ public class ControladorEmpresa {
                     //con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Insert en Controladorempresa" + e);
+                System.out.println("Error en la consulta SQL Insert en ControladorEmpresa" + e.getMessage());
+                log.insertarError(user, "Error en la consulta SQL Insert en Controladorempresa" + e.getMessage());
                 resultado = "-2";
                 SQL.close();
                 //con.close();
