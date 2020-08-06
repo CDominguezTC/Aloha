@@ -29,8 +29,12 @@ $(function () {
         $(document).ready(function () {
             LoadDatosConsumosSemana();
             LoadDatosConsumos();
-            LoadDatosCentoCosto()
-            LoadDatosGrupoConsumo()
+            LoadDatosCentoCosto();
+            LoadDatosGrupoConsumo();
+//            setInterval(LoadDatosConsumosSemana,10000);
+//            setInterval(LoadDatosConsumos,10000);
+//            setInterval(LoadDatosCentoCosto,10000);
+//            setInterval(LoadDatosGrupoConsumo,10000);
         });
 
 

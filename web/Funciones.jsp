@@ -127,8 +127,7 @@
                                         <!-- Tabla -->
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
-                                                <tr>
-                                                    <th>InterCod</th>
+                                                <tr>                                                    
                                                     <th>Nombre</th>
                                                     <th>Descripción</th>
                                                     <th>Codigo Reloj</th>
@@ -139,7 +138,6 @@
                                                 <tr>
                                                 <td></td>                                     
                                                 <td></td>                                     
-                                                <td></td>
                                                 <td></td>
                                                 <td class="text-center">
                                                     <button class="SetFormulario btn btn-warning btn-md" 

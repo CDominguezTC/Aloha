@@ -61,17 +61,42 @@
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="grupo_horario">Grupo Turno</label>
                                                 <select id="IdGrupo_Horario" class="form-control" required>
-                                                    <option value="" disabled selected>Seleccione</option>                                                    
+                                                    <option value="" >Seleccione</option>                                                    
                                                 </select>
                                             </div>
 
                                             <div class="col-md-6 col-sm-12 col-xs-12 form-group">
                                                 <label for="turno">Turno</label>
                                                 <select id="IdTurno" class="form-control" required>
-                                                    <option value="" disabled selected>Seleccione</option>                                                    
+                                                    <option value="" >Seleccione</option>                                                    
                                                 </select>
                                             </div>
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group" style="text-align: center">
+                                                <label for="tipo_id">Dias de la semana </label>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div id="Turnos" class="btn-group" data-toggle="buttons">                                                        
+                                                        <input type="checkbox" value="" id="IdLunes"  class=""> Lunes 
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdMartes"  class=""> Martes 
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdMiercoles"  class=""> Miercoles
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdJueves"  class=""> Jueves
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdViernes"  class=""> Viernes
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdSabado"  class=""> Sabado
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdDomingo"  class=""> Domingo
+                                                        <label style="visibility:hidden">---</label>
+                                                        <input type="checkbox" value="" id="IdFestivo"  class=""> Festivo                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--div class="col-md-12 col-sm-12 col-xs-12 form-group" style="text-align: center">
                                                 <label for="tipo_id">Dias de la semana </label>
                                                 <select id="IdDia" class="form-control" required>
                                                     <option value="0">Seleccione</option>
@@ -83,8 +108,8 @@
                                                     <option value="6">Sabado</option>                                                                    
                                                     <option value="7">Domingo</option>                                                                    
                                                     <option value="8">Festivo</option>                                                                    
-                                                </select>
-                                            </div>
+                                                </select->
+                                            </div-->
                                         </div>                                            
                                     </div>
                                     <!-- Botones Formulario -->                                    
@@ -128,8 +153,7 @@
                                         <!-- Tabla -->
                                         <table id="datatable" class="table table-striped table-bordered">
                                             <thead>
-                                                <tr>
-                                                    <td>Selecione</td>
+                                                <tr>                                                    
                                                     <td>Grupo Turno</td>
                                                     <td>Turno</td>
                                                     <td>Dia</td>            
@@ -141,6 +165,7 @@
                                         </table>
                                         <!-- /Tabla -->                                        
                                     </div>
+                                    <!--
                                     <div class="row">
                                         <div class="form-group">
                                             <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
@@ -151,6 +176,7 @@
                                             </div> 
                                         </div>
                                     </div> 
+                                    -->
                                 </div>                    
                             </div>
                         </div>

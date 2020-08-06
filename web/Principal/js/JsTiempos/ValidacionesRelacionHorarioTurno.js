@@ -1,14 +1,97 @@
 $(function ()
 {
+    var Lunes = "N";
+    var Martes = "N";
+    var Miercoles = "N";
+    var Jueves = "N";
+    var Viernes = "N";
+    var Sabado = "N";
+    var Domingo = "N";
+    var Festivo = "N";
+
+    $('#IdLunes').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Lunes = "Lunes";
+        } else
+        {
+            Lunes = "N";
+        }
+    });
+    $('#IdMartes').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Martes = "Martes";
+        } else
+        {
+            Martes = "N";
+        }
+    });
+    $('#IdMiercoles').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Miercoles = "Miercoles";
+        } else
+        {
+            Miercoles = "N";
+        }
+    });
+    $('#IdJueves').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Jueves = "Jueves";
+        } else
+        {
+            Jueves = "N";
+        }
+    });
+    $('#IdViernes').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Viernes = "Viernes";
+        } else
+        {
+            Viernes = "N";
+        }
+    });
+    $('#IdSabado').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Sabado = "Sabado";
+        } else
+        {
+            Sabado = "N";
+        }
+    });
+    $('#IdDomingo').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Domingo = "Domingo";
+        } else
+        {
+            Domingo = "N";
+        }
+    });
+    $('#IdFestivo').click(function () {
+        if ($(this).prop('checked') === true)
+        {
+            Festivo = "Festivo";
+        } else
+        {
+            Festivo = "N";
+        }
+    });
+
+
     $(document).ready(function () {
         LoadTabla();
-        LoadGrupoTurnos();
+        LoadGrupoHorario();
         LoadTurnos();
         validacionBtn();
     });
 
-    function LoadGrupoTurnos() {
-        var Frm = "GrupoTurnosJSP";
+    function LoadGrupoHorario() {
+        var Frm = "GrupoHorarioJSP";
         var Evento = "Select";
         var Accion = "Read";
         var data = {
@@ -27,7 +110,6 @@ $(function ()
                 disableGif();
                 $('#IdGrupo_Horario').html(resul);
                 $('#IdGrupo_Horario_Modal').html(resul);
-
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 disableGif();
@@ -97,30 +179,29 @@ $(function ()
         $('#IdGrupo_Horario').val($(this).data('idgrupoturnos'));
         $('#IdTurno').val($(this).data('idturnos'));
         if ($(this).data('dia') === "Lunes") {
-            $('#IdDia').val(1);
+            $('#IdLunes').prop("checked", true);
         }
         if ($(this).data('dia') === "Martes") {
-            $('#IdDia').val(2);
+            $('#IdMartes').prop("checked", true);
         }
         if ($(this).data('dia') === "Miercoles") {
-            $('#IdDia').val(3);
+            $('#IdMiercoles').prop("checked", true);
         }
         if ($(this).data('dia') === "Jueves") {
-            $('#IdDia').val(4);
+            $('#IdJueves').prop("checked", true);
         }
         if ($(this).data('dia') === "Viernes") {
-            $('#IdDia').val(5);
+            $('#IdViernes').prop("checked", true);
         }
         if ($(this).data('dia') === "Sabado") {
-            $('#IdDia').val(6);
+            $('#IdSabado').prop("checked", true);
         }
         if ($(this).data('dia') === "Domingo") {
-            $('#IdDia').val(7);
+            $('#IdDomingo').prop("checked", true);
         }
         if ($(this).data('dia') === "Festivo") {
-            $('#IdDia').val(8);
+            $('#IdFestivo').prop("checked", true);
         }
-
     });
 
     function validacionBtn() {
@@ -339,14 +420,55 @@ $(function ()
 
     function ValidaCampo()
     {
-        var res = false;
-        if ($('#IdCodigo').val() !== "")
+        var contcheck = 0;
+        
+        var res = false;                
+        if ($('#IdGrupo_Horario').val().toString() !== "0")
         {
-            if ($('#IdNombre').val() !== "")
+            if ($('#IdTurno').val().toString() !== "0")
             {
                 res = true;
             }
         }
+        
+        if (Lunes === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Martes === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Miercoles === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Jueves === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Viernes === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Sabado === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Domingo === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        if (Festivo === "N")
+        {
+            contcheck = contcheck + 1; 
+        }
+        
+        if (contcheck === 8)
+        {
+            res = false;
+        }
+        
         return res;
     }
 
@@ -354,8 +476,15 @@ $(function ()
     {
         $('#Id').val('');
         $('#IdGrupo_Horario').val('0');
-        $('#IdTurno').val('0');
-        $('#IdDia').val('0');
+        $('#IdTurno').val('0');        
+        $('#IdLunes').prop("checked", false);
+        $('#IdMartes').prop("checked", false);
+        $('#IdMiercoles').prop("checked", false);
+        $('#IdJueves').prop("checked", false);
+        $('#IdViernes').prop("checked", false);
+        $('#IdSabado').prop("checked", false);
+        $('#IdDomingo').prop("checked", false);
+        $('#IdFestivo').prop("checked", false);
     }
 
     $('#IdAgregar').click(function (e)
@@ -371,40 +500,20 @@ $(function ()
             var Id = $('#Id').val();
             var IdGrupoHorario = $('#IdGrupo_Horario').val();
             var IdHorario = $('#IdTurno').val();
-            var Dia = $('#IdDia').val();
-            if (Dia === "1") {
-                Dia = 'Lunes';
-            }
-            if (Dia === "2") {
-                Dia = 'Martes';
-            }
-            if (Dia === "3") {
-                Dia = 'Miercoles';
-            }
-            if (Dia === "4") {
-                Dia = 'Jueves';
-            }
-            if (Dia === "5") {
-                Dia = 'Viernes';
-            }
-            if (Dia === "6") {
-                Dia = 'Sabado';
-            }
-            if (Dia === "7") {
-                Dia = 'Domingo';
-            }
-            if (Dia === "8") {
-                Dia = 'Festivo';
-            }
-
-
             var Accion = "Upload";
             var data = {
                 frm: Frm,
                 id: Id,
                 idgrupohorario: IdGrupoHorario,
                 idhorario: IdHorario,
-                dia: Dia,
+                lunes:Lunes,
+                martes:Martes,
+                miercoles:Miercoles,
+                jueves:Jueves,
+                viernes:Viernes,
+                sabado:Sabado,
+                domingo:Domingo,
+                festivo:Festivo,                
                 accion: Accion
             };
             enableGif();
@@ -416,8 +525,8 @@ $(function ()
                 {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Guardado',
-                        text: 'Registro Guardado Satisfactoriamente.'
+                        title: 'Resultado',
+                        text: resul
                     });
                     disableGif();
                     //alert(resul);

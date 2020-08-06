@@ -61,6 +61,12 @@ $(function () {
             }
         });
     }
+    
+     //LogErrores
+    $('#idlog').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("LogErrores.Abrir", "LogErrores.jsp");
+    });
 
      //Roles
     $('#idroles').click(function (e) {
@@ -109,6 +115,10 @@ $(function () {
         //alert("HolaEmpresa");
         validoPermiso("Auditoria.Abrir", "Auditoria.jsp");
 
+    });
+    $('#idareas').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Areas.Abrir", "Areas.jsp");
     });
 
     $('#idusers').click(function (e) {
@@ -217,8 +227,8 @@ $(function () {
     });
 
     //Jsp Grupo Turnos
-    $('#idgrupoturnos').click(function (e) {
-        validoPermiso("GrupoTurnos.Abrir", "GrupoTurnos.jsp");
+    $('#idgrupohorario').click(function (e) {
+        validoPermiso("GrupoHorario.Abrir", "GrupoHorario.jsp");
     });
     
     //Jsp Turnos

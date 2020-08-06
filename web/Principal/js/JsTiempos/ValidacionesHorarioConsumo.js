@@ -360,8 +360,8 @@ $(function(){
             {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Guardado',
-                    text: 'Registro Guardado Satisfactoriamente.'
+                    title: 'Resultado',
+                    text: resul
                 });
                 if(Id != ""){
                   //console.log("Ingreso a id no null " + Id + "!");
@@ -435,8 +435,8 @@ $(function(){
                     disableGif();
                     Swal.fire({
                     icon: 'success',
-                    title: 'Eliminado',
-                    text: 'Registro Eliminado Satisfactoriamente.'
+                    title: 'Resultado',
+                    text: resul
                     });
                     auditoriaReg("eliminar");
                     //alert(resul);
@@ -648,8 +648,8 @@ $(function(){
                   disableGif();
                   Swal.fire({
                       icon: 'success',
-                      title: 'Eliminado',
-                      text: 'Registro Eliminado Satisfactoriamente.'
+                      title: 'Resultado',
+                      text: resul
                   });
                   //alert(resul);
                   LimpiarCampos();
