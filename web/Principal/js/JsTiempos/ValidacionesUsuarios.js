@@ -5,7 +5,6 @@ $(function(){
 
 $(function(){
 
-
   $(document).ready(function() {
       LoadTabla();
       validacionBtn();
@@ -240,8 +239,8 @@ $(function(){
                       title: 'Eliminado',
                       text: 'Registro Eliminado Satisfactoriamente.'
                       });
-                      auditoriaReg("eliminar");
-                        //alert(resul);
+                      //auditoriaReg("eliminar");
+                      //alert(resul);
                       LimpiarCampos();
                       LoadTabla();
                     },
@@ -648,10 +647,10 @@ $(function(){
                   title: 'Guardado',
                   text: 'Registro Guardado Satisfactoriamente.'
               });
-              if(Id != ""){
+              /*if(Id != ""){
                 //console.log("Ingreso a id no null " + Id + "!");
                 auditoriaReg("actualizar");
-              }
+              }*/
               disableGif();
               //alert(resul);
               LimpiarCampos();
@@ -740,11 +739,11 @@ $(function(){
         success: function(resul, textStatus, jqXHR){
 
           console.log("Auditoria realizada");
-            /*Swal.fire({
-                icon: 'success',
-                title: 'Guardado',
-                text: 'Auditoria realizada.'
-            });*/
+          /*Swal.fire({
+              icon: 'success',
+              title: 'Guardado',
+              text: 'Auditoria realizada.'
+          });*/
 
         },
         error: function(jqXHR, textStatus, errorThrown) {

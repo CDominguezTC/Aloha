@@ -164,6 +164,8 @@
                                                     <th>Usuario</th>
                                                     <th>Registro Modificado</th>
                                                     <th>Observacion</th>
+                                                    <th>Dato Anterior</th>
+                                                    <th>Dato Nuevo</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -175,6 +177,8 @@
                                                     <td></td>                                     
                                                     <td></td> 
                                                     <td></td> 
+                                                    <td></td> 
+                                                    <td></td>
                                                     <!--td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""

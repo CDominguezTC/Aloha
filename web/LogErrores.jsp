@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>          
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/Validaciones.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLogErrores.js" ></script> 
         <style>
           #IdVer{
             display: block;
@@ -145,10 +145,11 @@
                                     </div>
                                     <div class="x_content">
                                         <!-- Tabla -->
-                                        <table id="datatableAu" class="table table-striped table-bordered">
+                                        <table id="datatableLogError" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <!--th>Id</th-->
+                                                    <th>Usuario</th>
                                                     <th>Fecha</th>
                                                     <th>Error</th>
                                                 </tr>
@@ -156,7 +157,8 @@
                                             <tbody>
                                                 <tr>
                                                     <!--td></td-->                                     
-                                                    <td></td>                                     
+                                                    <td></td>                                      
+                                                    <td></td> 
                                                     <td></td> 
                                                     <!--td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
@@ -199,12 +201,14 @@
 
         $('#myDatepicker2').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: 'es'
+            locale: 'es',
+            maxDate: new Date()
         });
 
         $('#myDatepicker3').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: 'es'
+            locale: 'es',
+            maxDate: new Date()
         });
          
         </script>        

@@ -9,18 +9,28 @@ $(function(){
   $("#header").load("Principal/Head.html");
   $("#script").load("Principal/Script.html");
 
+  /*$('#myDatepicker2').datetimepicker({
+
+    maxDate: new Date()
+  });*/
+
   $(document).ready(function(){
 
-      LoadTabla();
-
+    LimpiarCampos();
+    LoadTabla();
+      //alert('Hola');
   });
 
   function LoadTabla(){
 
     var Frm = "LogErrorJSP";
+    var FechaInicio = '';
+    var FechaFin = '';
     var Accion = "Read";
     var data = {
       frm: Frm,
+      fechai: FechaInicio,
+      fechaf: FechaFin,
       accion: Accion
     };
     enableGif();
@@ -34,25 +44,19 @@ $(function(){
         disableGif();
         //$('#datatable-responsive').html(resul);
         var datos = JSON.parse(resul);
-        $('#datatable-responsive').dataTable({
+
+        $('#datatableLogError').DataTable({
 
           data : datos,
           responsive: true,
-          order: [[ 1, 'asc' ]],
+          processing: true,
+          order: [[ 1, 'desc' ]],
           columns: [
-            {"data" : "nit"},
-            {"data" : "nombre"},
-            {"data" : "direccion"},
-            {"data" : "contacto"},
-            {"data" : "telefono"},
-            {"data" : "ext"},
-            {"data" : "email"}
-            /*{
-              data: null,
-              className: "center",
-              defaultContent: '<a href="#" class="editar">Editar</a> / <a href="#" class="editor_remove">Borrar</a>'
-            }  */
-          ],
+            //{"data" : {"usuario" : "login"}},
+            {"data" : "usuario.login"},
+            {"data" : "fecha"},
+            {"data" : "error"}
+         ],
           language: {
             "decimal": "",
             "emptyTable": "No hay información",
@@ -101,8 +105,186 @@ $(function(){
           }
       }
     });
-    validacionBtn();
   }
+
+  $('#IdVer').click(function(e){
+
+    if (ValidaCampo() === true){
+
+      var Frm = "LogErrorJSP";
+      var FechaInicio = $('#IdFechaInicio').val();
+      var FechaFin = $('#IdFechaFin').val();
+      var Accion = "Read";
+      if(FechaFin >= FechaInicio){
+
+        var data = {
+            frm: Frm,
+            fechai: FechaInicio,
+            fechaf: FechaFin,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function(resul, textStatus, jqXHR){
+
+              disableGif();
+              var datos = JSON.parse(resul);
+              $('#datatableLogError').DataTable({
+
+                data : datos,
+                responsive: true,
+                processing: true,
+                order: [[ 1, 'desc' ]],
+                columns: [
+                  //{"data" : {"usuario" : "login"}},
+                  {"data" : "usuario.login"},
+                  {"data" : "fecha"},
+                  {"data" : "error"}
+               ],
+                language: {
+                  "decimal": "",
+                  "emptyTable": "No hay información",
+                  "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                  "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                  "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                  "infoPostFix": "",
+                  "thousands": ",",
+                  "lengthMenu": "Mostrar _MENU_ Entradas",
+                  "loadingRecords": "Cargando...",
+                  "processing": "Procesando...",
+                  "search": "Buscar:",
+                  "zeroRecords": "Sin resultados encontrados",
+                  "paginate": {
+                    "first": "Primero",
+                    "last": "Ultimo",
+                    "next": "Siguiente",
+                    "previous": "Anterior"
+                  }
+                }
+                , "deferRender": true
+                , "scrollY": 200
+                , "scrollCollapse": true
+                , "scroller": true
+                , "autoWidth": false
+                , "destroy": true
+
+              });
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+      }else{
+        Swal.fire({
+            icon: 'warning',
+            title: 'La fecha inicial',
+            text: 'No puede ser mayor que la fecha final.',
+            showConfirmButton: false,
+            timer: 3000
+        });
+      }
+    }else{
+      Swal.fire({
+          icon: 'warning',
+          title: 'Por favor seleccione',
+          text: 'Fechas validas.',
+          showConfirmButton: false,
+          timer: 3000
+      });
+    }
+  });
+
+  /*function LoadTabla(){
+
+      var Frm = "LogErrorJSP";
+      var Accion = "Read";
+      var data = {
+          frm: Frm,
+          accion: Accion
+      };
+      enableGif();
+      $.ajax({
+          type: "POST",
+          url: "ServletAlohaTiempos",
+          dataType: 'html',
+          data: data,
+          success: function(resul, textStatus, jqXHR)
+          {
+              disableGif();
+              $('#datatableLogError').html(resul);
+              $('#datatableLogError').dataTable({
+                  responsive: true,
+                  language: {
+                      "decimal": "",
+                      "emptyTable": "No hay información",
+                      "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                      "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                      "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                      "infoPostFix": "",
+                      "thousands": ",",
+                      "lengthMenu": "Mostrar _MENU_ Entradas",
+                      "loadingRecords": "Cargando...",
+                      "processing": "Procesando...",
+                      "search": "Buscar:",
+                      "zeroRecords": "Sin resultados encontrados",
+                      "paginate": {
+                          "first": "Primero",
+                          "last": "Ultimo",
+                          "next": "Siguiente",
+                          "previous": "Anterior"
+                      }
+                  }
+                  , "autoWidth": false
+                  , "destroy": true
+                  , "info": true
+                  , "JQueryUI": true
+                  , "ordering": true
+                  , "paging": true
+                  , "scrollY": "500px"
+                  , "scrollCollapse": true
+
+              });
+
+          },
+          error: function(jqXHR, textStatus, errorThrown) {
+              disableGif();
+              if (jqXHR.status === 0) {
+                  alert('Not connect: Verify Network.');
+              } else if (jqXHR.status === 404) {
+                  alert('Requested page not found [404]');
+              } else if (jqXHR.status === 500) {
+                  alert('Internal Server Error [500].');
+              } else if (textStatus === 'parsererror') {
+                  alert('Requested JSON parse failed.');
+              } else if (textStatus === 'timeout') {
+                  alert('Time out error.');
+              } else if (textStatus === 'abort') {
+                  alert('Ajax request aborted.');
+              } else {
+                  alert('Uncaught Error: ' + jqXHR.responseText);
+              }
+          }
+      });
+  }*/
 
   function traigoUserAc(){
 
@@ -153,144 +335,25 @@ $(function(){
       });
   }
 
-  $(document).on('click', '.SetFormulario', function(){
-
-      $('#Id').val($(this).data('id'));
-      $('#IdNitOld').val($(this).data('nit'));
-      $('#IdNit').val($(this).data('nit'));
-      $('#IdNombreOld').val($(this).data('nombre'));
-      $('#IdNombre').val($(this).data('nombre'));
-      $('#IdDirOld').val($(this).data('direccion'));
-      $('#IdDireccion').val($(this).data('direccion'));
-      $('#IdContactoOld').val($(this).data('contacto'));
-      $('#IdContacto').val($(this).data('contacto'));
-      $('#IdTelefonoOld').val($(this).data('telefono'));
-      $('#IdTelefono').val($(this).data('telefono'));
-      $('#IdExtensionOld').val($(this).data('extension'));
-      $('#IdExtension').val($(this).data('extension'));
-      $('#IdEmailOld').val($(this).data('email'));
-      $('#IdEmail').val($(this).data('email'));
-      $('#IdObservacionOld').val($(this).data('observacion'));
-      $('#IdObservacion').val($(this).data('observacion'));
-  });
-
   function ValidaCampo(){
 
       var res = false;
-      if ($('#IdNit').val() !== "")
-      {
-          if ($('#IdNombre').val() !== "")
-          {
-              res = true;
-          }
+      if ($('#IdFechaInicio').val() !== ""){
+
+        if ($('#IdFechaFin').val() !== ""){
+
+          res = true;
+        }
       }
       return res;
   }
 
   function  LimpiarCampos(){
 
-    $('#Id').val('');
-    $('#IdNitOld').val('');
-    $('#IdNit').val('');
-    $('#IdNombreOld').val('');
-    $('#IdNombre').val('');
-    $('#IdDirOld').val('');
-    $('#IdDireccion').val('');
-    $('#IdContactoOld').val('');
-    $('#IdContacto').val('');
-    $('#IdTelefonoOld').val('');
-    $('#IdTelefono').val('');
-    $('#IdExtensionOld').val('');
-    $('#IdExtension').val('');
-    $('#IdEmailOld').val('');
-    $('#IdEmail').val('');
-    $('#IdObservacionOld').val('');
-    $('#IdObservacion').val('');
+    $('#IdFechaInicio').val('');
+    $('#IdFechaFin').val('');
 
-    document.getElementById("IdNit").focus();
   }
-
-  $('#IdAgregar').click(function(e){
-
-      LimpiarCampos();
-  });
-
-  $('#IdGuardar').click(function(e){
-
-      if (ValidaCampo() === true){
-
-        var NamUs = document.getElementById('usering').innerHTML
-        var Frm = "EmpresaJSP";
-        var Id = $('#Id').val();
-        var Nit = $('#IdNit').val();
-        var Nombre = $('#IdNombre').val();
-        var Direccion = $('#IdDireccion').val();
-        var Contacto = $('#IdContacto').val();
-        var Telefono = $('#IdTelefono').val();
-        var Extension = $('#IdExtension').val();
-        var Email = $('#IdEmail').val();
-        var Observacion = $('#IdObservacion').val();
-        var Accion = "Upload";
-        var data = {
-            frm: Frm,
-            id: Id,
-            nit: Nit,
-            nombre: Nombre,
-            direccion: Direccion,
-            contacto: Contacto,
-            telefono: Telefono,
-            ext: Extension,
-            email: Email,
-            observacion: Observacion,
-            nombreU: NamUs,
-            accion: Accion
-        };
-        enableGif();
-        $.ajax({
-            type: "POST",
-            url: "ServletAlohaTiempos",
-            data: data,
-            success: function(resul, textStatus, jqXHR)
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Guardado',
-                    text: resul
-                });
-                if(Id != ""){
-                  //console.log("Ingreso a id no null " + Id + "!");
-                  auditoriaReg("actualizar");
-                }
-                disableGif();
-                //alert(resul);
-                LimpiarCampos();
-                LoadTabla();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                disableGif();
-                if (jqXHR.status === 0) {
-                    alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                    alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                    alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                    alert('Ajax request aborted.');
-                } else {
-                    alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-            }
-        });
-      }
-      else
-      {
-          alert("Favor de completar todos los campos");
-      }
-  });
 
   function auditoriaReg(modo){
 
@@ -405,118 +468,6 @@ $(function(){
 
   }
 
-  $(document).on('click', '.SetEliminar', function() {
-      var Frm = "EmpresaJSP";
-      var Id = $(this).data('id');
-      $('#Id').val($(this).data('id'));
-      var Accion = "Delete";
-      var data = {
-          frm: Frm,
-          id: Id,
-          accion: Accion
-      };
-      Swal.fire({
-          title: '¿Estás seguro?',
-          text: "¡No podrás revertir esto!",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          confirmButtonText: 'Sí, eliminar',
-          cancelButtonText: 'No, cancelar'
-          }).then((result) => {
-          if (result.value) {
-              enableGif();
-              $.ajax({
-              type: "POST",
-                      url: "ServletAlohaTiempos",
-                      data: data,
-                      success: function(resul, textStatus, jqXHR)
-                      {
-                          disableGif();
-                          Swal.fire({
-                              icon: 'success',
-                              title: 'Eliminado',
-                              text: resul
-                          });
-                          auditoriaReg("eliminar");
-                          //alert(resul);
-                          LimpiarCampos();
-                          LoadTabla();
-                      },
-                      error: function(jqXHR, textStatus, errorThrown) {
-                          disableGif();
-                          if (jqXHR.status === 0) {
-                              alert('Not connect: Verify Network.');
-                          } else if (jqXHR.status === 404) {
-                              alert('Requested page not found [404]');
-                          } else if (jqXHR.status === 500) {
-                              alert('Internal Server Error [500].');
-                          } else if (textStatus === 'parsererror') {
-                              alert('Requested JSON parse failed.');
-                          } else if (textStatus === 'timeout') {
-                              alert('Time out error.');
-                          } else if (textStatus === 'abort') {
-                              alert('Ajax request aborted.');
-                          } else {
-                              alert('Uncaught Error: ' + jqXHR.responseText);
-                          }
-                      }
-
-              });
-          }
-      });
-  });
-
-  $("#IdEliminar").click(function(e) {
-      if (ValidaCampo() === true)
-      {
-          var Frm = "EmpresaJSP";
-          var Id = $('#Id').val();
-          var Accion = "Delete";
-          var data = {
-              frm: Frm,
-              id: Id,
-              accion: Accion
-          };
-          enableGif();
-          $.ajax({
-              type: "POST",
-              url: "ServletSunchemical",
-              data: data,
-              success: function(resul, textStatus, jqXHR)
-              {
-                  disableGif();
-                  alert(resul);
-                  LimpiarCampos();
-                  LoadTabla();
-              },
-              error: function(jqXHR, textStatus, errorThrown) {
-                  disableGif();
-                  if (jqXHR.status === 0) {
-                      alert('Not connect: Verify Network.');
-                  } else if (jqXHR.status === 404) {
-                      alert('Requested page not found [404]');
-                  } else if (jqXHR.status === 500) {
-                      alert('Internal Server Error [500].');
-                  } else if (textStatus === 'parsererror') {
-                      alert('Requested JSON parse failed.');
-                  } else if (textStatus === 'timeout') {
-                      alert('Time out error.');
-                  } else if (textStatus === 'abort') {
-                      alert('Ajax request aborted.');
-                  } else {
-                      alert('Uncaught Error: ' + jqXHR.responseText);
-                  }
-              }
-          });
-      } else
-      {
-          alert("Favor de completar todos los campos");
-      }
-
-  });
-
   function enableGif(){
 
       window.onload = document.getElementById("espera").style = "display: block";
@@ -528,4 +479,5 @@ $(function(){
       window.onload = document.getElementById("espera").style = "display: none";
       window.onload = document.getElementById("Principal").style = "display: enable";
   }
+
 });

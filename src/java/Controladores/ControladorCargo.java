@@ -77,7 +77,7 @@ public class ControladorCargo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "cargo", user, i, "Se inserto el registro.", "", "");
                         }
                     }
                     resultado = "1";

@@ -94,7 +94,7 @@ public class ControladorVencimiento {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "vencimiento", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();

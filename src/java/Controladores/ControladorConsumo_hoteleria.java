@@ -57,7 +57,7 @@ public class ControladorConsumo_hoteleria {
         LinkedList<ModeloConsumo_hoteleria> listaModeloConsumo_hotelerias = new LinkedList<>();
         for (String IdCargoHoteleria : IdCargosHoteleria) {
             ModeloConsumo_hoteleria modeloConsumo_hoteleria = new ModeloConsumo_hoteleria();
-            modeloConsumo_hoteleria.setModelo_cargo_hoteleria(controladorCargo_hoteleria.getModelo(Integer.parseInt(IdCargoHoteleria)));
+            //modeloConsumo_hoteleria.setModelo_cargo_hoteleria(controladorCargo_hoteleria.getModelo(Integer.parseInt(IdCargoHoteleria)));
             modeloConsumo_hoteleria.setModelo_persona(controladorPersona.getModelo(Integer.parseInt(IdPersona)));
             modeloConsumo_hoteleria.setFecha_consumo(FechaServicio);
             modeloConsumo_hoteleria.setEstado("S");
@@ -107,7 +107,7 @@ public class ControladorConsumo_hoteleria {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "consumo_hoteleria", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                     }
@@ -134,7 +134,7 @@ public class ControladorConsumo_hoteleria {
         try {
             LinkedList<ModeloCargo_hoteleria> listaModeloCargo_hoteleria = new LinkedList<ModeloCargo_hoteleria>();
             ControladorCargo_hoteleria controladorCargo_hoteleria = new ControladorCargo_hoteleria();
-            listaModeloCargo_hoteleria = controladorCargo_hoteleria.Read("S");
+            //listaModeloCargo_hoteleria = controladorCargo_hoteleria.Read("S");
             response.setContentType("text/html;charset=UTF-8");
             out = "";
             out += "<thead>";

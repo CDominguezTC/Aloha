@@ -16,6 +16,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author Julian A Aristizabal
@@ -24,7 +25,9 @@ public class ControladorLog_error {
     
     String resultado = "";
     Connection con;
-    PreparedStatement SQL = null;
+    String user = "";
+    ControladorInicioSesion controladorInicio;
+    //PreparedStatement SQL = null;
     
     /**
      * Inserta los datos en la base de datos de la tabla: log_error
@@ -34,27 +37,29 @@ public class ControladorLog_error {
      * @return boolean
      * @version: 6/AGO/2020
      */
-    public boolean insertarError (String user, String error) throws SQLException{
-        
+    public boolean insertarError (String usera, String error) throws SQLException{
+        user = usera;
         Pool metodospool = new Pool();
         Tools tl = new Tools();
         try {
+            PreparedStatement pst;
             con = metodospool.dataSource.getConnection();
-            SQL = con.prepareStatement("INSERT INTO log_error("
+            pst = con.prepareStatement("INSERT INTO log_error("
                         + "id_usuario, "
                         + "fecha, "
                         + "error) "
-                        + "VALUE (?,?,?)");
+                        + "VALUES (?,?,?)");
                         
-            SQL.setInt(1, idUsuario(user));
-            SQL.setString(2, tl.formatoFechaHora());
-            SQL.setString(3, error);
-            if (SQL.executeUpdate() > 0) {
-                SQL.close();
+            pst.setInt(1, idUsuario(usera));
+            pst.setString(2, tl.formatoFechaHora());
+            pst.setString(3, error);
+            if (pst.executeUpdate() > 0) {
+                pst.close();
                 return true;
             }
         } catch (SQLException e) {
             System.out.println("Error insertarError en ControladorLog_error: " + e.getMessage());
+            insertarError(user, error);
             
         }finally{
             try {
@@ -71,14 +76,19 @@ public class ControladorLog_error {
     }
     
     /**
-     * Llena un Listado de la tabla log_error
+     * Llena un listado de la tabla log_error
      *
      * @author: Julian A Aristizabal
      * @param vacio
      * @return LinkedList<ModeloLog_error>
      * @version: 6/AGO/2020
      */
-    public LinkedList<ModeloLog_error> readReg() throws SQLException {
+    public LinkedList<ModeloLog_error> readReg(String fini, String ffin) throws SQLException {
+        
+        
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
         
         LinkedList<ModeloLog_error> ListaModeloLog = new LinkedList<ModeloLog_error>();
         ModeloUsuario modU = new ModeloUsuario();
@@ -87,14 +97,24 @@ public class ControladorLog_error {
         Pool metodospool = new Pool();
 
         try {
+            PreparedStatement pst;
             con = metodospool.dataSource.getConnection();
-            SQL = con.prepareStatement("SELECT id, "
+            
+            if (fini == null || ffin == null || "".equals(fini) || "".equals(ffin)){
+                pst = con.prepareStatement("SELECT id, "
                     + "id_usuario, "
                     + "fecha, "
                     + "error "
                     + "FROM log_error");
-            
-            ResultSet res = SQL.executeQuery();
+            }else{
+                pst = con.prepareStatement("SELECT id, "
+                    + "id_usuario, "
+                    + "fecha, "
+                    + "error "
+                    + "FROM log_error WHERE fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
+            }
+                                   
+            ResultSet res = pst.executeQuery();
             while (res.next()) {
                 ModeloLog_error modeloLogError = new ModeloLog_error();
                 modeloLogError.setId(res.getInt("id"));
@@ -105,10 +125,11 @@ public class ControladorLog_error {
                 ListaModeloLog.add(modeloLogError);
             }
             res.close();
-            SQL.close();
-            //con.close();
+            pst.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
+            System.out.println("Error Controladores.ControladorLog_error.readReg(): " + e.getMessage());
+            insertarError(user, "Controladores.ControladorLog_error.readReg(): " + e.getMessage());
+            
         }finally{
             try {
                 if(con != null){
@@ -116,6 +137,7 @@ public class ControladorLog_error {
                 }
             } catch (Exception e) {
                 System.out.println("Error en la consulta SQL GetModelo en Controladorempresa: " + e.getMessage());
+                insertarError(user, "Controladores.ControladorLog_error.readReg(): " + e.getMessage());
                 //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
@@ -130,17 +152,22 @@ public class ControladorLog_error {
      * @return String
      * @version: 6/AGO/2020
      */
-    public String Read() throws Exception{
+    public String Read(String fini, String ffin) throws Exception{
         
         String resgson = "";
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
         
         try {
             LinkedList<ModeloLog_error> listmodelo;
-            listmodelo = readReg();
+            listmodelo = readReg(fini, ffin);
             
             Gson gson = new GsonBuilder().serializeNulls().create();
             resgson = gson.toJson(listmodelo);
         } catch (Exception e) {
+            
+            insertarError(user, "Controladores.ControladorLog_error.StringRead(): " + e.getMessage());
         }
         return resgson;
     }
@@ -157,23 +184,38 @@ public class ControladorLog_error {
         
         int id = 0;
         Pool metodospool = new Pool();
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
         
         try {
+            PreparedStatement pst;
             con = metodospool.dataSource.getConnection();
-            SQL = con.prepareStatement("SELECT id FROM usuario WHERE login = ?");
+            pst = con.prepareStatement("SELECT id FROM usuario WHERE login = ?");
             
-            SQL.setString(1, nuser);
+            pst.setString(1, nuser);
             
-            ResultSet rs = SQL.executeQuery();
+            ResultSet rs = pst.executeQuery();
             while(rs.next()){
                 id = rs.getInt("id");
             }
-                    
+            pst.close();
         } catch (SQLException e) {
-            System.out.println("Error idUsuario en ControladorLog_error: " + e.getMessage());
-        }
-        
-        return id;
-        
+            System.out.println("Error idUsuario en ControladorLog_error: " + e.getMessage());       
+            insertarError(user, "Controladores.ControladorLog_error.idUsuario(): " + e.getMessage());
+            
+        }finally{
+            try {
+                if(con != null){
+                    con.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Error cerrando conexion: " + e.getMessage());
+                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }        
+        return id;        
     }
+    
+
 }

@@ -67,6 +67,7 @@ import javax.servlet.http.HttpSession;
 public class ServletAlohaTiempos extends HttpServlet {
 
     HttpSession session;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -166,7 +167,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                                 modeloUsuario = controladorUsuario.getModelo(controladorUsuario.idUsuario(usuario));
                                 //String pw = request.getParameter("pass");
                                 HttpSession session = request.getSession();
-                                session.setAttribute("usuario", usuario);
+                                session.setAttribute("usuario", usuario);                                
                                 // agrego el modelo al session
                                 session.setAttribute("modelousuario", modeloUsuario);
                             }
@@ -179,8 +180,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Read":
+                            String fini = request.getParameter("fechai");
+                            String ffin = request.getParameter("fechaf");
                             try {
-                                Resultado = log.Read();
+                                Resultado = log.Read(fini, ffin);
                             } catch (Exception e) {
                                 ControladorLog_error error = new ControladorLog_error();
                                 error.insertarError((String) session.getAttribute("usuario"), e.getMessage());
@@ -759,7 +762,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             Resultado = controladorCargos.Delete(request, response);
                             break;
                         case "Read":
-                            Resultado = controladorCargos.Read(request, response);
+                            //Resultado = controladorCargos.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
@@ -877,8 +880,8 @@ public class ServletAlohaTiempos extends HttpServlet {
                             String tabla = request.getParameter("tabla");
                             String usu = request.getParameter("usua");
                             int regmo = Integer.parseInt(request.getParameter("id"));
-                            String observa = request.getParameter("observacion");
-                            Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
+                            String observa = request.getParameter("observacion");                            
+                            //Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
                             /*
                             * PrintWriter pw = response.getWriter ();
                             * pw.write (Resultado);

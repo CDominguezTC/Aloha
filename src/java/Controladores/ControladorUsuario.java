@@ -9,7 +9,6 @@ import Conexiones.ConexionBdMysql;
 import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
 import Tools.Tools;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +33,9 @@ public class ControladorUsuario {
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     String user = "";
+    ControladorLog_error log = new ControladorLog_error();
+    ControladorInicioSesion controladorInicio;
+    
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd Usuarios
@@ -44,16 +46,17 @@ public class ControladorUsuario {
      * @version: 07/05/2020
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-
+        
+        
         ModeloUsuario modeloUsuario = new ModeloUsuario();
         ModeloRol modeloRol = new ModeloRol();
         ControladorRol controladorRol = new ControladorRol();
-        
+
         modeloUsuario.setNombre(request.getParameter("nombre"));
         modeloUsuario.setLogin(request.getParameter("login"));
         modeloUsuario.setPassword(request.getParameter("password"));
         modeloUsuario.setEstado("S");
-        modeloRol = controladorRol.getModelo(Integer.parseInt(request.getParameter("rol")));        
+        modeloRol = controladorRol.getModelo(Integer.parseInt(request.getParameter("rol")));
         modeloUsuario.setRol(modeloRol);
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
@@ -76,16 +79,16 @@ public class ControladorUsuario {
      */
     public String Insert(ModeloUsuario modeloUsuario) throws SQLException {
         Tools tl = new Tools();
-        try {            
+        try {
             try {
-                if(!loginRepetido(modeloUsuario.getLogin())){
+                if (!loginRepetido(modeloUsuario.getLogin())) {
                     con = conexion.abrirConexion();
                     SQL = con.prepareStatement("INSERT INTO usuario("
                             + "nombre, "
                             + "login, "
                             + "password, "
                             + "id_rol)"
-                            + " VALUES (?,?,?,?)", SQL.RETURN_GENERATED_KEYS);                
+                            + " VALUES (?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
                     SQL.setString(1, modeloUsuario.getNombre());
                     SQL.setString(2, modeloUsuario.getLogin());
                     String pw = tl.encriptar(modeloUsuario.getPassword());
@@ -93,27 +96,32 @@ public class ControladorUsuario {
                     SQL.setInt(4, modeloUsuario.getRol().getId());
                     if (SQL.executeUpdate() > 0) {
                         ControladorAuditoria auditoria = new ControladorAuditoria();
-                            try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
-                                if (generatedKeys.next()) {
-                                    int i = (int) generatedKeys.getLong(1);
-                                    auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
-                                }
+                        try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                            if (generatedKeys.next()) {
+                                int i = (int) generatedKeys.getLong(1);
+                                auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.", "", "");
                             }
+                        }
                         resultado = "1";
                         SQL.close();
                         con.close();
                     }
-                }else{
+                } else {
                     resultado = "-1";
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Insert en Controladorusuario" + e);
+                System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+                try {
+                    log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
+                } catch (Exception ex) {
+                }
                 resultado = "-2";
                 SQL.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Insert en Controladorusuario" + e);
+            System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
             resultado = "-3";
         }
         return resultado;
@@ -128,19 +136,33 @@ public class ControladorUsuario {
      * @version: 15/5/2020
      */
     public String Update(ModeloUsuario modeloUsuario) throws SQLException {
+        
         Tools tl = new Tools();
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
+        
+        //auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+        String operacion = "", observacion = "", dato_old = "", dato_new = "";
+        int idmodificado = 0;
         try {
             con = conexion.abrirConexion();
+            PreparedStatement pst = null;
             try {
+                
                 if ("N".equals(modeloUsuario.getEstado())) {
-                    SQL = con.prepareStatement("UPDATE usuario SET "
+                    pst = con.prepareStatement("UPDATE usuario SET "
                             + "estado = ?"
                             + " WHERE id = ? ");
-                    SQL.setString(1, modeloUsuario.getEstado());
-                    SQL.setInt(2, modeloUsuario.getId());
+                    pst.setString(1, modeloUsuario.getEstado());
+                    pst.setInt(2, modeloUsuario.getId());
+
+                    operacion = "eliminar";
+                    idmodificado = modeloUsuario.getId();
+                    observacion = "Se elimino el registro.";
                 } else {
 
-                    SQL = con.prepareStatement("UPDATE usuario SET "
+                    pst = con.prepareStatement("UPDATE usuario SET "
                             + "nombre = ?, "
                             + "login = ?, "
                             + "password = ?, "
@@ -148,29 +170,66 @@ public class ControladorUsuario {
                             + "estado = ?"
                             + " WHERE id = ? ");
                     //SQL.setInt(1, modeloUsuario.getId());
-                    SQL.setString(1, modeloUsuario.getNombre());
-                    SQL.setString(2, modeloUsuario.getLogin());
+                    pst.setString(1, modeloUsuario.getNombre());
+                    pst.setString(2, modeloUsuario.getLogin());
                     String pw = tl.encriptar(modeloUsuario.getPassword());
-                    SQL.setString(3, pw);
+                    pst.setString(3, pw);
                     //SQL.setString(4, modeloUsuario.getPassword());
-                    SQL.setInt(4, modeloUsuario.getRol().getId());
-                    SQL.setString(5, modeloUsuario.getEstado());
-                    SQL.setInt(6, modeloUsuario.getId());
+                    pst.setInt(4, modeloUsuario.getRol().getId());
+                    pst.setString(5, modeloUsuario.getEstado());
+                    pst.setInt(6, modeloUsuario.getId());
+
+                    operacion = "actualizar";
+                    idmodificado = modeloUsuario.getId();
+                    observacion = "Se actualizo el registro.";
+
+                    ModeloUsuario modeloUsuarioOld = new ModeloUsuario();
+                    modeloUsuarioOld = getModelo(modeloUsuario.getId());
+
+                    if (!modeloUsuarioOld.getNombre().equals(modeloUsuario.getNombre())) {
+                        dato_old = "Nombre: " + modeloUsuarioOld.getNombre() + " ";
+                        dato_new = "Nombre: " + modeloUsuario.getNombre() + " ";
+                    }
+
+                    if (!modeloUsuarioOld.getLogin().equals(modeloUsuario.getLogin())) {
+                        dato_old += "Login: " + modeloUsuarioOld.getLogin() + " ";
+                        dato_new += "Login: " + modeloUsuario.getLogin() + " ";
+                    }
+                    
+                    if (!modeloUsuarioOld.getRol().getId().equals(modeloUsuario.getRol().getId())) {
+                        dato_old += "Rol: " + modeloUsuarioOld.getRol().getNombre();
+                        dato_new += "Rol: " + modeloUsuario.getRol().getNombre();
+                    }
+                    
                 }
-                if (SQL.executeUpdate() > 0) {
+                if (pst.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    auditoria.Insert(operacion, "usuario", user, idmodificado, observacion, dato_old, dato_new);
                     resultado = "1";
-                    SQL.close();
+                    pst.close();
                     con.close();
                 }
             } catch (SQLException e) {
-                System.out.println("Error en la consulta SQL Update en Controladorusuario" + e);
+                System.out.println("Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
+                log.insertarError(user, "Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
                 resultado = "-2";
-                SQL.close();
+                pst.close();
                 con.close();
             }
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL Update en Controladorusuario" + e);
+            System.out.println("Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
             resultado = "-3";
+        }finally{
+            try {
+                if(con != null){
+                    con.close();
+                }
+            } catch (Exception e) {
+                System.out.println("Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
+                //insertarError(user, "Controladores.ControladorLog_error.readReg(): " + e.getMessage());
+                //JOptionPane.showMessageDialog(null, "Error en la funcion. " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
         return resultado;
     }
@@ -203,13 +262,17 @@ public class ControladorUsuario {
      */
     public ModeloUsuario getModelo(Integer Id) throws SQLException {
         ModeloUsuario modeloUsuario = new ModeloUsuario();
+        ModeloRol modeloRol = new ModeloRol();
+        ControladorRol controladorRol = new ControladorRol();
+        
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "nombre, "
                     + "login, "
                     + "password, "
-                    + "estado"
+                    + "estado, "
+                    + "id_rol"
                     + " FROM usuario"
                     + " WHERE id = ? ");
             SQL.setInt(1, Id);
@@ -219,13 +282,17 @@ public class ControladorUsuario {
                 modeloUsuario.setNombre(res.getString("nombre"));
                 modeloUsuario.setLogin(res.getString("login"));
                 modeloUsuario.setPassword(res.getString("password"));
-                modeloUsuario.setEstado(res.getString("estado"));
+                modeloUsuario.setEstado(res.getString("estado"));                
+                modeloRol = controladorRol.getModelo(res.getInt("id_rol"));                
+                modeloUsuario.setRol(modeloRol);
+                
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controladorusuario" + e);
+            System.out.println("Error Controladores.ControladorUsuario.getModelo(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.getModelo(): " + e.getMessage());
         }
         return modeloUsuario;
     }
@@ -239,7 +306,7 @@ public class ControladorUsuario {
      * @version: 15/5/2020
      */
     public LinkedList<ModeloUsuario> Read(String estado) throws SQLException {
-        
+
         LinkedList<ModeloUsuario> ListaModeloUsuario = new LinkedList<ModeloUsuario>();
         ModeloRol modeloRol = new ModeloRol();
         ControladorRol controladorRol = new ControladorRol();
@@ -270,12 +337,14 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println("Error en la consulta SQL GetModelo en Controlador usuario" + e.getMessage());
+            System.out.println("Error Controladores.ControladorUsuario.LinkedListRead(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.LinkedListRead(): " + e.getMessage());
+
         }
         return ListaModeloUsuario;
     }
-    
-        /**
+
+    /**
      * Permite listar la información de la tabla de Usuarios
      *
      * @author Julian A Aristizabal
@@ -284,7 +353,7 @@ public class ControladorUsuario {
      * @return String
      * @version: 07/05/2020
      */
-    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         String out = null;
         String estado = "S";
         if (request.getParameter("estado") != null) {
@@ -296,7 +365,7 @@ public class ControladorUsuario {
             LinkedList<ModeloUsuario> listmoUsr;
             listmoUsr = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-                        
+
             out += "";
             out += "<thead>";
             out += "<tr>";
@@ -310,14 +379,14 @@ public class ControladorUsuario {
             out += "<tbody>";
             outsb.append(out);
             for (ModeloUsuario modeloUsua : listmoUsr) {
-                                
+
                 outsb.append("<tr>");
                 outsb.append("<td>").append(modeloUsua.getNombre()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getLogin()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getPassword()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getRol().getNombre()).append("</td>");
                 outsb.append("<td class=\"text-center\">");
-                
+
                 // Boton Editar
                 outsb.append("<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"");
                 outsb.append("data-id=\"").append(modeloUsua.getId()).append("\"");
@@ -366,13 +435,13 @@ public class ControladorUsuario {
                 out += "</tr>";
             }
             out += "</tbody>";
-            */            
+             */
             outsb.append("</tbody>");
-            
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.StringRead(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.StringRead(): " + e.getMessage());
         }
 
         return outsb.toString();
@@ -386,7 +455,7 @@ public class ControladorUsuario {
      * @return String
      * @version: 07/05/2020
      */
-    public String validoLogin(String log) {
+    public String validoLogin(String logi) throws SQLException {
 
         String resp = "false";
         ResultSet rs = null;
@@ -396,7 +465,7 @@ public class ControladorUsuario {
             String consulta = "SELECT id FROM usuario WHERE login = ?";
             SQL = con.prepareStatement(consulta);
 
-            SQL.setString(1, log);
+            SQL.setString(1, logi);
 
             rs = SQL.executeQuery();
 
@@ -409,9 +478,11 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.validoLogin(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.validoLogin(): " + e.getMessage());
+
         }
 
         return resp;
@@ -426,7 +497,7 @@ public class ControladorUsuario {
      * @return String
      * @version: 07/05/2020
      */
-    public String validoPassword(String id, String pw) {
+    public String validoPassword(String id, String pw) throws SQLException {
 
         String resp = "false";
         ResultSet rs = null;
@@ -454,9 +525,10 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.validoPassword(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.validoPassword(): " + e.getMessage());
         }
 
         return resp;
@@ -471,7 +543,7 @@ public class ControladorUsuario {
      * @return String
      * @version: 07/05/2020
      */
-    public String actualizoPassword(String id, String pw) {
+    public String actualizoPassword(String id, String pw) throws SQLException {
 
         String resp = "false";
         ResultSet rs = null;
@@ -495,9 +567,10 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.actualizoPassword(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.actualizoPassword(): " + e.getMessage());
         }
 
         return resp;
@@ -513,7 +586,7 @@ public class ControladorUsuario {
      * @return String
      * @version: 07/05/2020
      */
-    public String actualizoPasswordUser(String log, String pw) {
+    public String actualizoPasswordUser(String logi, String pw) throws SQLException {
 
         String resp = "false";
         ResultSet rs = null;
@@ -526,7 +599,7 @@ public class ControladorUsuario {
 
             String clave = tl.encriptar(pw);
             SQL.setString(1, clave);
-            SQL.setString(2, log);
+            SQL.setString(2, logi);
 
             if (SQL.executeUpdate() > 0) {
                 resp = "true";
@@ -537,9 +610,10 @@ public class ControladorUsuario {
             SQL.close();
             con.close();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
-            System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.actualizoPasswordUser(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.actualizoPasswordUser(): " + e.getMessage());
         }
 
         return resp;
@@ -553,7 +627,7 @@ public class ControladorUsuario {
      * @return Integer
      * @version: 07/05/2020
      */
-    public int idUsuario(String name) {
+    public int idUsuario(String name) throws SQLException {
 
         int idU = 0;
         con = conexion.abrirConexion();
@@ -571,12 +645,13 @@ public class ControladorUsuario {
             con.close();
         } catch (SQLException e) {
 
-            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.idUsuario(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.idUsuario(): " + e.getMessage());
         }
 
         return idU;
     }
-    
+
     /**
      * Valida si el login ya existe en la bd
      *
@@ -585,7 +660,7 @@ public class ControladorUsuario {
      * @return Integer
      * @version: 07/05/2020
      */
-    public boolean loginRepetido(String login) {
+    public boolean loginRepetido(String login) throws SQLException {
 
         boolean resp = false;
         con = conexion.abrirConexion();
@@ -602,7 +677,8 @@ public class ControladorUsuario {
             con.close();
         } catch (SQLException e) {
 
-            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+            System.err.println("Error Controladores.ControladorUsuario.loginRepetido(): " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.loginRepetido(): " + e.getMessage());
         }
 
         return resp;

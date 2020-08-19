@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
  * @version: 07/05/2020
  */
 public class ControladorInicioSesion {
-
+    static String user_act;
     /**
      * Permite Permite la autenticacion del usuario
      *
@@ -44,6 +44,7 @@ public class ControladorInicioSesion {
             rs = SQL.executeQuery();
             if (rs.absolute(1)) {
                 resultado = "true";
+                user_act = usuario;
             } else {
                 resultado = "-2";
             }
