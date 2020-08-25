@@ -48,6 +48,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -924,34 +925,23 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                         case "Modal_Visita":
+                            System.out.println("Inicio Creacion Campos Visita" + new Date());
                             Resultado = visita.Campos_Visita(request, response);
                             pw = response.getWriter();
                             pw.write(Resultado);
+                            System.out.println("Fin Creacion Campos Visita" + new Date());
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
-                        case "buscar":
-//                            int numPagina = Integer.parseInt(request.getParameter("page"));
-//                            int numRegistros = Integer.parseInt(request.getParameter("rows"));
-//                            int numPaginaInicio = numPagina * numRegistros - numRegistros;
-//                            int numPaginaFin = numPagina * numRegistros;
-//                            LinkedList<ModeloPersona> lstPersona = visita.buscar(numPaginaInicio, numPaginaFin);
-//                            Gson gson = new Gson();
-//                            
-//                            ResultadoJson resultadoJson = new ResultadoJson();
-//                            resultadoJson.setLstLista(lstPersona);
-//                            resultadoJson.setNumPaginado(numPagina);
-//                            resultadoJson.setNumRegistros(lstPersona.size());
-//                            resultadoJson.setNumPaginadaciones((int) Math.floorDiv(resultadoJson.getNumRegistros() / numRegistros, numPagina));
-//                            int iRes = resultadoJson.getNumRegistros() % numRegistros;
-//                            if(iRes > 0)
-//                            {
-//                                int iNu = resultadoJson.getNumPaginadaciones();
-//                                resultadoJson.setNumPaginadaciones(iNu+1);                                
-//                            }
-//                            pw = response.getWriter();
-//                            pw.print(gson.toJson(resultadoJson));
-//                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Personas grulla");
-//                            pw.close();
+                        case "Datos_Tabla":
+                            System.out.println("Inicio Consulta Datos Tabla Dinamica" + new Date());
+                            Resultado = visita.Datos_Tabla_Dinamica(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println("Fin Creacion Campos Visita" + new Date());
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "Crear":
+                            Resultado = visita.Crear_Registro(request, response);
                             break;
                     }
                     break;
