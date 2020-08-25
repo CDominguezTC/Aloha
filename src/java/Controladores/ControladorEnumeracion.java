@@ -27,11 +27,17 @@ public class ControladorEnumeracion {
 
     String resultado = "";
     Connection con;
-    //PreparedStatement SQL = null;
+    PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
     String user;
     //ControladorEnumeracion controladorEnumeracion = new ControladorEnumeracion();
     Herramienta herramienta = new Herramienta();
+
+    public String SendRequest(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        user = (String) session.getAttribute("usuario");
+        return user;
+    }
 
     public void EnviarConexion(Connection connection) {
         con = connection;
@@ -47,9 +53,9 @@ public class ControladorEnumeracion {
      * @version: 21/05/2020
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        
-        con = conexion.abrirConexion();
-        
+
+//        con = conexion.abrirConexion();
+
         ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
         modeloEnumeracion.setModelo_enumeracion(getModelo(Integer.parseInt(herramienta.validaString(request.getParameter("id_enumeracion")))));
         modeloEnumeracion.setCampo(request.getParameter("campo"));
@@ -63,9 +69,9 @@ public class ControladorEnumeracion {
             modeloEnumeracion.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloEnumeracion);
         }
-        
-        con.close();
-        
+
+//        con.close();
+
         return resultado;
     }
 
@@ -79,8 +85,8 @@ public class ControladorEnumeracion {
      */
     public String Insert(ModeloEnumeracion modeloEnumeracion) throws SQLException {
         try {
-            //con = conexion.abrirConexion();
-            PreparedStatement SQL = null;
+            con = conexion.abrirConexion();
+            SQL = null;
             try {
                 SQL = con.prepareStatement("INSERT INTO enumeracion("
                         + "id_enumeracion, "
@@ -100,14 +106,14 @@ public class ControladorEnumeracion {
                         }
                         resultado = "1";
                         SQL.close();
-                        //con.close();
+                        con.close();
                     }
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Insert en Controladorenumeracion" + e);
                 resultado = "-2";
                 SQL.close();
-                //con.close();
+                con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Insert en Controladorenumeracion" + e);
@@ -126,8 +132,8 @@ public class ControladorEnumeracion {
      */
     public String Update(ModeloEnumeracion modeloEnumeracion) throws SQLException {
         try {
-            //con = conexion.abrirConexion();
-            PreparedStatement SQL = null;
+            con = conexion.abrirConexion();
+            SQL = null;
             try {
                 if ("N".equals(modeloEnumeracion.getEstado())) {
                     SQL = con.prepareStatement("UPDATE enumeracion SET "
@@ -147,13 +153,13 @@ public class ControladorEnumeracion {
                 if (SQL.executeUpdate() > 0) {
                     resultado = "1";
                     SQL.close();
-                    //con.close();
+                    con.close();
                 }
             } catch (SQLException e) {
                 System.out.println("Error en la consulta SQL Update en Controladorenumeracion" + e);
                 resultado = "-2";
                 SQL.close();
-                //con.close();
+                con.close();
             }
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL Update en Controladorenumeracion" + e);
@@ -171,18 +177,18 @@ public class ControladorEnumeracion {
      * @version: 21/05/2020
      */
     public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        
-        con = conexion.abrirConexion();
-        
+
+//        con = conexion.abrirConexion();
+
         if (!"".equals(request.getParameter("id"))) {
             ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
             modeloEnumeracion.setId(Integer.parseInt(request.getParameter("id")));
             modeloEnumeracion.setEstado("N");
             resultado = Update(modeloEnumeracion);
         }
-        
-        con.close();
-        
+
+//        con.close();
+
         return resultado;
     }
 
@@ -196,7 +202,9 @@ public class ControladorEnumeracion {
      */
     public ModeloEnumeracion getModelo(Integer Id) {
         ModeloEnumeracion modeloEnumeracion = new ModeloEnumeracion();
-        //con = conexion.abrirConexion();
+//        if (con == null) {
+            con = conexion.abrirConexion();
+//        }
         PreparedStatement SQL = null;
         try {
             SQL = con.prepareStatement("SELECT id,"
@@ -215,7 +223,7 @@ public class ControladorEnumeracion {
             }
             res.close();
             SQL.close();
-            //con.close();
+            con.close();
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorenumeracion " + e);
         }
@@ -232,11 +240,15 @@ public class ControladorEnumeracion {
      */
     public LinkedList<ModeloEnumeracion> Read(String estado, String id_enumeracion) throws SQLException {
         LinkedList<ModeloEnumeracion> ListaModeloEnumeracion = new LinkedList<ModeloEnumeracion>();
-        //con = conexion.abrirConexion();
-        PreparedStatement SQL = null;
+        con = conexion.abrirConexion();
+        SQL = null;
         String Where = "";
         if (!"0".contentEquals(id_enumeracion)) {
-            Where = "and id_enumeracion = " + id_enumeracion;
+            if (id_enumeracion.split(",")[0].contentEquals("campo")) {
+                Where = "and campo = '" + id_enumeracion.split(",")[1] + "'";
+            } else {
+                Where = "and id_enumeracion = " + id_enumeracion;
+            }
         }
         try {
             SQL = con.prepareStatement("SELECT id,"
@@ -258,7 +270,7 @@ public class ControladorEnumeracion {
             }
             res.close();
             SQL.close();
-            //con.close();
+            con.close();
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorenumeracion" + e);
         }
@@ -275,9 +287,11 @@ public class ControladorEnumeracion {
      * @version: 21/05/2020
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        
-        con = conexion.abrirConexion();
-        
+
+//        if (con == null) {
+//            con = conexion.abrirConexion();
+//        }
+
         String out = null;
         String estado = "S";
         if (request.getParameter("estado") != null) {
@@ -329,9 +343,9 @@ public class ControladorEnumeracion {
         } catch (Exception e) {
             System.out.println("Error en la generacion Html en Controladorenumeracion" + e);
         }
-        
-        con.close();
-        
+
+//        con.close();
+
         return out;
     }
 

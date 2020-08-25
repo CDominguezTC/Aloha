@@ -254,7 +254,10 @@ public class ControladorParametro_tabla {
      */
     public ModeloParametro_tabla getModelo(Integer Id) {
         ModeloParametro_tabla modeloParametro_tabla = new ModeloParametro_tabla();
-        //con = conexion.abrirConexion();
+        if(con==null)
+        {
+            con = conexion.abrirConexion();
+        }                
         PreparedStatement SQL = null;
         try {
             SQL = con.prepareStatement("SELECT id,"

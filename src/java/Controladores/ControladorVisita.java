@@ -9,6 +9,7 @@ import Conexiones.ConexionBdMysql;
 import Herramienta.Fabricar_Vista_Modelo;
 import Herramienta.Herramienta;
 import Modelo.ModeloAsociacion_grupo_vencimientio;
+import Modelo.ModeloParametro_tabla;
 import Modelo.ModeloPersona;
 import Modelo.ModeloVencimiento;
 import Modelo.ModeloVisita;
@@ -649,7 +650,7 @@ public class ControladorVisita {
             }
         }
         out += "</tbody>";
-        resultado = Tiene_Vencido + "," +out.replace(",", "");
+        resultado = Tiene_Vencido + "," + out.replace(",", "");
         return resultado;
     }
 
@@ -688,36 +689,54 @@ public class ControladorVisita {
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorvencimiento" + e);
         }
- 
+
         return modeloVencimiento;
     }
-    
-    public String Campos_Visita(HttpServletRequest request, HttpServletResponse response)
-    {
+
+    public String Campos_Visita(HttpServletRequest request, HttpServletResponse response) {
         String out = "";
+
         Fabricar_Vista_Modelo fabricar_Vista_Modelo = new Fabricar_Vista_Modelo();
-        try {        
+        fabricar_Vista_Modelo.Share_Request(request);
+        try {
             out = fabricar_Vista_Modelo.Crear_Tabla_Modelo("48", "58");
         } catch (SQLException ex) {
             Logger.getLogger(ControladorVisita.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return out;
     }
-    
-    
-    public LinkedList<ModeloPersona> buscar(int numPaginaInicio, int numPaginaFin)
-    {
-        LinkedList<ModeloPersona> lstPersona = new LinkedList<ModeloPersona>();        
+
+    public String Datos_Tabla_Dinamica(HttpServletRequest request, HttpServletResponse response) {
+
+        Integer id_parametro_tabla = Integer.valueOf(request.getParameter("id_parametro_tabla"));
+        String modulo = request.getParameter("modulo");
+
+        ControladorParametro_tabla controladorParametro_tabla = new ControladorParametro_tabla();
+        Fabricar_Vista_Modelo fabricar_Vista_Modelo = new Fabricar_Vista_Modelo();
+        fabricar_Vista_Modelo.Share_Request(request);
+
+        ModeloParametro_tabla modeloParametro_tabla = controladorParametro_tabla.getModelo(id_parametro_tabla);
+
+        String out = "";
+
+        out = fabricar_Vista_Modelo.Datos_Tabla_Dinamica_Gson(modeloParametro_tabla, modulo);
+
+        return out;
+    }
+
+    public LinkedList<ModeloPersona> buscar(int numPaginaInicio, int numPaginaFin) {
+        LinkedList<ModeloPersona> lstPersona = new LinkedList<ModeloPersona>();
         con = conexion.abrirConexion();
         try {
             SQL = con.prepareStatement("SELECT id,"
                     + "nombres, "
-                    + "apellidos "                    
+                    + "apellidos "
                     + " FROM persona"
                     + " limit ?, ? ");
             SQL.setInt(1, numPaginaInicio);
             SQL.setInt(2, numPaginaFin);
-            
+
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloPersona modeloPersona = new ModeloPersona();
@@ -731,9 +750,67 @@ public class ControladorVisita {
             con.close();
         } catch (SQLException e) {
             System.out.println("Error en la consulta SQL GetModelo en Controladorvisita" + e);
-        }        
-        return lstPersona;                                
+        }
+        //LinkedList<Object> Lista_Modelo = lstPersona;
+        return lstPersona;
     }
-    
+
+    public String Crear_Registro(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        String Tabla = request.getParameter("tabla");
+        String[] Campos = request.getParameterValues("campos[]");
+        String[] Datos = request.getParameterValues("datos[]");
+
+        String Columnas = "";
+        String Registros = "";
+
+
+        for (int i = 0; i < Campos.length; i++) {
+            Columnas = Columnas + Campos[i] + ",";
+        }
+        for (int i = 0; i < Datos.length; i++) {
+            Registros = Registros + Datos[i] + ",";
+        }
+        Columnas = Columnas.substring(0, Columnas.length() - 1); 
+        Registros = Registros.substring(0, Registros.length() - 1); 
+        String SqlInsert = "INSERT INTO " + Tabla + "("
+                        + Columnas
+                        + ")"
+                        + " VALUE "
+                        + "("
+                        + Registros
+                        + ")";
+
+
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement(SqlInsert, SQL.RETURN_GENERATED_KEYS);
+
+                if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                        }
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en Controladorvisita" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en Controladorvisita" + e);
+            resultado = "-3";
+        }
+        return resultado;
+
+    }
 
 }
