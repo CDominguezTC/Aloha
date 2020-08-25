@@ -44,7 +44,7 @@ $(function(){
                   disableGif();
                   $('#datatableAu').html(resul);
                   $('#datatableAu').dataTable({
-                    order: [[ 2, 'asc' ]],
+                    order: [[ 2, 'desc' ]],
                     responsive: true,
                     language: {
                         "decimal": "",
@@ -196,7 +196,7 @@ $(function(){
             disableGif();
             $('#datatableAu').html(resul);
             $('#datatableAu').dataTable({
-              order: [[ 2, 'asc' ]],
+              order: [[ 2, 'desc' ]],
               responsive: true,
               language: {
                   "decimal": "",

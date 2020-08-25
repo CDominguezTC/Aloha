@@ -1,7 +1,7 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloTurnos;
+import Modelo.ModeloTurno_tiempo;
 import com.google.gson.Gson;
 import java.io.File;
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Esta clase permite controlar los eventos de Turnos contiene Insert - Update,
@@ -27,308 +28,509 @@ public class ControladorTurnos {
     Connection con;
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    String user;
 
     /**
-     * Permite la inserción o actualización de los datos en la tabla Bd Turnos
+     * Dato que viene de la vista, valida si inserta o actualiza en la tabla
+     * turno_tiempo
      *
-     * @author: Carlos A Dominguez D
+     * @author: Carlos Arturo Dominguez Diaz
      * @param request
      * @return String
-     * @version: 07/05/2020
+     * @version: 09/06/2020
      */
-    public String Insert(HttpServletRequest request) {
+    public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        ModeloTurno_tiempo modeloTurno_tiempo = new ModeloTurno_tiempo();
+
+        modeloTurno_tiempo.setId(0);
+        modeloTurno_tiempo.setCodigo(request.getParameter("codigo"));
+        modeloTurno_tiempo.setDescripcion(request.getParameter("nombre"));
+        modeloTurno_tiempo.setHora_inicio(request.getParameter("horainicio"));
+        modeloTurno_tiempo.setHora_fin(request.getParameter("horafin"));
+        modeloTurno_tiempo.setTeorico(request.getParameter("teorico"));
+        modeloTurno_tiempo.setHora_inicio_break(request.getParameter("horainiciobreak"));
+        modeloTurno_tiempo.setHora_fin_break(request.getParameter("horafinbreak"));
+        modeloTurno_tiempo.setDescanso(request.getParameter("tiempobreak"));
+        modeloTurno_tiempo.setTiempo_maximo_entrada(request.getParameter("tiempograciaae"));
+        modeloTurno_tiempo.setTiempo_minimo_salida(request.getParameter("tiempograciaas"));
+        modeloTurno_tiempo.setTiempo_minimo_entrada(request.getParameter("tiempograciade"));
+        modeloTurno_tiempo.setTiempo_maximo_salida(request.getParameter("tiempograciads"));
+        modeloTurno_tiempo.setTolerancia_despues_entrada(request.getParameter("aproximacionae"));
+        modeloTurno_tiempo.setTolerancia_antes_salir(request.getParameter("aproximacionds"));
+        modeloTurno_tiempo.setHora_inicio_diurno(request.getParameter("horainiciodiurno"));
+        modeloTurno_tiempo.setHora_inicio_nocturno(request.getParameter("horainicionocturno"));
+        modeloTurno_tiempo.setTurno_noche(request.getParameter("turnonocturnos"));
+        modeloTurno_tiempo.setTurno_extra(request.getParameter("turnoextra"));
+        modeloTurno_tiempo.setDescuenta_break(request.getParameter("turnodescuento"));
+        //Datos pendientes 2 Face
+        modeloTurno_tiempo.setTipo_turno(request.getParameter("tipo_turno"));
+        modeloTurno_tiempo.setTiempo_break(request.getParameter("tiempobreak"));
+        modeloTurno_tiempo.setLimite_turno(request.getParameter("tiempobreak"));
+        modeloTurno_tiempo.setGenera_extras_entrada(request.getParameter("genera_extras_entrada"));
+        modeloTurno_tiempo.setGenera_extras_salida(request.getParameter("genera_extras_salida"));
+        modeloTurno_tiempo.setRedondeo_entrada(request.getParameter("redondeo_entrada"));
+        modeloTurno_tiempo.setSentido_entrada(request.getParameter("sentido_entrada"));
+        modeloTurno_tiempo.setRedondeo_salida(request.getParameter("redondeo_salida"));
+        modeloTurno_tiempo.setSentido_salida(request.getParameter("sentido_salida"));
+        modeloTurno_tiempo.setSentido_descanso(request.getParameter("sentido_descanso"));
+        modeloTurno_tiempo.setConceptos(request.getParameter("conceptos"));
+        modeloTurno_tiempo.setSentido_concepto(request.getParameter("sentido_concepto"));
+        modeloTurno_tiempo.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
-            ModeloTurnos modelo = new ModeloTurnos();
-            modelo.setId(0);
-            modelo.setCodigo(request.getParameter("codigo"));
-            modelo.setDescripcion(request.getParameter("nombre"));
-            modelo.setHora_inicio(request.getParameter("horainicio"));
-            modelo.setHora_fin(request.getParameter("horafin"));
-            modelo.setTeorico(request.getParameter("teorico"));
-            modelo.setHora_inicioBreak(request.getParameter("horainiciobreak"));
-            modelo.setHora_finBreak(request.getParameter("horafinbreak"));
-            modelo.setDescanso(request.getParameter("tiempobreak"));
-            modelo.setTiempo_maximo_entrada(request.getParameter("tiempograciaae"));
-            modelo.setTiempo_minimo_salida(request.getParameter("tiempograciaas"));
-            modelo.setTiempo_minimo_entrada(request.getParameter("tiempograciade"));
-            modelo.setTiempo_maximo_salida(request.getParameter("tiempograciads"));
-            modelo.setTolerancia_despues_entrada(request.getParameter("aproximacionae"));
-            modelo.setTolerancia_antes_salir(request.getParameter("aproximacionds"));
-            modelo.setHora_inicio_diurno(request.getParameter("horainiciodiurno"));
-            modelo.setHora_inicio_nocturno(request.getParameter("horainicionocturno"));
-            modelo.setTurno_noche(request.getParameter("turnonocturnos"));
-            modelo.setTurno_extra(request.getParameter("turnoextra"));
-            modelo.setDescuentaBreak(request.getParameter("turnodescuento"));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("INSERT INTO `turnotiempos`("
-                            + "`codigo`,"
-                            + "`descripcion`,"
-                            + "`hora_inicio`,"
-                            + "`hora_fin`,"
-                            + "`teorico`,"
-                            + "`tolerancia_despues_entrada`,"
-                            + "`tolerancia_antes_salir`,"
-                            + "`tiempo_minimo_entrada`,"
-                            + "`tiempo_maximo_entrada`,"
-                            + "`tiempo_minimo_salida`,"
-                            + "`tiempo_maximo_salida`,"
-                            + "`descanso`,"
-                            + "`hora_inicio_diurno`,"
-                            + "`hora_inicio_nocturno`,"
-                            + "`turno_noche`,"
-                            + "`hora_inicio_break`,"
-                            + "`hora_fin_break`,"
-                            + "`descuenta_break`,"
-                            + "`turno_extra`) "
-                            + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);");
-                    SQL.setString(1, modelo.getCodigo());
-                    SQL.setString(2, modelo.getDescripcion());
-                    SQL.setString(3, modelo.getHora_inicio());
-                    SQL.setString(4, modelo.getHora_fin());
-                    SQL.setString(5, modelo.getTeorico());
-                    SQL.setString(6, modelo.getTolerancia_despues_entrada());
-                    SQL.setString(7, modelo.getTolerancia_antes_salir());
-                    SQL.setString(8, modelo.getTiempo_minimo_entrada());
-                    SQL.setString(9, modelo.getTiempo_maximo_entrada());
-                    SQL.setString(10, modelo.getTiempo_minimo_salida());
-                    SQL.setString(11, modelo.getTiempo_maximo_salida());
-                    SQL.setString(12, modelo.getDescanso());
-                    SQL.setString(13, modelo.getHora_inicio_diurno());
-                    SQL.setString(14, modelo.getHora_inicio_nocturno());
-                    SQL.setString(15, modelo.getTurno_noche());
-                    SQL.setString(16, modelo.getHora_inicioBreak());
-                    SQL.setString(17, modelo.getHora_finBreak());
-                    SQL.setString(18, modelo.getDescuentaBreak());
-                    SQL.setString(19, modelo.getTurno_extra());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
-            }
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
+            resultado = Insert(modeloTurno_tiempo);
         } else {
-            ModeloTurnos modelo = new ModeloTurnos();
-            modelo.setId(Integer.parseInt(request.getParameter("id")));
-            modelo.setCodigo(request.getParameter("codigo"));
-            modelo.setDescripcion(request.getParameter("nombre"));
-            modelo.setHora_inicio(request.getParameter("horainicio"));
-            modelo.setHora_fin(request.getParameter("horafin"));
-            modelo.setTeorico(request.getParameter("teorico"));
-            modelo.setHora_inicioBreak(request.getParameter("horainiciobreak"));
-            modelo.setHora_finBreak(request.getParameter("horafinbreak"));
-            modelo.setDescanso(request.getParameter("tiempobreak"));
-            modelo.setTiempo_maximo_entrada(request.getParameter("tiempograciaae"));
-            modelo.setTiempo_minimo_salida(request.getParameter("tiempograciaas"));
-            modelo.setTiempo_minimo_entrada(request.getParameter("tiempograciade"));
-            modelo.setTiempo_maximo_salida(request.getParameter("tiempograciads"));
-            modelo.setTolerancia_despues_entrada(request.getParameter("aproximacionae"));
-            modelo.setTolerancia_antes_salir(request.getParameter("aproximacionds"));
-            modelo.setHora_inicio_diurno(request.getParameter("horainiciodiurno"));
-            modelo.setHora_inicio_nocturno(request.getParameter("horainicionocturno"));
-            modelo.setTurno_noche(request.getParameter("turnonocturnos"));
-            modelo.setTurno_extra(request.getParameter("turnoextra"));
-            modelo.setDescuentaBreak(request.getParameter("turnodescuento"));
-            try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("UPDATE `turnotiempos` SET "
-                            + "`codigo` = ?,"
-                            + "`descripcion` = ?,"
-                            + "`hora_inicio` = ?,"
-                            + "`hora_fin` = ?,"
-                            + "`teorico` = ?,"
-                            + "`tolerancia_despues_entrada` = ?,"
-                            + "`tolerancia_antes_salir` = ?,"
-                            + "`tiempo_minimo_entrada` = ?,"
-                            + "`tiempo_maximo_entrada` = ?,"
-                            + "`tiempo_minimo_salida` = ?,"
-                            + "`tiempo_maximo_salida` = ?,"
-                            + "`descanso` = ?,"
-                            + "`hora_inicio_diurno` = ?,"
-                            + "`hora_inicio_nocturno` = ?,"
-                            + "`turno_noche` = ?,"
-                            + "`hora_inicio_break` = ?,"
-                            + "`hora_fin_break` = ?,"
-                            + "`descuenta_break` = ?,"
-                            + "`turno_extra` = ? "
-                            + "WHERE `id` = ?;");
-                    SQL.setString(1, modelo.getCodigo());
-                    SQL.setString(2, modelo.getDescripcion());
-                    SQL.setString(3, modelo.getHora_inicio());
-                    SQL.setString(4, modelo.getHora_fin());
-                    SQL.setString(5, modelo.getTeorico());
-                    SQL.setString(6, modelo.getTolerancia_despues_entrada());
-                    SQL.setString(7, modelo.getTolerancia_antes_salir());
-                    SQL.setString(8, modelo.getTiempo_minimo_entrada());
-                    SQL.setString(9, modelo.getTiempo_maximo_entrada());
-                    SQL.setString(10, modelo.getTiempo_minimo_salida());
-                    SQL.setString(11, modelo.getTiempo_maximo_salida());
-                    SQL.setString(12, modelo.getDescanso());
-                    SQL.setString(13, modelo.getHora_inicio_diurno());
-                    SQL.setString(14, modelo.getHora_inicio_nocturno());
-                    SQL.setString(15, modelo.getTurno_noche());
-                    SQL.setString(16, modelo.getHora_inicioBreak());
-                    SQL.setString(17, modelo.getHora_finBreak());
-                    SQL.setString(18, modelo.getDescuentaBreak());
-                    SQL.setString(19, modelo.getTurno_extra());
-                    SQL.setInt(20, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "1";
-                        SQL.close();
-                        con.close();
-                    }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
-                    SQL.close();
-                    con.close();
-                }
-            } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
-            }
+            modeloTurno_tiempo.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = Update(modeloTurno_tiempo);
         }
         return resultado;
     }
 
     /**
-     * Permite la eliminar un dato en la tabla de Turnos
+     * Inserta los datos en la base de datos de la tabla: turno_tiempo
      *
-     * @author: Carlos A Dominguez D
-     * @param request
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param Modelo
      * @return String
-     * @version: 07/05/2020
+     * @version: 09/06/2020
      */
-    public String Delete(HttpServletRequest request) {
-        if (!"".equals(request.getParameter("id"))) {
-            String idtmp = request.getParameter("id");
-            ModeloTurnos modelo = new ModeloTurnos();
-            modelo.setId(Integer.parseInt(request.getParameter("id")));
-
+    public String Insert(ModeloTurno_tiempo modeloTurno_tiempo) throws SQLException {
+        try {
+            con = conexion.abrirConexion();
             try {
-                con = conexion.abrirConexion();
-                try {
-                    SQL = con.prepareStatement("DELETE FROM "
-                            + "`turnotiempos` "
-                            + "WHERE `id` = ?;");
-                    SQL.setInt(1, modelo.getId());
-                    if (SQL.executeUpdate() > 0) {
-                        resultado = "2";
+                SQL = con.prepareStatement("INSERT INTO turno_tiempo("
+                        + "codigo, "
+                        + "descripcion, "
+                        //+ "tipo_turno, "
+                        + "hora_inicio, "
+                        + "hora_fin, "
+                        + "teorico, "
+                        + "tolerancia_despues_entrada, "
+                        + "tolerancia_antes_salir, "
+                        //+ "tiempo_break, "
+                        //+ "limite_turno, "
+                        //+ "genera_extras_entrada, "
+                        + "tiempo_minimo_entrada, "
+                        + "tiempo_maximo_entrada, "
+                        + "genera_extras_salida, "
+                        + "tiempo_minimo_salida, "
+                        + "tiempo_maximo_salida, "
+                        //+ "redondeo_entrada, "
+                        //+ "sentido_entrada, "
+                        //+ "redondeo_salida, "
+                        //+ "sentido_salida, "
+                        + "descanso, "
+                        //                        + "sentido_descanso, "
+                        //                        + "conceptos, "
+                        //                        + "sentido_concepto, "
+                        + "hora_inicio_diurno, "
+                        + "hora_inicio_nocturno, "
+                        + "turno_noche, "
+                        + "hora_inicio_break, "
+                        + "hora_fin_break, "
+                        + "descuenta_break, "
+                        + "turno_extra, "
+                        + "estado)"
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
+                SQL.setString(1, modeloTurno_tiempo.getCodigo());
+                SQL.setString(2, modeloTurno_tiempo.getDescripcion());
+                //SQL.setString(3, modeloTurno_tiempo.getTipo_turno());
+                SQL.setString(3, modeloTurno_tiempo.getHora_inicio());
+                SQL.setString(4, modeloTurno_tiempo.getHora_fin());
+                SQL.setString(5, modeloTurno_tiempo.getTeorico());
+                SQL.setString(6, modeloTurno_tiempo.getTolerancia_despues_entrada());
+                SQL.setString(7, modeloTurno_tiempo.getTolerancia_antes_salir());
+//                SQL.setString(9, modeloTurno_tiempo.getTiempo_break());
+//                SQL.setString(10, modeloTurno_tiempo.getLimite_turno());
+//                SQL.setString(11, modeloTurno_tiempo.getGenera_extras_entrada());
+                SQL.setString(8, modeloTurno_tiempo.getTiempo_minimo_entrada());
+                SQL.setString(9, modeloTurno_tiempo.getTiempo_maximo_entrada());
+                SQL.setString(10, modeloTurno_tiempo.getGenera_extras_salida());
+                SQL.setString(11, modeloTurno_tiempo.getTiempo_minimo_salida());
+                SQL.setString(12, modeloTurno_tiempo.getTiempo_maximo_salida());
+//                SQL.setString(17, modeloTurno_tiempo.getRedondeo_entrada());
+//                SQL.setString(18, modeloTurno_tiempo.getSentido_entrada());
+//                SQL.setString(19, modeloTurno_tiempo.getRedondeo_salida());
+//                SQL.setString(20, modeloTurno_tiempo.getSentido_salida());
+                SQL.setString(13, modeloTurno_tiempo.getDescanso());
+//                SQL.setString(22, modeloTurno_tiempo.getSentido_descanso());
+//                SQL.setString(23, modeloTurno_tiempo.getConceptos());
+//                SQL.setString(24, modeloTurno_tiempo.getSentido_concepto());
+                SQL.setString(14, modeloTurno_tiempo.getHora_inicio_diurno());
+                SQL.setString(15, modeloTurno_tiempo.getHora_inicio_nocturno());
+                SQL.setString(16, modeloTurno_tiempo.getTurno_noche());
+                SQL.setString(17, modeloTurno_tiempo.getHora_inicio_break());
+                SQL.setString(18, modeloTurno_tiempo.getHora_fin_break());
+                SQL.setString(19, modeloTurno_tiempo.getDescuenta_break());
+                SQL.setString(20, modeloTurno_tiempo.getTurno_extra());
+                SQL.setString(21, "S");
+                if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            int i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "turno_tiempo", user, i, "Se inserto el registro.", "", "");
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                        }
                     }
-                } catch (SQLException e) {
-                    System.out.println(e);
-                    resultado = "-2";
                 }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en Controladorturno_tiempo" + e.getMessage());
+                resultado = "-2";
                 SQL.close();
                 con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en Controladorturno_tiempo" + e.getMessage());
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * Actualiza los datos en la base de datos de la tabla:turno_tiempo
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 09/06/2020
+     */
+    public String Update(ModeloTurno_tiempo modeloTurno_tiempo) throws SQLException {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                if ("N".equals(modeloTurno_tiempo.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE turno_tiempo SET "
+                            + " estado = ? "
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloTurno_tiempo.getEstado());
+                    SQL.setInt(2, modeloTurno_tiempo.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE turno_tiempo SET "
+                            + "codigo = ?, "
+                            + "descripcion = ?, "
+                            //+ "tipo_turno = ?, "
+                            + "hora_inicio = ?, "
+                            + "hora_fin = ?, "
+                            + "teorico = ?, "
+                            + "tolerancia_despues_entrada = ?, "
+                            + "tolerancia_antes_salir = ?, "
+                            //                            + "tiempo_break = ?, "
+                            //                            + "limite_turno = ?, "
+                            //                            + "genera_extras_entrada = ?, "
+                            + "tiempo_minimo_entrada = ?, "
+                            + "tiempo_maximo_entrada = ?, "
+                            // + "genera_extras_salida = ?, "
+                            + "tiempo_minimo_salida = ?, "
+                            + "tiempo_maximo_salida = ?, "
+                            //                            + "redondeo_entrada = ?, "
+                            //                            + "sentido_entrada = ?, "
+                            //                            + "redondeo_salida = ?, "
+                            //                            + "sentido_salida = ?, "
+                            + "descanso = ?, "
+                            //                            + "sentido_descanso = ?, "
+                            //                            + "conceptos = ?, "
+                            //                            + "sentido_concepto = ?, "
+                            + "hora_inicio_diurno = ?, "
+                            + "hora_inicio_nocturno = ?, "
+                            + "turno_noche = ?, "
+                            + "hora_inicio_break = ?, "
+                            + "hora_fin_break = ?, "
+                            + "descuenta_break = ?, "
+                            + "turno_extra = ?"
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloTurno_tiempo.getCodigo());
+                    SQL.setString(2, modeloTurno_tiempo.getDescripcion());
+                    //SQL.setString(3, modeloTurno_tiempo.getTipo_turno());
+                    SQL.setString(3, modeloTurno_tiempo.getHora_inicio());
+                    SQL.setString(4, modeloTurno_tiempo.getHora_fin());
+                    SQL.setString(5, modeloTurno_tiempo.getTeorico());
+                    SQL.setString(6, modeloTurno_tiempo.getTolerancia_despues_entrada());
+                    SQL.setString(7, modeloTurno_tiempo.getTolerancia_antes_salir());
+                    //SQL.setString(9, modeloTurno_tiempo.getTiempo_break());
+                    //SQL.setString(10, modeloTurno_tiempo.getLimite_turno());
+                    //SQL.setString(11, modeloTurno_tiempo.getGenera_extras_entrada());
+                    SQL.setString(8, modeloTurno_tiempo.getTiempo_minimo_entrada());
+                    SQL.setString(9, modeloTurno_tiempo.getTiempo_maximo_entrada());
+                    //SQL.setString(10, modeloTurno_tiempo.getGenera_extras_salida());
+                    SQL.setString(10, modeloTurno_tiempo.getTiempo_minimo_salida());
+                    SQL.setString(11, modeloTurno_tiempo.getTiempo_maximo_salida());
+                    //SQL.setString(17, modeloTurno_tiempo.getRedondeo_entrada());
+                    //SQL.setString(18, modeloTurno_tiempo.getSentido_entrada());
+                    //SQL.setString(19, modeloTurno_tiempo.getRedondeo_salida());
+                    //SQL.setString(20, modeloTurno_tiempo.getSentido_salida());
+                    SQL.setString(12, modeloTurno_tiempo.getDescanso());
+                    //SQL.setString(22, modeloTurno_tiempo.getSentido_descanso());
+                    //SQL.setString(23, modeloTurno_tiempo.getConceptos());
+                    //SQL.setString(24, modeloTurno_tiempo.getSentido_concepto());
+                    SQL.setString(13, modeloTurno_tiempo.getHora_inicio_diurno());
+                    SQL.setString(14, modeloTurno_tiempo.getHora_inicio_nocturno());
+                    SQL.setString(15, modeloTurno_tiempo.getTurno_noche());
+                    SQL.setString(16, modeloTurno_tiempo.getHora_inicio_break());
+                    SQL.setString(17, modeloTurno_tiempo.getHora_fin_break());
+                    SQL.setString(18, modeloTurno_tiempo.getDescuenta_break());
+                    SQL.setString(19, modeloTurno_tiempo.getTurno_extra());
+                    SQL.setInt(20, modeloTurno_tiempo.getId());
+                }
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "4";
+                    SQL.close();
+                    con.close();
+                }
             } catch (SQLException e) {
-                System.out.println(e);
-                resultado = "-3";
+                System.out.println("Error en la consulta SQL Update en Controladorturno_tiempo" + e.getMessage());
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Update en Controladorturno_tiempo" + e.getMessage());
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * llena un modelo que viene con datos de un request para ser Eliminado
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 09/06/2020
+     */
+    public String Delete(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+        if (!"".equals(request.getParameter("id"))) {
+            ModeloTurno_tiempo modeloTurno_tiempo = new ModeloTurno_tiempo();
+            modeloTurno_tiempo.setId(Integer.parseInt(request.getParameter("id")));
+            modeloTurno_tiempo.setEstado("N");
+            resultado = Update(modeloTurno_tiempo);
+            if (resultado.equals("4")) {
+                resultado = "2";
             }
         }
         return resultado;
     }
 
     /**
-     * Permite listar la información de la tabla de Turnos Metodo Private
+     * Elimina los datos en la base de datos de la tabla: turno_tiempo
      *
-     * @author: Carlos A Dominguez D
-     * @return LinkedList
-     * @version: 07/05/2020
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 09/06/2020
      */
-    private LinkedList<ModeloTurnos> Read() {
-        LinkedList<ModeloTurnos> listModeloTurnos = new LinkedList<ModeloTurnos>();
+    public String DeleteModelo(ModeloTurno_tiempo modeloTurno_tiempo) throws SQLException {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("DELETE FROM turno_tiempo "
+                        + " WHERE id = ? ");
+                SQL.setInt(1, modeloTurno_tiempo.getId());
+                if (SQL.executeUpdate() > 0) {
+                    resultado = "";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Delete en Controladorturno_tiempo" + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Delete en Controladorturno_tiempo" + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    /**
+     * Retorna un modelo de la tabla turno_tiempo dependiendo de un ID
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param request
+     * @return String
+     * @version: 09/06/2020
+     */
+    public ModeloTurno_tiempo getModelo(Integer Id) {
+        ModeloTurno_tiempo modeloTurno_tiempo = new ModeloTurno_tiempo();
         con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT "
-                    + "id, "
+            SQL = con.prepareStatement("SELECT id,"
                     + "codigo, "
-                    + "descripcion,"
-                    + "tipo_turno,"
-                    + "hora_inicio,"
-                    + "hora_fin,"
-                    + "teorico,"
-                    + "tolerancia_despues_entrada,"
-                    + "tolerancia_antes_salir,"
-                    + "tiempo_breack,"
-                    + "limite_turno,"
-                    + "gener_extras_entrada,"
-                    + "tiempo_minimo_entrada,"
-                    + "tiempo_maximo_entrada,"
-                    + "genera_extras_salida,"
-                    + "tiempo_minimo_salida,"
-                    + "tiempo_maximo_salida,"
-                    + "redondeo_entrada,"
-                    + "sentido_entrada,"
-                    + "redondeo_salida,"
-                    + "sentido_salida,"
-                    + "descanso,"
-                    + "sentido_descanso,"
-                    + "conceptos,"
+                    + "descripcion, "
+                    + "tipo_turno, "
+                    + "hora_inicio, "
+                    + "hora_fin, "
+                    + "teorico, "
+                    + "tolerancia_despues_entrada, "
+                    + "tolerancia_antes_salir, "
+                    + "tiempo_break, "
+                    + "limite_turno, "
+                    + "genera_extras_entrada, "
+                    + "tiempo_minimo_entrada, "
+                    + "tiempo_maximo_entrada, "
+                    + "genera_extras_salida, "
+                    + "tiempo_minimo_salida, "
+                    + "tiempo_maximo_salida, "
+                    + "redondeo_entrada, "
+                    + "sentido_entrada, "
+                    + "redondeo_salida, "
+                    + "sentido_salida, "
+                    + "descanso, "
+                    + "sentido_descanso, "
+                    + "conceptos, "
                     + "sentido_concepto, "
                     + "hora_inicio_diurno, "
                     + "hora_inicio_nocturno, "
+                    + "turno_noche, "
                     + "hora_inicio_break, "
                     + "hora_fin_break, "
                     + "descuenta_break, "
                     + "turno_extra, "
-                    + "turno_noche "
-                    + "FROM turnotiempos ORDER BY descripcion");
+                    + "estado"
+                    + " FROM turno_tiempo"
+                    + " WHERE id = ? ");
+            SQL.setInt(1, Id);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
-                ModeloTurnos modeloTurnos = new ModeloTurnos();
-                modeloTurnos.setId(res.getInt("id"));
-                modeloTurnos.setCodigo(res.getString("codigo"));
-                modeloTurnos.setDescripcion(res.getString("descripcion"));
-                modeloTurnos.setTipo_turno(res.getString("tipo_turno"));
-                modeloTurnos.setHora_inicio(res.getString("hora_inicio"));
-                modeloTurnos.setHora_fin(res.getString("hora_fin"));
-                modeloTurnos.setTeorico(res.getString("teorico"));
-                modeloTurnos.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
-                modeloTurnos.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
-                modeloTurnos.setTiempo_breack(res.getString("tiempo_breack"));
-                modeloTurnos.setLimite_turno(res.getString("limite_turno"));
-                modeloTurnos.setGener_extras_entrada(res.getString("gener_extras_entrada"));
-                modeloTurnos.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
-                modeloTurnos.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
-                modeloTurnos.setGenera_extras_salida(res.getString("genera_extras_salida"));
-                modeloTurnos.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
-                modeloTurnos.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
-                modeloTurnos.setRedondeo_entrada(res.getString("redondeo_entrada"));
-                modeloTurnos.setSentido_entrada(res.getString("sentido_entrada"));
-                modeloTurnos.setRedondeo_salida(res.getString("redondeo_salida"));
-                modeloTurnos.setSentido_salida(res.getString("sentido_salida"));
-                modeloTurnos.setDescanso(res.getString("descanso"));
-                modeloTurnos.setSentido_descanso(res.getString("sentido_descanso"));
-                modeloTurnos.setConceptos(res.getString("conceptos"));
-                modeloTurnos.setSentido_concepto(res.getString("sentido_concepto"));
-                modeloTurnos.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
-                modeloTurnos.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
-                modeloTurnos.setHora_inicioBreak(res.getString("hora_inicio_break"));
-                modeloTurnos.setHora_finBreak(res.getString("hora_fin_break"));
-                modeloTurnos.setTurno_noche(res.getString("turno_noche"));
-                modeloTurnos.setTurno_extra(res.getString("turno_extra"));
-                modeloTurnos.setDescuentaBreak(res.getString("descuenta_break"));
-                listModeloTurnos.add(modeloTurnos);
+                modeloTurno_tiempo.setId(res.getInt("id"));
+                modeloTurno_tiempo.setCodigo(res.getString("codigo"));
+                modeloTurno_tiempo.setDescripcion(res.getString("descripcion"));
+                modeloTurno_tiempo.setTipo_turno(res.getString("tipo_turno"));
+                modeloTurno_tiempo.setHora_inicio(res.getString("hora_inicio"));
+                modeloTurno_tiempo.setHora_fin(res.getString("hora_fin"));
+                modeloTurno_tiempo.setTeorico(res.getString("teorico"));
+                modeloTurno_tiempo.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
+                modeloTurno_tiempo.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
+                modeloTurno_tiempo.setTiempo_break(res.getString("tiempo_break"));
+                modeloTurno_tiempo.setLimite_turno(res.getString("limite_turno"));
+                modeloTurno_tiempo.setGenera_extras_entrada(res.getString("genera_extras_entrada"));
+                modeloTurno_tiempo.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
+                modeloTurno_tiempo.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
+                modeloTurno_tiempo.setGenera_extras_salida(res.getString("genera_extras_salida"));
+                modeloTurno_tiempo.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
+                modeloTurno_tiempo.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
+                modeloTurno_tiempo.setRedondeo_entrada(res.getString("redondeo_entrada"));
+                modeloTurno_tiempo.setSentido_entrada(res.getString("sentido_entrada"));
+                modeloTurno_tiempo.setRedondeo_salida(res.getString("redondeo_salida"));
+                modeloTurno_tiempo.setSentido_salida(res.getString("sentido_salida"));
+                modeloTurno_tiempo.setDescanso(res.getString("descanso"));
+                modeloTurno_tiempo.setSentido_descanso(res.getString("sentido_descanso"));
+                modeloTurno_tiempo.setConceptos(res.getString("conceptos"));
+                modeloTurno_tiempo.setSentido_concepto(res.getString("sentido_concepto"));
+                modeloTurno_tiempo.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
+                modeloTurno_tiempo.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
+                modeloTurno_tiempo.setTurno_noche(res.getString("turno_noche"));
+                modeloTurno_tiempo.setHora_inicio_break(res.getString("hora_inicio_break"));
+                modeloTurno_tiempo.setHora_fin_break(res.getString("hora_fin_break"));
+                modeloTurno_tiempo.setDescuenta_break(res.getString("descuenta_break"));
+                modeloTurno_tiempo.setTurno_extra(res.getString("turno_extra"));
+                modeloTurno_tiempo.setEstado(res.getString("estado"));
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.println("Error en la consulta SQL GetModelo en Controladorturno_tiempo" + e);
         }
-        return listModeloTurnos;
+        return modeloTurno_tiempo;
+    }
+
+    /**
+     * Llena un Listado de la tabla turno_tiempo
+     *
+     * @author: Carlos Arturo Dominguez Diaz
+     * @param vacio
+     * @return LinkedList<ModeloTurno_tiempo>
+     * @version: 09/06/2020
+     */
+    public LinkedList<ModeloTurno_tiempo> Read() throws SQLException {
+        LinkedList<ModeloTurno_tiempo> ListaModeloTurno_tiempo = new LinkedList<ModeloTurno_tiempo>();
+        con = conexion.abrirConexion();
+        try {
+            SQL = con.prepareStatement("SELECT id,"
+                    + "codigo, "
+                    + "descripcion, "
+                    + "tipo_turno, "
+                    + "hora_inicio, "
+                    + "hora_fin, "
+                    + "teorico, "
+                    + "tolerancia_despues_entrada, "
+                    + "tolerancia_antes_salir, "
+                    + "tiempo_break, "
+                    + "limite_turno, "
+                    + "genera_extras_entrada, "
+                    + "tiempo_minimo_entrada, "
+                    + "tiempo_maximo_entrada, "
+                    + "genera_extras_salida, "
+                    + "tiempo_minimo_salida, "
+                    + "tiempo_maximo_salida, "
+                    + "redondeo_entrada, "
+                    + "sentido_entrada, "
+                    + "redondeo_salida, "
+                    + "sentido_salida, "
+                    + "descanso, "
+                    + "sentido_descanso, "
+                    + "conceptos, "
+                    + "sentido_concepto, "
+                    + "hora_inicio_diurno, "
+                    + "hora_inicio_nocturno, "
+                    + "turno_noche, "
+                    + "hora_inicio_break, "
+                    + "hora_fin_break, "
+                    + "descuenta_break, "
+                    + "turno_extra, "
+                    + "estado"
+                    + " FROM turno_tiempo");
+            ResultSet res = SQL.executeQuery();
+            while (res.next()) {
+                ModeloTurno_tiempo modeloTurno_tiempo = new ModeloTurno_tiempo();
+                modeloTurno_tiempo.setId(res.getInt("id"));
+                modeloTurno_tiempo.setCodigo(res.getString("codigo"));
+                modeloTurno_tiempo.setDescripcion(res.getString("descripcion"));
+                modeloTurno_tiempo.setTipo_turno(res.getString("tipo_turno"));
+                modeloTurno_tiempo.setHora_inicio(res.getString("hora_inicio"));
+                modeloTurno_tiempo.setHora_fin(res.getString("hora_fin"));
+                modeloTurno_tiempo.setTeorico(res.getString("teorico"));
+                modeloTurno_tiempo.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
+                modeloTurno_tiempo.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
+                modeloTurno_tiempo.setTiempo_break(res.getString("tiempo_break"));
+                modeloTurno_tiempo.setLimite_turno(res.getString("limite_turno"));
+                modeloTurno_tiempo.setGenera_extras_entrada(res.getString("genera_extras_entrada"));
+                modeloTurno_tiempo.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
+                modeloTurno_tiempo.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
+                modeloTurno_tiempo.setGenera_extras_salida(res.getString("genera_extras_salida"));
+                modeloTurno_tiempo.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
+                modeloTurno_tiempo.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
+                modeloTurno_tiempo.setRedondeo_entrada(res.getString("redondeo_entrada"));
+                modeloTurno_tiempo.setSentido_entrada(res.getString("sentido_entrada"));
+                modeloTurno_tiempo.setRedondeo_salida(res.getString("redondeo_salida"));
+                modeloTurno_tiempo.setSentido_salida(res.getString("sentido_salida"));
+                modeloTurno_tiempo.setDescanso(res.getString("descanso"));
+                modeloTurno_tiempo.setSentido_descanso(res.getString("sentido_descanso"));
+                modeloTurno_tiempo.setConceptos(res.getString("conceptos"));
+                modeloTurno_tiempo.setSentido_concepto(res.getString("sentido_concepto"));
+                modeloTurno_tiempo.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
+                modeloTurno_tiempo.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
+                modeloTurno_tiempo.setTurno_noche(res.getString("turno_noche"));
+                modeloTurno_tiempo.setHora_inicio_break(res.getString("hora_inicio_break"));
+                modeloTurno_tiempo.setHora_fin_break(res.getString("hora_fin_break"));
+                modeloTurno_tiempo.setDescuenta_break(res.getString("descuenta_break"));
+                modeloTurno_tiempo.setTurno_extra(res.getString("turno_extra"));
+                modeloTurno_tiempo.setEstado(res.getString("estado"));
+                ListaModeloTurno_tiempo.add(modeloTurno_tiempo);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL GetModelo en Controladorturno_tiempo" + e);
+        }
+        return ListaModeloTurno_tiempo;
     }
 
     /**
@@ -344,14 +546,14 @@ public class ControladorTurnos {
             throws ServletException, IOException {
         String out = null;
         try {
-            LinkedList<ModeloTurnos> listaModeloTurnos;
+            LinkedList<ModeloTurno_tiempo> listaModeloTurnos;
             listaModeloTurnos = Read();
             response.setContentType("text/html;charset=UTF-8");
             String parametro = request.getParameter("evento");
             if ("Select".equals(parametro)) {
                 out = "";
                 out += "<option value=\"0\" selected>Seleccione</option>";
-                for (ModeloTurnos modeloTurnos : listaModeloTurnos) {
+                for (ModeloTurno_tiempo modeloTurnos : listaModeloTurnos) {
                     out += "<option value=\"" + modeloTurnos.getId() + "\"> " + modeloTurnos.getDescripcion() + "</option>";
                 }
             } else {
@@ -364,35 +566,17 @@ public class ControladorTurnos {
                 out += "<td>Hora Ini</td>";
                 out += "<td>Hora Fin</td>";
                 out += "<td>Teorico</td>";
-                out += "<td>Hora Ini Br</td>";
-                out += "<td>Hora Fin Br</td>";
-                out += "<td>Descanso</td>";
-                out += "<td>Tiempo GAE</td>";
-                out += "<td>Tiempo GAS</td>";
-                out += "<td>Tiempo GDE</td>";
-                out += "<td>Tiempo GDS</td>";
-                out += "<td>Aprox AE</td>";
-                out += "<td>Aprox DS</td>";
                 out += "<td>Opciones</td>";
                 out += "</tr>";
                 out += "</thead>";
                 out += "<tbody>";
-                for (ModeloTurnos modeloTurnos : listaModeloTurnos) {
+                for (ModeloTurno_tiempo modeloTurnos : listaModeloTurnos) {
                     out += "<tr>";
                     out += "<td>" + modeloTurnos.getCodigo() + "</td>";
                     out += "<td>" + modeloTurnos.getDescripcion() + "</td>";
                     out += "<td>" + modeloTurnos.getHora_inicio() + "</td>";
                     out += "<td>" + modeloTurnos.getHora_fin() + "</td>";
-                    out += "<td>" + modeloTurnos.getTeorico() + "</td>";
-                    out += "<td>" + modeloTurnos.getHora_inicioBreak() + "</td>";
-                    out += "<td>" + modeloTurnos.getHora_finBreak() + "</td>";
-                    out += "<td>" + modeloTurnos.getDescanso() + "</td>";
-                    out += "<td>" + modeloTurnos.getTiempo_maximo_entrada() + "</td>";
-                    out += "<td>" + modeloTurnos.getTiempo_minimo_salida() + "</td>";
-                    out += "<td>" + modeloTurnos.getTiempo_minimo_entrada() + "</td>";
-                    out += "<td>" + modeloTurnos.getTiempo_maximo_salida() + "</td>";
-                    out += "<td>" + modeloTurnos.getTolerancia_despues_entrada() + "</td>";
-                    out += "<td>" + modeloTurnos.getTolerancia_antes_salir() + "</td>";
+                    out += "<td>" + modeloTurnos.getTeorico() + "</td>";                    
                     out += "<td class=\"text-center\">";
                     // Boton Editar
                     out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
@@ -404,9 +588,9 @@ public class ControladorTurnos {
                     out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
                     out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
                     out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
-                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
-                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
-                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
+                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuenta_break() + "\"";
+                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicio_break() + "\"";
+                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_fin_break() + "\"";
                     out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
                     out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
                     out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_salida() + "\"";
@@ -431,9 +615,9 @@ public class ControladorTurnos {
                     out += "data-teorico=\"" + modeloTurnos.getTeorico() + "\"";
                     out += "data-turnonocturno=\"" + modeloTurnos.getTurno_noche() + "\"";
                     out += "data-turnoextra=\"" + modeloTurnos.getTurno_extra() + "\"";
-                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuentaBreak() + "\"";
-                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicioBreak() + "\"";
-                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_finBreak() + "\"";
+                    out += "data-descuentobreak=\"" + modeloTurnos.getDescuenta_break() + "\"";
+                    out += "data-horainiciobreak=\"" + modeloTurnos.getHora_inicio_break() + "\"";
+                    out += "data-horafinbreak=\"" + modeloTurnos.getHora_fin_break() + "\"";
                     out += "data-tiempobreak=\"" + modeloTurnos.getDescanso() + "\"";
                     out += "data-tiempograciaae=\"" + modeloTurnos.getTiempo_maximo_entrada() + "\"";
                     out += "data-tiempograciaas=\"" + modeloTurnos.getTiempo_minimo_entrada() + "\"";
@@ -453,189 +637,5 @@ public class ControladorTurnos {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
         return out;
-    }
-
-    public String tmp(HttpServletRequest request) {
-        ModeloTurnos modeloTurnos = new ModeloTurnos();
-        con = conexion.abrirConexion();
-        try {
-            SQL = con.prepareStatement("SELECT "
-                    + "id, "
-                    + "codigo, "
-                    + "descripcion,"
-                    + "tipo_turno,"
-                    + "hora_inicio,"
-                    + "hora_fin,"
-                    + "teorico,"
-                    + "tolerancia_despues_entrada,"
-                    + "tolerancia_antes_salir,"
-                    + "tiempo_breack,"
-                    + "limite_turno,"
-                    + "gener_extras_entrada,"
-                    + "tiempo_minimo_entrada,"
-                    + "tiempo_maximo_entrada,"
-                    + "genera_extras_salida,"
-                    + "tiempo_minimo_salida,"
-                    + "tiempo_maximo_salida,"
-                    + "redondeo_entrada,"
-                    + "sentido_entrada,"
-                    + "redondeo_salida,"
-                    + "sentido_salida,"
-                    + "descanso,"
-                    + "sentido_descanso,"
-                    + "conceptos,"
-                    + "sentido_concepto, "
-                    + "hora_inicio_diurno, "
-                    + "hora_inicio_nocturno, "
-                    + "hora_inicio_break, "
-                    + "hora_fin_break, "
-                    + "descuenta_break, "
-                    + "turno_extra, "
-                    + "turno_noche "
-                    + "FROM turnotiempos "
-                    + "WHERE codigo = ? ORDER BY descripcion");
-            SQL.setString(1, request.getParameter("codigo"));
-            ResultSet res = SQL.executeQuery();
-            while (res.next()) {
-                modeloTurnos.setId(res.getInt("id"));
-                modeloTurnos.setCodigo(res.getString("codigo"));
-                modeloTurnos.setDescripcion(res.getString("descripcion"));
-                modeloTurnos.setTipo_turno(res.getString("tipo_turno"));
-                modeloTurnos.setHora_inicio(res.getString("hora_inicio"));
-                modeloTurnos.setHora_fin(res.getString("hora_fin"));
-                modeloTurnos.setTeorico(res.getString("teorico"));
-                modeloTurnos.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
-                modeloTurnos.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
-                modeloTurnos.setTiempo_breack(res.getString("tiempo_breack"));
-                modeloTurnos.setLimite_turno(res.getString("limite_turno"));
-                modeloTurnos.setGener_extras_entrada(res.getString("gener_extras_entrada"));
-                modeloTurnos.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
-                modeloTurnos.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
-                modeloTurnos.setGenera_extras_salida(res.getString("genera_extras_salida"));
-                modeloTurnos.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
-                modeloTurnos.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
-                modeloTurnos.setRedondeo_entrada(res.getString("redondeo_entrada"));
-                modeloTurnos.setSentido_entrada(res.getString("sentido_entrada"));
-                modeloTurnos.setRedondeo_salida(res.getString("redondeo_salida"));
-                modeloTurnos.setSentido_salida(res.getString("sentido_salida"));
-                modeloTurnos.setDescanso(res.getString("descanso"));
-                modeloTurnos.setSentido_descanso(res.getString("sentido_descanso"));
-                modeloTurnos.setConceptos(res.getString("conceptos"));
-                modeloTurnos.setSentido_concepto(res.getString("sentido_concepto"));
-                modeloTurnos.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
-                modeloTurnos.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
-                modeloTurnos.setHora_inicioBreak(res.getString("hora_inicio_break"));
-                modeloTurnos.setHora_finBreak(res.getString("hora_fin_break"));
-                modeloTurnos.setTurno_noche(res.getString("turno_noche"));
-                modeloTurnos.setTurno_extra(res.getString("turno_extra"));
-                modeloTurnos.setDescuentaBreak(res.getString("descuenta_break"));
-            }
-            res.close();
-            SQL.close();
-            con.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-
-        resultado = new Gson().toJson(modeloTurnos);
-
-        return resultado;
-    }
-
-    /**
-     * Permite listar la información de la tabla turnos identificadno el ID
-     *
-     * @author: Carlos A Dominguez D
-     * @param Id
-     * @return ModeloEmpresa
-     * @version: 11/05/2020
-     */
-    public ModeloTurnos getModelo(int Id) {
-        ModeloTurnos modeloTurnos = new ModeloTurnos();;
-        con = conexion.abrirConexion();
-        try {
-            SQL = con.prepareStatement("SELECT "
-                    + "id, "
-                    + "codigo, "
-                    + "descripcion,"
-                    + "tipo_turno,"
-                    + "hora_inicio,"
-                    + "hora_fin,"
-                    + "teorico,"
-                    + "tolerancia_despues_entrada,"
-                    + "tolerancia_antes_salir,"
-                    + "tiempo_breack,"
-                    + "limite_turno,"
-                    + "gener_extras_entrada,"
-                    + "tiempo_minimo_entrada,"
-                    + "tiempo_maximo_entrada,"
-                    + "genera_extras_salida,"
-                    + "tiempo_minimo_salida,"
-                    + "tiempo_maximo_salida,"
-                    + "redondeo_entrada,"
-                    + "sentido_entrada,"
-                    + "redondeo_salida,"
-                    + "sentido_salida,"
-                    + "descanso,"
-                    + "sentido_descanso,"
-                    + "conceptos,"
-                    + "sentido_concepto, "
-                    + "hora_inicio_diurno, "
-                    + "hora_inicio_nocturno, "
-                    + "hora_inicio_break, "
-                    + "hora_fin_break, "
-                    + "descuenta_break, "
-                    + "turno_extra, "
-                    + "turno_noche "
-                    + "FROM turno_tiempo "
-                    + "WHERE id = ? "
-                    + "ORDER BY descripcion");
-            SQL.setInt(1, Id);
-            ResultSet res = SQL.executeQuery();
-            if (res.next()) {
-                res.first();
-                modeloTurnos.setId(res.getInt("id"));
-                modeloTurnos.setCodigo(res.getString("codigo"));
-                modeloTurnos.setDescripcion(res.getString("descripcion"));
-                modeloTurnos.setTipo_turno(res.getString("tipo_turno"));
-                modeloTurnos.setHora_inicio(res.getString("hora_inicio"));
-                modeloTurnos.setHora_fin(res.getString("hora_fin"));
-                modeloTurnos.setTeorico(res.getString("teorico"));
-                modeloTurnos.setTolerancia_despues_entrada(res.getString("tolerancia_despues_entrada"));
-                modeloTurnos.setTolerancia_antes_salir(res.getString("tolerancia_antes_salir"));
-                modeloTurnos.setTiempo_breack(res.getString("tiempo_breack"));
-                modeloTurnos.setLimite_turno(res.getString("limite_turno"));
-                modeloTurnos.setGener_extras_entrada(res.getString("gener_extras_entrada"));
-                modeloTurnos.setTiempo_minimo_entrada(res.getString("tiempo_minimo_entrada"));
-                modeloTurnos.setTiempo_maximo_entrada(res.getString("tiempo_maximo_entrada"));
-                modeloTurnos.setGenera_extras_salida(res.getString("genera_extras_salida"));
-                modeloTurnos.setTiempo_minimo_salida(res.getString("tiempo_minimo_salida"));
-                modeloTurnos.setTiempo_maximo_salida(res.getString("tiempo_maximo_salida"));
-                modeloTurnos.setRedondeo_entrada(res.getString("redondeo_entrada"));
-                modeloTurnos.setSentido_entrada(res.getString("sentido_entrada"));
-                modeloTurnos.setRedondeo_salida(res.getString("redondeo_salida"));
-                modeloTurnos.setSentido_salida(res.getString("sentido_salida"));
-                modeloTurnos.setDescanso(res.getString("descanso"));
-                modeloTurnos.setSentido_descanso(res.getString("sentido_descanso"));
-                modeloTurnos.setConceptos(res.getString("conceptos"));
-                modeloTurnos.setSentido_concepto(res.getString("sentido_concepto"));
-                modeloTurnos.setHora_inicio_diurno(res.getString("hora_inicio_diurno"));
-                modeloTurnos.setHora_inicio_nocturno(res.getString("hora_inicio_nocturno"));
-                modeloTurnos.setHora_inicioBreak(res.getString("hora_inicio_break"));
-                modeloTurnos.setHora_finBreak(res.getString("hora_fin_break"));
-                modeloTurnos.setTurno_noche(res.getString("turno_noche"));
-                modeloTurnos.setTurno_extra(res.getString("turno_extra"));
-                modeloTurnos.setDescuentaBreak(res.getString("descuenta_break"));
-            } else {
-                modeloTurnos.setId(0);
-            }
-
-            res.close();
-            SQL.close();
-            con.close();
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return modeloTurnos;
     }
 }

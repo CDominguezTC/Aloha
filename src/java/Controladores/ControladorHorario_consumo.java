@@ -64,6 +64,9 @@ public class ControladorHorario_consumo {
         } else {
             modeloHorario_consumo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloHorario_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -118,7 +121,7 @@ public class ControladorHorario_consumo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "horario_consumo", user, i, "Se inserto el registro.", "", "");                            
                         }
                         resultado = "1";
                         SQL.close();
@@ -224,6 +227,9 @@ public class ControladorHorario_consumo {
             modeloHorario_consumo.setId(Integer.parseInt(request.getParameter("id")));
             modeloHorario_consumo.setEstado("N");
             resultado = Update(modeloHorario_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "2";
+            }
         }
         return resultado;
     }

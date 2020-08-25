@@ -130,16 +130,13 @@
                                                                             </div>
                                                                         </div>
                                                                     </div> 
-
                                                                     <div class="form-group">
                                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"></label>
                                                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                                                             <div id="Turnos" class="btn-group" data-toggle="buttons">
-
-                                                                                <input type="checkbox" value="" id="IdTurnoNocturno" class="flat"> Turno Nocturno  
+                                                                                <input type="checkbox" value="" id="IdTurnoNocturno" class=""> Turno Nocturno  
                                                                                 <label style="visibility:hidden">---</label>
-                                                                                <input type="checkbox" value="" id="IdTurnoExtra"  class="flat"> Turno Extra
-
+                                                                                <input type="checkbox" value="" id="IdTurnoExtra"  class=""> Turno Extra
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -209,7 +206,7 @@
                                                                             <div id="Break" class="btn-group" data-toggle="buttons">
 
                                                                                 <label for="" style="visibility:hidden">---</label>  
-                                                                                <input type="checkbox" value="" id="IdDescuentoBreack" class="flat"> Descuenta Break
+                                                                                <input type="checkbox" value="" id="IdDescuentoBreack" class=""> Descuenta Break
 
                                                                             </div>
                                                                         </div>
@@ -358,15 +355,6 @@
                                                     <td>Hora Ini</td>
                                                     <td>Hora Fin</td>
                                                     <td>Teorico</td>
-                                                    <td>Hora Ini Br</td>
-                                                    <td>Hora Fin Br</td>
-                                                    <td>Descanso</td>
-                                                    <td>Tiempo GAE</td>
-                                                    <td>Tiempo GAS</td>
-                                                    <td>Tiempo GDE</td>
-                                                    <td>Tiempo GDS</td>
-                                                    <td>Aprox AE</td>
-                                                    <td>Aprox DS</td>
                                                     <td>Opciones</td>
                                                 </tr>
                                             </thead>
@@ -376,16 +364,7 @@
                                                     <td></td>
                                                     <td></td>
                                                     <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td></td>                                                    
+                                                    <td></td>                                                                                                       
                                                     <td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""

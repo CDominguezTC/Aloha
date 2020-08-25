@@ -45,7 +45,7 @@ public class ControladorAuditoria {
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion) {
+    public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion, String d_old, String d_new) {
 
         con = conexion.abrirConexion();
         try {
@@ -68,7 +68,9 @@ public class ControladorAuditoria {
                     fecha,
                     modU,
                     idmodi,
-                    observacion
+                    observacion,
+                    d_old,
+                    d_new
             );
             try {
                 con = conexion.abrirConexion();
@@ -80,14 +82,18 @@ public class ControladorAuditoria {
                             + "`fecha`,"
                             + "`id_usuario`,"
                             + "`registro_modificado`,"
-                            + "`observacion`) "
-                            + "VALUES (?,?,?,?,?,?);");
+                            + "`observacion`,"
+                            + "`dato_old`,"
+                            + "`dato_new`) "
+                            + "VALUES (?,?,?,?,?,?,?,?)");
                     SQL.setString(1, modelo.getOperacion());
                     SQL.setString(2, modelo.getTabla());
                     SQL.setString(3, modelo.getFecha());
                     SQL.setInt(4, modelo.getUsuario().getId());
                     SQL.setInt(5, modelo.getRegistro_modificado());
                     SQL.setString(6, modelo.getObservacion());
+                    SQL.setString(7, modelo.getDato_old());
+                    SQL.setString(8, modelo.getDato_new());
                     //String pw = tl.encriptar(modelo.getPassword());
                     //SQL.setString(3, pw);
                     if (SQL.executeUpdate() > 0) {
@@ -164,19 +170,19 @@ public class ControladorAuditoria {
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             if ("".equals(usr)) {
-                SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion " +
+                SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion, a.dato_old, a.dato_new " +
                                             "FROM auditoria a " +
                                             "INNER JOIN usuario u ON u.id = a.id_usuario " +
                                             "WHERE u.estado = 'S'");
 
             } else {
                 if ("todos".equals(usr)) {
-                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion "
+                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion, a.dato_old, a.dato_new "
                             + "FROM auditoria a "
                             + "INNER JOIN usuario u ON u.id = a.id_usuario "
                             + "WHERE u.estado = 'S' AND a.fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
                 } else {
-                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion "
+                    SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion, a.dato_old, a.dato_new  "
                             + "FROM auditoria a "
                             + "INNER JOIN usuario u ON u.id = a.id_usuario "
                             + "WHERE u.estado = 'S' AND a.id_usuario = " + usr + " AND a.fecha BETWEEN '" + fini + " 00:00:00' AND '" + ffin + " 23:59:59'");
@@ -199,6 +205,8 @@ public class ControladorAuditoria {
                 modeloA.setUsuario(modU);
                 modeloA.setRegistro_modificado(res.getInt("registro_modificado"));
                 modeloA.setObservacion(res.getString("observacion"));
+                modeloA.setDato_old(res.getString("dato_old"));
+                modeloA.setDato_new(res.getString("dato_new"));
                 modeloAud.add(modeloA);
             }
             res.close();
@@ -241,6 +249,8 @@ public class ControladorAuditoria {
             out += "<th>Usuario</th>";
             out += "<th>Registro Modificado</th>";
             out += "<th>Observacion</th>";
+            out += "<th>Dato Anterior</th>";
+            out += "<th>Dato Nuevo</th>";
             out += "</tr>";
             out += "</thead>";
             out += "<tbody>";
@@ -254,6 +264,8 @@ public class ControladorAuditoria {
                 outsb.append("<td>").append(modeloA.getUsuario().getNombre()).append("</td>");
                 outsb.append("<td>").append(modeloA.getRegistro_modificado()).append("</td>");
                 outsb.append("<td>").append(modeloA.getObservacion()).append("</td>");
+                outsb.append("<td>").append(modeloA.getDato_old()).append("</td>");
+                outsb.append("<td>").append(modeloA.getDato_new()).append("</td>");
                 outsb.append("</tr>");
             }
             outsb.append("</tbody>");

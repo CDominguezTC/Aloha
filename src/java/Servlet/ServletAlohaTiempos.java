@@ -21,14 +21,16 @@ import Controladores.ControladorDispositivos;
 import Controladores.ControladorEmpresa;
 import Controladores.ControladorEnumeracion;
 import Controladores.ControladorFestivo;
-import Controladores.ControladorFunciones;
-import Controladores.ControladorGrupo_consumo;
-import Controladores.ControladorGrupoTurnos;
+import Controladores.ControladorFuncion;
 import Controladores.ControladorGrupoTurnos_Turnos;
+import Controladores.ControladorGrupo_consumo;
+import Controladores.ControladorGrupo_horario;
+//import Controladores.ControladorGrupoTurnos_Turnos;
 import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacionCasino;
+import Controladores.ControladorLog_error;
 import Controladores.ControladorParametro_tabla;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
@@ -65,6 +67,8 @@ import javax.servlet.http.HttpSession;
  */
 public class ServletAlohaTiempos extends HttpServlet {
 
+    HttpSession session;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -113,7 +117,7 @@ public class ServletAlohaTiempos extends HttpServlet {
         String Resultado = "";
         String Accion = null;
         String respuesta = "";
-        HttpSession session = request.getSession(false);
+        session = request.getSession(false);
         if (session != null) {
             //String name = (String)session.getAttribute("name");  
             respuesta = "true";
@@ -164,10 +168,31 @@ public class ServletAlohaTiempos extends HttpServlet {
                                 modeloUsuario = controladorUsuario.getModelo(controladorUsuario.idUsuario(usuario));
                                 //String pw = request.getParameter("pass");
                                 HttpSession session = request.getSession();
-                                session.setAttribute("usuario", usuario);
+                                session.setAttribute("usuario", usuario);                                
                                 // agrego el modelo al session
                                 session.setAttribute("modelousuario", modeloUsuario);
                             }
+                            break;
+                    }
+
+                    break;
+                case "LogErrorJSP":
+                    ControladorLog_error log = new ControladorLog_error();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "Read":
+                            String fini = request.getParameter("fechai");
+                            String ffin = request.getParameter("fechaf");
+                            try {
+                                Resultado = log.Read(fini, ffin);
+                            } catch (Exception e) {
+                                ControladorLog_error error = new ControladorLog_error();
+                                error.insertarError((String) session.getAttribute("usuario"), e.getMessage());
+                            }
+                            
+                            PrintWriter pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                     }
 
@@ -349,10 +374,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorTurnos.Insert(request);
+                            Resultado = controladorTurnos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorTurnos.Delete(request);
+                            Resultado = controladorTurnos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorTurnos.Read(request, response);
@@ -667,18 +692,18 @@ public class ServletAlohaTiempos extends HttpServlet {
                     }
 
                     break;
-                case "GrupoTurnosJSP":
-                    ControladorGrupoTurnos controladorGrupoTurnos = new ControladorGrupoTurnos();
+                case "GrupoHorarioJSP":
+                    ControladorGrupo_horario controladorGrupo_horario = new ControladorGrupo_horario();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorGrupoTurnos.Insert(request);
+                            Resultado = controladorGrupo_horario.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorGrupoTurnos.Delete(request);
+                            Resultado = controladorGrupo_horario.Delete(request, response);
                             break;
                         case "Read":
-                            Resultado = controladorGrupoTurnos.Read(request, response);
+                            Resultado = controladorGrupo_horario.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
@@ -687,14 +712,14 @@ public class ServletAlohaTiempos extends HttpServlet {
 
                     break;
                 case "FuncionesJSP":
-                    ControladorFunciones controladorFunciones = new ControladorFunciones();
+                    ControladorFuncion controladorFunciones = new ControladorFuncion();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorFunciones.Insert(request);
+                            Resultado = controladorFunciones.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorFunciones.Delete(request);
+                            Resultado = controladorFunciones.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorFunciones.Read(request, response);
@@ -710,10 +735,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorPeriodos.Insert(request);
+                            Resultado = controladorPeriodos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorPeriodos.Delete(request);
+                            Resultado = controladorPeriodos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorPeriodos.ReadPeriodos(request, response);
@@ -738,7 +763,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                             Resultado = controladorCargos.Delete(request, response);
                             break;
                         case "Read":
-                            Resultado = controladorCargos.Read(request, response);
+                            //Resultado = controladorCargos.Read(request, response);
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
@@ -856,8 +881,8 @@ public class ServletAlohaTiempos extends HttpServlet {
                             String tabla = request.getParameter("tabla");
                             String usu = request.getParameter("usua");
                             int regmo = Integer.parseInt(request.getParameter("id"));
-                            String observa = request.getParameter("observacion");
-                            Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
+                            String observa = request.getParameter("observacion");                            
+                            //Resultado = controladorAud.Insert(operacion, tabla, usu, regmo, observa);
                             /*
                             * PrintWriter pw = response.getWriter ();
                             * pw.write (Resultado);
@@ -888,10 +913,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
-                            Resultado = controladorGrupoTurnos_Turnos.Insert(request);
+                            Resultado = controladorGrupoTurnos_Turnos.Insert(request, response);
                             break;
                         case "Delete":
-                            Resultado = controladorGrupoTurnos_Turnos.Delete(request);
+                            Resultado = controladorGrupoTurnos_Turnos.Delete(request, response);
                             break;
                         case "Read":
                             Resultado = controladorGrupoTurnos_Turnos.Read(request, response);

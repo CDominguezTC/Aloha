@@ -50,6 +50,9 @@ public class ControladorGrupo_consumo {
         } else {
             modeloGrupo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloGrupo_consumo);
+            if (resultado == "1") {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -80,7 +83,7 @@ public class ControladorGrupo_consumo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "grupo_consumo", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();
@@ -163,6 +166,9 @@ public class ControladorGrupo_consumo {
             modeloGrupo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             modeloGrupo_consumo.setEstado("N");
             resultado = Update(modeloGrupo_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "2";                
+            }
         }
         return resultado;
     }

@@ -51,6 +51,9 @@ public class ControladorTipo_consumo {
         } else {
             modeloTipo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloTipo_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -81,7 +84,7 @@ public class ControladorTipo_consumo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "tipo_consumo", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();
@@ -163,6 +166,10 @@ public class ControladorTipo_consumo {
             modeloTipo_consumo.setId(Integer.parseInt(request.getParameter("id")));
             modeloTipo_consumo.setEstado("N");
             resultado = Update(modeloTipo_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "2";
+            }
+
         }
         return resultado;
     }

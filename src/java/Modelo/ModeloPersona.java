@@ -39,8 +39,8 @@ public class ModeloPersona {
     String estado;
     ModeloDependencia Modelo_dependencia;
     ModeloEmpresa Modelo_empresa_seguridad_social;
-    ModeloGrupoTurnos Modelo_grupo_horario;
-    ModeloTurnos Modelo_turno;
+    ModeloGrupo_horario Modelo_grupo_horario;
+    ModeloTurno_tiempo Modelo_turno;
     ModeloDepartamento Modelo_departamento;
     ModeloArea Modelo_area;
     ModeloCiudad Modelo_ciudad;
@@ -56,7 +56,7 @@ public class ModeloPersona {
     public ModeloPersona() {
     }
 
-    public ModeloPersona(Integer id, String tipo_identificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String telefono, String rh, String tipo_persona, String recibe_visitas, String nombre_eps, String nombre_arl, String acceso_restringido, String observacion, String consumo_casino, Integer cantidad_consumo, String tarjeta_acceso, String codigo_nomina, String estado, ModeloDependencia Modelo_dependencia, ModeloEmpresa Modelo_empresa_seguridad_social, ModeloGrupoTurnos Modelo_grupo_horario, ModeloTurnos Modelo_turno, ModeloDepartamento Modelo_departamento, ModeloArea Modelo_area, ModeloCiudad Modelo_ciudad, ModeloCentro_costo Modelo_centro_costo, ModeloCargo Modelo_cargo, ModeloEmpresa Modelo_empresa_trabaja, ModeloGrupo_consumo Modelo_grupo_consumo, LinkedList<ModeloImagen> Lista_Modelo_Imagenes, LinkedList<ModeloTemplate> Lista_Modelo_Template) {
+    public ModeloPersona(Integer id, String tipo_identificacion, String identificacion, String nombres, String apellidos, String email, String direccion, String telefono, String rh, String tipo_persona, String recibe_visitas, String nombre_eps, String nombre_arl, String acceso_restringido, String observacion, String consumo_casino, Integer cantidad_consumo, String tarjeta_acceso, String codigo_nomina, String estado, ModeloDependencia Modelo_dependencia, ModeloEmpresa Modelo_empresa_seguridad_social, ModeloGrupo_horario Modelo_grupo_horario, ModeloTurno_tiempo Modelo_turno, ModeloDepartamento Modelo_departamento, ModeloArea Modelo_area, ModeloCiudad Modelo_ciudad, ModeloCentro_costo Modelo_centro_costo, ModeloCargo Modelo_cargo, ModeloEmpresa Modelo_empresa_trabaja, ModeloGrupo_consumo Modelo_grupo_consumo, LinkedList<ModeloImagen> Lista_Modelo_Imagenes, LinkedList<ModeloTemplate> Lista_Modelo_Template) {
         this.id = id;
         this.tipo_identificacion = tipo_identificacion;
         this.identificacion = identificacion;
@@ -268,19 +268,19 @@ public class ModeloPersona {
         this.Modelo_empresa_seguridad_social = Modelo_empresa_seguridad_social;
     }
 
-    public ModeloGrupoTurnos getModelo_grupo_horario() {
+    public ModeloGrupo_horario getModelo_grupo_horario() {
         return Modelo_grupo_horario;
     }
 
-    public void setModelo_grupo_horario(ModeloGrupoTurnos Modelo_grupo_horario) {
+    public void setModelo_grupo_horario(ModeloGrupo_horario Modelo_grupo_horario) {
         this.Modelo_grupo_horario = Modelo_grupo_horario;
     }
 
-    public ModeloTurnos getModelo_turno() {
+    public ModeloTurno_tiempo getModelo_turno() {
         return Modelo_turno;
     }
 
-    public void setModelo_turno(ModeloTurnos Modelo_turno) {
+    public void setModelo_turno(ModeloTurno_tiempo Modelo_turno) {
         this.Modelo_turno = Modelo_turno;
     }
 

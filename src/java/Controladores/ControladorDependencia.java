@@ -77,7 +77,7 @@ public class ControladorDependencia {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "dependencia", user, i, "Se inserto el registro.", "", "");
                         }
                     }
                     resultado = "1";
@@ -257,35 +257,43 @@ public class ControladorDependencia {
             LinkedList<ModeloDependencia> listmoDependencias;
             listmoDependencias = Read(estado);
             response.setContentType("text/html;charset=UTF-8");
-
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloDependencia modeloDependencia : listmoDependencias) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloDependencia modeloDependencia : listmoDependencias) {
+                    out += "<option value=\"" + modeloDependencia.getId() + "\"> " + modeloDependencia.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloDependencia.getCodigo() + "</td>";
-                out += "<td>" + modeloDependencia.getNombre() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloDependencia.getId() + "\"";
-                out += "data-codigo=\"" + modeloDependencia.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloDependencia.getNombre() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloDependencia.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Opcion</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloDependencia modeloDependencia : listmoDependencias) {
+                    out += "<tr>";
+                    out += "<td>" + modeloDependencia.getCodigo() + "</td>";
+                    out += "<td>" + modeloDependencia.getNombre() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloDependencia.getId() + "\"";
+                    out += "data-codigo=\"" + modeloDependencia.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloDependencia.getNombre() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloDependencia.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }

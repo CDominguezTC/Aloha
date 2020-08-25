@@ -282,8 +282,8 @@ $(function()
                 {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Guardado',
-                        text: 'Registro Guardado Satisfactoriamente.'
+                        title: 'Resultado',
+                        text: resul
                     });
                     disableGif();
                     //alert(resul);
@@ -359,8 +359,8 @@ $(function()
                         disableGif();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Eliminado',
-                            text: 'Registro Eliminado Satisfactoriamente.'
+                            title: 'Resultado',
+                            text: resul
                         });
                         //alert(resul);
                         LimpiarCampos();
@@ -388,14 +388,6 @@ $(function()
               }
           });
       });
-
-
-//        else
-//        {
-//            alert("Favor de completar todos los campos");
-//        }
-
-    //});
 
     $("#IdEliminar").click(function(e) {
         if (ValidaCampo() === true)

@@ -53,6 +53,9 @@ public class ControladorAsociacion_grupo_consumo_horario_consumo {
         } else {
             modeloAsociacion_grupo_consumo_horario_consumo.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloAsociacion_grupo_consumo_horario_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "4";
+            }
         }
         return resultado;
     }
@@ -86,7 +89,7 @@ public class ControladorAsociacion_grupo_consumo_horario_consumo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "asociacion_grupo_consumo_horario_consumo", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();
@@ -171,6 +174,9 @@ public class ControladorAsociacion_grupo_consumo_horario_consumo {
             modeloAsociacion_grupo_consumo_horario_consumo.setId(Integer.parseInt(request.getParameter("id")));
             modeloAsociacion_grupo_consumo_horario_consumo.setEstado("N");
             resultado = Update(modeloAsociacion_grupo_consumo_horario_consumo);
+            if ("1".equals(resultado)) {
+                resultado = "2";
+            }
         }
         return resultado;
     }

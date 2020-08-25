@@ -11,6 +11,10 @@ $(function () {
         LoadEmpresas();
         LoadCentroCosto();
         LoadGrupoConsumo();
+        LoadDependencia();
+        LoadArea();
+        LoadGrupoHorario();
+        LoadCiudad();
         validacionBtn();
 
     });
@@ -34,6 +38,170 @@ $(function () {
             {
                 disableGif();
                 $('#IdCargo').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos las Ciudades al select 
+    function LoadCiudad() {
+        var Frm = "CiudadJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdCiudad').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos los Grupo Horario al select 
+    function LoadGrupoHorario() {
+        var Frm = "GrupoHorarioJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdGrupoHorario').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos las Area al select 
+    function LoadArea() {
+        var Frm = "AreasJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdArea').html(resul);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                disableGif();
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+    }
+    // cargamos las Dependencias al select 
+    function LoadDependencia() {
+        var Frm = "DependenciasJSP";
+        var Evento = "Select";
+        var Accion = "Read";
+        var data = {
+            frm: Frm,
+            evento: Evento,
+            accion: Accion
+        };
+        enableGif();
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR)
+            {
+                disableGif();
+                $('#IdDependencia').html(resul);
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 disableGif();
@@ -185,7 +353,7 @@ $(function () {
             var Frm = "PersonasJSP";
             var Cedula = $('#IdCedula').val();
             var Accion = "Search";
-            var Modulo = "Casino";
+            var Modulo = "Tiempos";
             var data = {
                 frm: Frm,
                 cedula: Cedula,
@@ -206,6 +374,12 @@ $(function () {
                         $('#IdCedula').val(resul.identificacion);
                         $('#IdNombre').val(resul.nombres);
                         $('#IdApellido').val(resul.apellidos);
+                        $('#IdCodigo').val(resul.codigo_nomina);
+                        $('#IdCargo').val(resul.Modelo_cargo.id);
+                        $('#IdDependencia').val(resul.Modelo_dependencia.id);
+                        $('#IdArea').val(resul.Modelo_area.id);
+                        $('#IdGrupoHorario').val(resul.Modelo_grupo_horario.id);
+                        $('#IdCiudad').val(resul.Modelo_ciudad.id);
                         $('#IdEmpresa').val(resul.Modelo_empresa_trabaja.id);
                         $('#IdCentroCosto').val(resul.Modelo_centro_costo.id);
                         $('#IdConsume').val(resul.consumo_casino);
@@ -270,7 +444,7 @@ $(function () {
                                     $('#IdFirmaBase64').val(imagen.imagen);
                                 }
                             }
-                        }
+                        } 
                         //Template
                         var idtemplates;
                         var templat10;
@@ -303,10 +477,14 @@ $(function () {
                         $('#Id').val('');
                         $('#IdNombre').val('');
                         $('#IdApellido').val('');
+                        $('#IdCodigo').val('');
+                        $('#IdCargo').val('0');
+                        $('#IdDependencia').val('0');
+                        $('#IdArea').val('0');
+                        $('#IdGrupoHorario').val('0');
+                        $('#IdCiudad').val('0');
                         $('#IdEmpresa').val('0');
                         $('#IdCentroCosto').val('0');
-                        $('#IdConsume').val('0');
-                        $('#IdGrupoConsumo').val('0');
                         $('#IdHuella_0').val('');
                         $('#IdHuella_1').val('');
                         $('#IdHuella_2').val('');
@@ -323,7 +501,7 @@ $(function () {
                         var img = document.createElement('img');
                         img.src = "Principal/images/user.png";
                         document.getElementById("IdImagen").src = img.src;
-
+                        document.getElementById("IdNombre").focus();
                     }
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
@@ -359,16 +537,14 @@ $(function () {
         $('#IdNombre').val($(this).data('nombre'));
         $('#IdApellidoOld').val($(this).data('apellido'));
         $('#IdApellido').val($(this).data('apellido'));
-        $('#IdEmpresaOld').val($(this).data('empresa'));
-        $('#IdEmpresa').val($(this).data('empresa'));
+        $('#IdCodigo').val($(this).data('codigonomina'));
         $('#IdCargo').val($(this).data('cargo'));
-        $('#IdCentroCostoOld').val($(this).data('centrocosto'));
+        $('#IdEmpresa').val($(this).data('empresa'));
+        $('#IdDependencia').val($(this).data('dependencia'));
         $('#IdCentroCosto').val($(this).data('centrocosto'));
-        $('#IdConsumeOld').val($(this).data('consume'));
-        $('#IdConsume').val($(this).data('consume'));
-        $('#IdGrupoConsumoOld').val($(this).data('grupoconsumo'));
-        $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
-        $('#IdObservacionOld').val($(this).data('observacion'));
+        $('#IdArea').val($(this).data('area'));
+        $('#IdGrupoHorario').val($(this).data('grupohorario'));
+        $('#IdCiudad').val($(this).data('ciudad'));
         $('#IdObservacion').val($(this).data('observacion'));
         //Cargamos las Imagenes (Huellas, Foto y firma) y Templates de las personas selecionada
         LoadImagenes($(this).data('id'));
@@ -850,25 +1026,19 @@ $(function () {
     function  LimpiarCampos() {
         $('#Id').val('');
         $('#IdTipoDoc').val(0);
-        $('#IdTipoDocOld').val('');
         $('#IdCedula').val('');
-        $('#IdCedulaOld').val('');
         $('#IdNombre').val('');
-        $('#IdNombreOld').val('');
+        $('#IdCodigo').val('');
         $('#IdApellido').val('');
-        $('#IdApellidoOld').val('');
         $('#IdEmpresa').val(0);
-        $('#IdEmpresaOld').val('');
         $('#IdCargo').val(0);
-        $('#IdCargoOld').val('');
+        $('#IdDependencia').val(0);
         $('#IdCentroCosto').val(0);
-        $('#IdCentroCostoOld').val('');
-        $('#IdConsume').val(0);
-        $('#IdConsumeOld').val('');
-        $('#IdGrupoConsumo').val(0);
-        $('#IdGrupoConsumoOld').val('');
+        $('#IdArea').val(0);
+        $('#IdGrupoHorario').val(0);
+        $('#IdCiudad').val(0);
         $('#IdObservacion').val('');
-        $('#IdObservacionOld').val('');
+
 
         $('#IdHuella_0').val('');
         $('#IdHuella_1').val('');
@@ -904,11 +1074,14 @@ $(function () {
             var Cedula = $('#IdCedula').val();
             var Nombre = $('#IdNombre').val();
             var Apellido = $('#IdApellido').val();
-            var Empresa = $('#IdEmpresa').val();
+            var Codigo = $('#IdCodigo').val();
             var Cargo = $('#IdCargo').val();
+            var Empresa = $('#IdEmpresa').val();
+            var Dependencia = $('#IdDependencia').val();
             var CentroCosto = $('#IdCentroCosto').val();
-            var Consumo = $('#IdConsume').val();
-            var GrupoConsumo = $('#IdGrupoConsumo').val();
+            var Area = $('#IdArea').val();
+            var GrupoHorario = $('#IdGrupoHorario').val();
+            var Ciudad = $('#IdCiudad').val();
             var Observacion = $('#IdObservacion').val();
             //Datos multimedia
             var Huella_0 = $('#IdHuella_0').val();
@@ -927,7 +1100,7 @@ $(function () {
             var Firma = $('#IdFirmaBase64').val();
             var Tipo_Persona = "EMPLEADO";
             var Accion = "Upload";
-            var Modulo = "Casino";
+            var Modulo = "Tiempos";
             var data = {
                 frm: Frm,
                 id: Id,
@@ -936,10 +1109,13 @@ $(function () {
                 nombre: Nombre,
                 apellido: Apellido,
                 empresa: Empresa,
+                dependencia: Dependencia,
                 cargo: Cargo,
                 centrocosto: CentroCosto,
-                consumo: Consumo,
-                grupoconsumo: GrupoConsumo,
+                codigo: Codigo,
+                area: Area,
+                ciudad: Ciudad,
+                grupohorario: GrupoHorario,
                 observacion: Observacion,
                 huella0: Huella_0,
                 huella1: Huella_1,
@@ -969,8 +1145,8 @@ $(function () {
 
                     Swal.fire({
                         icon: 'success',
-                        title: 'Resultado',
-                        text: resul
+                        title: 'Guardado',
+                        text: 'Registro Guardado Satisfactoriamente.'
                     });
                     if (Id != "") {
                         //console.log("Ingreso a id no null " + Id + "!");
@@ -1011,115 +1187,115 @@ $(function () {
         }
     });
 
-    $('#IdIniServicio').click(function (e) {
-        var Frm = "CargosJSP";
-        var Id = $('#Id').val();
-        var IdHoteleria = $('#IdHoteleria').val();
-        var IdAdicional = $('#IdAdicional').val();
-        var ConsumoHoteleria = $('#IdConsumeHoteleria').val();
-        var ValorHoteleria = $('#IdValorHoteleria').val();
-        var ConsumoAdicional = $('#IdConsumeAdicional').val();
-        var ValorAdicional = $('#IdValorAdicional').val();
-        var Accion = "IniServicio";
-        var data = {
-            frm: Frm,
-            id: Id,
-            idhoteleria: IdHoteleria,
-            idadicional: IdAdicional,
-            consumohoteleria: ConsumoHoteleria,
-            valorhoteleria: ValorHoteleria,
-            consumoadicional: ConsumoAdicional,
-            valoradicional: ValorAdicional,
-            accion: Accion
-        };
-        enableGif();
-        $.ajax({
-            type: "POST",
-            url: "ServletAlohaTiempos",
-            data: data,
-            success: function (resul, textStatus, jqXHR)
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Guardado',
-                    text: resul
-                });
-                disableGif();
-                //alert(resul);
-                LimpiarCampos();
-                LoadTabla();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                disableGif();
-                if (jqXHR.status === 0) {
-                    alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                    alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                    alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                    alert('Ajax request aborted.');
-                } else {
-                    alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-            }
-        });
-    });
-
-    $('#IdFinServicio').click(function (e) {
-        var Frm = "CargosJSP";
-        var Id = $('#Id').val();
-        var IdHoteleria = $('#IdHoteleria').val();
-        var IdAdicional = $('#IdAdicional').val();
-        var Accion = "FinServicio";
-        var data = {
-            frm: Frm,
-            id: Id,
-            idhoteleria: IdHoteleria,
-            idadicional: IdAdicional,
-            accion: Accion
-        };
-        enableGif();
-        $.ajax({
-            type: "POST",
-            url: "ServletAlohaTiempos",
-            data: data,
-            success: function (resul, textStatus, jqXHR)
-            {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Guardado',
-                    text: resul
-                });
-                disableGif();
-                //alert(resul);
-                LimpiarCampos();
-                LoadTabla();
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                disableGif();
-                if (jqXHR.status === 0) {
-                    alert('Not connect: Verify Network.');
-                } else if (jqXHR.status === 404) {
-                    alert('Requested page not found [404]');
-                } else if (jqXHR.status === 500) {
-                    alert('Internal Server Error [500].');
-                } else if (textStatus === 'parsererror') {
-                    alert('Requested JSON parse failed.');
-                } else if (textStatus === 'timeout') {
-                    alert('Time out error.');
-                } else if (textStatus === 'abort') {
-                    alert('Ajax request aborted.');
-                } else {
-                    alert('Uncaught Error: ' + jqXHR.responseText);
-                }
-            }
-        });
-    });
+//    $('#IdIniServicio').click(function (e) {
+//        var Frm = "CargosJSP";
+//        var Id = $('#Id').val();
+//        var IdHoteleria = $('#IdHoteleria').val();
+//        var IdAdicional = $('#IdAdicional').val();
+//        var ConsumoHoteleria = $('#IdConsumeHoteleria').val();
+//        var ValorHoteleria = $('#IdValorHoteleria').val();
+//        var ConsumoAdicional = $('#IdConsumeAdicional').val();
+//        var ValorAdicional = $('#IdValorAdicional').val();
+//        var Accion = "IniServicio";
+//        var data = {
+//            frm: Frm,
+//            id: Id,
+//            idhoteleria: IdHoteleria,
+//            idadicional: IdAdicional,
+//            consumohoteleria: ConsumoHoteleria,
+//            valorhoteleria: ValorHoteleria,
+//            consumoadicional: ConsumoAdicional,
+//            valoradicional: ValorAdicional,
+//            accion: Accion
+//        };
+//        enableGif();
+//        $.ajax({
+//            type: "POST",
+//            url: "ServletAlohaTiempos",
+//            data: data,
+//            success: function (resul, textStatus, jqXHR)
+//            {
+//                Swal.fire({
+//                    icon: 'success',
+//                    title: 'Guardado',
+//                    text: resul
+//                });
+//                disableGif();
+//                //alert(resul);
+//                LimpiarCampos();
+//                LoadTabla();
+//            },
+//            error: function (jqXHR, textStatus, errorThrown) {
+//                disableGif();
+//                if (jqXHR.status === 0) {
+//                    alert('Not connect: Verify Network.');
+//                } else if (jqXHR.status === 404) {
+//                    alert('Requested page not found [404]');
+//                } else if (jqXHR.status === 500) {
+//                    alert('Internal Server Error [500].');
+//                } else if (textStatus === 'parsererror') {
+//                    alert('Requested JSON parse failed.');
+//                } else if (textStatus === 'timeout') {
+//                    alert('Time out error.');
+//                } else if (textStatus === 'abort') {
+//                    alert('Ajax request aborted.');
+//                } else {
+//                    alert('Uncaught Error: ' + jqXHR.responseText);
+//                }
+//            }
+//        });
+//    });
+//
+//    $('#IdFinServicio').click(function (e) {
+//        var Frm = "CargosJSP";
+//        var Id = $('#Id').val();
+//        var IdHoteleria = $('#IdHoteleria').val();
+//        var IdAdicional = $('#IdAdicional').val();
+//        var Accion = "FinServicio";
+//        var data = {
+//            frm: Frm,
+//            id: Id,
+//            idhoteleria: IdHoteleria,
+//            idadicional: IdAdicional,
+//            accion: Accion
+//        };
+//        enableGif();
+//        $.ajax({
+//            type: "POST",
+//            url: "ServletAlohaTiempos",
+//            data: data,
+//            success: function (resul, textStatus, jqXHR)
+//            {
+//                Swal.fire({
+//                    icon: 'success',
+//                    title: 'Guardado',
+//                    text: resul
+//                });
+//                disableGif();
+//                //alert(resul);
+//                LimpiarCampos();
+//                LoadTabla();
+//            },
+//            error: function (jqXHR, textStatus, errorThrown) {
+//                disableGif();
+//                if (jqXHR.status === 0) {
+//                    alert('Not connect: Verify Network.');
+//                } else if (jqXHR.status === 404) {
+//                    alert('Requested page not found [404]');
+//                } else if (jqXHR.status === 500) {
+//                    alert('Internal Server Error [500].');
+//                } else if (textStatus === 'parsererror') {
+//                    alert('Requested JSON parse failed.');
+//                } else if (textStatus === 'timeout') {
+//                    alert('Time out error.');
+//                } else if (textStatus === 'abort') {
+//                    alert('Ajax request aborted.');
+//                } else {
+//                    alert('Uncaught Error: ' + jqXHR.responseText);
+//                }
+//            }
+//        });
+//    });
 
     $(document).on('click', '.SetEliminar', function () {
 
@@ -1153,7 +1329,7 @@ $(function () {
                         disableGif();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Resultado',
+                            title: 'Eliminado',
                             text: resul
                         });
                         auditoriaReg("eliminar");
@@ -1335,7 +1511,7 @@ $(function () {
                     disableGif();
                     Swal.fire({
                         icon: 'success',
-                        title: 'Resultado',
+                        title: 'Eliminado',
                         text: resul
                     });
                     //alert(resul);
@@ -1376,7 +1552,7 @@ $(function () {
 
         var Frm = "PersonasJSP";
         var Accion = "Read";
-        var Modulo = "Casino";
+        var Modulo = "Tiempos";
         var data = {
             frm: Frm,
             modulo: Modulo,

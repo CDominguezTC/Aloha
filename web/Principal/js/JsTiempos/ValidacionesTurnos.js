@@ -334,6 +334,10 @@ $(function ()
         $('#IdDescuentoBreack').prop("checked", false);
     }
 
+    $('#IdCancelar').click(function (e)
+    {
+        LimpiarCampos();
+    });
     $('#IdAgregar').click(function (e)
     {
         LimpiarCampos();
@@ -395,8 +399,8 @@ $(function ()
                 {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Guardado',
-                        text: 'Registro Guardado Satisfactoriamente.'
+                        title: 'Resultado',
+                        text: resul
                     });
                     disableGif();
                     //alert(resul);
@@ -430,7 +434,6 @@ $(function ()
                 title: 'Error',
                 text: 'Verifica todos los campos.'
             });
-            //alert("Favor de completar todos los campos");
         }
     });
 
@@ -439,14 +442,10 @@ $(function ()
 //        {
         var Frm = "TurnosJSP";
         var Id = $(this).data('id');
-        var Codigo = $(this).data('codigo');
-        var Nombre = $(this).data('nombre');
         var Accion = "Delete";
         var data = {
             frm: Frm,
             id: Id,
-            codigo: Codigo,
-            nombre: Nombre,
             accion: Accion
         };
         Swal.fire({
@@ -470,8 +469,8 @@ $(function ()
                         disableGif();
                         Swal.fire({
                             icon: 'success',
-                            title: 'Eliminado',
-                            text: 'Registro Eliminado Satisfactoriamente.'
+                            title: 'Resultado',
+                            text: resul
                         });
                         //alert(resul);
                         LimpiarCampos();
@@ -499,79 +498,7 @@ $(function ()
             }
         });
     });
-
-
-//        else
-//        {
-//            alert("Favor de completar todos los campos");
-//        }
-
-    //});
-
-    $("#IdEliminar").click(function (e) {
-        if (ValidaCampo() === true)
-        {
-            var Frm = "ComercialJSP";
-            var Id = $('#Id').val();
-            var Codigo = $('#IdCodigo').val();
-            var Nombre = $('#IdNombre').val();
-            var Notas = $('#IdNotas').val();
-            var Accion = "Delete";
-            var data = {
-                frm: Frm,
-                id: Id,
-                codigo: Codigo,
-                nombre: Nombre,
-                notas: Notas,
-                accion: Accion
-            };
-            enableGif();
-            $.ajax({
-                type: "POST",
-                url: "ServletAlohaTiempos",
-                data: data,
-                success: function (resul, textStatus, jqXHR)
-                {
-                    disableGif();
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Eliminado',
-                        text: 'Registro Eliminado Satisfactoriamente.'
-                    });
-                    //alert(resul);
-                    LimpiarCampos();
-                    LoadTabla();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    disableGif();
-                    if (jqXHR.status === 0) {
-                        alert('Not connect: Verify Network.');
-                    } else if (jqXHR.status === 404) {
-                        alert('Requested page not found [404]');
-                    } else if (jqXHR.status === 500) {
-                        alert('Internal Server Error [500].');
-                    } else if (textStatus === 'parsererror') {
-                        alert('Requested JSON parse failed.');
-                    } else if (textStatus === 'timeout') {
-                        alert('Time out error.');
-                    } else if (textStatus === 'abort') {
-                        alert('Ajax request aborted.');
-                    } else {
-                        alert('Uncaught Error: ' + jqXHR.responseText);
-                    }
-                }
-            });
-        } else
-        {
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: 'Verifica todos los campos.'
-            });
-            //alert("Favor de completar todos los campos");
-        }
-    });
-
+    
     function LoadTabla()
     {
         var Frm = "TurnosJSP";

@@ -83,7 +83,7 @@ public class ControladorCentro_costo {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "centro_costo", user, i, "Se inserto el registro.", "", "");
                         }
                     }
                     resultado = "1";

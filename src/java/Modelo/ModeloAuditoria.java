@@ -18,11 +18,13 @@ public class ModeloAuditoria {
     private ModeloUsuario usuario;
     private int registro_modificado;
     private String observacion;
+    private String dato_old;
+    private String dato_new;
 
     public ModeloAuditoria() {
     }
 
-    public ModeloAuditoria(int id, String operacion, String tabla, String fecha, ModeloUsuario usuario, int registro_modificado, String observacion) {
+    public ModeloAuditoria(int id, String operacion, String tabla, String fecha, ModeloUsuario usuario, int registro_modificado, String observacion, String dato_old, String dato_new) {
         this.id = id;
         this.operacion = operacion;
         this.tabla = tabla;
@@ -30,6 +32,8 @@ public class ModeloAuditoria {
         this.usuario = usuario;
         this.registro_modificado = registro_modificado;
         this.observacion = observacion;
+        this.dato_old = dato_old;
+        this.dato_new = dato_new;
     }
 
     /**
@@ -129,5 +133,35 @@ public class ModeloAuditoria {
     public void setObservacion(String observacion) {
         this.observacion = observacion;
     }
+
+    /**
+     * @return the dato_old
+     */
+    public String getDato_old() {
+        return dato_old;
+    }
+
+    /**
+     * @param dato_old the dato_old to set
+     */
+    public void setDato_old(String dato_old) {
+        this.dato_old = dato_old;
+    }
+
+    /**
+     * @return the dato_new
+     */
+    public String getDato_new() {
+        return dato_new;
+    }
+
+    /**
+     * @param dato_new the dato_new to set
+     */
+    public void setDato_new(String dato_new) {
+        this.dato_new = dato_new;
+    }
+
+
 
 }

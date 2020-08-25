@@ -35,7 +35,10 @@ $(function () {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Alerta',
-                        text: 'No tiene permisos para abrir el modulo de ' + modu.replace('.jsp', '')
+                        text: 'No tiene permisos para abrir el modulo de ' + modu.replace('.jsp', ''),
+                        onClose: () => {
+                          location.href = "Dashboard.jsp";
+                        },
                     });
                     //location.href = "index.jsp";
                 }
@@ -62,18 +65,24 @@ $(function () {
         });
     }
 
+     //LogErrores
+    $('#idlog').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("LogErrores.Abrir", "LogErrores.jsp");
+    });
+
      //Roles
     $('#idroles').click(function (e) {
         //alert("HolaEmpresa");
         validoPermiso("Roles.Abrir", "Roles.jsp");
     });
-    
+
         //Registrar Visita----------------------------------
     $('#idregisvisita').click(function (e) {
         //alert("HolaEmpresa");
         validoPermiso("RegistrarVisita.Abrir", "RegistrarVisita.jsp");
     });
-    
+
      //Enumeracion
     $('#idenumeracion').click(function (e) {
         //alert("HolaEmpresa");
@@ -85,18 +94,18 @@ $(function () {
         //alert("HolaEmpresa");
         validoPermiso("Agrupacion_Vencimiento.Abrir", "Agrupacion_Vencimiento.jsp");
     });
-    
+
     $('#idparametrotabla').click(function (e) {
         //alert("HolaEmpresa");
         validoPermiso("ParametroTabla.Abrir", "ParametroTabla.jsp");
     });
-        
+
     //Agrupacion Vencimientos--------------------------------------
     $('#idvencimiento').click(function (e) {
         //alert("HolaEmpresa");
         validoPermiso("Vencimiento.Abrir", "Vencimiento.jsp");
     });
-    
+
     $('#idempre').click(function (e) {
 
         //alert("HolaEmpresa");
@@ -109,6 +118,10 @@ $(function () {
         //alert("HolaEmpresa");
         validoPermiso("Auditoria.Abrir", "Auditoria.jsp");
 
+    });
+    $('#idareas').click(function (e) {
+        //alert("HolaEmpresa");
+        validoPermiso("Areas.Abrir", "Areas.jsp");
     });
 
     $('#idusers').click(function (e) {
@@ -200,7 +213,7 @@ $(function () {
     $('#idcarhot').click(function (e) {
         validoPermiso("CargosHoteleria.Abrir", "CargosHoteleria.jsp");
     });
-    
+
     //Jsp Liquidacion Hoteleria
     $('#liqhote').click(function (e) {
         validoPermiso("LiquidacionHoteleria.Abrir", "LiquidacionHoteleria.jsp");
@@ -217,10 +230,10 @@ $(function () {
     });
 
     //Jsp Grupo Turnos
-    $('#idgrupoturnos').click(function (e) {
-        validoPermiso("GrupoTurnos.Abrir", "GrupoTurnos.jsp");
+    $('#idgrupohorario').click(function (e) {
+        validoPermiso("GrupoHorario.Abrir", "GrupoHorario.jsp");
     });
-    
+
     //Jsp Turnos
     $('#idturnos').click(function (e) {
         validoPermiso("Turnos.Abrir", "Turnos.jsp");
@@ -235,7 +248,7 @@ $(function () {
     $('#idfunciones').click(function (e) {
         validoPermiso("Funciones.Abrir", "Funciones.jsp");
     });
-    
+
     //Jsp Personas Tiempos
     $('#idpersonastiempos').click(function (e) {
         validoPermiso("PersonasTiempos.Abrir", "PersonasTiempos.jsp");
@@ -250,8 +263,8 @@ $(function () {
     $('#idcargostiempos').click(function (e) {
         validoPermiso("Cargos.Abrir", "Cargos.jsp");
     });
-    
-    //Jsp Autoriza Consumos 
+
+    //Jsp Autoriza Consumos
     $('#idautorizaconsumo').click(function (e) {
         validoPermiso("AutorizaConsumos.Abrir", "AutorizaConsumos.jsp");
     });
@@ -352,7 +365,7 @@ $(function () {
         editoNomU();
 
         /*function editoBot() {
-         
+
          var botonEnviar = document.getElementById("idsave");
          botonEnviar.disabled === true;
          }*/
@@ -430,7 +443,10 @@ $(function () {
                     Swal.fire({
                         icon: 'warning',
                         title: 'Alerta',
-                        text: 'Por favor inicie sesion primero.'
+                        text: 'Por favor inicie sesion primero.',
+                        onClose: () => {
+                          location.href = "index.jsp";
+                        },
                     }).then((result) => {
                         if (result.value) {
                             location.href = "index.jsp";
@@ -475,7 +491,10 @@ $(function () {
                                 Swal.fire({
                                     icon: 'warning',
                                     title: 'Alerta',
-                                    text: 'No tiene permisos para abrir el modulo de ' + page.replace('.jsp', '')
+                                    text: 'No tiene permisos para abrir el modulo de ' + page.replace('.jsp', ''),
+                                    onClose: () => {
+                                      location.href = "Dashboard.jsp";
+                                    },
                                 }).then((result) => {
                                     if (result.value) {
                                         location.href = "Dashboard.jsp";

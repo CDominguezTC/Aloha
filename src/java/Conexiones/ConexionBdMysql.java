@@ -80,7 +80,7 @@ public class ConexionBdMysql {
                 }
             }
         } catch (Exception e) {
-            //Tools.LogSQL((SQLException) e);
+            System.out.println("Conexiones.ConexionBdMysql.abrirConexion() " + e);
         }
         return con;
     }

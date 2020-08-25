@@ -11,23 +11,20 @@ import java.sql.Time;
  *
  * @author Carlos A Dominguez D
  */
-public class ModeloTurnos {
+public class ModeloTurno_tiempo {
 
-    int id;
+    Integer id;
     String codigo;
     String descripcion;
     String tipo_turno;
     String hora_inicio;
     String hora_fin;
-    String descuentaBreak;
-    String hora_inicioBreak;
-    String hora_finBreak;
     String teorico;
     String tolerancia_despues_entrada;
     String tolerancia_antes_salir;
-    String tiempo_breack;
+    String tiempo_break;
     String limite_turno;
-    String gener_extras_entrada;
+    String genera_extras_entrada;
     String tiempo_minimo_entrada;
     String tiempo_maximo_entrada;
     String genera_extras_salida;
@@ -44,28 +41,28 @@ public class ModeloTurnos {
     String hora_inicio_diurno;
     String hora_inicio_nocturno;
     String turno_noche;
+    String hora_inicio_break;
+    String hora_fin_break;
+    String descuenta_break;
     String turno_extra;
     String estado;
 
-    public ModeloTurnos() {
+    public ModeloTurno_tiempo() {
     }
 
-    public ModeloTurnos(int id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String descuentaBreak, String hora_inicioBreak, String hora_finBreak, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_breack, String limite_turno, String gener_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche, String turno_extra, String estado) {
+    public ModeloTurno_tiempo(Integer id, String codigo, String descripcion, String tipo_turno, String hora_inicio, String hora_fin, String teorico, String tolerancia_despues_entrada, String tolerancia_antes_salir, String tiempo_break, String limite_turno, String genera_extras_entrada, String tiempo_minimo_entrada, String tiempo_maximo_entrada, String genera_extras_salida, String tiempo_minimo_salida, String tiempo_maximo_salida, String redondeo_entrada, String sentido_entrada, String redondeo_salida, String sentido_salida, String descanso, String sentido_descanso, String conceptos, String sentido_concepto, String hora_inicio_diurno, String hora_inicio_nocturno, String turno_noche, String hora_inicio_break, String hora_fin_break, String descuenta_break, String turno_extra, String estado) {
         this.id = id;
         this.codigo = codigo;
         this.descripcion = descripcion;
         this.tipo_turno = tipo_turno;
         this.hora_inicio = hora_inicio;
         this.hora_fin = hora_fin;
-        this.descuentaBreak = descuentaBreak;
-        this.hora_inicioBreak = hora_inicioBreak;
-        this.hora_finBreak = hora_finBreak;
         this.teorico = teorico;
         this.tolerancia_despues_entrada = tolerancia_despues_entrada;
         this.tolerancia_antes_salir = tolerancia_antes_salir;
-        this.tiempo_breack = tiempo_breack;
+        this.tiempo_break = tiempo_break;
         this.limite_turno = limite_turno;
-        this.gener_extras_entrada = gener_extras_entrada;
+        this.genera_extras_entrada = genera_extras_entrada;
         this.tiempo_minimo_entrada = tiempo_minimo_entrada;
         this.tiempo_maximo_entrada = tiempo_maximo_entrada;
         this.genera_extras_salida = genera_extras_salida;
@@ -82,15 +79,18 @@ public class ModeloTurnos {
         this.hora_inicio_diurno = hora_inicio_diurno;
         this.hora_inicio_nocturno = hora_inicio_nocturno;
         this.turno_noche = turno_noche;
+        this.hora_inicio_break = hora_inicio_break;
+        this.hora_fin_break = hora_fin_break;
+        this.descuenta_break = descuenta_break;
         this.turno_extra = turno_extra;
         this.estado = estado;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -134,30 +134,6 @@ public class ModeloTurnos {
         this.hora_fin = hora_fin;
     }
 
-    public String getDescuentaBreak() {
-        return descuentaBreak;
-    }
-
-    public void setDescuentaBreak(String descuentaBreak) {
-        this.descuentaBreak = descuentaBreak;
-    }
-
-    public String getHora_inicioBreak() {
-        return hora_inicioBreak;
-    }
-
-    public void setHora_inicioBreak(String hora_inicioBreak) {
-        this.hora_inicioBreak = hora_inicioBreak;
-    }
-
-    public String getHora_finBreak() {
-        return hora_finBreak;
-    }
-
-    public void setHora_finBreak(String hora_finBreak) {
-        this.hora_finBreak = hora_finBreak;
-    }
-
     public String getTeorico() {
         return teorico;
     }
@@ -182,12 +158,12 @@ public class ModeloTurnos {
         this.tolerancia_antes_salir = tolerancia_antes_salir;
     }
 
-    public String getTiempo_breack() {
-        return tiempo_breack;
+    public String getTiempo_break() {
+        return tiempo_break;
     }
 
-    public void setTiempo_breack(String tiempo_breack) {
-        this.tiempo_breack = tiempo_breack;
+    public void setTiempo_break(String tiempo_break) {
+        this.tiempo_break = tiempo_break;
     }
 
     public String getLimite_turno() {
@@ -198,12 +174,12 @@ public class ModeloTurnos {
         this.limite_turno = limite_turno;
     }
 
-    public String getGener_extras_entrada() {
-        return gener_extras_entrada;
+    public String getGenera_extras_entrada() {
+        return genera_extras_entrada;
     }
 
-    public void setGener_extras_entrada(String gener_extras_entrada) {
-        this.gener_extras_entrada = gener_extras_entrada;
+    public void setGenera_extras_entrada(String genera_extras_entrada) {
+        this.genera_extras_entrada = genera_extras_entrada;
     }
 
     public String getTiempo_minimo_entrada() {
@@ -334,6 +310,30 @@ public class ModeloTurnos {
         this.turno_noche = turno_noche;
     }
 
+    public String getHora_inicio_break() {
+        return hora_inicio_break;
+    }
+
+    public void setHora_inicio_break(String hora_inicio_break) {
+        this.hora_inicio_break = hora_inicio_break;
+    }
+
+    public String getHora_fin_break() {
+        return hora_fin_break;
+    }
+
+    public void setHora_fin_break(String hora_fin_break) {
+        this.hora_fin_break = hora_fin_break;
+    }
+
+    public String getDescuenta_break() {
+        return descuenta_break;
+    }
+
+    public void setDescuenta_break(String descuenta_break) {
+        this.descuenta_break = descuenta_break;
+    }
+
     public String getTurno_extra() {
         return turno_extra;
     }
@@ -341,13 +341,12 @@ public class ModeloTurnos {
     public void setTurno_extra(String turno_extra) {
         this.turno_extra = turno_extra;
     }
-        
+
     public String getEstado() {
         return estado;
     }
 
     public void setEstado(String estado) {
         this.estado = estado;
-    }
-
+    }   
 }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Auditoria
-    Created on : 22/04/2020, 09:21:01 AM
+    Document   : LogErrores
+    Created on : 3/08/2020, 05:31:27 PM
     Author     : Frankie
 --%>
 
@@ -10,7 +10,7 @@
     <head>        
         <%@include file="Principal/Head.html" %>          
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
-        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesAuditoria.js" ></script> 
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLogErrores.js" ></script> 
         <style>
           #IdVer{
             display: block;
@@ -25,7 +25,7 @@
             <div class="">
                 <div class="page-title">
                     <div class="title_left">
-                        <h3>Auditoria</h3>
+                        <h3>LogErrores</h3>
                     </div>
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search"> 
@@ -65,23 +65,8 @@
                                         <div class="row">
                                             <input type="hidden" id="Id" name="Id">
 
-                                            <div class="col-md-8 col-sm-12 col-xs-12 form-group">
-                                                <label for="Usuario">Usuario</label>
-                                                <select id="IdUsuariosA" class="form-control" required>
-                                                    <option value="" disabled selected>Seleccione</option>
-                                                    <option value="1">JULIAN A. ARISTIZABAL</option>
-                                                </select>
-                                            </div>
-
-                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                                                <label for="Auditoria" style="visibility:hidden">Auditoria</label>
-                                                <button class="btn btn-primary btn-md" type="button" id="IdVer" name="Ver">Ver</button>
-                                            </div>  
-
-                                            <br/>
-                                            
-                                             <div class='col-md-6 col-sm-6 col-xs-12'>
-                                                <label for="FechaInicio">Fecha Inicio</label>
+                                            <div class='col-md-4 col-sm-4 col-xs-12'>
+                                                <label for="FechaInicio">Inicio</label>
                                                 <div class="form-group">
                                                     <div class='input-group date' id='myDatepicker2'>
                                                         <input type="text" class="form-control" id="IdFechaInicio" name="FechaInicio"/>
@@ -91,8 +76,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class='col-md-6 col-sm-6 col-xs-12'>
-                                                <label for="FechaFin">Fecha Fin</label>
+                                            <div class='col-md-4 col-sm-4 col-xs-12'>
+                                                <label for="FechaFin">Fin</label>
                                                 <div class="form-group">
                                                     <div class='input-group date' id='myDatepicker3'>
                                                         <input type='text' class="form-control" id="IdFechaFin" name="FechaFin"/>
@@ -103,6 +88,12 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                <label for="LogErrores" style="visibility:hidden">LogErrores</label>
+                                                <button class="btn btn-primary btn-md" type="button" id="IdVer" name="Ver">Ver</button>
+                                            </div>  
+
+                                            <br/>
 
                                         </div>
                                         <!-- Formulario Configuración -->      
@@ -154,31 +145,21 @@
                                     </div>
                                     <div class="x_content">
                                         <!-- Tabla -->
-                                        <table id="datatableAu" class="table table-striped table-bordered">
+                                        <table id="datatableLogError" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
                                             <thead>
                                                 <tr>
                                                     <!--th>Id</th-->
-                                                    <th>Operacion</th>
-                                                    <th>Tabla</th>
-                                                    <th>Fecha</th>
                                                     <th>Usuario</th>
-                                                    <th>Registro Modificado</th>
-                                                    <th>Observacion</th>
-                                                    <th>Dato Anterior</th>
-                                                    <th>Dato Nuevo</th>
+                                                    <th>Fecha</th>
+                                                    <th>Error</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <!--td></td-->                                     
-                                                    <td></td>                                     
-                                                    <td></td> 
-                                                    <td></td>
-                                                    <td></td>                                     
+                                                    <td></td>                                      
                                                     <td></td> 
                                                     <td></td> 
-                                                    <td></td> 
-                                                    <td></td>
                                                     <!--td class="text-center">
                                                         <button class="SetFormulario btn btn-warning btn-md" 
                                                                 data-id=""
@@ -220,15 +201,18 @@
 
         $('#myDatepicker2').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: 'es'
+            locale: 'es',
+            maxDate: new Date()
         });
 
         $('#myDatepicker3').datetimepicker({
             format: 'YYYY-MM-DD',
-            locale: 'es'
+            locale: 'es',
+            maxDate: new Date()
         });
          
         </script>        
     </body>
 </html>
+
 

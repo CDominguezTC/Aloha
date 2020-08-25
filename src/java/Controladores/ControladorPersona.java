@@ -39,7 +39,7 @@ public class ControladorPersona {
     String user;
     ControladorDependencia controladorDependencia = new ControladorDependencia();
     ControladorEmpresa controladorEmpresa = new ControladorEmpresa();
-    ControladorGrupoTurnos controladorGrupo_horario = new ControladorGrupoTurnos();
+    ControladorGrupo_horario controladorGrupo_horario = new ControladorGrupo_horario();
     ControladorTurnos controladorTurno_tiempo = new ControladorTurnos();
     ControladorDepartamento controladorDepartamento = new ControladorDepartamento();
     ControladorArea controladorArea = new ControladorArea();
@@ -67,6 +67,9 @@ public class ControladorPersona {
             case "Casino":
                 resultado = InsertCasino(request, response);
                 break;
+            case "Tiempos":
+                resultado = InsertTiempos(request, response);
+                break;
         }
         return resultado;
     }
@@ -87,6 +90,9 @@ public class ControladorPersona {
             modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
             modeloPersona.setEstado("N");
             resultado = UpdateCasino(modeloPersona);
+            if (resultado == "1") {
+                resultado = "2";                
+            }
         }
         return resultado;
     }
@@ -105,6 +111,9 @@ public class ControladorPersona {
         switch (Modulo) {
             case "Casino":
                 resultado = ReadCasino(request, response);
+                break;
+            case "Tiempos":
+                resultado = ReadTiempos(request, response);
                 break;
         }
         return resultado;
@@ -360,6 +369,7 @@ public class ControladorPersona {
                 String firma = request.getParameter("firma");
                 resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Update");
                 resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Update");
+                resultado = "4";
             }
         }
         return resultado;
@@ -571,9 +581,9 @@ public class ControladorPersona {
                 modelo.setEstado(res.getString("estado"));
                 modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
                 modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
-                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
-                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
-                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.getModelo(herramienta.validaString(res.getString("id_departamento"))));
                 modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
                 modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
                 modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
@@ -670,9 +680,9 @@ public class ControladorPersona {
                 modelo.setEstado(res.getString("estado"));
                 modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
                 modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
-                //modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
-                //modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
-                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+                modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+                modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+                //modelo.setModelo_departamento(controladorDepartamento.getM res.getString("id_departamento"));
                 modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
                 modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
                 modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
@@ -757,7 +767,7 @@ public class ControladorPersona {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "persona", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();
@@ -820,7 +830,7 @@ public class ControladorPersona {
                     SQL.setInt(8, modeloPersona.getModelo_empresa_trabaja().getId());
                     SQL.setInt(9, modeloPersona.getModelo_grupo_consumo().getId());
                     SQL.setInt(10, modeloPersona.getModelo_cargo().getId());
-                    SQL.setInt(11, modeloPersona.getId());                    
+                    SQL.setInt(11, modeloPersona.getId());
                     SQL.setInt(7, modeloPersona.getCantidad_consumo());
                     SQL.setInt(8, modeloPersona.getModelo_centro_costo().getId());
                     SQL.setInt(9, modeloPersona.getModelo_empresa_trabaja().getId());
@@ -846,5 +856,331 @@ public class ControladorPersona {
         }
         return resultado;
 
+    }
+
+    private String ReadTiempos(HttpServletRequest request, HttpServletResponse response) {
+        String out = null;
+        try {
+            LinkedList<ModeloPersona> listaPersonas = new LinkedList<ModeloPersona>();
+            listaPersonas = Read("S");
+            out = "";
+            out += "<thead>";
+            out += "<tr>";
+            out += "<th>Cedula</th>";
+            out += "<th>Nombre</th>";
+            out += "<th>Empresa</th>";
+            out += "<th>CentroCosto</th>";
+            out += "<th>Dependencia</th>";
+            out += "<th>Area</th>";
+            out += "<th>GrupoHorario</th>";
+            out += "<th>Opcion</th>";
+            out += "</tr>";
+            out += "</thead>";
+            out += "<tbody>";
+            for (ModeloPersona modeloPersonas : listaPersonas) {
+                out += "<tr>";
+                out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
+                out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_empresa_trabaja().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_dependencia().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_area().getNombre() + "</td>";
+                out += "<td>" + modeloPersonas.getModelo_grupo_horario().getNombre() + "</td>";
+                out += "<td class=\"text-center\">";
+                // Boton Editar
+                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
+                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                out += "data-codigonomina=\"" + modeloPersonas.getCodigo_nomina() + "\"";
+                out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
+                out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                out += "data-dependencia=\"" + modeloPersonas.getModelo_dependencia().getId() + "\"";
+                out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
+                out += "data-area=\"" + modeloPersonas.getModelo_area().getId() + "\"";
+                out += "data-grupohorario=\"" + modeloPersonas.getModelo_grupo_horario().getId() + "\"";
+                out += "data-ciudad=\"" + modeloPersonas.getModelo_ciudad().getId() + "\"";
+                out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
+                //Campos de Imagenes
+//                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
+//                    for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
+//                        if (modeloImagen.getNumero_imagen() == 0) {
+//                            out += "data-huella_0=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 1) {
+//                            out += "data-huella_1=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 2) {
+//                            out += "data-huella_2=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 3) {
+//                            out += "data-huella_3=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 4) {
+//                            out += "data-huella_4=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 5) {
+//                            out += "data-huella_5=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 6) {
+//                            out += "data-huella_6=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 7) {
+//                            out += "data-huella_7=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 8) {
+//                            out += "data-huella_8=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        if (modeloImagen.getNumero_imagen() == 9) {
+//                            out += "data-huella_9=\"" + modeloImagen.getImagen() + "," + modeloImagen.getNumero_imagen() + "\"";
+//                        }
+//                        //Campos de Imagenes foto
+//                        if (modeloImagen.getNumero_imagen() == 20) {
+//                            out += "data-foto=\"" + modeloImagen.getImagen() + "\"";
+//                        }
+//                        //Campos de Imagenes firma                
+//                        if (modeloImagen.getNumero_imagen() == 30) {
+//                            out += "data-firma=\"" + modeloImagen.getImagen() + "\"";
+//                        }
+//                    }
+//                }
+//                //Campos de templates
+//                String IdTemplates = "";
+//                String Templates_10 = "";
+//                int c = 0;
+//                if (modeloPersonas.getLista_Modelo_Template() != null) {
+//                    for (ModeloTemplate modeloTemplate : modeloPersonas.getLista_Modelo_Template()) {
+//                        if (c == 0) {
+//                            IdTemplates = modeloTemplate.getNumero_plantilla();
+//                            Templates_10 = modeloTemplate.getPlantilla();
+//                            c++;
+//                        } else {
+//                            IdTemplates = IdTemplates + "," + modeloTemplate.getNumero_plantilla();
+//                            Templates_10 = Templates_10 + "," + modeloTemplate.getPlantilla();
+//                            c++;
+//                        }
+//                    }
+//                    IdTemplates = "[" + IdTemplates + "]";
+//                    Templates_10 = "[" + Templates_10 + "]";
+//                }
+//                out += "data-idtemplate=\"[" + IdTemplates + "]\"";
+//                out += "data-template10=\"" + Templates_10 + "\"";
+                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                //Boton Eliminar
+                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
+                out += "</td>";
+                out += "</tr>";
+            }
+            out += "</tbody>";
+        } catch (Exception e) {
+            System.out.println("Error en el proceso de la tabla " + e.getMessage());
+        }
+        return out;
+    }
+
+    private String InsertTiempos(HttpServletRequest request, HttpServletResponse response) {
+        ModeloPersona modeloPersona = new ModeloPersona();
+        modeloPersona.setTipo_identificacion(request.getParameter("tipodoc"));
+        modeloPersona.setIdentificacion(request.getParameter("cedula"));
+        modeloPersona.setNombres(request.getParameter("nombre"));
+        modeloPersona.setApellidos(request.getParameter("apellido"));
+        modeloPersona.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(request.getParameter("empresa"))));
+        modeloPersona.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(request.getParameter("dependencia"))));
+        modeloPersona.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(request.getParameter("cargo"))));
+        modeloPersona.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
+        modeloPersona.setCodigo_nomina(request.getParameter("codigo"));
+        modeloPersona.setModelo_area(controladorArea.getModelo(Integer.parseInt(request.getParameter("area"))));
+        modeloPersona.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(request.getParameter("ciudad"))));
+        modeloPersona.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(request.getParameter("grupohorario"))));
+        modeloPersona.setObservacion(request.getParameter("observacion"));
+        if ("".equals(request.getParameter("id"))) {
+            HttpSession session = request.getSession();
+            user = (String) session.getAttribute("usuario");
+            resultado = InsertTiempos(modeloPersona);
+            if ("1".equals(resultado)) {
+                String[] Huellas = {request.getParameter("huella0"),
+                    request.getParameter("huella1"),
+                    request.getParameter("huella2"),
+                    request.getParameter("huella3"),
+                    request.getParameter("huella4"),
+                    request.getParameter("huella5"),
+                    request.getParameter("huella6"),
+                    request.getParameter("huella7"),
+                    request.getParameter("huella8"),
+                    request.getParameter("huella9")};
+                String IdTemplate = request.getParameter("idtemplates");
+                String Template = request.getParameter("templates10");
+                String Foto = request.getParameter("foto");
+                String firma = request.getParameter("firma");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Insert");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Insert");
+            }
+        } else {
+            modeloPersona.setId(Integer.parseInt(request.getParameter("id")));
+            resultado = UpdateTiempos(modeloPersona);
+            if ("1".equals(resultado)) {
+                String[] Huellas = {request.getParameter("huella0"),
+                    request.getParameter("huella1"),
+                    request.getParameter("huella2"),
+                    request.getParameter("huella3"),
+                    request.getParameter("huella4"),
+                    request.getParameter("huella5"),
+                    request.getParameter("huella6"),
+                    request.getParameter("huella7"),
+                    request.getParameter("huella8"),
+                    request.getParameter("huella9")};
+                String IdTemplate = request.getParameter("idtemplates");
+                String Template = request.getParameter("templates10");
+                String Foto = request.getParameter("foto");
+                String firma = request.getParameter("firma");
+                resultado = controladorImagen.Insert(Huellas, Foto, firma, getModelo(i), "Update");
+                resultado = controladorTemplate.Insert(Template, IdTemplate, getModelo(i), "Update");
+                resultado = "4";
+            }
+        }
+        return resultado;
+    }
+
+    private String UpdateTiempos(ModeloPersona modeloPersona) {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                if ("N".equals(modeloPersona.getEstado())) {
+                    SQL = con.prepareStatement("UPDATE persona SET "
+                            + " estado = ? "
+                            + " WHERE id = ? ");
+                    SQL.setString(1, modeloPersona.getEstado());
+                    SQL.setInt(2, modeloPersona.getId());
+                } else {
+                    SQL = con.prepareStatement("UPDATE `persona` SET "
+                            + "  `tipo_identificacion` = ?, "
+                            + "  `identificacion` = ?, "
+                            + "  `nombres` = ?, "
+                            + "  `apellidos` = ?, "
+                            + "  `direccion` = ?, "
+                            + "  `telefono` = ?, "
+                            + "  `rh` = ?, "
+                            + "  `tipo_persona` = ?, "
+                            + "  `observacion` = ?, "
+                            + "  `codigo_nomina` = ?, "
+                            + "  `estado` = ?, "
+                            + "  `id_empresa_trabaja` = ?, "
+                            + "  `id_dependencia` = ?, "
+                            + "  `id_cargo` = ?, "
+                            + "  `id_centro_costo` = ?, "
+                            + "  `id_area` = ?, "
+                            + "  `id_ciudad` = ?, "
+                            + "  `id_grupo_horario` = ? "
+                            + "WHERE `id` = ?;");
+                    SQL.setString(1, modeloPersona.getTipo_identificacion());
+                    SQL.setString(2, modeloPersona.getIdentificacion());
+                    SQL.setString(3, modeloPersona.getNombres());
+                    SQL.setString(4, modeloPersona.getApellidos());
+                    SQL.setString(5, modeloPersona.getDireccion());
+                    SQL.setString(6, modeloPersona.getTelefono());
+                    SQL.setString(7, modeloPersona.getRh());
+                    SQL.setString(8, "EMPLEADO");
+                    SQL.setString(9, modeloPersona.getObservacion());
+                    SQL.setString(10, modeloPersona.getCodigo_nomina());
+                    SQL.setString(11, "S");
+                    SQL.setInt(12, modeloPersona.getModelo_empresa_trabaja().getId());
+                    SQL.setInt(13, modeloPersona.getModelo_dependencia().getId());
+                    SQL.setInt(14, modeloPersona.getModelo_cargo().getId());
+                    SQL.setInt(15, modeloPersona.getModelo_centro_costo().getId());
+                    SQL.setInt(16, modeloPersona.getModelo_area().getId());
+                    SQL.setInt(17, modeloPersona.getModelo_ciudad().getId());
+                    SQL.setInt(18, modeloPersona.getModelo_grupo_horario().getId());
+                    SQL.setInt(19, modeloPersona.getId());
+                }
+                if (SQL.executeUpdate() > 0) {
+                    i = modeloPersona.getId();
+                    resultado = "1";
+                    SQL.close();
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Controladores.ControladorPersona.UpdateTiempos() " + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Controladores.ControladorPersona.UpdateTiempos() " + e);
+            resultado = "-3";
+        }
+        return resultado;
+    }
+
+    private String InsertTiempos(ModeloPersona modeloPersona) {
+        try {
+            con = conexion.abrirConexion();
+            try {
+                SQL = con.prepareStatement("INSERT INTO `persona`("
+                        + "`tipo_identificacion`, "
+                        + "`identificacion`, "
+                        + "`nombres`, "
+                        + "`apellidos`, " 
+                        + "`email`, "
+                        + "`direccion`, "
+                        + "`telefono`, "
+                        + "`rh`, "
+                        + "`tipo_persona`, "
+                        + "`observacion`, "
+                        + "`codigo_nomina`, "
+                        + "`estado`, "
+                        + "`id_empresa_trabaja`, "
+                        + "`id_dependencia`, "
+                        + "`id_cargo`, "
+                        + "`id_centro_costo`, "
+                        + "`id_area`, "
+                        + "`id_ciudad`, "                        
+                        + "`id_grupo_horario`) "
+                        + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
+                SQL.setString(1, modeloPersona.getTipo_identificacion());
+                SQL.setString(2, modeloPersona.getIdentificacion());
+                SQL.setString(3, modeloPersona.getNombres());
+                SQL.setString(4, modeloPersona.getApellidos());
+                SQL.setString(5, modeloPersona.getEmail());                
+                SQL.setString(6, modeloPersona.getDireccion());
+                SQL.setString(7, modeloPersona.getTelefono());
+                SQL.setString(8, modeloPersona.getRh());
+                SQL.setString(9, "EMPLEADO");
+                SQL.setString(10, modeloPersona.getObservacion());
+                SQL.setString(11, modeloPersona.getCodigo_nomina());
+                SQL.setString(12, "S");
+                SQL.setInt(13, modeloPersona.getModelo_empresa_trabaja().getId());
+                SQL.setInt(14, modeloPersona.getModelo_dependencia().getId());
+                SQL.setInt(15, modeloPersona.getModelo_cargo().getId());
+                SQL.setInt(16, modeloPersona.getModelo_centro_costo().getId());
+                SQL.setInt(17, modeloPersona.getModelo_area().getId());
+                SQL.setInt(18, modeloPersona.getModelo_ciudad().getId());
+                SQL.setInt(19, modeloPersona.getModelo_grupo_horario().getId());                
+                if (SQL.executeUpdate() > 0) {
+                    ControladorAuditoria auditoria = new ControladorAuditoria();
+                    try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
+                        if (generatedKeys.next()) {
+                            i = (int) generatedKeys.getLong(1);
+                            auditoria.Insert("insertar", "persona", user, i, "Se inserto el registro.", "", "");
+                        }
+                        resultado = "1";
+                        SQL.close();
+                        con.close();
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println("Controladores.ControladorPersona.InsertTiempos() " + e);
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Controladores.ControladorPersona.InsertTiempos() " + e);
+            resultado = "-3";
+        }
+        return resultado;
     }
 }
