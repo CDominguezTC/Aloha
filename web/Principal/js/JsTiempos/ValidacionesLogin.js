@@ -318,8 +318,8 @@ $(function () {
                             auditoriaReg(namUs);
                         } else {
                             Swal.fire({
-                                icon: 'warning',
-                                title: 'Ocurrio un error al actualizar la contraseña.',
+                                icon: 'Ocurrio un error al',
+                                title: 'Actualizar la contraseña.',
                                 showConfirmButton: false,
                                 timer: 3000
                             })

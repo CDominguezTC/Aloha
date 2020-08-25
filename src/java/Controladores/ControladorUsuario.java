@@ -549,6 +549,11 @@ public class ControladorUsuario {
         ResultSet rs = null;
         con = conexion.abrirConexion();
         Tools tl = new Tools();
+        int idmodificado = 0;
+        idmodificado = Integer.parseInt(id);
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
 
         try {
             String consulta = "UPDATE usuario SET password = ? WHERE id = ?";
@@ -560,6 +565,9 @@ public class ControladorUsuario {
 
             if (SQL.executeUpdate() > 0) {
                 resp = "true";
+                ControladorAuditoria auditoria = new ControladorAuditoria();
+                
+                auditoria.Insert("actualizar", "usuario", user, idmodificado, "Se cambio la contraseña.", "", "");
                 return resp;
             }
 
@@ -590,8 +598,12 @@ public class ControladorUsuario {
 
         String resp = "false";
         ResultSet rs = null;
+        int idmodificado = 0;
         con = conexion.abrirConexion();
         Tools tl = new Tools();
+        if("".equals(user)){
+            user = controladorInicio.user_act;
+        }
 
         try {
             String consulta = "UPDATE usuario SET password = ? WHERE login = ?";
@@ -603,6 +615,9 @@ public class ControladorUsuario {
 
             if (SQL.executeUpdate() > 0) {
                 resp = "true";
+                ControladorAuditoria auditoria = new ControladorAuditoria();
+                idmodificado = idUsuario(logi);
+                auditoria.Insert("actualizar", "usuario", user, idmodificado, "Se cambio la contraseña.", "", "");
                 return resp;
             }
 

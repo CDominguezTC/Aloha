@@ -187,7 +187,7 @@ public class ControladorLog_error {
         if("".equals(user)){
             user = controladorInicio.user_act;
         }
-        
+        //Integer.parseInt(user);
         try {
             PreparedStatement pst;
             con = metodospool.dataSource.getConnection();
