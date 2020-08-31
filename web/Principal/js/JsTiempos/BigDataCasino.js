@@ -31,10 +31,10 @@ $(function () {
             LoadDatosConsumos();
             LoadDatosCentoCosto();
             LoadDatosGrupoConsumo();
-//            setInterval(LoadDatosConsumosSemana,10000);
-//            setInterval(LoadDatosConsumos,10000);
-//            setInterval(LoadDatosCentoCosto,10000);
-//            setInterval(LoadDatosGrupoConsumo,10000);
+//            setInterval(LoadDatosConsumosSemana,10);
+//            setInterval(LoadDatosConsumos,10);
+//            setInterval(LoadDatosCentoCosto,10);
+//            setInterval(LoadDatosGrupoConsumo,10);
         });
 
 
