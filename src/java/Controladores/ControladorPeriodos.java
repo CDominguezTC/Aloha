@@ -87,7 +87,7 @@ public class ControladorPeriodos {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "periodo", user, i, "Se inserto el registro.", "", "");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
                         resultado = "1";
                         SQL.close();
@@ -137,7 +137,7 @@ public class ControladorPeriodos {
                     SQL.setString(2, modeloPeriodo.getNombre());
                     SQL.setString(3, modeloPeriodo.getFecha_inicio());
                     SQL.setString(4, modeloPeriodo.getFecha_fin());
-                    SQL.setString(5, modeloPeriodo.getObservacion());                    
+                    SQL.setString(5, modeloPeriodo.getObservacion());
                     SQL.setInt(6, modeloPeriodo.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
@@ -280,46 +280,54 @@ public class ControladorPeriodos {
             ControladorPeriodos controladorPeriodos = new ControladorPeriodos();
             listmoPeriodos = controladorPeriodos.Read("S");
             response.setContentType("text/html;charset=UTF-8");
-
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Id</th>";
-            out += "<th>Codigo</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Fecha Inicio</th>";
-            out += "<th>Fecha Fin</th>";
-            out += "<th>Observaciones</th>";
-            out += "<th>Opciones</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloPeriodo modeloPeriodos : listmoPeriodos) {
+            String parametro = request.getParameter("evento");
+            if ("Select".equals(parametro)) {
+                out = "";
+                out += "<option value=\"0\" selected>Seleccione</option>";
+                for (ModeloPeriodo modeloPeriodo : listmoPeriodos) {
+                    out += "<option value=\"" + modeloPeriodo.getId() + "\"> " + modeloPeriodo.getNombre() + "</option>";
+                }
+            } else {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloPeriodos.getId() + "</td>";
-                out += "<td>" + modeloPeriodos.getCodigo() + "</td>";
-                out += "<td>" + modeloPeriodos.getNombre() + "</td>";
-                out += "<td>" + modeloPeriodos.getFecha_inicio()+ "</td>";
-                out += "<td>" + modeloPeriodos.getFecha_fin()+ "</td>";
-                out += "<td>" + modeloPeriodos.getObservacion() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
-                out += "data-id=\"" + modeloPeriodos.getId() + "\"";
-                out += "data-codigo=\"" + modeloPeriodos.getCodigo() + "\"";
-                out += "data-nombre=\"" + modeloPeriodos.getNombre() + "\"";
-                out += "data-fechainicio=\"" + modeloPeriodos.getFecha_inicio()+ "\"";
-                out += "data-fechafin=\"" + modeloPeriodos.getFecha_fin() + "\"";
-                out += "data-observacion=\"" + modeloPeriodos.getObservacion() + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPeriodos.getId() + "\"";                
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
-                out += "</td>";
+                out += "<th>Id</th>";
+                out += "<th>Codigo</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Fecha Inicio</th>";
+                out += "<th>Fecha Fin</th>";
+                out += "<th>Observaciones</th>";
+                out += "<th>Opciones</th>";
                 out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloPeriodo modeloPeriodos : listmoPeriodos) {
+                    out += "<tr>";
+                    out += "<td>" + modeloPeriodos.getId() + "</td>";
+                    out += "<td>" + modeloPeriodos.getCodigo() + "</td>";
+                    out += "<td>" + modeloPeriodos.getNombre() + "</td>";
+                    out += "<td>" + modeloPeriodos.getFecha_inicio() + "</td>";
+                    out += "<td>" + modeloPeriodos.getFecha_fin() + "</td>";
+                    out += "<td>" + modeloPeriodos.getObservacion() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"";
+                    out += "data-id=\"" + modeloPeriodos.getId() + "\"";
+                    out += "data-codigo=\"" + modeloPeriodos.getCodigo() + "\"";
+                    out += "data-nombre=\"" + modeloPeriodos.getNombre() + "\"";
+                    out += "data-fechainicio=\"" + modeloPeriodos.getFecha_inicio() + "\"";
+                    out += "data-fechafin=\"" + modeloPeriodos.getFecha_fin() + "\"";
+                    out += "data-observacion=\"" + modeloPeriodos.getObservacion() + "\"";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloPeriodos.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }

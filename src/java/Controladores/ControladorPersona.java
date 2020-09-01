@@ -91,7 +91,7 @@ public class ControladorPersona {
             modeloPersona.setEstado("N");
             resultado = UpdateCasino(modeloPersona);
             if (resultado == "1") {
-                resultado = "2";                
+                resultado = "2";
             }
         }
         return resultado;
@@ -107,7 +107,7 @@ public class ControladorPersona {
      * @version: 07/05/2020
      */
     public String Read(HttpServletRequest request, HttpServletResponse response) {
-        String Modulo = request.getParameter("modulo");
+         String Modulo = request.getParameter("modulo");
         switch (Modulo) {
             case "Casino":
                 resultado = ReadCasino(request, response);
@@ -327,6 +327,7 @@ public class ControladorPersona {
         modeloPersona.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(request.getParameter("empresa"))));
         modeloPersona.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(request.getParameter("cargo"))));
         modeloPersona.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(request.getParameter("grupoconsumo"))));
+        modeloPersona.setCantidad_consumo(Integer.parseInt(herramienta.validaString(request.getParameter("noconsumos"))));
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
             user = (String) session.getAttribute("usuario");
@@ -429,6 +430,7 @@ public class ControladorPersona {
                 out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
                 out += "data-grupoconsumo=\"" + modeloPersonas.getModelo_grupo_consumo().getId() + "\"";
                 out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
+                out += "data-noconsumos=\"" + modeloPersonas.getCantidad_consumo() + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
                 //Campos de Imagenes
 //                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
@@ -767,7 +769,7 @@ public class ControladorPersona {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "persona", user, i, "Se inserto el registro.", "", "");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
                         resultado = "1";
                         SQL.close();
@@ -863,47 +865,84 @@ public class ControladorPersona {
         try {
             LinkedList<ModeloPersona> listaPersonas = new LinkedList<ModeloPersona>();
             listaPersonas = Read("S");
-            out = "";
-            out += "<thead>";
-            out += "<tr>";
-            out += "<th>Cedula</th>";
-            out += "<th>Nombre</th>";
-            out += "<th>Empresa</th>";
-            out += "<th>CentroCosto</th>";
-            out += "<th>Dependencia</th>";
-            out += "<th>Area</th>";
-            out += "<th>GrupoHorario</th>";
-            out += "<th>Opcion</th>";
-            out += "</tr>";
-            out += "</thead>";
-            out += "<tbody>";
-            for (ModeloPersona modeloPersonas : listaPersonas) {
+            response.setContentType("text/html;charset=UTF-8");
+            String parametro = request.getParameter("evento");
+            if ("SelectPersonasLiquidacionTiempos".equals(parametro)) {
+                out = "";
+                out += "<thead>";
                 out += "<tr>";
-                out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
-                out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
-                out += "<td>" + modeloPersonas.getModelo_empresa_trabaja().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModelo_dependencia().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModelo_area().getNombre() + "</td>";
-                out += "<td>" + modeloPersonas.getModelo_grupo_horario().getNombre() + "</td>";
-                out += "<td class=\"text-center\">";
-                // Boton Editar
-                out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
-                out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
-                out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
-                out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
-                out += "data-codigonomina=\"" + modeloPersonas.getCodigo_nomina() + "\"";
-                out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
-                out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
-                out += "data-dependencia=\"" + modeloPersonas.getModelo_dependencia().getId() + "\"";
-                out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
-                out += "data-area=\"" + modeloPersonas.getModelo_area().getId() + "\"";
-                out += "data-grupohorario=\"" + modeloPersonas.getModelo_grupo_horario().getId() + "\"";
-                out += "data-ciudad=\"" + modeloPersonas.getModelo_ciudad().getId() + "\"";
-                out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
-                //Campos de Imagenes
+                out += "<th>Nombre Empleado</th>";                                               
+                out += "<th class=size>Detalle</th>";                
+                out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloPersona modeloPersonas : listaPersonas) {
+                    out += "<tr>";                    
+                    out += "<td>" + modeloPersonas.getNombresApellido()+ "</td>";                    
+                    out += "<td class=\"text-center\">"; 
+                    out += "<button class=\"btn btn-secondary btn-sm\" form=\"marcaciones_form\"";
+                    //out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                    out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                    out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
+                    out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                    out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                    out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                    out += "data-codigonomina=\"" + modeloPersonas.getCodigo_nomina() + "\"";
+                    out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
+                    out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                    out += "data-dependencia=\"" + modeloPersonas.getModelo_dependencia().getId() + "\"";
+                    out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
+                    out += "data-area=\"" + modeloPersonas.getModelo_area().getId() + "\"";
+                    out += "data-grupohorario=\"" + modeloPersonas.getModelo_grupo_horario().getId() + "\"";
+                    out += "data-ciudad=\"" + modeloPersonas.getModelo_ciudad().getId() + "\"";
+                    out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";                    
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-desktop\"></i> </button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
+            } else {
+                out = "";
+                out += "<thead>";
+                out += "<tr>";
+                out += "<th>Cedula</th>";
+                out += "<th>Nombre</th>";
+                out += "<th>Empresa</th>";
+                out += "<th>CentroCosto</th>";
+                out += "<th>Dependencia</th>";
+                out += "<th>Area</th>";
+                out += "<th>GrupoHorario</th>";
+                out += "<th>Opcion</th>";
+                out += "</tr>";
+                out += "</thead>";
+                out += "<tbody>";
+                for (ModeloPersona modeloPersonas : listaPersonas) {
+                    out += "<tr>";
+                    out += "<td>" + modeloPersonas.getIdentificacion() + "</td>";
+                    out += "<td>" + modeloPersonas.getNombres() + " " + modeloPersonas.getApellidos() + "</td>";
+                    out += "<td>" + modeloPersonas.getModelo_empresa_trabaja().getNombre() + "</td>";
+                    out += "<td>" + modeloPersonas.getModelo_centro_costo().getNombre() + "</td>";
+                    out += "<td>" + modeloPersonas.getModelo_dependencia().getNombre() + "</td>";
+                    out += "<td>" + modeloPersonas.getModelo_area().getNombre() + "</td>";
+                    out += "<td>" + modeloPersonas.getModelo_grupo_horario().getNombre() + "</td>";
+                    out += "<td class=\"text-center\">";
+                    // Boton Editar
+                    out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
+                    out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                    out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
+                    out += "data-cedula=\"" + modeloPersonas.getIdentificacion() + "\"";
+                    out += "data-nombre=\"" + modeloPersonas.getNombres() + "\"";
+                    out += "data-apellido=\"" + modeloPersonas.getApellidos() + "\"";
+                    out += "data-codigonomina=\"" + modeloPersonas.getCodigo_nomina() + "\"";
+                    out += "data-cargo=\"" + modeloPersonas.getModelo_cargo().getId() + "\"";
+                    out += "data-empresa=\"" + modeloPersonas.getModelo_empresa_trabaja().getId() + "\"";
+                    out += "data-dependencia=\"" + modeloPersonas.getModelo_dependencia().getId() + "\"";
+                    out += "data-centrocosto=\"" + modeloPersonas.getModelo_centro_costo().getId() + "\"";
+                    out += "data-area=\"" + modeloPersonas.getModelo_area().getId() + "\"";
+                    out += "data-grupohorario=\"" + modeloPersonas.getModelo_grupo_horario().getId() + "\"";
+                    out += "data-ciudad=\"" + modeloPersonas.getModelo_ciudad().getId() + "\"";
+                    out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
+                    //Campos de Imagenes
 //                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
 //                    for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
 //                        if (modeloImagen.getNumero_imagen() == 0) {
@@ -967,15 +1006,16 @@ public class ControladorPersona {
 //                }
 //                out += "data-idtemplate=\"[" + IdTemplates + "]\"";
 //                out += "data-template10=\"" + Templates_10 + "\"";
-                out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
-                //Boton Eliminar
-                out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
-                out += "data-id=\"" + modeloPersonas.getId() + "\"";
-                out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
-                out += "</td>";
-                out += "</tr>";
+                    out += "type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>";
+                    //Boton Eliminar
+                    out += "<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"";
+                    out += "data-id=\"" + modeloPersonas.getId() + "\"";
+                    out += "type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i></button>";
+                    out += "</td>";
+                    out += "</tr>";
+                }
+                out += "</tbody>";
             }
-            out += "</tbody>";
         } catch (Exception e) {
             System.out.println("Error en el proceso de la tabla " + e.getMessage());
         }
@@ -1123,7 +1163,7 @@ public class ControladorPersona {
                         + "`tipo_identificacion`, "
                         + "`identificacion`, "
                         + "`nombres`, "
-                        + "`apellidos`, " 
+                        + "`apellidos`, "
                         + "`email`, "
                         + "`direccion`, "
                         + "`telefono`, "
@@ -1137,14 +1177,14 @@ public class ControladorPersona {
                         + "`id_cargo`, "
                         + "`id_centro_costo`, "
                         + "`id_area`, "
-                        + "`id_ciudad`, "                        
+                        + "`id_ciudad`, "
                         + "`id_grupo_horario`) "
                         + "VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloPersona.getTipo_identificacion());
                 SQL.setString(2, modeloPersona.getIdentificacion());
                 SQL.setString(3, modeloPersona.getNombres());
                 SQL.setString(4, modeloPersona.getApellidos());
-                SQL.setString(5, modeloPersona.getEmail());                
+                SQL.setString(5, modeloPersona.getEmail());
                 SQL.setString(6, modeloPersona.getDireccion());
                 SQL.setString(7, modeloPersona.getTelefono());
                 SQL.setString(8, modeloPersona.getRh());
@@ -1158,13 +1198,13 @@ public class ControladorPersona {
                 SQL.setInt(16, modeloPersona.getModelo_centro_costo().getId());
                 SQL.setInt(17, modeloPersona.getModelo_area().getId());
                 SQL.setInt(18, modeloPersona.getModelo_ciudad().getId());
-                SQL.setInt(19, modeloPersona.getModelo_grupo_horario().getId());                
+                SQL.setInt(19, modeloPersona.getModelo_grupo_horario().getId());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "persona", user, i, "Se inserto el registro.", "", "");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
                         resultado = "1";
                         SQL.close();

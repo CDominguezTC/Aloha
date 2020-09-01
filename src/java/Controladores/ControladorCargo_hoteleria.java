@@ -85,7 +85,7 @@ public class ControladorCargo_hoteleria {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             int i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "cargo_hoteleria", user, i, "Se inserto el registro.", "", "");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
                         }
                     }
                     resultado = "1";
@@ -169,19 +169,19 @@ public class ControladorCargo_hoteleria {
                 resultado = "2";
 
             }
-            
         }
         return resultado;
-    }       
-        /**
-         * Retorna un modelo de la tabla cargo_hoteleria dependiendo de un ID
-         *
-         * @author: Carlos Arturo Dominguez Diaz
-         * @param request
-         * @return String
-         * @version: 15/05/2020
-         */
-    /*public ModeloCargo_hoteleria getModelo(Integer Id) throws SQLException {
+    }
+
+    /**
+     * Retorna un modelo de la tabla cargo_hoteleria dependiendo de un ID
+     *
+     * @param Id
+     * @author: Carlos Arturo Dominguez Diaz
+     * @return String
+     * @version: 15/05/2020
+     */
+    public ModeloCargo_hoteleria getModelo(Integer Id) {
         ModeloCargo_hoteleria modeloCargo_hoteleria = new ModeloCargo_hoteleria();
         con = conexion.abrirConexion();
         try {
@@ -206,7 +206,7 @@ public class ControladorCargo_hoteleria {
             System.out.println("Error en la consulta SQL GetModelo en Controladorcargo_hoteleria" + e);
         }
         return modeloCargo_hoteleria;
-    }*/
+    }
 
     /**
      * Llena un Listado de la tabla cargo_hoteleria
@@ -217,7 +217,7 @@ public class ControladorCargo_hoteleria {
      * @return LinkedList<ModeloCargo_hoteleria>
      * @version: 15/05/2020
      */
-    /*public LinkedList<ModeloCargo_hoteleria> Read(String estado) throws SQLException {
+    public LinkedList<ModeloCargo_hoteleria> Read(String estado) throws SQLException {
         LinkedList<ModeloCargo_hoteleria> ListaModeloCargo_hoteleria = new LinkedList<ModeloCargo_hoteleria>();
         con = conexion.abrirConexion();
         try {
@@ -245,7 +245,7 @@ public class ControladorCargo_hoteleria {
             System.out.println("Error en la consulta SQL GetModelo en Controladorcargo_hoteleria" + e);
         }
         return ListaModeloCargo_hoteleria;
-    }*/
+    }
 
     /**
      * Llena un Listado de la tabla cargo_hoteleria en una cadena con
@@ -256,7 +256,7 @@ public class ControladorCargo_hoteleria {
      * @return String
      * @version: 15/05/2020
      */
-    /*public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String out = null;
         String estado = "S";
         if (request.getParameter("estado") != null) {
@@ -308,6 +308,6 @@ public class ControladorCargo_hoteleria {
         }
         return out;
 
-    }*/
+    }
 
 }
