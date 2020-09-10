@@ -210,6 +210,7 @@ $(function () {
                         $('#IdCentroCosto').val(resul.Modelo_centro_costo.id);
                         $('#IdConsume').val(resul.consumo_casino);
                         $('#IdGrupoConsumo').val(resul.Modelo_grupo_consumo.id);
+                        $('#IdNoConsumos').val(resul.nombre);
                         $('#IdObservacion').val(resul.observacion);
                         //Imagenes
                         var imagenes = resul.Lista_Modelo_Imagenes;
@@ -307,6 +308,7 @@ $(function () {
                         $('#IdCentroCosto').val('0');
                         $('#IdConsume').val('0');
                         $('#IdGrupoConsumo').val('0');
+                        $('#IdNoConsumos').val('0');                        
                         $('#IdHuella_0').val('');
                         $('#IdHuella_1').val('');
                         $('#IdHuella_2').val('');
@@ -370,6 +372,7 @@ $(function () {
         $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
         $('#IdObservacionOld').val($(this).data('observacion'));
         $('#IdObservacion').val($(this).data('observacion'));
+        $('#IdNoConsumos').val($(this).data('noconsumos'));
         //Cargamos las Imagenes (Huellas, Foto y firma) y Templates de las personas selecionada
         LoadImagenes($(this).data('id'));
         LoadTemplate($(this).data('id'));
@@ -866,6 +869,7 @@ $(function () {
         $('#IdConsume').val(0);
         $('#IdConsumeOld').val('');
         $('#IdGrupoConsumo').val(0);
+        $('#IdNoConsumos').val(0);
         $('#IdGrupoConsumoOld').val('');
         $('#IdObservacion').val('');
         $('#IdObservacionOld').val('');
@@ -894,6 +898,10 @@ $(function () {
     $('#IdAgregar').click(function (e) {
         LimpiarCampos();
     });
+    
+    $('#IdCancelar').click(function (e) {
+        LimpiarCampos();
+    });
 
     $('#IdGuardar').click(function (e) {
         if (ValidaCampo() === true) {
@@ -909,6 +917,7 @@ $(function () {
             var CentroCosto = $('#IdCentroCosto').val();
             var Consumo = $('#IdConsume').val();
             var GrupoConsumo = $('#IdGrupoConsumo').val();
+            var NoConsumos = $('#IdNoConsumos').val();
             var Observacion = $('#IdObservacion').val();
             //Datos multimedia
             var Huella_0 = $('#IdHuella_0').val();
@@ -939,6 +948,7 @@ $(function () {
                 cargo: Cargo,
                 centrocosto: CentroCosto,
                 consumo: Consumo,
+                noconsumos: NoConsumos,
                 grupoconsumo: GrupoConsumo,
                 observacion: Observacion,
                 huella0: Huella_0,

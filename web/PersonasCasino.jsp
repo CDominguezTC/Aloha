@@ -112,7 +112,7 @@
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id">
                                                                 <input type="hidden" id="IdTipoDocOld" name="TipoDocOld">
-                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Tipo de Identificación</label>
                                                                     <select id="IdTipoDoc" class="form-control" required>
                                                                         <option value="0" selected disabled>Seleccione</option>
@@ -122,17 +122,17 @@
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdCedulaOld" name="cedulaOld">
-                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
                                                                     <input type="number" class="form-control" id="IdCedula" name="cedula" min="0" required>
                                                                 </div>
                                                                 <input type="hidden" id="IdNombreOld" name="NombreOld">
-                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control" id="IdNombre" value="">
                                                                 </div>
                                                                 <input type="hidden" id="IdApellidoOld" name="ApellidoOld">
-                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
                                                                     <label for="apellido">Apellido</label>
                                                                     <input type="text" class="form-control" id="IdApellido">
                                                                 </div>
@@ -172,7 +172,12 @@
                                                                     <select id="IdGrupoConsumo" class="form-control" >
                                                                         <option value="0" selected>Seleccione</option>                                                                       
                                                                     </select>
-                                                                </div>                                                                
+                                                                </div>   
+                                                                <input type="hidden" id="IdNoConsumosOld" name="NombreOld">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                    <label for="nombre">Cantidad de Consumos Autorizados</label>
+                                                                    <input type="text" class="form-control" id="IdNoConsumos" value="0">
+                                                                </div>
                                                                 <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
@@ -250,7 +255,7 @@
                                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-4">
                                                             <button class="btn btn-primary btn-sm" type="button" id="IdAgregar" name="Agregar"><i class="fa fa-plus"></i> Agregar</button>
                                                             <button class="btn btn-success btn-sm" type="button" id="IdGuardar" name="Guardar"><i class="fa fa-save"></i> Guardar</button>                                                
-                                                            <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
+                                                            <button class="btn btn-danger btn-sm" type="reset" id="IdCancelar"><i class="fa fa-close"></i> Cancelar</button>
                                                             <br/><br/>
                                                             <div class="row">
                                                                 <div class="form-group">

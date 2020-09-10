@@ -8,432 +8,1440 @@
 <!DOCTYPE html>
 <html>
     <head>        
-        <%@include file="Principal/Head.html" %>        
+        <%@include file="Principal/Head.html" %>      
+        <style>
+            .size{
+                width: 30px;
+            }
+        </style>
     </head>
     <body class="nav-md">
         <%@include file="Principal/Body.html" %>
-       
+        <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
+        <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionTiempos.js" ></script>  
         <!-- Contenido -->
         <div class="right_col" role="main">
-          <div class="">
-            <div class="page-title">
-              <div class="title_left">
-                <h3>Liquidación</h3>
-              </div>
-
-             <!-- <div class="title_right">
-                  <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Buscar...">
-                      <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><i class="fa fa-search"></i></button>
-                      </span>
+            <div class="">
+                <div class="page-title">
+                    <div class="title_left">
+                        <h3>Liquidación</h3>
                     </div>
-                  </div>
-                </div>-->
-                
-            </div>
-
-            <!-- Primera Sección-->
-            <div class="row">
-              <div class="col-md-12 col-sm-12 col-xs-12">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2>Filtros</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a></a>
-                      </li>
-                      <li class="dropdown">
-                        <a><i>Ocultar</i></a>
-                      </li>
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
-                    <!-- Formulario Filtros -->
-                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
-                      <!-- ChechBox -->
-                      <div class="row">
-
-                      <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                        <label for="filtro_dependencia">Filtro por Dependencia</label>
-                          <select id="filtro_dependencia" class="form-control" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="1">FILTRO</option>
-                          </select>
-                      </div>
-
-                      <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                        <label for="filtro_costo">Filtro por Centro Costo</label>
-                          <select id="filtro_costo" class="form-control" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="1">FILTRO</option>
-                          </select>
-                      </div>
-  
-                      <div class="col-md-4 col-sm-12 col-xs-12 form-group">
-                        <label for="filtro_empresa">Filtro por Empresa</label>
-                          <select id="filtro_empresa" class="form-control" required>
-                            <option value="" disabled selected>Seleccione</option>
-                            <option value="1">FILTRO</option>
-                          </select>
-                      </div>
-
-                      </div> 
-                      <!-- ChechBox -->     
-
-                      <!-- Botones -->
-                      <div class="ln_solid"></div>
-                        <div class="row">
-                          <div class="form-group">
-                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-5">
-                                <button class="btn btn-primary btn-sm" type="submit" name="aplicar"><i class="fa fa-filter"></i> Aplicar</button>
-                                <button class="btn btn-danger btn-sm" type="reset"><i class="fa fa-close"></i> Cancelar</button>
-                            </div>
-                          </div>
-                        </div>  
-                        <!-- /Botones -->
-                    </form>
-                    <!-- /Formulario Filtros -->
-                  </div>
                 </div>
-                <!-- /Primera Sección-->
-
-                 <div class="clearfix"></div>
-                  <div class="row">
-                    <!-- Configuración Liquidacion -->
-                    <div class="col-md-3 col-sm-12 col-xs-12">
-                      <div class="x_panel" style="height: 660px;">
-                        <div class="x_title">
-                          <h2>Configuración</h2>
-                          <ul class="nav navbar-right panel_toolbox">
-                            <li><a></a>
-                            </li>
-                            <li class="dropdown">
-                              <a><i>Ocultar</i></a>
-                            </li>
-                            <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                            </li>
-                          </ul>
-                          <div class="clearfix"></div>
-                        </div>
+                <!-- Primera Sección-->
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <!--Modal Filtros-->
                         <div class="x_content">
+                            <div id="IdModalFiltroPersonas" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-lg">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Seleccion de Empleados</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_empresa">Filtro Empresa</label>
+                                                    <select id="IdEmpresa" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                           <!-- Formulario -->
-                            <form id="id_form"> 
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_dependencia">Filtro Dependencia</label>
+                                                    <select id="IdDependencia" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                              <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                  <label for="periodo">Periodo</label>
-                                   <select id="periodo" class="form-control" required>
-                                      <option value="" disabled selected>Seleccione</option>
-                                      <option value="1">LIBRE</option>
-                                   </select>
-                                </div>
-                              </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_centro_costo">Filtro Centro Costo</label>
+                                                    <select id="IdCentroCosto" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                              <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                  <label for="fecha_inicial">Fecha Inicial</label>
-                                     <div class="form-group">
-                                          <div class='input-group date' id='myDatepicker1'>
-                                              <input type='text' class="form-control" required/>
-                                              <span class="input-group-addon">
-                                                 <span class="glyphicon glyphicon-calendar"></span>
-                                              </span>
-                                          </div>
-                                      </div>
-                                </div>
-                              </div>
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_area">Filtro Area</label>
+                                                    <select id="IdArea" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                              <div class="row">
-                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                  <label for="fecha_final">Fecha Final</label> 
-                                     <div class="form-group">
-                                          <div class='input-group date' id='myDatepicker2'>
-                                              <input type='text' class="form-control" required/>
-                                              <span class="input-group-addon">
-                                                 <span class="glyphicon glyphicon-calendar"></span>
-                                              </span>
-                                          </div>
-                                      </div>
-                                </div>
-                              </div>
-                              <br/>
-                              <!-- Tabla -->
-                              <table id="datatable" class="table table-striped table-bordered">
-                                  <thead>
-                                    <tr>
-                                      <th>Cedula</th>
-                                      <th>Empleado</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>1144078608</td>
-                                      <td>JULIAN ARISTIZABAL</td>
-                                    </tr>
-                                    <tr>
-                                      <td>1144078608</td>
-                                      <td>JULIAN ARISTIZABAL</td>
-                                    </tr>
-                                    <tr>
-                                      <td>1144078608</td>
-                                      <td>JULIAN ARISTIZABAL</td>
-                                    </tr>
-                                    <tr>
-                                      <td>1144078608</td>
-                                      <td>JULIAN ARISTIZABAL</td>
-                                    </tr>
-                                  </tbody>
-                              </table>
-                                <!-- /Tabla -->
-                            </form> 
-                            <!-- /Formulario --> 
-                          <br/>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- /Configuración Liquidacion -->
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_grupo_horario">Filtro Grupo Horario</label>
+                                                    <select id="IdGrupoHorario" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                  <!-- Tabs -->  
-                  <div class="col-md-9 col-sm-12 col-xs-12">
-                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                      <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#tab_content1" id="marcaciones-tab" role="tab" data-toggle="tab" aria-expanded="true">Marcaciones</a></li>
-                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="liquidacion-tab" data-toggle="tab" aria-expanded="false">Liquidación</a></li>
-                      </ul>
-                      <div id="myTabContent" class="tab-content">
-                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="marcaciones-tab">
-                          <!-- Marcaciones -->
-                          <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="x_panel">
-                              <div class="x_title">
-                                <h2>Marcaciones</h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                  <li><a></a>
-                                  </li>
-                                  <li class="dropdown">
-                                    <a><i>Ocultar</i></a>
-                                  </li>
-                                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                  </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="x_content">
-                                <!-- Formulario Marcaciones -->
-                                <form id="marcaciones_form">
+                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                    <label for="filtro_ciudad">Filtro Ciudad</label>
+                                                    <select id="IdCiudad" class="form-control">
+                                                        <option value="0" disabled selected>Seleccione</option>                                                            
+                                                    </select>
+                                                </div>
 
-                                  <div class="row">
-
-                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                      <label for="fecha_registro">Fecha Registro</label>
-                                       <div class="form-group">
-                                          <div class='input-group date' id='myDatepicker3'>
-                                            <input type='text' class="form-control" required disabled/>
-                                              <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                                              </span>
-                                          </div>
+                                            </div> 
+                                        </div>
+                                        <div class="modal-footer">                                                
+                                            <button type="button" class="btn btn-round btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-round btn-primary"  id="IdFiltrarEmpleados" name="FiltrarEmpleados"><i class="fa fa-filter"></i> Seleccionar</button>
                                         </div>
                                     </div>
-
-                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                      <label for="sentido">Sentido</label>
-                                        <select id="sentido" class="form-control" required disabled>
-                                            <option value="" disabled selected>Seleccione</option>
-                                            <option value="1">Sentido1</option>
-                                         </select>
+                                </div>
+                            </div>   
+                        </div>
+                        <!--/Modal Filtros-->
+                        <div class="row">                                     
+                            <div class="col-md-4 col-sm-12 col-xs-12">
+                                <div class="x_panel">
+                                    <!--/Formulario de Parametros  style="height: 600px;"-->
+                                    <div class="x_title">
+                                        <h2>Parametros</h2>                                       
+                                        <div class="clearfix"></div>
+                                    </div>                                    
+                                    <div class="x_content">
+                                        <div class="row">
+                                            <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                <label for="periodo">Periodo</label>
+                                                <select id="IdPeriodo" class="form-control" required>
+                                                    <option value="" disabled selected>Seleccione</option>                                                    
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="fecha_inicial">Fecha Inicial</label>
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker1'>
+                                                        <input type='text' class="form-control" required/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>                                        
+                                            <div class="col-md-6 col-sm-12 col-xs-12 form-group">
+                                                <label for="fecha_final">Fecha Final</label> 
+                                                <div class="form-group">
+                                                    <div class='input-group date' id='myDatepicker2'>
+                                                        <input type='text' class="form-control" required/>
+                                                        <span class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>                                       
+                                        </div>
                                     </div>
-                                  </div>
-
-                                  <div class="row">
-
-                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                      <label for="hora_registro">Hora Registro</label>
-                                        <div class="form-group">
-                                            <div class='input-group date' id='myDatepicker4'>
-                                                <input type='text' class="form-control" required/>
-                                                  <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
-                                                  </span>
+                                    <!--/Formulario de Parametros-->
+                                    <!--Formulario de Empleados-->                                    
+                                    <div class="x_content">
+                                        <!-- Formulario -->
+                                        <form id="id_form">
+                                            <table id="IdTablaEmpleados" class="table table-striped jambo_table bulk_action dt-responsive nowrap">                                                
+                                            </table>                                            
+                                        </form>                                         
+                                        <br/>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <div class="col-md-8 col-sm-12 col-xs-12">
+                                <div class="" role="tabpane1" data-example-id="togglable-tabs">
+                                    <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                        <li role="presentation" class="active"><a href="#tab_content1" id="marcaciones-tab" role="tab" data-toggle="tab" aria-expanded="true">Marcaciones</a></li>
+                                        <li role="presentation" class=""><a href="#tab_content2" role="tab" id="liquidacion-tab" data-toggle="tab" aria-expanded="false">Liquidación</a></li>
+                                    </ul>
+                                    <div id="myTabContent" class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="marcaciones-tab">                                            
+                                            <div class="col-md-10 col-sm-12 col-xs-12">
+                                                <div class="x_panel">
+                                                    <div class="x_title">
+                                                        <h2>Marcaciones</h2>                                                        
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">
+                                                        <table id="tablemarcaciones" class="table table-striped jambo_table bulk_action">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="size">Seleccione</th>
+                                                                    <th>Fecha</th>
+                                                                    <th>Hora</th>
+                                                                    <th>Sentido</th>
+                                                                    <th class="size">Detalle</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                                <tr>                                                                                                                        
+                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
+                                                                    <td>01-07-2020</td>
+                                                                    <td>07:30:00</td>
+                                                                    <td>D</td>
+                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                </tr>                                                                
+                                                            </tbody>
+                                                        </table>                                                         
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2 col-sm-12 col-xs-12">
+                                                <div class="x_panel">  
+                                                    <div class="x_title">
+                                                        <h2>Cotroles</h2>                                                        
+                                                        <div class="clearfix"></div>
+                                                    </div>
+                                                    <div class="x_content">                                                                                                                                                                        
+                                                        <div class="row">
+                                                            <div class="form-group">
+                                                                <div class="row" style="align-content: center">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                        <button class="btn btn-primary btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-plus"> Agregar<br/>Marcacion</i></button>
+                                                                    </div>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                        <button class="btn btn-warning btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-edit"> Editar<br/>Marcacion</i></button>
+                                                                    </div>
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                        <button class="btn btn-danger btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-trash"> Eliminar<br/>Marcacion</i></button>
+                                                                    </div>                                                                      
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                        <button class="btn btn-dark btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-filter"> Consutar<br/>Marcaciones<br/>Eliminados</i></button>
+                                                                    </div>                                                                      
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                        <button class="btn btn-info btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-user"> Seleccionar<br/>Empleados</i></button>
+                                                                    </div>                                                                                                                                          
+                                                                </div>                                                                 
+                                                            </div>
+                                                        </div>  
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-6 col-sm-12 col-xs-12 form-group">
-                                      <label for="observacion">Observación</label>
-                                      <textarea id="observacion" required="required" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
-                                    </div>
-
-                                  </div>  
-
-                                </form>
-                                <!-- /Formulario Marcaciones -->
-                                <br/>
-                                  <!-- Tabla -->
-                                  <table id="datatable-fixed-header" class="table table-striped table-bordered">
-                                    <thead>
-                                      <tr>
-                                        <th>Id</th>
-                                        <th>Fecha Registro</th>
-                                        <th>Hora Registro</th>
-                                        <th>Sentido Registro</th>
-                                        <th>Dispositivo</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                  </table>
-                                  <!-- /Tabla -->
-
-                                  <div class="row">
-                                    <div class="col-md-9 col-sm-6 col-xs-12 form-group">
-                                      <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-external-link"></i> Exportar</button>
-                                    </div>
-                                    <div class="col-md-3 col-sm-6 col-xs-12 form-group">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value=""> Ver marcaciones Invalidas
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <!-- Botones -->
-                                  <div class="ln_solid"></div>
-                                    <div class="row">
-                                      <div class="form-group">
-                                        <div class="col-md-8 col-sm-6 col-xs-12 col-md-offset-0">
-                                          <button class="btn btn-primary btn-sm" type="submit" form="marcaciones_form"><i class="fa fa-plus"></i> </button>
-                                          <button class="btn btn-warning btn-sm" type="button" form="marcaciones_form"><i class="fa fa-edit"></i> </button>
-                                          <button class="btn btn-danger btn-sm" type="reset"   form="marcaciones_form"><i class="fa fa-close"></i> </button>
-                                          <button class="btn btn-success btn-sm" type="submit" form="marcaciones_form" disabled><i class="fa fa-save"></i> </button>
-                                          <button class="btn btn-danger btn-sm" type="submit"   form="marcaciones_form" disabled><i class="fa fa-trash"></i> </button>
+                                        <div role="tabpane1" class="tab-pane fade" id="tab_content2" aria-labelledby="liquidacion-tab">                                            
+                                            <div class="clearfix"></div>
+                                            <div class="row">
+                                                <div class="col-md-10 col-sm-12 col-xs-12">
+                                                    <div class="x_panel">
+                                                        <div class="x_title">
+                                                            <h2>Liquidación</h2>
+                                                            <ul class="nav navbar-right panel_toolbox">
+                                                                <li><a></a>
+                                                                </li>
+                                                                <li class="dropdown">
+                                                                    <a><i>Ocultar</i></a>
+                                                                </li>
+                                                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="x_content">
+                                                            <table id="tableliquidacion" class="table table-striped jambo_table bulk_action dt-responsive nowrap">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Tipo de Identificación</th>
+                                                                        <th>Cedula</th>
+                                                                        <th>Nombre</th>
+                                                                        <th>Codigo</th>
+                                                                        <th>Fecha Inicio </th>
+                                                                        <th>Hora Inicio </th>
+                                                                        <th>Fecha Fin </th>
+                                                                        <th>Hora Fin </th>
+                                                                        <th>Grupo Horario</th>
+                                                                        <th>Turno </th>
+                                                                        <th>HDO </th>
+                                                                        <th>HNO</th>
+                                                                        <th>HFDO</th>
+                                                                        <th>HFNO</th>
+                                                                        <th>HDDO</th>
+                                                                        <th>HDNO</th>
+                                                                        <th>HEDO</th>
+                                                                        <th>HENO</th>
+                                                                        <th>HEFO</th>
+                                                                        <th>HEFO</th>
+                                                                        <th>HEDO</th>
+                                                                        <th>HEDO</th>
+                                                                        <th>THL</th>
+                                                                        <th>THO</th>
+                                                                        <th>THE</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>CEDULA DE CIUDADANIA</td>
+                                                                        <td>1144078608</td>
+                                                                        <td>JULIAN</td>
+                                                                        <td>12345</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>06:00:00</td>
+                                                                        <td>01-07-2020</td>
+                                                                        <td>14:00:00</td>
+                                                                        <td>Planta</td>
+                                                                        <td>06:00 a 14:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>
+                                                                        <td>08:00:00</td>                                                                        
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>                    
+                                                </div>
+                                                <div class="col-md-2 col-sm-12 col-xs-12">
+                                                    <div class="x_panel">  
+                                                        <div class="x_title">
+                                                            <h2>Cotroles</h2>                                                        
+                                                            <div class="clearfix"></div>
+                                                        </div>
+                                                        <div class="x_content">                                                                                                                                                                        
+                                                            <div class="row">
+                                                                <div class="form-group">
+                                                                    <div class="row" style="align-content: center">
+                                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                            <button class="btn btn-primary btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-cog"> Cacular<br/>Empleado</i></button>
+                                                                        </div>
+                                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                            <button class="btn btn-warning btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-cogs"> Calcular<br/>Todos</i></button>
+                                                                        </div>
+                                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                            <button class="btn btn-danger btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-cloud-upload"> Exportar<br/>Calculos</i></button>
+                                                                        </div>      
+                                                                        <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                            <button class="btn btn-info btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-user"> Seleccionar<br/>Empleados</i></button>
+                                                                        </div>                                                                                                                                          
+                                                                    </div>                                                                 
+                                                                </div>
+                                                            </div>  
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>                                            
                                         </div>
-                                      </div>
-                                    </div>  
-                                    <!-- /Botones -->
-                              </div>
-                            </div>
-                          </div>
-                          <!-- /Marcaciones -->                      
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="liquidacion-tab">
-                          <!-- Liquidación-->
-                          <div class="clearfix"></div>
-                          <div class="row">
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                              <div class="x_panel">
-                                <div class="x_title">
-                                  <h2>Liquidación</h2>
-                                  <ul class="nav navbar-right panel_toolbox">
-                                <li><a></a>
-                                </li>
-                                <li class="dropdown">
-                                  <a><i>Ocultar</i></a>
-                                </li>
-                                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                </li>
-                              </ul>
-                                  <div class="clearfix"></div>
-                                </div>
-                                <div class="x_content">
-                                <!-- Tabla -->
-                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
-                                    <thead>
-                                      <tr>
-                                        <th>Tipo de Identificación</th>
-                                        <th>Cedula</th>
-                                        <th>Nombre</th>
-                                        <th>Apellido</th>
-                                        <th>Código</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <tr>
-                                        <td>CEDULA DE CIUDADANIA</td>
-                                        <td>1144078608</td>
-                                        <td>JULIAN</td>
-                                        <td>ARISTIZABAL</td>
-                                        <td>1144078608</td>
-                                      </tr>
-                                      <tr>
-                                        <td>CEDULA DE CIUDADANIA</td>
-                                        <td>1144078608</td>
-                                        <td>JULIAN</td>
-                                        <td>ARISTIZABAL</td>
-                                        <td>1144078608</td>
-                                      </tr>
-                                      <tr>
-                                        <td>CEDULA DE CIUDADANIA</td>
-                                        <td>1144078608</td>
-                                        <td>JULIAN</td>
-                                        <td>ARISTIZABAL</td>
-                                        <td>1144078608</td>
-                                      </tr>
-                                      <tr>
-                                        <td>CEDULA DE CIUDADANIA</td>
-                                        <td>1144078608</td>
-                                        <td>JULIAN</td>
-                                        <td>ARISTIZABAL</td>
-                                        <td>1144078608</td>
-                                      </tr>
-                                      <tr>
-                                        <td>CEDULA DE CIUDADANIA</td>
-                                        <td>1144078608</td>
-                                        <td>JULIAN</td>
-                                        <td>ARISTIZABAL</td>
-                                        <td>1144078608</td>
-                                      </tr>
-                                    </tbody>
-                                  </table>
-                                  <br/>
-                                  <!-- /Tabla -->
-                                  <div class="row">
-                                    <div class="col-md-9 col-sm-6 col-xs-12 form-group">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input type="checkbox" value=""> Liquida Todos
-                                        </label>
-                                      </div>
                                     </div>
-                                    <div class="row">
-                                    <div class="form-group">
-                                      <div class="col-md-3 col-sm-6 col-xs-12">
-                                          <button class="btn btn-primary btn-sm" type="submit" name="aplicar"><i class="fa fa-external-link"></i> Exportar</button> 
-                                          <button class="btn btn-success btn-sm" type="submit"><i class="fa fa-calculator"></i> Calcular</button>
-                                      </div>
-                                    </div>
-                                    </div>  
-                                  </div>
-
                                 </div>
-                              </div>                    
                             </div>
-                          </div>
-                          <!-- /Liquidación-->
                         </div>
-                      </div>
-                    </div>
-                  </div>
+                    </div
                 </div>
-                <!-- /Tabs -->  
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /Contenido -->
-    <!-- Footer -->
-        <footer>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- Footer -->
-     <%@include file="Principal/Script.html" %>  
+            </div>
+        </div>        
+        <%@include file="Principal/Script.html" %>  
         <!-- Inicializamos Datetimepicker -->
         <script>
             $('#myDatepicker').datetimepicker();
@@ -445,10 +1453,10 @@
             $('#myDatepicker2').datetimepicker({
                 format: 'DD.MM.YYYY'
             });
-             $('#myDatepicker3').datetimepicker({
+            $('#myDatepicker3').datetimepicker({
                 format: 'DD.MM.YYYY'
             });
-             $('#myDatepicker4').datetimepicker({
+            $('#myDatepicker4').datetimepicker({
                 format: 'hh:mm A'
             });
         </script>
