@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import javax.servlet.http.HttpSession;
 /**
  *
  * @author Julian A Aristizabal
@@ -84,8 +83,7 @@ public class ControladorLog_error {
      * @version: 6/AGO/2020
      */
     public LinkedList<ModeloLog_error> readReg(String fini, String ffin) throws SQLException {
-        
-        
+                
         if("".equals(user)){
             user = controladorInicio.user_act;
         }

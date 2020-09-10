@@ -5,19 +5,32 @@ import Modelo.ModeloAuditoria;
 import Modelo.ModeloUsuario;
 import Tools.Tools;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.common.collect.MapDifference;
+import com.google.common.collect.MapDifference.ValueDifference;
+import com.google.common.collect.Maps;
+import java.util.Map;
+import com.google.common.reflect.TypeToken;
+import com.google.gson.Gson;
+import java.util.Arrays;
+
+//import static org.junit.Assert.*;
 
 /**
  * Esta clase permite controlar los eventos de Auditoria
@@ -45,8 +58,18 @@ public class ControladorAuditoria {
      * @return String
      * @version: 07/05/2020
      */
-    public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion, String d_old, String d_new) {
-
+    public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion, String d_old, String d_new) throws SQLException {
+    
+//        ModeloUsuario modeloUsuarioOld = new ModeloUsuario();
+//        ControladorUsuario contra = new ControladorUsuario();
+//        modeloUsuarioOld = contra.getModelo(1);
+//        Object obj = modeloUsuarioOld;
+//        try {
+//            toStringArray(obj);
+//        } catch (Exception e) {
+//        }
+            
+        
         con = conexion.abrirConexion();
         try {
 
@@ -138,7 +161,7 @@ public class ControladorAuditoria {
             out = "";
             out += "<option value=\"\" disabled selected>Seleccione</option>";
             out += "<option value=\"todos\">Todos</option>";
-            outsb.append(out);            
+            outsb.append(out);
             for (ModeloUsuario modeloUsua : listmoUsr) {
                 //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
                 outsb.append("<option value=\"").append(modeloUsua.getId()).append("\"> ").append(modeloUsua.getNombre()).append("</option>");
@@ -170,10 +193,10 @@ public class ControladorAuditoria {
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             if ("".equals(usr)) {
-                SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion, a.dato_old, a.dato_new " +
-                                            "FROM auditoria a " +
-                                            "INNER JOIN usuario u ON u.id = a.id_usuario " +
-                                            "WHERE u.estado = 'S'");
+                SQL = con.prepareStatement("SELECT a.id, a.operacion, a.tabla, a.fecha, a.id_usuario, a.registro_modificado, a.observacion, a.dato_old, a.dato_new "
+                        + "FROM auditoria a "
+                        + "INNER JOIN usuario u ON u.id = a.id_usuario "
+                        + "WHERE u.estado = 'S'");
 
             } else {
                 if ("todos".equals(usr)) {
@@ -239,7 +262,7 @@ public class ControladorAuditoria {
             LinkedList<ModeloAuditoria> listmoAu;
             listmoAu = Read(usr, fini, ffin);
             response.setContentType("text/html;charset=UTF-8");
-            
+
             out = "";
             out += "<thead>";
             out += "<tr>";
@@ -256,7 +279,7 @@ public class ControladorAuditoria {
             out += "<tbody>";
             outsb.append(out);
             for (ModeloAuditoria modeloA : listmoAu) {
-                
+
                 outsb.append("<tr>");
                 outsb.append("<td>").append(modeloA.getOperacion()).append("</td>");
                 outsb.append("<td>").append(modeloA.getTabla()).append("</td>");
@@ -280,13 +303,96 @@ public class ControladorAuditoria {
                 out += "</tr>";
             }
             out += "</tbody>";
-            */
-            
+             */
 
         } catch (Exception e) {
 
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
         }
         return outsb.toString();
+    }
+    
+    /**
+     * Recibe los modelos para procesar diferencias
+     *
+     * @author Julian A Aristizabal
+     * @param modeloNew
+     * @param modeloOld
+     * @return String
+     * @version: 9/09/2020
+     */
+    public void reciboModelos(String modeloNew, String modeloOld, String operacion, String tabla, String usua, int idmodi, String observacion){
+        
+        //String datoN = "", datoO = "";
+        StringBuilder datoN = new StringBuilder();
+        StringBuilder datoO = new StringBuilder();
+        Map<String, Object> retMap = new Gson().fromJson(
+                modeloNew, new TypeToken<Map<String, Object>>() {
+                }.getType()
+        );
+        Map<String, Object> retMap2 = new Gson().fromJson(
+                modeloOld, new TypeToken<Map<String, Object>>() {
+                }.getType()
+        );
+
+        MapDifference<String, Object> difference = Maps.difference(retMap, retMap2);
+        LinkedList<String> campos = new LinkedList<String>();
+        LinkedList<String> datos = new LinkedList<String>();
+        //System.out.println("\n\nEntries differing\n--------------------------");                   
+        //difference.entriesDiffering().forEach((key, value) -> System.out.println(key + ": " + value.leftValue() + " - " + value.rightValue()));
+        difference.entriesDiffering().forEach((key, value) -> campos.add(key));
+        difference.entriesDiffering().forEach((key, value) -> datos.add(value.leftValue()+","+value.rightValue()));
+        
+        List<String> items = null;
+        for (int i = 0; i < campos.size(); i++) {
+            //System.out.println(datos.get(i));
+            items = Arrays.asList(datos.get(i).split("\\s*,\\s*"));
+            if (items.get(0).startsWith("{")) {
+                datoN.append(items.get(1)).append(System.getProperty("line.separator"));
+                datoO.append(items.get(4)).append(System.getProperty("line.separator"));
+                
+            }else{
+                datoN.append(campos.get(i)).append("=").append(items.get(0)).append(System.getProperty("line.separator"));
+                datoO.append(campos.get(i)).append("=").append(items.get(1)).append(System.getProperty("line.separator"));
+            }                        
+        }
+        
+        /*System.out.println("datoN: " + datoN);
+        System.out.println("datoO: " + datoO);*/
+        
+        try {
+            Insert(operacion, tabla, usua, idmodi, observacion, datoO.toString(), datoN.toString());
+        } catch (Exception e) {
+            
+        }
+        
+    }
+    
+    public String[] toStringArray(Object carts) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SQLException {
+                
+        List<Method> getters = getGetters(carts.getClass());
+        String[] result = new String[getters.size()];
+        for (int i = 0; i < getters.size(); i++) {
+            Object value = getters.get(i).invoke(carts);            
+            //Object value3 = getters.get(i).getName();
+            result[i] = String.valueOf(value);
+        }
+        
+        for (int i = 0; i < getters.size(); i++) {
+            System.out.println(result[i]);
+        }
+                
+        return result;
+    }
+
+    private List<Method> getGetters(Class clazz) throws SecurityException {
+        List<Method> getters = new ArrayList<Method>();
+
+        for (Method method : clazz.getMethods()) {
+            if (method.getName().startsWith("get") && !"getClass".equals(method.getName())) {
+                getters.add(method);
+            }
+        }
+        return getters;
     }
 }

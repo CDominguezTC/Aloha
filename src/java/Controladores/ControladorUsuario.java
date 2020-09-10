@@ -9,12 +9,14 @@ import Conexiones.ConexionBdMysql;
 import Modelo.ModeloRol;
 import Modelo.ModeloUsuario;
 import Tools.Tools;
+import com.google.gson.GsonBuilder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
-import javax.servlet.ServletException;
+import com.google.gson.Gson;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -35,7 +37,7 @@ public class ControladorUsuario {
     String user = "";
     ControladorLog_error log = new ControladorLog_error();
     ControladorInicioSesion controladorInicio;
-    
+    ArrayList<String> registroNew = new ArrayList<String>();
 
     /**
      * Permite la inserción o actualización de los datos en la tabla Bd Usuarios
@@ -46,17 +48,20 @@ public class ControladorUsuario {
      * @version: 07/05/2020
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
-        
-        
+
         ModeloUsuario modeloUsuario = new ModeloUsuario();
         ModeloRol modeloRol = new ModeloRol();
         ControladorRol controladorRol = new ControladorRol();
 
         modeloUsuario.setNombre(request.getParameter("nombre"));
+        registroNew.add(request.getParameter("nombre"));
         modeloUsuario.setLogin(request.getParameter("login"));
+        registroNew.add(request.getParameter("login"));
         modeloUsuario.setPassword(request.getParameter("password"));
+        registroNew.add(request.getParameter("password"));
         modeloUsuario.setEstado("S");
         modeloRol = controladorRol.getModelo(Integer.parseInt(request.getParameter("rol")));
+        registroNew.add(request.getParameter("rol"));
         modeloUsuario.setRol(modeloRol);
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
@@ -136,12 +141,12 @@ public class ControladorUsuario {
      * @version: 15/5/2020
      */
     public String Update(ModeloUsuario modeloUsuario) throws SQLException {
-        
+
         Tools tl = new Tools();
-        if("".equals(user)){
+        if ("".equals(user)) {
             user = controladorInicio.user_act;
         }
-        
+        String modeloNew = "", modeloOld = "";
         //auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
         String operacion = "", observacion = "", dato_old = "", dato_new = "";
         int idmodificado = 0;
@@ -149,7 +154,7 @@ public class ControladorUsuario {
             con = conexion.abrirConexion();
             PreparedStatement pst = null;
             try {
-                
+
                 if ("N".equals(modeloUsuario.getEstado())) {
                     pst = con.prepareStatement("UPDATE usuario SET "
                             + "estado = ?"
@@ -186,7 +191,11 @@ public class ControladorUsuario {
                     ModeloUsuario modeloUsuarioOld = new ModeloUsuario();
                     modeloUsuarioOld = getModelo(modeloUsuario.getId());
 
-                    if (!modeloUsuarioOld.getNombre().equals(modeloUsuario.getNombre())) {
+                    Gson gson = new GsonBuilder().serializeNulls().create();
+                    modeloNew = gson.toJson(modeloUsuario);
+                    modeloOld = gson.toJson(modeloUsuarioOld);
+                                                                                                 
+                    /*if (!modeloUsuarioOld.getNombre().equals(modeloUsuario.getNombre())) {
                         dato_old = "Nombre: " + modeloUsuarioOld.getNombre() + " ";
                         dato_new = "Nombre: " + modeloUsuario.getNombre() + " ";
                     }
@@ -195,16 +204,18 @@ public class ControladorUsuario {
                         dato_old += "Login: " + modeloUsuarioOld.getLogin() + " ";
                         dato_new += "Login: " + modeloUsuario.getLogin() + " ";
                     }
-                    
+
                     if (!modeloUsuarioOld.getRol().getId().equals(modeloUsuario.getRol().getId())) {
                         dato_old += "Rol: " + modeloUsuarioOld.getRol().getNombre();
                         dato_new += "Rol: " + modeloUsuario.getRol().getNombre();
-                    }
-                    
+                    }*/
+
                 }
+
                 if (pst.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
-                    auditoria.Insert(operacion, "usuario", user, idmodificado, observacion, dato_old, dato_new);
+                    auditoria.reciboModelos(modeloNew, modeloOld, operacion, "usuario", user, idmodificado, observacion);
+                    //auditoria.Insert(operacion, "usuario", user, idmodificado, observacion, dato_old, dato_new);
                     resultado = "1";
                     pst.close();
                     con.close();
@@ -220,9 +231,9 @@ public class ControladorUsuario {
             System.out.println("Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
             log.insertarError(user, "Error Controladores.ControladorUsuario.Update(): " + e.getMessage());
             resultado = "-3";
-        }finally{
+        } finally {
             try {
-                if(con != null){
+                if (con != null) {
                     con.close();
                 }
             } catch (Exception e) {
@@ -264,10 +275,10 @@ public class ControladorUsuario {
         ModeloUsuario modeloUsuario = new ModeloUsuario();
         ModeloRol modeloRol = new ModeloRol();
         ControladorRol controladorRol = new ControladorRol();
-        
+        Tools tl = new Tools();
         con = conexion.abrirConexion();
         try {
-            SQL = con.prepareStatement("SELECT id,"
+            SQL = con.prepareStatement("SELECT id, "
                     + "nombre, "
                     + "login, "
                     + "password, "
@@ -281,11 +292,16 @@ public class ControladorUsuario {
                 modeloUsuario.setId(res.getInt("id"));
                 modeloUsuario.setNombre(res.getString("nombre"));
                 modeloUsuario.setLogin(res.getString("login"));
-                modeloUsuario.setPassword(res.getString("password"));
-                modeloUsuario.setEstado(res.getString("estado"));                
-                modeloRol = controladorRol.getModelo(res.getInt("id_rol"));                
+                String pw = "";
+                try {
+                    pw = tl.desencriptar(res.getString("password"));
+                } catch (Exception e) {
+                }                
+                modeloUsuario.setPassword(pw);
+                modeloUsuario.setEstado(res.getString("estado"));
+                modeloRol = controladorRol.getModelo(res.getInt("id_rol"));
                 modeloUsuario.setRol(modeloRol);
-                
+
             }
             res.close();
             SQL.close();
@@ -551,7 +567,7 @@ public class ControladorUsuario {
         Tools tl = new Tools();
         int idmodificado = 0;
         idmodificado = Integer.parseInt(id);
-        if("".equals(user)){
+        if ("".equals(user)) {
             user = controladorInicio.user_act;
         }
 
@@ -566,7 +582,7 @@ public class ControladorUsuario {
             if (SQL.executeUpdate() > 0) {
                 resp = "true";
                 ControladorAuditoria auditoria = new ControladorAuditoria();
-                
+
                 auditoria.Insert("actualizar", "usuario", user, idmodificado, "Se cambio la contraseña.", "", "");
                 return resp;
             }
@@ -601,7 +617,7 @@ public class ControladorUsuario {
         int idmodificado = 0;
         con = conexion.abrirConexion();
         Tools tl = new Tools();
-        if("".equals(user)){
+        if ("".equals(user)) {
             user = controladorInicio.user_act;
         }
 
