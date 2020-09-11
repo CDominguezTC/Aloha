@@ -400,7 +400,7 @@ public class ControladorUsuario {
                 outsb.append("<td>").append(modeloUsua.getNombre()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getLogin()).append("</td>");
                 outsb.append("<td>").append(modeloUsua.getPassword()).append("</td>");
-                outsb.append("<td>").append(modeloUsua.getRol().getNombre()).append("</td>");
+                outsb.append("<td>").append(modeloUsua.getRol().getNombreRol()).append("</td>");
                 outsb.append("<td class=\"text-center\">");
 
                 // Boton Editar
@@ -410,7 +410,7 @@ public class ControladorUsuario {
                 outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
                 outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
                 outsb.append("data-rol=\"").append(modeloUsua.getRol().getId()).append("\"");
-                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombre()).append("\"");
+                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombreRol()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>");
 
                 //Boton Eliminar
@@ -420,7 +420,7 @@ public class ControladorUsuario {
                 outsb.append("data-login=\"").append(modeloUsua.getLogin()).append("\"");
                 outsb.append("data-password=\"").append(modeloUsua.getPassword()).append("\"");
                 outsb.append("data-rol=\"").append(modeloUsua.getRol().getId()).append("\"");
-                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombre()).append("\"");
+                outsb.append("data-nrol=\"").append(modeloUsua.getRol().getNombreRol()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>");
                 outsb.append("</td>");
                 outsb.append("</tr>");

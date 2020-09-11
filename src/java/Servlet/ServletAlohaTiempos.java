@@ -560,6 +560,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     break;
                 case "UsuariosJSP":
                     ControladorUsuario controladorU = new ControladorUsuario();
+                    ControladorRol controladorR = new ControladorRol();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "Upload":
@@ -573,6 +574,12 @@ public class ServletAlohaTiempos extends HttpServlet {
                             PrintWriter pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "Combo":
+                            Resultado = controladorR.Combo(request, response);
+                            PrintWriter pw2 = response.getWriter();
+                            pw2.write(Resultado);
+                            System.out.println(pw2.checkError() ? "Error al cargar la lista" : "Combo Cargado");
                             break;
                     }
                     break;

@@ -23,7 +23,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.common.collect.MapDifference;
-import com.google.common.collect.MapDifference.ValueDifference;
 import com.google.common.collect.Maps;
 import java.util.Map;
 import com.google.common.reflect.TypeToken;
@@ -31,7 +30,6 @@ import com.google.gson.Gson;
 import java.util.Arrays;
 
 //import static org.junit.Assert.*;
-
 /**
  * Esta clase permite controlar los eventos de Auditoria
  *
@@ -59,7 +57,7 @@ public class ControladorAuditoria {
      * @version: 07/05/2020
      */
     public String Insert(String operacion, String tabla, String usua, int idmodi, String observacion, String d_old, String d_new) throws SQLException {
-    
+
 //        ModeloUsuario modeloUsuarioOld = new ModeloUsuario();
 //        ControladorUsuario contra = new ControladorUsuario();
 //        modeloUsuarioOld = contra.getModelo(1);
@@ -68,8 +66,6 @@ public class ControladorAuditoria {
 //            toStringArray(obj);
 //        } catch (Exception e) {
 //        }
-            
-        
         con = conexion.abrirConexion();
         try {
 
@@ -311,7 +307,7 @@ public class ControladorAuditoria {
         }
         return outsb.toString();
     }
-    
+
     /**
      * Recibe los modelos para procesar diferencias
      *
@@ -321,8 +317,8 @@ public class ControladorAuditoria {
      * @return String
      * @version: 9/09/2020
      */
-    public void reciboModelos(String modeloNew, String modeloOld, String operacion, String tabla, String usua, int idmodi, String observacion){
-        
+    public void reciboModelos(String modeloNew, String modeloOld, String operacion, String tabla, String usua, int idmodi, String observacion) {
+
         //String datoN = "", datoO = "";
         StringBuilder datoN = new StringBuilder();
         StringBuilder datoO = new StringBuilder();
@@ -341,47 +337,59 @@ public class ControladorAuditoria {
         //System.out.println("\n\nEntries differing\n--------------------------");                   
         //difference.entriesDiffering().forEach((key, value) -> System.out.println(key + ": " + value.leftValue() + " - " + value.rightValue()));
         difference.entriesDiffering().forEach((key, value) -> campos.add(key));
-        difference.entriesDiffering().forEach((key, value) -> datos.add(value.leftValue()+","+value.rightValue()));
-        
+        difference.entriesDiffering().forEach((key, value) -> datos.add(value.leftValue() + "," + value.rightValue()));
+
         List<String> items = null;
         for (int i = 0; i < campos.size(); i++) {
             //System.out.println(datos.get(i));
             items = Arrays.asList(datos.get(i).split("\\s*,\\s*"));
             if (items.get(0).startsWith("{")) {
-                datoN.append(items.get(1)).append(System.getProperty("line.separator"));
-                datoO.append(items.get(4)).append(System.getProperty("line.separator"));
                 
-            }else{
+                for (int u = 1; u <= ((items.size() / 2) - 1); u++) {
+                    if(items.get(u).contains("nombre")){
+                        datoN.append(items.get(u)).append(System.getProperty("line.separator"));
+                        //datoO.append(items.get(4)).append(System.getProperty("line.separator"));
+                    }                           
+                }
+                for (int w = ((items.size() / 2) + 1); w < items.size(); w++) {
+                    if(items.get(w).contains("nombre")){
+                        
+                        datoO.append(items.get(w)).append(System.getProperty("line.separator"));
+                    }                           
+                }                                          
+                //items.forEach(action);
+                System.out.println("Ok");
+
+            } else {
                 datoN.append(campos.get(i)).append("=").append(items.get(0)).append(System.getProperty("line.separator"));
                 datoO.append(campos.get(i)).append("=").append(items.get(1)).append(System.getProperty("line.separator"));
-            }                        
+            }
         }
-        
+
         /*System.out.println("datoN: " + datoN);
         System.out.println("datoO: " + datoO);*/
-        
         try {
             Insert(operacion, tabla, usua, idmodi, observacion, datoO.toString(), datoN.toString());
         } catch (Exception e) {
-            
+
         }
-        
+
     }
-    
+
     public String[] toStringArray(Object carts) throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SQLException {
-                
+
         List<Method> getters = getGetters(carts.getClass());
         String[] result = new String[getters.size()];
         for (int i = 0; i < getters.size(); i++) {
-            Object value = getters.get(i).invoke(carts);            
+            Object value = getters.get(i).invoke(carts);
             //Object value3 = getters.get(i).getName();
             result[i] = String.valueOf(value);
         }
-        
+
         for (int i = 0; i < getters.size(); i++) {
             System.out.println(result[i]);
         }
-                
+
         return result;
     }
 

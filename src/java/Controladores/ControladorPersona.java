@@ -769,7 +769,7 @@ public class ControladorPersona {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();
@@ -1204,7 +1204,7 @@ public class ControladorPersona {
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
                         if (generatedKeys.next()) {
                             i = (int) generatedKeys.getLong(1);
-                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.");
+                            auditoria.Insert("insertar", "usuario", user, i, "Se inserto el registro.", "", "");
                         }
                         resultado = "1";
                         SQL.close();

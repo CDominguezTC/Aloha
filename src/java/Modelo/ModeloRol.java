@@ -12,15 +12,15 @@ package Modelo;
 public class ModeloRol {
     
     private Integer id;
-    private String nombre;
+    private String nombreRol;
     private String estado;
 
     public ModeloRol() {
     }
 
-    public ModeloRol(Integer id, String nombre, String estado) {
+    public ModeloRol(Integer id, String nombreRol, String estado) {
         this.id = id;
-        this.nombre = nombre;
+        this.nombreRol = nombreRol;
         this.estado = estado;
     }
 
@@ -41,15 +41,15 @@ public class ModeloRol {
     /**
      * @return the nombre
      */
-    public String getNombre() {
-        return nombre;
+    public String getNombreRol() {
+        return nombreRol;
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param nombreRol the nombreRol to set
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreRol(String nombreRol) {
+        this.nombreRol = nombreRol;
     }
 
     /**

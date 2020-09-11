@@ -40,7 +40,7 @@ public class ControladorRol {
      */
     public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
         ModeloRol modeloRol = new ModeloRol();
-        modeloRol.setNombre(request.getParameter("nombre"));
+        modeloRol.setNombreRol(request.getParameter("nombre"));
         modeloRol.setEstado(request.getParameter("estado"));
         if ("".equals(request.getParameter("id"))) {
             HttpSession session = request.getSession();
@@ -69,7 +69,7 @@ public class ControladorRol {
                         + "nombre) "
                         //+ "estado)"
                         + "VALUES (?)", SQL.RETURN_GENERATED_KEYS);
-                SQL.setString(1, modeloRol.getNombre());
+                SQL.setString(1, modeloRol.getNombreRol());
                 //SQL.setString(2, modeloRol.getEstado());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
@@ -118,7 +118,7 @@ public class ControladorRol {
                     SQL = con.prepareStatement("UPDATE rol SET "
                             + "nombre = ?"
                             + " WHERE id = ? ");
-                    SQL.setString(1, modeloRol.getNombre());                    
+                    SQL.setString(1, modeloRol.getNombreRol());                    
                     SQL.setInt(2, modeloRol.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
@@ -178,7 +178,7 @@ public class ControladorRol {
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 modeloRol.setId(res.getInt("id"));
-                modeloRol.setNombre(res.getString("nombre"));
+                modeloRol.setNombreRol(res.getString("nombre"));
                 modeloRol.setEstado(res.getString("estado"));
             }
             res.close();
@@ -212,7 +212,7 @@ public class ControladorRol {
             while (res.next()) {
                 ModeloRol modeloRol = new ModeloRol();
                 modeloRol.setId(res.getInt("id"));
-                modeloRol.setNombre(res.getString("nombre"));
+                modeloRol.setNombreRol(res.getString("nombre"));
                 modeloRol.setEstado(res.getString("estado"));
                 ListaModeloRol.add(modeloRol);
             }
@@ -256,20 +256,20 @@ public class ControladorRol {
             for (ModeloRol modeloRol : ListaModeloRol) {
                 
                 outsb.append("<tr>");
-                outsb.append("<td>").append(modeloRol.getNombre()).append("</td>");
+                outsb.append("<td>").append(modeloRol.getNombreRol()).append("</td>");
                 //out += "<td>" + modeloRol.getNombre() + "</td>";
                 outsb.append("<td class=\"text-center\">");
                 
                 // Boton Editar
                 outsb.append("<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\"");
                 outsb.append("data-id=\"").append(modeloRol.getId()).append("\"");
-                outsb.append("data-nombre=\"").append(modeloRol.getNombre()).append("\"");
+                outsb.append("data-nombre=\"").append(modeloRol.getNombreRol()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdModificar\" name=\"Modificar\" class=\"fa fa-edit\"></i> </button>");
                 
                 //Boton Eliminar
                 outsb.append("<button class=\"SetEliminar btn btn-danger btn-sm\"title=\"Eliminar\"");
                 outsb.append("data-id=\"").append(modeloRol.getId()).append("\"");
-                outsb.append("data-nombre=\"").append(modeloRol.getNombre()).append("\"");
+                outsb.append("data-nombre=\"").append(modeloRol.getNombreRol()).append("\"");
                 outsb.append("type=\"button\"><i id=\"IdEliminar\" name=\"Eliminar\" class=\"fa fa-trash\"></i> </button>");
                 outsb.append("</td>");
                 outsb.append("</tr>");
@@ -282,5 +282,34 @@ public class ControladorRol {
         }
         return outsb.toString();
     }
-
+    
+    /**
+     * Llena un combo con los roles
+     *
+     * @author: Julian A Aristizabal
+     * @param request
+     * @return String
+     * @version: 8/6/2020
+     */
+    public String Combo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String out = null;
+        StringBuilder outsb = new StringBuilder();
+        try {
+            ControladorRol controladorU = new ControladorRol();
+            LinkedList<ModeloRol> listmoRol;
+            listmoRol = controladorU.Read("S");
+            response.setContentType("text/html;charset=UTF-8");
+            out = "";
+            out += "<option value=\"\" disabled selected>Seleccione</option>";
+            //out += "<option value=\"todos\">Todos</option>";
+            outsb.append(out);
+            for (ModeloRol modeloRol : listmoRol) {
+                //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
+                outsb.append("<option value=\"").append(modeloRol.getId()).append("\"> ").append(modeloRol.getNombreRol()).append("</option>");
+            }
+        } catch (Exception e) {
+            System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+        }
+        return outsb.toString();
+    }
 }

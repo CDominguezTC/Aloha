@@ -86,8 +86,8 @@ $(function(){
 
   function cargarComboRol(){
 
-      var Frm = "PermisosJSP";
-      var Accion = "Read";
+      var Frm = "UsuariosJSP";
+      var Accion = "Combo";
       var data = {
           frm: Frm,
           accion: Accion
@@ -676,8 +676,7 @@ $(function(){
               }
           }
       });
-    }
-    else{
+    }else{
       //alert("Hola Alerta");
       Swal.fire({
           icon: 'warning',
