@@ -56,7 +56,7 @@ public class ControladorPermisos {
             for (ModeloRol modeloRol : listRol) {
 
                 //out += "<option value=\"" + modeloUsua.getId() + "\"> " + modeloUsua.getNombre() + "</option>";
-                outsb.append("<option value=\"").append(modeloRol.getId()).append("\"> ").append(modeloRol.getNombre()).append("</option>");
+                outsb.append("<option value=\"").append(modeloRol.getId()).append("\"> ").append(modeloRol.getNombreRol()).append("</option>");
 
             }
             //out += "</select>";

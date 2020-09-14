@@ -41,8 +41,11 @@ public class ControladorAuditoria {
 
     String resultado = "";
     Connection con;
+    String user = "";
     PreparedStatement SQL = null;
     ConexionBdMysql conexion = new ConexionBdMysql();
+    ControladorLog_error log = new ControladorLog_error();
+    ControladorInicioSesion controladorInicio;
 
     /**
      * Permite la inserción de los datos en la tabla Bd Auditoria
@@ -66,6 +69,9 @@ public class ControladorAuditoria {
 //            toStringArray(obj);
 //        } catch (Exception e) {
 //        }
+        if ("".equals(user)) {
+            user = controladorInicio.user_act;
+        }
         con = conexion.abrirConexion();
         try {
 
@@ -128,10 +134,12 @@ public class ControladorAuditoria {
                 }
             } catch (SQLException e) {
                 System.err.println("Error en el proceso: " + e.getMessage());
+                log.insertarError(user, "Error Controladores.ControladorAuditoria.Insert(): " + e.getMessage());
                 resultado = "-3";
             }
         } catch (SQLException ex) {
             Logger.getLogger(ControladorAuditoria.class.getName()).log(Level.SEVERE, null, ex);
+            log.insertarError(user, "Error Controladores.ControladorAuditoria.Insert(): " + ex.getMessage());
         }
         return resultado;
     }
@@ -146,7 +154,10 @@ public class ControladorAuditoria {
      * @return String
      * @version: 07/05/2020
      */
-    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String Read(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
+        if ("".equals(user)) {
+            user = controladorInicio.user_act;
+        }
         String out = null;
         StringBuilder outsb = new StringBuilder();
         try {
@@ -164,6 +175,7 @@ public class ControladorAuditoria {
             }
         } catch (Exception e) {
             System.err.println("Error en el proceso de la tabla: " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorAuditoria.ReadString(): " + e.getMessage());
         }
         return outsb.toString();
     }
@@ -178,7 +190,11 @@ public class ControladorAuditoria {
      * @return LinkedList
      * @version: 07/05/2020
      */
-    private LinkedList<ModeloAuditoria> Read(String usr, String fini, String ffin) {
+    private LinkedList<ModeloAuditoria> Read(String usr, String fini, String ffin) throws SQLException {
+
+        if ("".equals(user)) {
+            user = controladorInicio.user_act;
+        }
 
         LinkedList<ModeloAuditoria> modeloAud = new LinkedList<ModeloAuditoria>();
         ModeloUsuario modU = new ModeloUsuario();
@@ -233,6 +249,8 @@ public class ControladorAuditoria {
             con.close();
         } catch (SQLException e) {
             System.err.println("Error buscando el dato solicitado: " + e.getSQLState());
+            System.out.println("");
+            log.insertarError(user, "Error Controladores.ControladorAuditoria.ReadLista(): " + e.getMessage());
         }
         return modeloAud;
     }
@@ -317,62 +335,71 @@ public class ControladorAuditoria {
      * @return String
      * @version: 9/09/2020
      */
-    public void reciboModelos(String modeloNew, String modeloOld, String operacion, String tabla, String usua, int idmodi, String observacion) {
+    public void reciboModelos(String modeloNew, String modeloOld, String operacion, String tabla, String usua, int idmodi, String observacion) throws SQLException{
 
-        //String datoN = "", datoO = "";
+        if ("".equals(user)) {
+            user = controladorInicio.user_act;
+        }
         StringBuilder datoN = new StringBuilder();
         StringBuilder datoO = new StringBuilder();
-        Map<String, Object> retMap = new Gson().fromJson(
-                modeloNew, new TypeToken<Map<String, Object>>() {
-                }.getType()
-        );
-        Map<String, Object> retMap2 = new Gson().fromJson(
-                modeloOld, new TypeToken<Map<String, Object>>() {
-                }.getType()
-        );
+        try {
 
-        MapDifference<String, Object> difference = Maps.difference(retMap, retMap2);
-        LinkedList<String> campos = new LinkedList<String>();
-        LinkedList<String> datos = new LinkedList<String>();
-        //System.out.println("\n\nEntries differing\n--------------------------");                   
-        //difference.entriesDiffering().forEach((key, value) -> System.out.println(key + ": " + value.leftValue() + " - " + value.rightValue()));
-        difference.entriesDiffering().forEach((key, value) -> campos.add(key));
-        difference.entriesDiffering().forEach((key, value) -> datos.add(value.leftValue() + "," + value.rightValue()));
+            //String datoN = "", datoO = "";
+            Map<String, Object> retMap = new Gson().fromJson(
+                    modeloNew, new TypeToken<Map<String, Object>>() {
+                    }.getType()
+            );
+            Map<String, Object> retMap2 = new Gson().fromJson(
+                    modeloOld, new TypeToken<Map<String, Object>>() {
+                    }.getType()
+            );
 
-        List<String> items = null;
-        for (int i = 0; i < campos.size(); i++) {
-            //System.out.println(datos.get(i));
-            items = Arrays.asList(datos.get(i).split("\\s*,\\s*"));
-            if (items.get(0).startsWith("{")) {
-                
-                for (int u = 1; u <= ((items.size() / 2) - 1); u++) {
-                    if(items.get(u).contains("nombre")){
-                        datoN.append(items.get(u)).append(System.getProperty("line.separator"));
-                        //datoO.append(items.get(4)).append(System.getProperty("line.separator"));
-                    }                           
+            MapDifference<String, Object> difference = Maps.difference(retMap, retMap2);
+            LinkedList<String> campos = new LinkedList<String>();
+            LinkedList<String> datos = new LinkedList<String>();
+            //System.out.println("\n\nEntries differing\n--------------------------");                   
+            //difference.entriesDiffering().forEach((key, value) -> System.out.println(key + ": " + value.leftValue() + " - " + value.rightValue()));
+            difference.entriesDiffering().forEach((key, value) -> campos.add(key));
+            difference.entriesDiffering().forEach((key, value) -> datos.add(value.leftValue() + "," + value.rightValue()));
+
+            List<String> items = null;
+            for (int i = 0; i < campos.size(); i++) {
+                //System.out.println(datos.get(i));
+                items = Arrays.asList(datos.get(i).split("\\s*,\\s*"));
+                if (items.get(0).startsWith("{")) {
+
+                    for (int u = 1; u <= ((items.size() / 2) - 1); u++) {
+                        if (items.get(u).contains("nombre")) {
+                            datoN.append(items.get(u)).append(System.getProperty("line.separator"));
+                            //datoO.append(items.get(4)).append(System.getProperty("line.separator"));
+                        }
+                    }
+                    for (int w = ((items.size() / 2) + 1); w <= items.size(); w++) {
+                        if (items.get(w).contains("nombre")) {
+                            datoO.append(items.get(w)).append(System.getProperty("line.separator"));
+                        }
+                    }
+
+                    //System.out.println("Ok");
+                } else {
+                    datoN.append(campos.get(i)).append("=").append(items.get(0)).append(System.getProperty("line.separator"));
+                    datoO.append(campos.get(i)).append("=").append(items.get(1)).append(System.getProperty("line.separator"));
                 }
-                for (int w = ((items.size() / 2) + 1); w < items.size(); w++) {
-                    if(items.get(w).contains("nombre")){
-                        
-                        datoO.append(items.get(w)).append(System.getProperty("line.separator"));
-                    }                           
-                }                                          
-                //items.forEach(action);
-                System.out.println("Ok");
-
-            } else {
-                datoN.append(campos.get(i)).append("=").append(items.get(0)).append(System.getProperty("line.separator"));
-                datoO.append(campos.get(i)).append("=").append(items.get(1)).append(System.getProperty("line.separator"));
             }
-        }
+            
+            try {
+                Insert(operacion, tabla, usua, idmodi, observacion, datoO.toString(), datoN.toString());
+            } catch (Exception e) {
 
+                log.insertarError(user, "Error Controladores.ControladorAuditoria.reciboModelos(): " + e.getMessage());
+                System.out.println("Error insertado: " + e.getMessage());
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            log.insertarError(user, "Error Controladores.ControladorAuditoria.reciboModelos(): " + e.getMessage());
+            System.out.println("Error insertado: " + e.getMessage());
+        }
         /*System.out.println("datoN: " + datoN);
         System.out.println("datoO: " + datoO);*/
-        try {
-            Insert(operacion, tabla, usua, idmodi, observacion, datoO.toString(), datoN.toString());
-        } catch (Exception e) {
-
-        }
 
     }
 

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Esta clase permite controlar la autenticacion de los usarios en el sistema de
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpServletRequest;
  * @version: 07/05/2020
  */
 public class ControladorInicioSesion {
-    static String user_act;
+    static String user_act = "";
+    HttpServletRequest request2;
     /**
      * Permite Permite la autenticacion del usuario
      *
@@ -36,7 +38,7 @@ public class ControladorInicioSesion {
         String usuario = request.getParameter("user");
         String pw = request.getParameter("pass");
         try {
-            String consulta = "SELECT * FROM usuario WHERE login = ? AND password = ?";
+            String consulta = "SELECT id FROM usuario WHERE login = ? AND password = ?";
             SQL = con.prepareStatement(consulta);
             SQL.setString(1, usuario);
             String clave = tl.encriptar(pw);
@@ -44,6 +46,7 @@ public class ControladorInicioSesion {
             rs = SQL.executeQuery();
             if (rs.absolute(1)) {
                 resultado = "true";
+                request2 = request;
                 user_act = usuario;
             } else {
                 resultado = "-2";
@@ -56,6 +59,16 @@ public class ControladorInicioSesion {
             System.err.println("Controladores.ControladorInicioSesion.autenticacion(): " + e.getMessage());
         }
         return resultado;
+    }
+    
+    public String usuarioActivo(){
+        
+        HttpSession misession= (HttpSession) request2.getSession();
+        String user_ac = "";
+        
+        user_ac = misession.getAttribute("usuario").toString();
+        
+        return user_ac;
     }
 
 }

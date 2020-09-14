@@ -14,6 +14,7 @@ public class ModeloRol {
     private Integer id;
     private String nombreRol;
     private String estado;
+    private String descripcion;
 
     public ModeloRol() {
     }
@@ -66,5 +67,10 @@ public class ModeloRol {
         this.estado = estado;
     }
     
-    
+    /**
+     * @return the estado
+     */
+    public String getString() {
+        return nombreRol;
+    }
 }

@@ -63,11 +63,12 @@ public class ControladorUsuario {
         modeloRol = controladorRol.getModelo(Integer.parseInt(request.getParameter("rol")));
         registroNew.add(request.getParameter("rol"));
         modeloUsuario.setRol(modeloRol);
-        if ("".equals(request.getParameter("id"))) {
-            HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
+        if ("".equals(request.getParameter("id"))) {            
             user = (String) session.getAttribute("usuario");
             resultado = Insert(modeloUsuario);
         } else {
+            user = (String) session.getAttribute("usuario");
             modeloUsuario.setId(Integer.parseInt(request.getParameter("id")));
             resultado = Update(modeloUsuario);
         }
@@ -168,8 +169,8 @@ public class ControladorUsuario {
                 } else {
 
                     pst = con.prepareStatement("UPDATE usuario SET "
-                            + "nombre = ?, "
-                            + "login = ?, "
+                            + "nombres = ?, "
+                            + "logina = ?, "
                             + "password = ?, "
                             + "id_rol = ?, "
                             + "estado = ?"

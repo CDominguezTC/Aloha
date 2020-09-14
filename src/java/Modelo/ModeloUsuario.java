@@ -118,7 +118,12 @@ public class ModeloUsuario {
         this.estado = estado;
     }
 
-
+    /**
+     * @return the id
+     */
+    public String getString() {
+        return nombre;
+    }
     
     
 
