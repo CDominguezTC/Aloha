@@ -107,7 +107,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                 <label for="periodo">Periodo</label>
-                                                <select id="IdPeriodo" class="form-control" required>
+                                                <select id="IdPeriodo" class="form-control" onchange="SearchPeriodo()" required>
                                                     <option value="" disabled selected>Seleccione</option>                                                    
                                                 </select>
                                             </div>
@@ -115,7 +115,7 @@
                                                 <label for="fecha_inicial">Fecha Inicial</label>
                                                 <div class="form-group">
                                                     <div class='input-group date' id='myDatepicker1'>
-                                                        <input type='text' class="form-control" required/>
+                                                        <input type='text' id="IdFechaInicioPeriodo" class="form-control" required/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>
@@ -126,7 +126,7 @@
                                                 <label for="fecha_final">Fecha Final</label> 
                                                 <div class="form-group">
                                                     <div class='input-group date' id='myDatepicker2'>
-                                                        <input type='text' class="form-control" required/>
+                                                        <input type='text' id="IdFechaFinPeriodo" class="form-control" required/>
                                                         <span class="input-group-addon">
                                                             <span class="glyphicon glyphicon-calendar"></span>
                                                         </span>

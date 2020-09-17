@@ -9,6 +9,12 @@ $(function () {
         LoadPeriodos();
     });
 
+    $('#IdPeriodo').on('change', function () {        
+        var selected = $(this).find('option:selected');                
+        $('#IdFechaInicioPeriodo').val(selected.data('fechainicio'));
+        $('#IdFechaFinPeriodo').val(selected.data('fechafin'));
+    });
+
     $("#IdModalFiltroPersonas").modal();
 
     $('#tableempleados').DataTable({
@@ -326,7 +332,7 @@ $(function () {
         var IdCiudad = $('#IdCiudad').val();
         var Evento = "SelectPersonasLiquidacionTiempos";
         var Modulo = "Tiempos";
-        var Accion = "Read";        
+        var Accion = "Read";
         var data = {
             frm: Frm,
             idempresa: IdEmpresa,
@@ -337,7 +343,7 @@ $(function () {
             idciudad: IdCiudad,
             evento: Evento,
             modulo: Modulo,
-            accion: Accion            
+            accion: Accion
         };
         $.ajax({
             type: "POST",

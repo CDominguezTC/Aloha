@@ -5,6 +5,10 @@
  */
 package Herramienta;
 
+import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -225,5 +229,25 @@ public class Herramienta {
             System.out.println(ex);
         }
         return fechaDate;
+    }
+    
+    /**
+     * Perminte la encriptacion del string para el tokent Rest
+     * @param  input 
+     * @return String
+     */
+    public String getSHA256(String input) {
+
+        String toReturn = null;
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            digest.reset();
+            digest.update(input.getBytes("utf8"));
+            toReturn = String.format("%064x", new BigInteger(1, digest.digest()));
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        return toReturn;
     }
 }
