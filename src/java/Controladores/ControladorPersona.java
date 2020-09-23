@@ -321,6 +321,7 @@ public class ControladorPersona {
         modeloPersona.setApellidos(request.getParameter("apellido"));
         modeloPersona.setObservacion(request.getParameter("observacion"));
         modeloPersona.setConsumo_casino(request.getParameter("consumo"));
+        modeloPersona.setConsumo_hoteleria(request.getParameter("consumoh"));
         modeloPersona.setCantidad_consumo(Integer.parseInt(herramienta.validaString(request.getParameter("cantidad_consumo"))));
         modeloPersona.setTipo_persona(request.getParameter("tipopersona"));
         modeloPersona.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(request.getParameter("centrocosto"))));
@@ -400,6 +401,7 @@ public class ControladorPersona {
             out += "<th>CentroCosto</th>";
             out += "<th>GrupoConsumo</th>";
             out += "<th>Casino</th>";
+            out += "<th>Hoteleria</th>";
             out += "<th>Opcion</th>";
             out += "</tr>";
             out += "</thead>";
@@ -415,6 +417,11 @@ public class ControladorPersona {
                     out += "<td>No</td>";
                 } else {
                     out += "<td>Si</td>";
+                }
+                if ("S".equals(modeloPersonas.getConsumo_hoteleria())) {
+                    out += "<td>Si</td>";
+                } else {
+                    out += "<td>No</td>";
                 }
                 out += "<td class=\"text-center\">";
                 // Boton Editar
@@ -432,6 +439,13 @@ public class ControladorPersona {
                 out += "data-consume=\"" + modeloPersonas.getConsumo_casino() + "\"";
                 out += "data-noconsumos=\"" + modeloPersonas.getCantidad_consumo() + "\"";
                 out += "data-observacion=\"" + modeloPersonas.getObservacion() + "\"";
+                //out += "data-consumeh=\"" + modeloPersonas.getConsumo_hoteleria() + "\"";
+                if ("S".equals(modeloPersonas.getConsumo_hoteleria())) {
+                    out += "data-consumeh=\"2\"";
+                } else {
+                    out += "data-consumeh=\"1\"";
+                }
+                
                 //Campos de Imagenes
 //                if (modeloPersonas.getLista_Modelo_Imagenes() != null) {
 //                    for (ModeloImagen modeloImagen : modeloPersonas.getLista_Modelo_Imagenes()) {
@@ -552,7 +566,8 @@ public class ControladorPersona {
                     + "id_centro_costo, "
                     + "id_cargo, "
                     + "id_empresa_trabaja, "
-                    + "id_grupo_consumo "
+                    + "id_grupo_consumo, "
+                    + "consumo_hoteleria "
                     + " FROM persona "
                     + "WHERE `estado` = ? AND"
                     + "`tipo_persona` = ?;");
@@ -592,6 +607,7 @@ public class ControladorPersona {
                 modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
                 modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_trabaja")))));
                 modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+                modelo.setConsumo_hoteleria(res.getString("consumo_hoteleria"));
 //                //Datos de Imagenes y templates
 //                modelo.setLista_Modelo_Imagenes(controladorImagen.getListaModelo(modelo.getId()));
 //                modelo.setLista_Modelo_Template(controladorTemplate.getModelo(modelo.getId()));
@@ -732,8 +748,9 @@ public class ControladorPersona {
                         + "id_centro_costo, "
                         + "id_empresa_trabaja, "
                         + "id_grupo_consumo, "
-                        + "id_cargo) "
-                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
+                        + "id_cargo, "
+                        + "consumo_hoteleria) "
+                        + " VALUE (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", SQL.RETURN_GENERATED_KEYS);
                 SQL.setString(1, modeloPersona.getTipo_identificacion());
                 SQL.setString(2, modeloPersona.getIdentificacion());
                 SQL.setString(3, modeloPersona.getNombres());
@@ -764,6 +781,7 @@ public class ControladorPersona {
                 SQL.setInt(21, modeloPersona.getModelo_empresa_trabaja().getId());
                 SQL.setInt(22, modeloPersona.getModelo_grupo_consumo().getId());
                 SQL.setInt(23, modeloPersona.getModelo_cargo().getId());
+                SQL.setString(24, modeloPersona.getConsumo_hoteleria());
                 if (SQL.executeUpdate() > 0) {
                     ControladorAuditoria auditoria = new ControladorAuditoria();
                     try (ResultSet generatedKeys = SQL.getGeneratedKeys()) {
@@ -820,7 +838,8 @@ public class ControladorPersona {
                             + "id_centro_costo = ?, "
                             + "id_empresa_trabaja = ?, "
                             + "id_grupo_consumo = ?, "
-                            + "id_cargo = ? "
+                            + "id_cargo = ?, "
+                            + "consumo_hoteleria = ? "
                             + "WHERE id = ? ");
                     SQL.setString(1, modeloPersona.getTipo_identificacion());
                     SQL.setString(2, modeloPersona.getIdentificacion());
@@ -838,7 +857,8 @@ public class ControladorPersona {
                     SQL.setInt(9, modeloPersona.getModelo_empresa_trabaja().getId());
                     SQL.setInt(10, modeloPersona.getModelo_grupo_consumo().getId());
                     SQL.setInt(11, modeloPersona.getModelo_cargo().getId());
-                    SQL.setInt(12, modeloPersona.getId());
+                    SQL.setString(12, modeloPersona.getConsumo_hoteleria());
+                    SQL.setInt(13, modeloPersona.getId());
                 }
                 if (SQL.executeUpdate() > 0) {
                     i = modeloPersona.getId();

@@ -178,6 +178,14 @@
                                                                     <label for="nombre">Cantidad de Consumos Autorizados</label>
                                                                     <input type="text" class="form-control" id="IdNoConsumos" value="0">
                                                                 </div>
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                                                    <label for="tipo_id">Consume Hoteleria</label>
+                                                                    <select id="IdConsumeH" class="form-control" required>
+                                                                        <option value="0" selected disabled>Seleccione</option>                                                                    
+                                                                        <option value="1">No</option>
+                                                                        <option value="2">Si</option>                                                                    
+                                                                    </select>
+                                                                </div>
                                                                 <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
@@ -382,6 +390,7 @@
                                                         <th>CentroCosto</th>
                                                         <th>GrupoConsumo</th>
                                                         <th>Casino</th>
+                                                        <th>Hoteleria</th>
                                                         <th>Opcion</th>
                                                     </tr>
                                                 </thead>
@@ -392,7 +401,8 @@
                                                         <td></td>                                                        
                                                         <td></td>                                                        
                                                         <td></td>                                                        
-                                                        <td></td>                                                        
+                                                        <td></td>   
+                                                        <td></td> 
                                                         <td></td>                                                        
                                                     </tr>
                                                 </tbody>

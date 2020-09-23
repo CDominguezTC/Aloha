@@ -98,6 +98,7 @@ $(function () {
     }
     // cargamos los centros de costos al select 
     function LoadCentroCosto() {
+        
         var Frm = "CentroCostoJSP";
         var Evento = "Select";
         var Accion = "Read";
@@ -352,6 +353,7 @@ $(function () {
 
     $(document).on('click', '.SetFormulario', function () {
         //LimpiarCampos();
+        //alert("cargo: " + $(this).data('consume'));
         $('#Id').val($(this).data('id'));
         $('#IdTipoDocOld').val($(this).data('tipodoc'));
         $('#IdTipoDoc').val($(this).data('tipodoc'));
@@ -368,6 +370,7 @@ $(function () {
         $('#IdCentroCosto').val($(this).data('centrocosto'));
         $('#IdConsumeOld').val($(this).data('consume'));
         $('#IdConsume').val($(this).data('consume'));
+        $('#IdConsumeH').val($(this).data('consumeh'));
         $('#IdGrupoConsumoOld').val($(this).data('grupoconsumo'));
         $('#IdGrupoConsumo').val($(this).data('grupoconsumo'));
         $('#IdObservacionOld').val($(this).data('observacion'));
@@ -867,6 +870,7 @@ $(function () {
         $('#IdCentroCosto').val(0);
         $('#IdCentroCostoOld').val('');
         $('#IdConsume').val(0);
+        $('#IdConsumeH').val(0);
         $('#IdConsumeOld').val('');
         $('#IdGrupoConsumo').val(0);
         $('#IdNoConsumos').val(0);
@@ -916,6 +920,13 @@ $(function () {
             var Cargo = $('#IdCargo').val();
             var CentroCosto = $('#IdCentroCosto').val();
             var Consumo = $('#IdConsume').val();
+            var ConsumoH = $('#IdConsumeH').val();
+            if(ConsumoH == "2"){
+                ConsumoH = 'S';
+            }else{
+                ConsumoH = 'N';
+            }
+            
             var GrupoConsumo = $('#IdGrupoConsumo').val();
             var NoConsumos = $('#IdNoConsumos').val();
             var Observacion = $('#IdObservacion').val();
@@ -948,6 +959,7 @@ $(function () {
                 cargo: Cargo,
                 centrocosto: CentroCosto,
                 consumo: Consumo,
+                consumoh: ConsumoH,
                 noconsumos: NoConsumos,
                 grupoconsumo: GrupoConsumo,
                 observacion: Observacion,
