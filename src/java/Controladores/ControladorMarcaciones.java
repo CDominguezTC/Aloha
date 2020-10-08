@@ -138,7 +138,7 @@ public class ControladorMarcaciones {
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloPersona modeloEmpleado = new ModeloPersona();
-                modeloEmpleado.setId(res.getInt("id"));
+                /*modeloEmpleado.setId(res.getInt("id"));
                 modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
                 modeloEmpleado.setIdentificacion(res.getString("identificacion"));
                 modeloEmpleado.setNombres(res.getString("nombres"));
@@ -151,7 +151,7 @@ public class ControladorMarcaciones {
                 modeloEmpleado.setId_Areas(res.getInt("id_Areas"));
                 modeloEmpleado.setId_Ciudad(res.getInt("id_Ciudad"));
                 modeloEmpleado.setId_Centro_Costos(res.getInt("id_Centro_Costos"));
-                modeloEmpleado.setObservaciones(res.getString("observaciones"));
+                modeloEmpleado.setObservaciones(res.getString("observaciones"));*/
                 modeloEmpleados.add(modeloEmpleado);
             }
             res.close();
@@ -215,20 +215,20 @@ public class ControladorMarcaciones {
             while (res.next()) {
                 ModeloPersona modeloEmpleado = new ModeloPersona();
                 modeloEmpleado.setId(res.getInt("id"));
-                modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
-                modeloEmpleado.setIdentificacion(res.getString("identificacion"));
-                modeloEmpleado.setNombres(res.getString("nombres"));
-                modeloEmpleado.setApellidos(res.getString("apellidos"));
-                modeloEmpleado.setTipoPersona(res.getString("tipoPersona"));
-                modeloEmpleado.setCod_nomina(res.getString("cod_nomina"));
-                modeloEmpleado.setId_Dependencias(res.getInt("id_Dependencias"));
-                modeloEmpleado.setId_Empresa(res.getInt("id_Empresa"));
-                modeloEmpleado.setId_Grupo_Horario(res.getInt("id_Grupo_Horario"));
-                modeloEmpleado.setId_Areas(res.getInt("id_Areas"));
-                modeloEmpleado.setId_Ciudad(res.getInt("id_Ciudad"));
-                modeloEmpleado.setId_Centro_Costos(res.getInt("id_Centro_Costos"));
-                modeloEmpleado.setObservaciones(res.getString("observaciones"));
-                modeloEmpleados.add(modeloEmpleado);
+//                modeloEmpleado.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+//                modeloEmpleado.setIdentificacion(res.getString("identificacion"));
+//                modeloEmpleado.setNombres(res.getString("nombres"));
+//                modeloEmpleado.setApellidos(res.getString("apellidos"));
+//                modeloEmpleado.setTipoPersona(res.getString("tipoPersona"));
+//                modeloEmpleado.setCod_nomina(res.getString("cod_nomina"));
+//                modeloEmpleado.setId_Dependencias(res.getInt("id_Dependencias"));
+//                modeloEmpleado.setId_Empresa(res.getInt("id_Empresa"));
+//                modeloEmpleado.setId_Grupo_Horario(res.getInt("id_Grupo_Horario"));
+//                modeloEmpleado.setId_Areas(res.getInt("id_Areas"));
+//                modeloEmpleado.setId_Ciudad(res.getInt("id_Ciudad"));
+//                modeloEmpleado.setId_Centro_Costos(res.getInt("id_Centro_Costos"));
+//                modeloEmpleado.setObservaciones(res.getString("observaciones"));
+//                modeloEmpleados.add(modeloEmpleado);
             }
             res.close();
             SQL.close();
@@ -253,19 +253,19 @@ public class ControladorMarcaciones {
             ResultSet res = SQL.executeQuery();
             if (res.next()) {
                 modeloEmpleados.setId(res.getInt("id"));
-                modeloEmpleados.setTipoIdentificacion(res.getString("tipoIdentificacion"));
-                modeloEmpleados.setIdentificacion(res.getString("identificacion"));
-                modeloEmpleados.setNombres(res.getString("nombres"));
-                modeloEmpleados.setApellidos(res.getString("apellidos"));
-                modeloEmpleados.setTipoPersona(res.getString("tipoPersona"));
-                modeloEmpleados.setCod_nomina(res.getString("cod_nomina"));
-                modeloEmpleados.setId_Dependencias(res.getInt("id_Dependencias"));
-                modeloEmpleados.setId_Empresa(res.getInt("id_Empresa"));
-                modeloEmpleados.setId_Grupo_Horario(res.getInt("id_Grupo_Horario"));
-                modeloEmpleados.setId_Areas(res.getInt("id_Areas"));
-                modeloEmpleados.setId_Ciudad(res.getInt("id_Ciudad"));
-                modeloEmpleados.setId_Centro_Costos(res.getInt("id_Centro_Costos"));
-                modeloEmpleados.setObservaciones(res.getString("observaciones"));
+//                modeloEmpleados.setTipoIdentificacion(res.getString("tipoIdentificacion"));
+//                modeloEmpleados.setIdentificacion(res.getString("identificacion"));
+//                modeloEmpleados.setNombres(res.getString("nombres"));
+//                modeloEmpleados.setApellidos(res.getString("apellidos"));
+//                modeloEmpleados.setTipoPersona(res.getString("tipoPersona"));
+//                modeloEmpleados.setCod_nomina(res.getString("cod_nomina"));
+//                modeloEmpleados.setId_Dependencias(res.getInt("id_Dependencias"));
+//                modeloEmpleados.setId_Empresa(res.getInt("id_Empresa"));
+//                modeloEmpleados.setId_Grupo_Horario(res.getInt("id_Grupo_Horario"));
+//                modeloEmpleados.setId_Areas(res.getInt("id_Areas"));
+//                modeloEmpleados.setId_Ciudad(res.getInt("id_Ciudad"));
+//                modeloEmpleados.setId_Centro_Costos(res.getInt("id_Centro_Costos"));
+//                modeloEmpleados.setObservaciones(res.getString("observaciones"));
             }
             res.close();
             SQL.close();
@@ -308,7 +308,7 @@ public class ControladorMarcaciones {
                 modeloMarcaciones.add(modeloMarcacion);
             }
             res.close();
-            SQL.close();l
+            SQL.close();
             con.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
