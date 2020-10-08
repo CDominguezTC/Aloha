@@ -19,6 +19,7 @@
         <%@include file="Principal/Body.html" %>
         <script type="text/javascript" src="Principal/js/JsTiempos/jquery.min.js" ></script>
         <script type="text/javascript" src="Principal/js/JsTiempos/ValidacionesLiquidacionTiempos.js" ></script>  
+        <!-- Contenidocarga -->
         <!-- Contenido -->
         <div class="right_col" role="main">
             <div class="">
