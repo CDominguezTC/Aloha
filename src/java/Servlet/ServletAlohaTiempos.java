@@ -29,6 +29,7 @@ import Controladores.ControladorGrupo_horario;
 import Controladores.ControladorHorario_consumo;
 import Controladores.ControladorImagen;
 import Controladores.ControladorInicioSesion;
+import Controladores.ControladorLiquidacion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorLog_error;
 import Controladores.ControladorParametro_tabla;
@@ -1056,6 +1057,26 @@ public class ServletAlohaTiempos extends HttpServlet {
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
+                    }
+
+                    break;
+                case "MarcacionesJSP":
+                    ControladorLiquidacion controladorLiq = new ControladorLiquidacion();
+                    //ControladorVisita visita = new ControladorVisita();
+                    Accion = request.getParameter("accion");
+                    switch (Accion) {
+                        case "validarmarcaciones":
+                            Resultado = controladorLiq.Insert(request, response);
+                            break;
+                        case "procesarmarcaciones":
+                            Resultado = "false";
+                            break;
+                        case "Read":
+                            /*Resultado = parametro_tabla.Read(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;*/
                     }
 
                     break;

@@ -1,21 +1,24 @@
 $(function () {
     $(document).ready(function () {
-        LoadEmpresas();
-        LoadDependencia();
-        LoadCentroCosto();
-        LoadArea();
-        LoadGrupoHorario();
-        LoadCiudad();
-        LoadPeriodos();
+        validoMarcaciones();
+        
     });
 
-    $('#IdPeriodo').on('change', function () {        
-        var selected = $(this).find('option:selected');                
+
+    $('#IdPeriodo').on('change', function () {
+
+        var selected = $(this).find('option:selected');
+        var fechain = selected.data('fini');
+        var fechafi = selected.data('ffin');
+        //alert('Fecha inicio: ' + extra + " fin: " + extra2);
+        $('#IdFechaInicioPeriodo').val(fechain);
+        $('#IdFechaFinPeriodo').val(fechafi);
+        /*var selected = $(this).find('option:selected');                
         $('#IdFechaInicioPeriodo').val(selected.data('fechainicio'));
-        $('#IdFechaFinPeriodo').val(selected.data('fechafin'));
+        $('#IdFechaFinPeriodo').val(selected.data('fechafin'));*/
     });
 
-    $("#IdModalFiltroPersonas").modal();
+    
 
     $('#tableempleados').DataTable({
         "scrollCollapse": false,
@@ -30,6 +33,7 @@ $(function () {
         "scrollY": 300,
         "searching": false
     });
+
     $('#tablemarcaciones').DataTable({
         "scrollCollapse": false,
         "paging": false,
@@ -43,6 +47,7 @@ $(function () {
         "scrollY": 416,
         "searching": false
     });
+
     $('#tableliquidacion').DataTable({
         "scrollCollapse": false,
         "paging": false,
@@ -56,6 +61,155 @@ $(function () {
         "scrollY": 416,
         "searching": false
     });
+
+    function validoMarcaciones(){
+
+        var Frm = "MarcacionesJSP";
+        var data = {
+
+            frm: Frm,
+            accion: "validarmarcaciones"
+        };
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            data: data,
+            success: function(data, textStatus, jqXHR){
+                
+
+                var dt = data;
+                //alert("dt: " + dt);
+                if (dt == "true"){
+                    var datos = {
+                        
+                        frm: Frm,
+                        accion: "procesarmarcaciones"
+                    };
+                    Swal.fire({
+                        
+                        title: 'Existen datos sin procedar',
+                        text: "¿desea hacerlo ahora?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí',
+                        cancelButtonText: 'No'
+                    }).then((result) => {
+                        
+                        if (result.value) {
+
+                            //enableGif();
+                            $.ajax({
+                                type: "POST",
+                                url: "ServletAlohaTiempos",
+                                data: datos,
+                                success: function(resul, textStatus, jqXHR){
+                                    
+                                    //alert("resul: " + resul);
+                                    //disableGif();
+                                    if(resul == 'true'){
+
+                                        Swal.fire({
+                                            icon: 'success',
+                                            title: 'Proceso terminado',
+                                            text: 'exitosamente.'
+                                        }).then((result) => {
+                                            
+                                            $("#IdModalFiltroPersonas").modal();
+                                            LoadEmpresas();
+                                            LoadDependencia();
+                                            LoadCentroCosto();
+                                            LoadArea();
+                                            LoadGrupoHorario();
+                                            LoadCiudad();
+                                            LoadPeriodos();
+                                            
+                                        });
+                                        
+                                    }else{
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'No se pudo completar',
+                                            text: 'el proceso exitosamente.'
+                                        });
+                                    }
+                                    
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    disableGif();
+                                    if (jqXHR.status === 0) {
+                                        alert('Not connect: Verify Network.');
+                                    } else if (jqXHR.status === 404) {
+                                        alert('Requested page not found [404]');
+                                    } else if (jqXHR.status === 500) {
+                                        alert('Internal Server Error [500].');
+                                    } else if (textStatus === 'parsererror') {
+                                        alert('Requested JSON parse failed.');
+                                    } else if (textStatus === 'timeout') {
+                                        alert('Time out error.');
+                                    } else if (textStatus === 'abort') {
+                                        alert('Ajax request aborted.');
+                                    } else {
+                                        alert('Uncaught Error: ' + jqXHR.responseText);
+                                    }
+                                }
+                            });
+                        }else{
+                            $("#IdModalFiltroPersonas").modal();
+                            LoadEmpresas();
+                            LoadDependencia();
+                            LoadCentroCosto();
+                            LoadArea();
+                            LoadGrupoHorario();
+                            LoadCiudad();
+                            LoadPeriodos();
+                        }
+                    });                
+
+                }else{
+                    $("#IdModalFiltroPersonas").modal();
+                    LoadEmpresas();
+                    LoadDependencia();
+                    LoadCentroCosto();
+                    LoadArea();
+                    LoadGrupoHorario();
+                    LoadCiudad();
+                    LoadPeriodos();
+                }
+                
+              /*else{
+
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Alerta',
+                    text: 'El login ya existe en el sistema.',
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+              }*/
+
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+              //disableGif();
+              if (jqXHR.status === 0) {
+                alert('Not connect: Verify Network.');
+              } else if (jqXHR.status === 404) {
+                alert('Requested page not found [404]');
+              } else if (jqXHR.status === 500) {
+                alert('Internal Server Error [500].');
+              } else if (textStatus === 'parsererror') {
+                alert('Requested JSON parse failed.');
+              } else if (textStatus === 'timeout') {
+                alert('Time out error.');
+              } else if (textStatus === 'abort') {
+                alert('Ajax request aborted.');
+              } else {
+                alert('Uncaught Error: ' + jqXHR.responseText);
+              }
+            }
+        });
+    }
 
     function LoadEmpresas() {
         var Frm = "EmpresaJSP";
@@ -208,6 +362,7 @@ $(function () {
             }
         });
     }
+
     function LoadGrupoHorario() {
         var Frm = "GrupoHorarioJSP";
         var Evento = "Select";
@@ -283,6 +438,7 @@ $(function () {
             }
         });
     }
+
     function LoadPeriodos() {
         var Frm = "PeriodosJSP";
         var Evento = "Select";
@@ -321,8 +477,8 @@ $(function () {
         });
     }
 
-    $('#IdFiltrarEmpleados').click(function (e)
-    {
+    $('#IdFiltrarEmpleados').click(function (e){
+    
         var Frm = "PersonasJSP";
         var IdEmpresa = $('#IdEmpresa').val();
         var IdDependencia = $('#IdDependencia').val();
@@ -375,6 +531,3 @@ $(function () {
     });
 
 });
-
-
-

@@ -285,7 +285,7 @@ public class ControladorPeriodos {
                 out = "";
                 out += "<option value=\"0\" selected>Seleccione</option>";
                 for (ModeloPeriodo modeloPeriodo : listmoPeriodos) {
-                    out += "<option value=\"" + modeloPeriodo.getId() + "\"> " + modeloPeriodo.getNombre() + "</option>";
+                    out += "<option value=\"" + modeloPeriodo.getId() + "\" data-fini=\"" + modeloPeriodo.getFecha_inicio()+ "\" data-ffin=\"" + modeloPeriodo.getFecha_fin()+ "\"> " + modeloPeriodo.getNombre() + "</option>";
                 }
             } else {
                 out = "";

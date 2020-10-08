@@ -1,12 +1,61 @@
-///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//
-//package Controladores;
-//
-//import Conexiones.ConexionBdMysql;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Controladores;
+
+import Conexiones.ConexionBdMysql;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class ControladorLiquidacion {
+
+    String resultado = "";
+    Connection con;
+    PreparedStatement SQL = null;
+    ConexionBdMysql conexion = new ConexionBdMysql();
+    String user = "";
+    ControladorLog_error log = new ControladorLog_error();
+    ControladorInicioSesion controladorInicio;
+
+    public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        try {
+            try {
+                
+                con = conexion.abrirConexion();
+                SQL = con.prepareStatement("SELECT id FROM registro_tiempo WHERE estado = 'S'");
+                ResultSet rs = SQL.executeQuery();
+                if(rs.absolute(1)){
+                    resultado = "true";
+                    SQL.close();
+                    con.close();
+                }
+                
+
+            } catch (SQLException e) {
+                System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+                try {
+                    log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
+                } catch (Exception ex) {
+                }
+                resultado = "-2";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
+            resultado = "-3";
+        }
+        return resultado;
+    }
+}
 //import Modelo.ModeloPersona;
 //import Modelo.ModeloGrupo_horario;
 //import Modelo.ModeloGrupoTurnos_Turnos;

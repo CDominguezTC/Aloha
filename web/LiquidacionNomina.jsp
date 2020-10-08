@@ -107,7 +107,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                 <label for="periodo">Periodo</label>
-                                                <select id="IdPeriodo" class="form-control" onchange="SearchPeriodo()" required>
+                                                <select id="IdPeriodo" class="form-control" required>
                                                     <option value="" disabled selected>Seleccione</option>                                                    
                                                 </select>
                                             </div>
@@ -174,13 +174,13 @@
                                                             </thead>
                                                             <tbody>
                                                                 <tr>                                                                                                                        
-                                                                    <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
-                                                                    <td>01-07-2020</td>
-                                                                    <td>07:30:00</td>
-                                                                    <td>D</td>
-                                                                    <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td></td>
                                                                 </tr>                                                                
-                                                                <tr>                                                                                                                        
+                                                                <!--tr>                                                                                                                        
                                                                     <td class="text-center"><input type="checkbox" class="flat" value="1"></td>
                                                                     <td>01-07-2020</td>
                                                                     <td>07:30:00</td>
@@ -662,7 +662,7 @@
                                                                     <td>07:30:00</td>
                                                                     <td>D</td>
                                                                     <td><button class="btn btn-secondary btn-sm" type="button" form="marcaciones_form"><i class="fa fa-desktop"></i></button></td>
-                                                                </tr>                                                                
+                                                                </tr-->                                                                
                                                             </tbody>
                                                         </table>                                                         
                                                     </div>
@@ -1447,11 +1447,13 @@
             $('#myDatepicker').datetimepicker();
 
             $('#myDatepicker1').datetimepicker({
-                format: 'DD.MM.YYYY'
+                format: 'YYYY-MM-DD',
+                locale: 'es'
             });
 
             $('#myDatepicker2').datetimepicker({
-                format: 'DD.MM.YYYY'
+                format: 'YYYY-MM-DD',
+                locale: 'es'
             });
             $('#myDatepicker3').datetimepicker({
                 format: 'DD.MM.YYYY'
