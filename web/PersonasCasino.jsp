@@ -112,7 +112,7 @@
                                                             <div class="row">                                                                  
                                                                 <input type="hidden" id="Id" name="Id">
                                                                 <input type="hidden" id="IdTipoDocOld" name="TipoDocOld">
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="tipo_id">Tipo de Identificación</label>
                                                                     <select id="IdTipoDoc" class="form-control" required>
                                                                         <option value="0" selected disabled>Seleccione</option>
@@ -122,17 +122,17 @@
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdCedulaOld" name="cedulaOld">
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="cedula">Identificacion</label>
                                                                     <input type="number" class="form-control" id="IdCedula" name="cedula" min="0" required>
                                                                 </div>
                                                                 <input type="hidden" id="IdNombreOld" name="NombreOld">
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="nombre">Nombre</label>
                                                                     <input type="text" class="form-control" id="IdNombre" value="">
                                                                 </div>
                                                                 <input type="hidden" id="IdApellidoOld" name="ApellidoOld">
-                                                                <div class="col-md-3 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="apellido">Apellido</label>
                                                                     <input type="text" class="form-control" id="IdApellido">
                                                                 </div>
@@ -187,7 +187,7 @@
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" id="IdObservacionOld" name="ObservacionOld">
-                                                                <div class="col-md-12 col-sm-12 col-xs-12 form-group">
+                                                                <div class="col-md-4 col-sm-12 col-xs-12 form-group">
                                                                     <label for="observacion">Observación</label>
                                                                     <textarea id="IdObservacion" name="observacion" class="form-control col-md-7 col-xs-12" style="height:90px;"></textarea>
                                                                 </div>
