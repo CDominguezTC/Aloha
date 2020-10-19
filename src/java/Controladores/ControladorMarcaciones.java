@@ -6,7 +6,6 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
-import Modelo.ModeloEmpresa;
 import Modelo.ModeloPersona;
 import Modelo.ModeloMarcaciones;
 import Tools.Tools;
@@ -17,6 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,14 +35,14 @@ public class ControladorMarcaciones {
         con = conexionBdMysql.abrirConexion();
         try {
             PreparedStatement SQL;
-            SQL = con.prepareStatement("INSERT INTO marcacion(id_empleado,fecha_marcacion,"
-                    + "estado_marcacion,nombre_dispositivo,observacion,observacionPersonal) VALUE (?,?,?,?,?,?)");
-            SQL.setInt(1, modeloMarcaciones.getId_empleado());
-            SQL.setString(2, tools.formaFechaHoraMarcaciones(modeloMarcaciones.getFecha_marcacion(), modeloMarcaciones.getHora_marcacion()));
+            SQL = con.prepareStatement("INSERT INTO marcacion(id_persona, fecha_marcacion, "
+                    + "estado_marcacion, nombre_dispositivo, observacion, observacion_personal) VALUE (?,?,?,?,?,?)");
+            SQL.setInt(1, modeloMarcaciones.getId_persona());
+            SQL.setString(2, modeloMarcaciones.getFecha_marcacion());
             SQL.setString(3, modeloMarcaciones.getEstado_marcacion());
             SQL.setString(4, modeloMarcaciones.getNombre_dispositivo());
             SQL.setString(5, "MANUAL");
-            SQL.setString(6, modeloMarcaciones.getObservacionPersonal());
+            SQL.setString(6, modeloMarcaciones.getObservacion_personal());
             SQL.executeUpdate();
             resulInser = true;
             SQL.close();
@@ -65,12 +67,12 @@ public class ControladorMarcaciones {
                 SQL.setInt(2, modeloMarcaciones.getId());
             } else {
                 SQL = con.prepareStatement("UPDATE marcacion SET fecha_marcacion = ?,"
-                        + "estado_marcacion = ?,nombre_dispositivo = ?,observacion = ?,observacionPersonal = ? WHERE id = ?;");
-                SQL.setString(1, tools.formaFechaHoraMarcaciones(modeloMarcaciones.getFecha_marcacion(), modeloMarcaciones.getHora_marcacion()));
+                        + "estado_marcacion = ?, nombre_dispositivo = ?, observacion = ?,observacion_personal = ? WHERE id = ?;");
+                SQL.setString(1, modeloMarcaciones.getFecha_marcacion());
                 SQL.setString(2, modeloMarcaciones.getEstado_marcacion());
                 SQL.setString(3, modeloMarcaciones.getNombre_dispositivo());
                 SQL.setString(4, "MODIFICADO");
-                SQL.setString(5, modeloMarcaciones.getObservacionPersonal());
+                SQL.setString(5, modeloMarcaciones.getObservacion_personal());
                 SQL.setInt(6, modeloMarcaciones.getId());
             }
             SQL.executeUpdate();
@@ -90,17 +92,19 @@ public class ControladorMarcaciones {
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
         try {
-            PreparedStatement SQL = con.prepareStatement("SELECT id, id_empleado, fecha_marcacion, "
-                    + "estado_marcacion, nombre_dispositivo, observacion, observacionPersonal FROM marcacion  where id = ?;");
+            PreparedStatement SQL = con.prepareStatement("SELECT id, id_persona, fecha_marcacion, "
+                    + "estado_marcacion, nombre_dispositivo, observacion, observacion_personal FROM marcacion where id = ?;");
             SQL.setInt(1, id);
             ResultSet res = SQL.executeQuery();
             if (res.next()) {
                 modeloMarcaciones.setId(res.getInt("id"));
-                modeloMarcaciones.setFecha_marcacion(res.getDate("fecha_marcacion"));
-                modeloMarcaciones.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
+                modeloMarcaciones.setId(res.getInt("id_persona"));
+                modeloMarcaciones.setFecha_marcacion(res.getString("fecha_marcacion"));
+                //modeloMarcaciones.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
                 modeloMarcaciones.setEstado_marcacion(res.getString("estado_marcacion"));
+                modeloMarcaciones.setEstado_marcacion(res.getString("nombre_dispositivo"));
                 modeloMarcaciones.setObservacion(res.getString("observacion"));
-                modeloMarcaciones.setObservacionPersonal(res.getString("observacionPersonal"));
+                modeloMarcaciones.setObservacion_personal(res.getString("observacion_personal"));
 
             }
             res.close();
@@ -277,43 +281,174 @@ public class ControladorMarcaciones {
 
     }
 
-    public List<ModeloMarcaciones> SearchMarcaciones(int id, Date FechaInicial, Date FechaFinal, boolean verInvalidos) {
+    public LinkedList<ModeloMarcaciones> SearchMarcaciones(int id, String FechaInicial, String FechaFinal, boolean verInvalidos) {
         Tools tools = new Tools();
         PreparedStatement SQL = null;
-        List<ModeloMarcaciones> modeloMarcaciones = new ArrayList<ModeloMarcaciones>();
+        LinkedList<ModeloMarcaciones> modeloMarcaciones = new LinkedList<ModeloMarcaciones>();
         Connection con;
         ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
         con = conexionBdMysql.abrirConexion();
         try {
-            if (verInvalidos == false) {
-                SQL = con.prepareStatement("SELECT id ,id_empleado, fecha_marcacion,estado_marcacion,nombre_dispositivo,observacion "
-                        + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?  AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");
+            if (verInvalidos == true) {
+                SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion "
+                        + "FROM marcacion WHERE id_persona = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?  AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");
             } else {
-                SQL = con.prepareStatement("SELECT id ,id_empleado, fecha_marcacion,estado_marcacion,nombre_dispositivo,observacion "
-                        + "FROM marcacion WHERE id_empleado = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?   ORDER BY fecha_marcacion;");
+                SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion, observacion_personal, estado "
+                        + "FROM marcacion WHERE id_persona = ? AND estado = 'S' AND fecha_marcacion BETWEEN ? AND ? ORDER BY fecha_marcacion");
             }
             SQL.setInt(1, id);
-            SQL.setString(2, tools.formatFechaIniConsulta(FechaInicial));
-            SQL.setString(3, tools.formatFechaFinConsulta(FechaFinal));
+            SQL.setString(2, FechaInicial);
+            SQL.setString(3, FechaFinal);
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 ModeloMarcaciones modeloMarcacion = new ModeloMarcaciones();
                 modeloMarcacion.setId(res.getInt("id"));
-                modeloMarcacion.setId_empleado(res.getInt("id_empleado"));
-                modeloMarcacion.setFecha_marcacion(res.getDate("fecha_marcacion"));
-                modeloMarcacion.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
+                modeloMarcacion.setId_persona(res.getInt("id_persona"));
+                modeloMarcacion.setFecha_marcacion(res.getString("fecha_marcacion"));
+                //modeloMarcacion.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
                 modeloMarcacion.setEstado_marcacion(res.getString("estado_marcacion"));
                 modeloMarcacion.setNombre_dispositivo(res.getString("nombre_dispositivo"));
                 modeloMarcacion.setObservacion(res.getString("observacion"));
+                modeloMarcacion.setObservacion_personal(res.getString("observacion_personal"));
+                modeloMarcacion.setEstado(res.getString("estado"));
                 modeloMarcaciones.add(modeloMarcacion);
             }
             res.close();
             SQL.close();
             con.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+            System.err.println("Error: " + e.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
         }
         return modeloMarcaciones;
 
+    }
+
+    public String ReadMarcaciones(HttpServletRequest request, HttpServletResponse response) {
+        
+        String out = null;
+        String id = request.getParameter("idpersona");
+        String fecha_inicial = request.getParameter("fecha_inicial");
+        String fecha_final = request.getParameter("fecha_final");
+        String ver_Invalidos = request.getParameter("ver_invalidos");
+        StringBuilder sbout = new StringBuilder();
+        boolean ver_inv = false;
+
+        if ("true".equals(ver_Invalidos)) {
+            ver_inv = true;
+        }
+
+        try {
+            LinkedList<ModeloMarcaciones> listaMarcaciones = new LinkedList<ModeloMarcaciones>();
+            listaMarcaciones = SearchMarcaciones(Integer.parseInt(id), fecha_inicial, fecha_final, ver_inv);
+            response.setContentType("text/html;charset=UTF-8");
+                                                                        
+            out = "";
+            /*out += "<thead>";
+            out += "<tr>";
+            out += "<th class=\"size\">Seleccione</th>";
+            out += "<th>Fecha</th>";
+            out += "<th>Hora Entrada</th>";
+            out += "<th>Hora Salida</th>";
+            out += "<th>Sentido</th>";
+            out += "<th class=\"size\">Detalle</th>";
+            out += "</tr>";
+            out += "</thead>";*/
+            out += "<tbody>";
+            sbout.append(out);
+            //int contador = 1;
+            for (int i = 0; i < listaMarcaciones.size(); i++) {
+                sbout.append("<tr>");
+                //sbout.append("<td class=\"text-center\"><input type=\"checkbox\" class=\"flat\" value=\"" + listaMarcaciones.get(i).getId() + "\"></td>");
+                sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "</td>");
+                
+                if("Entrada".equals(listaMarcaciones.get(i).getEstado_marcacion()) || "Entrada-Int".equals(listaMarcaciones.get(i).getEstado_marcacion()) ){
+                    sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11) + "</td>");
+                    //listaMarcaciones.;
+                    if(i < (listaMarcaciones.size() - 1)){
+                        if("Salida".equals(listaMarcaciones.get(i+1).getEstado_marcacion()) || "Salida-Int".equals(listaMarcaciones.get(i+1).getEstado_marcacion())){
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i+1).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i+1).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i+1).getObservacion()+ "\">" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11) + "</td>");
+                        }else{
+                            sbout.append("<td>--:--</td>");
+                        }
+                        
+                    }else{
+                        sbout.append("<td>--:--</td>");
+                    }
+                                        
+                }else{                    
+                    sbout.append("<td>--:--</td>");  
+                    sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(11) + "</td>");
+                }
+                //sbout.append("<td>--:--</td>");
+                sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
+                sbout.append("<td>" + listaMarcaciones.get(i).getObservacion() + "</td>");
+                sbout.append("</tr>");
+                if(i < (listaMarcaciones.size() - 1) && "Entrada".equals(listaMarcaciones.get(i).getEstado_marcacion()) || "Entrada-Int".equals(listaMarcaciones.get(i).getEstado_marcacion())){
+                    i++;
+                }
+                //System.out.println(sbout);
+            }
+            //System.out.println(sbout);
+            /*for (ModeloMarcaciones modeloMarcaciones : listaMarcaciones) {
+                sbout.append("<tr>");
+                sbout.append("<td class=\"text-center\"><input type=\"checkbox\" class=\"flat\" value=\"" + modeloMarcaciones.getId() + "\"></td>");
+                sbout.append("<td>" + modeloMarcaciones.getFecha_marcacion().substring(0, 10) + "</td>");
+                
+                if("Entrada".equals(modeloMarcaciones.getEstado_marcacion()) || "Entrada-Int".equals(modeloMarcaciones.getEstado_marcacion()) ){
+                    sbout.append("<td>" + modeloMarcaciones.getFecha_marcacion().substring(11) + "</td>");
+                    //listaMarcaciones.;
+                    if(contador < listaMarcaciones.size()){
+                        if("Salida".equals(listaMarcaciones.get(contador).getEstado_marcacion()) || "Salida-Int".equals(listaMarcaciones.get(contador).getEstado_marcacion())){
+                            sbout.append("<td>" + listaMarcaciones.get(contador).getFecha_marcacion().substring(11) + "</td>");
+                        }else{
+                            sbout.append("<td>--:--</td>");
+                        }
+                        
+                    }
+                                        
+                }else{                    
+                    sbout.append("<td>--:--</td>");  
+                    sbout.append("<td>" + modeloMarcaciones.getFecha_marcacion().substring(11) + "</td>");
+                }
+                //sbout.append("<td>--:--</td>");
+                sbout.append("<td>" + modeloMarcaciones.getEstado_marcacion() + "</td>");
+                sbout.append("<td>" + modeloMarcaciones.getObservacion() + "</td>");
+                sbout.append("</tr>");
+                
+                contador++;
+            }*/
+            sbout.append("</tbody>");
+
+        } catch (Exception e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+
+        return sbout.toString();
+    }
+    
+    public String borrarMarcacion(String idm, HttpServletRequest request, HttpServletResponse response) {
+                            
+        try {
+            PreparedStatement SQL = null;        
+            Connection con;
+            ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+            con = conexionBdMysql.abrirConexion();
+            
+            SQL = con.prepareStatement("UPDATE marcacion SET estado = 'N' WHERE id = ?");
+            SQL.setString(1, idm);
+            
+            if (SQL.executeUpdate() > 0) {
+                return ReadMarcaciones(request, response);
+            }
+            
+            
+        } catch (SQLException e) {
+            System.out.println("");
+            System.out.println("Controladores.ControladorMarcaciones.borrarMarcacion(): " + e.getMessage());
+            return "-2";
+        }        
+        
+        return "false";
     }
 }

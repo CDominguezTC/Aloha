@@ -1,7 +1,81 @@
 $(function () {
+
+    var id_persona = "";
+
     $(document).ready(function () {
         validoMarcaciones();
         
+    });
+
+    
+
+    $(document).on('click', '.datoEmp', function() {
+        
+        var FechaIn = $('#IdFechaInicioPeriodo').val();
+        var FechaFi = $('#IdFechaFinPeriodo').val();
+
+        if(FechaIn != "" || FechaFi != ""){
+            /*alert(fechain + " " + fechafi);
+
+            var cedulap = $(this).data('ced');
+            var idpersona = $(this).data('idpersona');
+            alert(idpersona + " " + cedulap);*/
+
+            var Frm = "MarcacionesJSP";
+            id_persona = $(this).data('idpersona');
+            var IdEmpleado = $(this).data('idpersona');
+            var FechaInC = FechaIn + " 00:00:00";
+            var FechaFiC = FechaFi + " 23:59:59";
+            var Ver_Invalidos = "false";
+            var Accion = "ReadM";
+            var data = {
+                frm: Frm,
+                idpersona: IdEmpleado,
+                fecha_inicial: FechaInC,
+                fecha_final: FechaFiC,
+                ver_invalidos: Ver_Invalidos,                
+                accion: Accion
+            };
+            $.ajax({
+                type: "POST",
+                url: "ServletAlohaTiempos",
+                dataType: 'html',
+                data: data,
+                success: function (resul, textStatus, jqXHR){
+                
+                    $('#tablemarcaciones').html(resul);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (jqXHR.status === 0) {
+                        alert('Not connect: Verify Network.');
+                    } else if (jqXHR.status === 404) {
+                        alert('Requested page not found [404]');
+                    } else if (jqXHR.status === 500) {
+                        alert('Internal Server Error [500].');
+                    } else if (textStatus === 'parsererror') {
+                        alert('Requested JSON parse failed.');
+                    } else if (textStatus === 'timeout') {
+                        alert('Time out error.');
+                    } else if (textStatus === 'abort') {
+                        alert('Ajax request aborted.');
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ocurrio un error',
+                            text: 'En el proceso: ' + jqXHR.responseText
+                        });
+                        //alert('Uncaught Error: ' + jqXHR.responseText);
+                    }
+                }
+            });
+
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor seleccione',
+                text: 'Las fechas a visualizar.'
+            });
+        }        
     });
 
 
@@ -18,7 +92,41 @@ $(function () {
         $('#IdFechaFinPeriodo').val(selected.data('fechafin'));*/
     });
 
+    $(document).on('click', '.SetEmpleado', function() {
+        //alert("Hola: " + $(this).data('cedula'));
     
+        $('#Tipo_Id').val($(this).data('tipodoc'));
+        $('#Identificacion').val($(this).data('cedula'));
+        //var nombrecompleto = $(this).data('nombre') + " " + $(this).data('apellido');
+        $('#Nombre').val($(this).data('nombre'));
+        $('#Apellido').val($(this).data('apellido'));
+        $('#codigo').val($(this).data('codigonomina'));
+        $('#Cargo_Persona').val($(this).data('cargo'));
+        $('#Empresa').val($(this).data('empresa'));
+        $('#Dependencia').val($(this).data('dependencia'));
+        $('#Area').val($(this).data('area'));
+        $('#Grupo_Horario').val($(this).data('grupohorario'));
+        $('#Ciudad').val($(this).data('ciudad'));
+        $('#Observacion').val($(this).data('observacion'));
+        //alert(nombrecompleto);
+        $("#modalDetalleEmpleado").modal();
+        
+    });
+
+    $(document).on('click', '.editarMar', function() {
+
+        //alert("hola: " + $(this).data('sentidom'));        
+        
+        $('#IdMarcacionE').val($(this).data('idm'));
+        $('#IdFechaM').val($(this).data('fecham'));
+        $('#IdHoraM').val($(this).data('horam'));
+        $('#IdSentidoM').val($(this).data('sentidom'));
+        $('#IdObservacionM').val($(this).data('observacionm'));
+        $("#IdEliminarM").prop('disabled', false);
+
+        $("#modalEditarMarcacion").modal();
+
+    });
 
     $('#tableempleados').DataTable({
         "scrollCollapse": false,
@@ -326,6 +434,7 @@ $(function () {
     }
 
     function LoadArea() {
+
         var Frm = "AreasJSP";
         var Evento = "Select";
         var Accion = "Read";
@@ -476,6 +585,115 @@ $(function () {
             }
         });
     }
+
+    $('#IdAgregarMar').click(function(e){
+
+        if(id_persona != ""){
+            $("#modalEditarMarcacion").find('input,textarea,select').val('').end();
+            $("#IdEliminarM").prop('disabled', true);
+            $("#modalEditarMarcacion").modal();
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor seleccione',
+                text: 'Un empleado.'
+            });
+        }
+        
+        
+
+    });
+
+    $('#IdEliminarM').click(function(e){
+        
+
+        //alert("Eliminar: " + $('#IdMarcacionE').val());
+        var FechaIn = $('#IdFechaInicioPeriodo').val();
+        var FechaFi = $('#IdFechaFinPeriodo').val();
+        var Frm = "MarcacionesJSP";
+        var IdMarcacion = $('#IdMarcacionE').val();
+        var IdEmpleado = id_persona;
+        var FechaInC = FechaIn + " 00:00:00";
+        var FechaFiC = FechaFi + " 23:59:59";
+        var Ver_Invalidos = "false";
+        var Accion = "Delete";
+        var data = {
+            frm: Frm,
+            idmarcacion: IdMarcacion,
+            idpersona: IdEmpleado,
+            fecha_inicial: FechaInC,
+            fecha_final: FechaFiC,
+            ver_invalidos: Ver_Invalidos,              
+            accion: Accion
+        };
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR){
+            
+                var dt = resul;
+                alert("dt contra: " + resul);
+                if (dt != "false"){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'La marcacion',
+                      text: 'Se elimino exitosamente.'
+                    }).then((result) => {
+
+                        $("#modalEditarMarcacion").modal('hide');
+                        $('#tablemarcaciones').html(resul);
+                        
+                        
+                    });
+
+
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ocurrio un error',
+                        text: 'En el proceso: ' + jqXHR.responseText
+                    });
+                    //alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
+
+    });
+
+    $('#IdGuardarM').click(function(e){
+        
+        alert("Guardar: " + id_persona);
+
+    });
+
+    $('#IdSeleccionarMa').click(function(e){
+        
+        $("#IdModalFiltroPersonas").modal();
+
+    });
+
+    $('#IdSeleccionarLi').click(function(e){
+        
+        $("#IdModalFiltroPersonas").modal();
+
+    });
 
     $('#IdFiltrarEmpleados').click(function (e){
     

@@ -32,6 +32,7 @@ import Controladores.ControladorInicioSesion;
 import Controladores.ControladorLiquidacion;
 import Controladores.ControladorLiquidacionCasino;
 import Controladores.ControladorLog_error;
+import Controladores.ControladorMarcaciones;
 import Controladores.ControladorParametro_tabla;
 import Controladores.ControladorPeriodos;
 import Controladores.ControladorPermisos;
@@ -1062,6 +1063,7 @@ public class ServletAlohaTiempos extends HttpServlet {
                     break;
                 case "MarcacionesJSP":
                     ControladorLiquidacion controladorLiq = new ControladorLiquidacion();
+                    ControladorMarcaciones controladorMarca = new ControladorMarcaciones();
                     //ControladorVisita visita = new ControladorVisita();
                     Accion = request.getParameter("accion");
                     switch (Accion) {
@@ -1071,12 +1073,22 @@ public class ServletAlohaTiempos extends HttpServlet {
                         case "procesarmarcaciones":
                             Resultado = "false";
                             break;
-                        case "Read":
-                            /*Resultado = parametro_tabla.Read(request, response);
+                        case "ReadM":
+                            Resultado = controladorMarca.ReadMarcaciones(request, response);
                             pw = response.getWriter();
                             pw.write(Resultado);
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
-                            break;*/
+                            break;
+                        case "Delete":
+                            String idmarcacion = request.getParameter("idmarcacion");
+                            Resultado = controladorMarca.borrarMarcacion(idmarcacion, request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
+                            break;
+                        case "Insert":
+                            //Resultado = controladorMarca.Insert(request, response);
+                            break;    
                     }
 
                     break;

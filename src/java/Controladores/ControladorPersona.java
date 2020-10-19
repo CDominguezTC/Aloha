@@ -898,9 +898,9 @@ public class ControladorPersona {
                 out += "<tbody>";
                 for (ModeloPersona modeloPersonas : listaPersonas) {
                     out += "<tr>";                    
-                    out += "<td>" + modeloPersonas.getNombresApellido()+ "</td>";                    
+                    out += "<td class=\"datoEmp\" data-idpersona=\"" + modeloPersonas.getId()+ "\" data-ced=\"" + modeloPersonas.getIdentificacion()+ "\">" + modeloPersonas.getNombresApellido()+ "</td>";                    
                     out += "<td class=\"text-center\">"; 
-                    out += "<button class=\"btn btn-secondary btn-sm\" form=\"marcaciones_form\"";
+                    out += "<button class=\"SetEmpleado btn-secondary btn-sm\" form=\"marcaciones_form\"";
                     //out += "<button class=\"SetFormulario btn btn-warning btn-sm\"title=\"Editar\" data-toggle=\"modal\" data-target=\"#ModalFormulario\"data-whatever=\"@getbootstrap\"";
                     out += "data-id=\"" + modeloPersonas.getId() + "\"";
                     out += "data-tipodoc=\"" + modeloPersonas.getTipo_identificacion() + "\"";
