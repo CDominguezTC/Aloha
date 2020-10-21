@@ -599,9 +599,6 @@ $(function () {
                 text: 'Un empleado.'
             });
         }
-        
-        
-
     });
 
     $('#IdEliminarM').click(function(e){
@@ -634,7 +631,7 @@ $(function () {
             success: function (resul, textStatus, jqXHR){
             
                 var dt = resul;
-                alert("dt contra: " + resul);
+                //alert("dt contra: " + resul);
                 if (dt != "false"){
                     Swal.fire({
                       icon: 'success',
@@ -679,7 +676,83 @@ $(function () {
 
     $('#IdGuardarM').click(function(e){
         
-        alert("Guardar: " + id_persona);
+        
+        var Id = $('#IdMarcacionE').val();
+        //alert("Guardar IdMar: " + Id);
+        var PersonaId = id_persona;
+        var FechaIn = $('#IdFechaInicioPeriodo').val();
+        var FechaFi = $('#IdFechaFinPeriodo').val();
+        var FechaInC = FechaIn + " 00:00:00";
+        var FechaFiC = FechaFi + " 23:59:59";
+        var Ver_Invalidos = "false";
+
+        var FechaM = $('#IdFechaM').val();
+        var HoraM = $('#IdHoraM').val();
+        var FechaCompleta = FechaM + " " + HoraM;
+        var SentidoM = $('#IdSentidoM').val();
+        var ObservacionP = $('#IdObservacionM').val();
+        var Frm = "MarcacionesJSP";
+        var Accion = "Insert";
+
+        var data = {
+            frm: Frm,
+            id: Id,           
+            idpersona: PersonaId,
+            fecharegistro: FechaCompleta,
+            estadomarcacion: SentidoM,
+            observacion: ObservacionP,
+            fecha_inicial: FechaInC,
+            fecha_final: FechaFiC,
+            ver_invalidos: Ver_Invalidos,                        
+            accion: Accion
+        };
+        $.ajax({
+            type: "POST",
+            url: "ServletAlohaTiempos",
+            dataType: 'html',
+            data: data,
+            success: function (resul, textStatus, jqXHR){
+            
+                var dt = resul;
+                //alert("dt: " + resul);
+                if (dt != "false"){
+                    Swal.fire({
+                      icon: 'success',
+                      title: 'La marcacion',
+                      text: 'Se guardo exitosamente.'
+                    }).then((result) => {
+
+                        $("#modalEditarMarcacion").modal('hide');
+                        $('#tablemarcaciones').html(resul);
+                        
+                        
+                    });
+
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                if (jqXHR.status === 0) {
+                    alert('Not connect: Verify Network.');
+                } else if (jqXHR.status === 404) {
+                    alert('Requested page not found [404]');
+                } else if (jqXHR.status === 500) {
+                    alert('Internal Server Error [500].');
+                } else if (textStatus === 'parsererror') {
+                    alert('Requested JSON parse failed.');
+                } else if (textStatus === 'timeout') {
+                    alert('Time out error.');
+                } else if (textStatus === 'abort') {
+                    alert('Ajax request aborted.');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Ocurrio un error',
+                        text: 'En el proceso: ' + jqXHR.responseText
+                    });
+                    //alert('Uncaught Error: ' + jqXHR.responseText);
+                }
+            }
+        });
 
     });
 

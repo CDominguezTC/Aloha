@@ -1087,7 +1087,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                             System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;
                         case "Insert":
-                            //Resultado = controladorMarca.Insert(request, response);
+                            Resultado = controladorMarca.Insert(request, response);
+                            pw = response.getWriter();
+                            pw.write(Resultado);
+                            System.out.println(pw.checkError() ? "Error al cargar la lista" : "Tabla Cargada");
                             break;    
                     }
 
