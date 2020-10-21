@@ -14,7 +14,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -310,7 +314,7 @@ public class ControladorMarcaciones {
 
     }
 
-    public LinkedList<ModeloMarcaciones> SearchMarcaciones(int id, String FechaInicial, String FechaFinal, boolean verInvalidos) {
+    public LinkedList<ModeloMarcaciones> SearchMarcaciones(int id, String FechaInicial, String FechaFinal, boolean verInvalidos, boolean atras) {
         Tools tools = new Tools();
         PreparedStatement SQL = null;
         LinkedList<ModeloMarcaciones> modeloMarcaciones = new LinkedList<ModeloMarcaciones>();
@@ -322,8 +326,15 @@ public class ControladorMarcaciones {
                 SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion "
                         + "FROM marcacion WHERE id_persona = ? AND fecha_marcacion >= ? AND fecha_marcacion <= ?  AND estado_marcacion <> 'Invalido' ORDER BY fecha_marcacion;");
             } else {
-                SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion, observacion_personal, estado "
+                
+                if(atras){
+                    SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion, observacion_personal, estado "
+                        + "FROM marcacion WHERE id_persona = ? AND estado_marcacion = 'Entrada' AND estado = 'S' AND fecha_marcacion BETWEEN ? AND ? ORDER BY fecha_marcacion DESC");
+                }else{
+                    SQL = con.prepareStatement("SELECT id ,id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion, observacion_personal, estado "
                         + "FROM marcacion WHERE id_persona = ? AND estado = 'S' AND fecha_marcacion BETWEEN ? AND ? ORDER BY fecha_marcacion");
+                }
+                
             }
             SQL.setInt(1, id);
             SQL.setString(2, FechaInicial);
@@ -369,7 +380,7 @@ public class ControladorMarcaciones {
 
         try {
             LinkedList<ModeloMarcaciones> listaMarcaciones = new LinkedList<ModeloMarcaciones>();
-            listaMarcaciones = SearchMarcaciones(Integer.parseInt(id), fecha_inicial, fecha_final, ver_inv);
+            listaMarcaciones = SearchMarcaciones(Integer.parseInt(id), fecha_inicial, fecha_final, ver_inv, false);
             response.setContentType("text/html;charset=UTF-8");
                                                                         
             out = "";
@@ -391,49 +402,78 @@ public class ControladorMarcaciones {
                 //sbout.append("<td class=\"text-center\"><input type=\"checkbox\" class=\"flat\" value=\"" + listaMarcaciones.get(i).getId() + "\"></td>");
                 if(!sbout.toString().contains(" data-idm=\"" + listaMarcaciones.get(i).getId() + "\"")){
                     //System.out.println("No tiene");
-                
-                    sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "</td>");
+                    if(i == 0 && "Salida".equals(listaMarcaciones.get(i).getEstado_marcacion())){
+                                                
+                        //System.out.println(listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10));
+                        Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10));                                              
+                        Calendar calendar = Calendar.getInstance();	
+                        calendar.setTime(date1); // Configuramos la fecha que se recibe
+                        calendar.add(Calendar.DAY_OF_MONTH, -1);  // numero de días a añadir, o restar en caso de días<0
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+                        String undiaAntes = dateFormat.format(calendar.getTime());
+                        
+                        String undiaAntesIn = undiaAntes + " 00:00:00";
+                        String undiaAntesFi = undiaAntes + " 23:59:59";
+                        LinkedList<ModeloMarcaciones> listaMarcacionAtras = new LinkedList<ModeloMarcaciones>();
+                        listaMarcacionAtras = SearchMarcaciones(Integer.parseInt(id), undiaAntesIn, undiaAntesFi, ver_inv, true);
+                        
+                        if(!listaMarcacionAtras.isEmpty()){
+                            sbout.append("<td>" + undiaAntes + "</td>");
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcacionAtras.get(0).getId() + "\" data-fecham=\"" + listaMarcacionAtras.get(0).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcacionAtras.get(0).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcacionAtras.get(0).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcacionAtras.get(0).getObservacion_personal()+ "\">" + listaMarcacionAtras.get(0).getFecha_marcacion().substring(11, 16) + "</td>");
+                            sbout.append("<td>--:--</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getObservacion_personal()+ "</td>");
+                            sbout.append("</tr>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "</td>");
+                            sbout.append("<td>--:--</td>");
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getObservacion_personal()+ "</td>");
+                            sbout.append("</tr>");
+                        }else{
+                            sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "</td>");
+                            sbout.append("<td>--:--</td>");
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
+                            sbout.append("<td>" + listaMarcaciones.get(i).getObservacion_personal()+ "</td>");
+                            sbout.append("</tr>");
+                        }                                                              
+                    }
+                    if(!sbout.toString().contains(" data-idm=\"" + listaMarcaciones.get(i).getId() + "\"")){
+                        
+                    
+                        sbout.append("<td>" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "</td>");
 
-                    if("Entrada".equals(listaMarcaciones.get(i).getEstado_marcacion()) || "Entrada-Int".equals(listaMarcaciones.get(i).getEstado_marcacion()) ){
-                        sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
-                        //listaMarcaciones.;
-                        if(i < (listaMarcaciones.size() - 1)){
-                            if("Salida".equals(listaMarcaciones.get(i+1).getEstado_marcacion()) || "Salida-Int".equals(listaMarcaciones.get(i+1).getEstado_marcacion())){
-                                sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i+1).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i+1).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i+1).getObservacion_personal()+ "\">" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11, 16) + "</td>");
+                        if("Entrada".equals(listaMarcaciones.get(i).getEstado_marcacion()) || "Entrada-Int".equals(listaMarcaciones.get(i).getEstado_marcacion()) ){
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
+                            //listaMarcaciones.;
+                            if(i < (listaMarcaciones.size() - 1)){
+                                if("Salida".equals(listaMarcaciones.get(i+1).getEstado_marcacion()) || "Salida-Int".equals(listaMarcaciones.get(i+1).getEstado_marcacion())){
+
+                                    if(!listaMarcaciones.get(i).getFecha_marcacion().substring(8, 10).equals(listaMarcaciones.get(i+1).getFecha_marcacion().substring(8, 10))){
+                                        sbout.append("<td>--:--</td>");
+                                    }else{
+                                        sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i+1).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i+1).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i+1).getObservacion_personal()+ "\">" + listaMarcaciones.get(i+1).getFecha_marcacion().substring(11, 16) + "</td>");
+                                    }
+
+                                }else{
+                                    sbout.append("<td>--:--</td>");
+                                }
+
                             }else{
                                 sbout.append("<td>--:--</td>");
                             }
 
-                        }else{
-                            sbout.append("<td>--:--</td>");
+                        }else{                    
+                            sbout.append("<td>--:--</td>");  
+                            sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
                         }
-
-                    }else{                    
-                        sbout.append("<td>--:--</td>");  
-                        sbout.append("<td class=\"editarMar\" data-idm=\"" + listaMarcaciones.get(i).getId() + "\" data-fecham=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(0, 10) + "\" data-horam=\"" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16)+ "\" data-sentidom=\"" + listaMarcaciones.get(i).getEstado_marcacion()+ "\" data-observacionm=\"" + listaMarcaciones.get(i).getObservacion_personal()+ "\">" + listaMarcaciones.get(i).getFecha_marcacion().substring(11, 16) + "</td>");
+                        //sbout.append("<td>--:--</td>");
+                        sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
+                        sbout.append("<td>" + listaMarcaciones.get(i).getObservacion_personal()+ "</td>");
+                        sbout.append("</tr>");
                     }
-                    //sbout.append("<td>--:--</td>");
-                    sbout.append("<td>" + listaMarcaciones.get(i).getNombre_dispositivo() + "</td>");
-                    sbout.append("<td>" + listaMarcaciones.get(i).getObservacion_personal()+ "</td>");
-                    sbout.append("</tr>");
-                
                 }
-//                if(i < (listaMarcaciones.size() - 1)){
-//                    
-//                    
-//                    if("Entrada".equals(listaMarcaciones.get(i+1).getEstado_marcacion()) || "Entrada-Int".equals(listaMarcaciones.get(i+1).getEstado_marcacion())){
-//                        
-//                        System.out.println(listaMarcaciones.get(i).getFecha_marcacion().substring(8, 10) + " - " + listaMarcaciones.get(i+1).getFecha_marcacion().substring(8, 10));
-//                        
-//                        if(!listaMarcaciones.get(i).getFecha_marcacion().substring(8, 10).equals(listaMarcaciones.get(i+1).getFecha_marcacion().substring(8, 10))){
-//                            i++;
-//                        }
-//                        
-//                    }else{
-//                        i++;
-//                    }
-//                    
-//                }
                 //System.out.println(sbout);
             }
             //System.out.println(sbout);
