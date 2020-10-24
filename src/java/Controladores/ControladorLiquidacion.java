@@ -6,10 +6,14 @@
 package Controladores;
 
 import Conexiones.ConexionBdMysql;
+import Modelo.ModeloMarcaciones;
+import Modelo.ModeloPersona;
+import Modelo.ModeloRegistro_tiempo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,7 +27,7 @@ public class ControladorLiquidacion {
     ControladorLog_error log = new ControladorLog_error();
     ControladorInicioSesion controladorInicio;
 
-    public String Insert(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+    public String validarMovimientos() throws SQLException {
 
         try {
             try {
@@ -52,6 +56,232 @@ public class ControladorLiquidacion {
             System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
             log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
             resultado = "-3";
+        }
+        return resultado;
+    }
+    
+    public String procesarMovimientos(HttpServletRequest request, HttpServletResponse response) throws SQLException {
+
+        try {
+            
+//            ModeloPersona modeloPersona = new ModeloPersona();
+//            ControladorPersona controladorPersona = new ControladorPersona();
+//            modeloPersona = controladorPersona.GetPersonaCedula(request, response);
+//            
+//            if(modeloPersona != null){
+//                System.out.println("Lleno");
+//            }else{
+//                System.out.println("Vacio");
+//                resultado = "-2";
+//            }
+            try {
+                boolean seguir = false;
+                int id_temporal = 0;
+                String codigo_ant = "", opcion_sentido = "1";
+                LinkedList<ModeloRegistro_tiempo> listaMarcaciones = new LinkedList<ModeloRegistro_tiempo>();
+                ControladorMarcaciones controladorM = new ControladorMarcaciones();
+                listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+                ModeloPersona modeloP = new ModeloPersona();
+                ModeloPersona modeloPersonaInsert = new ModeloPersona();
+                ModeloMarcaciones modeloMarcacionesEst = new ModeloMarcaciones();
+                ControladorPersona controladorPer = new ControladorPersona();
+                ControladorPersona controladorPerIns = new ControladorPersona();
+//                do{
+//                    
+//                }while(seguir == true);
+                
+                for (int i = 0; i < listaMarcaciones.size(); i++) {
+                    
+                    if(seguir){
+                        i = id_temporal;
+                        seguir = false;
+                    }
+                    System.out.println(listaMarcaciones.get(i).getId());                                        
+//                    if(codigo_ant.equals(listaMarcaciones.get(i).getCodigo()) || "".equals(codigo_ant)){
+                                                                    
+                        modeloP = controladorPer.GetPersonaCedula(listaMarcaciones.get(i).getCodigo());
+
+                        if(modeloP.getId() != null){
+                            LinkedList<ModeloMarcaciones> listaMarcacionesEstado = new LinkedList<ModeloMarcaciones>();
+                            listaMarcacionesEstado = controladorM.buscoUltimaMarcacion(modeloP.getId());
+                            
+                            modeloMarcacionesEst.setId_persona(modeloP.getId());
+                            modeloMarcacionesEst.setFecha_marcacion(listaMarcaciones.get(i).getFecha());
+                            modeloMarcacionesEst.setNombre_dispositivo(listaMarcaciones.get(i).getDispositivo());
+                            
+                            if(listaMarcacionesEstado.isEmpty()){
+                                modeloMarcacionesEst.setEstado_marcacion("Entrada");
+                            }else{                                                            
+                            
+                                if(opcion_sentido.equals("2")){
+
+                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                        case "Entrada":
+                                            modeloMarcacionesEst.setEstado_marcacion("SalidaIntermedia");
+                                        break;
+
+                                        case "SalidaIntermedia":
+                                            modeloMarcacionesEst.setEstado_marcacion("EntradaIntermedia");
+                                        break;
+
+                                        case "EntradaIntermedia":
+                                            modeloMarcacionesEst.setEstado_marcacion("Salida");
+                                        break;
+
+                                        case "Salida":
+                                            modeloMarcacionesEst.setEstado_marcacion("Entrada");
+                                        break;
+                                    }
+
+                                }else{
+
+                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                        case "Entrada":
+                                            modeloMarcacionesEst.setEstado_marcacion("Salida");
+                                        break;
+
+                                        case "Salida":
+                                            modeloMarcacionesEst.setEstado_marcacion("Entrada");
+                                        break;
+                                    }
+                                }
+                            }
+                            if("true".equals(controladorM.Insert(modeloMarcacionesEst, false))){
+                                controladorM.inactivarMarcacion(listaMarcaciones.get(i).getId());
+                                resultado = "true";
+                            }else{
+                                resultado = "0";
+                                break;
+                            }
+                            
+                        }else{
+                            modeloPersonaInsert.setTipo_identificacion("1");
+                            modeloPersonaInsert.setIdentificacion(listaMarcaciones.get(i).getCodigo());
+                            modeloPersonaInsert.setNombres(listaMarcaciones.get(i).getCodigo());
+                            modeloPersonaInsert.setApellidos(listaMarcaciones.get(i).getCodigo());                            
+                            modeloPersonaInsert.setObservacion("Creado por el sistema.");
+//                            System.out.println(controladorPerIns.InsertTiempos(modeloP));
+//                            listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+                            if("true".equals(controladorPerIns.InsertPersona(modeloPersonaInsert))){
+                                id_temporal = i;
+                                seguir = true;
+                            }else{
+                                resultado = "0";
+                            }                                                                                    
+                        }
+                        codigo_ant = listaMarcaciones.get(i).getCodigo();
+//                    }else{
+//                        id_temporal = i;
+//                        //listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+//                    }
+                }
+            
+                /*for (ModeloRegistro_tiempo modeloMarcaciones : listaMarcaciones) {
+                    
+                    System.out.println(modeloMarcaciones.getId());                                        
+                    if(codigo_ant.equals(modeloMarcaciones.getCodigo()) || "".equals(codigo_ant)){
+                                                                    
+                        modeloP = controladorPer.GetPersonaCedula(modeloMarcaciones.getCodigo());
+
+                        if(modeloP.getId() != null){
+                            LinkedList<ModeloMarcaciones> listaMarcacionesEstado = new LinkedList<ModeloMarcaciones>();
+                            listaMarcacionesEstado = controladorM.buscoUltimaMarcacion(modeloP.getId());
+                            
+                            modeloMarcacionesEst.setId_persona(modeloP.getId());
+                            modeloMarcacionesEst.setFecha_marcacion(modeloMarcaciones.getFecha());
+                            modeloMarcacionesEst.setNombre_dispositivo(modeloMarcaciones.getDispositivo());
+                            
+                            if(listaMarcacionesEstado.isEmpty()){
+                                modeloMarcacionesEst.setEstado("Entrada");
+                            }else{                                                            
+                            
+                                if(opcion_sentido.equals("2")){
+
+                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                        case "Entrada":
+                                            modeloMarcacionesEst.setEstado("SalidaIntermedia");
+                                        break;
+
+                                        case "SalidaIntermedia":
+                                            modeloMarcacionesEst.setEstado("EntradaIntermedia");
+                                        break;
+
+                                        case "EntradaIntermedia":
+                                            modeloMarcacionesEst.setEstado("Salida");
+                                        break;
+
+
+                                        case "Salida":
+                                            modeloMarcacionesEst.setEstado("Entrada");
+                                        break;
+                                    }
+//                                    if("Entrada".equals(listaMarcacionesEstado.get(0).getEstado_marcacion())){
+//
+//                                        System.out.println(listaMarcacionesEstado.get(0).getFecha_marcacion().substring(8, 9));
+//                                        System.out.println(modeloMarcaciones.getFecha().substring(8, 9));
+//                                        if(!listaMarcacionesEstado.get(0).getFecha_marcacion().substring(8, 9).equals(modeloMarcaciones.getFecha().substring(8, 9))){
+//
+//                                        }else{
+//
+//                                        }
+//
+//                                    }else{
+//
+//                                    }
+                                }else{
+
+                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                        case "Entrada":
+                                            modeloMarcacionesEst.setEstado("Salida");
+                                        break;
+
+                                        case "Salida":
+                                            modeloMarcacionesEst.setEstado("Entrada");
+                                        break;
+                                    }
+                                }
+                            }
+                            if("true".equals(controladorM.Insert(modeloMarcacionesEst, false))){
+                                controladorM.inactivarMarcacion(modeloMarcaciones.getId());
+                            }else{
+                                resultado = "0";
+                                break;
+                            }
+                            
+                        }else{
+                            modeloPersonaInsert.setTipo_identificacion("1");
+                            modeloPersonaInsert.setIdentificacion(modeloMarcaciones.getCodigo());
+                            modeloPersonaInsert.setNombres(modeloMarcaciones.getCodigo());
+                            modeloPersonaInsert.setApellidos(modeloMarcaciones.getCodigo());                            
+                            modeloPersonaInsert.setObservacion("Creado por el sistema.");
+//                            System.out.println(controladorPerIns.InsertTiempos(modeloP));
+//                            listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+                            if("true".equals(controladorPerIns.InsertPersona(modeloPersonaInsert))){
+                                listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+                            }else{
+                                resultado = "0";
+                            }                                                                                    
+                        }
+                        codigo_ant = modeloMarcaciones.getCodigo();
+                    }else{
+                        listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
+                    }
+                }*/                                                
+
+            } catch (Exception e) {
+                System.err.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+                try {
+                    log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
+                } catch (Exception ex) {
+                }
+                resultado = "0";
+                SQL.close();
+                con.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la consulta SQL Insert en ControladorUsuario: " + e.getMessage());
+            log.insertarError(user, "Error Controladores.ControladorUsuario.Insert(): " + e.getMessage());
+            resultado = "0";
         }
         return resultado;
     }

@@ -8,6 +8,7 @@ package Controladores;
 import Conexiones.ConexionBdMysql;
 import Modelo.ModeloPersona;
 import Modelo.ModeloMarcaciones;
+import Modelo.ModeloRegistro_tiempo;
 import Tools.Tools;
 import java.util.List;
 import java.sql.Connection;
@@ -41,7 +42,7 @@ public class ControladorMarcaciones {
         
         if ("".equals(request.getParameter("id"))) {
 
-            resultado = Insert(modeloMarcaciones);
+            resultado = Insert(modeloMarcaciones, true);
             if("true".equals(resultado)){
                 resultado = ReadMarcaciones(request, response);
             }
@@ -56,7 +57,7 @@ public class ControladorMarcaciones {
         
     }
 
-    public String Insert(ModeloMarcaciones modeloMarcaciones) {
+    public String Insert(ModeloMarcaciones modeloMarcaciones, boolean mmanual) {
         Tools tools = new Tools();
         String resulInser = "false";
         Connection con;
@@ -70,7 +71,11 @@ public class ControladorMarcaciones {
             SQL.setString(2, modeloMarcaciones.getFecha_marcacion());
             SQL.setString(3, modeloMarcaciones.getEstado_marcacion());
             SQL.setString(4, modeloMarcaciones.getNombre_dispositivo());
-            SQL.setString(5, "MANUAL");
+            if(mmanual){
+                SQL.setString(5, "MANUAL");
+            }else{
+                SQL.setString(5, null);
+            }            
             SQL.setString(6, modeloMarcaciones.getObservacion_personal());
             if (SQL.executeUpdate() > 0) {
                 resulInser = "true";
@@ -363,7 +368,82 @@ public class ControladorMarcaciones {
         return modeloMarcaciones;
 
     }
+    
+    public LinkedList<ModeloRegistro_tiempo> searchMarcacionesRegTiempo() {
+        
+        LinkedList<ModeloRegistro_tiempo> modeloRegistroTiempo = new LinkedList<ModeloRegistro_tiempo>();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        PreparedStatement SQL = null;
+        
+        
+        try {
+            SQL = con.prepareStatement("SELECT id, codigo, CONCAT (fecha, \" \", hora) Fecha, campo1, campo2, campo3, campo4, dispositivo, estado "
+                                     + "FROM registro_tiempo WHERE estado = 'S' ORDER by codigo, Fecha");
+            
+            ResultSet res = SQL.executeQuery();
+            
+            while (res.next()) {
+                ModeloRegistro_tiempo modeloRegistroT = new ModeloRegistro_tiempo();
+                modeloRegistroT.setId(res.getInt("id"));
+                modeloRegistroT.setCodigo(res.getString("codigo"));
+                modeloRegistroT.setFecha(res.getString("Fecha"));
+                modeloRegistroT.setCampo1(res.getString("campo1"));
+                modeloRegistroT.setCampo2(res.getString("campo2"));
+                modeloRegistroT.setCampo3(res.getString("campo3"));
+                modeloRegistroT.setCampo4(res.getString("campo4"));
+                modeloRegistroT.setDispositivo(res.getString("dispositivo"));
+                modeloRegistroT.setEstado(res.getString("estado"));
+                modeloRegistroTiempo.add(modeloRegistroT);
+            }
+        } catch (SQLException e) {
+            System.err.println("Error Controladores.ControladorMarcaciones.searchMarcacionesRegTiempo(): " + e.getMessage());           
+        }
+        
+        return modeloRegistroTiempo;
+    }
+    
+    public LinkedList<ModeloMarcaciones> buscoUltimaMarcacion(int id) {
+        
+        
+        PreparedStatement SQL = null;
+        LinkedList<ModeloMarcaciones> modeloMarcaciones = new LinkedList<ModeloMarcaciones>();
+        Connection con;
+        ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+        con = conexionBdMysql.abrirConexion();
+        try {                            
+                
+            SQL = con.prepareStatement("SELECT id, id_persona, fecha_marcacion, estado_marcacion, nombre_dispositivo, observacion, observacion_personal, estado "
+                        + "FROM marcacion WHERE id_persona = ? AND estado = 'S' ORDER BY fecha_marcacion DESC LIMIT 1");
+                                           
+            SQL.setInt(1, id);            
+            ResultSet res = SQL.executeQuery();
+            
+            while (res.next()) {
+                ModeloMarcaciones modeloMarcacion = new ModeloMarcaciones();
+                modeloMarcacion.setId(res.getInt("id"));
+                modeloMarcacion.setId_persona(res.getInt("id_persona"));
+                modeloMarcacion.setFecha_marcacion(res.getString("fecha_marcacion"));
+                //modeloMarcacion.setHora_marcacion(tools.formaHoraMarcaciones(res.getTime("fecha_marcacion")));
+                modeloMarcacion.setEstado_marcacion(res.getString("estado_marcacion"));
+                modeloMarcacion.setNombre_dispositivo(res.getString("nombre_dispositivo"));
+                modeloMarcacion.setObservacion(res.getString("observacion"));
+                modeloMarcacion.setObservacion_personal(res.getString("observacion_personal"));
+                modeloMarcacion.setEstado(res.getString("estado"));
+                modeloMarcaciones.add(modeloMarcacion);
+            }
+            res.close();
+            SQL.close();
+            con.close();
+        } catch (SQLException e) {
+            System.err.println("Error: " + e.getMessage());
+            //JOptionPane.showMessageDialog(null, "Error buscado el dato solicitado " + e);
+        }
+        return modeloMarcaciones;
 
+    }
+    
     public String ReadMarcaciones(HttpServletRequest request, HttpServletResponse response) {
         
         String out = null;
@@ -539,6 +619,30 @@ public class ControladorMarcaciones {
         return "false";
     }
     
+    public String inactivarMarcacion(int idm) {                
+        
+        try {
+            PreparedStatement SQL = null;        
+            Connection con;
+            ConexionBdMysql conexionBdMysql = new ConexionBdMysql();
+            con = conexionBdMysql.abrirConexion();
+            
+            SQL = con.prepareStatement("UPDATE registro_tiempo SET estado = 'N' WHERE id = ?");
+            SQL.setInt(1, idm);
+            
+            if (SQL.executeUpdate() > 0) {
+                return "true";
+            }
+            
+            
+        } catch (SQLException e) {
+            
+            System.out.println("Controladores.ControladorMarcaciones.borrarMarcacion(): " + e.getMessage());
+            return "-2";
+        }        
+        
+        return "false";
+    }
     /*public String insertarMarcacion(HttpServletRequest request, HttpServletResponse response) {
         
         String id = request.getParameter("idpersona");

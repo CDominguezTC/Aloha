@@ -1068,10 +1068,10 @@ public class ServletAlohaTiempos extends HttpServlet {
                     Accion = request.getParameter("accion");
                     switch (Accion) {
                         case "validarmarcaciones":
-                            Resultado = controladorLiq.Insert(request, response);
+                            Resultado = controladorLiq.validarMovimientos();
                             break;
                         case "procesarmarcaciones":
-                            Resultado = "false";
+                            Resultado = controladorLiq.procesarMovimientos(request, response);
                             break;
                         case "ReadM":
                             Resultado = controladorMarca.ReadMarcaciones(request, response);
