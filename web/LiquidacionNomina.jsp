@@ -887,7 +887,7 @@
                                                                     <button class="btn btn-danger btn-sm btn-block"  type="button" form="marcaciones_form"><i class="fa fa-trash"> Eliminar<br/>Marcacion</i></button>
                                                                 </div-->                                                                      
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
-                                                                    <button class="btn btn-dark btn-sm btn-block" type="button" form="marcaciones_form"><i class="fa fa-filter"> Consutar<br/>Marcaciones<br/>Eliminados</i></button>
+                                                                    <button class="btn btn-dark btn-sm btn-block" id="IdConsultarEli" type="button" form="marcaciones_form"><i class="fa fa-filter"> Consutar<br/>Marcaciones<br/>Eliminadas</i></button>
                                                                 </div>                                                                      
                                                                 <div class="col-md-12 col-sm-12 col-xs-12 form-group">
                                                                     <button class="btn btn-info btn-sm btn-block" type="button" form="marcaciones_form" id="IdSeleccionarMa"><i class="fa fa-user"> Seleccionar<br/>Empleados</i></button>

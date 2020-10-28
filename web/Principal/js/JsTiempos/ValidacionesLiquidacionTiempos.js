@@ -128,6 +128,96 @@ $(function () {
 
     });
 
+    $(document).on('click', '.editarMarIn', function() {
+
+        //alert("hola: " + $(this).data('sentidom'));        
+        Swal.fire({
+                        
+            title: '¿Desea activar la marcacion',
+            text: "ahora?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí',
+            cancelButtonText: 'No'
+        }).then((result) => {
+
+            if (result.value) {
+                //alert("A eliminar: " + $(this).data('idm'));
+                var FechaIn = $('#IdFechaInicioPeriodo').val();
+                var FechaFi = $('#IdFechaFinPeriodo').val();
+                var Frm = "MarcacionesJSP";
+                var IdMarcacion = $(this).data('idm');
+                var IdEmpleado = id_persona;
+                var FechaInC = FechaIn + " 00:00:00";
+                var FechaFiC = FechaFi + " 23:59:59";
+                var Ver_Invalidos = "true";
+                var Activar_Mar = "true";
+                var Accion = "Delete";
+                var data = {
+                    frm: Frm,
+                    idmarcacion: IdMarcacion,
+                    activar_mar: Activar_Mar,
+                    idpersona: IdEmpleado,
+                    fecha_inicial: FechaInC,
+                    fecha_final: FechaFiC,
+                    ver_invalidos: Ver_Invalidos,              
+                    accion: Accion
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "ServletAlohaTiempos",
+                    dataType: 'html',
+                    data: data,
+                    success: function (resul, textStatus, jqXHR){
+                    
+                        var dt = resul;
+                        //alert("dt contra: " + resul);
+                        if (dt != "false"){
+                            Swal.fire({
+                              icon: 'success',
+                              title: 'La marcacion',
+                              text: 'Se restauro exitosamente.'
+                            }).then((result) => {
+                                
+                                $('#tablemarcaciones').html(resul);
+                                
+                                
+                            });
+
+
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 0) {
+                            alert('Not connect: Verify Network.');
+                        } else if (jqXHR.status === 404) {
+                            alert('Requested page not found [404]');
+                        } else if (jqXHR.status === 500) {
+                            alert('Internal Server Error [500].');
+                        } else if (textStatus === 'parsererror') {
+                            alert('Requested JSON parse failed.');
+                        } else if (textStatus === 'timeout') {
+                            alert('Time out error.');
+                        } else if (textStatus === 'abort') {
+                            alert('Ajax request aborted.');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ocurrio un error',
+                                text: 'En el proceso: ' + jqXHR.responseText
+                            });
+                            //alert('Uncaught Error: ' + jqXHR.responseText);
+                        }
+                    }
+                });
+            }
+        });
+        
+
+    });
+
     $('#tableempleados').DataTable({
         "scrollCollapse": false,
         "paging": false,
@@ -613,10 +703,12 @@ $(function () {
         var FechaInC = FechaIn + " 00:00:00";
         var FechaFiC = FechaFi + " 23:59:59";
         var Ver_Invalidos = "false";
+        var Activar_Mar = "false";
         var Accion = "Delete";
         var data = {
             frm: Frm,
             idmarcacion: IdMarcacion,
+            activar_mar: Activar_Mar,
             idpersona: IdEmpleado,
             fecha_inicial: FechaInC,
             fecha_final: FechaFiC,
@@ -754,6 +846,82 @@ $(function () {
             }
         });
 
+    });
+
+    $('#IdConsultarEli').click(function(e){
+
+        if(id_persona != ""){
+            var FechaIn = $('#IdFechaInicioPeriodo').val();
+            var FechaFi = $('#IdFechaFinPeriodo').val();
+
+            if(FechaIn != "" || FechaFi != ""){
+                /*alert(fechain + " " + fechafi);
+
+                var cedulap = $(this).data('ced');
+                var idpersona = $(this).data('idpersona');
+                alert(idpersona + " " + cedulap);*/
+
+                var Frm = "MarcacionesJSP";                 
+                var IdEmpleado = id_persona
+                var FechaInC = FechaIn + " 00:00:00";
+                var FechaFiC = FechaFi + " 23:59:59";
+                var Ver_Invalidos = "true";
+                var Accion = "ReadM";
+                var data = {
+                    frm: Frm,
+                    idpersona: IdEmpleado,
+                    fecha_inicial: FechaInC,
+                    fecha_final: FechaFiC,
+                    ver_invalidos: Ver_Invalidos,                
+                    accion: Accion
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "ServletAlohaTiempos",
+                    dataType: 'html',
+                    data: data,
+                    success: function (resul, textStatus, jqXHR){
+                    
+                        $('#tablemarcaciones').html(resul);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (jqXHR.status === 0) {
+                            alert('Not connect: Verify Network.');
+                        } else if (jqXHR.status === 404) {
+                            alert('Requested page not found [404]');
+                        } else if (jqXHR.status === 500) {
+                            alert('Internal Server Error [500].');
+                        } else if (textStatus === 'parsererror') {
+                            alert('Requested JSON parse failed.');
+                        } else if (textStatus === 'timeout') {
+                            alert('Time out error.');
+                        } else if (textStatus === 'abort') {
+                            alert('Ajax request aborted.');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ocurrio un error',
+                                text: 'En el proceso: ' + jqXHR.responseText
+                            });
+                            //alert('Uncaught Error: ' + jqXHR.responseText);
+                        }
+                    }
+                });
+
+            }else{
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Por favor seleccione',
+                    text: 'Las fechas a visualizar.'
+                });
+            } 
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Por favor seleccione',
+                text: 'Un empleado.'
+            });
+        }
     });
 
     $('#IdSeleccionarMa').click(function(e){

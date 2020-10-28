@@ -351,7 +351,7 @@ public class ControladorPersona {
             ResultSet res = SQL.executeQuery();
             while (res.next()) {
                 modelo.setId(res.getInt("id"));
-                modelo.setTipo_identificacion(res.getString("tipoIdentificacion"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
                 modelo.setIdentificacion(res.getString("identificacion"));
                 modelo.setNombres(res.getString("nombres"));
                 modelo.setApellidos(res.getString("apellidos"));
