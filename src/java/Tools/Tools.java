@@ -8,6 +8,9 @@ package Tools;
 import Conexiones.ConexionBdMysql;
 import Controladores.ControladorUsuario;
 import Modelo.ModeloUsuario;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -335,5 +338,38 @@ public class Tools {
         fechahora = fec + " " + hor;
 
         return fechahora;
+    }
+    
+    public String modoMarcaciones(){
+        String path = System.getProperty("java.class.path");
+        
+        String ruta = path.substring(0, path.indexOf("\\m")).replace("\\", "//");
+        String modo = "";
+        
+        try {
+            File file = new File(ruta + "//Configuracion_Aloha.txt");
+            BufferedReader filein = null;
+            if (file != null) {
+                filein = new BufferedReader(new FileReader(file));
+                String Linea;
+                while (filein.ready()) {
+                    Linea = filein.readLine();                          
+                    StringTokenizer stk = new StringTokenizer(Linea, "=");
+                    
+                    while (stk.hasMoreTokens()) {
+                        //String asig = stk.nextToken();
+                        modo = stk.nextToken();                        
+                    }                    
+                }
+            }else{
+                modo = "error";
+                System.out.println("No existe el archivo de configuracion de sentidos.");
+            }
+        } catch (Exception e) {
+            modo = "error";
+            System.out.println("Error ruta modo asignacion marcacion: " + e.getMessage());
+        }
+        
+        return modo;                        
     }
 }

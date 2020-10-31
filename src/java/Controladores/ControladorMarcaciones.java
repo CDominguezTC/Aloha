@@ -447,6 +447,9 @@ public class ControladorMarcaciones {
     
     public String ReadMarcaciones(HttpServletRequest request, HttpServletResponse response) {
         
+        Tools tl = new Tools();
+        System.out.println(tl.modoMarcaciones());
+        
         String out = null;
         String id = request.getParameter("idpersona");
         String fecha_inicial = request.getParameter("fecha_inicial");

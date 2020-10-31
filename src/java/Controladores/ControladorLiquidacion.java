@@ -9,6 +9,7 @@ import Conexiones.ConexionBdMysql;
 import Modelo.ModeloMarcaciones;
 import Modelo.ModeloPersona;
 import Modelo.ModeloRegistro_tiempo;
+import Tools.Tools;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -75,9 +76,10 @@ public class ControladorLiquidacion {
 //                resultado = "-2";
 //            }
             try {
+                Tools tl = new Tools();
                 boolean seguir = false;
                 int id_temporal = 0;
-                String codigo_ant = "", opcion_sentido = "1";
+                String codigo_ant = "", opcion_sentido = tl.modoMarcaciones();
                 LinkedList<ModeloRegistro_tiempo> listaMarcaciones = new LinkedList<ModeloRegistro_tiempo>();
                 ControladorMarcaciones controladorM = new ControladorMarcaciones();
                 listaMarcaciones = controladorM.searchMarcacionesRegTiempo();
@@ -112,38 +114,43 @@ public class ControladorLiquidacion {
                             if(listaMarcacionesEstado.isEmpty()){
                                 modeloMarcacionesEst.setEstado_marcacion("Entrada");
                             }else{                                                            
-                            
-                                if(opcion_sentido.equals("2")){
+                                if(!opcion_sentido.equals("error") || !opcion_sentido.equals("")){
+                                                                    
+                                    if(opcion_sentido.equals("2")){
 
-                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
-                                        case "Entrada":
-                                            modeloMarcacionesEst.setEstado_marcacion("SalidaIntermedia");
-                                        break;
+                                        switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                            case "Entrada":
+                                                modeloMarcacionesEst.setEstado_marcacion("SalidaIntermedia");
+                                            break;
 
-                                        case "SalidaIntermedia":
-                                            modeloMarcacionesEst.setEstado_marcacion("EntradaIntermedia");
-                                        break;
+                                            case "SalidaIntermedia":
+                                                modeloMarcacionesEst.setEstado_marcacion("EntradaIntermedia");
+                                            break;
 
-                                        case "EntradaIntermedia":
-                                            modeloMarcacionesEst.setEstado_marcacion("Salida");
-                                        break;
+                                            case "EntradaIntermedia":
+                                                modeloMarcacionesEst.setEstado_marcacion("Salida");
+                                            break;
 
-                                        case "Salida":
-                                            modeloMarcacionesEst.setEstado_marcacion("Entrada");
-                                        break;
+                                            case "Salida":
+                                                modeloMarcacionesEst.setEstado_marcacion("Entrada");
+                                            break;
+                                        }
+
+                                    }else{
+
+                                        switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
+                                            case "Entrada":
+                                                modeloMarcacionesEst.setEstado_marcacion("Salida");
+                                            break;
+
+                                            case "Salida":
+                                                modeloMarcacionesEst.setEstado_marcacion("Entrada");
+                                            break;
+                                        }
                                     }
-
                                 }else{
-
-                                    switch (listaMarcacionesEstado.get(0).getEstado_marcacion()) {
-                                        case "Entrada":
-                                            modeloMarcacionesEst.setEstado_marcacion("Salida");
-                                        break;
-
-                                        case "Salida":
-                                            modeloMarcacionesEst.setEstado_marcacion("Entrada");
-                                        break;
-                                    }
+                                    resultado = "0";
+                                    break;
                                 }
                             }
                             if("true".equals(controladorM.Insert(modeloMarcacionesEst, false))){
