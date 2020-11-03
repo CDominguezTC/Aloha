@@ -391,6 +391,94 @@ public class ControladorPersona {
         }
         return modelo;
     }
+    
+    public ModeloPersona getPersonaId(String cedula) {
+        Connection cone;
+        PreparedStatement pst = null;
+        ConexionBdMysql conex = new ConexionBdMysql();
+        String resultado = null;
+        ModeloPersona modelo = new ModeloPersona();
+        cone = conex.abrirConexion();
+        try {
+            pst = cone.prepareStatement("SELECT id,"
+                    + "tipo_identificacion, "
+                    + "identificacion, "
+                    + "nombres, "
+                    + "apellidos, "
+                    + "email, "
+                    + "direccion, "
+                    + "telefono, "
+                    + "rh, "
+                    + "tipo_persona, "
+                    + "recibe_visitas, "
+                    + "nombre_eps, "
+                    + "nombre_arl, "
+                    + "acceso_restringido, "
+                    + "observacion, "
+                    + "consumo_casino, "
+                    + "cantidad_consumo, "
+                    + "tarjeta_acceso, "
+                    + "codigo_nomina, "
+                    + "estado, "
+                    + "id_dependencia, "
+                    + "id_empresa_seguridad_social, "
+                    + "id_grupo_horario, "
+                    + "id_turno, "
+                    + "id_departamento, "
+                    + "id_area, "
+                    + "id_ciudad, "
+                    + "id_centro_costo, "
+                    + "id_cargo, "
+                    + "id_empresa_trabaja, "
+                    + "id_grupo_consumo"
+                    + " FROM persona"
+                    + " WHERE identificacion = ? AND "
+                    + "estado = ?");
+            pst.setString(1, cedula);
+            pst.setString(2, "S");
+            ResultSet res = pst.executeQuery();
+            while (res.next()) {
+                modelo.setId(res.getInt("id"));
+                modelo.setTipo_identificacion(res.getString("tipo_identificacion"));
+                modelo.setIdentificacion(res.getString("identificacion"));
+                modelo.setNombres(res.getString("nombres"));
+                modelo.setApellidos(res.getString("apellidos"));
+                modelo.setEmail(res.getString("email"));
+                modelo.setDireccion(res.getString("direccion"));
+                modelo.setTelefono(res.getString("telefono"));
+                modelo.setRh(res.getString("rh"));
+                modelo.setTipo_persona(res.getString("tipo_persona"));
+                modelo.setRecibe_visitas(res.getString("recibe_visitas"));
+                modelo.setNombre_eps(res.getString("nombre_eps"));
+                modelo.setNombre_arl(res.getString("nombre_arl"));
+                modelo.setAcceso_restringido(res.getString("acceso_restringido"));
+                modelo.setObservacion(res.getString("observacion"));
+                modelo.setConsumo_casino(res.getString("consumo_casino"));
+                modelo.setCantidad_consumo(res.getInt("cantidad_consumo"));
+                modelo.setTarjeta_acceso(res.getString("tarjeta_acceso"));
+                modelo.setCodigo_nomina(res.getString("codigo_nomina"));
+                modelo.setEstado(res.getString("estado"));
+//                modelo.setModelo_dependencia(controladorDependencia.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_dependencia")))));
+//                modelo.setModelo_empresa_seguridad_social(controladorEmpresa.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_empresa_seguridad_social")))));
+//                modelo.setModelo_grupo_horario(controladorGrupo_horario.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_horario")))));
+//                modelo.setModelo_turno(controladorTurno_tiempo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_turno")))));
+//                //modelo.setModelo_departamento(controladorDepartamento.res.getString("id_departamento"));
+//                modelo.setModelo_area(controladorArea.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_area")))));
+//                modelo.setModelo_ciudad(controladorCiudad.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_ciudad")))));
+//                modelo.setModelo_centro_costo(controladorCentro_costo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_centro_costo")))));
+//                modelo.setModelo_cargo(controladorCargo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_cargo")))));
+//                modelo.setModelo_empresa_trabaja(controladorEmpresa.getModelo(Integer.parseInt(res.getString("id_empresa_trabaja"))));
+//                modelo.setModelo_grupo_consumo(controladorGrupo_consumo.getModelo(Integer.parseInt(herramienta.validaString(res.getString("id_grupo_consumo")))));
+            }
+            res.close();
+            pst.close();
+            cone.close();
+        } catch (SQLException e) {
+            
+            System.err.println("Error Controladores.ControladorPersona.GetPersonaCedula(): " + e.getMessage());            
+        }
+        return modelo;
+    }
     /**
      * Permite la eliminar un dato en la tabla de Personas en el modulo de
      * Casino

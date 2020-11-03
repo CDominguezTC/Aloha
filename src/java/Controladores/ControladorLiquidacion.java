@@ -101,7 +101,7 @@ public class ControladorLiquidacion {
                     System.out.println(listaMarcaciones.get(i).getId());                                        
 //                    if(codigo_ant.equals(listaMarcaciones.get(i).getCodigo()) || "".equals(codigo_ant)){
                                                                     
-                        modeloP = controladorPer.GetPersonaCedula(listaMarcaciones.get(i).getCodigo());
+                        modeloP = controladorPer.getPersonaId(listaMarcaciones.get(i).getCodigo());
 
                         if(modeloP.getId() != null){
                             LinkedList<ModeloMarcaciones> listaMarcacionesEstado = new LinkedList<ModeloMarcaciones>();
